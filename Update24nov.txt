@@ -1,0 +1,11 @@
+Update 24nov:
+
+Script Funcionario: Alterado, Papel agora é um STRING em vez de INT
+			Alterado tester para testador
+			Arquiteto agora trabalha
+			Testador agora trabalha
+Script IngameMenu: Alterado para acomodar a alteração de "papel"
+			Adicionado Game Speed
+ScriptEscolhaPapelFuncionariosGUI: NOVO, é a GUI que permite trocar os papeis dos funcionarios por mesa
+
+Script Project: Alterado: Acrescentado atributo findbugscore, que é dado pelo arquiteto, dependendo do seu desempenho. Este afeta a busca e correcao de bugs
