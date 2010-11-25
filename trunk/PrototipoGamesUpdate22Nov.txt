@@ -1,0 +1,15 @@
+Modificados:
+
+Scene
+	Inclui os dialogs para todos os funcionarios, e no mesmo gameobj possui os scripts de funcionario
+Script Project
+	Para acomodar sincronismo
+Script IngameMenu
+	Para acomodar sincronismo
+
+Novo:
+Script Funcionario
+	Atributos Humanos
+	Atributos Papel
+	Contribuição no projeto conforme trabalham
+		Funcionarios Programador, Gerente, Analista apenas
