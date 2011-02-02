@@ -103,6 +103,13 @@ function TakePapel(t: int)
 
 		}
 }
+
+//Funcao para setar os atributos do funcionario para exibicao na HUD
+function SetJanelaAtributo(func : Funcionario){
+	menu.SetJanelatributo(false, func.GetAdaptabilidade(), func.GetAutoDitada(), func.GetDetalhista(), func.GetNegociacao(), func.GetObjetividade(), 
+					func1.GetOrganizacao(), func.GetPaciencia(), func.GetRaciocinioLogico(), func.GetRelacionamentoHumano(), func.GetPapel(), func.GetNumMesa(), func.GetSalario() );
+}
+
 //Funcao que cria a lista para selecao de papel e visualizacao da ficha do funcionario
 function Start () {
     // Make some content for the popup list
@@ -133,9 +140,7 @@ function OnGUI () {
 			funcObj = GameObject.Find("Funcionario1");
 			func = funcObj.GetComponent(Funcionario);
 			if (listEntry == 7){
-				menu.SetJanelatributo(false, func.GetAdaptabilidade(), func.GetAutoDitada(), func.GetDetalhista(), func.GetNegociacao(), func.GetObjetividade(), 
-				func1.GetOrganizacao(), func.GetPaciencia(), func.GetRaciocinioLogico(), func.GetRelacionamentoHumano(), func.GetPapel(), func.GetNumMesa(), func.GetSalario() );
-				Debug.Log(func.GetNumMesa());
+				SetJanelaAtributo(func);
 			}
 			else
 			{
@@ -149,8 +154,7 @@ function OnGUI () {
 			funcObj = GameObject.Find("Funcionario2");
 			func = funcObj.GetComponent(Funcionario);
 			if (listEntry == 7){
-				menu.SetJanelatributo(false, func.GetAdaptabilidade(), func.GetAutoDitada(), func.GetDetalhista(), func.GetNegociacao(), func.GetObjetividade(), 
-				func1.GetOrganizacao(), func.GetPaciencia(), func.GetRaciocinioLogico(), func.GetRelacionamentoHumano(), func.GetPapel(), func.GetNumMesa(), func.GetSalario() );
+				SetJanelaAtributo(func);
 			}
 			else
 			{
@@ -164,8 +168,7 @@ function OnGUI () {
 			funcObj = GameObject.Find("Funcionario3");
 			func = funcObj.GetComponent(Funcionario);
 			if (listEntry == 7){
-				menu.SetJanelatributo(false, func.GetAdaptabilidade(), func.GetAutoDitada(), func.GetDetalhista(), func.GetNegociacao(), func.GetObjetividade(), 
-				func1.GetOrganizacao(), func.GetPaciencia(), func.GetRaciocinioLogico(), func.GetRelacionamentoHumano(), func.GetPapel(), func.GetNumMesa(), func.GetSalario() );
+				SetJanelaAtributo(func);
 			}
 			else
 			{
@@ -179,8 +182,7 @@ function OnGUI () {
 			funcObj = GameObject.Find("Funcionario4");
 			func = funcObj.GetComponent(Funcionario);
 			if (listEntry == 7){
-				menu.SetJanelatributo(false, func.GetAdaptabilidade(), func.GetAutoDitada(), func.GetDetalhista(), func.GetNegociacao(), func.GetObjetividade(), 
-				func1.GetOrganizacao(), func.GetPaciencia(), func.GetRaciocinioLogico(), func.GetRelacionamentoHumano(), func.GetPapel(), func.GetNumMesa(), func.GetSalario() );
+				SetJanelaAtributo(func);
 			}
 			else
 			{
@@ -194,8 +196,7 @@ function OnGUI () {
 			funcObj = GameObject.Find("Funcionario5");
 			func = funcObj.GetComponent(Funcionario);
 			if (listEntry == 7){
-				menu.SetJanelatributo(false, func.GetAdaptabilidade(), func.GetAutoDitada(), func.GetDetalhista(), func.GetNegociacao(), func.GetObjetividade(), 
-				func1.GetOrganizacao(), func.GetPaciencia(), func.GetRaciocinioLogico(), func.GetRelacionamentoHumano(), func.GetPapel(), func.GetNumMesa(), func.GetSalario() );
+				SetJanelaAtributo(func);
 			}
 			else
 			{
@@ -209,8 +210,7 @@ function OnGUI () {
 			funcObj = GameObject.Find("Funcionario6");
 			func = funcObj.GetComponent(Funcionario);
 			if (listEntry == 7){
-				menu.SetJanelatributo(false, func.GetAdaptabilidade(), func.GetAutoDitada(), func.GetDetalhista(), func.GetNegociacao(), func.GetObjetividade(), 
-				func1.GetOrganizacao(), func.GetPaciencia(), func.GetRaciocinioLogico(), func.GetRelacionamentoHumano(), func.GetPapel(), func.GetNumMesa(), func.GetSalario() );
+				SetJanelaAtributo(func);
 			}
 			else
 			{
@@ -224,8 +224,7 @@ function OnGUI () {
 			funcObj = GameObject.Find("Funcionario7");
 			func = funcObj.GetComponent(Funcionario);
 			if (listEntry == 7){
-				menu.SetJanelatributo(false, func.GetAdaptabilidade(), func.GetAutoDitada(), func.GetDetalhista(), func.GetNegociacao(), func.GetObjetividade(), 
-				func1.GetOrganizacao(), func.GetPaciencia(), func.GetRaciocinioLogico(), func.GetRelacionamentoHumano(), func.GetPapel(), func.GetNumMesa(), func.GetSalario() );
+				SetJanelaAtributo(func);
 			}
 			else
 			{
@@ -239,8 +238,7 @@ function OnGUI () {
 			funcObj = GameObject.Find("Funcionario8");
 			func = funcObj.GetComponent(Funcionario);
 			if (listEntry == 7){
-				menu.SetJanelatributo(false, func.GetAdaptabilidade(), func.GetAutoDitada(), func.GetDetalhista(), func.GetNegociacao(), func.GetObjetividade(), 
-				func1.GetOrganizacao(), func.GetPaciencia(), func.GetRaciocinioLogico(), func.GetRelacionamentoHumano(), func.GetPapel(), func.GetNumMesa(), func.GetSalario() );
+				SetJanelaAtributo(func);
 			}
 			else
 			{
