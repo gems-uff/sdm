@@ -8,7 +8,7 @@ funcObj = GameObject.Find("CollisionDialogProg1");
 func = funcObj.GetComponent(Funcionario);
 menuObj = GameObject.Find("GUI");
 menu = menuObj.GetComponent(IngameMenu);
-menu.SetJanelatributo(false, func.GetAdaptabilidade(), func.GetAutoDitada(), func.GetDetalhista(), func.GetNegociacao(), func.GetObjetividade(), func.GetOrganizacao(), func.GetPaciencia(), func.GetRaciocinioLogico(), func.GetRelacionamentoHumano(), func.GetPapel() );
+menu.SetJanelatributo(false, func.GetAdaptabilidade(), func.GetAutoDitada(), func.GetDetalhista(), func.GetNegociacao(), func.GetObjetividade(), func.GetOrganizacao(), func.GetPaciencia(), func.GetRaciocinioLogico(), func.GetRelacionamentoHumano(), func.GetPapel(), func.GetNumMesa(), func.GetSalario() );
 
 EndDialogue();
 

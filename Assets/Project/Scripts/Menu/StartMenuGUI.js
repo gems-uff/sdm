@@ -3,6 +3,8 @@
 var backdrop : Texture2D;
 private var isLoading = false;
 
+//Menu da tela inicial do jogo
+
 function OnGUI()
 {
 	//if(gSkin)

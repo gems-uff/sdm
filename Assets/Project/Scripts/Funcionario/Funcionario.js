@@ -1,4 +1,6 @@
 
+//Mesa na qual o funcionario esta alocado
+public var nummesa = 0;
 //Atributos Humanos
 public var adaptabilidade = 50;
 public var autoDitada = 50;
@@ -10,6 +12,7 @@ public var paciencia = 50;
 public var raciocinioLogico = 50;
 public var relacionamentoHumano = 50;
 public var papel = "";
+public var salario = 0;
 //Atributos de cada Papel
 private var analista = 0;
 private var arquiteto = 0;
@@ -35,17 +38,17 @@ function Awake()
    SetTester();
 } 
 
-
+//Funcoes que fazem os funcionarios produzirem
 function AnalistaWork(){
 	var aux = 0.0;
-	if(project.GetSincronismo() == 00)
+	if(project.GetSincronismo() == 00)	//Se o projeto esta sendo iniciado, entao o valor de sincronismo inicial varia de acordo com o desempenho do analista
 	{
 		aux = analista* 0.8;
 		project.SetSincronismo(aux);
 	}
 	else
 	{
-		if(project.GetSincronismo() < 100)
+		if(project.GetSincronismo() < 100)	//Se o projeto esta em andamento entao o sincronismo vai mudando lentamente de acordo com o analista
 		{
 			aux = analista* 0.00001;
 			project.SetSincronismo(aux);
@@ -131,7 +134,11 @@ function Work(){	//Função que atualiza os campos de projeto conforme a performac
 	  
 	}
 }
-//Gets dos atributos humanos
+//Gets dos atributos humanos e mesa
+
+function GetNumMesa() {
+	return nummesa;
+}
 
 function GetAdaptabilidade() {
 	return adaptabilidade;
@@ -164,8 +171,14 @@ function GetRelacionamentoHumano() {
 function GetPapel() {
 	return papel;
 }
+function GetSalario() {
+	return salario;
+}
+//Sets dos atributos humanos e mesa
 
-//Sets dos atributos humanos
+function SetNumMesa(t: int) {
+	nummesa = t;
+}
 
 function SetAdaptabilidade(t: int) {
 	adaptabilidade = t;
@@ -197,6 +210,9 @@ function SetRelacionamentoHumano(t: int) {
 
 function SetPapel(t: String) {
 	papel = t;
+}
+function SetSalario(t: int) {
+	salario = t;
 }
 
 //Set Atributos de cada papel
