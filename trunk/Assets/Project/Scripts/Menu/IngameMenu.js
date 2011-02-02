@@ -1,41 +1,45 @@
 	
-	var timepaused				: boolean = false;
-	var ingameMenuToggle 	: boolean = false;
+	public var timepaused				: boolean = false;
+	public var ingameMenuToggle 	: boolean = false;
 	//var helpMenuToggle 		: boolean = false;
 	//var scoreboardToggle		: boolean = false;
-	var janelatributo				:boolean = false;
-	var escolhapapel				:boolean = false;
+	public var janelatributo				:boolean = false;
+	public var escolhapapel				:boolean = false;
 	
-	var icon : Texture2D;
+	public var icon : Texture2D;
 
-	var timeText = "";
-	var deadlineText = "";
-	var bugsText = "";
-	var completedText = "";
-	var sincronismoText = "";
+	private var saldoText = "";
+	private var timeText = "";
+	private var deadlineText = "";
+	private var bugsText = "";
+	private var completedText = "";
+	private var sincronismoText = "";
 	
 	//Variaveis para os atributos do funcionario corrente
-	var adaptabilidade = 0;
-	var autoDitada = 0;
-	var detalhista = 0;
-	var negociacao = 0;
-	var objetividade = 0;
-	var organizacao = 0;
-	var paciencia = 0;
-	var raciocinioLogico =0;
-	var relacionamentoHumano = 0;
-	var papel = "";
+	private var nummesa = 0;
+	private var adaptabilidade = 0;
+	private var autoDitada = 0;
+	private var detalhista = 0;
+	private var negociacao = 0;
+	private var objetividade = 0;
+	private var organizacao = 0;
+	private var paciencia = 0;
+	private var raciocinioLogico =0;
+	private var relacionamentoHumano = 0;
+	private var papel = "";
+	private var salario = 0;
 	
-	var project : Project;
+	private var project : Project;
+	private var playerstats : PlayerStats;
 
-	
+	/*
 	function PapelToString(t: int)
 	{
 	
 	}
-	
+	*/
 	//Funcao que seta os atributos do funcionario corrente, chamada pelo script DialogInstance, item Qualificacao. Primeiro atributo eh para abilitar a janela, os demais sao os atributos em ordem alfabetica
-	function SetJanelatributo(t : boolean, a1 : int, a2 : int, a3 : int, a4 : int, a5 : int, a6 : int, a7 : int, a8 : int, a9 : int, a10 : String)
+	function SetJanelatributo(t : boolean, a1 : int, a2 : int, a3 : int, a4 : int, a5 : int, a6 : int, a7 : int, a8 : int, a9 : int, a10 : String, a11 : int, a12 : int )
 	{
 		janelatributo = t;
 		adaptabilidade = a1;
@@ -48,15 +52,18 @@
 		raciocinioLogico =a8;
 		relacionamentoHumano = a9;
 		papel = a10;
+		nummesa = a11;
+		salario = a12;
 	}
 	
 	function Awake () {
 		project = GetComponentInChildren(Project);
+		playerstats = GetComponentInChildren(PlayerStats);
 	}
 
 	function Update()
 	{
-		if (Input.GetKeyDown (KeyCode.Escape ))
+		if (Input.GetKeyDown (KeyCode.Escape )) //Se pressiono ESC
 		{
 			EscapePressed();
 		}
@@ -75,14 +82,14 @@
 	function EscapePressed()
 	{
 		//if (!ingameMenuToggle && !helpMenuToggle && !scoreboardToggle)
-		if (!ingameMenuToggle)
+		if (!ingameMenuToggle)	//Se Menu aberto entao pausa
 		{
 			ingameMenuToggle = true;
 			Screen.lockCursor = false;
 			Time.timeScale = 0 ;	// pauze
 		}
 		
-		else 
+		else //Senao despausa
 		{
 			Screen.lockCursor = true;
 			ingameMenuToggle = false;
@@ -96,22 +103,23 @@
 
 	function OnGUI ()
 	{
-		GUI.Box (Rect (00,00,90,25), "Time");
-		GUI.Box (Rect (00,25,90,25), "Deadline");
-		GUI.Box (Rect (00,50,90,25), "% concluido");
-		GUI.Box (Rect (00,75,90,25), "# bugs");
-		GUI.Box (Rect (00,100,90,25), "Sincronismo");
+		GUI.Box (Rect (00,00,90,25), "Saldo");
+		GUI.Box (Rect (00,25,90,25), "Time");
+		GUI.Box (Rect (00,50,90,25), "Deadline");
+		GUI.Box (Rect (00,75,90,25), "% concluido");
+		GUI.Box (Rect (00,100,90,25), "# bugs");
+		GUI.Box (Rect (00,125,90,25), "Sincronismo");
 		
-		if (GUI.Button (Rect (00,125, 130, 20), "Game Speed: x1")) {
+		if (GUI.Button (Rect (00,150, 130, 20), "Game Speed: x1")) {
 					Time.timeScale = 1 ;
 		}
-		if (GUI.Button (Rect (00,150, 130, 20), "Game Speed: x2")) {
+		if (GUI.Button (Rect (00,175, 130, 20), "Game Speed: x2")) {
 					Time.timeScale = 2 ;
 		}
-		if (GUI.Button (Rect (00,175, 130, 20), "Game Speed: x4")) {
+		if (GUI.Button (Rect (00,200, 130, 20), "Game Speed: x4")) {
 					Time.timeScale = 4 ;
 		}
-		if (GUI.Button (Rect (00,200, 130, 20), "Game Speed: x8")) {
+		if (GUI.Button (Rect (00,225, 130, 20), "Game Speed: x8")) {
 					Time.timeScale = 8 ;
 		}
 	
@@ -138,9 +146,13 @@
 					print ("Made with Unity 3d");
 			}
 
-			if (GUI.Button (Rect (Screen.width - 100,50, 100, 20), "1: Quit to Menu")) {
+			if (GUI.Button (Rect (Screen.width - 100,50, 100, 20), "1: Quit")) {
 					Application.LoadLevel ("StartMenu");
 			}
+			if (GUI.Button (Rect (Screen.width - 100,70, 100, 20), "2: Help")) {
+					//Fazer o Help
+			}
+			/*
 			if (Input.GetKeyDown("1")){
 				Application.LoadLevel ("StartMenu");
 			}
@@ -149,7 +161,8 @@
 				Time.timeScale = 1 ;
 				Screen.lockCursor = true;
 			}
-			if (GUI.Button( Rect (Screen.width - 100,70,100,20), "2: Resume game") )
+			*/
+			if (GUI.Button( Rect (Screen.width - 100,90,100,20), "3: Resume") )
 			{
 				ingameMenuToggle = false ;
 				Time.timeScale = 1 ;
@@ -157,20 +170,24 @@
 
 			}
 		}
+		saldoText = playerstats.GetSaldo().ToString();
 		timeText = project.GetTime().ToString();
 		deadlineText = project.GetDeadLine().ToString();
 		bugsText = parseInt(project.GetNumBugs()).ToString();							//parseint para converter o float para inteiro
 		completedText = (project.GetNumLinesDone().ToString() + " %");
 		sincronismoText = (parseInt(project.GetSincronismo()).ToString() + " %");	//parseint para converter o float para inteiro
-		timeText = GUI.TextField (Rect (92,00,120,25), timeText);
-		deadlineText = GUI.TextField (Rect (92,25,120,25), deadlineText);
-		completedText = GUI.TextField (Rect (92,50,120,25), completedText);
-		bugsText = GUI.TextField (Rect (92,75,120,25), bugsText);
-		sincronismoText = GUI.TextField (Rect (92,100,120,25), sincronismoText);
+		
+		saldoText = GUI.TextField (Rect (92,00,120,25), saldoText);
+		timeText = GUI.TextField (Rect (92,25,120,25), timeText);
+		deadlineText = GUI.TextField (Rect (92,50,120,25), deadlineText);
+		completedText = GUI.TextField (Rect (92,75,120,25), completedText);
+		bugsText = GUI.TextField (Rect (92,100,120,25), bugsText);
+		sincronismoText = GUI.TextField (Rect (92,125,120,25), sincronismoText);
 
 		//Janela das fichas dos funcionarios
 		if(!janelatributo)
 		{
+			GUI.Box (Rect (250,125,300,25), ("Mesa: "+ nummesa));
 			GUI.Box (Rect (250,150,300,25), ("Adaptabilidade: "+ adaptabilidade));
 			GUI.Box (Rect (250,175,300,25), ("AutoDitada: "+ autoDitada));
 			GUI.Box (Rect (250,200,300,25), ("Detalhista: "+ detalhista));
@@ -181,7 +198,8 @@
 			GUI.Box (Rect (250,325,300,25), ("RaciocinioLogico: "+ raciocinioLogico));
 			GUI.Box (Rect (250,350,300,25), ("RelacionamentoHumano: "+ relacionamentoHumano));
 			GUI.Box (Rect (250,375,300,25), ("Papel: "+ papel));
-			if (GUI.Button (Rect (250,400,300,25), "Close Window")) 
+			GUI.Box (Rect (250,400,300,25), ("Salario: "+ salario));
+			if (GUI.Button (Rect (250,425,300,25), "Close Window")) 
 			{
 							janelatributo  = true;
 			}
