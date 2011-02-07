@@ -1,18 +1,6 @@
 
-//Mesa na qual o funcionario esta alocado
-public var nummesa = 0;
-//Atributos Humanos
-public var adaptabilidade = 50;
-public var autoDitada = 50;
-public var detalhista = 50;
-public var negociacao = 50;
-public var objetividade = 50;
-public var organizacao = 50;
-public var paciencia = 50;
-public var raciocinioLogico = 50;
-public var relacionamentoHumano = 50;
-public var papel = "";
-public var salario = 0;
+private var atributos : Atributos = new Atributos();
+
 //Atributos de cada Papel
 private var analista = 0;
 private var arquiteto = 0;
@@ -25,18 +13,6 @@ private var projectObj : GameObject;
 private var project : Project;
 
 
-//Inicializa os atributos de papeis e pega o gameobject project para poder atualiza-lo conforme os funcionarios trabalhem
-function Awake() 
-{ 
-   projectObj = GameObject.Find("Project");
-   project = projectObj.GetComponent(Project);
-   SetAnalista();
-   SetArquiteto();
-   SetGerente();
-   SetMarketing();
-   SetProgramador();
-   SetTester();
-} 
 
 //Funcoes que fazem os funcionarios produzirem
 function AnalistaWork(){
@@ -101,9 +77,8 @@ function TesterWork(){
 	project.SetNumBugs(aux);
 }
 
-
 function Work(){	//Função que atualiza os campos de projeto conforme a performace do funcionario no seu papel
-	switch(papel)
+	switch(atributos.papel)
 	{
 	   case "Analista": 	//caso analista
 		  AnalistaWork();
@@ -136,90 +111,92 @@ function Work(){	//Função que atualiza os campos de projeto conforme a performac
 }
 //Gets dos atributos humanos e mesa
 
-function GetNumMesa() {
-	return nummesa;
+function GetAtributos(){
+	return atributos;
 }
-
+function GetNumMesa() {
+	return atributos.nummesa;
+}
 function GetAdaptabilidade() {
-	return adaptabilidade;
+	return atributos.adaptabilidade;
 }
 function GetAutoDitada() {
-	return autoDitada;
+	return atributos.autoDitada;
 }
 function GetDetalhista() {
-	return detalhista;
+	return atributos.detalhista;
 }
 function GetNegociacao() {
-	return negociacao;
+	return atributos.negociacao;
 }
 function GetObjetividade() {
-	return objetividade;
+	return atributos.objetividade;
 }
 function GetOrganizacao() {
-	return organizacao;
+	return atributos.organizacao;
 }
 function GetPaciencia() {
-	return paciencia;
+	return atributos.paciencia;
 }
 function GetRaciocinioLogico() {
-	return raciocinioLogico;
+	return atributos.raciocinioLogico;
 }
 function GetRelacionamentoHumano() {
-	return relacionamentoHumano;
+	return atributos.relacionamentoHumano;
 }
-
 function GetPapel() {
-	return papel;
+	return atributos.papel;
 }
 function GetSalario() {
-	return salario;
+	return atributos.salario;
 }
 //Sets dos atributos humanos e mesa
-
-function SetNumMesa(t: int) {
-	nummesa = t;
+function SetAtributos(t : Atributos){
+	atributos = t;
 }
-
+function SetNumMesa(t: int) {
+	atributos.nummesa = t;
+}
 function SetAdaptabilidade(t: int) {
-	adaptabilidade = t;
+	atributos.adaptabilidade = t;
 }
 function SetAutoDitada(t: int) {
-	autoDitada = t;
+	atributos.autoDitada = t;
 }
 function SetDetalhista(t: int) {
-	detalhista = t;
+	atributos.detalhista = t;
 }
 function SetNegociacao(t: int) {
-	negociacao = t;
+	atributos.negociacao = t;
 }
 function SetObjetividade(t: int) {
-	objetividade = t;
+	atributos.objetividade = t;
 }
 function SetOrganizacao(t: int) {
-	organizacao = t;
+	atributos.organizacao = t;
 }
 function SetPaciencia(t: int) {
-	paciencia = t;
+	atributos.paciencia = t;
 }
 function SetRaciocinioLogico(t: int) {
-	raciocinioLogico = t;
+	atributos.raciocinioLogico = t;
 }
 function SetRelacionamentoHumano(t: int) {
-	relacionamentoHumano = t;
+	atributos.relacionamentoHumano = t;
 }
-
 function SetPapel(t: String) {
-	papel = t;
+	atributos.papel = t;
 }
 function SetSalario(t: int) {
-	salario = t;
+	atributos.salario = t;
 }
 
 //Set Atributos de cada papel
 
 function GetAtributo(p1: float, p2: float, p3: float, p4: float, p5: float, p6: float, p7: float, p8: float, p9: float){
-	var atributo = (adaptabilidade*p1) + (autoDitada*p2) + (detalhista*p3) + (negociacao*p4) + (objetividade*p5) + (organizacao*p6) + (paciencia*p7) + (raciocinioLogico*p8) + (relacionamentoHumano*p9);
-	return atributo;
+	var atributoPapel = (atributos.adaptabilidade*p1) + (atributos.autoDitada*p2) + (atributos.detalhista*p3) + (atributos.negociacao*p4) + 
+	(atributos.objetividade*p5) + (atributos.organizacao*p6) + (atributos.paciencia*p7) + (atributos.raciocinioLogico*p8) + (atributos.relacionamentoHumano*p9);
+	return atributoPapel;
 }
 
 function SetAnalista() {
@@ -241,6 +218,20 @@ function SetTester() {
 	tester = GetAtributo(0.05, 0.05, 0.25, 0.05, 0.10, 0.10, 0.15, 0.20, 0.05);
 }
 	
+//Inicializa os atributos de papeis e pega o gameobject project para poder atualiza-lo conforme os funcionarios trabalhem
+function Awake() 
+{ 
+   projectObj = GameObject.Find("Project");
+   project = projectObj.GetComponent(Project);
+   SetAnalista();
+   SetArquiteto();
+   SetGerente();
+   SetMarketing();
+   SetProgramador();
+   SetTester();
+} 
+
 function Update () {
 	Work();
+	Debug.Log(atributos.nummesa);
 }

@@ -104,12 +104,20 @@ function TakePapel(t: int)
 		}
 }
 
-//Funcao para setar os atributos do funcionario para exibicao na HUD
-function SetJanelaAtributo(func : Funcionario){
-	menu.SetJanelatributo(false, func.GetAdaptabilidade(), func.GetAutoDitada(), func.GetDetalhista(), func.GetNegociacao(), func.GetObjetividade(), 
-					func1.GetOrganizacao(), func.GetPaciencia(), func.GetRaciocinioLogico(), func.GetRelacionamentoHumano(), func.GetPapel(), func.GetNumMesa(), func.GetSalario() );
+//Executa a item da PopUp list selecionada
+function ExecutaPopup (listEntry : int)
+{
+	func = funcObj.GetComponent(Funcionario);
+	if (listEntry == 7)
+	{
+		menu.SetJanelatributo(false, func.GetAtributos());
+	}
+	else
+	{
+		novopapel = TakePapel(listEntry);
+		func.SetPapel(novopapel);
+	}
 }
-
 //Funcao que cria a lista para selecao de papel e visualizacao da ficha do funcionario
 function Start () {
     // Make some content for the popup list
@@ -138,113 +146,49 @@ function OnGUI () {
     if (Popup.List (Rect(220, 00, 120, 20), showList1, listEntry, GUIContent("1: "+ func1.GetPapel()), list, listStyle)) {
 		if (listEntry != 0){
 			funcObj = GameObject.Find("Funcionario1");
-			func = funcObj.GetComponent(Funcionario);
-			if (listEntry == 7){
-				SetJanelaAtributo(func);
-			}
-			else
-			{
-				novopapel = TakePapel(listEntry);
-				func.SetPapel(novopapel);
-			}
+			ExecutaPopup (listEntry);
 		}
     }
 	if (Popup.List (Rect(340, 00, 120, 20), showList2, listEntry, GUIContent("2: "+ func2.GetPapel()), list, listStyle)) {
 		if (listEntry != 0){
 			funcObj = GameObject.Find("Funcionario2");
-			func = funcObj.GetComponent(Funcionario);
-			if (listEntry == 7){
-				SetJanelaAtributo(func);
-			}
-			else
-			{
-				novopapel = TakePapel(listEntry);
-				func.SetPapel(novopapel);
-			}
+			ExecutaPopup (listEntry);
 		}
     }
 	if (Popup.List (Rect(460, 00, 120, 20), showList3, listEntry, GUIContent("3: "+ func3.GetPapel()), list, listStyle)) {
 		if (listEntry != 0){
 			funcObj = GameObject.Find("Funcionario3");
-			func = funcObj.GetComponent(Funcionario);
-			if (listEntry == 7){
-				SetJanelaAtributo(func);
-			}
-			else
-			{
-				novopapel = TakePapel(listEntry);
-				func.SetPapel(novopapel);
-			}
+			ExecutaPopup (listEntry);
 		}
     }
 	if (Popup.List (Rect(580, 00, 120, 20), showList4, listEntry, GUIContent("4: "+ func4.GetPapel()), list, listStyle)) {
 		if (listEntry != 0){
 			funcObj = GameObject.Find("Funcionario4");
-			func = funcObj.GetComponent(Funcionario);
-			if (listEntry == 7){
-				SetJanelaAtributo(func);
-			}
-			else
-			{
-				novopapel = TakePapel(listEntry);
-				func.SetPapel(novopapel);
-			}
+			ExecutaPopup (listEntry);
 		}
     }
 	if (Popup.List (Rect(700, 00, 120, 20), showList5, listEntry, GUIContent("5: "+ func5.GetPapel()), list, listStyle)) {
 		if (listEntry != 0){
 			funcObj = GameObject.Find("Funcionario5");
-			func = funcObj.GetComponent(Funcionario);
-			if (listEntry == 7){
-				SetJanelaAtributo(func);
-			}
-			else
-			{
-				novopapel = TakePapel(listEntry);
-				func.SetPapel(novopapel);
-			}
+			ExecutaPopup (listEntry);
 		}
     }
 	if (Popup.List (Rect(820, 00, 120, 20), showList6, listEntry, GUIContent("6: "+ func6.GetPapel()), list, listStyle)) {
 		if (listEntry != 0){
 			funcObj = GameObject.Find("Funcionario6");
-			func = funcObj.GetComponent(Funcionario);
-			if (listEntry == 7){
-				SetJanelaAtributo(func);
-			}
-			else
-			{
-				novopapel = TakePapel(listEntry);
-				func.SetPapel(novopapel);
-			}
+			ExecutaPopup (listEntry);
 		}
     }
 	if (Popup.List (Rect(940, 00, 120, 20), showList7, listEntry, GUIContent("7: "+ func7.GetPapel()), list, listStyle)) {
 		if (listEntry != 0){
 			funcObj = GameObject.Find("Funcionario7");
-			func = funcObj.GetComponent(Funcionario);
-			if (listEntry == 7){
-				SetJanelaAtributo(func);
-			}
-			else
-			{
-				novopapel = TakePapel(listEntry);
-				func.SetPapel(novopapel);
-			}
+			ExecutaPopup (listEntry);
 		}
     }
 	if (Popup.List (Rect(1060, 00, 120, 20), showList8, listEntry, GUIContent("8: "+ func8.GetPapel()), list, listStyle)) {
 		if (listEntry != 0){
 			funcObj = GameObject.Find("Funcionario8");
-			func = funcObj.GetComponent(Funcionario);
-			if (listEntry == 7){
-				SetJanelaAtributo(func);
-			}
-			else
-			{
-				novopapel = TakePapel(listEntry);
-				func.SetPapel(novopapel);
-			}
+			ExecutaPopup (listEntry);
 		}
     }
 }
