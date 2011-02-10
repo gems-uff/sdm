@@ -1,5 +1,6 @@
 
 private var atributos : Atributos = new Atributos();
+private var especializacao : Especializacoes = new Especializacoes();
 
 //Atributos de cada Papel
 private var analista = 0;
@@ -9,110 +10,13 @@ private var marketing = 0;
 private var programador = 0;
 private var tester = 0;
 
-private var projectObj : GameObject;
-private var project : Project;
-
-
-
-//Funcoes que fazem os funcionarios produzirem
-function AnalistaWork(){
-	var aux = 0.0;
-	if(project.GetSincronismo() == 00)	//Se o projeto esta sendo iniciado, entao o valor de sincronismo inicial varia de acordo com o desempenho do analista
-	{
-		aux = analista* 0.8;
-		project.SetSincronismo(aux);
-	}
-	else
-	{
-		if(project.GetSincronismo() < 100)	//Se o projeto esta em andamento entao o sincronismo vai mudando lentamente de acordo com o analista
-		{
-			aux = analista* 0.00001;
-			project.SetSincronismo(aux);
-		}
-	}
-}
-
-function ArquitetoWork(){
-	var aux = 0.0;
-	aux = arquiteto;
-	project.SetFindbugScore(aux);
-}
-
-function GerenteWork(){
-	var auxprog = 0;
-	var auxanalista = 0.0;
-	var auxtester = 0.0;
-	
-	auxprog = gerente*0.25;
-	auxprog = auxprog *0.5;
-	
-	auxanalista = gerente*0.25;
-	auxanalista = auxanalista *0.000005;
-	
-	auxtester = gerente*0.25;
-	auxtester = auxtester*0.00000025;
-	
-	if(project.GetSincronismo() != 00)
-		if(project.GetSincronismo() < 100)
-			project.SetSincronismo(auxanalista);
-	project.SetLinesDone(auxprog);
-	project.SetNumBugs(auxtester);
-}
-
-function MarketingWork(){
-	//Fazer
-}
-
-function ProgramadorWork(){
-	var aux = 0.0;
-	aux = (100 - programador )*0.00003;
-	project.SetNumBugs(aux);
-	project.SetLinesDone(programador);
-}
-
-function TesterWork(){
-	var aux;
-	aux = tester*0.0000007;
-	aux = -aux*(project.GetFindbugScore());
-	project.SetNumBugs(aux);
-}
-
-function Work(){	//Função que atualiza os campos de projeto conforme a performace do funcionario no seu papel
-	switch(atributos.papel)
-	{
-	   case "Analista": 	//caso analista
-		  AnalistaWork();
-	   break;
-
-	   case "Arquiteto":	//caso arquiteto
-		  ArquitetoWork();
-	   break;
-	   
-	   case "Gerente":	//caso gerente
-		  GerenteWork();
-	   break;
-	   
-	   case "Marketing":	//caso marketing
-		  MarketingWork();
-	   break;
-	   
-	   case "Programador":	//caso programador
-			ProgramadorWork();
-	   break;
-	   
-	   case "Testador":	//caso tester
-		  TesterWork();
-	   break;
-
-	   default:
-		  break;
-	  
-	}
-}
-//Gets dos atributos humanos e mesa
+//Get e Set dos atributos humanos e mesa
 
 function GetAtributos(){
 	return atributos;
+}
+function GetEspecializacao(){
+	return especializacao;
 }
 function GetNumMesa() {
 	return atributos.nummesa;
@@ -150,9 +54,12 @@ function GetPapel() {
 function GetSalario() {
 	return atributos.salario;
 }
-//Sets dos atributos humanos e mesa
+
 function SetAtributos(t : Atributos){
 	atributos = t;
+}
+function SetEspecializacoes(t : Especializacoes){
+	especializacao = t;
 }
 function SetNumMesa(t: int) {
 	atributos.nummesa = t;
@@ -191,47 +98,168 @@ function SetSalario(t: int) {
 	atributos.salario = t;
 }
 
-//Set Atributos de cada papel
+//Get e Set Atributos de cada papel
 
-function GetAtributo(p1: float, p2: float, p3: float, p4: float, p5: float, p6: float, p7: float, p8: float, p9: float){
+function GetAtributoPapel(p1: float, p2: float, p3: float, p4: float, p5: float, p6: float, p7: float, p8: float, p9: float){
 	var atributoPapel = (atributos.adaptabilidade*p1) + (atributos.autoDitada*p2) + (atributos.detalhista*p3) + (atributos.negociacao*p4) + 
 	(atributos.objetividade*p5) + (atributos.organizacao*p6) + (atributos.paciencia*p7) + (atributos.raciocinioLogico*p8) + (atributos.relacionamentoHumano*p9);
 	return atributoPapel;
 }
 
+function GetAnalista(){
+	return analista;
+}
+function GetArquiteto(){
+	return arquiteto;
+}
+function GetGerente(){
+	return gerente;
+}
+function GetMarketing(){
+	return marketing;
+}
+function GetProgramador(){
+	return programador;
+}
+function GetTester(){
+	return tester;
+}
 function SetAnalista() {
-	analista = GetAtributo(0.20, 0.05, 0.10, 0.05, 0.10, 0.05, 0.10, 0.10, 0.25);
+	analista = GetAtributoPapel(0.20, 0.05, 0.10, 0.05, 0.10, 0.05, 0.10, 0.10, 0.25);
 }
 function SetArquiteto() {
-	arquiteto = GetAtributo(0.25, 0.05, 0.15, 0.05, 0.10, 0.10, 0.10, 0.15, 0.05);
+	arquiteto = GetAtributoPapel(0.25, 0.05, 0.15, 0.05, 0.10, 0.10, 0.10, 0.15, 0.05);
 }
 function SetGerente() {
-	gerente = GetAtributo(0.10, 0.10, 0.05, 0.10, 0.05, 0.25, 0.10, 0.05, 0.20);
+	gerente = GetAtributoPapel(0.10, 0.10, 0.05, 0.10, 0.05, 0.25, 0.10, 0.05, 0.20);
 }
 function SetMarketing() {
-	marketing = GetAtributo(0.05, 0.05, 0.05, 0.25, 0.05, 0.05, 0.20, 0.05, 0.25);
+	marketing = GetAtributoPapel(0.05, 0.05, 0.05, 0.25, 0.05, 0.05, 0.20, 0.05, 0.25);
 }
 function SetProgramador() {
-	programador = GetAtributo(0.05, 0.20, 0.05, 0.05, 0.15, 0.10, 0.10, 0.25, 0.05);
+	programador = GetAtributoPapel(0.05, 0.20, 0.05, 0.05, 0.15, 0.10, 0.10, 0.25, 0.05);
 }
 function SetTester() {
-	tester = GetAtributo(0.05, 0.05, 0.25, 0.05, 0.10, 0.10, 0.15, 0.20, 0.05);
+	tester = GetAtributoPapel(0.05, 0.05, 0.25, 0.05, 0.10, 0.10, 0.15, 0.20, 0.05);
 }
 	
-//Inicializa os atributos de papeis e pega o gameobject project para poder atualiza-lo conforme os funcionarios trabalhem
+//Gets e Sets de especializacoes
+
+function GetL_assembly () {
+	return especializacao.assembly;
+}
+function GetL_csharp () {
+	return especializacao.csharp;
+}
+function GetL_java () {
+	return especializacao.java;
+}
+function GetL_perl () {
+	return especializacao.perl;
+}
+function GetL_ruby () {
+	return especializacao.ruby;
+}
+function GetM_agil () {
+	return especializacao.metodoAgil ;
+}
+function GetM_classico () {
+	return especializacao.metodoClassico;
+}
+function GetD_agil () {
+	return especializacao.desenvolvimentoAgil;
+}
+function GetD_evolutivo () {
+	return especializacao.desenvolvimentoEvolutivo;
+}
+function GetD_iterativo () {
+	return especializacao.desenvolvimentoIterativo;
+}
+function GetF_programas (){
+	return especializacao.analiseDeProgramas;
+}
+function GetF_versao () {
+	return especializacao.controleDeVersao;
+}
+function GetF_depuracao (){
+	return especializacao.depuracao;
+}
+function GetF_projetos (){
+	return especializacao.gerenciaDeProjetos;
+}
+function GetF_metricas () {
+	return especializacao.metricas;
+}
+function GetF_planejamento (){
+	return especializacao.planejamento;
+}
+function GetF_teste () {
+	return especializacao.teste;
+}
+
+
+function SetL_Assembly (t: boolean) {
+	especializacao.assembly = t;
+}
+function SetL_csharp (t: boolean) {
+	especializacao.csharp = t;
+}
+function SetL_java (t: boolean) {
+	especializacao.java = t;
+}
+function SetL_perl (t: boolean) {
+	especializacao.perl = t;
+}
+function SetL_ruby (t: boolean) {
+	especializacao.ruby = t;
+}
+function SetM_agil (t: boolean) {
+	especializacao.metodoAgil = t;
+}
+function SetM_classico (t: boolean) {
+	especializacao.metodoClassico = t;
+}
+function SetD_agil (t: boolean) {
+	especializacao.desenvolvimentoAgil = t;
+}
+function SetD_evolutivo (t: boolean) {
+	especializacao.desenvolvimentoEvolutivo = t;
+}
+function SetD_iterativo (t: boolean) {
+	especializacao.desenvolvimentoIterativo = t;
+}
+function SetF_programas (t: boolean) {
+	especializacao.analiseDeProgramas = t;
+}
+function SetF_versao (t: boolean) {
+	especializacao.controleDeVersao = t;
+}
+function SetF_depuracao (t: boolean) {
+	especializacao.depuracao = t;
+}
+function SetF_projetos (t: boolean) {
+	especializacao.gerenciaDeProjetos = t;
+}
+function SetF_metricas (t: boolean) {
+	especializacao.metricas = t;
+}
+function SetF_planejamento (t: boolean) {
+	especializacao.planejamento = t;
+}
+function SetF_teste (t: boolean) {
+	especializacao.teste = t;
+}
+
 function Awake() 
 { 
-   projectObj = GameObject.Find("Project");
-   project = projectObj.GetComponent(Project);
-   SetAnalista();
-   SetArquiteto();
-   SetGerente();
-   SetMarketing();
-   SetProgramador();
-   SetTester();
+
 } 
 
 function Update () {
-	Work();
-	Debug.Log(atributos.nummesa);
+	SetAnalista();
+	SetArquiteto();
+	SetGerente();
+	SetMarketing();
+	SetProgramador();
+	SetTester();
 }

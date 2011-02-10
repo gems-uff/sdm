@@ -67,31 +67,31 @@ function TakePapel(t: int)
 	var papel;
 	switch(t)
 		{
-		   case 1: 	//caso analista
+		   case 2: 	//caso analista
 			  papel = "Analista";
 			  return papel;
 		   break;
-		   case 2:	//caso arquiteto
+		   case 3:	//caso arquiteto
 				papel = "Arquiteto";
 				return papel;
 		   break;
 		   
-		   case 3:	//caso gerente
+		   case 4:	//caso gerente
 				papel = "Gerente";
 				return papel;
 		   break;
 		   
-		   case 4:	//caso marketing
+		   case 5:	//caso marketing
 				papel = "Marketing";
 				return papel;
 		   break;
 		   
-		   case 5:	//caso programador
+		   case 6:	//caso programador
 				papel = "Programador";
 				return papel;
 		   break;
 		   
-		   case 6:	//caso tester
+		   case 7:	//caso tester
 				papel = "Testador";
 				return papel;
 		   break;
@@ -108,9 +108,9 @@ function TakePapel(t: int)
 function ExecutaPopup (listEntry : int)
 {
 	func = funcObj.GetComponent(Funcionario);
-	if (listEntry == 7)
+	if (listEntry == 8)
 	{
-		menu.SetJanelatributo(false, func.GetAtributos());
+		menu.SetJanelatributo(false, func.GetAtributos(), func.GetEspecializacao());
 	}
 	else
 	{
@@ -121,15 +121,16 @@ function ExecutaPopup (listEntry : int)
 //Funcao que cria a lista para selecao de papel e visualizacao da ficha do funcionario
 function Start () {
     // Make some content for the popup list
-    list = new GUIContent[8];
+    list = new GUIContent[9];
 	list[0] = new GUIContent("");
-    list[1] = new GUIContent("Analista");
-    list[2] = new GUIContent("Arquiteto");
-    list[3] = new GUIContent("Gerente");
-    list[4] = new GUIContent("Marketing");
-    list[5] = new GUIContent("Programador");
-	list[6] = new GUIContent("Testador");
-	list[7] = new GUIContent("Ficha");
+	list[1] = new GUIContent("");
+    list[2] = new GUIContent("Analista");
+    list[3] = new GUIContent("Arquiteto");
+    list[4] = new GUIContent("Gerente");
+    list[5] = new GUIContent("Marketing");
+    list[6] = new GUIContent("Programador");
+	list[7] = new GUIContent("Testador");
+	list[8] = new GUIContent("Ficha");
 	
     
     // Make a GUIStyle that has a solid white hover/onHover background to indicate highlighted items
@@ -144,49 +145,49 @@ function Start () {
 //Funcao da lista Popup para cada um das 8 janelas de funcionarios
 function OnGUI () {
     if (Popup.List (Rect(220, 00, 120, 20), showList1, listEntry, GUIContent("1: "+ func1.GetPapel()), list, listStyle)) {
-		if (listEntry != 0){
+		if (listEntry != 0 && listEntry != 1){
 			funcObj = GameObject.Find("Funcionario1");
 			ExecutaPopup (listEntry);
 		}
     }
 	if (Popup.List (Rect(340, 00, 120, 20), showList2, listEntry, GUIContent("2: "+ func2.GetPapel()), list, listStyle)) {
-		if (listEntry != 0){
+		if (listEntry != 0 && listEntry != 1){
 			funcObj = GameObject.Find("Funcionario2");
 			ExecutaPopup (listEntry);
 		}
     }
 	if (Popup.List (Rect(460, 00, 120, 20), showList3, listEntry, GUIContent("3: "+ func3.GetPapel()), list, listStyle)) {
-		if (listEntry != 0){
+		if (listEntry != 0 && listEntry != 1){
 			funcObj = GameObject.Find("Funcionario3");
 			ExecutaPopup (listEntry);
 		}
     }
 	if (Popup.List (Rect(580, 00, 120, 20), showList4, listEntry, GUIContent("4: "+ func4.GetPapel()), list, listStyle)) {
-		if (listEntry != 0){
+		if (listEntry != 0 && listEntry != 1){
 			funcObj = GameObject.Find("Funcionario4");
 			ExecutaPopup (listEntry);
 		}
     }
-	if (Popup.List (Rect(700, 00, 120, 20), showList5, listEntry, GUIContent("5: "+ func5.GetPapel()), list, listStyle)) {
-		if (listEntry != 0){
+	if (Popup.List (Rect(220, 20, 120, 20), showList5, listEntry, GUIContent("5: "+ func5.GetPapel()), list, listStyle)) {
+		if (listEntry != 0 && listEntry != 1){
 			funcObj = GameObject.Find("Funcionario5");
 			ExecutaPopup (listEntry);
 		}
     }
-	if (Popup.List (Rect(820, 00, 120, 20), showList6, listEntry, GUIContent("6: "+ func6.GetPapel()), list, listStyle)) {
-		if (listEntry != 0){
+	if (Popup.List (Rect(340, 20, 120, 20), showList6, listEntry, GUIContent("6: "+ func6.GetPapel()), list, listStyle)) {
+		if (listEntry != 0 && listEntry != 1){
 			funcObj = GameObject.Find("Funcionario6");
 			ExecutaPopup (listEntry);
 		}
     }
-	if (Popup.List (Rect(940, 00, 120, 20), showList7, listEntry, GUIContent("7: "+ func7.GetPapel()), list, listStyle)) {
-		if (listEntry != 0){
+	if (Popup.List (Rect(460, 20, 120, 20), showList7, listEntry, GUIContent("7: "+ func7.GetPapel()), list, listStyle)) {
+		if (listEntry != 0 && listEntry != 1){
 			funcObj = GameObject.Find("Funcionario7");
 			ExecutaPopup (listEntry);
 		}
     }
-	if (Popup.List (Rect(1060, 00, 120, 20), showList8, listEntry, GUIContent("8: "+ func8.GetPapel()), list, listStyle)) {
-		if (listEntry != 0){
+	if (Popup.List (Rect(580, 20, 120, 20), showList8, listEntry, GUIContent("8: "+ func8.GetPapel()), list, listStyle)) {
+		if (listEntry != 0 && listEntry != 1){
 			funcObj = GameObject.Find("Funcionario8");
 			ExecutaPopup (listEntry);
 		}
