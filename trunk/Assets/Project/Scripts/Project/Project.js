@@ -1,13 +1,13 @@
 
 //Escala de Tempo: 1 segundo = 1 hora no jogo
 
-public var deadlinehours = 0;  //in hours
+public var deadlineDays = 0;  //in hours
 public var bugs = 0.0;				//number of bugs in the software
-public var maxcodelines = 0;	//size of the software to be done
-public var codelinesdone = 0;	//number of lines done by the team
+public var maxCodeLines = 0;	//size of the software to be done
+public var codeLinesDone = 0;	//number of lines done by the team
 public var completed : boolean = false;
 private var sincronismo = 0.0;		//sincronismo
-private var findbugScore = 0.0;
+private var findBugScore = 0.0;
 
 //Requisitos do projeto, so pode haver no maximo 1 de cada tipo
 //Linguagem: Escolher apenas uma linguagem
@@ -17,16 +17,16 @@ public var metodoDeDesenvolvimento : String;
 //Funcoes GET
 
 function GetDeadlineHours () {					//Retorna o Deadline em horas
-	return deadlinehours;
+	return deadlineDays;
 }
 function GetNumBugs () {						//Retorna o numero de bugs no software
 	return bugs;
 }
 function GetProjectSize () {						//Retorna o numero de linhas que o software deve ter para ficar pronto
-	return maxcodelines;
+	return maxCodeLines;
 }
 function GetLinesDone () {						//Retorna o numero de linhas ja feitas para o software
-	return codelinesdone;
+	return codeLinesDone;
 }
 function GetIscomplete () {					//Retorna se o projeto esta concluido
 	return completed;
@@ -39,18 +39,18 @@ function GetTimePassed () {						//Retorna o tempo passado em horas
 	return Time.timeSinceLevelLoad;
 }
 function GetDeadLine () {						//Retorna o Deadline no formato Data/Hora
-	var deadline = getTimeString(deadlinehours);
+	var deadline = getTimeString(deadlineDays);
 	return deadline;
 }
 function GetNumLinesDone () {					//Retorna a percentagem ja concluida do software
-	var completeFraction = codelinesdone*100 / maxcodelines;
+	var completeFraction = codeLinesDone*100 / maxCodeLines;
 	return completeFraction;
 }
 function GetSincronismo () {						//Retorna o sincronismo do projeto com o que o cliente pediu
 	return sincronismo;
 }
 function GetFindbugScore () {					//Retorna o Deadline em horas
-	return findbugScore;
+	return findBugScore;
 }
 
 //Funcoes SET
@@ -62,24 +62,24 @@ function SetNumBugs (t: float) {					//Seta o numero de bugs no software
 		bugs = 0;
 }
 function SetProjectSize (t: int) {				//Seta o tamanho do software que deve ser produzido
-	maxcodelines = t;
+	maxCodeLines = t;
 }
 function SetLinesDone (t: int) {				//Seta o numero de linhas do software ja feitas
 	if (!completed)
-		codelinesdone = codelinesdone + (t*Time.timeScale);
+		codeLinesDone = codeLinesDone + (t*Time.timeScale);
 }
 function SetSincronismo (t: float) {				//Seta o sincronismo do projeto
 	if (!completed)
 		sincronismo = sincronismo + (t*Time.timeScale);
 }
 function SetNewDeadline(t: float){			//Seta a nova data de deadline
-	deadlinehours = t + Time.timeSinceLevelLoad;
+	deadlineDays = t + Time.timeSinceLevelLoad;
 }
 function SetIscomplete (t: boolean) {		//Seta se o projeto esta concluido ou nao
 	completed = t;
 }
 function SetFindbugScore(t: float){
-	findbugScore = t;
+	findBugScore = t;
 }
 
 //Funcoes Get e Set de Requisitos

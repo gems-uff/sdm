@@ -64,7 +64,7 @@ function Awake () {
 //Pega o papel correspondente ao box selecionado
 function TakePapel(t: int)
 {
-	var papel;
+	var papel : String;
 	switch(t)
 		{
 		   case 2: 	//caso analista
@@ -95,6 +95,16 @@ function TakePapel(t: int)
 				papel = "Testador";
 				return papel;
 		   break;
+		   
+		   case 8:	//caso tester
+				papel = "Nenhum";
+				return papel;
+		   break;
+		   
+		   case 9:	//caso tester
+				papel = "Treinamento";
+				return papel;
+		   break;
 
 		   default:
 				papel = "Nenhum";
@@ -108,9 +118,9 @@ function TakePapel(t: int)
 function ExecutaPopup (listEntry : int)
 {
 	func = funcObj.GetComponent(Funcionario);
-	if (listEntry == 8)
+	if (listEntry == 10)
 	{
-		menu.SetJanelatributo(false, func.GetAtributos(), func.GetEspecializacao());
+		menu.SetJanelatributo(false, func.GetAtributos(), func.GetEspecializacao(), func.GetNumMesa());
 	}
 	else
 	{
@@ -121,7 +131,7 @@ function ExecutaPopup (listEntry : int)
 //Funcao que cria a lista para selecao de papel e visualizacao da ficha do funcionario
 function Start () {
     // Make some content for the popup list
-    list = new GUIContent[9];
+    list = new GUIContent[11];
 	list[0] = new GUIContent("");
 	list[1] = new GUIContent("");
     list[2] = new GUIContent("Analista");
@@ -130,7 +140,9 @@ function Start () {
     list[5] = new GUIContent("Marketing");
     list[6] = new GUIContent("Programador");
 	list[7] = new GUIContent("Testador");
-	list[8] = new GUIContent("Ficha");
+	list[8] = new GUIContent("StandBy");
+	list[9] = new GUIContent("Treinamento");
+	list[10] = new GUIContent("Ficha");
 	
     
     // Make a GUIStyle that has a solid white hover/onHover background to indicate highlighted items

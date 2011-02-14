@@ -12,11 +12,10 @@ public var raciocinioLogico : int;
 public var relacionamentoHumano : int;
 public var papel : String;
 public var salario : int;
-public var nummesa : int;
 
 //Constructor 
 
-	public function Atributos(a1 : int, a2 : int, a3 : int, a4 : int, a5 : int, a6 : int, a7 : int, a8 : int, a9 : int, a10 : String, a11 : int, a12 : int )
+	public function Atributos(a1 : int, a2 : int, a3 : int, a4 : int, a5 : int, a6 : int, a7 : int, a8 : int, a9 : int, a10 : String, a11 : int)
 	{
 		this.adaptabilidade = a1;
 		this.autoDitada = a2;
@@ -28,8 +27,7 @@ public var nummesa : int;
 		this.raciocinioLogico =a8;
 		this.relacionamentoHumano = a9;
 		this.papel = a10;
-		this.nummesa = a11;
-		this.salario = a12;
+		this.salario = a11;
 		
 	}
 }

@@ -19,15 +19,16 @@
 	private var especializacao_array = new Array(17);
 	
 	public var atributos : Atributos = new Atributos();
-	
+	private var mesa : int;
 	private var project : Project;
 	private var playerstats : PlayerStats;
 
 
 	//Funcao que seta os atributos do funcionario corrente, chamada pelo script DialogInstance, item Qualificacao. Primeiro atributo eh para abilitar a janela, os demais sao os atributos em ordem alfabetica
-	function SetJanelatributo(t : boolean, a1 : Atributos, a2 : Especializacoes )
+	function SetJanelatributo(t : boolean, a1 : Atributos, a2 : Especializacoes, numMesa : int )
 	{
-		var i = 0;
+		var i : int = 0;
+		mesa = numMesa;
 		janelatributo = t;
 		atributos = a1;
 		
@@ -128,7 +129,7 @@
 		if(!janelatributo)
 			{
 				//Lado esquerdo
-				GUI.Box (Rect (250,125,200,25), ("Mesa: "+ atributos.nummesa));
+				GUI.Box (Rect (250,125,200,25), ("Mesa: "+ mesa));
 				GUI.Box (Rect (250,150,200,25), ("Adaptabilidade: "+ atributos.adaptabilidade));
 				GUI.Box (Rect (250,175,200,25), ("AutoDitada: "+ atributos.autoDitada));
 				GUI.Box (Rect (250,200,200,25), ("Detalhista: "+ atributos.detalhista));

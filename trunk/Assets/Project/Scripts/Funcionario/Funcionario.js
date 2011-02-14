@@ -3,12 +3,13 @@ private var atributos : Atributos = new Atributos();
 private var especializacao : Especializacoes = new Especializacoes();
 
 //Atributos de cada Papel
-private var analista = 0;
-private var arquiteto = 0;
-private var gerente = 0;
-private var marketing = 0;
-private var programador = 0;
-private var tester = 0;
+private var analista : float = 0;
+private var arquiteto : float = 0;
+private var gerente : float = 0;
+private var marketing : float = 0;
+private var programador : float = 0;
+private var tester : float = 0;
+private var mesa : int;	//Em que desk o funcionario esta alocado
 
 //Get e Set dos atributos humanos e mesa
 
@@ -19,7 +20,7 @@ function GetEspecializacao(){
 	return especializacao;
 }
 function GetNumMesa() {
-	return atributos.nummesa;
+	return mesa;
 }
 function GetAdaptabilidade() {
 	return atributos.adaptabilidade;
@@ -62,7 +63,7 @@ function SetEspecializacoes(t : Especializacoes){
 	especializacao = t;
 }
 function SetNumMesa(t: int) {
-	atributos.nummesa = t;
+	mesa = t;
 }
 function SetAdaptabilidade(t: int) {
 	atributos.adaptabilidade = t;

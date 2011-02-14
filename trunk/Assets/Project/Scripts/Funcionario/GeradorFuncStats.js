@@ -1,39 +1,39 @@
 
 private var func : Funcionario;
 
-public var adaptabilidade = 50;
-public var autoDitada = 50;
-public var detalhista = 50;
-public var negociacao = 50;
-public var objetividade = 50;
-public var organizacao = 50;
-public var paciencia = 50;
-public var raciocinioLogico = 50;
-public var relacionamentoHumano = 50;
-public var papel = "";
-public var salario = 0;
-public var nummesa = 0;
+public var adaptabilidade : int = 50;
+public var autoDitada : int = 50;
+public var detalhista : int = 50;
+public var negociacao : int = 50;
+public var objetividade : int = 50;
+public var organizacao : int = 50;
+public var paciencia : int = 50;
+public var raciocinioLogico : int = 50;
+public var relacionamentoHumano : int = 50;
+public var papel : String = "";
+public var salario : float = 0;
+public var Mesa : int = 0;
 
-public var assembly = false;
-public var csharp = false;
-public var java = false;
-public var perl = false;
-public var ruby = false;
+public var assembly : boolean = false;
+public var csharp : boolean = false;
+public var java : boolean = false;
+public var perl : boolean = false;
+public var ruby : boolean = false;
 
-public var metodoAgil = false;
-public var metodoClassico = false;
+public var metodoAgil : boolean = false;
+public var metodoClassico : boolean = false;
 
-public var desenvolvimentoAgil = false;
-public var desenvolvimentoEvolutivo = false;
-public var desenvolvimentoIterativo = false;
+public var desenvolvimentoAgil : boolean = false;
+public var desenvolvimentoEvolutivo : boolean = false;
+public var desenvolvimentoIterativo : boolean = false;
 
-public var analiseDeProgramas = false;
-public var controleDeVersao = false;
-public var depuracao = false;
-public var gerenciaDeProjetos = false;
-public var metricas = false;
-public var planejamento = false;
-public var teste = false;
+public var analiseDeProgramas : boolean = false;
+public var controleDeVersao : boolean = false;
+public var depuracao : boolean = false;
+public var gerenciaDeProjetos : boolean = false;
+public var metricas : boolean = false;
+public var planejamento : boolean = false;
+public var teste : boolean = false;
 
 
 private var atualizado : boolean = false;
@@ -54,7 +54,6 @@ function SetAtributos()
 	atributos.relacionamentoHumano = relacionamentoHumano;
 	atributos.papel = papel;
 	atributos.salario = salario;
-	atributos.nummesa = nummesa;
 	
 	func.SetAtributos(atributos);
 }
@@ -95,5 +94,6 @@ function Update () {
 		atualizado = true;
 		SetAtributos();
 		SetEspecializacoes();
+		func.SetNumMesa(Mesa);
 	}
 }
