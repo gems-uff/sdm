@@ -12,26 +12,14 @@ private var TESTER_DURANTE : float = 0.0000007;
 //Fim Constantes
 
 private var func : Funcionario;
+private var treino : Treinamento;
 private var equipeObj : GameObject;
 private var equipe : Equipe;
 private var projectObj : GameObject;
 private var project : Project;
 
-function Awake () {
-	func = GetComponentInChildren(Funcionario);
-	equipeObj = GameObject.Find("Equipe");
-	equipe = equipeObj.GetComponent(Equipe);
-	projectObj = GameObject.Find("Project");
-	project = projectObj.GetComponent(Project);
-}
 
-function Update(){
-	//Work();
-}
-
-function FixedUpdate() {
-	Work();
-}
+//--------------------------------------------Work-----------------------------------------------------------
 
 function Work(){	//Função que atualiza os campos de projeto conforme a performace do funcionario no seu papel
 	var modificador_positivo : float = EspecializacaoFerramenta();	//Resultado é um numero >= 0
@@ -61,6 +49,10 @@ function Work(){	//Função que atualiza os campos de projeto conforme a performac
 	   
 	   case "Testador":	//caso tester
 		  TesterWork(modificador_positivo, penal);
+	   break;
+	   
+	   case "Treinamento":	//caso esteja em treinamento
+		  Treinando();
 	   break;
 
 	   default:
@@ -129,12 +121,7 @@ function ProgramadorWork(modificador_positivo : float, penal : float){
 	
 	programador = func.GetProgramador();
 	numBugs = (100.0 - programador ) * PROG_DURANTE * (1.0 - modificador_positivo + penal_prog); //Para acrescentar/reduzir o numero de bugs, os modificadores tem seu papel invertido 
-	
-	//Debug.Log("Prog=" +(100.0 - programador ));
-	//Debug.Log("ProgDUR=" +PROG_DURANTE);
-	//Debug.Log("Mod=" +(1.0 - modificador_positivo + penal_prog));
-	//Debug.Log("Bugs=" +numBugs);
-	
+
 	project.SetNumBugs(numBugs);
 	project.SetLinesDone(programador * (1 + modificador_positivo - penal_prog));
 }
@@ -149,6 +136,20 @@ function TesterWork(modificador_positivo : float, penal : float){
 	aux = -aux * (project.GetFindbugScore());	//Por parte do arquiteto
 	project.SetNumBugs(aux);
 }
+
+function Treinando(){
+	//Implementar, colocar um "deadline" aonde o funcionario nao poderá trocar de papel enquanto nao terminar o seu treinamento
+	//Quando terminar o treinamento o funcionario ganhará a especializaçao na qual treinou.
+	//Custará um preço adicional ?
+	if ((Time.timeSinceLevelLoad > treino.GetDeadline_Treino()) && (treino.GetDeadline_Treino() >0))
+	{
+		treino.SetDeadline_Treino(0.0);
+		treino.Especializando();
+	}
+}
+
+
+//--------------------------------------------ReqLinguagem-----------------------------------------------------------
 
 //Funcao para avaliar se o funcionario possui o requisito necessario para o projeto. O valor retornado é 0 ou PENALIDADE
 function RequisitoLinguagem(){
@@ -188,6 +189,8 @@ function RequisitoLinguagem(){
 	return modificador;
 }
 
+//--------------------------------------------ReqMetodo-----------------------------------------------------------
+
 //Funcao para avaliar se o funcionario possui o requisito necessario para o projeto. O valor retornado é 0 ou PENALIDADE
 function RequisitoMetodo(){
 	var modificador : float = PENALIDADE;
@@ -216,6 +219,8 @@ function RequisitoMetodo(){
 	return modificador;
 }
 
+//--------------------------------------------ReqMetodologia-----------------------------------------------------------
+
 //Funcao para avaliar se o funcionario possui especialidade na mesma metodologia de trabalho que a equipe esta usando. O valor retornado é 0 ou PENALIDADE
 function MetodologiaEquipe(){
 	var modificador : float = PENALIDADE;
@@ -238,9 +243,10 @@ function MetodologiaEquipe(){
 	return modificador;
 }
 
+//--------------------------------------------ReqFerramenta-----------------------------------------------------------
+
 //Funcao para verificar se o funcionario tera algum modificador positivo de acordo com seu papel e especialidade. O retorno ja é o modificador final somado em 1, ou seja, será sempre retornado um numero >= 1
-function EspecializacaoFerramenta ()
-{
+function EspecializacaoFerramenta (){
 	var modificador_positivo : float = 0.0;
 	
 	switch(func.GetPapel())
@@ -282,3 +288,27 @@ function EspecializacaoFerramenta ()
 	}
 	return modificador_positivo;
 }
+
+//--------------------------------------------Awake-----------------------------------------------------------
+
+function Awake () {
+	func = GetComponentInChildren(Funcionario);
+	treino = GetComponentInChildren(Treinamento);
+	equipeObj = GameObject.Find("Equipe");
+	equipe = equipeObj.GetComponent(Equipe);
+	projectObj = GameObject.Find("Project");
+	project = projectObj.GetComponent(Project);
+}
+
+//--------------------------------------------Update-----------------------------------------------------------
+
+function Update(){
+	//Work();
+}
+
+//--------------------------------------------FixedUpdate-----------------------------------------------------------
+
+function FixedUpdate() {
+	Work(); //para ser independente do frame rate de cada maquina.
+}
+

@@ -11,6 +11,8 @@ private var programador : float = 0;
 private var tester : float = 0;
 private var mesa : int;	//Em que desk o funcionario esta alocado
 
+//--------------------------------------------Get/Set-----------------------------------------------------------
+
 //Get e Set dos atributos humanos e mesa
 
 function GetAtributos(){
@@ -251,10 +253,14 @@ function SetF_teste (t: boolean) {
 	especializacao.teste = t;
 }
 
+//--------------------------------------------Awake-----------------------------------------------------------
+
 function Awake() 
 { 
 
 } 
+
+//--------------------------------------------Update-----------------------------------------------------------
 
 function Update () {
 	SetAnalista();
