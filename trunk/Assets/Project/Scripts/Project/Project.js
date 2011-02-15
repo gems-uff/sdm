@@ -14,6 +14,8 @@ private var findBugScore = 0.0;
 public var linguagemProgramacao : String;
 public var metodoDeDesenvolvimento : String;
 
+//--------------------------------------------Get/Set-----------------------------------------------------------
+
 //Funcoes GET
 
 function GetDeadlineHours () {					//Retorna o Deadline em horas
@@ -96,13 +98,8 @@ function SetMetodo (t: String) {						//Seta o requisito
 	metodoDeDesenvolvimento = t;
 }
 
-//Funcao para converter o tempo no formato dia/hora
-/*
-function getTimeString(t : float) :String{
-	var days : int = t / 24 ;
-    var hours : int = (t % 24);
-    return ("Day: " + days.ToString("00") + "   Hour: " + hours.ToString("00"));
-}*/
+//--------------------------------------------Dia/Semana-----------------------------------------------------------
+
 function getTimeString(t : float) :String{
 	var semana : int = t / 7 ;
     var dia : int = (t % 7);

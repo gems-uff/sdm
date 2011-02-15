@@ -84,9 +84,13 @@ function SetEspecializacoes()
 	func.SetEspecializacoes(especializacao);
 }
 
+//--------------------------------------------Awake-----------------------------------------------------------
+
 function Awake () {
 	func = GetComponentInChildren(Funcionario);
 	}
+
+//--------------------------------------------Update-----------------------------------------------------------
 
 function Update () {
 	if (!atualizado)
