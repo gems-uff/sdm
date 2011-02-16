@@ -69,10 +69,6 @@ function SetEspecializacoes()
 	especializacao.metodoAgil = metodoAgil;
 	especializacao.metodoClassico = metodoClassico;
 	
-	especializacao.desenvolvimentoIterativo = desenvolvimentoIterativo;
-	especializacao.desenvolvimentoAgil = desenvolvimentoAgil;
-	especializacao.desenvolvimentoEvolutivo = desenvolvimentoEvolutivo;
-	
 	especializacao.controleDeVersao = controleDeVersao;
 	especializacao.planejamento = planejamento;
 	especializacao.metricas = metricas;

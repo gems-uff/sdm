@@ -61,18 +61,6 @@ function Especializando (){
 			func.SetM_classico(t);
 	   break;
 	   
-	   case "desenvolvimentoAgil":
-			func.SetD_agil(t);
-	   break;
-	   
-	   case "desenvolvimentoEvolutivo":
-			func.SetD_evolutivo(t);
-	   break;
-	   
-	   case "desenvolvimentoIterativo":
-			func.SetD_iterativo(t);
-	   break;
-	   
 	   case "analiseDeProgramas":
 			func.SetF_programas(t);
 	   break;

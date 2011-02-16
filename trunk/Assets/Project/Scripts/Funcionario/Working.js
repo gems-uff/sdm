@@ -7,7 +7,7 @@ private var ANALISTA_DURANTE : float = 0.00001;
 private var GERENTE_PROG : float = 0.125;
 private var GERENTE_ANA : float = 0.00000125;
 private var GERENTE_TEST : float = 0.0000000625;
-private var PROG_DURANTE : float = 0.00002;
+private var PROG_DURANTE : float = 0.000022;
 private var TESTER_DURANTE : float = 0.0000007;
 //Fim Constantes
 
@@ -23,7 +23,7 @@ private var project : Project;
 
 function Work(){	//Função que atualiza os campos de projeto conforme a performace do funcionario no seu papel
 	var modificador_positivo : float = EspecializacaoFerramenta();	//Resultado é um numero >= 0
-	var penal : float = RequisitoMetodo() + MetodologiaEquipe();	//Resultado é um numero >= 0
+	var penal : float = MetodologiaEquipe();	//Resultado é um numero >= 0
 		
 	switch(func.GetPapel())
 	{
@@ -68,7 +68,11 @@ function AnalistaWork(modificador_positivo : float, penal : float){
 	if(project.GetSincronismo() == 00)	//Se o projeto esta sendo iniciado, entao o valor de sincronismo inicial varia de acordo com o desempenho do analista
 	{
 		aux = analista * ANALISTA_INICIO * (1 + modificador_positivo - penal);
-		project.SetSincronismo(aux);
+		if (Time.timeScale != 0 )
+		{
+			aux = aux / Time.timeScale;
+			project.SetSincronismo(aux);
+		}
 	}
 	else
 	{
@@ -94,15 +98,17 @@ function GerenteWork(modificador_positivo : float, penal : float){
 	var auxanalista : float = 0.0;
 	var auxtester : float = 0.0;
 	var gerente : float ;
-	var penal_prog : float = penal + RequisitoLinguagem();
+	var penal_prog : float = PenalidadeProgramacao(penal);
 	var penal_metodo_analista : float = penal;
 	
 	analista = func.GetAnalista();
 	gerente = func.GetGerente();
-	auxprog = gerente * GERENTE_PROG * (1 + modificador_positivo - penal_prog);
 	auxanalista = gerente * GERENTE_ANA * (1 + modificador_positivo - penal_metodo_analista);
-	auxtester = gerente * GERENTE_TEST * (1 + modificador_positivo - penal_prog);
-	
+	if (RequisitoLinguagem() == true)
+	{
+		auxprog = gerente * GERENTE_PROG * (1 + modificador_positivo - penal_prog);
+		auxtester = gerente * GERENTE_TEST * (1 + modificador_positivo - penal_prog);
+	}
 	if(project.GetSincronismo() != 00)
 		if(project.GetSincronismo() < 100)
 			project.SetSincronismo(auxanalista);
@@ -117,24 +123,29 @@ function MarketingWork(modificador_positivo : float, penal : float){
 function ProgramadorWork(modificador_positivo : float, penal : float){
 	var numBugs : float = 0.0;
 	var programador : float ;
-	var penal_prog : float = penal + RequisitoLinguagem();
-	
+	var penal_prog : float = PenalidadeProgramacao(penal);
 	programador = func.GetProgramador();
-	numBugs = (100.0 - programador ) * PROG_DURANTE * (1.0 - modificador_positivo + penal_prog); //Para acrescentar/reduzir o numero de bugs, os modificadores tem seu papel invertido 
-
-	project.SetNumBugs(numBugs);
-	project.SetLinesDone(programador * (1 + modificador_positivo - penal_prog));
+	
+	if (RequisitoLinguagem() == true)
+	{
+		numBugs = (100.0 - programador ) * PROG_DURANTE * (1.0 - modificador_positivo + penal_prog); //Para acrescentar/reduzir o numero de bugs, os modificadores tem seu papel invertido 
+		project.SetNumBugs(numBugs);
+		project.SetLinesDone(programador * (1 + modificador_positivo - penal_prog));
+	}
 }
 
 function TesterWork(modificador_positivo : float, penal : float){
 	var aux : float;
 	var tester : float;
-	var penal_prog : float = penal + RequisitoLinguagem();
-
+	var penal_prog : float = PenalidadeProgramacao(penal);
 	tester = func.GetTester();
-	aux = tester * TESTER_DURANTE * (1 + modificador_positivo - penal);		//Por parte do tester
-	aux = -aux * (project.GetFindbugScore());	//Por parte do arquiteto
-	project.SetNumBugs(aux);
+	
+	if (RequisitoLinguagem() == true)
+	{
+		aux = tester * TESTER_DURANTE * (1 + modificador_positivo - penal);		//Por parte do tester
+		aux = -aux * (project.GetFindbugScore());	//Por parte do arquiteto
+		project.SetNumBugs(aux);
+	}
 }
 
 function Treinando(){
@@ -148,14 +159,16 @@ function Treinando(){
 	}
 }
 
-
+function PenalidadeProgramacao(penal : float){
+	return penal + LinguagemProgEquipe();
+}
 //--------------------------------------------ReqLinguagem-----------------------------------------------------------
 
 //Funcao para avaliar se o funcionario possui o requisito necessario para o projeto. O valor retornado é 0 ou PENALIDADE
-function RequisitoLinguagem(){
+function LinguagemProgEquipe(){
 	var modificador : float = PENALIDADE;
 	
-	switch(project.GetLinguagem())
+	switch(equipe.GetLinguagem())
 	{
 	   case "assembly": 
 		  if (func.GetL_assembly() == true)
@@ -189,36 +202,6 @@ function RequisitoLinguagem(){
 	return modificador;
 }
 
-//--------------------------------------------ReqMetodo-----------------------------------------------------------
-
-//Funcao para avaliar se o funcionario possui o requisito necessario para o projeto. O valor retornado é 0 ou PENALIDADE
-function RequisitoMetodo(){
-	var modificador : float = PENALIDADE;
-	
-	switch(project.GetMetodo())
-	{
-	   case "agil": 
-		   if (func.GetD_agil() == true)
-				modificador = 0;
-	   break;
-
-	   case "evolutivo":
-		   if (func.GetD_evolutivo() == true)
-				modificador = 0;
-	   break;
-	   
-	   case "iterativo":
-		   if (func.GetD_iterativo() == true)
-				modificador = 0;
-	   break;
-
-	   default:
-			modificador = 0;
-		  break;
-	}
-	return modificador;
-}
-
 //--------------------------------------------ReqMetodologia-----------------------------------------------------------
 
 //Funcao para avaliar se o funcionario possui especialidade na mesma metodologia de trabalho que a equipe esta usando. O valor retornado é 0 ou PENALIDADE
@@ -243,6 +226,45 @@ function MetodologiaEquipe(){
 	return modificador;
 }
 
+//--------------------------------------------ReqMetodologia-----------------------------------------------------------
+
+//Funcao para avaliar se o funcionario possui especialidade na mesma metodologia de trabalho que a equipe esta usando. O valor retornado é 0 ou PENALIDADE
+function RequisitoLinguagem(){
+	var modificador : boolean = false;
+	
+	switch(project.GetLinguagem())
+	{
+	   case "assembly": 
+		  if (equipe.GetLinguagem() == "assembly")
+				modificador = true;
+	   break;
+
+	   case "csharp":
+		  if (equipe.GetLinguagem() == "csharp")
+				modificador = true;
+	   break;
+	   
+	   case "java":
+		  if (equipe.GetLinguagem() == "java")
+				modificador = true;
+	   break;
+	   
+	   case "perl":
+		  if (equipe.GetLinguagem() == "perl")
+				modificador = true;
+	   break;
+	   
+	   case "ruby":
+			if (equipe.GetLinguagem() == "ruby")
+				modificador = true;
+	   break;
+	   
+	   default:
+			modificador = true;
+		  break;
+	}
+	return modificador;
+}
 //--------------------------------------------ReqFerramenta-----------------------------------------------------------
 
 //Funcao para verificar se o funcionario tera algum modificador positivo de acordo com seu papel e especialidade. O retorno ja é o modificador final somado em 1, ou seja, será sempre retornado um numero >= 1
