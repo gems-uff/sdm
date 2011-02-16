@@ -169,15 +169,6 @@ function GetM_agil () {
 function GetM_classico () {
 	return especializacao.metodoClassico;
 }
-function GetD_agil () {
-	return especializacao.desenvolvimentoAgil;
-}
-function GetD_evolutivo () {
-	return especializacao.desenvolvimentoEvolutivo;
-}
-function GetD_iterativo () {
-	return especializacao.desenvolvimentoIterativo;
-}
 function GetF_programas (){
 	return especializacao.analiseDeProgramas;
 }
@@ -221,15 +212,6 @@ function SetM_agil (t: boolean) {
 }
 function SetM_classico (t: boolean) {
 	especializacao.metodoClassico = t;
-}
-function SetD_agil (t: boolean) {
-	especializacao.desenvolvimentoAgil = t;
-}
-function SetD_evolutivo (t: boolean) {
-	especializacao.desenvolvimentoEvolutivo = t;
-}
-function SetD_iterativo (t: boolean) {
-	especializacao.desenvolvimentoIterativo = t;
 }
 function SetF_programas (t: boolean) {
 	especializacao.analiseDeProgramas = t;

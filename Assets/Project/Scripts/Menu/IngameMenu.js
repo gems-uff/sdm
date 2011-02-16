@@ -16,7 +16,6 @@ private var bugsText = "";
 private var completedText = "";
 private var sincronismoText = "";
 private var reqlingText = "";
-private var reqmetText = "";
 private var especializacao_array = new Array(17);
 
 public var atributos : Atributos = new Atributos();
@@ -27,10 +26,6 @@ private var equipe : Equipe;
 private var project : Project;
 private var playerstats : PlayerStats;
 
-private var listEntry = 0;
-private var list : GUIContent[];
-private var listStyle : GUIStyle;
-private var showList = false;
 
 //--------------------------------------------FichaFuncionarioEspecializacao-----------------------------------------------------------
 
@@ -78,21 +73,6 @@ function SetJanelatributo(t : boolean, a1 : Atributos, a2 : Especializacoes, num
 	if ( a2.metodoClassico == true )
 	{
 		especializacao_array[i] = "Metodo Classico";
-		i++;
-	}
-	if ( a2.desenvolvimentoAgil == true )
-	{
-		especializacao_array[i] = "Desen. Agil";
-		i++;
-	}
-	if ( a2.desenvolvimentoEvolutivo == true )
-	{
-		especializacao_array[i] = "Desen. Evolutivo";
-		i++;
-	}
-	if ( a2.desenvolvimentoIterativo == true )
-	{
-		especializacao_array[i] = "Desen. Iterativo";
 		i++;
 	}
 	if ( a2.analiseDeProgramas == true )
@@ -183,7 +163,7 @@ function StatusProjeto()	{
 	reqlingText = project.GetLinguagem ();
 	reqmetText = project.GetMetodo ();
 	
-	GUI.BeginGroup(Rect (00,00,220,200));
+	GUI.BeginGroup(Rect (00,00,220,175));
 	GUI.Box (Rect (00,00,90,25), "Saldo");
 	GUI.Box (Rect (00,25,90,25), "Time");
 	GUI.Box (Rect (00,50,90,25), "Deadline");
@@ -191,7 +171,6 @@ function StatusProjeto()	{
 	GUI.Box (Rect (00,100,90,25), "# bugs");
 	GUI.Box (Rect (00,125,90,25), "Sincronismo");
 	GUI.Box (Rect (00,150,90,25), "Req. Codigo");
-	GUI.Box (Rect (00,175,90,25), "Req. Metodo");
 	
 	GUI.Box (Rect (90,00,130,25), saldoText);
 	GUI.Box (Rect (90,25,130,25), timeText);
@@ -200,37 +179,7 @@ function StatusProjeto()	{
 	GUI.Box (Rect (90,100,130,25), bugsText);
 	GUI.Box (Rect (90,125,130,25), sincronismoText);
 	GUI.Box (Rect (90,150,130,25), reqlingText);
-	GUI.Box (Rect (90,175,130,25), reqmetText);
 	GUI.EndGroup ();
-}
-
-//--------------------------------------------MetogologiaEquipe-----------------------------------------------------------
-
-//Implementar para permitir alteracao na metodologia
-
-function MostraMetodologia(){
-	GUI.BeginGroup(Rect (00,200,220,75));
-	GUI.Box (Rect (00,00,130,25), "Metogologia Equipe: "); //+ equipe.GetMetodologia())
-	if (Popup.List (Rect(130, 00, 90, 25), showList, listEntry, GUIContent( equipe.GetMetodologia()), list, listStyle)) {
-		if (listEntry != 0)
-		{
-			switch(listEntry)
-			{
-			   case 1: 	//caso Agil
-					equipe.SetMetodologia("Agil");
-			   break;
-			   
-			   case 2: 	//caso Classico
-					equipe.SetMetodologia("Classico");
-			   break;
-			   
-			   default:
-				break;
-			}
-		}
-	}
-	GUI.EndGroup ();
-	
 }
 
 //--------------------------------------------Gamespeed-----------------------------------------------------------
@@ -344,24 +293,6 @@ function Awake () {
 	Time.timeScale = TIMESCALE;
 }
 
-//--------------------------------------------Start-----------------------------------------------------------
-
-//Funcao que cria a lista para selecao de papel e visualizacao da ficha do funcionario
-function Start () {
-    // Make some content for the popup list
-    list = new GUIContent[3];
-	list[0] = new GUIContent("");
-	list[1] = new GUIContent("Agil");
-	list[2] = new GUIContent("Classico");
-    
-    // Make a GUIStyle that has a solid white hover/onHover background to indicate highlighted items
-    listStyle = new GUIStyle();
-    listStyle.normal.textColor = Color.green;
-    var tex = new Texture2D(2, 2);
-    listStyle.hover.background = tex;
-    listStyle.onHover.background = tex;
-    listStyle.padding.left = listStyle.padding.right = listStyle.padding.top = listStyle.padding.bottom = 4;
-}
 //--------------------------------------------Update-----------------------------------------------------------
 
 //Funcao da unity de updates
@@ -397,8 +328,6 @@ function OnGUI (){
 	MostraJanelaFunc();
 	//Conclusão de projeto
 	ProjetoTermina();
-	//Exibe a metogologia da equipe
-	MostraMetodologia();
 }
 
 	

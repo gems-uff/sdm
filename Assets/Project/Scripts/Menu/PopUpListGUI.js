@@ -143,87 +143,68 @@ function Janela_especializacao(){
 	{
 		GUI.BeginGroup(Rect (350,125,400,225));
 		// ---------------Lado Esquerdo---------------
+		GUI.Box (Rect (00,00,200,25), "---Linguagens---");	
+		
 		if(func.GetL_assembly() == false)
-			if (GUI.Button (Rect (00,00,200,25), "assembly")) {
+			if (GUI.Button (Rect (00,25,200,25), "assembly")) {
 				ExecutaJanelaEsp("assembly");
 			}
 		if(func.GetL_assembly() == true)
-			GUI.Box (Rect (00,00,200,25), "assembly");
+			GUI.Box (Rect (00,25,200,25), "assembly");
 		
 		
 		if(func.GetL_csharp() == false)
-			if (GUI.Button (Rect (00,25,200,25), "csharp")) {
+			if (GUI.Button (Rect (00,50,200,25), "csharp")) {
 				ExecutaJanelaEsp("csharp");
 			}
 		if(func.GetL_csharp() == true)
-			GUI.Box (Rect (00,25,200,25), "csharp");
+			GUI.Box (Rect (00,50,200,25), "csharp");
 		
 		
 		if(func.GetL_java() == false)
-			if (GUI.Button (Rect (00,50,200,25), "java")) {
+			if (GUI.Button (Rect (00,75,200,25), "java")) {
 				ExecutaJanelaEsp("java");
 			}
 		if(func.GetL_java() == true)
-			GUI.Box (Rect (00,50,200,25), "java");
+			GUI.Box (Rect (00,75,200,25), "java");
 		
 		
 		if(func.GetL_perl() == false)
-			if (GUI.Button (Rect (00,75,200,25), "perl")) {
+			if (GUI.Button (Rect (00,100,200,25), "perl")) {
 				ExecutaJanelaEsp("perl");
 			}
 		if(func.GetL_perl() == true)
-			GUI.Box (Rect (00,75,200,25), "perl");
+			GUI.Box (Rect (00,100,200,25), "perl");
 			
 		
 		if(func.GetL_ruby() == false)
-			if (GUI.Button (Rect (00,100,200,25), "ruby")) {
+			if (GUI.Button (Rect (00,125,200,25), "ruby")) {
 				ExecutaJanelaEsp("ruby");
 			}
 		if(func.GetL_ruby() == true)
-			GUI.Box (Rect (00,100,200,25), "ruby");
+			GUI.Box (Rect (00,125,200,25), "ruby");
 			
+		GUI.Box (Rect (00,150,200,25), "---Metodos---");	
 			
 		if(func.GetM_agil() == false)	
-			if (GUI.Button (Rect (00,125,200,25), "Metodo Agil")) {
+			if (GUI.Button (Rect (00,175,200,25), "Metodo Agil")) {
 				ExecutaJanelaEsp("metodoAgil");
 			}
 		if(func.GetM_agil() == true)
-			GUI.Box (Rect (00,125,200,25), "Metodo Agil");	
+			GUI.Box (Rect (00,175,200,25), "Metodo Agil");	
 			
 			
 		if(func.GetM_classico() == false)	
-			if (GUI.Button (Rect (00,150,200,25), "Metodo Classico")) {
+			if (GUI.Button (Rect (00,200,200,25), "Metodo Classico")) {
 				ExecutaJanelaEsp("metodoClassico");
 			}
 		if(func.GetM_classico() == true)	
-			GUI.Box (Rect (00,150,200,25), "Metodo Classico");
-		
-		
-		if(func.GetD_agil() == false)	
-			if (GUI.Button (Rect (00,175,200,25), "Des. Agil")) {
-				ExecutaJanelaEsp("desenvolvimentoAgil");
-			}
-		if(func.GetD_agil() == true)	
-			GUI.Box (Rect (00,175,200,25), "Des. Agilbly");	
-		
-		
-		if(func.GetD_evolutivo() == false)	
-			if (GUI.Button (Rect (00,200,200,25), "Des. Evolutivo")) {
-				ExecutaJanelaEsp("desenvolvimentoEvolutivo");
-			}
-		if(func.GetD_evolutivo() == true)	
-			GUI.Box (Rect (00,200,200,25), "Des. Evolutivo");	
+			GUI.Box (Rect (00,200,200,25), "Metodo Classico");
 		
 		
 		// ---------------Lado Direito---------------
-		
-		if(func.GetD_iterativo() == false)	
-			if (GUI.Button (Rect (200,00,200,25), "Des. Iterativo")) {
-				ExecutaJanelaEsp("desenvolvimentoIterativo");
-			}
-		if(func.GetD_iterativo() == true)	
-			GUI.Box (Rect (200,00,200,25), "Des. Iterativo");
-			
+
+		GUI.Box (Rect (200,00,200,25), "---Ferramentas---");
 		
 		if(func.GetF_programas() == false)
 			if (GUI.Button (Rect (200,25,200,25), "Analise de Programas")) {
@@ -357,7 +338,7 @@ function Start () {
     list[5] = new GUIContent("Marketing");
     list[6] = new GUIContent("Programador");
 	list[7] = new GUIContent("Testador");
-	list[8] = new GUIContent("StandBy");
+	list[8] = new GUIContent("Nenhum");
 	list[9] = new GUIContent("Treinamento");
 	list[10] = new GUIContent("Ficha");
 	
