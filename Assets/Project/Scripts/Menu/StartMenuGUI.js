@@ -1,6 +1,7 @@
 //@script ExecuteInEditMode()
 //var gSkin : GUISkin;
-var backdrop : Texture2D;
+public var customGuiStyle : GUIStyle;
+public var backdrop : Texture2D;
 private var isLoading = false;
 
 //Menu da tela inicial do jogo

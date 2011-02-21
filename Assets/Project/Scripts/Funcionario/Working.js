@@ -1,5 +1,6 @@
 
 //Constantes
+//Variaves de configuracao de desempenho durante o trabalho
 private var PENALIDADE : float = 0.3;
 private var BONUS : float = 0.25;
 private var ANALISTA_INICIO : float = 0.8;
@@ -9,6 +10,33 @@ private var GERENTE_ANA : float = 0.00000125;
 private var GERENTE_TEST : float = 0.0000000625;
 private var PROG_DURANTE : float = 0.000022;
 private var TESTER_DURANTE : float = 0.0000007;
+
+//Valores para Salarios
+//Valores retirados de http://info.abril.com.br/professional/salarios/
+private var ANALISTA_SALARIO_JUNIOR : int = 4800;
+private var ARQUITETO_SALARIO_JUNIOR : int = 3000;
+private var GERENTE_SALARIO_JUNIOR : int = 15600;
+private var MARKETING_SALARIO_JUNIOR : int = 2000;
+private var PROGRAMADOR_SALARIO_JUNIOR : int = 2500;
+private var TESTER_SALARIO_JUNIOR : int = 2500;
+
+//Valor do salario é dividido por 14 para pagar dia sim dia nao
+
+private var ANALISTA_SALARIO_PLENO : int = 450;			//6300
+private var ARQUITETO_SALARIO_PLENO : int = 300;		//4200
+private var GERENTE_SALARIO_PLENO : int = 1300;			//18100
+private var MARKETING_SALARIO_PLENO : int = 245;		//3400
+private var PROGRAMADOR_SALARIO_PLENO : int = 275;	//3800
+private var TESTER_SALARIO_PLENO : int = 250;				//3500
+
+private var ANALISTA_SALARIO_SENIOR : int = 7600;
+private var ARQUITETO_SALARIO_SENIOR : int = 5500;
+private var GERENTE_SALARIO_SENIOR : int = 22500;
+private var MARKETING_SALARIO_SENIOR : int = 4100;
+private var PROGRAMADOR_SALARIO_SENIOR : int = 5500;
+private var TESTER_SALARIO_SENIOR : int = 5000;
+
+private var STANDBY_SALARIO : int = 0;
 //Fim Constantes
 
 private var func : Funcionario;
@@ -58,6 +86,7 @@ function Work(){	//Função que atualiza os campos de projeto conforme a performac
 	   default:
 		  break;
 	}
+	SetSalarios();
 }
 
 function AnalistaWork(modificador_positivo : float, penal : float){
@@ -78,7 +107,7 @@ function AnalistaWork(modificador_positivo : float, penal : float){
 	{
 		if(project.GetSincronismo() < 100)	//Se o projeto esta em andamento entao o sincronismo vai mudando lentamente de acordo com o analista
 		{
-			aux = analista * ANALISTA_DURANTE * (1 + modificador_positivo - penal);
+			aux = analista * ANALISTA_DURANTE * (1 + modificador_positivo - penal) / Time.timeScale;
 			project.SetSincronismo(aux);
 		}
 	}
@@ -103,11 +132,11 @@ function GerenteWork(modificador_positivo : float, penal : float){
 	
 	analista = func.GetAnalista();
 	gerente = func.GetGerente();
-	auxanalista = gerente * GERENTE_ANA * (1 + modificador_positivo - penal_metodo_analista);
+	auxanalista = gerente * GERENTE_ANA * (1 + modificador_positivo - penal_metodo_analista) / Time.timeScale;
 	if (RequisitoLinguagem() == true)
 	{
-		auxprog = gerente * GERENTE_PROG * (1 + modificador_positivo - penal_prog);
-		auxtester = gerente * GERENTE_TEST * (1 + modificador_positivo - penal_prog);
+		auxprog = gerente * GERENTE_PROG * (1 + modificador_positivo - penal_prog) / Time.timeScale;
+		auxtester = gerente * GERENTE_TEST * (1 + modificador_positivo - penal_prog) / Time.timeScale;
 	}
 	if(project.GetSincronismo() != 00)
 		if(project.GetSincronismo() < 100)
@@ -128,9 +157,9 @@ function ProgramadorWork(modificador_positivo : float, penal : float){
 	
 	if (RequisitoLinguagem() == true)
 	{
-		numBugs = (100.0 - programador ) * PROG_DURANTE * (1.0 - modificador_positivo + penal_prog); //Para acrescentar/reduzir o numero de bugs, os modificadores tem seu papel invertido 
+		numBugs = (100.0 - programador ) * PROG_DURANTE * (1.0 - modificador_positivo + penal_prog) / Time.timeScale; //Para acrescentar/reduzir o numero de bugs, os modificadores tem seu papel invertido 
 		project.SetNumBugs(numBugs);
-		project.SetLinesDone(programador * (1 + modificador_positivo - penal_prog));
+		project.SetLinesDone(programador * (1 + modificador_positivo - penal_prog) / Time.timeScale);
 	}
 }
 
@@ -142,7 +171,7 @@ function TesterWork(modificador_positivo : float, penal : float){
 	
 	if (RequisitoLinguagem() == true)
 	{
-		aux = tester * TESTER_DURANTE * (1 + modificador_positivo - penal);		//Por parte do tester
+		aux = tester * TESTER_DURANTE * (1 + modificador_positivo - penal) / Time.timeScale;		//Por parte do tester
 		aux = -aux * (project.GetFindbugScore());	//Por parte do arquiteto
 		project.SetNumBugs(aux);
 	}
@@ -151,7 +180,6 @@ function TesterWork(modificador_positivo : float, penal : float){
 function Treinando(){
 	//Implementar, colocar um "deadline" aonde o funcionario nao poderá trocar de papel enquanto nao terminar o seu treinamento
 	//Quando terminar o treinamento o funcionario ganhará a especializaçao na qual treinou.
-	//Custará um preço adicional ?
 	if ((Time.timeSinceLevelLoad > treino.GetDeadline_Treino()) && (treino.GetDeadline_Treino() >0))
 	{
 		treino.SetDeadline_Treino(0.0);
@@ -311,6 +339,43 @@ function EspecializacaoFerramenta (){
 	return modificador_positivo;
 }
 
+function SetSalarios(){
+switch(func.GetPapel())
+	{
+	   case "Analista": 	//caso analista
+			func.SetSalario(ANALISTA_SALARIO_PLENO);
+	   break;
+
+	   case "Arquiteto":	//caso arquiteto
+			func.SetSalario(ARQUITETO_SALARIO_PLENO);
+	   break;
+	   
+	   case "Gerente":	//caso gerente
+			func.SetSalario(GERENTE_SALARIO_PLENO);
+	   break;
+	   
+	   case "Marketing":	//caso marketing
+			func.SetSalario(MARKETING_SALARIO_PLENO);
+	   break;
+	   
+	   case "Programador":	//caso programador
+			func.SetSalario(PROGRAMADOR_SALARIO_PLENO);
+	   break;
+	   
+	   case "Testador":	//caso tester
+			func.SetSalario(TESTER_SALARIO_PLENO);
+	   break;
+		
+		case "Treinamento":	//caso esteja em treinamento
+			//Nao altera
+	   break;
+	   
+	   default:
+			func.SetSalario(STANDBY_SALARIO);
+		  break;
+	}
+}
+
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
@@ -331,6 +396,9 @@ function Update(){
 //--------------------------------------------FixedUpdate-----------------------------------------------------------
 
 function FixedUpdate() {
-	Work(); //para ser independente do frame rate de cada maquina.
+	if ((Time.timeSinceLevelLoad % 7) <5)
+		Work(); //para ser independente do frame rate de cada maquina.
+	if ((Time.timeSinceLevelLoad % 7) == 6)
+		project.SetFindbugScore(1);
 }
 

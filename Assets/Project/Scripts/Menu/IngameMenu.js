@@ -1,5 +1,10 @@
 
+public var fichaGuiStyle : GUIStyle;
+public var hudGuiStyle : GUIStyle;
+
 private var TIMESCALE : float = 0.5;
+private var SALARIO_MENSAL_DIVISOR : int = 14;	//Foi pego o salario mensal e dividido por este numero para chegar ao pagamento a cada 2 dias
+
 public var timepaused				: boolean = false;
 public var ingameMenuToggle 	: boolean = false;
 //var helpMenuToggle 		: boolean = false;
@@ -16,10 +21,13 @@ private var bugsText = "";
 private var completedText = "";
 private var sincronismoText = "";
 private var reqlingText = "";
+private var valorMensalText = "";
 private var especializacao_array = new Array(17);
 
 public var atributos : Atributos = new Atributos();
 private var mesa : int;
+private var salario : int;
+private var papel : String;
 
 private var equipeObj : GameObject;
 private var equipe : Equipe;
@@ -30,11 +38,13 @@ private var playerstats : PlayerStats;
 //--------------------------------------------FichaFuncionarioEspecializacao-----------------------------------------------------------
 
 //Funcao que seta os atributos do funcionario corrente, chamada pelo script DialogInstance, item Qualificacao. Primeiro atributo eh para abilitar a janela, os demais sao os atributos em ordem alfabetica
-function SetJanelatributo(t : boolean, a1 : Atributos, a2 : Especializacoes, numMesa : int ){
+function SetJanelatributo(t : boolean, a1 : Atributos, a2 : Especializacoes, numMesa : int, funcPapel : String, funcSalario : int ){
 	var i : int = 0;
 	mesa = numMesa;
 	janelatributo = t;
 	atributos = a1;
+	salario = funcSalario * SALARIO_MENSAL_DIVISOR;
+	papel = funcPapel;
 	
 	for (i=0;i<=17;i++)
 		especializacao_array[i]  = "";
@@ -120,27 +130,27 @@ function MostraJanelaFunc()	{
 	{
 		GUI.BeginGroup(Rect (350,125,750,350));
 		//Lado esquerdo
-		GUI.Box (Rect (0,0,200,25), ("Mesa: "+ mesa));
-		GUI.Box (Rect (0,25,200,25), ("Adaptabilidade: "+ atributos.adaptabilidade));
-		GUI.Box (Rect (0,50,200,25), ("AutoDitada: "+ atributos.autoDitada));
-		GUI.Box (Rect (0,75,200,25), ("Detalhista: "+ atributos.detalhista));
-		GUI.Box (Rect (0,100,200,25), ("Negociacao: "+ atributos.negociacao));
-		GUI.Box (Rect (0,125,200,25), ("Objetividade: "+ atributos.objetividade));
+		GUI.Box (Rect (0,0,200,25), ("Mesa: "+ mesa),fichaGuiStyle);
+		GUI.Box (Rect (0,25,200,25), ("Adaptabilidade: "+ atributos.adaptabilidade),fichaGuiStyle);
+		GUI.Box (Rect (0,50,200,25), ("AutoDitada: "+ atributos.autoDitada),fichaGuiStyle);
+		GUI.Box (Rect (0,75,200,25), ("Detalhista: "+ atributos.detalhista),fichaGuiStyle);
+		GUI.Box (Rect (0,100,200,25), ("Negociacao: "+ atributos.negociacao),fichaGuiStyle);
+		GUI.Box (Rect (0,125,200,25), ("Objetividade: "+ atributos.objetividade),fichaGuiStyle);
 		//Lado direito
-		GUI.Box (Rect (200,0,200,25), ("Organizacao: "+ atributos.organizacao));
-		GUI.Box (Rect (200,25,200,25), ("Paciencia: "+ atributos.paciencia));
-		GUI.Box (Rect (200,50,200,25), ("RaciocinioLogico: "+ atributos.raciocinioLogico));
-		GUI.Box (Rect (200,75,200,25), ("RelacionamentoHumano: "+ atributos.relacionamentoHumano));
-		GUI.Box (Rect (200,100,200,25), ("Papel: "+ atributos.papel));
-		GUI.Box (Rect (200,125,200,25), ("Salario: "+ atributos.salario));
+		GUI.Box (Rect (200,0,200,25), ("Organizacao: "+ atributos.organizacao),fichaGuiStyle);
+		GUI.Box (Rect (200,25,200,25), ("Paciencia: "+ atributos.paciencia),fichaGuiStyle);
+		GUI.Box (Rect (200,50,200,25), ("RaciocinioLogico: "+ atributos.raciocinioLogico),fichaGuiStyle);
+		GUI.Box (Rect (200,75,200,25), ("RelacionamentoHumano: "+ atributos.relacionamentoHumano),fichaGuiStyle);
+		GUI.Box (Rect (200,100,200,25), ("Papel: "+ papel),fichaGuiStyle);
+		GUI.Box (Rect (200,125,200,25), ("Salario: "+ salario),fichaGuiStyle);
 		//Embaixo dos atributos
-		GUI.Box (Rect (0,150,400,25), ("---------------------------------- Especialidades ----------------------------------"));
-		GUI.Box (Rect (0,175,400,25), (especializacao_array[0].ToString()+ "    " + especializacao_array[1].ToString() + "    " + especializacao_array[2].ToString()));
-		GUI.Box (Rect (0,200,400,25), (especializacao_array[3].ToString()+ "    " + especializacao_array[4].ToString() + "    " + especializacao_array[5].ToString()));
-		GUI.Box (Rect (0,225,400,25), (especializacao_array[6].ToString()+ "    " + especializacao_array[7].ToString() + "    " + especializacao_array[8].ToString()));
-		GUI.Box (Rect (0,250,400,25), (especializacao_array[9].ToString()+ "    " + especializacao_array[10].ToString() + "    " + especializacao_array[11].ToString()));
-		GUI.Box (Rect (0,275,400,25), (especializacao_array[12].ToString()+ "    " + especializacao_array[13].ToString() + "    " + especializacao_array[14].ToString()));
-		GUI.Box (Rect (0,300,400,25), (especializacao_array[15].ToString()+ "    " + especializacao_array[16].ToString() + "    " + especializacao_array[17].ToString()));
+		GUI.Box (Rect (0,150,400,25), ("---------------------------------- Especialidades ----------------------------------"),fichaGuiStyle);
+		GUI.Box (Rect (0,175,400,25), (especializacao_array[0].ToString()+ "    " + especializacao_array[1].ToString() + "    " + especializacao_array[2].ToString()),fichaGuiStyle);
+		GUI.Box (Rect (0,200,400,25), (especializacao_array[3].ToString()+ "    " + especializacao_array[4].ToString() + "    " + especializacao_array[5].ToString()),fichaGuiStyle);
+		GUI.Box (Rect (0,225,400,25), (especializacao_array[6].ToString()+ "    " + especializacao_array[7].ToString() + "    " + especializacao_array[8].ToString()),fichaGuiStyle);
+		GUI.Box (Rect (0,250,400,25), (especializacao_array[9].ToString()+ "    " + especializacao_array[10].ToString() + "    " + especializacao_array[11].ToString()),fichaGuiStyle);
+		GUI.Box (Rect (0,275,400,25), (especializacao_array[12].ToString()+ "    " + especializacao_array[13].ToString() + "    " + especializacao_array[14].ToString()),fichaGuiStyle);
+		GUI.Box (Rect (0,300,400,25), (especializacao_array[15].ToString()+ "    " + especializacao_array[16].ToString() + "    " + especializacao_array[17].ToString()),fichaGuiStyle);
 		
 		if (GUI.Button (Rect (0,325,400,25), "Close Window")) 
 		{
@@ -162,8 +172,9 @@ function StatusProjeto()	{
 	sincronismoText = (parseInt(project.GetSincronismo()).ToString() + " %");	//parseint para converter o float para inteiro
 	reqlingText = project.GetLinguagem ();
 	reqmetText = project.GetMetodo ();
+	valorMensalText = (parseInt(project.GetPagamento()).ToString());
 	
-	GUI.BeginGroup(Rect (00,00,220,175));
+	GUI.BeginGroup(Rect (00,00,220,200));
 	GUI.Box (Rect (00,00,90,25), "Saldo");
 	GUI.Box (Rect (00,25,90,25), "Time");
 	GUI.Box (Rect (00,50,90,25), "Deadline");
@@ -171,6 +182,7 @@ function StatusProjeto()	{
 	GUI.Box (Rect (00,100,90,25), "# bugs");
 	GUI.Box (Rect (00,125,90,25), "Sincronismo");
 	GUI.Box (Rect (00,150,90,25), "Req. Codigo");
+	GUI.Box (Rect (00,175,90,25), "Valor Mensal");
 	
 	GUI.Box (Rect (90,00,130,25), saldoText);
 	GUI.Box (Rect (90,25,130,25), timeText);
@@ -179,6 +191,7 @@ function StatusProjeto()	{
 	GUI.Box (Rect (90,100,130,25), bugsText);
 	GUI.Box (Rect (90,125,130,25), sincronismoText);
 	GUI.Box (Rect (90,150,130,25), reqlingText);
+	GUI.Box (Rect (90,175,130,25), valorMensalText);
 	GUI.EndGroup ();
 }
 
@@ -186,7 +199,7 @@ function StatusProjeto()	{
 
 //Funcao que permite alterar o gamespeed do jogo
 function GameSpeed()	{
-	GUI.BeginGroup(Rect (00,225,130,120));
+	GUI.BeginGroup(Rect (00,250,130,120));
 	if (GUI.Button (Rect (00,00, 130, 20), "Pause Game")) {
 				Time.timeScale = 0 ;
 	}
@@ -263,25 +276,6 @@ function MainMenu(){
 	}
 }
 
-//--------------------------------------------FimdeProjeto-----------------------------------------------------------
-
-//Funcao que exibe o resultado de conclusao do projeto
-function ProjetoTermina()	{
-	if((project.GetTimePassed() > project.GetDeadlineHours()))		//Tela que Deadline Expiro
-	{
-		GUI.Box (Rect (250,150,90,25), "Fim do Prazo !");
-			if((project.GetTimePassed() > project.GetDeadlineHours()) && !(project.GetIscomplete()))		//Se passo do prazo e nao foi terminado, seta como terminado
-			{
-				project.SetIscomplete(true);
-			}
-	}
-	
-	if((project.GetNumLinesDone() >= 100))							//Tela que projeto foi concluido a tempo
-	{
-		project.SetIscomplete(true);
-		GUI.Box (Rect (250,150,90,25), "PARABENS !");
-	}
-}
 
 //--------------------------------------------Awake-----------------------------------------------------------
 
@@ -326,8 +320,6 @@ function OnGUI (){
 	GameSpeed();
 	//Janela das fichas dos funcionarios
 	MostraJanelaFunc();
-	//Conclusão de projeto
-	ProjetoTermina();
 }
 
 	

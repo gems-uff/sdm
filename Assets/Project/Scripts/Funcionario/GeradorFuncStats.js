@@ -52,8 +52,6 @@ function SetAtributos()
 	atributos.paciencia = paciencia;
 	atributos.raciocinioLogico = raciocinioLogico;
 	atributos.relacionamentoHumano = relacionamentoHumano;
-	atributos.papel = papel;
-	atributos.salario = salario;
 	
 	func.SetAtributos(atributos);
 }
@@ -95,5 +93,7 @@ function Update () {
 		SetAtributos();
 		SetEspecializacoes();
 		func.SetNumMesa(Mesa);
+		func.SetSalario(salario);
+		func.SetPapel(papel);
 	}
 }

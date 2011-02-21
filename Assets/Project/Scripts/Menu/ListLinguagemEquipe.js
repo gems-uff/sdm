@@ -3,6 +3,7 @@ private var listEntry = 0;
 private var list : GUIContent[];
 private var listStyle : GUIStyle;
 private var showList = false;
+public var customGuiStyle : GUIStyle;
 
 private var equipeObj : GameObject;
 private var equipe : Equipe;
@@ -12,7 +13,7 @@ private var equipe : Equipe;
 //Implementar para permitir alteracao na metodologia
 
 function LinguagemEquipe(){
-	GUI.BeginGroup(Rect (00,200,220,150));
+	GUI.BeginGroup(Rect (00,225,220,150));
 	GUI.Box (Rect (00,00,130,25), "Linguagem Equipe: "); //+ equipe.GetMetodologia())
 	if (Popup.List (Rect(130, 00, 90, 25), showList, listEntry, GUIContent( equipe.GetLinguagem()), list, listStyle)) {
 		if (listEntry != 0)

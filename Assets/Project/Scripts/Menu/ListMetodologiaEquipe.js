@@ -3,6 +3,7 @@ private var listEntry = 0;
 private var list : GUIContent[];
 private var listStyle : GUIStyle;
 private var showList = false;
+public var customGuiStyle : GUIStyle;
 
 private var equipeObj : GameObject;
 private var equipe : Equipe;
@@ -12,7 +13,7 @@ private var equipe : Equipe;
 //Implementar para permitir alteracao na metodologia
 
 function MetodologiaEquipe(){
-	GUI.BeginGroup(Rect (00,175,220,75));
+	GUI.BeginGroup(Rect (00,200,220,75));
 	GUI.Box (Rect (00,00,130,25), "Metogologia Equipe: "); //+ equipe.GetMetodologia())
 	if (Popup.List (Rect(130, 00, 90, 25), showList, listEntry, GUIContent( equipe.GetMetodologia()), list, listStyle)) {
 		if (listEntry != 0)

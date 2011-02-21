@@ -10,6 +10,9 @@ private var marketing : float = 0;
 private var programador : float = 0;
 private var tester : float = 0;
 private var mesa : int;	//Em que desk o funcionario esta alocado
+private var salario : int;
+private var papel : String;
+//private var cargo : String;
 
 //--------------------------------------------Get/Set-----------------------------------------------------------
 
@@ -52,10 +55,10 @@ function GetRelacionamentoHumano() {
 	return atributos.relacionamentoHumano;
 }
 function GetPapel() {
-	return atributos.papel;
+	return papel;
 }
 function GetSalario() {
-	return atributos.salario;
+	return salario;
 }
 
 function SetAtributos(t : Atributos){
@@ -95,10 +98,10 @@ function SetRelacionamentoHumano(t: int) {
 	atributos.relacionamentoHumano = t;
 }
 function SetPapel(t: String) {
-	atributos.papel = t;
+	papel = t;
 }
 function SetSalario(t: int) {
-	atributos.salario = t;
+	salario = t;
 }
 
 //Get e Set Atributos de cada papel

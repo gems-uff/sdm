@@ -1,6 +1,6 @@
 /* Example level loader */
-
-var backdrop : Texture2D;
+public var customGuiStyle : GUIStyle;
+public var backdrop : Texture2D;
 
 function OnGUI () {
 	// Make a background box
