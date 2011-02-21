@@ -6,8 +6,9 @@ public var bugs = 0.0;				//number of bugs in the software
 public var maxCodeLines = 0;	//size of the software to be done
 public var codeLinesDone = 0;	//number of lines done by the team
 public var completed : boolean = false;
+public var pagamento : int = 0;
 private var sincronismo = 0.0;		//sincronismo
-private var findBugScore = 0.0;
+private var findBugScore = 1.0;
 
 //Requisitos do projeto, so pode haver no maximo 1 de cada tipo
 //Linguagem: Escolher apenas uma linguagem
@@ -51,10 +52,13 @@ function GetNumLinesDone () {					//Retorna a percentagem ja concluida do softwa
 function GetSincronismo () {						//Retorna o sincronismo do projeto com o que o cliente pediu
 	return sincronismo;
 }
-function GetFindbugScore () {					//Retorna o Deadline em horas
+function GetFindbugScore () {					
 	return findBugScore;
 }
 
+function GetPagamento () {					//Retorna o Deadline em horas
+	return pagamento;
+}
 //Funcoes SET
 
 function SetNumBugs (t: float) {					//Seta o numero de bugs no software
@@ -84,6 +88,10 @@ function SetFindbugScore(t: float){
 	findBugScore = t;
 }
 
+function SetPagamento (t: int) {				//Seta o tamanho do software que deve ser produzido
+	pagamento = t;
+}
+
 //Funcoes Get e Set de Requisitos
 function GetLinguagem () {						//Retorna o requisito
 	return linguagemProgramacao;
@@ -102,11 +110,13 @@ function SetMetodo (t: String) {						//Seta o requisito
 
 function getTimeString(t : float) :String{
 	var semana : int = t / 7 ;
-    var dia : int = (t % 7);
+    var dia : int = (t % 7) +1;
     return ("Semana: " + semana.ToString("00") + "   Dia: " + dia.ToString("0"));
 }
 
-function Update()
+function FixedUpdate()
 	{
-
+		//Debug.Log("Antes:" +findBugScore);
+		//findBugScore = 0;
+		//Debug.Log("Depois:" +findBugScore);
 	}

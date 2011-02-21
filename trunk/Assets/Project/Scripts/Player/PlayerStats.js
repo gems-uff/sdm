@@ -1,8 +1,6 @@
 
+private var VALOR_MINIMO : int = -100000;
 public var saldo = 0;
-
-function Update () {
-}
 
 function GetSaldo() {
 	return saldo;
@@ -10,4 +8,20 @@ function GetSaldo() {
 
 function SetSaldo(t: int) {
 	saldo = t;
+}
+
+function ChangeSaldo(t: int){
+	saldo = saldo + t;
+}
+
+function Falencia(){
+	if (saldo < VALOR_MINIMO)
+	{
+		Debug.Log("GAME OVER");
+	}
+}
+
+
+function Update(){
+	Falencia();
 }

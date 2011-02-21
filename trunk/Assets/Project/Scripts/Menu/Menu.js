@@ -1,5 +1,6 @@
 /* Button Content examples */
-var icon : Texture2D;
+public var customGuiStyle : GUIStyle;
+public var icon : Texture2D;
 
 //Menu no canto superior direito
 function OnGUI () {

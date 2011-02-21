@@ -1,5 +1,4 @@
 //Script para escolher o papel para cada funcinario pelo menu de funcionarios na parte superior da HUD. Tambem serve para exibir a ficha dos funcs.
-
 private var TEMPODETREINO : float = 14.0;
 
 private var showList1 = false;	//Showlist para cada mesa
@@ -64,7 +63,7 @@ function ExecutaBotaoPopup(t : String, listEntry : int){
 		   break;
 		   
 		   case 10: 	//caso ficha
-				menu.SetJanelatributo(false, func.GetAtributos(), func.GetEspecializacao(), func.GetNumMesa());
+				menu.SetJanelatributo(false, func.GetAtributos(), func.GetEspecializacao(), func.GetNumMesa(), func.GetPapel(),func.GetSalario());
 		   break;
 		   
 		   default:
@@ -141,7 +140,7 @@ function ExecutaJanelaEsp(t : String){
 function Janela_especializacao(){
 	if(!janelatributo)
 	{
-		GUI.BeginGroup(Rect (350,125,400,225));
+		GUI.BeginGroup(Rect (425,325,400,225));
 		// ---------------Lado Esquerdo---------------
 		GUI.Box (Rect (00,00,200,25), "---Linguagens---");	
 		
@@ -358,5 +357,8 @@ function Start () {
 //Funcao da lista Popup para cada um das 8 janelas de funcionarios
 function OnGUI () {
 	PopupList();
+	GUI.backgroundColor = Color.yellow;
+	GUI.backgroundColor = Color.yellow;
+	GUI.contentColor = Color.green;
 	Janela_especializacao();
 }
