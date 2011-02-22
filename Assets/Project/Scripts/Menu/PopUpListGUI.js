@@ -36,7 +36,7 @@ private var func5 : Funcionario;
 private var func6 : Funcionario;
 private var func7 : Funcionario;
 private var func8 : Funcionario;
-private var menu : IngameMenu;
+private var menu : FuncWindow;
 
 private var novopapel = "";
 private var janelatributo : boolean = true;
@@ -63,7 +63,7 @@ function ExecutaBotaoPopup(t : String, listEntry : int){
 		   break;
 		   
 		   case 10: 	//caso ficha
-				menu.SetJanelatributo(false, func.GetAtributos(), func.GetEspecializacao(), func.GetNumMesa(), func.GetPapel(),func.GetSalario());
+				menu.SetJanelatributo(func.GetAtributos(), func.GetEspecializacao(), func.GetNome(), func.GetPapel(),func.GetSalario());
 		   break;
 		   
 		   default:
@@ -82,52 +82,51 @@ function TakePapel(t: int)
 {
 	var papel : String;
 	switch(t)
-		{
-		   case 2: 	//caso analista
-			  papel = "Analista";
-			  return papel;
-		   break;
-		   case 3:	//caso arquiteto
-				papel = "Arquiteto";
-				return papel;
-		   break;
-		   
-		   case 4:	//caso gerente
-				papel = "Gerente";
-				return papel;
-		   break;
-		   
-		   case 5:	//caso marketing
-				papel = "Marketing";
-				return papel;
-		   break;
-		   
-		   case 6:	//caso programador
-				papel = "Programador";
-				return papel;
-		   break;
-		   
-		   case 7:	//caso tester
-				papel = "Testador";
-				return papel;
-		   break;
-		   
-		   case 8:	//caso nenhum papel
-				papel = "Nenhum";
-				return papel;
-		   break;
-		   
-		   case 9:	//caso treinamento
-				papel = "Treinamento";
-				return papel;
-		   break;
+	{
+	   case 2: 	//caso analista
+		  papel = "Analista";
+		  return papel;
+	   break;
+	   case 3:	//caso arquiteto
+			papel = "Arquiteto";
+			return papel;
+	   break;
+	   
+	   case 4:	//caso gerente
+			papel = "Gerente";
+			return papel;
+	   break;
+	   
+	   case 5:	//caso marketing
+			papel = "Marketing";
+			return papel;
+	   break;
+	   
+	   case 6:	//caso programador
+			papel = "Programador";
+			return papel;
+	   break;
+	   
+	   case 7:	//caso tester
+			papel = "Testador";
+			return papel;
+	   break;
+	   
+	   case 8:	//caso nenhum papel
+			papel = "Nenhum";
+			return papel;
+	   break;
+	   
+	   case 9:	//caso treinamento
+			papel = "Treinamento";
+			return papel;
+	   break;
 
-		   default:
-				papel = "Nenhum";
-				return papel;
-			break;
-
-		}
+	   default:
+			papel = "Nenhum";
+			return papel;
+		break;
+	}
 }
 
 function ExecutaJanelaEsp(t : String){
@@ -272,29 +271,29 @@ function Janela_especializacao(){
 //--------------------------------------------PopUpList-----------------------------------------------------------
 
 function PopupList(){
-	GUI.BeginGroup(Rect (220,00,480,280));
-	if (Popup.List (Rect(00, 00, 120, 20), showList1, listEntry, GUIContent("1: "+ func1.GetPapel()), list, listStyle)) {
+	GUI.BeginGroup(Rect (220,00,700,280));
+	if (Popup.List (Rect(000, 00, 160, 20), showList1, listEntry, GUIContent( func1.GetNome() +": "+ func1.GetPapel()), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario1", listEntry);
     }
-	if (Popup.List (Rect(120, 00, 120, 20), showList2, listEntry, GUIContent("2: "+ func2.GetPapel()), list, listStyle)) {
+	if (Popup.List (Rect(160, 00, 160, 20), showList2, listEntry, GUIContent(func2.GetNome() +": "+ func2.GetPapel()), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario2", listEntry);
     }
-	if (Popup.List (Rect(240, 00, 120, 20), showList3, listEntry, GUIContent("3: "+ func3.GetPapel()), list, listStyle)) {
+	if (Popup.List (Rect(320, 00, 160, 20), showList3, listEntry, GUIContent(func3.GetNome() +": "+ func3.GetPapel()), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario3", listEntry);
     }
-	if (Popup.List (Rect(360, 00, 120, 20), showList4, listEntry, GUIContent("4: "+ func4.GetPapel()), list, listStyle)) {
+	if (Popup.List (Rect(480, 00, 160, 20), showList4, listEntry, GUIContent(func4.GetNome() +": "+ func4.GetPapel()), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario4", listEntry);
     }
-	if (Popup.List (Rect(00, 20, 120, 20), showList5, listEntry, GUIContent("5: "+ func5.GetPapel()), list, listStyle)) {
+	if (Popup.List (Rect(000, 20, 160, 20), showList5, listEntry, GUIContent(func5.GetNome() +": "+ func5.GetPapel()), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario5", listEntry);
     }
-	if (Popup.List (Rect(120, 20, 120, 20), showList6, listEntry, GUIContent("6: "+ func6.GetPapel()), list, listStyle)) {
+	if (Popup.List (Rect(160, 20, 160, 20), showList6, listEntry, GUIContent(func6.GetNome() +": "+ func6.GetPapel()), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario6", listEntry);
     }
-	if (Popup.List (Rect(240, 20, 120, 20), showList7, listEntry, GUIContent("7: "+ func7.GetPapel()), list, listStyle)) {
+	if (Popup.List (Rect(320, 20, 160, 20), showList7, listEntry, GUIContent(func7.GetNome() +": "+ func7.GetPapel()), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario7", listEntry);
     }
-	if (Popup.List (Rect(360, 20, 120, 20), showList8, listEntry, GUIContent("8: "+ func8.GetPapel()), list, listStyle)) {
+	if (Popup.List (Rect(480, 20, 160, 20), showList8, listEntry, GUIContent(func8.GetNome() +": "+ func8.GetPapel()), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario8", listEntry);
     }
 	GUI.EndGroup ();
@@ -321,7 +320,7 @@ function Awake () {
 		func8Obj = GameObject.Find("Funcionario8");
 		func8 = func8Obj.GetComponent(Funcionario);
 		menuObj = GameObject.Find("GUI");
-		menu = menuObj.GetComponent(IngameMenu);
+		menu = menuObj.GetComponent(FuncWindow);
 	}
 //--------------------------------------------Start-----------------------------------------------------------
 

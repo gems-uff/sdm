@@ -5,15 +5,13 @@ public var deadlineDays = 0;  //in hours
 public var bugs = 0.0;				//number of bugs in the software
 public var maxCodeLines = 0;	//size of the software to be done
 public var codeLinesDone = 0;	//number of lines done by the team
-public var completed : boolean = false;
+private var completed : boolean = false;
 public var pagamento : int = 0;
 private var sincronismo = 0.0;		//sincronismo
 private var findBugScore = 1.0;
 
-//Requisitos do projeto, so pode haver no maximo 1 de cada tipo
 //Linguagem: Escolher apenas uma linguagem
-public var linguagemProgramacao : String;
-public var metodoDeDesenvolvimento : String;
+public var linguagemProgramacao : String = "java";
 
 //--------------------------------------------Get/Set-----------------------------------------------------------
 
@@ -96,14 +94,8 @@ function SetPagamento (t: int) {				//Seta o tamanho do software que deve ser pr
 function GetLinguagem () {						//Retorna o requisito
 	return linguagemProgramacao;
 }
-function GetMetodo () {						//Retorna o requisito
-	return metodoDeDesenvolvimento;
-}
 function SetLinguagem (t: String) {						//Seta o requisito
 	linguagemProgramacao = t;
-}
-function SetMetodo (t: String) {						//Seta o requisito
-	metodoDeDesenvolvimento = t;
 }
 
 //--------------------------------------------Dia/Semana-----------------------------------------------------------
@@ -113,10 +105,3 @@ function getTimeString(t : float) :String{
     var dia : int = (t % 7) +1;
     return ("Semana: " + semana.ToString("00") + "   Dia: " + dia.ToString("0"));
 }
-
-function FixedUpdate()
-	{
-		//Debug.Log("Antes:" +findBugScore);
-		//findBugScore = 0;
-		//Debug.Log("Depois:" +findBugScore);
-	}
