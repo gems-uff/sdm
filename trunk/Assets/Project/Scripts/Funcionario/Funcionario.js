@@ -9,7 +9,7 @@ private var gerente : float = 0;
 private var marketing : float = 0;
 private var programador : float = 0;
 private var tester : float = 0;
-private var mesa : int;	//Em que desk o funcionario esta alocado
+private var nome : String;
 private var salario : int;
 private var papel : String;
 //private var cargo : String;
@@ -24,8 +24,8 @@ function GetAtributos(){
 function GetEspecializacao(){
 	return especializacao;
 }
-function GetNumMesa() {
-	return mesa;
+function GetNome() {
+	return nome;
 }
 function GetAdaptabilidade() {
 	return atributos.adaptabilidade;
@@ -67,8 +67,8 @@ function SetAtributos(t : Atributos){
 function SetEspecializacoes(t : Especializacoes){
 	especializacao = t;
 }
-function SetNumMesa(t: int) {
-	mesa = t;
+function SetNome(t: String) {
+	nome = t;
 }
 function SetAdaptabilidade(t: int) {
 	atributos.adaptabilidade = t;

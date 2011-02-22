@@ -10,9 +10,9 @@ public var organizacao : int = 50;
 public var paciencia : int = 50;
 public var raciocinioLogico : int = 50;
 public var relacionamentoHumano : int = 50;
-public var papel : String = "";
+public var papel : String = "Nenhum";
 public var salario : float = 0;
-public var Mesa : int = 0;
+public var nome : String = "John";
 
 public var assembly : boolean = false;
 public var csharp : boolean = false;
@@ -92,7 +92,7 @@ function Update () {
 		atualizado = true;
 		SetAtributos();
 		SetEspecializacoes();
-		func.SetNumMesa(Mesa);
+		func.SetNome(nome);
 		func.SetSalario(salario);
 		func.SetPapel(papel);
 	}

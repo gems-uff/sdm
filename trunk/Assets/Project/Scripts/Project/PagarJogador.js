@@ -23,22 +23,29 @@ function PagarJogadorMensal(){
 
 function PagarJogadorConclusao(){
 	var isComplete : boolean;
-	var pagamentofinal : int;
 	isComplete = project.GetIscomplete();
 	if (isComplete == true)
 	{
-		if (isPago == false)
+		if (project.GetNumLinesDone == 100)
 		{
-			pagamentofinal = project.GetPagamento();
-			pagamentofinal = pagamentofinal * 4;
-			pagamentofinal = pagamentofinal * (project.GetSincronismo() / 100);	//reduz de acordo com o sincronismo
-			pagamentofinal = pagamentofinal - (project.GetNumBugs() * BUG_VALUE);		//reduz de acordo com o numero de bugs
-			jogador.ChangeSaldo(pagamentofinal);
-			isPago = true;
+			if (isPago == false)
+			{
+				jogador.ChangeSaldo(CalculaPagamentoFinal());
+				isPago = true;
+			}
 		}
 	}
 	else
 		isPago = false;
+}
+
+function CalculaPagamentoFinal(){
+	var pagamentofinal : int;
+	pagamentofinal = project.GetPagamento();
+	pagamentofinal = pagamentofinal * 4;
+	pagamentofinal = pagamentofinal * (parseInt(project.GetSincronismo()) / 100);	//reduz de acordo com o sincronismo
+	pagamentofinal = pagamentofinal - (parseInt(project.GetNumBugs()) * BUG_VALUE);		//reduz de acordo com o numero de bugs
+	return pagamentofinal;
 }
 //--------------------------------------------Awake-----------------------------------------------------------
 
