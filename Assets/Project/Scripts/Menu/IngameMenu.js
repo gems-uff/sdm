@@ -1,9 +1,8 @@
 
-public var hudGuiStyle : GUIStyle;
+public var pauseStyle : GUIStyle;
 
 private var TIMESCALE : float = 0.5;
 
-public var timepaused				: boolean = false;
 public var ingameMenuToggle 	: boolean = false;
 //var helpMenuToggle 		: boolean = false;
 //var scoreboardToggle		: boolean = false;
@@ -64,25 +63,46 @@ function StatusProjeto()	{
 
 //Funcao que permite alterar o gamespeed do jogo
 function GameSpeed()	{
-	GUI.BeginGroup(Rect (00,250,130,120));
-	if (GUI.Button (Rect (00,00, 130, 20), "Pause Game")) {
-				Time.timeScale = 0 ;
-	}
-	if (GUI.Button (Rect (00,25, 130, 20), "Game Speed: x1")) {
-				Time.timeScale = TIMESCALE ;
-	}
-	if (GUI.Button (Rect (00,50, 130, 20), "Game Speed: x2")) {
-				Time.timeScale = TIMESCALE * 2 ;
-	}
-	if (GUI.Button (Rect (00,75, 130, 20), "Game Speed: x4")) {
-				Time.timeScale = TIMESCALE * 4 ;
-	}
-	if (GUI.Button (Rect (00,100, 130, 20), "Game Speed: x8")) {
-				Time.timeScale = TIMESCALE * 8 ;
-	}
+	GUI.BeginGroup(Rect (00,250,150,150));
+	if(Time.timeScale != 0)
+		if (GUI.Button (Rect (00,00, 150, 25), "Pause Game"))
+					Time.timeScale = 0 ;
+	if(Time.timeScale == 0)
+		GUI.Box (Rect (00,00, 150, 25), "Pause Game");
+	
+	if(Time.timeScale != (TIMESCALE / 2))
+		if (GUI.Button (Rect (00,25, 150, 25), "Game Spd: Slow"))
+				Time.timeScale = TIMESCALE / 2;
+	if(Time.timeScale == (TIMESCALE / 2))
+		GUI.Box (Rect (00,25, 150, 25), "Game Spd: Slow");
+	
+	if(Time.timeScale != TIMESCALE)
+		if (GUI.Button (Rect (00,50, 150, 25), "Game Spd: Normal"))
+					Time.timeScale = TIMESCALE;
+	if(Time.timeScale == TIMESCALE)
+		GUI.Box (Rect (00,50, 150, 25), "Game Spd: Normal");
+	
+	if(Time.timeScale != (TIMESCALE * 2))
+		if (GUI.Button (Rect (00,75, 150, 25), "Game Spd: Fast"))
+					Time.timeScale = TIMESCALE * 2;
+	if(Time.timeScale == (TIMESCALE * 2))
+		GUI.Box (Rect (00,75, 150, 25), "Game Spd: Fast");
+	
+	if(Time.timeScale != (TIMESCALE * 4))
+		if (GUI.Button (Rect (00,100, 150, 25), "Game Spd: Very Fast"))
+					Time.timeScale = TIMESCALE * 4 ;
+	if(Time.timeScale == (TIMESCALE * 4))
+		GUI.Box (Rect (00,100, 150, 25), "Game Spd: Very Fast");
+	
+	if(Time.timeScale != (TIMESCALE * 8))
+		if (GUI.Button (Rect (00,125, 150, 25), "Game Spd: Hyper Fast"))
+					Time.timeScale = TIMESCALE * 8 ;
+	if(Time.timeScale == (TIMESCALE * 8))
+		GUI.Box (Rect (00,125, 150, 25), "Game Spd: Hyper Fast");
+	
 	GUI.EndGroup ();
 	if (Time.timeScale == 0)
-		GUI.Box (Rect (350,400,600,50), "PAUSED", hudGuiStyle);
+		GUI.Box (Rect (350,60,600,50), "PAUSED", pauseStyle);
 }
 
 //--------------------------------------------ESCPressed-----------------------------------------------------------
