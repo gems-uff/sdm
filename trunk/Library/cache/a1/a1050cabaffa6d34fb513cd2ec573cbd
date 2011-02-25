@@ -14,18 +14,18 @@ private var equipe : Equipe;
 
 function MetodologiaEquipe(){
 	GUI.BeginGroup(Rect (00,200,220,75));
-	GUI.Box (Rect (00,00,130,25), "Metogologia Equipe: "); //+ equipe.GetMetodologia())
+	GUI.Box (Rect (00,00,130,25), "Team's Methodology: "); //+ equipe.GetMetodologia())
 	if (Popup.List (Rect(130, 00, 90, 25), showList, listEntry, GUIContent( equipe.GetMetodologia()), list, listStyle)) {
 		if (listEntry != 0)
 		{
 			switch(listEntry)
 			{
 			   case 1: 	//caso Agil
-					equipe.SetMetodologia("Agil");
+					equipe.SetMetodologia("Agile");
 			   break;
 			   
 			   case 2: 	//caso Classico
-					equipe.SetMetodologia("Classico");
+					equipe.SetMetodologia("Classic");
 			   break;
 			   
 			   default:
@@ -51,8 +51,8 @@ function Start () {
     // Make some content for the popup list	
 	 list = new GUIContent[3];
 	list[0] = new GUIContent("");
-	list[1] = new GUIContent("Agil");
-	list[2] = new GUIContent("Classico");
+	list[1] = new GUIContent("Agile");
+	list[2] = new GUIContent("Classic");
     
     // Make a GUIStyle that has a solid white hover/onHover background to indicate highlighted items
     listStyle = new GUIStyle();

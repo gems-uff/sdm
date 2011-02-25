@@ -56,50 +56,49 @@ function Especializando (){
 			func.SetL_ruby(t);
 	   break;
 	   
-	   case "metodoAgil":
+	   case "agileMethod":
 			func.SetM_agil(t);
 	   break;
 	   
-	   case "metodoClassico":
+	   case "classicMethod":
 			func.SetM_classico(t);
 	   break;
 	   
-	   case "analiseDeProgramas":
+	   case "analysisProgram":
 			func.SetF_programas(t);
 	   break;
 	   
-	   case "controleDeVersao":
+	   case "versionControl":
 			func.SetF_versao(t);
 	   break;
 	   
-	   case "depuracao":
+	   case "depuration":
 			func.SetF_depuracao(t);
 	   break;
 	   
-	   case "gerenciaDeProjetos":
+	   case "projectManagement":
 			func.SetF_projetos(t);
 	   break;
 	   
-	   case "metricas":
+	   case "metrics":
 			func.SetF_metricas(t);
 	   break;
 	   
-	   case "planejamento":
+	   case "planning":
 			func.SetF_planejamento(t);
 	   break;
 	   
-	   case "teste":
+	   case "test":
 			func.SetF_teste(t);
 	   break;
 	   
 	   default:
-			Debug.Log("Erro no treinamento");
 		  break;
 	}
 	//deadline_treino = 0.0;
 	pagar.PagarFuncionarioTreinamento(PRECO);//Paga o custo de treinamento precisa ser feito
 	islockedEscolha = false;
-	func.SetPapel("Nenhum");
+	func.SetPapel("None");
 }
 
 //--------------------------------------------Awake-----------------------------------------------------------
