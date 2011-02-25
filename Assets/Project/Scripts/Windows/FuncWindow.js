@@ -5,10 +5,8 @@
 //menu = menuObj.GetComponent(FuncWindow);
 //menu.SetJanelatributo(func.GetAtributos(), func.GetEspecializacao(), func.GetNome(), func.GetPapel(),func.GetSalario());
 
-//Usa Time.timeScale = 0.5;
-
-private var SALARIO_MENSAL_DIVISOR : int = 14;	//Foi pego o salario mensal e dividido por este numero para chegar ao pagamento a cada 2 dias
-
+private var timerObj : GameObject;
+private var timer : GameTime;
 public var fichaGuiStyle : GUIStyle;
 private var especializacao_array = new Array(17);
 public var atributos : Atributos = new Atributos();
@@ -26,7 +24,7 @@ function SetJanelatributo(a1 : Atributos, a2 : Especializacoes, funcNome : Strin
 	nome = funcNome;
 	showJanela = true;
 	atributos = a1;
-	salario = funcSalario * SALARIO_MENSAL_DIVISOR;
+	salario = funcSalario;
 	papel = funcPapel;
 	
 	for (i=0;i<=17;i++)
@@ -60,47 +58,47 @@ function SetJanelatributo(a1 : Atributos, a2 : Especializacoes, funcNome : Strin
 	}
 	if ( a2.metodoAgil == true )
 	{
-		especializacao_array[i] = " Metodo Agil";
+		especializacao_array[i] = " Agile Method";
 		i++;
 	}
 	if ( a2.metodoClassico == true )
 	{
-		especializacao_array[i] = " Metodo Classico";
+		especializacao_array[i] = " Classic Method";
 		i++;
 	}
 	if ( a2.analiseDeProgramas == true )
 	{
-		especializacao_array[i] = " An. de Programas";
+		especializacao_array[i] = " Analysis Program";
 		i++;
 	}
 	if ( a2.controleDeVersao == true )
 	{
-		especializacao_array[i] = " Contr. de Versao";
+		especializacao_array[i] = " Version Control";
 		i++;
 	}
 	if ( a2.depuracao == true )
 	{
-		especializacao_array[i] = " Depuracao";
+		especializacao_array[i] = " Depuration";
 		i++;
 	}
 	if ( a2.gerenciaDeProjetos == true )
 	{
-		especializacao_array[i] = " Ger. de Projetos";
+		especializacao_array[i] = " Project Management";
 		i++;
 	}
 	if ( a2.metricas == true )
 	{
-		especializacao_array[i] = " Metricas";
+		especializacao_array[i] = " Metrics";
 		i++;
 	}
 	if ( a2.planejamento == true )
 	{
-		especializacao_array[i] = " Planejamento";
+		especializacao_array[i] = " Planning";
 		i++;
 	}
 	if ( a2.teste == true )
 	{
-		especializacao_array[i] = " Teste";
+		especializacao_array[i] = " Test";
 		i++;
 	}
 }
@@ -111,24 +109,24 @@ function SetJanelatributo(a1 : Atributos, a2 : Especializacoes, funcNome : Strin
 function MostraJanelaFunc()	{
 	if(showJanela)
 	{
-		Time.timeScale = 0.0;
+		timer.PauseGame();
 		GUI.BeginGroup(Rect (350,125,750,350));
 		//Lado esquerdo
-		GUI.Box (Rect (0,0,200,25), (" Nome: "+ nome),fichaGuiStyle);
-		GUI.Box (Rect (0,25,200,25), (" Adaptabilidade: "+ atributos.adaptabilidade),fichaGuiStyle);
-		GUI.Box (Rect (0,50,200,25), (" AutoDitada: "+ atributos.autoDitada),fichaGuiStyle);
-		GUI.Box (Rect (0,75,200,25), (" Detalhista: "+ atributos.detalhista),fichaGuiStyle);
-		GUI.Box (Rect (0,100,200,25), (" Negociacao: "+ atributos.negociacao),fichaGuiStyle);
-		GUI.Box (Rect (0,125,200,25), (" Objetividade: "+ atributos.objetividade),fichaGuiStyle);
+		GUI.Box (Rect (0,0,200,25), (" Name: "+ nome),fichaGuiStyle);
+		GUI.Box (Rect (0,25,200,25), (" Adaptability: "+ atributos.adaptabilidade),fichaGuiStyle);
+		GUI.Box (Rect (0,50,200,25), (" Autodidact: "+ atributos.autoDitada),fichaGuiStyle);
+		GUI.Box (Rect (0,75,200,25), (" Meticulous: "+ atributos.detalhista),fichaGuiStyle);
+		GUI.Box (Rect (0,100,200,25), (" Negotiation: "+ atributos.negociacao),fichaGuiStyle);
+		GUI.Box (Rect (0,125,200,25), (" Objectivity: "+ atributos.objetividade),fichaGuiStyle);
 		//Lado direito
-		GUI.Box (Rect (200,0,200,25), (" Organizacao: "+ atributos.organizacao),fichaGuiStyle);
-		GUI.Box (Rect (200,25,200,25), (" Paciencia: "+ atributos.paciencia),fichaGuiStyle);
-		GUI.Box (Rect (200,50,200,25), (" RaciocinioLogico: "+ atributos.raciocinioLogico),fichaGuiStyle);
-		GUI.Box (Rect (200,75,200,25), (" RelacionamentoHumano: "+ atributos.relacionamentoHumano),fichaGuiStyle);
-		GUI.Box (Rect (200,100,200,25), (" Papel: "+ papel),fichaGuiStyle);
-		GUI.Box (Rect (200,125,200,25), (" Salario: "+ salario),fichaGuiStyle);
+		GUI.Box (Rect (200,0,200,25), (" Organization: "+ atributos.organizacao),fichaGuiStyle);
+		GUI.Box (Rect (200,25,200,25), (" Patience: "+ atributos.paciencia),fichaGuiStyle);
+		GUI.Box (Rect (200,50,200,25), (" Logical Reasoning: "+ atributos.raciocinioLogico),fichaGuiStyle);
+		GUI.Box (Rect (200,75,200,25), (" Human Relations: "+ atributos.relacionamentoHumano),fichaGuiStyle);
+		GUI.Box (Rect (200,100,200,25), (" Role: "+ papel),fichaGuiStyle);
+		GUI.Box (Rect (200,125,200,25), (" Salary: "+ salario),fichaGuiStyle);
 		//Embaixo dos atributos
-		GUI.Box (Rect (0,150,400,25), ("---------------------------------- Especialidades ----------------------------------"),fichaGuiStyle);
+		GUI.Box (Rect (0,150,400,25), ("---------------------------------- Specialties ----------------------------------"),fichaGuiStyle);
 		GUI.Box (Rect (0,175,400,25), (especializacao_array[0].ToString()+ "\t" + especializacao_array[1].ToString() + "\t" + especializacao_array[2].ToString()),fichaGuiStyle);
 		GUI.Box (Rect (0,200,400,25), (especializacao_array[3].ToString()+ "\t" + especializacao_array[4].ToString() + "\t" + especializacao_array[5].ToString()),fichaGuiStyle);
 		GUI.Box (Rect (0,225,400,25), (especializacao_array[6].ToString()+ "\t" + especializacao_array[7].ToString() + "\t" + especializacao_array[8].ToString()),fichaGuiStyle);
@@ -139,12 +137,20 @@ function MostraJanelaFunc()	{
 		if (GUI.Button (Rect (0,325,400,25), "Close Window")) 
 		{
 			showJanela  = false;
-			Time.timeScale = 0.5;
+			timer.SpeedNormal();
 		}
 		GUI.EndGroup ();
 	}
 }
 
+//--------------------------------------------Awake-----------------------------------------------------------
+
+function Awake () {
+	timerObj = GameObject.Find("Timer");
+	timer = timerObj.GetComponent(GameTime);
+}
+
+//--------------------------------------------OnGUI-----------------------------------------------------------
 
 //Funcao da unity para a GUI
 function OnGUI (){

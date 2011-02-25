@@ -3,10 +3,11 @@
 //private var projectW : ProjectWindow;
 //projectW = GetComponentInChildren(ProjectWindow);
 
-//Usa Time.timeScale = 0.5;
 
 
 private var project : Project;
+private var timerObj : GameObject;
+private var timer : GameTime;
 private var showWindow : boolean = false;
 //Variavel do Style da GUI
 public var customGuiStyle : GUIStyle;
@@ -22,7 +23,7 @@ function ShowProjectDetails(){
 	var pagamento = project.GetPagamento();
 	if (showWindow)
 	{
-		Time.timeScale = 0.0;
+		timer.PauseGame();
 		GUI.BeginGroup(Rect (350,125,400,375));
 		GUI.Box (Rect (0,0,300,350), 
 		("\n DESCRICAO PROJETO: \n \n" +
@@ -36,7 +37,7 @@ function ShowProjectDetails(){
 		if (GUI.Button (Rect (0,350,300,25), "Close Window")) 
 		{
 			showWindow  = false;
-			Time.timeScale = 0.5;
+			timer.SpeedNormal();
 		}
 		GUI.EndGroup ();
 	}
@@ -46,6 +47,8 @@ function ShowProjectDetails(){
 
 function Awake () {
 	project = GetComponentInChildren(Project);
+	timerObj = GameObject.Find("Timer");
+	timer = timerObj.GetComponent(GameTime);
 }
 
 //--------------------------------------------OnGUI-----------------------------------------------------------

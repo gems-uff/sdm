@@ -1,5 +1,5 @@
 
-public var metodologia : String = "";
+public var metodologia : String = "";		//Agile or Classic
 public var linguagemProg : String = "";
 
 

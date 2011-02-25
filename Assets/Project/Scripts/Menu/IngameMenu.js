@@ -1,7 +1,12 @@
 
 public var pauseStyle : GUIStyle;
 
-private var TIMESCALE : float = 0.5;
+private var TIMESLOW : float = 2.0;
+private var TIMENORMAL : float = 1.0;
+private var TIMEFAST : float = 0.5;
+private var TIMEVERYFAST : float = 0.25;
+private var TIMEHYPERFAST : float = 0.125;
+
 
 public var ingameMenuToggle 	: boolean = false;
 //var helpMenuToggle 		: boolean = false;
@@ -20,6 +25,8 @@ private var valorMensalText = "";
 
 private var equipeObj : GameObject;
 private var equipe : Equipe;
+private var timerObj : GameObject;
+private var timer : GameTime;
 private var project : Project;
 private var playerstats : PlayerStats;
 
@@ -29,24 +36,24 @@ private var playerstats : PlayerStats;
 
 //Funcao que exibe os detalhes do andamento do projeto na HUD
 function StatusProjeto()	{
-	saldoText = playerstats.GetSaldo().ToString();
-	timeText = project.GetTime().ToString();
+	saldoText = "$ " + playerstats.GetSaldo().ToString();
+	timeText = timer.GetTime().ToString();
 	deadlineText = project.GetDeadLine().ToString();
 	bugsText = parseInt(project.GetNumBugs()).ToString();							//parseint para converter o float para inteiro
 	completedText = (project.GetNumLinesDone().ToString() + " %");
 	sincronismoText = (parseInt(project.GetSincronismo()).ToString() + " %");	//parseint para converter o float para inteiro
 	reqlingText = project.GetLinguagem ();
-	valorMensalText = (parseInt(project.GetPagamento()).ToString());
+	valorMensalText = "$ " + (parseInt(project.GetPagamento()).ToString());
 	
 	GUI.BeginGroup(Rect (00,00,220,200));
-	GUI.Box (Rect (00,00,90,25), "Saldo");
+	GUI.Box (Rect (00,00,90,25), "Money");
 	GUI.Box (Rect (00,25,90,25), "Time");
 	GUI.Box (Rect (00,50,90,25), "Deadline");
-	GUI.Box (Rect (00,75,90,25), "% concluido");
+	GUI.Box (Rect (00,75,90,25), "% complete");
 	GUI.Box (Rect (00,100,90,25), "# bugs");
-	GUI.Box (Rect (00,125,90,25), "Sincronismo");
-	GUI.Box (Rect (00,150,90,25), "Req. Codigo");
-	GUI.Box (Rect (00,175,90,25), "Valor Mensal");
+	GUI.Box (Rect (00,125,90,25), "Synchronism");
+	GUI.Box (Rect (00,150,90,25), "Req. Code");
+	GUI.Box (Rect (00,175,90,25), "Monthly Inc.");
 	
 	GUI.Box (Rect (90,00,130,25), saldoText);
 	GUI.Box (Rect (90,25,130,25), timeText);
@@ -64,44 +71,44 @@ function StatusProjeto()	{
 //Funcao que permite alterar o gamespeed do jogo
 function GameSpeed()	{
 	GUI.BeginGroup(Rect (00,250,150,150));
-	if(Time.timeScale != 0)
+	if(timer.GetRepeatTime() != 0)
 		if (GUI.Button (Rect (00,00, 150, 25), "Pause Game"))
-					Time.timeScale = 0 ;
-	if(Time.timeScale == 0)
+					timer.PauseGame();
+	if(timer.GetRepeatTime() == 0)
 		GUI.Box (Rect (00,00, 150, 25), "Pause Game");
 	
-	if(Time.timeScale != (TIMESCALE / 2))
+	if(timer.GetRepeatTime() != timer.GetTimeS())
 		if (GUI.Button (Rect (00,25, 150, 25), "Game Spd: Slow"))
-				Time.timeScale = TIMESCALE / 2;
-	if(Time.timeScale == (TIMESCALE / 2))
+				timer.SpeedSlow();
+	if(timer.GetRepeatTime() == timer.GetTimeS())
 		GUI.Box (Rect (00,25, 150, 25), "Game Spd: Slow");
 	
-	if(Time.timeScale != TIMESCALE)
+	if(timer.GetRepeatTime() != timer.GetTimeN())
 		if (GUI.Button (Rect (00,50, 150, 25), "Game Spd: Normal"))
-					Time.timeScale = TIMESCALE;
-	if(Time.timeScale == TIMESCALE)
+					timer.SpeedNormal();
+	if(timer.GetRepeatTime() == timer.GetTimeN())
 		GUI.Box (Rect (00,50, 150, 25), "Game Spd: Normal");
 	
-	if(Time.timeScale != (TIMESCALE * 2))
+	if(timer.GetRepeatTime() != timer.GetTimeF())
 		if (GUI.Button (Rect (00,75, 150, 25), "Game Spd: Fast"))
-					Time.timeScale = TIMESCALE * 2;
-	if(Time.timeScale == (TIMESCALE * 2))
+					timer.SpeedFast();
+	if(timer.GetRepeatTime() == timer.GetTimeF())
 		GUI.Box (Rect (00,75, 150, 25), "Game Spd: Fast");
 	
-	if(Time.timeScale != (TIMESCALE * 4))
+	if(timer.GetRepeatTime() != timer.GetTimeVF())
 		if (GUI.Button (Rect (00,100, 150, 25), "Game Spd: Very Fast"))
-					Time.timeScale = TIMESCALE * 4 ;
-	if(Time.timeScale == (TIMESCALE * 4))
+					timer.SpeedVeryFastl();
+	if(timer.GetRepeatTime() == timer.GetTimeVF())
 		GUI.Box (Rect (00,100, 150, 25), "Game Spd: Very Fast");
 	
-	if(Time.timeScale != (TIMESCALE * 8))
+	if(timer.GetRepeatTime() != timer.GetTimeHF())
 		if (GUI.Button (Rect (00,125, 150, 25), "Game Spd: Hyper Fast"))
-					Time.timeScale = TIMESCALE * 8 ;
-	if(Time.timeScale == (TIMESCALE * 8))
+					timer.SpeedHyperFast();
+	if(timer.GetRepeatTime() == timer.GetTimeHF())
 		GUI.Box (Rect (00,125, 150, 25), "Game Spd: Hyper Fast");
 	
 	GUI.EndGroup ();
-	if (Time.timeScale == 0)
+	if (timer.GetRepeatTime() == 0)
 		GUI.Box (Rect (350,60,600,50), "PAUSED", pauseStyle);
 }
 
@@ -112,17 +119,17 @@ function EscapePressed()	{
 	if (!ingameMenuToggle)	//Se Menu aberto entao pausa
 	{
 		ingameMenuToggle = true;
-		Screen.lockCursor = false;
-		Time.timeScale = 0 ;	// pauze
+		//Screen.lockCursor = false;
+		//Time.timeScale = 0 ;	// pauze
 	}
 	
 	else //Senao despausa
 	{
-		Screen.lockCursor = true;
+		//Screen.lockCursor = true;
 		ingameMenuToggle = false;
 		//helpMenuToggle = false;
 		//scoreboardToggle = false;
-		Time.timeScale = TIMESCALE ;	// unPause,
+		//Time.timeScale = TIMENORMAL ;	// unPause,
 	}
 }
 
@@ -156,8 +163,8 @@ function MainMenu(){
 		if (GUI.Button( Rect (Screen.width - 100,90,100,20), "3: Resume") )
 		{
 			ingameMenuToggle = false ;
-			Time.timeScale = TIMESCALE ;
-			Screen.lockCursor = true;
+			//Time.timeScale = TIMESCALE ;
+			//Screen.lockCursor = true;
 
 		}
 	}
@@ -171,7 +178,8 @@ function Awake () {
 	equipe = equipeObj.GetComponent(Equipe);
 	project = GetComponentInChildren(Project);
 	playerstats = GetComponentInChildren(PlayerStats);
-	Time.timeScale = TIMESCALE;
+	timerObj = GameObject.Find("Timer");
+	timer = timerObj.GetComponent(GameTime);
 }
 
 //--------------------------------------------Update-----------------------------------------------------------

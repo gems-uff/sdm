@@ -6,8 +6,8 @@ private var menuAtr : FuncWindow;
 private var menuEsp : EspWindow;
 private var menuPapel : PapelWindow;
 private var menuObj : GameObject;
-
-private var TIMESCALE : float = 0.5;
+private var timerObj : GameObject;
+private var timer : GameTime;
 
 public var endOnExit : boolean = true;
 private var gameobj : GameObject; 
@@ -22,18 +22,7 @@ private var msgDialogOption5 : boolean = false;
 private var msgDialog7 : boolean = false;
 private var msgDialogEnd : boolean = false;
 
-//--------------------------------------------Awake-----------------------------------------------------------
 
-function Awake() 
-{ 
-	gameobj =GameObject.Find("Player"); 
-	menuObj = GameObject.Find("GUI");
-	func = GetComponentInChildren(Funcionario);
-	treino = GetComponentInChildren(Treinamento);
-	menuAtr = menuObj.GetComponent(FuncWindow);
-	menuEsp = menuObj.GetComponent(EspWindow);
-	menuPapel = menuObj.GetComponent(PapelWindow);
-} 
 
 //--------------------------------------------OnTriggerEnter-----------------------------------------------------------
 
@@ -42,7 +31,7 @@ function OnTriggerEnter( collider1 : Collider )
     if ( collider1.name == "Player" )
 	{
 		dialogEnable = true;
-		msgDialogStart = true;
+		msgDialogOptions = true;
 	}
 }
 
@@ -60,103 +49,68 @@ function OnTriggerExit( collider1 : Collider )
 //--------------------------------------------Dialog_Funcionario-----------------------------------------------------------
 
 function Dialog_Funcionario (){
-	GUI.BeginGroup(Rect (300,600,1000,1000));
+	GUI.BeginGroup(Rect (300,Screen.height - 190,1000,1000));
 	if (dialogEnable == true)
 	{
-		Time.timeScale = 0;	//Pausa o jogo para o dialogo
+		timer.PauseGame();
 		GUI.Box (Rect (00,00,120,25), func.GetNome() + " :");
-		
-		if( msgDialogStart == true)	//Start Dialog
-		{
-			GUI.Box (Rect (00,25,600,150), "Hello boss.", dialogGuiStyle);
-			if (GUI.Button (Rect (600,25, 130, 25), "Continue")) {
-					msgDialogStart = false;
-					msgDialogOptions = true;
-			}
-			if (GUI.Button (Rect (600,50, 130, 25), "End")) {
-					msgDialogStart = false;
-					msgDialogEnd = true;
-			}
-		}
 		if( msgDialogOptions == true)	//Dialog Options
 		{
-			GUI.Box (Rect (00,25,600,150), "What's up ?", dialogGuiStyle);
+			GUI.Box (Rect (00,25,600,150), "Hello boss. What's up ?", dialogGuiStyle);
 			if (GUI.Button (Rect (600,25, 130, 25), "Profile")) {
 					msgDialogOptions = false;
-					msgDialogProfile = true;
+					timer.SpeedNormal();
+					menuAtr.SetJanelatributo(func.GetAtributos(), func.GetEspecializacao(), func.GetNome(), func.GetPapel(),func.GetSalario());
+					dialogEnable = false;
 			}
 			if (GUI.Button (Rect (600,50, 130, 25), "Train")) {
 					msgDialogOptions = false;
-					msgDialogTrain = true;
+					timer.SpeedNormal();
+					menuEsp.Especializar(func, treino);
+					dialogEnable = false;
 			}
 			if (GUI.Button (Rect (600,75, 130, 25), "Change Task")) {
 					msgDialogOptions = false;
-					msgDialogTask = true;
+					timer.SpeedNormal();
+					menuPapel.MudarPapel(func);
+					dialogEnable = false;
 			}
 			if (GUI.Button (Rect (600,100, 130, 25), "Option4 <FAZER>")) {
 					msgDialogOptions = false;
-					//msgDialogOption4 = true;
+					timer.SpeedNormal();
 					msgDialogEnd = true;
 			}
 			if (GUI.Button (Rect (600,125, 130, 25), "Option5 <FAZER>")) {
 					msgDialogOptions = false;
-					//msgDialogOption5 = true;
+					timer.SpeedNormal();
 					msgDialogEnd = true;
 			}
 			if (GUI.Button (Rect (600,150, 130, 25), "End")) {
 					msgDialogOptions = false;
-					msgDialogEnd = true;
-			}
-		}
-		
-		if( msgDialogProfile == true) //Profile
-		{
-			GUI.Box (Rect (00,25,600,150), "Here is my profile", dialogGuiStyle);
-			if (GUI.Button (Rect (600,25, 130, 25), "Continue")) {
-					msgDialogProfile = false;
+					timer.SpeedNormal();
 					dialogEnable = false;
-					//Call func_window
-					menuAtr.SetJanelatributo(func.GetAtributos(), func.GetEspecializacao(), func.GetNome(), func.GetPapel(),func.GetSalario());
-					Time.timeScale = TIMESCALE;
-			}
-		}
-		
-		if( msgDialogTrain == true)	//Train
-		{
-			GUI.Box (Rect (00,25,600,150), "Ok boss. Which one should i train ?", dialogGuiStyle);
-			if (GUI.Button (Rect (600,25, 130, 25), "Continue")) {
-					msgDialogTrain = false;
-					dialogEnable = false;
-					menuEsp.Especializar(func, treino);
-					Time.timeScale = TIMESCALE;
-			}
-		}
-		
-		if( msgDialogTask == true) //Change Task
-		{
-			GUI.Box (Rect (00,25,600,150), "Ok, which job you want me to do now ?", dialogGuiStyle);
-			if (GUI.Button (Rect (600,25, 130, 25), "Continue")) {
-					msgDialogTask = false;
-					dialogEnable = false;
-					//Call Change task window
-					menuPapel.MudarPapel(func);
-					Time.timeScale = TIMESCALE;
-			}
-		}
-		
-		if( msgDialogEnd == true)
-		{
-			GUI.Box (Rect (00,25,600,150), "Goodbye", dialogGuiStyle);
-			if (GUI.Button (Rect (600,25, 130, 25), "End")) {
-					msgDialogEnd = false;
-					dialogEnable = false;
-					Time.timeScale = TIMESCALE;
 			}
 		}
 	}
 	GUI.EndGroup ();
 }
 
+//--------------------------------------------Awake-----------------------------------------------------------
+
+function Awake() 
+{ 
+	gameobj =GameObject.Find("Player"); 
+	menuObj = GameObject.Find("GUI");
+	func = GetComponentInChildren(Funcionario);
+	treino = GetComponentInChildren(Treinamento);
+	menuAtr = menuObj.GetComponent(FuncWindow);
+	menuEsp = menuObj.GetComponent(EspWindow);
+	menuPapel = menuObj.GetComponent(PapelWindow);
+	timerObj = GameObject.Find("Timer");
+	timer = timerObj.GetComponent(GameTime);
+} 
+
+//--------------------------------------------OnGUI-----------------------------------------------------------
 
 function OnGUI (){
 	Dialog_Funcionario();

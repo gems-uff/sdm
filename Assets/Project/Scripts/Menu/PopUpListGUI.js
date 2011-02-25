@@ -87,16 +87,16 @@ function TakePapel(t: int)
 	switch(t)
 	{
 	   case 2: 	//caso analista
-		  papel = "Analista";
+		  papel = "Analyst";
 		  return papel;
 	   break;
 	   case 3:	//caso arquiteto
-			papel = "Arquiteto";
+			papel = "Architect";
 			return papel;
 	   break;
 	   
 	   case 4:	//caso gerente
-			papel = "Gerente";
+			papel = "Manager";
 			return papel;
 	   break;
 	   
@@ -106,27 +106,27 @@ function TakePapel(t: int)
 	   break;
 	   
 	   case 6:	//caso programador
-			papel = "Programador";
+			papel = "Programmer";
 			return papel;
 	   break;
 	   
 	   case 7:	//caso tester
-			papel = "Testador";
+			papel = "Tester";
 			return papel;
 	   break;
 	   
 	   case 8:	//caso nenhum papel
-			papel = "Nenhum";
+			papel = "None";
 			return papel;
 	   break;
 	   
 	   case 9:	//caso treinamento
-			papel = "Treinamento";
+			papel = "Training";
 			return papel;
 	   break;
 
 	   default:
-			papel = "Nenhum";
+			papel = "None";
 			return papel;
 		break;
 	}
@@ -195,15 +195,15 @@ function Start () {
     list = new GUIContent[11];
 	list[0] = new GUIContent("");
 	list[1] = new GUIContent("");
-    list[2] = new GUIContent("Analista");
-    list[3] = new GUIContent("Arquiteto");
-    list[4] = new GUIContent("Gerente");
+    list[2] = new GUIContent("Analyst");
+    list[3] = new GUIContent("Architect");
+    list[4] = new GUIContent("Manager");
     list[5] = new GUIContent("Marketing");
-    list[6] = new GUIContent("Programador");
-	list[7] = new GUIContent("Testador");
-	list[8] = new GUIContent("Nenhum");
-	list[9] = new GUIContent("Treinamento");
-	list[10] = new GUIContent("Ficha");
+    list[6] = new GUIContent("Programmer");
+	list[7] = new GUIContent("Tester");
+	list[8] = new GUIContent("None");
+	list[9] = new GUIContent("Train");
+	list[10] = new GUIContent("Profile");
 	
     
     // Make a GUIStyle that has a solid white hover/onHover background to indicate highlighted items

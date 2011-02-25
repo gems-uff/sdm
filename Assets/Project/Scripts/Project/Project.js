@@ -10,6 +10,8 @@ public var pagamento : int = 0;
 private var sincronismo = 0.0;		//sincronismo
 private var findBugScore = 1.0;
 
+private var timerObj : GameObject;
+private var timer : GameTime;
 //Linguagem: Escolher apenas uma linguagem
 public var linguagemProgramacao : String = "java";
 
@@ -32,15 +34,9 @@ function GetLinesDone () {						//Retorna o numero de linhas ja feitas para o so
 function GetIscomplete () {					//Retorna se o projeto esta concluido
 	return completed;
 }
-function GetTime () {								//Retorna o tempo no formato data/hora
-	var gametime = getTimeString(Time.timeSinceLevelLoad);
-	return gametime;
-}
-function GetTimePassed () {						//Retorna o tempo passado em horas
-	return Time.timeSinceLevelLoad;
-}
+
 function GetDeadLine () {						//Retorna o Deadline no formato Data/Hora
-	var deadline = getTimeString(deadlineDays);
+	var deadline = timer.GetTimeString(deadlineDays);
 	return deadline;
 }
 function GetNumLinesDone () {					//Retorna a percentagem ja concluida do software
@@ -97,7 +93,22 @@ function GetLinguagem () {						//Retorna o requisito
 function SetLinguagem (t: String) {						//Seta o requisito
 	linguagemProgramacao = t;
 }
-
+/*
+function GetTime () {								//Retorna o tempo no formato data/hora
+	var gametime = timer.GetTimeString(timer.GetGameTime);
+	return gametime;
+}
+*/
+/*
+function GetTimePassed () {						//Retorna o tempo passado em horas
+	return timer.GetGameTime;
+}
+*/
+function Awake(){
+	timerObj = GameObject.Find("Timer");
+	timer = timerObj.GetComponent(GameTime);
+}
+/*
 //--------------------------------------------Dia/Semana-----------------------------------------------------------
 
 function getTimeString(t : float) :String{
@@ -105,3 +116,4 @@ function getTimeString(t : float) :String{
     var dia : int = (t % 7) +1;
     return ("Semana: " + semana.ToString("00") + "   Dia: " + dia.ToString("0"));
 }
+*/

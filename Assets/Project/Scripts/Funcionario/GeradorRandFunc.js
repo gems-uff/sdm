@@ -157,6 +157,20 @@ function SetEspecializacoes()
 	func.SetEspecializacoes(especializacao);
 }
 
+function NewSalario(){
+	var salario : int = 0;
+	var randomModifier : int = Random.Range(100, 121);
+	var aux : float;
+	
+	aux = randomModifier * 0.01;
+	salario = atributos.adaptabilidade + atributos.autoDitada +	atributos.detalhista + atributos.negociacao + atributos.objetividade + atributos.organizacao + atributos.paciencia + atributos.raciocinioLogico + atributos.relacionamentoHumano;
+	salario = salario * aux;
+	salario = salario * 10;
+	//salario = salario * 100;
+	
+	return salario;
+}
+
 //--------------------------------------------Add Funcionario Gerado Na Posicao De Outro Funcionario-----------------------------------------------------------
 //Esta funcao serve para "copiar" o funcionario contratado para o slot indicado
 function AddFuncionario(t: String){
@@ -187,6 +201,7 @@ function RandomFuncionarioStarter () {
 	SetEspecializacoes();
 	func.SetNome(newNome.RandomName());
 	func.SetPapel("Nenhum");
+	func.SetSalario(NewSalario());
 }
 
 //--------------------------------------------Awake-----------------------------------------------------------

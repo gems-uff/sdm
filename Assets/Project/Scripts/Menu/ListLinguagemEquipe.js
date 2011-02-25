@@ -14,7 +14,7 @@ private var equipe : Equipe;
 
 function LinguagemEquipe(){
 	GUI.BeginGroup(Rect (00,225,220,150));
-	GUI.Box (Rect (00,00,130,25), "Linguagem Equipe: "); //+ equipe.GetMetodologia())
+	GUI.Box (Rect (00,00,130,25), "Team's P. Language: "); //+ equipe.GetMetodologia())
 	if (Popup.List (Rect(130, 00, 90, 25), showList, listEntry, GUIContent( equipe.GetLinguagem()), list, listStyle)) {
 		if (listEntry != 0)
 		{

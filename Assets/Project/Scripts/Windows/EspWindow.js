@@ -5,10 +5,11 @@
 //menuEsp = menuObj.GetComponent(EspWindow);
 //menuEsp.Especializar(func, treino);
 
-//Usa Time.timeScale = 0.5;
-
 private var func : Funcionario;
 private var treino : Treinamento;
+private var timerObj : GameObject;
+private var timer : GameTime;
+
 
 private var TEMPODETREINO : float = 14.0;
 private 	var deadlineTreino : float = 0.0;
@@ -17,10 +18,10 @@ private var janelaEsp : boolean = false;
 	
 function ExecutaJanelaEsp(t : String){
 	deadlineTreino = Time.timeSinceLevelLoad  + TEMPODETREINO;
-	func.SetPapel("Treinamento");
+	func.SetPapel("Training");
 	treino.SetAprendendo(t);
 	janelaEsp  = false;
-	Time.timeScale = 0.5;
+	timer.SpeedNormal();
 }
 
 function Especializar (funcionario : Funcionario, treinamento : Treinamento){
@@ -32,10 +33,10 @@ function Especializar (funcionario : Funcionario, treinamento : Treinamento){
 function Janela_especializacao(){
 	if(janelaEsp)
 	{
-		Time.timeScale = 0.0;
+		timer.PauseGame();
 		GUI.BeginGroup(Rect (425,325,400,225));
 		// ---------------Lado Esquerdo---------------
-		GUI.Box (Rect (00,00,200,25), "---Linguagens---");	
+		GUI.Box (Rect (00,00,200,25), "---Programming Language---");	
 		
 		if(func.GetL_assembly() == false)
 			if (GUI.Button (Rect (00,25,200,25), "assembly")) {
@@ -79,89 +80,97 @@ function Janela_especializacao(){
 		GUI.Box (Rect (00,150,200,25), "---Metodos---");	
 			
 		if(func.GetM_agil() == false)	
-			if (GUI.Button (Rect (00,175,200,25), "Metodo Agil")) {
-				ExecutaJanelaEsp("metodoAgil");
+			if (GUI.Button (Rect (00,175,200,25), "Agile Method")) {
+				ExecutaJanelaEsp("agileMethod");
 			}
 		if(func.GetM_agil() == true)
-			GUI.Box (Rect (00,175,200,25), "Metodo Agil");	
+			GUI.Box (Rect (00,175,200,25), "Agile Method");	
 			
 			
 		if(func.GetM_classico() == false)	
-			if (GUI.Button (Rect (00,200,200,25), "Metodo Classico")) {
-				ExecutaJanelaEsp("metodoClassico");
+			if (GUI.Button (Rect (00,200,200,25), "Classic Method")) {
+				ExecutaJanelaEsp("classicMethod");
 			}
 		if(func.GetM_classico() == true)	
-			GUI.Box (Rect (00,200,200,25), "Metodo Classico");
+			GUI.Box (Rect (00,200,200,25), "Classic Method");
 		
 		
 		// ---------------Lado Direito---------------
 
-		GUI.Box (Rect (200,00,200,25), "---Ferramentas---");
+		GUI.Box (Rect (200,00,200,25), "---Tools---");
 		
 		if(func.GetF_programas() == false)
-			if (GUI.Button (Rect (200,25,200,25), "Analise de Programas")) {
-				ExecutaJanelaEsp("analiseDeProgramas");
+			if (GUI.Button (Rect (200,25,200,25), "Analysis Program")) {
+				ExecutaJanelaEsp("analysisProgram");
 			}
 		if(func.GetF_programas() == true)
-			GUI.Box (Rect (200,25,200,25), "Analise de Programas");	
+			GUI.Box (Rect (200,25,200,25), "Analysis Program");	
 			
 		if(func.GetF_versao() == false)	
-			if (GUI.Button (Rect (200,50,200,25), "Controle de Versao")) {
-				ExecutaJanelaEsp("controleDeVersao");
+			if (GUI.Button (Rect (200,50,200,25), "Version Control")) {
+				ExecutaJanelaEsp("versionControl");
 			}
 		if(func.GetF_versao() == true)	
-			GUI.Box (Rect (200,50,200,25), "Controle de Versao");	
+			GUI.Box (Rect (200,50,200,25), "Version Control");	
 			
 			
 		if(func.GetF_depuracao() == false)	
-			if (GUI.Button (Rect (200,75,200,25), "Depuracao")) {
-				ExecutaJanelaEsp("depuracao");
+			if (GUI.Button (Rect (200,75,200,25), "Depuration")) {
+				ExecutaJanelaEsp("depuration");
 			}
 		if(func.GetF_depuracao() == true)
-			GUI.Box (Rect (200,75,200,25), "Depuracao");	
+			GUI.Box (Rect (200,75,200,25), "Depuration");	
 		
 		
 		if(func.GetF_projetos() == false)	
-			if (GUI.Button (Rect (200,100,200,25), "Ger. de Projetos")) {
-				ExecutaJanelaEsp("gerenciaDeProjetos");
+			if (GUI.Button (Rect (200,100,200,25), "Project Management")) {
+				ExecutaJanelaEsp("projectManagement");
 			}
 		if(func.GetF_projetos() == true)	
-			GUI.Box (Rect (200,100,200,25), "Ger. de Projetos");	
+			GUI.Box (Rect (200,100,200,25), "Project Management");	
 		
 		
 		if(func.GetF_metricas() == false)	
-			if (GUI.Button (Rect (200,125,200,25), "Metricas")) {
-				ExecutaJanelaEsp("metricas");
+			if (GUI.Button (Rect (200,125,200,25), "Metrics")) {
+				ExecutaJanelaEsp("metrics");
 			}
 		if(func.GetF_metricas() == true)	
-			GUI.Box (Rect (200,125,200,25), "Metricas");	
+			GUI.Box (Rect (200,125,200,25), "Metrics");	
 		
 		
 		if(func.GetF_planejamento() == false)	
-			if (GUI.Button (Rect (200,150,200,25), "Planejamento")) {
-				ExecutaJanelaEsp("planejamento");
+			if (GUI.Button (Rect (200,150,200,25), "Planning")) {
+				ExecutaJanelaEsp("planning");
 			}
 		if(func.GetF_planejamento() == true)
-			GUI.Box (Rect (200,150,200,25), "Planejamento");	
+			GUI.Box (Rect (200,150,200,25), "Planning");	
 		
 		
 		if(func.GetF_teste() == false)	
-			if (GUI.Button (Rect (200,175,200,25), "Teste")) {
-				ExecutaJanelaEsp("teste");
+			if (GUI.Button (Rect (200,175,200,25), "Test")) {
+				ExecutaJanelaEsp("test");
 			}
 		if(func.GetF_teste() == true)	
-			GUI.Box (Rect (200,175,200,25), "Teste");
+			GUI.Box (Rect (200,175,200,25), "Test");
 		
 		//Botao de Cancel
 		if (GUI.Button (Rect (200,200,200,25), "Cancel")) {
 			janelaEsp  = false;
 			treino.SetLockEscolha(false);
-			Time.timeScale = 0.5;
+			timer.SpeedNormal();
 		}
 		GUI.EndGroup ();
 		treino.SetDeadline_Treino(deadlineTreino);
 	}
 }
+
+//--------------------------------------------Awake-----------------------------------------------------------
+
+function Awake () {
+	timerObj = GameObject.Find("Timer");
+	timer = timerObj.GetComponent(GameTime);
+}
+
 
 //--------------------------------------------OnGUI-----------------------------------------------------------
 
