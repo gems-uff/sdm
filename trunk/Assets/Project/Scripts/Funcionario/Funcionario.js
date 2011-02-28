@@ -10,9 +10,12 @@ private var marketing : float = 0;
 private var programador : float = 0;
 private var tester : float = 0;
 private var nome : String;
-private var salario : int;
-private var papel : String;
-private var isEmploee : boolean = false;
+private var defaultSalary : int;
+private var salary : int;
+private var role : String;
+private var workingHours : int = 40;
+private var morale : float = 100.0;
+//private var isEmploee : boolean = false;
 //private var cargo : String;
 
 //--------------------------------------------Get/Set-----------------------------------------------------------
@@ -92,18 +95,35 @@ function SetRelacionamentoHumano(t: int) {
 	atributos.relacionamentoHumano = t;
 }
 function GetPapel() {
-	return papel;
+	return role;
 }
 function SetPapel(t: String) {
-	papel = t;
+	role = t;
+}
+function GetSalarioDefault() {
+	return defaultSalary;
+}
+function SetSalarioDefault(t: int) {
+	defaultSalary = t;
 }
 function GetSalario() {
-	return salario;
+	return salary;
 }
 function SetSalario(t: int) {
-	salario = t;
+	salary = t;
 }
-
+function GetWorkingHours() {
+	return workingHours;
+}
+function SetWorkingHours(t: int) {
+	workingHours = t;
+}
+function GetMorale() {
+	return morale;
+}
+function SetMorale(t: float) {
+	morale = t;
+}
 //Get e Set Atributos de cada papel
 
 function GetAtributoPapel(p1: float, p2: float, p3: float, p4: float, p5: float, p6: float, p7: float, p8: float, p9: float){

@@ -12,22 +12,18 @@ private var welcome : boolean = false;
 public var msgWelcome : String;
 //Variavel do Style da GUI
 public var customGuiStyle : GUIStyle;
+private var windowRect : Rect = Rect (350,125,300,395);
 
 msgWelcome = "\n Bem vindo, \n \n <Fazer texto introdutorio> \n <Fazer o texto>";
 
-function Welcome(){
-	if (!welcome)
+function WindowFunction(windowID : int){
+	timer.PauseGame();
+	GUI.Box (Rect (02,018,296,350), (msgWelcome), customGuiStyle);
+	if (GUI.Button (Rect (02,368,296,25), "Close Window")) 
 	{
-		timer.PauseGame();
-		GUI.BeginGroup(Rect (350,125,400,375));
-		GUI.Box (Rect (0,0,300,350), (msgWelcome), customGuiStyle);
-		if (GUI.Button (Rect (0,350,300,25), "Close Window")) 
-		{
-			welcome  = true;
-			projectW.SetShowWindow();
-			timer.SpeedNormal();
-		}
-		GUI.EndGroup ();
+		welcome  = true;
+		projectW.SetShowWindow();
+		timer.SpeedNormal();
 	}
 }
 
@@ -43,5 +39,6 @@ function Awake () {
 //--------------------------------------------OnGUI-----------------------------------------------------------
 
 function OnGUI () {
-	Welcome();
+	if(!welcome)
+		windowRect = GUI.Window (5, windowRect, WindowFunction, "Welcome");
 }

@@ -1,5 +1,5 @@
 
-private var BUG_VALUE : int = 1000;
+public var BUG_VALUE : int = 1000;
 
 private var playerObj : GameObject;
 private var jogador : PlayerStats;

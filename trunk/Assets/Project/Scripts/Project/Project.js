@@ -5,15 +5,16 @@ public var deadlineDays = 0;  //in hours
 public var bugs = 0.0;				//number of bugs in the software
 public var maxCodeLines = 0;	//size of the software to be done
 public var codeLinesDone = 0;	//number of lines done by the team
-private var completed : boolean = false;
+public var linguagemProgramacao : String = "java";
 public var pagamento : int = 0;
+
 private var sincronismo = 0.0;		//sincronismo
 private var findBugScore = 1.0;
-
+private var completed : boolean = false;
 private var timerObj : GameObject;
 private var timer : GameTime;
 //Linguagem: Escolher apenas uma linguagem
-public var linguagemProgramacao : String = "java";
+
 
 //--------------------------------------------Get/Set-----------------------------------------------------------
 

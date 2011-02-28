@@ -38,6 +38,8 @@ private var func7 : Funcionario;
 private var func8 : Funcionario;
 private var menuAtr : FuncWindow;
 private var menuEsp : EspWindow;
+private var menuPapel : PapelWindow;
+private var workHours : WorkingHoursWindow;
 
 private var novopapel = "";
 
@@ -56,7 +58,12 @@ function ExecutaBotaoPopup(t : String, listEntry : int){
 	{
 		switch(listEntry)
 		{
-		   case 9: 	//caso treinamento
+			case 2: 	//"Change Task"
+				if (treino.GetLockEscolha() == false)
+					menuPapel.MudarPapel(func, treino);
+		   break;
+		   
+		   case 3: 	//"Train"
 				if (treino.GetLockEscolha() == false)
 				{
 					treino.SetLockEscolha(true);
@@ -65,16 +72,15 @@ function ExecutaBotaoPopup(t : String, listEntry : int){
 				}
 		   break;
 		   
-		   case 10: 	//caso ficha
-				menuAtr.SetJanelatributo(func.GetAtributos(), func.GetEspecializacao(), func.GetNome(), func.GetPapel(),func.GetSalario());
+		   case 4: 	//"Profile"
+				menuAtr.SetJanelatributo(func);
+		   break;
+		   
+		   case 5: 	//"Work Hours"
+				workHours.ChangeWorkHours(func);
 		   break;
 		   
 		   default:
-				if (treino.GetLockEscolha() == false)
-				{
-					novopapel = TakePapel(listEntry);
-					func.SetPapel(novopapel);
-				}
 			break;
 		}
 	}
@@ -186,26 +192,22 @@ function Awake () {
 		menuObj = GameObject.Find("GUI");
 		menuAtr = menuObj.GetComponent(FuncWindow);
 		menuEsp = menuObj.GetComponent(EspWindow);
+		menuPapel = menuObj.GetComponent(PapelWindow);
+		workHours = menuObj.GetComponent(WorkingHoursWindow);
 	}
 //--------------------------------------------Start-----------------------------------------------------------
 
 //Funcao que cria a lista para selecao de papel e visualizacao da ficha do funcionario
 function Start () {
     // Make some content for the popup list
-    list = new GUIContent[11];
+    list = new GUIContent[6];
 	list[0] = new GUIContent("");
 	list[1] = new GUIContent("");
-    list[2] = new GUIContent("Analyst");
-    list[3] = new GUIContent("Architect");
-    list[4] = new GUIContent("Manager");
-    list[5] = new GUIContent("Marketing");
-    list[6] = new GUIContent("Programmer");
-	list[7] = new GUIContent("Tester");
-	list[8] = new GUIContent("None");
-	list[9] = new GUIContent("Train");
-	list[10] = new GUIContent("Profile");
+    list[2] = new GUIContent("Change Task");
+    list[3] = new GUIContent("Train");
+    list[4] = new GUIContent("Profile");
+    list[5] = new GUIContent("Work Hours");
 	
-    
     // Make a GUIStyle that has a solid white hover/onHover background to indicate highlighted items
     listStyle = new GUIStyle();
     listStyle.normal.textColor = Color.green;

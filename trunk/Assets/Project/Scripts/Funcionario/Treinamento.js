@@ -1,5 +1,5 @@
 
-private var PRECO : int = 2000;
+public var PRECO : int = 2500;
 
 private var func : Funcionario;
 private var aprendendo : String = "";
