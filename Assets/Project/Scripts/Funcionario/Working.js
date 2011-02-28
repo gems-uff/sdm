@@ -1,18 +1,22 @@
 
 //Constantes
 //Variaves de configuracao de desempenho durante o trabalho
-private var PENALIDADE : float = 0.3;
-private var BONUS : float = 0.25;
-private var ANALISTA_INICIO : float = 0.8;
-private var ANALISTA_DURANTE : float = 0.00001;
-private var GERENTE_PROG : float = 0.125;
-private var GERENTE_ANA : float = 0.00000125;
-private var GERENTE_TEST : float = 0.0000000625;
-private var PROG_DURANTE : float = 0.000022;
-private var TESTER_DURANTE : float = 0.0000007;
+public var PENALIDADE : float = 0.3;
+public var BONUS : float = 0.25;
+public var ANALISTA_INICIO : float = 0.8;
+public var ANALISTA_DURANTE : float = 0.01;
+public var GERENTE_PROG : float = 0.1;
+public var GERENTE_ANA : float = 0.2;
+public var GERENTE_TEST : float = 0.2;
+public var PROG_LINES_DAY_MOD : float = 5;
+public var PROG_BUG_MOD : float = 0.02;
+public var TESTER_DURANTE : float = 0.5;
+
+private var MINPAYMENT : int = 2000;
 
 //Fim Constantes
-
+private var workingHoursModifier : float = 1.0;
+private var morale : float = 100.0;
 private var func : Funcionario;
 private var treino : Treinamento;
 private var equipeObj : GameObject;
@@ -22,6 +26,42 @@ private var project : Project;
 private var timerObj : GameObject;
 private var timer : GameTime;
 
+
+function GetWorkingHoursModifier() {
+	return workingHoursModifier;
+}
+/*
+function SetWorkingHoursModifier(t: int) {
+	workingHoursModifier = t;
+}
+*/
+
+function GameModifiers( aux : float ){
+	aux = aux * workingHoursModifier * morale;
+	return aux;
+}
+
+//--------------------------------------------WorkHours-----------------------------------------------------------
+//Funcao que calcula o modificardor de producao do funcionario de acordo com as horas que ele trabalha
+
+function WorkHours(){
+	var aux : int;
+	var newSalary : int;
+	aux = func.GetWorkingHours();
+	aux = aux / 5;
+	workingHoursModifier = aux * 12.5;
+	workingHoursModifier = workingHoursModifier / 100;
+	newSalary = func.GetSalarioDefault();
+	newSalary = newSalary * workingHoursModifier;
+	newSalary = newSalary / 10;		//Para ser 0 na unidade do salario
+	newSalary = newSalary * 10;		//Para ser 0 na unidade do salario
+	morale = func.GetMorale();
+	morale = morale / 100;
+	if (newSalary == 0)
+		func.SetSalario(MINPAYMENT);
+	else
+		func.SetSalario(newSalary);
+}
 
 //--------------------------------------------Work-----------------------------------------------------------
 
@@ -73,14 +113,16 @@ function AnalistaWork(modificador_positivo : float, penal : float){
 	if(project.GetSincronismo() == 00)	//Se o projeto esta sendo iniciado, entao o valor de sincronismo inicial varia de acordo com o desempenho do analista
 	{
 		aux = analista * ANALISTA_INICIO * (1 + modificador_positivo - penal);
-		aux = aux;
 		project.SetSincronismo(aux);
 	}
 	else
 	{
 		if(project.GetSincronismo() < 100)	//Se o projeto esta em andamento entao o sincronismo vai mudando lentamente de acordo com o analista
 		{
-			aux = analista * ANALISTA_DURANTE * (1 + modificador_positivo - penal) * timer.GetTimeSpeed();
+			aux = analista * ANALISTA_DURANTE * (1 + modificador_positivo - penal);
+			
+			aux = GameModifiers(aux);	//Modificadores de desempenho por gamespeed, moral e horas de trabalho
+			
 			project.SetSincronismo(aux);
 		}
 	}
@@ -92,6 +134,9 @@ function ArquitetoWork(modificador_positivo : float, penal : float){
 	
 	arquiteto = func.GetArquiteto();	
 	aux = arquiteto * (1 + modificador_positivo - penal);
+	
+	aux = GameModifiers(aux);	//Modificadores de desempenho por gamespeed, moral e horas de trabalho
+	
 	project.SetFindbugScore(aux);
 }
 
@@ -105,19 +150,23 @@ function GerenteWork(modificador_positivo : float, penal : float){
 	
 	analista = func.GetAnalista();
 	gerente = func.GetGerente();
-	auxanalista = gerente * GERENTE_ANA * (1 + modificador_positivo - penal_metodo_analista) * timer.GetTimeSpeed();
+	auxanalista = gerente * GERENTE_ANA * (1 + modificador_positivo - penal_metodo_analista);
 	if (RequisitoLinguagem() == true)
 	{
-		auxprog = gerente * GERENTE_PROG * (1 + modificador_positivo - penal_prog);
-		auxprog = auxprog * LinguagemProgEquipe() * timer.GetTimeSpeed();
-		auxtester = gerente * GERENTE_TEST * (1 + modificador_positivo - penal_prog);
-		auxtester = auxtester * LinguagemProgEquipe() * timer.GetTimeSpeed();
+		auxprog = gerente * GERENTE_PROG;
+		auxtester = gerente * GERENTE_TEST;
+		auxprog = auxprog * (1 + modificador_positivo - penal_prog - LinguagemProgEquipe());
+		auxtester = auxtester * (1 + modificador_positivo - penal_prog - LinguagemProgEquipe());
 	}
+	auxanalista = GameModifiers(auxanalista);
+	auxprog = GameModifiers(auxprog);
+	auxtester = GameModifiers(auxtester);	
+	
+	project.SetLinesDone(auxprog);
+	project.SetNumBugs(auxtester);
 	if(project.GetSincronismo() != 00)
 		if(project.GetSincronismo() < 100)
 			project.SetSincronismo(auxanalista);
-	project.SetLinesDone(auxprog);
-	project.SetNumBugs(auxtester);
 }
 
 function MarketingWork(modificador_positivo : float, penal : float){
@@ -133,10 +182,15 @@ function ProgramadorWork(modificador_positivo : float, penal : float){
 	
 	if (RequisitoLinguagem() == true)
 	{
-		numBugs = (100.0 - programador ) * PROG_DURANTE * (1.0 - modificador_positivo + penal_prog); //Para acrescentar/reduzir o numero de bugs, os modificadores tem seu papel invertido 
-		numBugs = numBugs * (1 + LinguagemProgEquipe()) * timer.GetTimeSpeed();
-		aux = programador * (1 + modificador_positivo - penal_prog - LinguagemProgEquipe());
-		aux = aux * timer.GetTimeSpeed();
+		numBugs = (100.0 - programador ) * PROG_BUG_MOD; //Para acrescentar/reduzir o numero de bugs, os modificadores tem seu papel invertido 
+		numBugs = numBugs * (1 + modificador_positivo - penal_prog - LinguagemProgEquipe());
+		aux = programador * PROG_LINES_DAY_MOD;
+		aux = aux * (1 + modificador_positivo - penal_prog - LinguagemProgEquipe());
+		
+		//Modificadores de desempenho por gamespeed, moral e horas de trabalho
+		aux = GameModifiers(aux);	
+		numBugs = GameModifiers(numBugs);	
+		
 		project.SetNumBugs(numBugs);
 		project.SetLinesDone(aux);
 	}
@@ -150,8 +204,13 @@ function TesterWork(modificador_positivo : float, penal : float){
 	
 	if (RequisitoLinguagem() == true)
 	{
-		aux = tester * TESTER_DURANTE * (1 + modificador_positivo - penal - LinguagemProgEquipe());		//Por parte do tester
-		aux = -aux * (project.GetFindbugScore()) * timer.GetTimeSpeed();	//Por parte do arquiteto
+		aux = tester * TESTER_DURANTE;		//Por parte do tester
+		aux = aux * (1 + modificador_positivo - penal - LinguagemProgEquipe());
+		
+		//Modificadores de desempenho por gamespeed, moral e horas de trabalho
+		aux = GameModifiers(aux);
+		aux = -aux * (project.GetFindbugScore() / 100);	//Por parte do arquiteto, o bug score eh de 0 a 100, precisa converter para 0.0 a 1.0
+		
 		project.SetNumBugs(aux);
 	}
 }
@@ -334,8 +393,9 @@ function Awake () {
 //para ser independente do frame rate de cada maquina.
 function FixedUpdate() {
 	//if ((timer.GetGameTime() % 7) <5)
-	Work(); 
-	if ((timer.GetGameTime() % 7) == 6)
-		project.SetFindbugScore(1);
+	//WorkHours();
+	//Work(); 
+	//if ((timer.GetGameTime() % 7) == 6)
+	//	project.SetFindbugScore(1);
 }
 

@@ -56,6 +56,7 @@ function SetAtributos()
 function SetEspecializacao (t: int){
 	switch(t)
 	{
+		//Linguagens comeca apartir do 01
 	   case 1:
 		  assembly = true;
 	   break;
@@ -76,38 +77,41 @@ function SetEspecializacao (t: int){
 			ruby = true;
 	   break;
 	   
-	   case 6:
+	   //Metodos comeca apartir do 11
+	   
+	   case 11:
 			metodoAgil = true;
 	   break;
 	   
-	   case 7:
+	   case 12:
 			metodoClassico = true;
 	   break;
 	   
-	   case 8:
+	   //Ferramentas comeca apartir do 21
+	   case 21:
 			controleDeVersao = true;
 	   break;
 	   
-	   case 9:
+	   case 22:
 		  planejamento = true;
 	   break;
-	   case 10:
+	   case 23:
 			metricas = true;
 	   break;
 	   
-	   case 11:
+	   case 24:
 			gerenciaDeProjetos = true;
 	   break;
 	   
-	   case 12:
+	   case 25:
 			depuracao = true;
 	   break;
 	   
-	   case 13:
+	   case 26:
 			teste = true;
 	   break;
 	   
-	   case 14:
+	   case 27:
 			analiseDeProgramas = true;
 	   break;
 
@@ -118,8 +122,12 @@ function SetEspecializacao (t: int){
 
 function SetEspecializacoes()
 {
-	var espLing : int = Random.Range(1, 6);
-	var esp : int = Random.Range(6, 15);
+	var espLing : int = Random.Range(1, 8);		//Linguagem
+	var espM : int = Random.Range(11, 18);		//Metodo
+	var espF : int = Random.Range(21, 41);		//Ferramentas
+	var esp1 : int = Random.Range(1, 101);		//Qualquer incommum
+	var esp2 : int = Random.Range(1, 141);		//Qualquer raro
+	var esp3 : int = Random.Range(1, 181);		//Qualquer muito raro
 	
 	assembly = false;
 	csharp = false;
@@ -137,7 +145,11 @@ function SetEspecializacoes()
 	teste = false;
 	
 	SetEspecializacao(espLing);
-	SetEspecializacao(esp);
+	SetEspecializacao(espM);
+	SetEspecializacao(espF);
+	SetEspecializacao(esp1);
+	SetEspecializacao(esp2);
+	SetEspecializacao(esp3);
 	
 	especializacao.assembly = assembly;
 	especializacao.csharp = csharp;
@@ -201,6 +213,7 @@ function RandomFuncionarioStarter () {
 	SetEspecializacoes();
 	func.SetNome(newNome.RandomName());
 	func.SetPapel("Nenhum");
+	func.SetSalarioDefault(NewSalario());
 	func.SetSalario(NewSalario());
 }
 

@@ -8,19 +8,15 @@ private var menuPapel : PapelWindow;
 private var menuObj : GameObject;
 private var timerObj : GameObject;
 private var timer : GameTime;
+private var workHours : WorkingHoursWindow;
+
+
 
 public var endOnExit : boolean = true;
 private var gameobj : GameObject; 
 private var dialogEnable : boolean = false;
-private var msgDialogStart : boolean = false;
 private var msgDialogOptions : boolean = false;
-private var msgDialogProfile : boolean = false;
-private var msgDialogTrain : boolean = false;
-private var msgDialogTask : boolean = false;
-private var msgDialogOption4 : boolean = false;
-private var msgDialogOption5 : boolean = false;
 private var msgDialog7 : boolean = false;
-private var msgDialogEnd : boolean = false;
 
 
 
@@ -43,6 +39,7 @@ function OnTriggerExit( collider1 : Collider )
 	{
 		dialogEnable = false;
 		msgDialogStart = false;
+		timer.SpeedNormal();
 	}
 }
 
@@ -60,7 +57,7 @@ function Dialog_Funcionario (){
 			if (GUI.Button (Rect (600,25, 130, 25), "Profile")) {
 					msgDialogOptions = false;
 					timer.SpeedNormal();
-					menuAtr.SetJanelatributo(func.GetAtributos(), func.GetEspecializacao(), func.GetNome(), func.GetPapel(),func.GetSalario());
+					menuAtr.SetJanelatributo(func);
 					dialogEnable = false;
 			}
 			if (GUI.Button (Rect (600,50, 130, 25), "Train")) {
@@ -72,18 +69,20 @@ function Dialog_Funcionario (){
 			if (GUI.Button (Rect (600,75, 130, 25), "Change Task")) {
 					msgDialogOptions = false;
 					timer.SpeedNormal();
-					menuPapel.MudarPapel(func);
+					menuPapel.MudarPapel(func, treino);
 					dialogEnable = false;
 			}
-			if (GUI.Button (Rect (600,100, 130, 25), "Option4 <FAZER>")) {
+			if (GUI.Button (Rect (600,100, 130, 25), "Working Hours")) {
 					msgDialogOptions = false;
 					timer.SpeedNormal();
-					msgDialogEnd = true;
+					workHours.ChangeWorkHours(func);
+					dialogEnable = false;
 			}
 			if (GUI.Button (Rect (600,125, 130, 25), "Option5 <FAZER>")) {
 					msgDialogOptions = false;
 					timer.SpeedNormal();
-					msgDialogEnd = true;
+					//Chama algo
+					dialogEnable = false;
 			}
 			if (GUI.Button (Rect (600,150, 130, 25), "End")) {
 					msgDialogOptions = false;
@@ -108,6 +107,7 @@ function Awake()
 	menuPapel = menuObj.GetComponent(PapelWindow);
 	timerObj = GameObject.Find("Timer");
 	timer = timerObj.GetComponent(GameTime);
+	workHours = menuObj.GetComponent(WorkingHoursWindow);
 } 
 
 //--------------------------------------------OnGUI-----------------------------------------------------------

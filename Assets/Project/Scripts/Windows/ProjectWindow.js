@@ -11,35 +11,30 @@ private var timer : GameTime;
 private var showWindow : boolean = false;
 //Variavel do Style da GUI
 public var customGuiStyle : GUIStyle;
+private var windowRect : Rect = Rect (350,125,300,395);
 
 //Funcao que permite a exibicao da janela com os dados do projeto
 function SetShowWindow(){
 	showWindow = true;
 }
 
-function ShowProjectDetails(){
+function WindowFunction(windowID : int){
 	var deadline = project.GetDeadLine();
 	var linguagem = project.GetLinguagem();
 	var pagamento = project.GetPagamento();
-	if (showWindow)
+	timer.PauseGame();
+	GUI.Box (Rect (02,018,296,350), 
+	("\t<Fazer descricao> \n \n" +
+	" Deadline: " + deadline + "\n"+ 
+	" Linguagem: " + linguagem + "\n" +
+	" Pagamento Mensal: " + pagamento +
+	"\n Pagamento de conclusao: " + pagamento*4 +
+	"\n\n\n\n PS: O pagamento final pode sofrer variacoes de acordo com o produto entregue."), customGuiStyle);
+	
+	if (GUI.Button (Rect (02,368,296,25), "Close Window")) 
 	{
-		timer.PauseGame();
-		GUI.BeginGroup(Rect (350,125,400,375));
-		GUI.Box (Rect (0,0,300,350), 
-		("\n DESCRICAO PROJETO: \n \n" +
-		"<Fazer descricao> \n \n" +
-		" Deadline: " + deadline + "\n"+ 
-		" Linguagem: " + linguagem + "\n" +
-		" Pagamento Mensal: " + pagamento +
-		"\n Pagamento de conclusao: " + pagamento*4 +
-		"\n\n\n\n PS: O pagamento final pode sofrer variacoes de acordo com o produto entregue."), customGuiStyle);
-		
-		if (GUI.Button (Rect (0,350,300,25), "Close Window")) 
-		{
-			showWindow  = false;
-			timer.SpeedNormal();
-		}
-		GUI.EndGroup ();
+		showWindow = false;
+		timer.SpeedNormal();
 	}
 }
 
@@ -54,5 +49,6 @@ function Awake () {
 //--------------------------------------------OnGUI-----------------------------------------------------------
 
 function OnGUI () {
-	ShowProjectDetails();
+	if(showWindow)
+		windowRect = GUI.Window (4, windowRect, WindowFunction, "Project Details");
 }
