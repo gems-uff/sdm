@@ -23,7 +23,6 @@ private var windowRect : Rect = Rect (350,125,400,420);
 //--------------------------------------------FichaFuncionarioEspecializacao-----------------------------------------------------------
 
 //Funcao que seta os atributos do funcionario corrente, chamada pelo script DialogInstance, item Qualificacao. Primeiro atributo eh para abilitar a janela, os demais sao os atributos em ordem alfabetica
-//function SetJanelatributo(a1 : Atributos, a2 : Especializacoes, funcNome : String, funcPapel : String, funcSalario : int ){
 function SetJanelatributo(funcionario : Funcionario){
 	var i : int = 0;
 	var a2 : Especializacoes;
@@ -123,7 +122,7 @@ function WindowFunction (windowID : int)	{
 	GUI.Box (Rect (02,058,198,20), (" Role: "+ papel),fichaGuiStyle);
 	GUI.Box (Rect (02,078,198,20), (" Working Hours: "+ workHours),fichaGuiStyle);
 	GUI.Box (Rect (02,098,198,20), (" Salary: $"+ salario),fichaGuiStyle);
-	GUI.Box (Rect (02,118,198,20), (" "),fichaGuiStyle);
+	GUI.Box (Rect (02,118,198,20), (" Salary/Day: $"+ (salario / 28)),fichaGuiStyle);
 	GUI.Box (Rect (02,138,198,20), (" "),fichaGuiStyle);
 	GUI.Box (Rect (02,158,198,20), (" "),fichaGuiStyle);
 	GUI.Box (Rect (02,178,198,20), (" "),fichaGuiStyle);

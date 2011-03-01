@@ -1,3 +1,8 @@
+//Para usar este script:
+//private var func : Funcionario;
+//private var morale : MoraleControl;
+//funcObj = GameObject.Find("Funcionario");
+//morale = funcObj.GetComponent(MoraleControl);
 
 public var MODIFICATOR : float = 6.0; 
 public var SLOWRECOVERY : float = -1.0;
@@ -53,11 +58,4 @@ function Awake () {
 	work = GetComponentInChildren(Working);
 	timerObj = GameObject.Find("Timer");
 	timer = timerObj.GetComponent(GameTime);
-}
-
-//--------------------------------------------FixedUpdate-----------------------------------------------------------
-//para ser independente do frame rate de cada maquina.
-function FixedUpdate() {
-	//ChangeMorale();
-	//MoraleActions();
 }

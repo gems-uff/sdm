@@ -10,20 +10,18 @@ public var TIMEFAST : float = 0.5;
 public var TIMEVERYFAST : float = 0.25;
 public var TIMEHYPERFAST : float = 0.125;
 
+private var moraleAction : MoraleControl;
 
-private var playerObj : GameObject;
+private var incrementTime : float = 1.0;
+private var repeatTime : float = 1.0;
+private var incrementBy : int = 1;
+private var gameTime : int = 0;
+private var timeSpeed : float = 1.0;
+
 private var pagar : Pagamentos;
-private var projectObj : GameObject;
 private var project : Project;
+private var equipe : Equipe;
 
-private var func1Obj : GameObject;
-private var func2Obj : GameObject;
-private var func3Obj : GameObject;
-private var func4Obj : GameObject;
-private var func5Obj : GameObject;
-private var func6Obj : GameObject;
-private var func7Obj : GameObject;
-private var func8Obj : GameObject;
 private var func1 : Funcionario;
 private var func2 : Funcionario;
 private var func3 : Funcionario;
@@ -50,14 +48,6 @@ private var morale5 : MoraleControl;
 private var morale6 : MoraleControl;
 private var morale7 : MoraleControl;
 private var morale8 : MoraleControl;
-
-private var moraleAction : MoraleControl;
-
-private var incrementTime : float = 1.0;
-private var repeatTime : float = 1.0;
-private var incrementBy : int = 1;
-private var gameTime : int = 0;
-private var timeSpeed : float = 1.0;
 
 //--------------------------------------------Get/Set-----------------------------------------------------------
 
@@ -106,7 +96,7 @@ function GetTimeString(t : int) :String{
 
 function PassTime () {
     gameTime += incrementBy;
-	pagar.PagarFuncionarioSemanal();
+	pagar.PagarFuncionario();
 	pagar.PagarJogadorMensal();
 	pagar.PagarJogadorConclusao();
 	
@@ -145,7 +135,7 @@ function PassTime () {
 	morale8.MoraleActions();
 	
 	if ((gameTime % 2) == 1)
-		project.SetFindbugScore(1);
+		equipe.ResetBonus();
 }
 
 //--------------------------------------------Speed-----------------------------------------------------------
@@ -196,10 +186,24 @@ function Start () {
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
+	var playerObj : GameObject;
+	var projectObj : GameObject;
+	var equipeObj : GameObject;
+	var func1Obj : GameObject;
+	var func2Obj : GameObject;
+	var func3Obj : GameObject;
+	var func4Obj : GameObject;
+	var func5Obj : GameObject;
+	var func6Obj : GameObject;
+	var func7Obj : GameObject;
+	var func8Obj : GameObject;
+	
 	playerObj = GameObject.Find("PlayerStats");
 	pagar = playerObj.GetComponent(Pagamentos);
 	projectObj = GameObject.Find("Project");
 	project = projectObj.GetComponent(Project);
+	equipeObj = GameObject.Find("Equipe");
+	equipe = equipeObj.GetComponent(Equipe);
 	
 	func1Obj = GameObject.Find("Funcionario1");
 	func1 = func1Obj.GetComponent(Funcionario);

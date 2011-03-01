@@ -1,20 +1,20 @@
+//Para usar este script;
+//private var projectObj : GameObject;
+//private var project : Project;
+//projectObj = GameObject.Find("Project");
+//project = projectObj.GetComponent(Project);
 
-//Escala de Tempo: 1 segundo = 1 hora no jogo
-
-public var deadlineDays = 0;  //in hours
+public var deadlineDays = 0;  //in days
 public var bugs = 0.0;				//number of bugs in the software
 public var maxCodeLines = 0;	//size of the software to be done
 public var codeLinesDone = 0;	//number of lines done by the team
-public var linguagemProgramacao : String = "java";
+public var linguagemProgramacao : String = "java";	//Linguagem: Escolher apenas uma linguagem
 public var pagamento : int = 0;
 
 private var sincronismo = 0.0;		//sincronismo
-private var findBugScore = 1.0;
 private var completed : boolean = false;
 private var timerObj : GameObject;
 private var timer : GameTime;
-//Linguagem: Escolher apenas uma linguagem
-
 
 //--------------------------------------------Get/Set-----------------------------------------------------------
 
@@ -47,9 +47,6 @@ function GetNumLinesDone () {					//Retorna a percentagem ja concluida do softwa
 function GetSincronismo () {						//Retorna o sincronismo do projeto com o que o cliente pediu
 	return sincronismo;
 }
-function GetFindbugScore () {					
-	return findBugScore;
-}
 
 function GetPagamento () {					//Retorna o Deadline em horas
 	return pagamento;
@@ -78,9 +75,6 @@ function SetNewDeadline(t: float){			//Seta a nova data de deadline
 }
 function SetIscomplete (t: boolean) {		//Seta se o projeto esta concluido ou nao
 	completed = t;
-}
-function SetFindbugScore(t: float){
-	findBugScore = t;
 }
 
 function SetPagamento (t: int) {				//Seta o tamanho do software que deve ser produzido
