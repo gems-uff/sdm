@@ -7,7 +7,7 @@ private var pgjog : Pagamentos;
 private var timerObj : GameObject;
 private var timer : GameTime;
 public var msgFalha : String;
-private var windowRect : Rect = Rect (350,125,300,395);
+private var windowRect : Rect = Rect (700,125,300,395);
 private var closeDialog : boolean = false;
 
 //Funcoes Get/Set para serem utilizadas caso seja possivel aceitar outro projeto apois a conclusao do corrente. O set "reseta" este script
@@ -24,7 +24,7 @@ msgFalha = "\n Fim do Prazo \n\n Nos nao conseguimos terminar a tempo e perdemos
 
 //Funcao que exibe o resultado de conclusao do projeto
 function WindowFunction(windowID : int){
-	if(timer.GetGameTime() > project.GetDeadlineHours())		//Tela que Deadline Expiro
+	if(timer.GetGameTime() > project.GetDeadlineDays())		//Tela que Deadline Expiro
 	{
 		timer.PauseGame();
 		GUI.Box (Rect (02,018,296,350), msgFalha, customGuiStyle);
@@ -32,7 +32,7 @@ function WindowFunction(windowID : int){
 		if (GUI.Button (Rect (02,368,296,25), "Close Window")) 
 		{
 			closeDialog = true;
-			timer.SpeedNormal();
+			//timer.SpeedNormal();
 		}
 	}
 	if(project.GetNumLinesDone() >= 100)							//Tela que projeto foi concluido a tempo
@@ -49,7 +49,7 @@ function WindowFunction(windowID : int){
 		if (GUI.Button (Rect (02,368,296,25), "Close Window")) 
 		{
 			closeDialog = false;
-			timer.SpeedNormal();
+			//timer.SpeedNormal();
 		}
 	}
 }

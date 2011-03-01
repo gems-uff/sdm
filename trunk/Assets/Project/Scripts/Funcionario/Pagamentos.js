@@ -5,21 +5,8 @@
 //pagar = playerObj.GetComponent(Pagamentos);
 
 public var DIAS_PAGAMENTO : int = 28;
-private var BUG_VALUE : int = 1000;
+public var BUG_VALUE : int = 1000;
 private var isPago : boolean = false;
-
-private var func1Obj : GameObject;
-private var func2Obj : GameObject;
-private var func3Obj : GameObject;
-private var func4Obj : GameObject;
-private var func5Obj : GameObject;
-private var func6Obj : GameObject;
-private var func7Obj : GameObject;
-private var func8Obj : GameObject;
-private var menuObj : GameObject;
-private var projectObj : GameObject;
-private var playerObj : GameObject;
-private var timerObj : GameObject;
 
 private var func1 : Funcionario;
 private var func2 : Funcionario;
@@ -50,7 +37,6 @@ function PagarFuncionario(){
 function PagarFuncionarioTreinamento(preco : int){
 	jogador.ChangeSaldo(- preco);
 }
-
 //--------------------------------------------PagamentoDoProjeto-----------------------------------------------------------
 
 function PagarJogadorMensal(){
@@ -99,6 +85,18 @@ function CalculaPagamentoFinal(){
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
+	var func1Obj : GameObject;
+	var func2Obj : GameObject;
+	var func3Obj : GameObject;
+	var func4Obj : GameObject;
+	var func5Obj : GameObject;
+	var func6Obj : GameObject;
+	var func7Obj : GameObject;
+	var func8Obj : GameObject;
+	var menuObj : GameObject;
+	var projectObj : GameObject;
+	var playerObj : GameObject;
+	var timerObj : GameObject;
 	func1Obj = GameObject.Find("Funcionario1");
 	func1 = func1Obj.GetComponent(Funcionario);
 	func2Obj = GameObject.Find("Funcionario2");

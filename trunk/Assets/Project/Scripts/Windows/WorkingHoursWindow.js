@@ -8,7 +8,7 @@
 private var func : Funcionario;
 private var timerObj : GameObject;
 private var timer : GameTime;
-private var windowRect : Rect = Rect (425,325,300,95);
+private var windowRect : Rect = Rect (700,325,300,95);
 private var hSliderValue : float = 8.0;
 private var showWindow : boolean = false;
 
@@ -28,7 +28,7 @@ function WindowFunction(windowID : int){
 	//Botao de Cancel
 	if (GUI.Button (Rect (02,68,296,25), "Close")) {
 		showWindow  = false;
-		timer.SpeedNormal();
+		//timer.SpeedNormal();
 	}
 }
 

@@ -109,7 +109,7 @@ function GameSpeed()	{
 	
 	GUI.EndGroup ();
 	if (timer.GetRepeatTime() == 0)
-		GUI.Box (Rect (350,60,600,50), "PAUSED", pauseStyle);
+		GUI.Box (Rect (20,400,100,50), "PAUSED", pauseStyle);
 }
 
 //--------------------------------------------ESCPressed-----------------------------------------------------------
@@ -145,7 +145,8 @@ function MainMenu(){
 		}
 
 		if (GUI.Button (Rect (Screen.width - 100,50, 100, 20), "1: Quit")) {
-				Application.LoadLevel ("StartMenu");
+				//Application.LoadLevel ("StartMenu");
+				Application.Quit();
 		}
 		if (GUI.Button (Rect (Screen.width - 100,70, 100, 20), "2: Help")) {
 				//Fazer o Help

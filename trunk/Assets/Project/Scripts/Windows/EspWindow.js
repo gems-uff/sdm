@@ -14,7 +14,7 @@ private var timer : GameTime;
 private var TEMPODETREINO : float = 14.0;
 private 	var deadlineTreino : float = 0.0;
 private var janelaEsp : boolean = false;
-private var windowRect : Rect = Rect (350,125,400,243);
+private var windowRect : Rect = Rect (600,125,400,243);
 
 	
 function ExecutaJanelaEsp(t : String){
@@ -22,7 +22,7 @@ function ExecutaJanelaEsp(t : String){
 	func.SetPapel("Training");
 	treino.SetAprendendo(t);
 	janelaEsp  = false;
-	timer.SpeedNormal();
+	//timer.SpeedNormal();
 }
 
 function Especializar (funcionario : Funcionario, treinamento : Treinamento){
@@ -155,7 +155,7 @@ function WindowFunction(windowID : int){
 	if (GUI.Button (Rect (200,218,198,25), "Cancel")) {
 		janelaEsp  = false;
 		treino.SetLockEscolha(false);
-		timer.SpeedNormal();
+		//timer.SpeedNormal();
 	}
 	treino.SetDeadline_Treino(deadlineTreino);
 }

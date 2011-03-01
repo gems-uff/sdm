@@ -1,9 +1,7 @@
 
-//Usa Time.timeScale = 0.5;
 
 private var project : Project;
 private var projectW : ProjectWindow;
-private var timerObj : GameObject;
 private var timer : GameTime;
 
 //Variaveis de controle do dialogo
@@ -12,7 +10,7 @@ private var welcome : boolean = false;
 public var msgWelcome : String;
 //Variavel do Style da GUI
 public var customGuiStyle : GUIStyle;
-private var windowRect : Rect = Rect (350,125,300,395);
+private var windowRect : Rect = Rect (700,125,300,395);
 
 msgWelcome = "\n Bem vindo, \n \n <Fazer texto introdutorio> \n <Fazer o texto>";
 
@@ -23,13 +21,14 @@ function WindowFunction(windowID : int){
 	{
 		welcome  = true;
 		projectW.SetShowWindow();
-		timer.SpeedNormal();
+		//timer.SpeedNormal();
 	}
 }
 
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
+	var timerObj : GameObject;
 	project = GetComponentInChildren(Project);
 	projectW = GetComponentInChildren(ProjectWindow);
 	timerObj = GameObject.Find("Timer");

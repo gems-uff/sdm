@@ -5,7 +5,7 @@
 //menu = menuObj.GetComponent(FuncWindow);
 //menu.SetJanelatributo(funcionario : Funcionario);
 
-private var timerObj : GameObject;
+public var DAYS_MONTH : int = 28;
 private var timer : GameTime;
 public var fichaGuiStyle : GUIStyle;
 private var especializacao_array = new Array(17);
@@ -13,12 +13,14 @@ public var atributos : Atributos = new Atributos();
 
 private var nome : String;
 private var salario : int;
+private var salarioDay : int;
 private var papel : String;
+private var cargo : String;
 private var showJanela	:boolean = false;
 private var workHours : int;
 private var morale : int;
 
-private var windowRect : Rect = Rect (350,125,400,420);
+private var windowRect : Rect = Rect (600,125,400,420);
 
 //--------------------------------------------FichaFuncionarioEspecializacao-----------------------------------------------------------
 
@@ -30,7 +32,9 @@ function SetJanelatributo(funcionario : Funcionario){
 	nome = funcionario.GetNome();
 	atributos = funcionario.GetAtributos();
 	salario = funcionario.GetSalario();
+	salarioDay = salario / DAYS_MONTH;
 	papel = funcionario.GetPapel();
+	cargo = funcionario.GetCargo();
 	workHours = funcionario.GetWorkingHours();
 	showJanela = true;
 	morale = parseInt(funcionario.GetMorale());
@@ -120,10 +124,10 @@ function WindowFunction (windowID : int)	{
 	GUI.Box (Rect (02,018,198,20), (" Name: "+ nome),fichaGuiStyle);
 	GUI.Box (Rect (02,038,198,20), (" Morale: "+ morale),fichaGuiStyle);
 	GUI.Box (Rect (02,058,198,20), (" Role: "+ papel),fichaGuiStyle);
-	GUI.Box (Rect (02,078,198,20), (" Working Hours: "+ workHours),fichaGuiStyle);
-	GUI.Box (Rect (02,098,198,20), (" Salary: $"+ salario),fichaGuiStyle);
-	GUI.Box (Rect (02,118,198,20), (" Salary/Day: $"+ (salario / 28)),fichaGuiStyle);
-	GUI.Box (Rect (02,138,198,20), (" "),fichaGuiStyle);
+	GUI.Box (Rect (02,078,198,20), (" Grade: "+ cargo),fichaGuiStyle);
+	GUI.Box (Rect (02,098,198,20), (" Working Hours: "+ workHours),fichaGuiStyle);
+	GUI.Box (Rect (02,118,198,20), (" Salary: $"+ salario),fichaGuiStyle);
+	GUI.Box (Rect (02,138,198,20), (" Salary/Day: $"+ salarioDay),fichaGuiStyle);
 	GUI.Box (Rect (02,158,198,20), (" "),fichaGuiStyle);
 	GUI.Box (Rect (02,178,198,20), (" "),fichaGuiStyle);
 	//Lado direito
@@ -163,13 +167,14 @@ function WindowFunction (windowID : int)	{
 	if (GUI.Button (Rect (02,398,396,20), "Close Profile")) 
 	{
 		showJanela  = false;
-		timer.SpeedNormal();
+		//timer.SpeedNormal();
 	}
 }
 
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
+	var timerObj : GameObject;
 	timerObj = GameObject.Find("Timer");
 	timer = timerObj.GetComponent(GameTime);
 }

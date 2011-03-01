@@ -13,6 +13,7 @@ private var nome : String;
 private var defaultSalary : int;
 private var salary : int;
 private var role : String;
+private var job : String = "Junior";		//Junior, plain, senior
 private var workingHours : int = 40;
 private var morale : float = 100.0;
 //private var isEmploee : boolean = false;
@@ -99,6 +100,12 @@ function GetPapel() {
 }
 function SetPapel(t: String) {
 	role = t;
+}
+function GetCargo() {
+	return job;
+}
+function SetCargo(t: String) {
+	job = t;
 }
 function GetSalarioDefault() {
 	return defaultSalary;
