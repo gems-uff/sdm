@@ -6,6 +6,14 @@
 
 //Constantes
 //Variaves de configuracao de desempenho durante o trabalho
+public var JUNIOR_SALARY : float = 1.0;
+public var PLAIN_SALARY : float = 1.3;
+public var SENIOR_SALARY : float = 1.5;
+
+public var JUNIOR_MODIFICATOR : float = 1.0;
+public var PLAIN_MODIFICATOR : float = 1.2;
+public var SENIOR_MODIFICATOR : float = 1.4;
+public var MINPAYMENT : int = 2000;
 public var PENALIDADE : float = 0.3;
 public var BONUS : float = 0.25;
 public var ANALISTA_INICIO : float = 0.8;
@@ -16,9 +24,6 @@ public var GERENTE_PROG : float = 0.4;
 public var PROG_LINES_DAY_MOD : float = 5;
 public var PROG_BUG_MOD : float = 0.02;
 public var TESTER_DURANTE : float = 0.5;
-
-private var MINPAYMENT : int = 2000;
-
 //Fim Constantes
 private var workingHoursModifier : float = 1.0;
 private var morale : float = 1.0;		//Valor entre 0.0 e 1.0
@@ -41,7 +46,9 @@ function SetWorkingHoursModifier(t: int) {
 //--------------------------------------------GameModifiers-----------------------------------------------------------
 
 function GameModifiers( aux : float ){
-	aux = aux * workingHoursModifier * morale;
+	var cargo_mod : float;
+	cargo_mod = AjusteWork();
+	aux = aux * cargo_mod * workingHoursModifier * morale;
 	return aux;
 }
 
@@ -56,6 +63,7 @@ function WorkHours(){
 	workingHoursModifier = aux * 12.5;
 	workingHoursModifier = workingHoursModifier / 100;
 	newSalary = func.GetSalarioDefault();
+	newSalary = newSalary * AjusteSalario();
 	newSalary = newSalary * workingHoursModifier;
 	newSalary = newSalary / 10;		//Para ser 0 na unidade do salario
 	newSalary = newSalary * 10;		//Para ser 0 na unidade do salario
@@ -67,6 +75,53 @@ function WorkHours(){
 		func.SetSalario(newSalary);
 }
 
+//--------------------------------------------AjusteSalario-----------------------------------------------------------
+
+function AjusteSalario(){
+	var mod : float = 1.0;
+	switch(func.GetCargo())
+	{
+	   case "Junior": 	//caso analista
+			mod = JUNIOR_SALARY;
+	   break;
+
+	   case "Plain":	//caso arquiteto
+			mod = PLAIN_SALARY;
+	   break;
+	   
+	   case "Senior":	//caso gerente
+			mod = SENIOR_SALARY;
+	   break;
+
+	   default:
+		  break;
+	}
+	return mod;
+}
+
+//--------------------------------------------AjusteWork-----------------------------------------------------------
+
+function AjusteWork(){
+	var mod : float = 1.0;
+	switch(func.GetCargo())
+	{
+	   case "Junior": 	//caso analista
+			mod = JUNIOR_MODIFICATOR;
+	   break;
+
+	   case "Plain":	//caso arquiteto
+			mod = PLAIN_MODIFICATOR;
+	   break;
+	   
+	   case "Senior":	//caso gerente
+			mod = SENIOR_MODIFICATOR;
+	   break;
+
+	   default:
+		  break;
+	}
+	return mod;
+}
 //--------------------------------------------Work-----------------------------------------------------------
 
 function Work(){	//Função que atualiza os campos de projeto conforme a performace do funcionario no seu papel

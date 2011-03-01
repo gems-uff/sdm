@@ -5,8 +5,9 @@ private var treino : Treinamento;
 private var menuAtr : FuncWindow;
 private var menuEsp : EspWindow;
 private var menuPapel : PapelWindow;
-private var menuObj : GameObject;
-private var timerObj : GameObject;
+private var menuNegotiation : NegotiationWindow;
+private var menuPrototype : PrototypeWindow;
+
 private var timer : GameTime;
 private var workHours : WorkingHoursWindow;
 
@@ -39,14 +40,14 @@ function OnTriggerExit( collider1 : Collider )
 	{
 		dialogEnable = false;
 		msgDialogStart = false;
-		timer.SpeedNormal();
+		//timer.SpeedNormal();
 	}
 }
 
 //--------------------------------------------Dialog_Funcionario-----------------------------------------------------------
 
 function Dialog_Funcionario (){
-	GUI.BeginGroup(Rect (300,Screen.height - 190,1000,1000));
+	GUI.BeginGroup(Rect (150,Screen.height - 190,1000,1000));
 	if (dialogEnable == true)
 	{
 		timer.PauseGame();
@@ -56,37 +57,50 @@ function Dialog_Funcionario (){
 			GUI.Box (Rect (00,25,600,150), "Hello boss. What's up ?", dialogGuiStyle);
 			if (GUI.Button (Rect (600,25, 130, 25), "Profile")) {
 					msgDialogOptions = false;
-					timer.SpeedNormal();
 					menuAtr.SetJanelatributo(func);
 					dialogEnable = false;
 			}
 			if (GUI.Button (Rect (600,50, 130, 25), "Train")) {
 					msgDialogOptions = false;
-					timer.SpeedNormal();
 					menuEsp.Especializar(func, treino);
 					dialogEnable = false;
 			}
 			if (GUI.Button (Rect (600,75, 130, 25), "Change Task")) {
 					msgDialogOptions = false;
-					timer.SpeedNormal();
 					menuPapel.MudarPapel(func, treino);
 					dialogEnable = false;
 			}
 			if (GUI.Button (Rect (600,100, 130, 25), "Working Hours")) {
 					msgDialogOptions = false;
-					timer.SpeedNormal();
 					workHours.ChangeWorkHours(func);
 					dialogEnable = false;
 			}
-			if (GUI.Button (Rect (600,125, 130, 25), "Option5 <FAZER>")) {
-					msgDialogOptions = false;
-					timer.SpeedNormal();
-					//Chama algo
-					dialogEnable = false;
-			}
+			//Vazio
+			GUI.Box (Rect (600,125, 130, 25), "");
+			//Se arquiteto
+			if(func.GetPapel() == "Architect" && menuPrototype.GetIsLocked() == false)
+				if (GUI.Button (Rect (600,125, 130, 25), "Prototype")) {
+						msgDialogOptions = false;
+						menuPrototype.SetShowWindow(func);
+						dialogEnable = false;
+				}
+			//Se gerente
+			if(func.GetPapel() == "Manager")
+				if (GUI.Button (Rect (600,125, 130, 25), "Hire")) {
+						msgDialogOptions = false;
+						//Chama HIRE
+						dialogEnable = false;
+				}
+			//se Marketing
+			if(func.GetPapel() == "Marketing" && menuNegotiation.GetLockNegotiation() == false)
+				if (GUI.Button (Rect (600,125, 130, 25), "Negotiation")) {
+						msgDialogOptions = false;
+						menuNegotiation.SetShowWindow(func);
+						dialogEnable = false;
+				}
 			if (GUI.Button (Rect (600,150, 130, 25), "End")) {
 					msgDialogOptions = false;
-					timer.SpeedNormal();
+					//timer.SpeedNormal();
 					dialogEnable = false;
 			}
 		}
@@ -98,6 +112,8 @@ function Dialog_Funcionario (){
 
 function Awake() 
 { 
+	var menuObj : GameObject;
+	var timerObj : GameObject;
 	gameobj =GameObject.Find("Player"); 
 	menuObj = GameObject.Find("GUI");
 	func = GetComponentInChildren(Funcionario);
@@ -105,6 +121,8 @@ function Awake()
 	menuAtr = menuObj.GetComponent(FuncWindow);
 	menuEsp = menuObj.GetComponent(EspWindow);
 	menuPapel = menuObj.GetComponent(PapelWindow);
+	menuNegotiation = menuObj.GetComponent(NegotiationWindow);
+	menuPrototype = menuObj.GetComponent(PrototypeWindow);
 	timerObj = GameObject.Find("Timer");
 	timer = timerObj.GetComponent(GameTime);
 	workHours = menuObj.GetComponent(WorkingHoursWindow);

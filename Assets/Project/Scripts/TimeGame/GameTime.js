@@ -21,6 +21,7 @@ private var timeSpeed : float = 1.0;
 private var pagar : Pagamentos;
 private var project : Project;
 private var equipe : Equipe;
+private var menuPrototype : PrototypeWindow;
 
 private var func1 : Funcionario;
 private var func2 : Funcionario;
@@ -136,6 +137,8 @@ function PassTime () {
 	
 	if ((gameTime % 2) == 1)
 		equipe.ResetBonus();
+	if((gameTime % 7) == 0)
+		menuPrototype.Unlock();
 }
 
 //--------------------------------------------Speed-----------------------------------------------------------
@@ -197,7 +200,9 @@ function Awake () {
 	var func6Obj : GameObject;
 	var func7Obj : GameObject;
 	var func8Obj : GameObject;
-	
+	var menuObj : GameObject;
+	menuObj = GameObject.Find("GUI");
+	menuPrototype = menuObj.GetComponent(PrototypeWindow);
 	playerObj = GameObject.Find("PlayerStats");
 	pagar = playerObj.GetComponent(Pagamentos);
 	projectObj = GameObject.Find("Project");

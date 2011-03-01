@@ -10,13 +10,18 @@
 private var func : Funcionario;
 private var timerObj : GameObject;
 private var timer : GameTime;
-private var windowRect : Rect = Rect (350,125,200,220);
+private var windowRect : Rect = Rect (600,125,400,220);
 private var janelaPapel : boolean = false;
 
 function ExecutaJanelaPapel(t : String){
 	func.SetPapel(t);
 	janelaPapel  = false;
-	timer.SpeedNormal();
+	//timer.SpeedNormal();
+}
+function ExecutaJanelaCargo(t : String){
+	func.SetCargo(t);
+	janelaPapel  = false;
+	//timer.SpeedNormal();
 }
 
 function MudarPapel (funcionario : Funcionario, treino : Treinamento){
@@ -81,12 +86,39 @@ function WindowFunction(windowID : int){
 		}
 	if(func.GetPapel() == "None")	
 		GUI.Box (Rect (02,168,198,25), "None");
+		
+	//Lado esquerdo
+	//---------------------------------------------------------------------------------------------------------------------	
+	GUI.Box (Rect (200,18,198,25), "Grades:");
+	//---------------------------------------------------------------------------------------------------------------------	
+	if(func.GetCargo() != "Junior")	
+		if (GUI.Button (Rect (200,43,198,25), "Junior")) {
+			ExecutaJanelaCargo("Junior");
+		}
+	if(func.GetCargo() == "Junior")	
+		GUI.Box (Rect (200,43,198,25), "Junior");
+	
+	//---------------------------------------------------------------------------------------------------------------------	
+	if(func.GetCargo() != "Plain")	
+		if (GUI.Button (Rect (200,68,198,25), "Plain")) {
+			ExecutaJanelaCargo("Plain");
+		}
+	if(func.GetCargo() == "Plain")	
+		GUI.Box (Rect (200,68,198,25), "Plain");
+	
+	//---------------------------------------------------------------------------------------------------------------------	
+	if(func.GetCargo() != "Senior")	
+		if (GUI.Button (Rect (200,93,198,25), "Senior")) {
+			ExecutaJanelaCargo("Senior");
+		}
+	if(func.GetCargo() == "Senior")	
+		GUI.Box (Rect (200,93,198,25), "Senior");
 	
 	//---------------------------------------------------------------------------------------------------------------------
 	//Botao de Cancel
-	if (GUI.Button (Rect (02,193,198,25), "Cancel")) {
+	if (GUI.Button (Rect (02,193,396,25), "Cancel")) {
 		janelaPapel  = false;
-		timer.SpeedNormal();
+		//timer.SpeedNormal();
 	}
 }
 

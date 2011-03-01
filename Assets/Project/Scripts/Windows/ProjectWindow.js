@@ -11,7 +11,7 @@ private var timer : GameTime;
 private var showWindow : boolean = false;
 //Variavel do Style da GUI
 public var customGuiStyle : GUIStyle;
-private var windowRect : Rect = Rect (350,125,300,395);
+private var windowRect : Rect = Rect (700,125,300,395);
 
 //Funcao que permite a exibicao da janela com os dados do projeto
 function SetShowWindow(){
@@ -34,7 +34,7 @@ function WindowFunction(windowID : int){
 	if (GUI.Button (Rect (02,368,296,25), "Close Window")) 
 	{
 		showWindow = false;
-		timer.SpeedNormal();
+		//timer.SpeedNormal();
 	}
 }
 

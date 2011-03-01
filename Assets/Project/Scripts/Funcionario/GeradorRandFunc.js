@@ -212,7 +212,7 @@ function RandomFuncionarioStarter () {
 	SetAtributos();
 	SetEspecializacoes();
 	func.SetNome(newNome.RandomName());
-	func.SetPapel("Nenhum");
+	func.SetPapel("None");
 	func.SetSalarioDefault(NewSalario());
 	func.SetSalario(NewSalario());
 }
