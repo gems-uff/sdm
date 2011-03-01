@@ -4,6 +4,7 @@
 //playerObj = GameObject.Find("PlayerStats");
 //pagar = playerObj.GetComponent(Pagamentos);
 
+public var DIAS_PAGAMENTO : int = 28;
 private var BUG_VALUE : int = 1000;
 private var isPago : boolean = false;
 
@@ -35,19 +36,15 @@ private var timer : GameTime;
 
 //--------------------------------------------PagamentoDoFuncionario-----------------------------------------------------------
 
-function PagarFuncionarioSemanal(){
-	if ( timer.GetGameTime()  != 0)
-		if ((timer.GetGameTime() % 7) == 0 )
-		{
-			jogador.ChangeSaldo(- func1.GetSalario() / 4);
-			jogador.ChangeSaldo(- func2.GetSalario() / 4);
-			jogador.ChangeSaldo(- func3.GetSalario() / 4);
-			jogador.ChangeSaldo(- func4.GetSalario() / 4);
-			jogador.ChangeSaldo(- func5.GetSalario() / 4);
-			jogador.ChangeSaldo(- func6.GetSalario() / 4);
-			jogador.ChangeSaldo(- func7.GetSalario() / 4);
-			jogador.ChangeSaldo(- func8.GetSalario() / 4);
-		}
+function PagarFuncionario(){
+	jogador.ChangeSaldo(- func1.GetSalario() / DIAS_PAGAMENTO);
+	jogador.ChangeSaldo(- func2.GetSalario() / DIAS_PAGAMENTO);
+	jogador.ChangeSaldo(- func3.GetSalario() / DIAS_PAGAMENTO);
+	jogador.ChangeSaldo(- func4.GetSalario() / DIAS_PAGAMENTO);
+	jogador.ChangeSaldo(- func5.GetSalario() / DIAS_PAGAMENTO);
+	jogador.ChangeSaldo(- func6.GetSalario() / DIAS_PAGAMENTO);
+	jogador.ChangeSaldo(- func7.GetSalario() / DIAS_PAGAMENTO);
+	jogador.ChangeSaldo(- func8.GetSalario() / DIAS_PAGAMENTO);
 }
 
 function PagarFuncionarioTreinamento(preco : int){
