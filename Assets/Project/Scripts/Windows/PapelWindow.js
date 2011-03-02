@@ -10,7 +10,7 @@
 private var func : Funcionario;
 private var timerObj : GameObject;
 private var timer : GameTime;
-private var windowRect : Rect = Rect (600,125,400,220);
+private var windowRect : Rect = Rect (600,125,400,248);
 private var janelaPapel : boolean = false;
 
 function ExecutaJanelaPapel(t : String){
@@ -30,7 +30,9 @@ function MudarPapel (funcionario : Funcionario, treino : Treinamento){
 		janelaPapel = true;
 }
 function WindowFunction(windowID : int){
-	timer.PauseGame();	
+	timer.PauseGame();
+	GUI.Box (Rect (02,18,396,25), func.GetNome());
+	GUI.BeginGroup (Rect (02,25,400,220));
 	//---------------------------------------------------------------------------------------------------------------------
 	if(func.GetPapel() != "Analyst")
 		if (GUI.Button (Rect (02,18,198,25), "Analyst")) {
@@ -99,12 +101,12 @@ function WindowFunction(windowID : int){
 		GUI.Box (Rect (200,43,198,25), "Junior");
 	
 	//---------------------------------------------------------------------------------------------------------------------	
-	if(func.GetCargo() != "Plain")	
-		if (GUI.Button (Rect (200,68,198,25), "Plain")) {
-			ExecutaJanelaCargo("Plain");
+	if(func.GetCargo() != "Mid-Level")	
+		if (GUI.Button (Rect (200,68,198,25), "Mid-Level")) {
+			ExecutaJanelaCargo("Mid-Level");
 		}
-	if(func.GetCargo() == "Plain")	
-		GUI.Box (Rect (200,68,198,25), "Plain");
+	if(func.GetCargo() == "Mid-Level")	
+		GUI.Box (Rect (200,68,198,25), "Mid-Level");
 	
 	//---------------------------------------------------------------------------------------------------------------------	
 	if(func.GetCargo() != "Senior")	
@@ -120,6 +122,7 @@ function WindowFunction(windowID : int){
 		janelaPapel  = false;
 		//timer.SpeedNormal();
 	}
+	GUI.EndGroup ();
 }
 
 //--------------------------------------------Awake-----------------------------------------------------------

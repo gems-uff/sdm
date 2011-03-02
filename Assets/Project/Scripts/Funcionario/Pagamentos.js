@@ -5,7 +5,6 @@
 //pagar = playerObj.GetComponent(Pagamentos);
 
 public var DIAS_PAGAMENTO : int = 28;
-public var BUG_VALUE : int = 1000;
 private var isPago : boolean = false;
 
 private var func1 : Funcionario;
@@ -77,7 +76,7 @@ function CalculaPagamentoFinal(){
 	pagamentofinal = project.GetPagamento();
 	pagamentofinal = pagamentofinal * 4;
 	pagamentofinal = pagamentofinal * (project.GetSincronismo() / 100);	//reduz de acordo com o sincronismo
-	pagamentofinal = pagamentofinal - (parseInt(project.GetNumBugs()) * BUG_VALUE);		//reduz de acordo com o numero de bugs
+	pagamentofinal = pagamentofinal - (parseInt(project.GetNumBugs()) * project.GetBugValue());		//reduz de acordo com o numero de bugs
 	
 	return pagamentofinal;
 }

@@ -7,11 +7,11 @@
 //Constantes
 //Variaves de configuracao de desempenho durante o trabalho
 public var JUNIOR_SALARY : float = 1.0;
-public var PLAIN_SALARY : float = 1.3;
+public var PLENO_SALARY : float = 1.3;
 public var SENIOR_SALARY : float = 1.5;
 
 public var JUNIOR_MODIFICATOR : float = 1.0;
-public var PLAIN_MODIFICATOR : float = 1.2;
+public var PLENO_MODIFICATOR : float = 1.2;
 public var SENIOR_MODIFICATOR : float = 1.4;
 public var MINPAYMENT : int = 2000;
 public var PENALIDADE : float = 0.3;
@@ -85,8 +85,8 @@ function AjusteSalario(){
 			mod = JUNIOR_SALARY;
 	   break;
 
-	   case "Plain":	//caso arquiteto
-			mod = PLAIN_SALARY;
+	   case "Mid-Level":	//caso arquiteto
+			mod = PLENO_SALARY;
 	   break;
 	   
 	   case "Senior":	//caso gerente
@@ -109,8 +109,8 @@ function AjusteWork(){
 			mod = JUNIOR_MODIFICATOR;
 	   break;
 
-	   case "Plain":	//caso arquiteto
-			mod = PLAIN_MODIFICATOR;
+	   case "Mid-Level":	//caso arquiteto
+			mod = PLENO_MODIFICATOR;
 	   break;
 	   
 	   case "Senior":	//caso gerente
