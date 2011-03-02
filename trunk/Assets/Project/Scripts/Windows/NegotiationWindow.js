@@ -82,7 +82,10 @@ function ApplyChanges(){
 	}
 	if(qualityBool == true)
 	{
-		//fazer
+		trade = project.GetBugValue();
+		trade = trade * marketing_less;
+		trade = parseInt(trade);
+		project.SetBugValue(trade);
 	}
 	//Tradeoff
 	if(moreScope == true)
@@ -108,7 +111,10 @@ function ApplyChanges(){
 	}
 	if(moreQuality == true)
 	{
-		//Fazer
+		trade = project.GetBugValue();
+		trade = trade * marketing_more;
+		trade = parseInt(trade);
+		project.SetBugValue(trade);
 	}
 }
 

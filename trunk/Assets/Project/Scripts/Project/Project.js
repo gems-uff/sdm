@@ -8,6 +8,7 @@ public var deadlineDays : int = 0;  //in days
 public var maxCodeLines : int = 0;	//size of the software to be done
 public var linguagemProgramacao : String = "java";	//Linguagem: Escolher apenas uma linguagem
 public var pagamento : int = 0;
+public var bugValue : int = 1000;
 
 private var sincronismo = 0.0;		//sincronismo
 private var completed : boolean = false;
@@ -16,12 +17,10 @@ private var bugs : float = 0.0 ;				//number of bugs in the software
 private var codeLinesDone : int = 0;	//number of lines done by the team
 //--------------------------------------------Get/Set-----------------------------------------------------------
 
-//Funcoes GET
-
 function GetDeadlineDays () {					//Retorna o Deadline em horas
 	return deadlineDays;
 }
-function SetDeadlineDays (t : int) {					//Retorna o Deadline em horas
+function SetDeadlineDays (t : int) {					//Seta o Deadline em horas
 	deadlineDays = t;
 }
 function SetNewDeadline(t: int){			//Seta a nova data de deadline
@@ -84,7 +83,12 @@ function GetLinguagem () {						//Retorna o requisito
 function SetLinguagem (t: String) {						//Seta o requisito
 	linguagemProgramacao = t;
 }
-
+function GetBugValue () {					//Retorna o valor de cada bug
+	return bugValue;
+}
+function SetBugValue (t : int) {
+	bugValue = t;
+}
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake(){

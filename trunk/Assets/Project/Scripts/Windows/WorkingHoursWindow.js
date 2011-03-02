@@ -8,7 +8,7 @@
 private var func : Funcionario;
 private var timerObj : GameObject;
 private var timer : GameTime;
-private var windowRect : Rect = Rect (700,325,300,95);
+private var windowRect : Rect = Rect (700,325,300,120);
 private var hSliderValue : float = 8.0;
 private var showWindow : boolean = false;
 
@@ -20,13 +20,14 @@ function ChangeWorkHours (funcionario : Funcionario){
 function WindowFunction(windowID : int){
 	var aux : int;
 	timer.PauseGame();
-	hSliderValue = GUI.HorizontalSlider (Rect (022, 50, 246, 25), hSliderValue, 0.0, 16.0);
+	GUI.Box (Rect (02,18,296,25), func.GetNome());
+	hSliderValue = GUI.HorizontalSlider (Rect (022, 75, 246, 25), hSliderValue, 0.0, 16.0);
 	aux = parseInt(hSliderValue);
 	aux = aux * 5;
-	GUI.Box (Rect (02,018,296, 25), "Weekly: " + aux);
+	GUI.Box (Rect (02,043,296, 25), "Weekly: " + aux);
 	func.SetWorkingHours(aux);	
 	//Botao de Cancel
-	if (GUI.Button (Rect (02,68,296,25), "Close")) {
+	if (GUI.Button (Rect (02,93,296,25), "Close")) {
 		showWindow  = false;
 		//timer.SpeedNormal();
 	}
