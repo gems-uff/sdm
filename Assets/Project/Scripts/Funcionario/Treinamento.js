@@ -1,11 +1,8 @@
 
-public var PRECO : int = 2500;
-
 private var func : Funcionario;
 private var aprendendo : String = "";
 private var deadline_treino : float = 0.0;
 private var islockedEscolha : boolean = false;
-private var pagar : Pagamentos;
 
 //--------------------------------------------Gets/Sets-----------------------------------------------------------
 
@@ -95,8 +92,6 @@ function Especializando (){
 	   default:
 		  break;
 	}
-	//deadline_treino = 0.0;
-	pagar.PagarFuncionarioTreinamento(PRECO);//Paga o custo de treinamento precisa ser feito
 	islockedEscolha = false;
 	func.SetPapel("None");
 }
@@ -105,7 +100,7 @@ function Especializando (){
 
 function Awake () {
 	func = GetComponentInChildren(Funcionario);
-	pagar = GetComponentInChildren(Pagamentos);
+	//pagar = GetComponentInChildren(Pagamentos);
 }
 
 //--------------------------------------------Update-----------------------------------------------------------

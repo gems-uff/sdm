@@ -17,7 +17,6 @@ private var job : String = "Junior";		//Junior, plain, senior
 private var workingHours : int = 40;
 private var morale : float = 100.0;
 //private var isEmploee : boolean = false;
-//private var cargo : String;
 
 //--------------------------------------------Get/Set-----------------------------------------------------------
 

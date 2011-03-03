@@ -1,8 +1,8 @@
 
 
-private var project : Project;
-private var projectW : ProjectWindow;
-private var timer : GameTime;
+public var project : Project;
+public var projectW : ProjectWindow;
+public var timer : GameTime;
 
 //Variaveis de controle do dialogo
 private var welcome : boolean = false;
@@ -28,11 +28,13 @@ function WindowFunction(windowID : int){
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
+	/*
 	var timerObj : GameObject;
 	project = GetComponentInChildren(Project);
 	projectW = GetComponentInChildren(ProjectWindow);
 	timerObj = GameObject.Find("Timer");
 	timer = timerObj.GetComponent(GameTime);
+	*/
 }
 
 //--------------------------------------------OnGUI-----------------------------------------------------------

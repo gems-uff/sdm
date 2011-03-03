@@ -14,10 +14,11 @@ public var SIMPLE_PRICE : int = 3000;		//Custo para fazer cada prototipo
 public var REGULAR_PRICE : int = 7500;
 public var COMPLEX_PRICE : int = 18750;
 
-private var project : Project;
-private var timer : GameTime;
+public var project : Project;
+public var timer : GameTime;
+public var jogador : PlayerStats;
+
 private var func : Funcionario;
-private var jogador : PlayerStats;
 private var windowRect : Rect = Rect (800,125,200,145);
 private var showWindow : boolean = false;
 private var simpleProt : boolean = false;
@@ -69,28 +70,43 @@ function ApplyChanges(){
 function WindowFunction(windowID : int){
 	timer.PauseGame();
 	GUI.Box (Rect (02,020,196,25),"Which type of Prototype");
-	
-	simpleProt = GUI.Toggle (Rect (02, 050, 58, 30), simpleProt, "Simple");
-	if(simpleProt == true)
+	if (jogador.GetSaldo() > SIMPLE_PRICE)
 	{
-		regularProt = false;
-		complexProt = false;
-		picked = true;
+		simpleProt = GUI.Toggle (Rect (02, 050, 58, 30), simpleProt, "Simple");
+		if(simpleProt == true)
+		{
+			regularProt = false;
+			complexProt = false;
+			picked = true;
+		}
 	}
-	regularProt = GUI.Toggle (Rect (60, 050, 78, 30), regularProt, "Regular");
-	if(regularProt == true)
+	if (jogador.GetSaldo() < SIMPLE_PRICE)
+		GUI.Box (Rect (02, 050, 58, 30),"Simple");
+	if (jogador.GetSaldo() > REGULAR_PRICE)
 	{
-		simpleProt = false;
-		complexProt = false;
-		picked = true;
+		regularProt = GUI.Toggle (Rect (60, 050, 78, 30), regularProt, "Regular");
+		if(regularProt == true)
+		{
+			simpleProt = false;
+			complexProt = false;
+			picked = true;
+		}
 	}
-	complexProt = GUI.Toggle (Rect (128, 050, 68, 30), complexProt, "Complex");
-	if(complexProt == true)
+	if (jogador.GetSaldo() < REGULAR_PRICE)
+		GUI.Box (Rect (60, 050, 78, 30),"Regular");
+	if (jogador.GetSaldo() > COMPLEX_PRICE)
 	{
-		simpleProt = false;
-		regularProt = false;
-		picked = true;
+		complexProt = GUI.Toggle (Rect (128, 050, 68, 30), complexProt, "Complex");
+		if(complexProt == true)
+		{
+			simpleProt = false;
+			regularProt = false;
+			picked = true;
+		}
 	}
+	if (jogador.GetSaldo() < COMPLEX_PRICE)
+		GUI.Box (Rect (128, 050, 68, 30),"Complex");
+		
 	GUI.Box (Rect (02,080,196,30),"Price : $" + SIMPLE_PRICE + " / $" + REGULAR_PRICE +" / $" + COMPLEX_PRICE);
 	if (GUI.Button (Rect (02,110,98,25), "Cancel")) 
 	{
@@ -104,13 +120,13 @@ function WindowFunction(windowID : int){
 			ApplyChanges();
 			ResetItems();
 			isLocked = true;
-			//timer.SpeedNormal();
 		}
 	
 }
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
+	/*
 	var timerObj : GameObject;
 	var playerObj : GameObject;
 	playerObj = GameObject.Find("PlayerStats");
@@ -118,6 +134,7 @@ function Awake () {
 	jogador = playerObj.GetComponent(PlayerStats);
 	project = GetComponentInChildren(Project);
 	timer = timerObj.GetComponent(GameTime);
+	*/
 }
 
 //--------------------------------------------OnGUI-----------------------------------------------------------

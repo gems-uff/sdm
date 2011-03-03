@@ -5,9 +5,9 @@
 
 
 
-private var project : Project;
+public var project : Project;
 private var timerObj : GameObject;
-private var timer : GameTime;
+public var timer : GameTime;
 private var showWindow : boolean = false;
 //Variavel do Style da GUI
 public var customGuiStyle : GUIStyle;
@@ -22,28 +22,28 @@ function WindowFunction(windowID : int){
 	var deadline = project.GetDeadLine();
 	var linguagem = project.GetLinguagem();
 	var pagamento = project.GetPagamento();
+	var projectSize = project.GetProjectSizeString();
 	timer.PauseGame();
 	GUI.Box (Rect (02,018,296,350), 
 	("\t<Fazer descricao> \n \n" +
+	" Size: " + projectSize + "\n" +
 	" Deadline: " + deadline + "\n"+ 
-	" Linguagem: " + linguagem + "\n" +
-	" Pagamento Mensal: " + pagamento +
-	"\n Pagamento de conclusao: " + pagamento*4 +
-	"\n\n\n\n PS: O pagamento final pode sofrer variacoes de acordo com o produto entregue."), customGuiStyle);
+	" Programing Language: " + linguagem + "\n" +
+	" Monthly Payment: " + pagamento +
+	"\n Final Payment: " + pagamento*4 +
+	"\n\n\n\n PS: The last payment value can change due to the project quality."), customGuiStyle);
 	
 	if (GUI.Button (Rect (02,368,296,25), "Close Window")) 
 	{
 		showWindow = false;
-		//timer.SpeedNormal();
+
 	}
 }
 
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
-	project = GetComponentInChildren(Project);
-	timerObj = GameObject.Find("Timer");
-	timer = timerObj.GetComponent(GameTime);
+
 }
 
 //--------------------------------------------OnGUI-----------------------------------------------------------

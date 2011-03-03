@@ -4,15 +4,18 @@
 //projectObj = GameObject.Find("Project");
 //project = projectObj.GetComponent(Project);
 
+public var timer : GameTime;
 public var deadlineDays : int = 0;  //in days
 public var maxCodeLines : int = 0;	//size of the software to be done
 public var linguagemProgramacao : String = "java";	//Linguagem: Escolher apenas uma linguagem
 public var pagamento : int = 0;
 public var bugValue : int = 1000;
+public var SMALL : int = 50;
+public var MEDIUM : int = 120;
 
+private var projectSize : String = "";
 private var sincronismo = 0.0;		//sincronismo
 private var completed : boolean = false;
-private var timer : GameTime;
 private var bugs : float = 0.0 ;				//number of bugs in the software
 private var codeLinesDone : int = 0;	//number of lines done by the team
 //--------------------------------------------Get/Set-----------------------------------------------------------
@@ -89,10 +92,24 @@ function GetBugValue () {					//Retorna o valor de cada bug
 function SetBugValue (t : int) {
 	bugValue = t;
 }
+function GetProjectSizeString () {					//Retorna o valor de cada bug
+	return projectSize;
+}
+function SetProjectSizeString () {
+	var aux : float = 0;
+	aux = maxCodeLines / deadlineDays;
+	if (aux < SMALL)
+		projectSize = "Small";
+	else
+		if (aux < MEDIUM)
+			projectSize = "Medium";
+		else
+			projectSize = "Huge";
+}
 //--------------------------------------------Awake-----------------------------------------------------------
-
 function Awake(){
-	var timerObj : GameObject;
-	timerObj = GameObject.Find("Timer");
-	timer = timerObj.GetComponent(GameTime);
+	SetProjectSizeString();
+}
+function Update(){
+	SetProjectSizeString();
 }

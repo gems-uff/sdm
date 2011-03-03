@@ -11,6 +11,7 @@ private var findBugScore : float = 1.0;
 private var gerBonusAnalista : float = 1.0;
 private var gerBonusArquiteto : float = 1.0;
 private var gerBonusProg : float = 1.0;
+private var marBonusAnalista : float = 1.0;
 
 //--------------------------------------------Get/Set-----------------------------------------------------------
 
@@ -50,7 +51,12 @@ function GetGerBonusProg () {
 function SetGerBonusProg(t: float){
 	gerBonusProg = t;
 }
-
+function GetMarBonusAnalista () {					
+	return marBonusAnalista;
+}
+function SetMarBonusAnalista(t: float){
+	marBonusAnalista = t;
+}
 //--------------------------------------------Reset-----------------------------------------------------------
 
 function ResetBonus(){
@@ -58,4 +64,5 @@ function ResetBonus(){
 	gerBonusAnalista = 1.0;
 	gerBonusArquiteto = 1.0;
 	gerBonusProg = 1.0;
+	marBonusAnalista = 1.0;
 }

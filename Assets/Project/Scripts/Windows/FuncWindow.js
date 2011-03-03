@@ -6,10 +6,10 @@
 //menu.SetJanelatributo(funcionario : Funcionario);
 
 public var DAYS_MONTH : int = 28;
-private var timer : GameTime;
+public var timer : GameTime;
 public var fichaGuiStyle : GUIStyle;
 private var especializacao_array = new Array(17);
-public var atributos : Atributos = new Atributos();
+private var atributos : Atributos = new Atributos();
 
 private var nome : String;
 private var salario : int;
@@ -28,90 +28,93 @@ private var windowRect : Rect = Rect (600,125,400,420);
 function SetJanelatributo(funcionario : Funcionario){
 	var i : int = 0;
 	var a2 : Especializacoes;
-	a2 = funcionario.GetEspecializacao();
-	nome = funcionario.GetNome();
-	atributos = funcionario.GetAtributos();
-	salario = funcionario.GetSalario();
-	salarioDay = salario / DAYS_MONTH;
-	papel = funcionario.GetPapel();
-	cargo = funcionario.GetCargo();
-	workHours = funcionario.GetWorkingHours();
-	showJanela = true;
-	morale = parseInt(funcionario.GetMorale());
-	
-	for (i=0;i<=17;i++)
-		especializacao_array[i]  = "";
-	
-	i = 0;
-	if ( a2.assembly == true )
+	if(funcionario.GetNome() != "Fired")
 	{
-		especializacao_array[i] = "Assembly";
-		i++;
-	}
-	if ( a2.csharp == true )
-	{
-		especializacao_array[i] = "Csharp";
-		i++;
-	}
-	if ( a2.java == true )
-	{
-		especializacao_array[i] = "Java";
-		i++;
-	}
-	if ( a2.perl == true )
-	{
-		especializacao_array[i] = "Perl";
-		i++;
-	}
-	if ( a2.ruby == true )
-	{
-		especializacao_array[i] = "Ruby";
-		i++;
-	}
-	if ( a2.metodoAgil == true )
-	{
-		especializacao_array[i] = "Agile Method";
-		i++;
-	}
-	if ( a2.metodoClassico == true )
-	{
-		especializacao_array[i] = "Classic Method";
-		i++;
-	}
-	if ( a2.analiseDeProgramas == true )
-	{
-		especializacao_array[i] = "Analysis Program";
-		i++;
-	}
-	if ( a2.controleDeVersao == true )
-	{
-		especializacao_array[i] = "Version Control";
-		i++;
-	}
-	if ( a2.depuracao == true )
-	{
-		especializacao_array[i] = "Depuration";
-		i++;
-	}
-	if ( a2.gerenciaDeProjetos == true )
-	{
-		especializacao_array[i] = "Project Management";
-		i++;
-	}
-	if ( a2.metricas == true )
-	{
-		especializacao_array[i] = "Metrics";
-		i++;
-	}
-	if ( a2.planejamento == true )
-	{
-		especializacao_array[i] = "Planning";
-		i++;
-	}
-	if ( a2.teste == true )
-	{
-		especializacao_array[i] = "Test";
-		i++;
+		a2 = funcionario.GetEspecializacao();
+		nome = funcionario.GetNome();
+		atributos = funcionario.GetAtributos();
+		salario = funcionario.GetSalario();
+		salarioDay = salario / DAYS_MONTH;
+		papel = funcionario.GetPapel();
+		cargo = funcionario.GetCargo();
+		workHours = funcionario.GetWorkingHours();
+		showJanela = true;
+		morale = parseInt(funcionario.GetMorale());
+		
+		for (i=0;i<=17;i++)
+			especializacao_array[i]  = "";
+		
+		i = 0;
+		if ( a2.assembly == true )
+		{
+			especializacao_array[i] = "Assembly";
+			i++;
+		}
+		if ( a2.csharp == true )
+		{
+			especializacao_array[i] = "Csharp";
+			i++;
+		}
+		if ( a2.java == true )
+		{
+			especializacao_array[i] = "Java";
+			i++;
+		}
+		if ( a2.perl == true )
+		{
+			especializacao_array[i] = "Perl";
+			i++;
+		}
+		if ( a2.ruby == true )
+		{
+			especializacao_array[i] = "Ruby";
+			i++;
+		}
+		if ( a2.metodoAgil == true )
+		{
+			especializacao_array[i] = "Agile Method";
+			i++;
+		}
+		if ( a2.metodoClassico == true )
+		{
+			especializacao_array[i] = "Classic Method";
+			i++;
+		}
+		if ( a2.analiseDeProgramas == true )
+		{
+			especializacao_array[i] = "Analysis Program";
+			i++;
+		}
+		if ( a2.controleDeVersao == true )
+		{
+			especializacao_array[i] = "Version Control";
+			i++;
+		}
+		if ( a2.depuracao == true )
+		{
+			especializacao_array[i] = "Depuration";
+			i++;
+		}
+		if ( a2.gerenciaDeProjetos == true )
+		{
+			especializacao_array[i] = "Project Management";
+			i++;
+		}
+		if ( a2.metricas == true )
+		{
+			especializacao_array[i] = "Metrics";
+			i++;
+		}
+		if ( a2.planejamento == true )
+		{
+			especializacao_array[i] = "Planning";
+			i++;
+		}
+		if ( a2.teste == true )
+		{
+			especializacao_array[i] = "Test";
+			i++;
+		}
 	}
 }
 
@@ -167,7 +170,6 @@ function WindowFunction (windowID : int)	{
 	if (GUI.Button (Rect (02,398,396,20), "Close Profile")) 
 	{
 		showJanela  = false;
-		//timer.SpeedNormal();
 	}
 }
 
