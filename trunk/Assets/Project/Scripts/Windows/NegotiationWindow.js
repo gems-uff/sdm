@@ -6,8 +6,8 @@
 //menuNegotiation.SetShowWindow(func);
 
 public var MARKETING_FACTOR : int = 4; //O max que o marketing pode alterar eh em 25% (100 / 4)
-private var project : Project;
-private var timer : GameTime;
+public var project : Project;
+public var timer : GameTime;
 private var windowRect : Rect = Rect (800,125,200,215);
 private var showWindow : boolean = false;
 
@@ -210,10 +210,12 @@ function WindowFunction(windowID : int){
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
+	/*
 	var timerObj : GameObject;
 	project = GetComponentInChildren(Project);
 	timerObj = GameObject.Find("Timer");
 	timer = timerObj.GetComponent(GameTime);
+	*/
 }
 
 //--------------------------------------------OnGUI-----------------------------------------------------------

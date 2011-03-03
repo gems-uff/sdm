@@ -5,31 +5,38 @@
 //menuEsp = menuObj.GetComponent(EspWindow);
 //menuEsp.Especializar(func, treino);
 
+public var timer : GameTime;
+public var pagar : Pagamentos;
+public var jogador : PlayerStats;
+public var PRECO : int = 2500;
+public var TEMPODETREINO : float = 14.0;
 private var func : Funcionario;
 private var treino : Treinamento;
-private var timerObj : GameObject;
-private var timer : GameTime;
-
-
-private var TEMPODETREINO : float = 14.0;
 private 	var deadlineTreino : float = 0.0;
 private var janelaEsp : boolean = false;
 private var windowRect : Rect = Rect (600,125,400,268);
 
 	
 function ExecutaJanelaEsp(t : String){
-	deadlineTreino = Time.timeSinceLevelLoad  + TEMPODETREINO;
-	func.SetPapel("Training");
-	treino.SetAprendendo(t);
-	janelaEsp  = false;
-	//timer.SpeedNormal();
+	if(jogador.GetSaldo() >= PRECO)
+	{
+		deadlineTreino = Time.timeSinceLevelLoad  + TEMPODETREINO;
+		func.SetPapel("Training");
+		treino.SetDeadline_Treino(deadlineTreino);
+		treino.SetAprendendo(t);
+		pagar.PagarFuncionarioTreinamento(PRECO);
+		janelaEsp  = false;
+	}
 }
 
 function Especializar (funcionario : Funcionario, treinamento : Treinamento){
 	func = funcionario;
 	treino = treinamento;
-	treino.SetLockEscolha(true);
-	janelaEsp = true;
+	if( func.GetNome() != "Fired" )
+	{
+		treino.SetLockEscolha(true);
+		janelaEsp = true;
+	}
 }
 function WindowFunction(windowID : int){
 	timer.PauseGame();
@@ -157,17 +164,14 @@ function WindowFunction(windowID : int){
 	if (GUI.Button (Rect (200,218,198,25), "Cancel")) {
 		janelaEsp  = false;
 		treino.SetLockEscolha(false);
-		//timer.SpeedNormal();
 	}
 	GUI.EndGroup ();
-	treino.SetDeadline_Treino(deadlineTreino);
 }
 
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
-	timerObj = GameObject.Find("Timer");
-	timer = timerObj.GetComponent(GameTime);
+
 }
 
 
@@ -179,5 +183,5 @@ function OnGUI () {
 	GUI.backgroundColor = Color.yellow;
 	GUI.contentColor = Color.green;
 	if(janelaEsp)
-		windowRect = GUI.Window (0, windowRect, WindowFunction, "Especializations");
+		windowRect = GUI.Window (0, windowRect, WindowFunction, ("Especializations / Price: " +PRECO) );
 }

@@ -5,36 +5,57 @@
 //pagar = playerObj.GetComponent(Pagamentos);
 
 public var DIAS_PAGAMENTO : int = 28;
+public var MORALE_MOD : int = 5.0;
+public var PROJECT_MULT : int = 4;
 private var isPago : boolean = false;
 
-private var func1 : Funcionario;
-private var func2 : Funcionario;
-private var func3 : Funcionario;
-private var func4 : Funcionario;
-private var func5 : Funcionario;
-private var func6 : Funcionario;
-private var func7 : Funcionario;
-private var func8 : Funcionario;
-private var project : Project;
-private var jogador : PlayerStats;
-private var timer : GameTime;
+public var func1 : Funcionario;
+public var func2 : Funcionario;
+public var func3 : Funcionario;
+public var func4 : Funcionario;
+public var func5 : Funcionario;
+public var func6 : Funcionario;
+public var func7 : Funcionario;
+public var func8 : Funcionario;
+public var project : Project;
+public var jogador : PlayerStats;
+public var timer : GameTime;
 
 
 //--------------------------------------------PagamentoDoFuncionario-----------------------------------------------------------
 
 function PagarFuncionario(){
-	jogador.ChangeSaldo(- func1.GetSalario() / DIAS_PAGAMENTO);
-	jogador.ChangeSaldo(- func2.GetSalario() / DIAS_PAGAMENTO);
-	jogador.ChangeSaldo(- func3.GetSalario() / DIAS_PAGAMENTO);
-	jogador.ChangeSaldo(- func4.GetSalario() / DIAS_PAGAMENTO);
-	jogador.ChangeSaldo(- func5.GetSalario() / DIAS_PAGAMENTO);
-	jogador.ChangeSaldo(- func6.GetSalario() / DIAS_PAGAMENTO);
-	jogador.ChangeSaldo(- func7.GetSalario() / DIAS_PAGAMENTO);
-	jogador.ChangeSaldo(- func8.GetSalario() / DIAS_PAGAMENTO);
+	VerificaSaldo(func1);
+	VerificaSaldo(func2);
+	VerificaSaldo(func3);
+	VerificaSaldo(func4);
+	VerificaSaldo(func5);
+	VerificaSaldo(func6);
+	VerificaSaldo(func7);
+	VerificaSaldo(func8);
 }
 
 function PagarFuncionarioTreinamento(preco : int){
 	jogador.ChangeSaldo(- preco);
+}
+
+//--------------------------------------------VerificaSaldo-----------------------------------------------------------
+
+function VerificaSaldo(func : Funcionario){
+	var saldo : int;
+	var salario : int;
+	var morale : int;
+	saldo = jogador.GetSaldo();
+	salario = func.GetSalario() / DIAS_PAGAMENTO;
+	if (saldo < salario)
+	{
+		saldo = 0;
+		morale = func.GetMorale();
+		morale = morale - MORALE_MOD;
+		func.SetMorale(morale);
+	}
+	else
+		jogador.ChangeSaldo(- salario);
 }
 //--------------------------------------------PagamentoDoProjeto-----------------------------------------------------------
 
@@ -74,7 +95,7 @@ function PagarJogadorConclusao(){
 function CalculaPagamentoFinal(){
 	var pagamentofinal : int;
 	pagamentofinal = project.GetPagamento();
-	pagamentofinal = pagamentofinal * 4;
+	pagamentofinal = pagamentofinal * PROJECT_MULT;
 	pagamentofinal = pagamentofinal * (project.GetSincronismo() / 100);	//reduz de acordo com o sincronismo
 	pagamentofinal = pagamentofinal - (parseInt(project.GetNumBugs()) * project.GetBugValue());		//reduz de acordo com o numero de bugs
 	
@@ -84,38 +105,5 @@ function CalculaPagamentoFinal(){
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
-	var func1Obj : GameObject;
-	var func2Obj : GameObject;
-	var func3Obj : GameObject;
-	var func4Obj : GameObject;
-	var func5Obj : GameObject;
-	var func6Obj : GameObject;
-	var func7Obj : GameObject;
-	var func8Obj : GameObject;
-	var menuObj : GameObject;
-	var projectObj : GameObject;
-	var playerObj : GameObject;
-	var timerObj : GameObject;
-	func1Obj = GameObject.Find("Funcionario1");
-	func1 = func1Obj.GetComponent(Funcionario);
-	func2Obj = GameObject.Find("Funcionario2");
-	func2 = func2Obj.GetComponent(Funcionario);
-	func3Obj = GameObject.Find("Funcionario3");
-	func3 = func3Obj.GetComponent(Funcionario);
-	func4Obj = GameObject.Find("Funcionario4");
-	func4 = func4Obj.GetComponent(Funcionario);
-	func5Obj = GameObject.Find("Funcionario5");
-	func5 = func5Obj.GetComponent(Funcionario);
-	func6Obj = GameObject.Find("Funcionario6");
-	func6 = func6Obj.GetComponent(Funcionario);
-	func7Obj = GameObject.Find("Funcionario7");
-	func7 = func7Obj.GetComponent(Funcionario);
-	func8Obj = GameObject.Find("Funcionario8");
-	func8 = func8Obj.GetComponent(Funcionario);
-	projectObj = GameObject.Find("Project");
-	project = projectObj.GetComponent(Project);
-	playerObj = GameObject.Find("PlayerStats");
-	jogador = playerObj.GetComponent(PlayerStats);
-	timerObj = GameObject.Find("Timer");
-	timer = timerObj.GetComponent(GameTime);
+
 }

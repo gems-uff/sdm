@@ -51,7 +51,7 @@ function StatusProjeto()	{
 	GUI.Box (Rect (00,50,90,25), "Deadline");
 	GUI.Box (Rect (00,75,90,25), "% complete");
 	GUI.Box (Rect (00,100,90,25), "# bugs");
-	GUI.Box (Rect (00,125,90,25), "Synchronism");
+	GUI.Box (Rect (00,125,90,25), "Validation");
 	GUI.Box (Rect (00,150,90,25), "Req. Code");
 	GUI.Box (Rect (00,175,90,25), "Monthly Inc.");
 	

@@ -6,10 +6,13 @@
 
 //Constantes
 //Variaves de configuracao de desempenho durante o trabalho
+public var equipe : Equipe;
+public var project : Project;
+public var timer : GameTime;
+
 public var JUNIOR_SALARY : float = 1.0;
 public var PLENO_SALARY : float = 1.3;
 public var SENIOR_SALARY : float = 1.5;
-
 public var JUNIOR_MODIFICATOR : float = 1.0;
 public var PLENO_MODIFICATOR : float = 1.2;
 public var SENIOR_MODIFICATOR : float = 1.4;
@@ -25,13 +28,11 @@ public var PROG_LINES_DAY_MOD : float = 5;
 public var PROG_BUG_MOD : float = 0.02;
 public var TESTER_DURANTE : float = 0.5;
 //Fim Constantes
-private var workingHoursModifier : float = 1.0;
+public var workingHoursModifier : float = 1.0;
 private var morale : float = 1.0;		//Valor entre 0.0 e 1.0
 private var func : Funcionario;
 private var treino : Treinamento;
-private var equipe : Equipe;
-private var project : Project;
-private var timer : GameTime;
+
 
 //--------------------------------------------Get-----------------------------------------------------------
 function GetWorkingHoursModifier() {
@@ -58,21 +59,24 @@ function GameModifiers( aux : float ){
 function WorkHours(){
 	var aux : int;
 	var newSalary : int;
-	aux = func.GetWorkingHours();
-	aux = aux / 5;
-	workingHoursModifier = aux * 12.5;
-	workingHoursModifier = workingHoursModifier / 100;
-	newSalary = func.GetSalarioDefault();
-	newSalary = newSalary * AjusteSalario();
-	newSalary = newSalary * workingHoursModifier;
-	newSalary = newSalary / 10;		//Para ser 0 na unidade do salario
-	newSalary = newSalary * 10;		//Para ser 0 na unidade do salario
-	morale = func.GetMorale();
-	morale = morale / 100;
-	if (newSalary == 0)
-		func.SetSalario(MINPAYMENT);
-	else
-		func.SetSalario(newSalary);
+	if(func.GetNome() != "Fired")
+	{
+		aux = func.GetWorkingHours();
+		aux = aux / 5;
+		workingHoursModifier = aux * 12.5;
+		workingHoursModifier = workingHoursModifier / 100;
+		newSalary = func.GetSalarioDefault();
+		newSalary = newSalary * AjusteSalario();
+		newSalary = newSalary * workingHoursModifier;
+		newSalary = newSalary / 10;		//Para ser 0 na unidade do salario
+		newSalary = newSalary * 10;		//Para ser 0 na unidade do salario
+		morale = func.GetMorale();
+		morale = morale / 100;
+		if (newSalary == 0)
+			func.SetSalario(MINPAYMENT);
+		else
+			func.SetSalario(newSalary);
+	}
 }
 
 //--------------------------------------------AjusteSalario-----------------------------------------------------------
@@ -127,39 +131,41 @@ function AjusteWork(){
 function Work(){	//Função que atualiza os campos de projeto conforme a performace do funcionario no seu papel
 	var modificador_positivo : float = EspecializacaoFerramenta();	//Resultado é um numero >= 0
 	var penal : float = MetodologiaEquipe();	//Resultado é um numero >= 0
-	
-	switch(func.GetPapel())
+	if(func.GetNome() != "Fired")
 	{
-	   case "Analyst": 	//caso analista
-		  AnalistaWork(modificador_positivo, penal);
-	   break;
+		switch(func.GetPapel())
+		{
+		   case "Analyst": 	//caso analista
+			  AnalistaWork(modificador_positivo, penal);
+		   break;
 
-	   case "Architect":	//caso arquiteto
-		  ArquitetoWork(modificador_positivo, penal);
-	   break;
-	   
-	   case "Manager":	//caso gerente
-		  GerenteWork(modificador_positivo, penal);
-	   break;
-	   
-	   case "Marketing":	//caso marketing
-		  MarketingWork(modificador_positivo, penal);
-	   break;
-	   
-	   case "Programmer":	//caso programador
-			ProgramadorWork(modificador_positivo, penal);
-	   break;
-	   
-	   case "Tester":	//caso tester
-		  TesterWork(modificador_positivo, penal);
-	   break;
-	   
-	   case "Training":	//caso esteja em treinamento
-		  Treinando();
-	   break;
+		   case "Architect":	//caso arquiteto
+			  ArquitetoWork(modificador_positivo, penal);
+		   break;
+		   
+		   case "Manager":	//caso gerente
+			  GerenteWork(modificador_positivo, penal);
+		   break;
+		   
+		   case "Marketing":	//caso marketing
+			  MarketingWork(modificador_positivo, penal);
+		   break;
+		   
+		   case "Programmer":	//caso programador
+				ProgramadorWork(modificador_positivo, penal);
+		   break;
+		   
+		   case "Tester":	//caso tester
+			  TesterWork(modificador_positivo, penal);
+		   break;
+		   
+		   case "Training":	//caso esteja em treinamento
+			  Treinando();
+		   break;
 
-	   default:
-		  break;
+		   default:
+			  break;
+		}
 	}
 }
 
@@ -179,7 +185,7 @@ function AnalistaWork(modificador_positivo : float, penal : float){
 		{
 			aux = analista * ANALISTA_DURANTE * (1 + modificador_positivo - penal);
 			aux = GameModifiers(aux);	//Modificadores de desempenho por gamespeed, moral e horas de trabalho
-			aux = aux * equipe.GetGerBonusAnalista();
+			aux = aux * equipe.GetGerBonusAnalista() * equipe.GetMarBonusAnalista();
 			project.SetSincronismo(aux);
 		}
 	}
@@ -228,7 +234,16 @@ function GerenteWork(modificador_positivo : float, penal : float){
 }
 
 function MarketingWork(modificador_positivo : float, penal : float){
-	//Fazer
+	var aux : float = 0.0;
+	var marketing : float ;
+	
+	marketing = func.GetMarketing();	
+	aux = marketing;
+	aux = aux * (1 + modificador_positivo - penal);
+	aux = GameModifiers(aux);	//Modificadores de desempenho por gamespeed, moral e horas de trabalho
+	aux = 1 + (aux / 100);
+	equipe.SetMarBonusAnalista(aux);
+
 }
 
 function ProgramadorWork(modificador_positivo : float, penal : float){
@@ -413,6 +428,7 @@ function EspecializacaoFerramenta (){
 	   break;
 	   
 	   case "Marketing":	//caso marketing
+			//Nao tem nenhuma
 	   break;
 	   
 	   case "Programmer":	//caso programador
@@ -436,15 +452,6 @@ function EspecializacaoFerramenta (){
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
-	var equipeObj : GameObject;
-	var projectObj : GameObject;
-	var timerObj : GameObject;
 	func = GetComponentInChildren(Funcionario);
 	treino = GetComponentInChildren(Treinamento);
-	equipeObj = GameObject.Find("Equipe");
-	equipe = equipeObj.GetComponent(Equipe);
-	projectObj = GameObject.Find("Project");
-	project = projectObj.GetComponent(Project);
-	timerObj = GameObject.Find("Timer");
-	timer = timerObj.GetComponent(GameTime);
 }

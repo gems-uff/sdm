@@ -16,8 +16,6 @@ private var workHours : WorkingHoursWindow;
 public var endOnExit : boolean = true;
 private var gameobj : GameObject; 
 private var dialogEnable : boolean = false;
-private var msgDialogOptions : boolean = false;
-private var msgDialog7 : boolean = false;
 
 
 
@@ -25,10 +23,9 @@ private var msgDialog7 : boolean = false;
 
 function OnTriggerEnter( collider1 : Collider )
 {
-    if ( collider1.name == "Player" )
+    if ( collider1.name == "Player" && func.GetNome() != "Fired" )
 	{
 		dialogEnable = true;
-		msgDialogOptions = true;
 	}
 }
 
@@ -39,7 +36,6 @@ function OnTriggerExit( collider1 : Collider )
     if ( collider1.name == "Player" && endOnExit)
 	{
 		dialogEnable = false;
-		msgDialogStart = false;
 		//timer.SpeedNormal();
 	}
 }
@@ -52,57 +48,46 @@ function Dialog_Funcionario (){
 	{
 		timer.PauseGame();
 		GUI.Box (Rect (00,00,120,25), func.GetNome() + " :");
-		if( msgDialogOptions == true)	//Dialog Options
-		{
-			GUI.Box (Rect (00,25,600,150), "Hello boss. What's up ?", dialogGuiStyle);
-			if (GUI.Button (Rect (600,25, 130, 25), "Profile")) {
-					msgDialogOptions = false;
-					menuAtr.SetJanelatributo(func);
+		GUI.Box (Rect (00,25,600,150), "Hello boss. What's up ?", dialogGuiStyle);
+		if (GUI.Button (Rect (600,25, 130, 25), "Profile")) {
+				menuAtr.SetJanelatributo(func);
+				dialogEnable = false;
+		}
+		if (GUI.Button (Rect (600,50, 130, 25), "Train")) {
+				menuEsp.Especializar(func, treino);
+				dialogEnable = false;
+		}
+		if (GUI.Button (Rect (600,75, 130, 25), "Change Task")) {
+				menuPapel.MudarPapel(func, treino);
+				dialogEnable = false;
+		}
+		if (GUI.Button (Rect (600,100, 130, 25), "Working Hours")) {
+				workHours.ChangeWorkHours(func);
+				dialogEnable = false;
+		}
+		//Vazio
+		GUI.Box (Rect (600,125, 130, 25), "");
+		//Se arquiteto
+		if(func.GetPapel() == "Architect" && menuPrototype.GetIsLocked() == false)
+			if (GUI.Button (Rect (600,125, 130, 25), "Prototype")) {
+					menuPrototype.SetShowWindow(func);
 					dialogEnable = false;
 			}
-			if (GUI.Button (Rect (600,50, 130, 25), "Train")) {
-					msgDialogOptions = false;
-					menuEsp.Especializar(func, treino);
+		//Se gerente
+		if(func.GetPapel() == "Manager")
+			if (GUI.Button (Rect (600,125, 130, 25), "Hire")) {
+					//Chama HIRE
 					dialogEnable = false;
 			}
-			if (GUI.Button (Rect (600,75, 130, 25), "Change Task")) {
-					msgDialogOptions = false;
-					menuPapel.MudarPapel(func, treino);
+		//se Marketing
+		if(func.GetPapel() == "Marketing" && menuNegotiation.GetLockNegotiation() == false)
+			if (GUI.Button (Rect (600,125, 130, 25), "Negotiation")) {
+					menuNegotiation.SetShowWindow(func);
 					dialogEnable = false;
 			}
-			if (GUI.Button (Rect (600,100, 130, 25), "Working Hours")) {
-					msgDialogOptions = false;
-					workHours.ChangeWorkHours(func);
-					dialogEnable = false;
-			}
-			//Vazio
-			GUI.Box (Rect (600,125, 130, 25), "");
-			//Se arquiteto
-			if(func.GetPapel() == "Architect" && menuPrototype.GetIsLocked() == false)
-				if (GUI.Button (Rect (600,125, 130, 25), "Prototype")) {
-						msgDialogOptions = false;
-						menuPrototype.SetShowWindow(func);
-						dialogEnable = false;
-				}
-			//Se gerente
-			if(func.GetPapel() == "Manager")
-				if (GUI.Button (Rect (600,125, 130, 25), "Hire")) {
-						msgDialogOptions = false;
-						//Chama HIRE
-						dialogEnable = false;
-				}
-			//se Marketing
-			if(func.GetPapel() == "Marketing" && menuNegotiation.GetLockNegotiation() == false)
-				if (GUI.Button (Rect (600,125, 130, 25), "Negotiation")) {
-						msgDialogOptions = false;
-						menuNegotiation.SetShowWindow(func);
-						dialogEnable = false;
-				}
-			if (GUI.Button (Rect (600,150, 130, 25), "End")) {
-					msgDialogOptions = false;
-					//timer.SpeedNormal();
-					dialogEnable = false;
-			}
+		if (GUI.Button (Rect (600,150, 130, 25), "End")) {
+				//timer.SpeedNormal();
+				dialogEnable = false;
 		}
 	}
 	GUI.EndGroup ();

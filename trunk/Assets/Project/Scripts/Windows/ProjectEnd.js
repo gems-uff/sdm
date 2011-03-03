@@ -1,11 +1,9 @@
 
 
 public var customGuiStyle : GUIStyle;
-private var project : Project;
-private var playerObj : GameObject;
-private var pgjog : Pagamentos;
-private var timerObj : GameObject;
-private var timer : GameTime;
+public var project : Project;
+public var pgjog : Pagamentos;
+public var timer : GameTime;
 public var msgFalha : String;
 private var windowRect : Rect = Rect (700,125,300,395);
 private var closeDialog : boolean = false;
@@ -57,11 +55,15 @@ function WindowFunction(windowID : int){
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
+/*
+	var playerObj : GameObject;
+	var timerObj : GameObject;
 	playerObj = GameObject.Find("PlayerStats");
 	pgjog = playerObj.GetComponent(Pagamentos);
 	project = GetComponentInChildren(Project);
 	timerObj = GameObject.Find("Timer");
 	timer = timerObj.GetComponent(GameTime);
+	*/
 }
 
 //--------------------------------------------OnGUI-----------------------------------------------------------

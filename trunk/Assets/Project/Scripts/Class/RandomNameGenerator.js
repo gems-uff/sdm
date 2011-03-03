@@ -70,6 +70,36 @@ class RandomNameGenerator extends System.ValueType{
 		   case 20:
 				nome = "Darven";
 		   break;
+		   case 21:
+				nome = "Leon";
+		   break;
+		   case 22:
+				nome = "Lorenz";
+		   break;
+		   case 23:
+				nome = "Michal";
+		   break;
+		   case 24:
+				nome = "Nobert";
+		   break;
+		   case 25:
+				nome = "Pawel";
+		   break;
+		   case 26:
+				nome = "Rafael";
+		   break;
+		   case 27:
+				nome = "Sebastian";
+		   break;
+		   case 28:
+				nome = "Tadeu";
+		   break;
+		   case 29:
+			  nome = "Tekla";
+		   break;
+		   case 30:
+				nome = "Zenon";
+		   break;
 		   case 31:
 				nome = "Davish";
 		   break;
@@ -82,7 +112,7 @@ class RandomNameGenerator extends System.ValueType{
 		   case 34:
 				nome = "Fynn";
 		   break;
-		   case 3:
+		   case 35:
 				nome = "Ganner";
 		   break;
 		   case 36:
@@ -98,6 +128,36 @@ class RandomNameGenerator extends System.ValueType{
 			  nome = "Jek";
 		   break;
 		   case 40:
+				nome = "Alfons ";
+		   break;
+		   case 41:
+				nome = "Baltazar ";
+		   break;
+		   case 42:
+				nome = "Bernardo";
+		   break;
+		   case 43:
+				nome = "Skirata";
+		   break;
+		   case 44:
+				nome = "Von";
+		   break;
+		   case 45:
+				nome = "William";
+		   break;
+		   case 46:
+				nome = "Edmund";
+		   break;
+		   case 47:
+				nome = "Edward";
+		   break;
+		   case 48:
+				nome = "Fabian";
+		   break;
+		   case 49:
+			  nome = "Gabriel";
+		   break;
+		   case 50:
 				nome = "Jorus";
 		   break;
 		   case 51:
@@ -130,6 +190,36 @@ class RandomNameGenerator extends System.ValueType{
 		   case 60:
 				nome = "Pedric";
 		   break;
+		   case 61:
+				nome = "Pedro";
+		   break;
+		   case 62:
+				nome = "Douglas";
+		   break;
+		   case 63:
+				nome = "Matheus";
+		   break;
+		   case 64:
+				nome = "Frede";
+		   break;
+		   case 65:
+				nome = "Carlos";
+		   break;
+		   case 66:
+				nome = "Leonardo";
+		   break;
+		   case 67:
+				nome = "Mario";
+		   break;
+		   case 68:
+				nome = "Anderson";
+		   break;
+		   case 69:
+			  nome = "Albert";
+		   break;
+		   case 70:
+				nome = "Natsu";
+		   break;
 		   case 71:
 				nome = "Predne";
 		   break;
@@ -159,6 +249,36 @@ class RandomNameGenerator extends System.ValueType{
 		   break;
 		   case 80:
 				nome = "Set";
+		   break;
+		   case 81:
+				nome = "Filip";
+		   break;
+		   case 82:
+				nome = "Henry";
+		   break;
+		   case 83:
+				nome = "Tuvok";
+		   break;
+		   case 84:
+				nome = "Kim";
+		   break;
+		   case 85:
+				nome = "Izydor";
+		   break;
+		   case 86:
+				nome = "Jacek";
+		   break;
+		   case 87:
+				nome = "Julian";
+		   break;
+		   case 88:
+				nome = "Justin";
+		   break;
+		   case 89:
+			  nome = "Kasper";
+		   break;
+		   case 90:
+				nome = "Konrad";
 		   break;
 		   case 91:
 				nome = "Shran";

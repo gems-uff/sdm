@@ -5,30 +5,49 @@
 //menuPapel = menuObj.GetComponent(PapelWindow);
 //menuPapel.MudarPapel(func);
 
-//Usa Time.timeScale = 0.5;
-
+public var timer : GameTime;
+private var fire : NewFuncionario;
 private var func : Funcionario;
-private var timerObj : GameObject;
-private var timer : GameTime;
 private var windowRect : Rect = Rect (600,125,400,248);
+private var windowRect2 : Rect = Rect (600,125,300,100);
 private var janelaPapel : boolean = false;
+private var fireDialogEnable : boolean = false;
+
+function MudarPapel (funcionario : Funcionario, treino : Treinamento){
+	func = funcionario;
+	fire = func.GetComponentInChildren(NewFuncionario);
+	if(func.GetNome() != "Fired")
+	{
+		if (treino.GetLockEscolha() == false)
+			janelaPapel = true;
+	}
+}
 
 function ExecutaJanelaPapel(t : String){
 	func.SetPapel(t);
 	janelaPapel  = false;
-	//timer.SpeedNormal();
 }
 function ExecutaJanelaCargo(t : String){
 	func.SetCargo(t);
 	janelaPapel  = false;
-	//timer.SpeedNormal();
+}
+function ExecutaJanelaFire(){
+	fireDialogEnable = true;
+	janelaPapel  = false;
+}
+function WindowFire(windowID : int){
+	GUI.Box (Rect (02,20,296,25), "Name: " + func.GetNome());
+	GUI.BeginGroup (Rect (02,45,300,100));
+	if (GUI.Button (Rect (02,00,296,25), "Sure?")) {
+		fireDialogEnable = false;
+		fire.FireFuncionario(func);
+	}
+	if (GUI.Button (Rect (02,25,296,25), "Cancel")) {
+		fireDialogEnable = false;
+	}
+	GUI.EndGroup ();
 }
 
-function MudarPapel (funcionario : Funcionario, treino : Treinamento){
-	func = funcionario;
-	if (treino.GetLockEscolha() == false)
-		janelaPapel = true;
-}
 function WindowFunction(windowID : int){
 	timer.PauseGame();
 	GUI.Box (Rect (02,18,396,25), func.GetNome());
@@ -117,6 +136,9 @@ function WindowFunction(windowID : int){
 		GUI.Box (Rect (200,93,198,25), "Senior");
 	
 	//---------------------------------------------------------------------------------------------------------------------
+	if (GUI.Button (Rect (200,143,198,25), "Fire!")) {
+		ExecutaJanelaFire();
+	}
 	//Botao de Cancel
 	if (GUI.Button (Rect (02,193,396,25), "Cancel")) {
 		janelaPapel  = false;
@@ -128,8 +150,7 @@ function WindowFunction(windowID : int){
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
-	timerObj = GameObject.Find("Timer");
-	timer = timerObj.GetComponent(GameTime);
+
 }
 //--------------------------------------------OnGUI-----------------------------------------------------------
 
@@ -140,4 +161,6 @@ function OnGUI () {
 	GUI.contentColor = Color.green;
 	if(janelaPapel)
 		windowRect = GUI.Window (2, windowRect, WindowFunction, "Roles");
+	if(fireDialogEnable)
+		windowRect2 = GUI.Window (10, windowRect2, WindowFire, "Confirmation: Firing employee");
 }

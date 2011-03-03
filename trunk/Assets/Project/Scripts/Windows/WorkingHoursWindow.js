@@ -6,21 +6,22 @@
 //workHours.ChangeWorkHours(func);
 
 private var func : Funcionario;
-private var timerObj : GameObject;
-private var timer : GameTime;
+public var timer : GameTime;
 private var windowRect : Rect = Rect (700,325,300,120);
 private var hSliderValue : float = 8.0;
 private var showWindow : boolean = false;
 
 function ChangeWorkHours (funcionario : Funcionario){
 	func = funcionario;
-	showWindow = true;
+	if(funcionario.GetNome() != "Fired")
+		showWindow = true;
 }
 
 function WindowFunction(windowID : int){
 	var aux : int;
 	timer.PauseGame();
 	GUI.Box (Rect (02,18,296,25), func.GetNome());
+	//hSliderValue = func.GetWorkingHours() / 5;
 	hSliderValue = GUI.HorizontalSlider (Rect (022, 75, 246, 25), hSliderValue, 0.0, 16.0);
 	aux = parseInt(hSliderValue);
 	aux = aux * 5;
@@ -29,7 +30,6 @@ function WindowFunction(windowID : int){
 	//Botao de Cancel
 	if (GUI.Button (Rect (02,93,296,25), "Close")) {
 		showWindow  = false;
-		//timer.SpeedNormal();
 	}
 }
 
@@ -37,8 +37,6 @@ function WindowFunction(windowID : int){
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
-	timerObj = GameObject.Find("Timer");
-	timer = timerObj.GetComponent(GameTime);
 }
 
 function OnGUI () {

@@ -18,37 +18,37 @@ private var incrementBy : int = 1;
 private var gameTime : int = 0;
 private var timeSpeed : float = 1.0;
 
-private var pagar : Pagamentos;
-private var project : Project;
-private var equipe : Equipe;
-private var menuPrototype : PrototypeWindow;
+public var pagar : Pagamentos;
+public var project : Project;
+public var equipe : Equipe;
+public var menuPrototype : PrototypeWindow;
 
-private var func1 : Funcionario;
-private var func2 : Funcionario;
-private var func3 : Funcionario;
-private var func4 : Funcionario;
-private var func5 : Funcionario;
-private var func6 : Funcionario;
-private var func7 : Funcionario;
-private var func8 : Funcionario;
+public var func1 : Funcionario;
+public var func2 : Funcionario;
+public var func3 : Funcionario;
+public var func4 : Funcionario;
+public var func5 : Funcionario;
+public var func6 : Funcionario;
+public var func7 : Funcionario;
+public var func8 : Funcionario;
 
-private var work1 : Working;
-private var work2 : Working;
-private var work3 : Working;
-private var work4 : Working;
-private var work5 : Working;
-private var work6 : Working;
-private var work7 : Working;
-private var work8 : Working;
+public var work1 : Working;
+public var work2 : Working;
+public var work3 : Working;
+public var work4 : Working;
+public var work5 : Working;
+public var work6 : Working;
+public var work7 : Working;
+public var work8 : Working;
 
-private var morale1 : MoraleControl;
-private var morale2 : MoraleControl;
-private var morale3 : MoraleControl;
-private var morale4 : MoraleControl;
-private var morale5 : MoraleControl;
-private var morale6 : MoraleControl;
-private var morale7 : MoraleControl;
-private var morale8 : MoraleControl;
+public var morale1 : MoraleControl;
+public var morale2 : MoraleControl;
+public var morale3 : MoraleControl;
+public var morale4 : MoraleControl;
+public var morale5 : MoraleControl;
+public var morale6 : MoraleControl;
+public var morale7 : MoraleControl;
+public var morale8 : MoraleControl;
 
 //--------------------------------------------Get/Set-----------------------------------------------------------
 
@@ -189,59 +189,4 @@ function Start () {
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
-	var playerObj : GameObject;
-	var projectObj : GameObject;
-	var equipeObj : GameObject;
-	var func1Obj : GameObject;
-	var func2Obj : GameObject;
-	var func3Obj : GameObject;
-	var func4Obj : GameObject;
-	var func5Obj : GameObject;
-	var func6Obj : GameObject;
-	var func7Obj : GameObject;
-	var func8Obj : GameObject;
-	var menuObj : GameObject;
-	menuObj = GameObject.Find("GUI");
-	menuPrototype = menuObj.GetComponent(PrototypeWindow);
-	playerObj = GameObject.Find("PlayerStats");
-	pagar = playerObj.GetComponent(Pagamentos);
-	projectObj = GameObject.Find("Project");
-	project = projectObj.GetComponent(Project);
-	equipeObj = GameObject.Find("Equipe");
-	equipe = equipeObj.GetComponent(Equipe);
-	
-	func1Obj = GameObject.Find("Funcionario1");
-	func1 = func1Obj.GetComponent(Funcionario);
-	func2Obj = GameObject.Find("Funcionario2");
-	func2 = func2Obj.GetComponent(Funcionario);
-	func3Obj = GameObject.Find("Funcionario3");
-	func3 = func3Obj.GetComponent(Funcionario);
-	func4Obj = GameObject.Find("Funcionario4");
-	func4 = func4Obj.GetComponent(Funcionario);
-	func5Obj = GameObject.Find("Funcionario5");
-	func5 = func5Obj.GetComponent(Funcionario);
-	func6Obj = GameObject.Find("Funcionario6");
-	func6 = func6Obj.GetComponent(Funcionario);
-	func7Obj = GameObject.Find("Funcionario7");
-	func7 = func7Obj.GetComponent(Funcionario);
-	func8Obj = GameObject.Find("Funcionario8");
-	func8 = func8Obj.GetComponent(Funcionario);
-	
-	work1 = func1Obj.GetComponent(Working);
-	work2 = func2Obj.GetComponent(Working);
-	work3 = func3Obj.GetComponent(Working);
-	work4 = func4Obj.GetComponent(Working);
-	work5 = func5Obj.GetComponent(Working);
-	work6 = func6Obj.GetComponent(Working);
-	work7 = func7Obj.GetComponent(Working);
-	work8 = func8Obj.GetComponent(Working);
-	
-	morale1 = func1Obj.GetComponent(MoraleControl);
-	morale2 = func2Obj.GetComponent(MoraleControl);
-	morale3 = func3Obj.GetComponent(MoraleControl);
-	morale4 = func4Obj.GetComponent(MoraleControl);
-	morale5 = func5Obj.GetComponent(MoraleControl);
-	morale6 = func6Obj.GetComponent(MoraleControl);
-	morale7 = func7Obj.GetComponent(MoraleControl);
-	morale8 = func8Obj.GetComponent(MoraleControl);
 }
