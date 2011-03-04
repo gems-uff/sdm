@@ -50,6 +50,15 @@ public var morale6 : MoraleControl;
 public var morale7 : MoraleControl;
 public var morale8 : MoraleControl;
 
+public var newProject01 : RandomProjectGenerator;
+public var newProject02 : RandomProjectGenerator;
+public var newProject03 : RandomProjectGenerator;
+public var newProject04 : RandomProjectGenerator;
+public var newProject05 : RandomProjectGenerator;
+public var newProject06 : RandomProjectGenerator;
+public var newProject07 : RandomProjectGenerator;
+public var newProject08 : RandomProjectGenerator;
+
 //--------------------------------------------Get/Set-----------------------------------------------------------
 
 function GetGameTime(){
@@ -90,7 +99,7 @@ function GetTime () {	//Retorna o tempo no formato data/hora
 function GetTimeString(t : int) :String{
 	var semana : int = t / 7 ;
     var dia : int = (t % 7) +1;
-    return ("Week: " + semana.ToString("00") + "   Day: " + dia.ToString("0"));
+    return ("Week: " + semana.ToString("000") + "   Day: " + dia.ToString("0"));
 }
 
 //--------------------------------------------PassTime-----------------------------------------------------------
@@ -139,6 +148,18 @@ function PassTime () {
 		equipe.ResetBonus();
 	if((gameTime % 7) == 0)
 		menuPrototype.Unlock();
+	if(gameTime > project.GetDeadline() || project.GetFractionDone() >= 100)
+	{
+		newProject01.NewProject();
+		newProject02.NewProject();
+		newProject03.NewProject();
+		newProject04.NewProject();
+		newProject05.NewProject();
+		newProject06.NewProject();
+		newProject07.NewProject();
+		newProject08.NewProject();
+		project.SetIscomplete(true);
+	}
 }
 
 //--------------------------------------------Speed-----------------------------------------------------------

@@ -21,6 +21,8 @@ private var atributos : Atributos = new Atributos();
 private var especializacao : Especializacoes = new Especializacoes();
 private var newNome : RandomNameGenerator = new RandomNameGenerator();
 
+//--------------------------------------------ReturnRandomValue-----------------------------------------------------------
+
 function ReturnRandomValue(){
 	var value1 : int = Random.Range (10, 101);
 	var value2 : int = Random.Range (10, 101);
@@ -38,6 +40,9 @@ function ReturnRandomValue(){
 		return value2;
 	*/
 }
+
+//--------------------------------------------SetAtributos-----------------------------------------------------------
+
 function SetAtributos()
 {
 	atributos.adaptabilidade = ReturnRandomValue();
@@ -52,6 +57,8 @@ function SetAtributos()
 	
 	func.SetAtributos(atributos);
 }
+
+//--------------------------------------------SetEspecializacao-----------------------------------------------------------
 
 function SetEspecializacao (t: int){
 	switch(t)
@@ -120,6 +127,8 @@ function SetEspecializacao (t: int){
 	}
 }
 
+//--------------------------------------------SetEspecializacoes-----------------------------------------------------------
+
 function SetEspecializacoes()
 {
 	var espLing : int = Random.Range(1, 8);		//Linguagem
@@ -169,6 +178,8 @@ function SetEspecializacoes()
 	func.SetEspecializacoes(especializacao);
 }
 
+//--------------------------------------------NewSalary-----------------------------------------------------------
+
 function NewSalario(){
 	var salario : int = 0;
 	var randomModifier : int = Random.Range(100, 121);
@@ -181,34 +192,6 @@ function NewSalario(){
 	//salario = salario * 100;
 	
 	return salario;
-}
-
-//--------------------------------------------Add Funcionario Gerado Na Posicao De Outro Funcionario-----------------------------------------------------------
-//Esta funcao serve para "copiar" o funcionario contratado para o slot indicado
-function ContratarFuncionario(t: String){
-	funcObj = GameObject.Find(t);
-	func = funcObj.GetComponent(Funcionario);
-	func.SetPapel("None");
-	func.SetMorale(100);
-	func.SetAtributos(atributos);
-	func.SetWorkingHours(40);
-	func.SetEspecializacoes(especializacao);
-	func.SetNome(nome);
-	func.GetComponentInChildren(MeshRenderer).enabled = true;
-}
-
-//--------------------------------------------NewFuncionario-----------------------------------------------------------
-//Esta funcao serve para criar um funcionario randomico para possivel contratacao
-function NewFuncionario (t : String) {
-	funcObj = GameObject.Find(t);
-	func = funcObj.GetComponent(Funcionario);
-	SetAtributos();
-	SetEspecializacoes();
-	func.SetWorkingHours(40);
-	func.SetMorale(100);
-	nome = newNome.RandomName();
-	func.SetNome(nome);
-	func.GetComponentInChildren(MeshRenderer).enabled = true;
 }
 
 //--------------------------------------------NewFuncionario-----------------------------------------------------------
@@ -267,7 +250,6 @@ function RandomFuncionarioStarter () {
 	func.SetSalarioDefault(NewSalario());
 	func.SetSalario(NewSalario());
 }
-
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {

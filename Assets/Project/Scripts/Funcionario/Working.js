@@ -72,7 +72,7 @@ function WorkHours(){
 		newSalary = newSalary * 10;		//Para ser 0 na unidade do salario
 		morale = func.GetMorale();
 		morale = morale / 100;
-		if (newSalary == 0)
+		if (newSalary < MINPAYMENT)
 			func.SetSalario(MINPAYMENT);
 		else
 			func.SetSalario(newSalary);

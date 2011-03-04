@@ -5,29 +5,34 @@
 //project = projectObj.GetComponent(Project);
 
 public var timer : GameTime;
-public var deadlineDays : int = 0;  //in days
+public var deadline : int = 1;  //in days
 public var maxCodeLines : int = 0;	//size of the software to be done
-public var linguagemProgramacao : String = "java";	//Linguagem: Escolher apenas uma linguagem
+public var linguagemProgramacao : String = "";	//Linguagem: Escolher apenas uma linguagem
 public var pagamento : int = 0;
 public var bugValue : int = 1000;
-public var SMALL : int = 50;
-public var MEDIUM : int = 120;
-
+public var SIMPLE : int = 105;		//Max 35 linhas de codigo por programador por dia (3 programadores)
+public var REGULAR : int = 180;	//Max 60
+public var COMPLEX : int = 240;	//Max 80
+												//Insane > 80 por programador
+public var LOW : int = 1500;
+public var NORMAL : int = 3000;
+public var HIGH : int = 4500;
 private var projectSize : String = "";
+private var projectQuality : String = "";
 private var sincronismo = 0.0;		//sincronismo
 private var completed : boolean = false;
 private var bugs : float = 0.0 ;				//number of bugs in the software
 private var codeLinesDone : int = 0;	//number of lines done by the team
 //--------------------------------------------Get/Set-----------------------------------------------------------
 
-function GetDeadlineDays () {					//Retorna o Deadline em horas
-	return deadlineDays;
+function GetDeadline () {					//Retorna o Deadline em horas
+	return deadline;
 }
-function SetDeadlineDays (t : int) {					//Seta o Deadline em horas
-	deadlineDays = t;
+function SetDeadline (t : int) {					//Seta o Deadline em horas
+	deadline = t;
 }
 function SetNewDeadline(t: int){			//Seta a nova data de deadline
-	deadlineDays = t + timer.GetGameTime();
+	deadline = t + timer.GetGameTime();
 }
 function GetNumBugs () {						//Retorna o numero de bugs no software
 	return bugs;
@@ -50,6 +55,8 @@ function GetLinesDone () {						//Retorna o numero de linhas ja feitas para o so
 function SetLinesDone (t: int) {				//Seta o numero de linhas do software ja feitas
 	if (!completed)
 		codeLinesDone = codeLinesDone + t;
+	if (codeLinesDone > 100 )
+		codeLinesDone = 100;
 }
 function GetIscomplete () {					//Retorna se o projeto esta concluido
 	return completed;
@@ -58,11 +65,11 @@ function SetIscomplete (t: boolean) {		//Seta se o projeto esta concluido ou nao
 	completed = t;
 }
 function GetDeadLine () {						//Retorna o Deadline no formato Data/Hora
-	var deadline = timer.GetTimeString(deadlineDays);
+	var deadline = timer.GetTimeString(deadline);
 	return deadline;
 }
-function GetNumLinesDone () {					//Retorna a percentagem ja concluida do software
-	var completeFraction = codeLinesDone*100 / maxCodeLines;
+function GetFractionDone () {					//Retorna a percentagem ja concluida do software
+	var completeFraction = codeLinesDone * 100 / maxCodeLines;
 	return completeFraction;
 }
 function GetSincronismo () {						//Retorna o sincronismo do projeto com o que o cliente pediu
@@ -97,14 +104,34 @@ function GetProjectSizeString () {					//Retorna o valor de cada bug
 }
 function SetProjectSizeString () {
 	var aux : float = 0;
-	aux = maxCodeLines / deadlineDays;
-	if (aux < SMALL)
-		projectSize = "Small";
+	if (deadline == 0)
+		deadline = 1;
+	aux = maxCodeLines / deadline;
+	if (aux < SIMPLE)
+		projectSize = "Simple";
 	else
-		if (aux < MEDIUM)
-			projectSize = "Medium";
+		if (aux < REGULAR)
+			projectSize = "Regular";
 		else
-			projectSize = "Huge";
+			if (aux < COMPLEX)
+				projectSize = "Complex";
+			else
+				projectSize = "Insane";
+}
+function GetProjectQuality(){
+	return projectQuality;
+}
+function SetProjectQuality(){
+	if (bugValue < LOW)
+		projectQuality = "Not a priority";
+	else
+		if (bugValue < NORMAL)
+			projectQuality = "Standart";
+		else
+			if(bugValue < HIGH)
+				projectQuality = "High priority";
+			else
+				projectQuality = "Highest priority";
 }
 //--------------------------------------------Awake-----------------------------------------------------------
 function Awake(){
@@ -112,4 +139,5 @@ function Awake(){
 }
 function Update(){
 	SetProjectSizeString();
+	SetProjectQuality();
 }

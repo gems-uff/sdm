@@ -40,7 +40,7 @@ function StatusProjeto()	{
 	timeText = timer.GetTime().ToString();
 	deadlineText = project.GetDeadLine().ToString();
 	bugsText = parseInt(project.GetNumBugs()).ToString();							//parseint para converter o float para inteiro
-	completedText = (project.GetNumLinesDone().ToString() + " %");
+	completedText = (project.GetFractionDone().ToString() + " %");
 	sincronismoText = (parseInt(project.GetSincronismo()).ToString() + " %");	//parseint para converter o float para inteiro
 	reqlingText = project.GetLinguagem ();
 	valorMensalText = "$ " + (parseInt(project.GetPagamento()).ToString());

@@ -79,7 +79,7 @@ function PagarJogadorConclusao(){
 	isComplete = project.GetIscomplete();
 	if (isComplete == true)
 	{
-		if (project.GetNumLinesDone == 100)
+		if (project.GetFractionDone() == 100)
 		{
 			if (isPago == false)
 			{

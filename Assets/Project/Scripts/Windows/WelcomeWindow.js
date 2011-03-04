@@ -20,21 +20,13 @@ function WindowFunction(windowID : int){
 	if (GUI.Button (Rect (02,368,296,25), "Close Window")) 
 	{
 		welcome  = true;
-		projectW.SetShowWindow();
-		//timer.SpeedNormal();
+		projectW.SetShowWindow(project);
 	}
 }
 
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
-	/*
-	var timerObj : GameObject;
-	project = GetComponentInChildren(Project);
-	projectW = GetComponentInChildren(ProjectWindow);
-	timerObj = GameObject.Find("Timer");
-	timer = timerObj.GetComponent(GameTime);
-	*/
 }
 
 //--------------------------------------------OnGUI-----------------------------------------------------------
