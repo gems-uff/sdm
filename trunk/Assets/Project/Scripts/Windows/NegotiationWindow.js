@@ -68,10 +68,10 @@ function ApplyChanges(){
 	}
 	if(timeBool == true)
 	{
-		trade = project.GetDeadlineDays();
+		trade = project.GetDeadline();
 		trade = trade * marketing_more;
 		trade = parseInt(trade);
-		project.SetDeadlineDays(trade);
+		project.SetDeadline(trade);
 	}
 	if(moneyBool == true)
 	{
@@ -97,10 +97,10 @@ function ApplyChanges(){
 	}
 	if(lessTime == true)
 	{
-		tradeOff = project.GetDeadlineDays();
+		tradeOff = project.GetDeadline();
 		tradeOff = tradeOff * marketing_less;
 		tradeOff = parseInt(tradeOff);
-		project.SetDeadlineDays(tradeOff);
+		project.SetDeadline(tradeOff);
 	}
 	if(lessMoney == true)
 	{

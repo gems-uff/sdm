@@ -5,7 +5,7 @@
 
 
 
-public var project : Project;
+private var project : Project;
 private var timerObj : GameObject;
 public var timer : GameTime;
 private var showWindow : boolean = false;
@@ -14,19 +14,24 @@ public var customGuiStyle : GUIStyle;
 private var windowRect : Rect = Rect (700,125,300,395);
 
 //Funcao que permite a exibicao da janela com os dados do projeto
-function SetShowWindow(){
+function SetShowWindow(projectShow : Project){
+	project = projectShow;
 	showWindow = true;
 }
-
+function DisableShowWindow(){
+	showWindow = false;
+}
 function WindowFunction(windowID : int){
 	var deadline = project.GetDeadLine();
 	var linguagem = project.GetLinguagem();
 	var pagamento = project.GetPagamento();
 	var projectSize = project.GetProjectSizeString();
+	var projectQuality = project.GetProjectQuality();
 	timer.PauseGame();
 	GUI.Box (Rect (02,018,296,350), 
 	("\t<Fazer descricao> \n \n" +
-	" Size: " + projectSize + "\n" +
+	" Complexity: " + projectSize + "\n" +
+	" Quality: " + projectQuality + "\n" +
 	" Deadline: " + deadline + "\n"+ 
 	" Programing Language: " + linguagem + "\n" +
 	" Monthly Payment: " + pagamento +

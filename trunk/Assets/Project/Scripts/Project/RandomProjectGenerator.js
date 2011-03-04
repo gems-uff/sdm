@@ -1,28 +1,41 @@
 
+//public var acceptedProject : Project;
 private var projeto : Project;
-private var deadlineDays : int = 0;  										//in days
+private var deadline : int = 0;  										//in days
 private var maxCodeLines : int = 0;										//size of the software to be done
-private var linguagemProgramacao : String = "java";					//Linguagem: Escolher apenas uma linguagem
+private var linguagemProgramacao : String;					//Linguagem: Escolher apenas uma linguagem
 private var pagamento : int = 0;
 private var bugValue : int = 1000;
+private var DAYS_MONTH : int = 28;
+public var PAG_MOD : int = 300;
 
 function NewProject(){
 	var t : int = Random.Range (1, 11);
+	var auxD1 : int = Random.Range (28, 336); 
+	var auxD2 : int = Random.Range (28, 336); 
+	var auxCL : int = Random.Range (60, 300);
+	var auxPG : float = Random.Range (0.7, 1.3);
+	var auxBV : int = Random.Range (5, 50);
+		
+	if (auxD1 > auxD2)
+	{
+		deadline = auxD2;
+	}
+	else
+	{
+		deadline = auxD1;
+	}
 	linguagemProgramacao = LinguagemProg(t);
-	
-	deadlineDays = Random.Range (28, 336); 							//De um mes até 1 ano
-	maxCodeLines = Random.Range (100, 1000);						//Fator de linhas de codigo, será multiplicado pelo deadline
-	maxCodeLines = maxCodeLines * deadlineDays;
-	
-	pagamento = Random.Range (50, 100);								//Fator multiplicador de pagamento
-	pagamento = maxCodeLines / deadlineDays * pagamento;		//É de acordo com o fator de linhas de codigo
-	
-	bugValue = Random.Range (5, 50);										//De 500 a 5000 por bug
-	bugValue = bugValue * 100;
-	projeto.SetNewDeadline(deadlineDays);
+	pagamento = PAG_MOD * auxPG  * auxCL;
+	pagamento = pagamento / 100;
+	pagamento = pagamento * 100;
+	maxCodeLines = auxCL * deadline;
+	bugValue = auxBV * 100;
+	projeto.SetNewDeadline(deadline);
 	projeto.SetProjectSize(maxCodeLines);
 	projeto.SetPagamento(pagamento);
 	projeto.SetBugValue(bugValue);
+	projeto.SetLinguagem(linguagemProgramacao);
 }
 
 function LinguagemProg(t : int){
@@ -51,7 +64,7 @@ function LinguagemProg(t : int){
 	   break;
 	   
 	   default:
-			modificador = "";
+			aux = "Any";
 		  break;
 	}
 	return aux;
@@ -61,5 +74,6 @@ function LinguagemProg(t : int){
 
 function Awake () {
 	projeto = GetComponentInChildren(Project);
+	NewProject();
 	}
 	
