@@ -4,7 +4,7 @@
 //menuObj = GameObject.Find("GUI");
 //menuPapel = menuObj.GetComponent(PapelWindow);
 //menuPapel.MudarPapel(func);
-
+public var stringNames : StringNames;
 public var timer : GameTime;
 private var fire : NewFuncionario;
 private var func : Funcionario;
@@ -16,7 +16,7 @@ private var fireDialogEnable : boolean = false;
 function MudarPapel (funcionario : Funcionario, treino : Treinamento){
 	func = funcionario;
 	fire = func.GetComponentInChildren(NewFuncionario);
-	if(func.GetNome() != "Fired")
+	if(func.GetNome() != stringNames.fired)
 	{
 		if (treino.GetLockEscolha() == false)
 			janelaPapel = true;
@@ -53,87 +53,87 @@ function WindowFunction(windowID : int){
 	GUI.Box (Rect (02,18,396,25), func.GetNome());
 	GUI.BeginGroup (Rect (02,25,400,220));
 	//---------------------------------------------------------------------------------------------------------------------
-	if(func.GetPapel() != "Analyst")
-		if (GUI.Button (Rect (02,18,198,25), "Analyst")) {
-			ExecutaJanelaPapel("Analyst");
+	if(func.GetPapel() != stringNames.papelAnalista)
+		if (GUI.Button (Rect (02,18,198,25), stringNames.papelAnalista)) {
+			ExecutaJanelaPapel(stringNames.papelAnalista);
 		}
-	if(func.GetPapel() == "Analyst")
-		GUI.Box (Rect (02,18,198,25), "Analyst");
+	if(func.GetPapel() == stringNames.papelAnalista)
+		GUI.Box (Rect (02,18,198,25), stringNames.papelAnalista);
 	
 	//---------------------------------------------------------------------------------------------------------------------
-	if(func.GetPapel() != "Architect")
-		if (GUI.Button (Rect (02,43,198,25), "Architect")) {
-			ExecutaJanelaPapel("Architect");
+	if(func.GetPapel() != stringNames.papelArquiteto)
+		if (GUI.Button (Rect (02,43,198,25), stringNames.papelArquiteto)) {
+			ExecutaJanelaPapel(stringNames.papelArquiteto);
 		}
-	if(func.GetPapel() == "Architect")
-		GUI.Box (Rect (02,43,198,25), "Architect");
+	if(func.GetPapel() == stringNames.papelArquiteto)
+		GUI.Box (Rect (02,43,198,25), stringNames.papelArquiteto);
 	
 	//---------------------------------------------------------------------------------------------------------------------
-	if(func.GetPapel() != "Manager")
-		if (GUI.Button (Rect (02,68,198,25), "Manager")) {
-			ExecutaJanelaPapel("Manager");
+	if(func.GetPapel() != stringNames.papelGerente)
+		if (GUI.Button (Rect (02,68,198,25), stringNames.papelGerente)) {
+			ExecutaJanelaPapel(stringNames.papelGerente);
 		}
-	if(func.GetPapel() == "Manager")
-		GUI.Box (Rect (02,68,198,25), "Manager");
+	if(func.GetPapel() == stringNames.papelGerente)
+		GUI.Box (Rect (02,68,198,25), stringNames.papelGerente);
 	
 	//---------------------------------------------------------------------------------------------------------------------
-	if(func.GetPapel() != "Marketing")
-		if (GUI.Button (Rect (02,93,198,25), "Marketing")) {
-			ExecutaJanelaPapel("Marketing");
+	if(func.GetPapel() != stringNames.papelMarketing)
+		if (GUI.Button (Rect (02,93,198,25), stringNames.papelMarketing)) {
+			ExecutaJanelaPapel(stringNames.papelMarketing);
 		}
-	if(func.GetPapel() == "Marketing")
-		GUI.Box (Rect (02,93,198,25), "Marketing");
+	if(func.GetPapel() == stringNames.papelMarketing)
+		GUI.Box (Rect (02,93,198,25), stringNames.papelMarketing);
 		
 	//---------------------------------------------------------------------------------------------------------------------
-	if(func.GetPapel() != "Programmer")
-		if (GUI.Button (Rect (02,118,198,25), "Programmer")) {
-			ExecutaJanelaPapel("Programmer");
+	if(func.GetPapel() != stringNames.papelProg)
+		if (GUI.Button (Rect (02,118,198,25), stringNames.papelProg)) {
+			ExecutaJanelaPapel(stringNames.papelProg);
 		}
-	if(func.GetPapel() == "Programmer")
-		GUI.Box (Rect (02,118,198,25), "Programmer");
+	if(func.GetPapel() == stringNames.papelProg)
+		GUI.Box (Rect (02,118,198,25), stringNames.papelProg);
 	
 	//---------------------------------------------------------------------------------------------------------------------
-	if(func.GetPapel() != "Tester")	
-		if (GUI.Button (Rect (02,143,198,25), "Tester")) {
-			ExecutaJanelaPapel("Tester");
+	if(func.GetPapel() != stringNames.papelTester)	
+		if (GUI.Button (Rect (02,143,198,25), stringNames.papelTester)) {
+			ExecutaJanelaPapel(stringNames.papelTester);
 		}
-	if(func.GetPapel() == "Tester")
-		GUI.Box (Rect (02,143,198,25), "Tester");	
+	if(func.GetPapel() == stringNames.papelTester)
+		GUI.Box (Rect (02,143,198,25), stringNames.papelTester);	
 		
 	//---------------------------------------------------------------------------------------------------------------------	
-	if(func.GetPapel() != "None")	
-		if (GUI.Button (Rect (02,168,198,25), "None")) {
-			ExecutaJanelaPapel("None");
+	if(func.GetPapel() != stringNames.papelNenhum)	
+		if (GUI.Button (Rect (02,168,198,25), stringNames.papelNenhum)) {
+			ExecutaJanelaPapel(stringNames.papelNenhum);
 		}
-	if(func.GetPapel() == "None")	
-		GUI.Box (Rect (02,168,198,25), "None");
+	if(func.GetPapel() == stringNames.papelNenhum)	
+		GUI.Box (Rect (02,168,198,25), stringNames.papelNenhum);
 		
 	//Lado esquerdo
 	//---------------------------------------------------------------------------------------------------------------------	
 	GUI.Box (Rect (200,18,198,25), "Grades:");
 	//---------------------------------------------------------------------------------------------------------------------	
-	if(func.GetCargo() != "Junior")	
-		if (GUI.Button (Rect (200,43,198,25), "Junior")) {
-			ExecutaJanelaCargo("Junior");
+	if(func.GetCargo() != stringNames.jobJunior)	
+		if (GUI.Button (Rect (200,43,198,25), stringNames.jobJunior)) {
+			ExecutaJanelaCargo(stringNames.jobJunior);
 		}
-	if(func.GetCargo() == "Junior")	
-		GUI.Box (Rect (200,43,198,25), "Junior");
+	if(func.GetCargo() == stringNames.jobJunior)	
+		GUI.Box (Rect (200,43,198,25), stringNames.jobJunior);
 	
 	//---------------------------------------------------------------------------------------------------------------------	
-	if(func.GetCargo() != "Mid-Level")	
-		if (GUI.Button (Rect (200,68,198,25), "Mid-Level")) {
-			ExecutaJanelaCargo("Mid-Level");
+	if(func.GetCargo() != stringNames.jobPleno)	
+		if (GUI.Button (Rect (200,68,198,25), stringNames.jobPleno)) {
+			ExecutaJanelaCargo(stringNames.jobPleno);
 		}
-	if(func.GetCargo() == "Mid-Level")	
-		GUI.Box (Rect (200,68,198,25), "Mid-Level");
+	if(func.GetCargo() == stringNames.jobPleno)	
+		GUI.Box (Rect (200,68,198,25), stringNames.jobPleno);
 	
 	//---------------------------------------------------------------------------------------------------------------------	
-	if(func.GetCargo() != "Senior")	
-		if (GUI.Button (Rect (200,93,198,25), "Senior")) {
-			ExecutaJanelaCargo("Senior");
+	if(func.GetCargo() != stringNames.jobSenior)	
+		if (GUI.Button (Rect (200,93,198,25), stringNames.jobSenior)) {
+			ExecutaJanelaCargo(stringNames.jobSenior);
 		}
-	if(func.GetCargo() == "Senior")	
-		GUI.Box (Rect (200,93,198,25), "Senior");
+	if(func.GetCargo() == stringNames.jobSenior)	
+		GUI.Box (Rect (200,93,198,25), stringNames.jobSenior);
 	
 	//---------------------------------------------------------------------------------------------------------------------
 	if (GUI.Button (Rect (200,143,198,25), "Fire!")) {

@@ -4,7 +4,7 @@
 //workHoursObj = GameObject.Find("GUI");
 //workHours = workHoursObj.GetComponent(WorkingHoursWindow);
 //workHours.ChangeWorkHours(func);
-
+public var stringNames : StringNames;
 private var func : Funcionario;
 public var timer : GameTime;
 private var windowRect : Rect = Rect (700,325,300,120);
@@ -13,7 +13,7 @@ private var showWindow : boolean = false;
 
 function ChangeWorkHours (funcionario : Funcionario){
 	func = funcionario;
-	if(funcionario.GetNome() != "Fired")
+	if(funcionario.GetNome() != stringNames.fired)
 		showWindow = true;
 }
 

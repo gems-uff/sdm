@@ -24,7 +24,8 @@ function WindowFunction(windowID : int){
 		"\n Dinheiro recebido: " + pgjog.CalculaPagamentoFinal(), customGuiStyle);
 		if (GUI.Button (Rect (02,368,296,25), "Close Window")) 
 		{
-			project.SetIscomplete(false);
+			pgjog.PagarJogadorConclusao();
+			project.ResetProject();
 			contractWindow.SetShowWindow();
 		}
 	}
@@ -34,7 +35,7 @@ function WindowFunction(windowID : int){
 		GUI.Box (Rect (02,018,296,350), msgFalha, customGuiStyle);
 		if (GUI.Button (Rect (02,368,296,25), "Close Window")) 
 		{
-			project.SetIscomplete(false);
+			project.ResetProject();
 			contractWindow.SetShowWindow();
 		}
 	}

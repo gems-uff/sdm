@@ -39,6 +39,8 @@ function ResetItems(){
 	project04 = false;
 	project05 = false;
 	project06 = false;
+	project07 = false;
+	project08 = false;
 	selected = false;
 }
 

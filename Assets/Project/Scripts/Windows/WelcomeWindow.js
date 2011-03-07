@@ -12,7 +12,7 @@ public var msgWelcome : String;
 public var customGuiStyle : GUIStyle;
 private var windowRect : Rect = Rect (700,125,300,395);
 
-msgWelcome = "\n Bem vindo, \n \n <Fazer texto introdutorio> \n <Fazer o texto>";
+msgWelcome = "\n  \n \n <Fazer texto introdutorio> \n <Fazer o texto>";
 
 function WindowFunction(windowID : int){
 	timer.PauseGame();

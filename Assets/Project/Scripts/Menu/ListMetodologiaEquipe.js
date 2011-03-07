@@ -3,10 +3,10 @@ private var listEntry = 0;
 private var list : GUIContent[];
 private var listStyle : GUIStyle;
 private var showList = false;
+public var stringNames : StringNames;
 public var customGuiStyle : GUIStyle;
 
-private var equipeObj : GameObject;
-private var equipe : Equipe;
+public var equipe : Equipe;
 
 //--------------------------------------------MetogologiaEquipe-----------------------------------------------------------
 
@@ -21,11 +21,11 @@ function MetodologiaEquipe(){
 			switch(listEntry)
 			{
 			   case 1: 	//caso Agil
-					equipe.SetMetodologia("Agile");
+					equipe.SetMetodologia(stringNames.metodo1);
 			   break;
 			   
 			   case 2: 	//caso Classico
-					equipe.SetMetodologia("Classic");
+					equipe.SetMetodologia(stringNames.metodo2);
 			   break;
 			   
 			   default:
@@ -40,8 +40,6 @@ function MetodologiaEquipe(){
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
-	equipeObj = GameObject.Find("Equipe");
-	equipe = equipeObj.GetComponent(Equipe);
 }
 
 //--------------------------------------------Start-----------------------------------------------------------
@@ -51,8 +49,8 @@ function Start () {
     // Make some content for the popup list	
 	 list = new GUIContent[3];
 	list[0] = new GUIContent("");
-	list[1] = new GUIContent("Agile");
-	list[2] = new GUIContent("Classic");
+	list[1] = new GUIContent(stringNames.metodo1);
+	list[2] = new GUIContent(stringNames.metodo2);
     
     // Make a GUIStyle that has a solid white hover/onHover background to indicate highlighted items
     listStyle = new GUIStyle();

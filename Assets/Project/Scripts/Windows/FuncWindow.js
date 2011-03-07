@@ -7,6 +7,7 @@
 
 public var DAYS_MONTH : int = 28;
 public var timer : GameTime;
+public var stringNames : StringNames;
 public var fichaGuiStyle : GUIStyle;
 private var especializacao_array = new Array(17);
 private var atributos : Atributos = new Atributos();
@@ -22,13 +23,16 @@ private var morale : int;
 
 private var windowRect : Rect = Rect (600,125,400,420);
 
+function DisableShowWindow(){
+	showJanela = false;
+}
 //--------------------------------------------FichaFuncionarioEspecializacao-----------------------------------------------------------
 
 //Funcao que seta os atributos do funcionario corrente, chamada pelo script DialogInstance, item Qualificacao. Primeiro atributo eh para abilitar a janela, os demais sao os atributos em ordem alfabetica
 function SetJanelatributo(funcionario : Funcionario){
 	var i : int = 0;
 	var a2 : Especializacoes;
-	if(funcionario.GetNome() != "Fired")
+	if(funcionario.GetNome() != stringNames.fired)
 	{
 		a2 = funcionario.GetEspecializacao();
 		nome = funcionario.GetNome();
@@ -47,72 +51,72 @@ function SetJanelatributo(funcionario : Funcionario){
 		i = 0;
 		if ( a2.assembly == true )
 		{
-			especializacao_array[i] = "Assembly";
+			especializacao_array[i] = stringNames.showEsp01;
 			i++;
 		}
 		if ( a2.csharp == true )
 		{
-			especializacao_array[i] = "Csharp";
+			especializacao_array[i] = stringNames.showEsp02;
 			i++;
 		}
 		if ( a2.java == true )
 		{
-			especializacao_array[i] = "Java";
+			especializacao_array[i] =  stringNames.showEsp03;
 			i++;
 		}
 		if ( a2.perl == true )
 		{
-			especializacao_array[i] = "Perl";
+			especializacao_array[i] =  stringNames.showEsp04;
 			i++;
 		}
 		if ( a2.ruby == true )
 		{
-			especializacao_array[i] = "Ruby";
+			especializacao_array[i] =  stringNames.showEsp05;
 			i++;
 		}
 		if ( a2.metodoAgil == true )
 		{
-			especializacao_array[i] = "Agile Method";
+			especializacao_array[i] = stringNames.showEsp06;
 			i++;
 		}
 		if ( a2.metodoClassico == true )
 		{
-			especializacao_array[i] = "Classic Method";
+			especializacao_array[i] = stringNames.showEsp07;
 			i++;
 		}
 		if ( a2.analiseDeProgramas == true )
 		{
-			especializacao_array[i] = "Analysis Program";
+			especializacao_array[i] = stringNames.showEsp08;
 			i++;
 		}
 		if ( a2.controleDeVersao == true )
 		{
-			especializacao_array[i] = "Version Control";
+			especializacao_array[i] = stringNames.showEsp09;
 			i++;
 		}
 		if ( a2.depuracao == true )
 		{
-			especializacao_array[i] = "Depuration";
+			especializacao_array[i] = stringNames.showEsp10;
 			i++;
 		}
 		if ( a2.gerenciaDeProjetos == true )
 		{
-			especializacao_array[i] = "Project Management";
+			especializacao_array[i] = stringNames.showEsp11;
 			i++;
 		}
 		if ( a2.metricas == true )
 		{
-			especializacao_array[i] = "Metrics";
+			especializacao_array[i] = stringNames.showEsp12;
 			i++;
 		}
 		if ( a2.planejamento == true )
 		{
-			especializacao_array[i] = "Planning";
+			especializacao_array[i] = stringNames.showEsp13;
 			i++;
 		}
 		if ( a2.teste == true )
 		{
-			especializacao_array[i] = "Test";
+			especializacao_array[i] = stringNames.showEsp14;
 			i++;
 		}
 	}
@@ -125,7 +129,7 @@ function WindowFunction (windowID : int)	{
 	timer.PauseGame();
 	//Lado esquerdo
 	GUI.Box (Rect (02,018,198,20), (" Name: "+ nome),fichaGuiStyle);
-	GUI.Box (Rect (02,038,198,20), (" Morale: "+ morale),fichaGuiStyle);
+	GUI.Box (Rect (02,038,198,20), (" Morale: "+ morale + "%"),fichaGuiStyle);
 	GUI.Box (Rect (02,058,198,20), (" Role: "+ papel),fichaGuiStyle);
 	GUI.Box (Rect (02,078,198,20), (" Grade: "+ cargo),fichaGuiStyle);
 	GUI.Box (Rect (02,098,198,20), (" Weekly Hours: "+ workHours),fichaGuiStyle);
@@ -176,9 +180,6 @@ function WindowFunction (windowID : int)	{
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
-	var timerObj : GameObject;
-	timerObj = GameObject.Find("Timer");
-	timer = timerObj.GetComponent(GameTime);
 }
 
 //--------------------------------------------OnGUI-----------------------------------------------------------

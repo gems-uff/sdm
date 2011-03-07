@@ -14,32 +14,20 @@ private var listEntry = 0;
 private var list : GUIContent[];
 private var listStyle : GUIStyle;
 
-//Declaracao dos objetos de funcionarios e menu
-private var funcObj : GameObject; //utilizado de forma geral uma vez que esteja na popup list
-private var func1Obj : GameObject; //utilizados para pegar o papel desempenhado para imprimir no menu antes da popup list
-private var func2Obj : GameObject;
-private var func3Obj : GameObject;
-private var func4Obj : GameObject;
-private var func5Obj : GameObject;
-private var func6Obj : GameObject;
-private var func7Obj : GameObject;
-private var func8Obj : GameObject;
-private var menuObj : GameObject;
-
 private var treino : Treinamento;
 private var func : Funcionario;
-private var func1 : Funcionario;
-private var func2 : Funcionario;
-private var func3 : Funcionario;
-private var func4 : Funcionario;
-private var func5 : Funcionario;
-private var func6 : Funcionario;
-private var func7 : Funcionario;
-private var func8 : Funcionario;
-private var menuAtr : FuncWindow;
-private var menuEsp : EspWindow;
-private var menuPapel : PapelWindow;
-private var workHours : WorkingHoursWindow;
+public var func1 : Funcionario;
+public var func2 : Funcionario;
+public var func3 : Funcionario;
+public var func4 : Funcionario;
+public var func5 : Funcionario;
+public var func6 : Funcionario;
+public var func7 : Funcionario;
+public var func8 : Funcionario;
+public var menuAtr : FuncWindow;
+public var menuEsp : EspWindow;
+public var menuPapel : PapelWindow;
+public var workHours : WorkingHoursWindow;
 
 private var novopapel = "";
 
@@ -173,27 +161,7 @@ function PopupList(){
 
 //"inicializa" cada funcionario
 function Awake () {
-		func1Obj = GameObject.Find("Funcionario1");
-		func1 = func1Obj.GetComponent(Funcionario);
-		func2Obj = GameObject.Find("Funcionario2");
-		func2 = func2Obj.GetComponent(Funcionario);
-		func3Obj = GameObject.Find("Funcionario3");
-		func3 = func3Obj.GetComponent(Funcionario);
-		func4Obj = GameObject.Find("Funcionario4");
-		func4 = func4Obj.GetComponent(Funcionario);
-		func5Obj = GameObject.Find("Funcionario5");
-		func5 = func5Obj.GetComponent(Funcionario);
-		func6Obj = GameObject.Find("Funcionario6");
-		func6 = func6Obj.GetComponent(Funcionario);
-		func7Obj = GameObject.Find("Funcionario7");
-		func7 = func7Obj.GetComponent(Funcionario);
-		func8Obj = GameObject.Find("Funcionario8");
-		func8 = func8Obj.GetComponent(Funcionario);
-		menuObj = GameObject.Find("GUI");
-		menuAtr = menuObj.GetComponent(FuncWindow);
-		menuEsp = menuObj.GetComponent(EspWindow);
-		menuPapel = menuObj.GetComponent(PapelWindow);
-		workHours = menuObj.GetComponent(WorkingHoursWindow);
+
 	}
 //--------------------------------------------Start-----------------------------------------------------------
 

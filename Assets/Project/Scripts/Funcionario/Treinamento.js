@@ -3,6 +3,7 @@ private var func : Funcionario;
 private var aprendendo : String = "";
 private var deadline_treino : float = 0.0;
 private var islockedEscolha : boolean = false;
+public var stringNames : StringNames;
 
 //--------------------------------------------Gets/Sets-----------------------------------------------------------
 
@@ -33,59 +34,59 @@ function Especializando (){
 	var t : boolean = true;
 	switch(aprendendo)
 	{
-	   case "assembly": 
+	   case stringNames.esp01: 
 			func.SetL_Assembly(t);
 	   break;
 
-	   case "csharp":
+	   case stringNames.esp02:
 			func.SetL_csharp(t);
 	   break;
 	   
-	   case "java":
+	   case stringNames.esp03:
 			func.SetL_java(t);
 	   break;
 	   
-	   case "perl":
+	   case stringNames.esp04:
 			func.SetL_perl(t);
 	   break;
 	   
-	   case "ruby":
+	   case stringNames.esp05:
 			func.SetL_ruby(t);
 	   break;
 	   
-	   case "agileMethod":
+	   case stringNames.esp06:
 			func.SetM_agil(t);
 	   break;
 	   
-	   case "classicMethod":
+	   case stringNames.esp07:
 			func.SetM_classico(t);
 	   break;
 	   
-	   case "analysisProgram":
+	   case stringNames.esp08:
 			func.SetF_programas(t);
 	   break;
 	   
-	   case "versionControl":
+	   case stringNames.esp09:
 			func.SetF_versao(t);
 	   break;
 	   
-	   case "depuration":
+	   case stringNames.esp10:
 			func.SetF_depuracao(t);
 	   break;
 	   
-	   case "projectManagement":
+	   case stringNames.esp11:
 			func.SetF_projetos(t);
 	   break;
 	   
-	   case "metrics":
+	   case stringNames.esp12:
 			func.SetF_metricas(t);
 	   break;
 	   
-	   case "planning":
+	   case stringNames.esp13:
 			func.SetF_planejamento(t);
 	   break;
 	   
-	   case "test":
+	   case stringNames.esp14:
 			func.SetF_teste(t);
 	   break;
 	   
@@ -93,14 +94,13 @@ function Especializando (){
 		  break;
 	}
 	islockedEscolha = false;
-	func.SetPapel("None");
+	func.SetPapel(stringNames.papelNenhum);
 }
 
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
 	func = GetComponentInChildren(Funcionario);
-	//pagar = GetComponentInChildren(Pagamentos);
 }
 
 //--------------------------------------------Update-----------------------------------------------------------

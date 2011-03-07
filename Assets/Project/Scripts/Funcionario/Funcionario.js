@@ -13,7 +13,7 @@ private var nome : String;
 private var defaultSalary : int;
 private var salary : int;
 private var role : String;
-private var job : String = "Junior";		//Junior, plain, senior
+private var job : String;		//Junior, plain, senior
 private var workingHours : int = 40;
 private var morale : float = 100.0;
 //private var isEmploee : boolean = false;
@@ -266,7 +266,6 @@ function SetF_teste (t: boolean) {
 
 function Awake() 
 { 
-
 } 
 
 //--------------------------------------------Update-----------------------------------------------------------

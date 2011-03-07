@@ -1,14 +1,16 @@
 
 public var dialogGuiStyle : GUIStyle;
+public var stringNames : StringNames;
 private var func : Funcionario;
 private var treino : Treinamento;
-private var menuAtr : FuncWindow;
-private var menuEsp : EspWindow;
-private var menuPapel : PapelWindow;
-private var menuNegotiation : NegotiationWindow;
-private var menuPrototype : PrototypeWindow;
+public var menuAtr : FuncWindow;
+public var menuEsp : EspWindow;
+public var menuPapel : PapelWindow;
+public var menuNegotiation : NegotiationWindow;
+public var menuPrototype : PrototypeWindow;
+public var menuHire : HireWindow;
 
-private var timer : GameTime;
+public var timer : GameTime;
 private var workHours : WorkingHoursWindow;
 
 
@@ -16,16 +18,22 @@ private var workHours : WorkingHoursWindow;
 public var endOnExit : boolean = true;
 private var gameobj : GameObject; 
 private var dialogEnable : boolean = false;
+private var insideCollider : boolean = false;
 
+//--------------------------------------------Update-----------------------------------------------------------
 
-
+function Update(){
+	if (Input.GetKeyDown("space") && insideCollider == true){
+			dialogEnable = true;
+		}
+}
 //--------------------------------------------OnTriggerEnter-----------------------------------------------------------
 
 function OnTriggerEnter( collider1 : Collider )
 {
-    if ( collider1.name == "Player" && func.GetNome() != "Fired" )
+    if ( collider1.name == "Player" && func.GetNome() != stringNames.fired )
 	{
-		dialogEnable = true;
+		insideCollider = true;
 	}
 }
 
@@ -35,8 +43,7 @@ function OnTriggerExit( collider1 : Collider )
 {
     if ( collider1.name == "Player" && endOnExit)
 	{
-		dialogEnable = false;
-		//timer.SpeedNormal();
+		insideCollider = false;
 	}
 }
 
@@ -68,25 +75,24 @@ function Dialog_Funcionario (){
 		//Vazio
 		GUI.Box (Rect (600,125, 130, 25), "");
 		//Se arquiteto
-		if(func.GetPapel() == "Architect" && menuPrototype.GetIsLocked() == false)
+		if(func.GetPapel() == stringNames.papelArquiteto && menuPrototype.GetIsLocked() == false)
 			if (GUI.Button (Rect (600,125, 130, 25), "Prototype")) {
 					menuPrototype.SetShowWindow(func);
 					dialogEnable = false;
 			}
 		//Se gerente
-		if(func.GetPapel() == "Manager")
+		if(func.GetPapel() == stringNames.papelGerente)
 			if (GUI.Button (Rect (600,125, 130, 25), "Hire")) {
-					//Chama HIRE
+					menuHire.SetShowWindow();
 					dialogEnable = false;
 			}
 		//se Marketing
-		if(func.GetPapel() == "Marketing" && menuNegotiation.GetLockNegotiation() == false)
+		if(func.GetPapel() == stringNames.papelMarketing && menuNegotiation.GetLockNegotiation() == false)
 			if (GUI.Button (Rect (600,125, 130, 25), "Negotiation")) {
 					menuNegotiation.SetShowWindow(func);
 					dialogEnable = false;
 			}
 		if (GUI.Button (Rect (600,150, 130, 25), "End")) {
-				//timer.SpeedNormal();
 				dialogEnable = false;
 		}
 	}
@@ -97,20 +103,9 @@ function Dialog_Funcionario (){
 
 function Awake() 
 { 
-	var menuObj : GameObject;
-	var timerObj : GameObject;
-	gameobj =GameObject.Find("Player"); 
-	menuObj = GameObject.Find("GUI");
 	func = GetComponentInChildren(Funcionario);
 	treino = GetComponentInChildren(Treinamento);
-	menuAtr = menuObj.GetComponent(FuncWindow);
-	menuEsp = menuObj.GetComponent(EspWindow);
-	menuPapel = menuObj.GetComponent(PapelWindow);
-	menuNegotiation = menuObj.GetComponent(NegotiationWindow);
-	menuPrototype = menuObj.GetComponent(PrototypeWindow);
-	timerObj = GameObject.Find("Timer");
-	timer = timerObj.GetComponent(GameTime);
-	workHours = menuObj.GetComponent(WorkingHoursWindow);
+
 } 
 
 //--------------------------------------------OnGUI-----------------------------------------------------------
