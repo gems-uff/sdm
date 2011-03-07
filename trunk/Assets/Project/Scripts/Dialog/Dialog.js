@@ -1,29 +1,42 @@
 
 public var dialogGuiStyle : GUIStyle;
 public var stringNames : StringNames;
-private var func : Funcionario;
-private var treino : Treinamento;
+
 public var menuAtr : FuncWindow;
 public var menuEsp : EspWindow;
 public var menuPapel : PapelWindow;
 public var menuNegotiation : NegotiationWindow;
 public var menuPrototype : PrototypeWindow;
 public var menuHire : HireWindow;
-
 public var timer : GameTime;
-private var workHours : WorkingHoursWindow;
-
-
+public var workHours : WorkingHoursWindow;
+public var dialogLock : BlockDialog;
 
 public var endOnExit : boolean = true;
-private var gameobj : GameObject; 
+
+private var func : Funcionario;
+private var treino : Treinamento;
+private var fire : NewFuncionario;
 private var dialogEnable : boolean = false;
 private var insideCollider : boolean = false;
+//Morale booleans
+private var dialogQuitEnable : boolean = false;
+private var dialogEnableBadDialog : boolean = false;
+private var dialogControl : boolean = false;
 
+function SetDialogQuitEnable(){
+	dialogQuitEnable = true;
+}
+function SetDialogControl(){
+	dialogControl = false;
+}
+function SetDialogBadDialog(){
+	dialogEnableBadDialog = true;
+}
 //--------------------------------------------Update-----------------------------------------------------------
 
 function Update(){
-	if (Input.GetKeyDown("space") && insideCollider == true){
+	if (Input.GetKeyDown("space") && insideCollider == true && !dialogLock.GetLock()){
 			dialogEnable = true;
 		}
 }
@@ -44,6 +57,7 @@ function OnTriggerExit( collider1 : Collider )
     if ( collider1.name == "Player" && endOnExit)
 	{
 		insideCollider = false;
+		dialogEnable = false;
 	}
 }
 
@@ -101,10 +115,44 @@ function Dialog_Funcionario (){
 
 //--------------------------------------------Awake-----------------------------------------------------------
 
+function BadMoraleDialog(){
+	GUI.BeginGroup(Rect (150,Screen.height - 190,1000,1000));
+	if (dialogEnableBadDialog == true && dialogControl == false)
+	{
+		dialogLock.SetLock(true);
+		timer.PauseGame();
+		GUI.Box (Rect (00,00,120,25), func.GetNome() + " :");
+		GUI.Box (Rect (00,25,600,150), "Boss, this is too much for me, I'm in need of a break.", dialogGuiStyle);
+		if (GUI.Button (Rect (600,25, 130, 25), "End")) {
+				dialogEnableBadDialog = false;
+				dialogControl = true;
+				dialogLock.SetLock(false);
+		}
+	}
+	GUI.EndGroup ();
+}
+function QuitDialog(){
+	GUI.BeginGroup(Rect (150,Screen.height - 190,1000,1000));
+	if (dialogQuitEnable == true)
+	{
+		dialogLock.SetLock(true);
+		timer.PauseGame();
+		GUI.Box (Rect (00,00,120,25), func.GetNome() + " :");
+		GUI.Box (Rect (00,25,600,150), "Boss, i can't take this anymore, im quitting !", dialogGuiStyle);
+		if (GUI.Button (Rect (600,25, 130, 25), "End")) {
+				fire.FireFuncionario(func);
+				dialogQuitEnable = false;
+				dialogLock.SetLock(false);
+		}
+	}
+	GUI.EndGroup ();
+}
+
 function Awake() 
 { 
 	func = GetComponentInChildren(Funcionario);
 	treino = GetComponentInChildren(Treinamento);
+	fire = GetComponentInChildren(NewFuncionario);
 
 } 
 
@@ -112,6 +160,8 @@ function Awake()
 
 function OnGUI (){
 	Dialog_Funcionario();
+	BadMoraleDialog();
+	QuitDialog();
 }
 
 

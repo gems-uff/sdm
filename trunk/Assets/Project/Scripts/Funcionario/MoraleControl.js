@@ -4,8 +4,9 @@
 //funcObj = GameObject.Find("Funcionario");
 //morale = funcObj.GetComponent(MoraleControl);
 public var timer : GameTime;
+public var stringNames : StringNames;
+private var dialog : Dialog;
 public var dialogGuiStyle : GUIStyle;
-private var fire : NewFuncionario;
 public var MODIFICATOR : float = 6.0; 
 public var SLOWRECOVERY : float = -1.0;
 public var RECOVERYBONUS : float = 1.2;
@@ -23,7 +24,7 @@ function ChangeMorale(){
 	var morale : float;
 	var changeFactor : float;
 	var moraleMod : float;
-	if(func.GetNome() != "Fired")
+	if(func.GetNome() != stringNames.fired)
 	{
 		morale = func.GetMorale();
 		changeFactor = work.GetWorkingHoursModifier();
@@ -48,54 +49,24 @@ function MoraleActions(){
 	var morale = func.GetMorale();
 	var chance : int = Random.Range (0, 150);
 	if (morale > TIREDMORALE)
-		dialogControl = false;
+		dialog.SetDialogControl();
 	else
 	{
-		dialogEnableBadDialog = true;
+		dialog.SetDialogBadDialog();
 		if (morale < BADMORALE)
 			if (chance < DEMITCHANCE)
 			{
-				dialogEnable = true;
-				Debug.Log("ME DEMITO!!!");
+				dialog.SetDialogQuitEnable();
 			}
 	}
 }
-function BadMoraleDialog(){
-	GUI.BeginGroup(Rect (150,Screen.height - 190,1000,1000));
-	if (dialogEnableBadDialog == true && dialogControl == false)
-	{
-		timer.PauseGame();
-		GUI.Box (Rect (00,00,120,25), func.GetNome() + " :");
-		GUI.Box (Rect (00,25,600,150), "Boss, this is too much for me, I'm in need of a break.", dialogGuiStyle);
-		if (GUI.Button (Rect (600,25, 130, 25), "End")) {
-				dialogEnableBadDialog = false;
-				dialogControl = true;
-		}
-	}
-	GUI.EndGroup ();
-}
-function QuitDialog(){
-	GUI.BeginGroup(Rect (150,Screen.height - 190,1000,1000));
-	if (dialogEnable == true)
-	{
-		timer.PauseGame();
-		GUI.Box (Rect (00,00,120,25), func.GetNome() + " :");
-		GUI.Box (Rect (00,25,600,150), "Boss, i can't take this anymore, im quitting !", dialogGuiStyle);
-		if (GUI.Button (Rect (600,25, 130, 25), "End")) {
-				fire.FireFuncionario(func);
-				dialogEnable = false;
-		}
-	}
-	GUI.EndGroup ();
-}
+
 //--------------------------------------------Awake-----------------------------------------------------------
 function OnGUI (){
-	BadMoraleDialog();
-	QuitDialog();
 }
 
 function Awake () {
 	func = GetComponentInChildren(Funcionario);
 	work = GetComponentInChildren(Working);
-	fire = GetComponentInChildren(NewFuncionario);
+	dialog = GetComponentInChildren(Dialog);
 }
