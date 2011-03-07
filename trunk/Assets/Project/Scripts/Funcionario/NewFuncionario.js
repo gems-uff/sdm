@@ -1,4 +1,5 @@
 
+public var stringNames : StringNames;
 private var func : Funcionario;
 private var atualizado : boolean = false;
 
@@ -200,8 +201,8 @@ function FireFuncionario (t : Funcionario) {
 	var body : GameObject;
 	func = t;
 	EmptyFuncionario();
-	func.SetNome("Fired");
-	func.SetPapel("Empty");
+	func.SetNome(stringNames.fired);
+	func.SetPapel(stringNames.papelNenhum);
 	func.SetMorale(100);
 	func.SetWorkingHours(0);
 	func.SetSalarioDefault(0);
@@ -237,6 +238,18 @@ function EmptyFuncionario(){
 	
 	func.SetEspecializacoes(especializacao);
 }
+
+function ClearFuncionario (t : Funcionario) {
+	var body : GameObject;
+	func = t;
+	EmptyFuncionario();
+	func.SetNome(stringNames.vazio);
+	func.SetPapel(stringNames.vazio);
+	func.SetMorale(100);
+	func.SetWorkingHours(0);
+	func.SetSalarioDefault(0);
+	func.SetSalario(0);
+}
 //--------------------------------------------RandomFuncionarioStarter-----------------------------------------------------------
 
 //Esta funcao server para gerar um funcionario inicial totalmente randomico
@@ -244,7 +257,8 @@ function RandomFuncionarioStarter () {
 	SetAtributos();
 	SetEspecializacoes();
 	func.SetNome(newNome.RandomName());
-	func.SetPapel("None");
+	func.SetCargo(stringNames.jobJunior);
+	func.SetPapel(stringNames.papelNenhum);
 	func.SetMorale(100);
 	func.SetWorkingHours(40);
 	func.SetSalarioDefault(NewSalario());

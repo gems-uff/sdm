@@ -59,6 +59,14 @@ public var newProject06 : RandomProjectGenerator;
 public var newProject07 : RandomProjectGenerator;
 public var newProject08 : RandomProjectGenerator;
 
+public var newFunc1 : NewFuncionario;
+public var newFunc2 : NewFuncionario;
+public var newFunc3 : NewFuncionario;
+public var newFunc4 : NewFuncionario;
+public var newFunc5 : NewFuncionario;
+public var newFunc6 : NewFuncionario;
+public var newFunc7 : NewFuncionario;
+public var newFunc8 : NewFuncionario;
 //--------------------------------------------Get/Set-----------------------------------------------------------
 
 function GetGameTime(){
@@ -108,7 +116,6 @@ function PassTime () {
     gameTime += incrementBy;
 	pagar.PagarFuncionario();
 	pagar.PagarJogadorMensal();
-	pagar.PagarJogadorConclusao();
 	
 	work1.WorkHours();
 	work1.Work();
@@ -148,6 +155,17 @@ function PassTime () {
 		equipe.ResetBonus();
 	if((gameTime % 7) == 0)
 		menuPrototype.Unlock();
+	if ((gameTime % 28) == 0)
+	{
+		newFunc1.RandomFuncionarioStarter();
+		newFunc2.RandomFuncionarioStarter();
+		newFunc3.RandomFuncionarioStarter();
+		newFunc4.RandomFuncionarioStarter();
+		newFunc5.RandomFuncionarioStarter();
+		newFunc6.RandomFuncionarioStarter();
+		newFunc7.RandomFuncionarioStarter();
+		newFunc8.RandomFuncionarioStarter();
+	}
 	if(gameTime > project.GetDeadline() || project.GetFractionDone() >= 100)
 	{
 		newProject01.NewProject();

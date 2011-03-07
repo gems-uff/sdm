@@ -6,6 +6,7 @@
 
 //Constantes
 //Variaves de configuracao de desempenho durante o trabalho
+public var stringNames : StringNames;
 public var equipe : Equipe;
 public var project : Project;
 public var timer : GameTime;
@@ -25,8 +26,8 @@ public var GERENTE_ANA : float = 0.4;	// +40%
 public var GERENTE_ARQ : float = 0.4;
 public var GERENTE_PROG : float = 0.4;
 public var PROG_LINES_DAY_MOD : float = 5;
-public var PROG_BUG_MOD : float = 0.02;
-public var TESTER_DURANTE : float = 0.5;
+public var PROG_BUG_MOD : float = 0.4;
+public var TESTER_DURANTE : float = 0.4;
 //Fim Constantes
 public var workingHoursModifier : float = 1.0;
 private var morale : float = 1.0;		//Valor entre 0.0 e 1.0
@@ -59,7 +60,7 @@ function GameModifiers( aux : float ){
 function WorkHours(){
 	var aux : int;
 	var newSalary : int;
-	if(func.GetNome() != "Fired")
+	if(func.GetNome() != stringNames.fired)
 	{
 		aux = func.GetWorkingHours();
 		aux = aux / 5;
@@ -85,15 +86,15 @@ function AjusteSalario(){
 	var mod : float = 1.0;
 	switch(func.GetCargo())
 	{
-	   case "Junior": 	//caso analista
+	   case stringNames.jobJunior: 	//caso analista
 			mod = JUNIOR_SALARY;
 	   break;
 
-	   case "Mid-Level":	//caso arquiteto
+	   case stringNames.jobPleno:	//caso arquiteto
 			mod = PLENO_SALARY;
 	   break;
 	   
-	   case "Senior":	//caso gerente
+	   case stringNames.jobSenior:	//caso gerente
 			mod = SENIOR_SALARY;
 	   break;
 
@@ -109,15 +110,15 @@ function AjusteWork(){
 	var mod : float = 1.0;
 	switch(func.GetCargo())
 	{
-	   case "Junior": 	//caso analista
+	   case stringNames.jobJunior: 	//caso analista
 			mod = JUNIOR_MODIFICATOR;
 	   break;
 
-	   case "Mid-Level":	//caso arquiteto
+	   case stringNames.jobPleno:	//caso arquiteto
 			mod = PLENO_MODIFICATOR;
 	   break;
 	   
-	   case "Senior":	//caso gerente
+	   case stringNames.jobSenior:	//caso gerente
 			mod = SENIOR_MODIFICATOR;
 	   break;
 
@@ -131,35 +132,35 @@ function AjusteWork(){
 function Work(){	//Função que atualiza os campos de projeto conforme a performace do funcionario no seu papel
 	var modificador_positivo : float = EspecializacaoFerramenta();	//Resultado é um numero >= 0
 	var penal : float = MetodologiaEquipe();	//Resultado é um numero >= 0
-	if(func.GetNome() != "Fired")
+	if(func.GetNome() != stringNames.fired)
 	{
 		switch(func.GetPapel())
 		{
-		   case "Analyst": 	//caso analista
+		   case stringNames.papelAnalista: 	//caso analista
 			  AnalistaWork(modificador_positivo, penal);
 		   break;
 
-		   case "Architect":	//caso arquiteto
+		   case stringNames.papelArquiteto:	//caso arquiteto
 			  ArquitetoWork(modificador_positivo, penal);
 		   break;
 		   
-		   case "Manager":	//caso gerente
+		   case stringNames.papelGerente:	//caso gerente
 			  GerenteWork(modificador_positivo, penal);
 		   break;
 		   
-		   case "Marketing":	//caso marketing
+		   case stringNames.papelMarketing:	//caso marketing
 			  MarketingWork(modificador_positivo, penal);
 		   break;
 		   
-		   case "Programmer":	//caso programador
+		   case stringNames.papelProg:	//caso programador
 				ProgramadorWork(modificador_positivo, penal);
 		   break;
 		   
-		   case "Tester":	//caso tester
+		   case stringNames.papelTester:	//caso tester
 			  TesterWork(modificador_positivo, penal);
 		   break;
 		   
-		   case "Training":	//caso esteja em treinamento
+		   case stringNames.papelTreinando:	//caso esteja em treinamento
 			  Treinando();
 		   break;
 
@@ -238,7 +239,7 @@ function MarketingWork(modificador_positivo : float, penal : float){
 	var marketing : float ;
 	
 	marketing = func.GetMarketing();	
-	aux = marketing;
+	aux = marketing * 0.5;
 	aux = aux * (1 + modificador_positivo - penal);
 	aux = GameModifiers(aux);	//Modificadores de desempenho por gamespeed, moral e horas de trabalho
 	aux = 1 + (aux / 100);
@@ -261,7 +262,7 @@ function ProgramadorWork(modificador_positivo : float, penal : float){
 		aux = aux * (1 + modificador_positivo - penal_prog);
 		//Modificadores de desempenho por gamespeed, moral e horas de trabalho
 		aux = GameModifiers(aux);
-		aux = aux * equipe.GetGerBonusProg();		
+		aux = aux * equipe.GetGerBonusProg();	
 		numBugs = GameModifiers(numBugs);	
 		project.SetNumBugs(numBugs);
 		project.SetLinesDone(aux);
@@ -307,27 +308,27 @@ function LinguagemProgEquipe(){
 	
 	switch(equipe.GetLinguagem())
 	{
-	   case "assembly": 
+	   case stringNames.esp01: 
 		  if (func.GetL_assembly() == true)
 				modificador = 0;
 	   break;
 
-	   case "csharp":
+	   case stringNames.esp02:
 		  if (func.GetL_csharp() == true)
 				modificador = 0;
 	   break;
 	   
-	   case "java":
+	   case stringNames.esp03:
 		  if (func.GetL_java() == true)
 				modificador = 0;
 	   break;
 	   
-	   case "perl":
+	   case stringNames.esp04:
 		  if (func.GetL_perl() == true)
 				modificador = 0;
 	   break;
 	   
-	   case "ruby":
+	   case stringNames.esp05:
 			if (func.GetL_ruby() == true)
 				modificador = 0;
 	   break;
@@ -347,12 +348,12 @@ function MetodologiaEquipe(){
 	
 	switch(equipe.GetMetodologia())
 	{
-	   case "Agile": 
+	   case stringNames.metodo1: 
 		   if (func.GetM_agil() == true)
 				modificador = 0;
 	   break;
 
-	   case "Classic":
+	   case stringNames.metodo2:
 		   if (func.GetM_classico() == true)
 				modificador = 0;
 	   break;
@@ -371,28 +372,28 @@ function RequisitoLinguagem(){
 	
 	switch(project.GetLinguagem())
 	{
-	   case "assembly": 
-		  if (equipe.GetLinguagem() == "assembly")
+	   case stringNames.esp01: 
+		  if (equipe.GetLinguagem() == stringNames.esp01)
 				modificador = true;
 	   break;
 
-	   case "csharp":
-		  if (equipe.GetLinguagem() == "csharp")
+	   case stringNames.esp02:
+		  if (equipe.GetLinguagem() == stringNames.esp02)
 				modificador = true;
 	   break;
 	   
-	   case "java":
-		  if (equipe.GetLinguagem() == "java")
+	   case stringNames.esp03:
+		  if (equipe.GetLinguagem() == stringNames.esp03)
 				modificador = true;
 	   break;
 	   
-	   case "perl":
-		  if (equipe.GetLinguagem() == "perl")
+	   case stringNames.esp04:
+		  if (equipe.GetLinguagem() == stringNames.esp04)
 				modificador = true;
 	   break;
 	   
-	   case "ruby":
-			if (equipe.GetLinguagem() == "ruby")
+	   case stringNames.esp05:
+			if (equipe.GetLinguagem() == stringNames.esp05)
 				modificador = true;
 	   break;
 	   
@@ -410,33 +411,33 @@ function EspecializacaoFerramenta (){
 	
 	switch(func.GetPapel())
 	{
-	   case "Analyst": 	//caso analista
+	   case stringNames.papelAnalista: 	//caso analista
 			if (func.GetF_metricas() == true)			//Se for especializado na ferramenta de metricas entao se benificiará
 				modificador_positivo = BONUS;
 	   break;
 
-	   case "Architect":	//caso arquiteto
+	   case stringNames.papelArquiteto:	//caso arquiteto
 			if (func.GetF_programas() == true)		//Se for especializado na ferramenta de analise de programas entao se benificiará
 				modificador_positivo = modificador_positivo + BONUS;
 	   break;
 	   
-	   case "Manager":	//caso gerente
+	   case stringNames.papelGerente:	//caso gerente
 			if (func.GetF_projetos() == true)						//Se for especializado na ferramenta de depuracao entao se benificiará
 				modificador_positivo = modificador_positivo +  BONUS;
 			if (func.GetF_planejamento() == true)				//Se for especializado na ferramenta de depuracao entao se benificiará
 					modificador_positivo = modificador_positivo + BONUS;
 	   break;
 	   
-	   case "Marketing":	//caso marketing
+	   case stringNames.papelMarketing:	//caso marketing
 			//Nao tem nenhuma
 	   break;
 	   
-	   case "Programmer":	//caso programador
+	   case stringNames.papelProg:	//caso programador
 			if (func.GetF_depuracao() == true)					//Se for especializado na ferramenta de depuracao entao se benificiará
 				modificador_positivo = modificador_positivo + BONUS;
 	   break;
 	   
-	   case "Tester":	//caso tester
+	   case stringNames.papelTester:	//caso tester
 			if (func.GetF_depuracao() == true)					//Se for especializado na ferramenta de depuracao entao se benificiará
 				modificador_positivo = modificador_positivo +  BONUS;
 			if (func.GetF_teste() == true)							//Se for especializado na ferramenta de testes entao se benificiará

@@ -6,7 +6,7 @@
 
 public var DIAS_PAGAMENTO : int = 28;
 public var MORALE_MOD : int = 5.0;
-public var PROJECT_MULT : int = 4;
+public var PROJECT_MULT : int = 2;
 private var isPago : boolean = false;
 
 public var func1 : Funcionario;
@@ -66,37 +66,38 @@ function PagarJogadorMensal(){
 	{
 		if (isComplete == false)
 		{
-			if ((timer.GetGameTime() % 28) == 0 )
+			if ((timer.GetGameTime() % 29) == 0 )
 			{
-				jogador.ChangeSaldo(project.GetPagamento());
+				ProjetoPagarMensal();
+				//jogador.ChangeSaldo(project.GetPagamento());
 			}
 		}
 	}
 }
-
-function PagarJogadorConclusao(){
-	var isComplete : boolean;
-	isComplete = project.GetIscomplete();
-	if (isComplete == true)
+function ProjetoPagarMensal(){
+	var aux : int = 0;
+	var auxTime : int = 0;
+	aux = project.GetProjectSize() / project.GetDeadlineDays();		//Producao por dia planejada
+	aux = aux * 28;																	//Producao por mes
+	aux = aux * 100 / project.GetProjectSize();								//Percentagem completada por mes planejada
+	auxTime = timer.GetGameTime() - project.GetStartDay();			//Quanto tempo desde que o projeto iniciou
+	auxTime = auxTime / 28;														//Quantos meses se passaram desde que iniciou
+	aux = aux * auxTime;															//Multiplica a producao planejada por mes pela quantidade de meses que ja passou
+	
+	if (aux <= (10 + project.GetFractionDone()))
 	{
-		if (project.GetFractionDone() == 100)
-		{
-			if (isPago == false)
-			{
-				jogador.ChangeSaldo(CalculaPagamentoFinal());
-				isPago = true;
-			}
-		}
+		jogador.ChangeSaldo(project.GetPagamento());
 	}
-	else
-		isPago = false;
+}
+function PagarJogadorConclusao(){
+	jogador.ChangeSaldo(CalculaPagamentoFinal());
 }
 
 function CalculaPagamentoFinal(){
 	var pagamentofinal : int;
 	pagamentofinal = project.GetPagamento();
 	pagamentofinal = pagamentofinal * PROJECT_MULT;
-	pagamentofinal = pagamentofinal * (project.GetSincronismo() / 100);	//reduz de acordo com o sincronismo
+	pagamentofinal = pagamentofinal * (parseInt(project.GetSincronismo()) / 100);	//reduz de acordo com o sincronismo
 	pagamentofinal = pagamentofinal - (parseInt(project.GetNumBugs()) * project.GetBugValue());		//reduz de acordo com o numero de bugs
 	
 	return pagamentofinal;

@@ -126,15 +126,7 @@ function WindowFunction(windowID : int){
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
-	/*
-	var timerObj : GameObject;
-	var playerObj : GameObject;
-	playerObj = GameObject.Find("PlayerStats");
-	timerObj = GameObject.Find("Timer");
-	jogador = playerObj.GetComponent(PlayerStats);
-	project = GetComponentInChildren(Project);
-	timer = timerObj.GetComponent(GameTime);
-	*/
+
 }
 
 //--------------------------------------------OnGUI-----------------------------------------------------------

@@ -6,17 +6,19 @@
 
 public var timer : GameTime;
 public var deadline : int = 1;  //in days
+public var deadlineDays : int =1;
 public var maxCodeLines : int = 0;	//size of the software to be done
 public var linguagemProgramacao : String = "";	//Linguagem: Escolher apenas uma linguagem
 public var pagamento : int = 0;
 public var bugValue : int = 1000;
-public var SIMPLE : int = 105;		//Max 35 linhas de codigo por programador por dia (3 programadores)
-public var REGULAR : int = 180;	//Max 60
-public var COMPLEX : int = 240;	//Max 80
+public var SIMPLE : int = 525;		//Max 35 atributo "Programador" por programador por dia (3 programadores)
+public var REGULAR : int = 900;	//Max 60
+public var COMPLEX : int = 1200;	//Max 80
 												//Insane > 80 por programador
 public var LOW : int = 1500;
 public var NORMAL : int = 3000;
 public var HIGH : int = 4500;
+private var startDay : int = 1;
 private var projectSize : String = "";
 private var projectQuality : String = "";
 private var sincronismo = 0.0;		//sincronismo
@@ -33,6 +35,18 @@ function SetDeadline (t : int) {					//Seta o Deadline em horas
 }
 function SetNewDeadline(t: int){			//Seta a nova data de deadline
 	deadline = t + timer.GetGameTime();
+}
+function GetDeadlineDays () {					//Retorna o Deadline em horas
+	return deadlineDays;
+}
+function SetDeadlineDays (t : int) {					//Seta o Deadline em horas
+	deadlineDays = t;
+}
+function GetStartDay () {					//Retorna o Deadline em horas
+	return startDay;
+}
+function SetStartDay (t : int) {					//Seta o Deadline em horas
+	startDay = t;
 }
 function GetNumBugs () {						//Retorna o numero de bugs no software
 	return bugs;
@@ -55,8 +69,6 @@ function GetLinesDone () {						//Retorna o numero de linhas ja feitas para o so
 function SetLinesDone (t: int) {				//Seta o numero de linhas do software ja feitas
 	if (!completed)
 		codeLinesDone = codeLinesDone + t;
-	if (codeLinesDone > 100 )
-		codeLinesDone = 100;
 }
 function GetIscomplete () {					//Retorna se o projeto esta concluido
 	return completed;
@@ -70,6 +82,8 @@ function GetDeadLine () {						//Retorna o Deadline no formato Data/Hora
 }
 function GetFractionDone () {					//Retorna a percentagem ja concluida do software
 	var completeFraction = codeLinesDone * 100 / maxCodeLines;
+	if (completeFraction > 100)
+		completeFraction = 100;
 	return completeFraction;
 }
 function GetSincronismo () {						//Retorna o sincronismo do projeto com o que o cliente pediu
@@ -102,6 +116,13 @@ function SetBugValue (t : int) {
 function GetProjectSizeString () {					//Retorna o valor de cada bug
 	return projectSize;
 }
+function ResetProject(){
+	bugs = 0;
+	sincronismo = 0;
+	codeLinesDone = 0;
+	completed = false;
+}
+
 function SetProjectSizeString () {
 	var aux : float = 0;
 	if (deadline == 0)

@@ -189,11 +189,13 @@ function WindowFunction(windowID : int){
 		moreScope = false;
 		tradeOffSet = true;
 	}
-	
+	if (!scopeBool && !timeBool && !moneyBool && !qualityBool)
+		tradeSet = false;
+	if (!moreScope && !lessTime && !lessMoney && !moreQuality)
+		tradeOffSet = false;
 	if (GUI.Button (Rect (02,188,98,25), "Cancel")) 
 	{
 		showWindow  = false;
-		//timer.SpeedNormal();
 	}
 	if ( tradeOffSet && tradeSet)
 		if (GUI.Button (Rect (100,188,98,25), "Ok")) 
@@ -202,7 +204,6 @@ function WindowFunction(windowID : int){
 			ApplyChanges();
 			lockNegotiation = true;
 			ResetItems();
-			//timer.SpeedNormal();
 		}
 }
 	
@@ -210,12 +211,7 @@ function WindowFunction(windowID : int){
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
-	/*
-	var timerObj : GameObject;
-	project = GetComponentInChildren(Project);
-	timerObj = GameObject.Find("Timer");
-	timer = timerObj.GetComponent(GameTime);
-	*/
+
 }
 
 //--------------------------------------------OnGUI-----------------------------------------------------------

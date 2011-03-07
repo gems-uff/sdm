@@ -3,10 +3,10 @@ private var listEntry = 0;
 private var list : GUIContent[];
 private var listStyle : GUIStyle;
 private var showList = false;
+public var equipe : Equipe;
+public var stringNames : StringNames;
 public var customGuiStyle : GUIStyle;
 
-private var equipeObj : GameObject;
-private var equipe : Equipe;
 
 //--------------------------------------------LinguagemEquipe-----------------------------------------------------------
 
@@ -20,23 +20,23 @@ function LinguagemEquipe(){
 		{
 			switch(listEntry)
 			{
-			   case 1: 	//caso Agil
-					equipe.SetLinguagem("assembly");
+			   case 1: 	//caso asembly
+					equipe.SetLinguagem(stringNames.esp01);
 			   break;
 			   
-			   case 2: 	//caso Classico
-					equipe.SetLinguagem("csharp");
+			   case 2: 	//caso csharp
+					equipe.SetLinguagem(stringNames.esp02);
 			   break;
 			   
-			   case 3: 	//caso Classico
-					equipe.SetLinguagem("java");
+			   case 3: 	//caso java
+					equipe.SetLinguagem(stringNames.esp03);
 			   break;
 			   
-			   case 4: 	//caso Classico
-					equipe.SetLinguagem("perl");
+			   case 4: 	//caso perl
+					equipe.SetLinguagem(stringNames.esp04);
 			   break;
-			   case 5: 	//caso Classico
-					equipe.SetLinguagem("ruby");
+			   case 5: 	//caso ruby
+					equipe.SetLinguagem(stringNames.esp05);
 			   break;
 			   
 			   default:
@@ -51,8 +51,6 @@ function LinguagemEquipe(){
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
-	equipeObj = GameObject.Find("Equipe");
-	equipe = equipeObj.GetComponent(Equipe);
 }
 
 //--------------------------------------------Start-----------------------------------------------------------
@@ -62,11 +60,11 @@ function Start () {
     // Make some content for the popup list	
 	list = new GUIContent[6];
 	list[0] = new GUIContent("");
-	list[1] = new GUIContent("assembly");
-	list[2] = new GUIContent("csharp");
-	list[3] = new GUIContent("java");
-	list[4] = new GUIContent("perl");
-	list[5] = new GUIContent("ruby");
+	list[1] = new GUIContent(stringNames.showEsp01);
+	list[2] = new GUIContent(stringNames.showEsp02);
+	list[3] = new GUIContent(stringNames.showEsp03);
+	list[4] = new GUIContent(stringNames.showEsp04);
+	list[5] = new GUIContent(stringNames.showEsp05);
     
     // Make a GUIStyle that has a solid white hover/onHover background to indicate highlighted items
     listStyle = new GUIStyle();
