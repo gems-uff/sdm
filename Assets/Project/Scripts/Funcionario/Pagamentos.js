@@ -66,10 +66,9 @@ function PagarJogadorMensal(){
 	{
 		if (isComplete == false)
 		{
-			if ((timer.GetGameTime() % 29) == 0 )
+			if ((timer.GetGameTime() % 28) == 1 )
 			{
 				ProjetoPagarMensal();
-				//jogador.ChangeSaldo(project.GetPagamento());
 			}
 		}
 	}

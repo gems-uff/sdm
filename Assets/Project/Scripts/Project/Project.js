@@ -5,6 +5,8 @@
 //project = projectObj.GetComponent(Project);
 
 public var timer : GameTime;
+public var nome : String;
+public var description : String;
 public var deadline : int = 1;  //in days
 public var deadlineDays : int =1;
 public var maxCodeLines : int = 0;	//size of the software to be done
@@ -26,6 +28,18 @@ private var completed : boolean = false;
 private var bugs : float = 0.0 ;				//number of bugs in the software
 private var codeLinesDone : int = 0;	//number of lines done by the team
 //--------------------------------------------Get/Set-----------------------------------------------------------
+function GetNome () {
+	return nome;
+}
+function SetNome (t : String) {
+	nome = t;
+}
+function GetDescription () {
+	return description;
+}
+function SetDescription (t : String) {
+	description = t;
+}
 
 function GetDeadline () {					//Retorna o Deadline em horas
 	return deadline;
@@ -125,9 +139,7 @@ function ResetProject(){
 
 function SetProjectSizeString () {
 	var aux : float = 0;
-	if (deadline == 0)
-		deadline = 1;
-	aux = maxCodeLines / deadline;
+	aux = maxCodeLines / deadlineDays;
 	if (aux < SIMPLE)
 		projectSize = "Simple";
 	else
@@ -157,8 +169,7 @@ function SetProjectQuality(){
 //--------------------------------------------Awake-----------------------------------------------------------
 function Awake(){
 	SetProjectSizeString();
+	SetProjectQuality();
 }
 function Update(){
-	SetProjectSizeString();
-	SetProjectQuality();
 }
