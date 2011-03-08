@@ -41,25 +41,25 @@ function SetDescription (t : String) {
 	description = t;
 }
 
-function GetDeadline () {					//Retorna o Deadline em horas
+function GetDeadline () {	
 	return deadline;
 }
-function SetDeadline (t : int) {					//Seta o Deadline em horas
+function SetDeadline (t : int) {	
 	deadline = t;
 }
-function SetNewDeadline(t: int){			//Seta a nova data de deadline
+function SetNewDeadline(t: int){
 	deadline = t + timer.GetGameTime();
 }
-function GetDeadlineDays () {					//Retorna o Deadline em horas
+function GetDeadlineDays () {
 	return deadlineDays;
 }
-function SetDeadlineDays (t : int) {					//Seta o Deadline em horas
+function SetDeadlineDays (t : int) {
 	deadlineDays = t;
 }
-function GetStartDay () {					//Retorna o Deadline em horas
+function GetStartDay () {
 	return startDay;
 }
-function SetStartDay (t : int) {					//Seta o Deadline em horas
+function SetStartDay (t : int) {
 	startDay = t;
 }
 function GetNumBugs () {						//Retorna o numero de bugs no software
