@@ -13,7 +13,7 @@ public var newproject07 : Project;
 public var newproject08 : Project;
 public var customGuiStyle : GUIStyle;
 private var showWindow : boolean = false;
-private var windowRect : Rect = Rect (500,125,200,268);
+private var windowRect : Rect = Rect (300,125,400,268);
 private var project01 : boolean = false;
 private var project02 : boolean = false;
 private var project03 : boolean = false;
@@ -81,10 +81,10 @@ function SelectProject(){
 
 function ShowProjects(windowID : int){
 	timer.PauseGame();
-	GUI.Box (Rect (02,22,196,25), "Pick a new contract");
-	GUI.BeginGroup (Rect (02,25,200,243));
+	GUI.Box (Rect (02,22,396,25), "Pick a new contract");
+	GUI.BeginGroup (Rect (02,25,400,243));
 	
-	project01 = GUI.Toggle (Rect (10, 040, 98, 30), project01, "Project01");
+	project01 = GUI.Toggle (Rect (10, 040, 198, 30), project01, newproject01.GetNome());
 	if(project01 == true)
 	{
 		project02 = false;
@@ -97,7 +97,7 @@ function ShowProjects(windowID : int){
 		selected = true;
 		projectW.SetShowWindow(newproject01);
 	}
-	project02 = GUI.Toggle (Rect (10, 080, 98, 30), project02, "Project02");
+	project02 = GUI.Toggle (Rect (10, 080, 198, 30), project02, newproject02.GetNome());
 	if(project02 == true)
 	{
 		project01 = false;
@@ -110,7 +110,7 @@ function ShowProjects(windowID : int){
 		selected = true;
 		projectW.SetShowWindow(newproject02);
 	}
-	project03 = GUI.Toggle (Rect (10, 120, 98, 30), project03, "Project03");
+	project03 = GUI.Toggle (Rect (10, 120, 198, 30), project03, newproject03.GetNome());
 	if(project03 == true)
 	{
 		project02 = false;
@@ -123,7 +123,7 @@ function ShowProjects(windowID : int){
 		selected = true;
 		projectW.SetShowWindow(newproject03);
 	}
-	project04 = GUI.Toggle (Rect (10, 160, 98, 30), project04, "Project04");
+	project04 = GUI.Toggle (Rect (10, 160, 198, 30), project04, newproject04.GetNome());
 	if(project04 == true)
 	{
 		project02 = false;
@@ -136,7 +136,7 @@ function ShowProjects(windowID : int){
 		selected = true;
 		projectW.SetShowWindow(newproject04);
 	}
-	project05 = GUI.Toggle (Rect (108, 040, 98, 30), project05, "Project05");
+	project05 = GUI.Toggle (Rect (208, 040, 198, 30), project05, newproject05.GetNome());
 	if(project05 == true)
 	{
 		project02 = false;
@@ -149,7 +149,7 @@ function ShowProjects(windowID : int){
 		selected = true;
 		projectW.SetShowWindow(newproject05);
 	}
-	project06 = GUI.Toggle (Rect (108, 080, 98, 30), project06, "Project06");
+	project06 = GUI.Toggle (Rect (208, 080, 198, 30), project06, newproject06.GetNome());
 	if(project06 == true)
 	{
 		project02 = false;
@@ -162,7 +162,7 @@ function ShowProjects(windowID : int){
 		selected = true;
 		projectW.SetShowWindow(newproject06);
 	}
-	project07 = GUI.Toggle (Rect (108, 120, 98, 30), project07, "Project07");
+	project07 = GUI.Toggle (Rect (208, 120, 198, 30), project07, newproject07.GetNome());
 	if(project07 == true)
 	{
 		project02 = false;
@@ -175,7 +175,7 @@ function ShowProjects(windowID : int){
 		selected = true;
 		projectW.SetShowWindow(newproject07);
 	}
-	project08 = GUI.Toggle (Rect (108, 160, 98, 30), project08, "Project08");
+	project08 = GUI.Toggle (Rect (208, 160, 198, 30), project08, newproject08.GetNome());
 	if(project08 == true)
 	{
 		project02 = false;
@@ -188,7 +188,7 @@ function ShowProjects(windowID : int){
 		selected = true;
 		projectW.SetShowWindow(newproject08);
 	}
-	if (GUI.Button (Rect (02,210,190,25), "OK")) {
+	if (GUI.Button (Rect (02,210,390,25), "OK")) {
 		showWindow  = false;
 		projectW.DisableShowWindow();
 		SelectProject();
@@ -198,8 +198,7 @@ function ShowProjects(windowID : int){
 }
 	
 function OnGUI () {
-	GUI.backgroundColor = Color.yellow;
-	GUI.backgroundColor = Color.yellow;
+	GUI.backgroundColor = Color.blue;
 	GUI.contentColor = Color.green;
 	if(showWindow)
 		windowRect = GUI.Window (20, windowRect, ShowProjects, ("Possible Projects ") );

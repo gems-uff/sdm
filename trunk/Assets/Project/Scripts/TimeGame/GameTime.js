@@ -116,6 +116,8 @@ function PassTime () {
     gameTime += incrementBy;
 	pagar.PagarFuncionario();
 	pagar.PagarJogadorMensal();
+	//project.SetProjectSizeString();
+	//project.SetProjectQuality();
 	
 	work1.WorkHours();
 	work1.Work();
@@ -218,14 +220,9 @@ function SpeedHyperFast(){
 	InvokeRepeating("PassTime", incrementTime, TIMEHYPERFAST);
 }
 
-
 //--------------------------------------------Start-----------------------------------------------------------
 
 function Start () {
     InvokeRepeating("PassTime", incrementTime , TIMENORMAL);
 }
 
-//--------------------------------------------Awake-----------------------------------------------------------
-
-function Awake () {
-}

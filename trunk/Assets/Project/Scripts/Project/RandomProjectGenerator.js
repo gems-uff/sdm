@@ -7,6 +7,7 @@ private var linguagemProgramacao : String;					//Linguagem: Escolher apenas uma 
 private var pagamento : int = 0;
 private var bugValue : int = 1000;
 private var DAYS_MONTH : int = 28;
+private var description : RandomDescriptionGenerator;
 public var timer : GameTime;
 public var PAG_MOD : int = 60;
 
@@ -16,7 +17,8 @@ function NewProject(){
 	var auxD2 : int = Random.Range (28, 336); 
 	var auxCL : int = Random.Range (30, 150);
 	var auxPG : float = Random.Range (0.7, 1.3);
-	var auxBV : int = Random.Range (5, 50);
+	var auxBV : int = Random.Range (10, 100);
+	description.RandomDescription();
 		
 	if (auxD1 > auxD2)
 	{
@@ -32,7 +34,7 @@ function NewProject(){
 	pagamento = pagamento / 100;
 	pagamento = pagamento * 100;
 	maxCodeLines = auxCL * deadline;
-	bugValue = auxBV * 100;
+	bugValue = auxBV * 50;
 	projeto.SetNewDeadline(deadline);
 	projeto.SetDeadlineDays(deadline);
 	projeto.SetStartDay(timer.GetGameTime());
@@ -40,6 +42,14 @@ function NewProject(){
 	projeto.SetPagamento(pagamento);
 	projeto.SetBugValue(bugValue);
 	projeto.SetLinguagem(linguagemProgramacao);
+	projeto.SetNome(description.nome);
+	projeto.SetDescription(description.description);
+	projeto.SetProjectSizeString();
+	projeto.SetProjectQuality();
+	//Debug.Log("Code Lines: " + maxCodeLines);
+	//Debug.Log("Deadline: " + deadline);
+	//Debug.Log("Size: " + auxCL);
+	//Debug.Log("BugValue: " + bugValue);
 }
 
 function LinguagemProg(t : int){

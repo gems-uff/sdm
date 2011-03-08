@@ -8,7 +8,7 @@ public var msgFalha : String;
 public var customGuiStyle : GUIStyle;
 private var windowRect : Rect = Rect (700,125,300,395);
 
-msgFalha = "\n Fim do Prazo \n\n Nos nao conseguimos terminar a tempo e perdemos o contrato !";
+msgFalha = "\n Time's over \n\n We didn't finish the software in time.";
 //--------------------------------------------FimdeProjeto-----------------------------------------------------------
 
 //Funcao que exibe o resultado de conclusao do projeto
@@ -17,11 +17,11 @@ function WindowFunction(windowID : int){
 	{
 		timer.PauseGame();
 		GUI.Box (Rect (02,018,296,350), 
-		"\n Concluimos o projeto requisitado e ja podemos entreguar ao cliente \n\n" +
-		"Segue abaixo os dados do projeto entregue: \n" +
-		"Sincronismo: " + parseInt(project.GetSincronismo()).ToString() + " %" +
-		"\n # Bugs encontrados: " + parseInt(project.GetNumBugs()).ToString() +
-		"\n Dinheiro recebido: " + pgjog.CalculaPagamentoFinal(), customGuiStyle);
+		"\n We conclude the requested project and we've delivered to the customer \n\n" +
+		"Below is the project's data: \n" +
+		"Validation: " + parseInt(project.GetSincronismo()).ToString() + " %" +
+		"\n # Bugs not fixed: " + parseInt(project.GetNumBugs()).ToString() +
+		"\n Final payment: " + pgjog.CalculaPagamentoFinal(), customGuiStyle);
 		if (GUI.Button (Rect (02,368,296,25), "Close Window")) 
 		{
 			pgjog.PagarJogadorConclusao();
@@ -41,19 +41,11 @@ function WindowFunction(windowID : int){
 	}
 }
 
-//--------------------------------------------Awake-----------------------------------------------------------
-
-function Awake () {
-
-}
-
 //--------------------------------------------OnGUI-----------------------------------------------------------
 
 //Funcao da unity para a GUI
 function OnGUI (){
 	//Conclusão de projeto
 	if(project.GetIscomplete())
-	{
 		windowRect = GUI.Window (3, windowRect, WindowFunction, "Project Results");
-	}
 }
