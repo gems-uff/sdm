@@ -68,9 +68,10 @@ function ApplyChanges(){
 	}
 	if(timeBool == true)
 	{
-		trade = project.GetDeadline();
+		trade = project.GetDeadlineDays();
 		trade = trade * marketing_more;
 		trade = parseInt(trade);
+		trade = trade + project.GetStartDay();
 		project.SetDeadline(trade);
 	}
 	if(moneyBool == true)
@@ -97,9 +98,10 @@ function ApplyChanges(){
 	}
 	if(lessTime == true)
 	{
-		tradeOff = project.GetDeadline();
+		tradeOff = project.GetDeadlineDays();
 		tradeOff = tradeOff * marketing_less;
 		tradeOff = parseInt(tradeOff);
+		tradeOff = tradeOff + project.GetStartDay();
 		project.SetDeadline(tradeOff);
 	}
 	if(lessMoney == true)
@@ -205,13 +207,6 @@ function WindowFunction(windowID : int){
 			lockNegotiation = true;
 			ResetItems();
 		}
-}
-	
-	
-//--------------------------------------------Awake-----------------------------------------------------------
-
-function Awake () {
-
 }
 
 //--------------------------------------------OnGUI-----------------------------------------------------------
