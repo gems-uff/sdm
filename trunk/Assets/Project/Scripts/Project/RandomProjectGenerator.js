@@ -46,10 +46,6 @@ function NewProject(){
 	projeto.SetDescription(description.description);
 	projeto.SetProjectSizeString();
 	projeto.SetProjectQuality();
-	//Debug.Log("Code Lines: " + maxCodeLines);
-	//Debug.Log("Deadline: " + deadline);
-	//Debug.Log("Size: " + auxCL);
-	//Debug.Log("BugValue: " + bugValue);
 }
 
 function LinguagemProg(t : int){
