@@ -8,7 +8,7 @@ class RandomDescriptionGenerator extends System.ValueType{
 	}
 	
 	public function RandomDescription (){
-		var number : int = Random.Range(1, 33);
+		var number : int = Random.Range(1, 35);
 		switch(number)
 		{
 		   case 1:
@@ -140,12 +140,12 @@ class RandomDescriptionGenerator extends System.ValueType{
 				description = "Basicaly is an email but instead of text they store voice messages.";
 		   break;
 		   case 33:
-				nome = "Web-page editor";
-				description = "";
+				nome = "Baconfriends";
+				description = "Just like facebook, but better: now with a strip of bacon! The ultimate social network! Nom-nom!";
 		   break;
 		   case 34:
-				nome = "Wiki engine for school servers";
-				description = "";
+				nome = "Gotta-go!";
+				description = "This software will call you whenever you are in an awkward situation. Take that cue to leave! Need an excuse to leave that boring meeting? Gotta-go! Caught on a argument about dinossaurs and the Noah's Ark? Gotta-go!";
 		   break;
 		   case 35:
 				nome = "Microcontroller compiler";

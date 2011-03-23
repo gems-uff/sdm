@@ -290,6 +290,7 @@ function TesterWork(modificador_positivo : float, penal : float){
 
 function Treinando(){
 	//Quando terminar o treinamento o funcionario ganhará a especializaçao na qual treinou.
+	BroadcastMessage("ShowTrainingBar");
 	if ((timer.GetGameTime() > treino.GetDeadline_Treino()) && (treino.GetDeadline_Treino() >0))
 	{
 		treino.SetDeadline_Treino(0.0);

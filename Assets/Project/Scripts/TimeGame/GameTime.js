@@ -23,33 +23,6 @@ public var project : Project;
 public var equipe : Equipe;
 public var menuPrototype : PrototypeWindow;
 
-public var func1 : Funcionario;
-public var func2 : Funcionario;
-public var func3 : Funcionario;
-public var func4 : Funcionario;
-public var func5 : Funcionario;
-public var func6 : Funcionario;
-public var func7 : Funcionario;
-public var func8 : Funcionario;
-
-public var work1 : Working;
-public var work2 : Working;
-public var work3 : Working;
-public var work4 : Working;
-public var work5 : Working;
-public var work6 : Working;
-public var work7 : Working;
-public var work8 : Working;
-
-public var morale1 : MoraleControl;
-public var morale2 : MoraleControl;
-public var morale3 : MoraleControl;
-public var morale4 : MoraleControl;
-public var morale5 : MoraleControl;
-public var morale6 : MoraleControl;
-public var morale7 : MoraleControl;
-public var morale8 : MoraleControl;
-
 public var newProject01 : RandomProjectGenerator;
 public var newProject02 : RandomProjectGenerator;
 public var newProject03 : RandomProjectGenerator;
@@ -119,6 +92,10 @@ function PassTime () {
 	//project.SetProjectSizeString();
 	//project.SetProjectQuality();
 	
+	BroadcastMessage( "IncrementDays");
+	BroadcastMessage( "WorkHours");
+	BroadcastMessage("Work");
+	/*
 	work1.WorkHours();
 	work1.Work();
 	work2.WorkHours();
@@ -135,7 +112,10 @@ function PassTime () {
 	work7.Work();
 	work8.WorkHours();
 	work8.Work();
-	
+	*/
+	BroadcastMessage("ChangeMorale");
+	BroadcastMessage("MoraleActions");
+	/*
 	morale1.ChangeMorale();
 	morale1.MoraleActions();
 	morale2.ChangeMorale();
@@ -152,6 +132,7 @@ function PassTime () {
 	morale7.MoraleActions();
 	morale8.ChangeMorale();
 	morale8.MoraleActions();
+	*/
 	
 	if ((gameTime % 2) == 1)
 		equipe.ResetBonus();
