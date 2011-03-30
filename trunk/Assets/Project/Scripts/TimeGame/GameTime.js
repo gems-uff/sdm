@@ -18,28 +18,10 @@ private var incrementBy : int = 1;
 private var gameTime : int = 0;
 private var timeSpeed : float = 1.0;
 
-public var pagar : Pagamentos;
 public var project : Project;
 public var equipe : Equipe;
 public var menuPrototype : PrototypeWindow;
 
-public var newProject01 : RandomProjectGenerator;
-public var newProject02 : RandomProjectGenerator;
-public var newProject03 : RandomProjectGenerator;
-public var newProject04 : RandomProjectGenerator;
-public var newProject05 : RandomProjectGenerator;
-public var newProject06 : RandomProjectGenerator;
-public var newProject07 : RandomProjectGenerator;
-public var newProject08 : RandomProjectGenerator;
-
-public var newFunc1 : NewFuncionario;
-public var newFunc2 : NewFuncionario;
-public var newFunc3 : NewFuncionario;
-public var newFunc4 : NewFuncionario;
-public var newFunc5 : NewFuncionario;
-public var newFunc6 : NewFuncionario;
-public var newFunc7 : NewFuncionario;
-public var newFunc8 : NewFuncionario;
 //--------------------------------------------Get/Set-----------------------------------------------------------
 
 function GetGameTime(){
@@ -87,52 +69,16 @@ function GetTimeString(t : int) :String{
 
 function PassTime () {
     gameTime += incrementBy;
-	pagar.PagarFuncionario();
-	pagar.PagarJogadorMensal();
-	//project.SetProjectSizeString();
-	//project.SetProjectQuality();
 	
-	BroadcastMessage( "IncrementDays");
-	BroadcastMessage( "WorkHours");
+	BroadcastMessage("PagarFuncionario");
+	if (gameTime > 2)
+		BroadcastMessage("PagarJogadorMensal");
+	
+	BroadcastMessage("IncrementDays");
+	BroadcastMessage("WorkHours");
 	BroadcastMessage("Work");
-	/*
-	work1.WorkHours();
-	work1.Work();
-	work2.WorkHours();
-	work2.Work();
-	work3.WorkHours();
-	work3.Work();
-	work4.WorkHours();
-	work4.Work();
-	work5.WorkHours();
-	work5.Work();
-	work6.WorkHours();
-	work6.Work();
-	work7.WorkHours();
-	work7.Work();
-	work8.WorkHours();
-	work8.Work();
-	*/
 	BroadcastMessage("ChangeMorale");
 	BroadcastMessage("MoraleActions");
-	/*
-	morale1.ChangeMorale();
-	morale1.MoraleActions();
-	morale2.ChangeMorale();
-	morale2.MoraleActions();
-	morale3.ChangeMorale();
-	morale3.MoraleActions();
-	morale4.ChangeMorale();
-	morale4.MoraleActions();
-	morale5.ChangeMorale();
-	morale5.MoraleActions();
-	morale6.ChangeMorale();
-	morale6.MoraleActions();
-	morale7.ChangeMorale();
-	morale7.MoraleActions();
-	morale8.ChangeMorale();
-	morale8.MoraleActions();
-	*/
 	
 	if ((gameTime % 2) == 1)
 		equipe.ResetBonus();
@@ -140,26 +86,13 @@ function PassTime () {
 		menuPrototype.Unlock();
 	if ((gameTime % 28) == 0)
 	{
-		newFunc1.RandomFuncionarioStarter();
-		newFunc2.RandomFuncionarioStarter();
-		newFunc3.RandomFuncionarioStarter();
-		newFunc4.RandomFuncionarioStarter();
-		newFunc5.RandomFuncionarioStarter();
-		newFunc6.RandomFuncionarioStarter();
-		newFunc7.RandomFuncionarioStarter();
-		newFunc8.RandomFuncionarioStarter();
+		BroadcastMessage("NewEmployees");
 	}
 	if(gameTime > project.GetDeadline() || project.GetFractionDone() >= 100)
 	{
-		newProject01.NewProject();
-		newProject02.NewProject();
-		newProject03.NewProject();
-		newProject04.NewProject();
-		newProject05.NewProject();
-		newProject06.NewProject();
-		newProject07.NewProject();
-		newProject08.NewProject();
 		project.SetIscomplete(true);
+		BroadcastMessage("NewProject");
+		BroadcastMessage("UnLockNegotiation");
 	}
 }
 

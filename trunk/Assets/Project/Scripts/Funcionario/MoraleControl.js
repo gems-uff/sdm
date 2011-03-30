@@ -13,6 +13,7 @@ public var RECOVERYBONUS : float = 1.2;
 public var TIREDMORALE : float = 25.0;
 public var BADMORALE : float = 5.0;
 public var DEMITCHANCE : float = 1.0;
+public var MORALE_MOD : int = 25.0;
 
 private var func : Funcionario;
 private var work : Working;
@@ -61,6 +62,12 @@ function MoraleActions(){
 	}
 }
 
+function DecreaseMoralePayment(funcionario : Funcionario)
+{
+	var morale = funcionario.GetMorale();
+	morale = morale - MORALE_MOD;
+	funcionario.SetMorale(morale);
+}
 //--------------------------------------------Awake-----------------------------------------------------------
 function OnGUI (){
 }

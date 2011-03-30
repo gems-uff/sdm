@@ -5,7 +5,6 @@
 //pagar = playerObj.GetComponent(Pagamentos);
 
 public var DIAS_PAGAMENTO : int = 28;
-public var MORALE_MOD : int = 5.0;
 public var PROJECT_MULT : int = 2;
 private var isPago : boolean = false;
 
@@ -20,6 +19,7 @@ public var func8 : Funcionario;
 public var project : Project;
 public var jogador : PlayerStats;
 public var timer : GameTime;
+private var morale : MoraleControl;
 
 
 //--------------------------------------------PagamentoDoFuncionario-----------------------------------------------------------
@@ -44,15 +44,12 @@ function PagarFuncionarioTreinamento(preco : int){
 function VerificaSaldo(func : Funcionario){
 	var saldo : int;
 	var salario : int;
-	var morale : int;
 	saldo = jogador.GetSaldo();
 	salario = func.GetSalario() / DIAS_PAGAMENTO;
 	if (saldo < salario)
 	{
-		saldo = 0;
-		morale = func.GetMorale();
-		morale = morale - MORALE_MOD;
-		func.SetMorale(morale);
+		morale = func.GetComponentInChildren(MoraleControl);
+		morale.DecreaseMoralePayment(func);
 	}
 	else
 		jogador.ChangeSaldo(- salario);
