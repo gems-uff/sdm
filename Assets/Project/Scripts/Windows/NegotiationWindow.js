@@ -36,7 +36,6 @@ function SetShowWindow(funcionario){
 }
 
 function ResetItems(){
-	lockNegotiation = false;
 	scopeBool = false;
 	timeBool = false;
 	moneyBool = false;
