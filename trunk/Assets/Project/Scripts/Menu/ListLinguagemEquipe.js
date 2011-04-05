@@ -13,9 +13,9 @@ public var customGuiStyle : GUIStyle;
 //Implementar para permitir alteracao na metodologia
 
 function LinguagemEquipe(){
-	GUI.BeginGroup(Rect (00,225,220,150));
-	GUI.Box (Rect (00,00,130,25), "Team's P. Language: "); //+ equipe.GetMetodologia())
-	if (Popup.List (Rect(130, 00, 90, 25), showList, listEntry, GUIContent( equipe.GetLinguagem()), list, listStyle)) {
+	GUI.BeginGroup(Rect (00,00,220,175));
+	GUI.Box (Rect (00,00,90,25), "Language:"); //+ equipe.GetMetodologia())
+	if (Popup.List (Rect(00, 25, 90, 25), showList, listEntry, GUIContent( equipe.GetLinguagem()), list, listStyle)) {
 		if (listEntry != 0)
 		{
 			switch(listEntry)
