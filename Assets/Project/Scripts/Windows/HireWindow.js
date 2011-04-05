@@ -3,6 +3,7 @@ private var contratacao;
 public var timer : GameTime;
 public var funcWindow : FuncWindow;
 public var hireFuncionario : HireFuncionario;
+public var jogador : PlayerStats;
 //Candidatos
 public var newEmployee01 : Funcionario;
 public var newEmployee02 : Funcionario;
@@ -44,6 +45,7 @@ public var priceGuiStyle : GUIStyle;
 
 private var selectedSlot : boolean = false;
 private var showWindow : boolean = false;
+private var showInsuficientMoneyWindow : boolean = false;
 private var windowRect : Rect = Rect (300,125,300,412);
 
 function GetShowWindow(){
@@ -144,7 +146,21 @@ function HireEmployee(){
 	{
 		thisCandidate = newEmployee08;
 	}
-	hireFuncionario.ContratarFuncionario(thisCandidate, inPlaceOf);
+	if ( jogador.GetSaldo() >= (thisCandidate.GetSalario() + contratacao))
+		hireFuncionario.ContratarFuncionario(thisCandidate, inPlaceOf);
+	else
+		showInsuficientMoneyWindow = true;
+}
+
+function ShowInsuficientMoneyWindow()
+{
+	GUI.BeginGroup (Rect (300,300,400,90));
+	GUI.Box (Rect (00,00,400,40), "Not enough money to hire.");
+	if (GUI.Button (Rect (00,40,400,30), "Close")) 
+	{
+		showInsuficientMoneyWindow = false;
+	}
+	GUI.EndGroup ();
 }
 
 function ShowEmployees(windowID : int){
@@ -401,6 +417,8 @@ function OnGUI () {
 	GUI.contentColor = Color.green;
 	if(showWindow)
 		windowRect = GUI.Window (20, windowRect, ShowEmployees, ("Possible candidates") );
+	if (showInsuficientMoneyWindow)
+		ShowInsuficientMoneyWindow();
 }
 function Awake () {
 	contratacao = hireFuncionario.GetHire_Price();

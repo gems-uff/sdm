@@ -45,24 +45,27 @@ function StatusProjeto()	{
 	reqlingText = project.GetLinguagem ();
 	valorMensalText = "$ " + (parseInt(project.GetPagamento()).ToString());
 	
-	GUI.BeginGroup(Rect (00,00,220,200));
+	GUI.BeginGroup(Rect (00,Screen.height - 50,1020,200));
 	GUI.Box (Rect (00,00,90,25), "Money");
-	GUI.Box (Rect (00,25,90,25), "Time");
-	GUI.Box (Rect (00,50,90,25), "Deadline");
-	GUI.Box (Rect (00,75,90,25), "% complete");
-	GUI.Box (Rect (00,100,90,25), "# bugs");
-	GUI.Box (Rect (00,125,90,25), "Validation");
-	GUI.Box (Rect (00,150,90,25), "Req. Code");
-	GUI.Box (Rect (00,175,90,25), "Monthly Inc.");
-	
+	GUI.Box (Rect (00,25,90,25), "Monthly Inc.");
 	GUI.Box (Rect (90,00,130,25), saldoText);
-	GUI.Box (Rect (90,25,130,25), timeText);
-	GUI.Box (Rect (90,50,130,25), deadlineText);
-	GUI.Box (Rect (90,75,130,25), completedText);
-	GUI.Box (Rect (90,100,130,25), bugsText);
-	GUI.Box (Rect (90,125,130,25), sincronismoText);
-	GUI.Box (Rect (90,150,130,25), reqlingText);
-	GUI.Box (Rect (90,175,130,25), valorMensalText);
+	GUI.Box (Rect (90,25,130,25), valorMensalText);
+	
+	GUI.Box (Rect (220,00,90,25), "Time");
+	GUI.Box (Rect (220,25,90,25), "Deadline");
+	GUI.Box (Rect (310,00,130,25), timeText);
+	GUI.Box (Rect (310,25,130,25), deadlineText);
+	
+	GUI.Box (Rect (440,00,90,25), "% complete");
+	GUI.Box (Rect (440,25,90,25), "Validation");
+	GUI.Box (Rect (530,00,90,25), completedText);
+	GUI.Box (Rect (530,25,90,25), sincronismoText);
+	
+	GUI.Box (Rect (620,00,90,25), "# bugs");
+	GUI.Box (Rect (620,25,90,25), "Req. Code");
+	GUI.Box (Rect (710,00,90,25), bugsText);
+	GUI.Box (Rect (710,25,90,25), reqlingText);
+
 	GUI.EndGroup ();
 }
 
@@ -70,42 +73,43 @@ function StatusProjeto()	{
 
 //Funcao que permite alterar o gamespeed do jogo
 function GameSpeed()	{
-	GUI.BeginGroup(Rect (00,250,150,150));
+	GUI.BeginGroup(Rect (00,Screen.height - 75,1000,150));
+	GUI.Box (Rect (00,00,90,25), "Game Speed:");
 	if(timer.GetRepeatTime() != 0)
-		if (GUI.Button (Rect (00,00, 150, 25), "Pause Game"))
+		if (GUI.Button (Rect (90, 00, 90, 25), "Pause"))
 					timer.PauseGame();
 	if(timer.GetRepeatTime() == 0)
-		GUI.Box (Rect (00,00, 150, 25), "Pause Game");
+		GUI.Box (Rect (90, 00, 90, 25), "Pause");
 	
 	if(timer.GetRepeatTime() != timer.GetTimeS())
-		if (GUI.Button (Rect (00,25, 150, 25), "Game Spd: Slow"))
+		if (GUI.Button (Rect (180, 00, 90, 25), "Slow"))
 				timer.SpeedSlow();
 	if(timer.GetRepeatTime() == timer.GetTimeS())
-		GUI.Box (Rect (00,25, 150, 25), "Game Spd: Slow");
+		GUI.Box (Rect (180, 00, 90, 25), "Slow");
 	
 	if(timer.GetRepeatTime() != timer.GetTimeN())
-		if (GUI.Button (Rect (00,50, 150, 25), "Game Spd: Normal"))
+		if (GUI.Button (Rect (270,00, 90, 25), "Normal"))
 					timer.SpeedNormal();
 	if(timer.GetRepeatTime() == timer.GetTimeN())
-		GUI.Box (Rect (00,50, 150, 25), "Game Spd: Normal");
+		GUI.Box (Rect (270,00, 90, 25), "Normal");
 	
 	if(timer.GetRepeatTime() != timer.GetTimeF())
-		if (GUI.Button (Rect (00,75, 150, 25), "Game Spd: Fast"))
+		if (GUI.Button (Rect (360,00, 90, 25), "Fast"))
 					timer.SpeedFast();
 	if(timer.GetRepeatTime() == timer.GetTimeF())
-		GUI.Box (Rect (00,75, 150, 25), "Game Spd: Fast");
+		GUI.Box (Rect (360,00, 90, 25), "Fast");
 	
 	if(timer.GetRepeatTime() != timer.GetTimeVF())
-		if (GUI.Button (Rect (00,100, 150, 25), "Game Spd: Very Fast"))
+		if (GUI.Button (Rect (450, 00, 90, 25), "Very Fast"))
 					timer.SpeedVeryFastl();
 	if(timer.GetRepeatTime() == timer.GetTimeVF())
-		GUI.Box (Rect (00,100, 150, 25), "Game Spd: Very Fast");
+		GUI.Box (Rect (450, 00, 90, 25), "Very Fast");
 	
 	if(timer.GetRepeatTime() != timer.GetTimeHF())
-		if (GUI.Button (Rect (00,125, 150, 25), "Game Spd: Hyper Fast"))
+		if (GUI.Button (Rect (540, 00, 90, 25), "Hyper Fast"))
 					timer.SpeedHyperFast();
 	if(timer.GetRepeatTime() == timer.GetTimeHF())
-		GUI.Box (Rect (00,125, 150, 25), "Game Spd: Hyper Fast");
+		GUI.Box (Rect (540, 00, 90, 25), "Hyper Fast");
 	
 	GUI.EndGroup ();
 	if (timer.GetRepeatTime() == 0)

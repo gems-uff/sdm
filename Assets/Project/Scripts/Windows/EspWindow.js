@@ -8,12 +8,13 @@ public var stringNames : StringNames;
 public var timer : GameTime;
 public var pagar : Pagamentos;
 public var jogador : PlayerStats;
-public var PRECO : int = 2500;
+private var PRECO : int = 7500;
 public var TEMPODETREINO : int = 12;
 private var func : Funcionario;
 private var treino : Treinamento;
 private 	var deadlineTreino : float = 0.0;
 private var janelaEsp : boolean = false;
+private var showInsuficientMoneyWindow : boolean = false;
 private var windowRect : Rect = Rect (600,125,400,268);
 
 	
@@ -25,8 +26,13 @@ function ExecutaJanelaEsp(t : String){
 		treino.SetDeadline_Treino(deadlineTreino);
 		treino.SetAprendendo(t);
 		pagar.PagarFuncionarioTreinamento(PRECO);
-		janelaEsp  = false;
 	}
+	else
+	{
+		showInsuficientMoneyWindow = true;
+		treino.SetLockEscolha(false);
+	}
+	janelaEsp  = false;
 }
 
 function Especializar (funcionario : Funcionario, treinamento : Treinamento){
@@ -168,6 +174,16 @@ function WindowFunction(windowID : int){
 	GUI.EndGroup ();
 }
 
+function ShowInsuficientMoneyWindow()
+{
+	GUI.BeginGroup (Rect (300,300,400,90));
+	GUI.Box (Rect (00,00,400,40), "Not enough money to train the employee");
+	if (GUI.Button (Rect (00,40,400,30), "Close")) 
+	{
+		showInsuficientMoneyWindow = false;
+	}
+	GUI.EndGroup ();
+}
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
@@ -184,4 +200,6 @@ function OnGUI () {
 	GUI.contentColor = Color.green;
 	if(janelaEsp)
 		windowRect = GUI.Window (0, windowRect, WindowFunction, ("Especializations / Price: " +PRECO) );
+	if (showInsuficientMoneyWindow)
+		ShowInsuficientMoneyWindow();
 }
