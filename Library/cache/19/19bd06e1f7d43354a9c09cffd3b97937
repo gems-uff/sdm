@@ -64,7 +64,7 @@ function OnTriggerExit( collider1 : Collider )
 //--------------------------------------------Dialog_Funcionario-----------------------------------------------------------
 
 function Dialog_Funcionario (){
-	GUI.BeginGroup(Rect (150,Screen.height - 190,1000,1000));
+	GUI.BeginGroup(Rect (150,Screen.height - 265,1000,1000));
 	if (dialogEnable == true)
 	{
 		timer.PauseGame();
