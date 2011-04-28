@@ -3,11 +3,19 @@ private var listEntry = 0;
 private var list : GUIContent[];
 private var listStyle : GUIStyle;
 private var showList = false;
+private var NUMBEROFDAYS = 5;
 public var stringNames : StringNames;
 public var customGuiStyle : GUIStyle;
+public var projeto : Project;
+public var gametime : GameTime;
 
 public var equipe : Equipe;
 
+function AlterarMetodologia(metodologia : String)
+{
+	if (gametime. GetGameTime() < projeto.GetStartDay() + NUMBEROFDAYS)
+		equipe.SetMetodologia(metodologia);
+}
 //--------------------------------------------MetogologiaEquipe-----------------------------------------------------------
 
 //Implementar para permitir alteracao na metodologia
@@ -21,11 +29,13 @@ function MetodologiaEquipe(){
 			switch(listEntry)
 			{
 			   case 1: 	//caso Agil
-					equipe.SetMetodologia(stringNames.metodo1);
+					//equipe.SetMetodologia(stringNames.metodo1);
+					AlterarMetodologia(stringNames.metodo1);
 			   break;
 			   
 			   case 2: 	//caso Classico
-					equipe.SetMetodologia(stringNames.metodo2);
+					//equipe.SetMetodologia(stringNames.metodo2);
+					AlterarMetodologia(stringNames.metodo2);
 			   break;
 			   
 			   default:

@@ -23,6 +23,8 @@ private var insideCollider : boolean = false;
 private var dialogQuitEnable : boolean = false;
 private var dialogEnableBadDialog : boolean = false;
 private var dialogControl : boolean = false;
+private var showBadDialog : boolean = false;
+private var showQuitDialog : boolean = false;
 
 function SetDialogQuitEnable(){
 	dialogQuitEnable = true;
@@ -36,9 +38,18 @@ function SetDialogBadDialog(){
 //--------------------------------------------Update-----------------------------------------------------------
 
 function Update(){
-	if (Input.GetKeyDown("space") && insideCollider == true && !dialogLock.GetLock()){
-			dialogEnable = true;
-		}
+	if (Input.GetKeyDown("space") && insideCollider == true && !dialogLock.GetLock())
+		dialogEnable = true;
+	if (dialogEnableBadDialog == true && !dialogLock.GetLock())
+	{
+		showBadDialog = true;
+		dialogLock.SetLock(true);
+	}
+	if (dialogQuitEnable == true && !dialogLock.GetLock())
+	{
+		showQuitDialog = true;
+		dialogLock.SetLock(true);
+	}
 }
 //--------------------------------------------OnTriggerEnter-----------------------------------------------------------
 
@@ -117,9 +128,9 @@ function Dialog_Funcionario (){
 
 function BadMoraleDialog(){
 	GUI.BeginGroup(Rect (150,Screen.height - 190,1000,1000));
-	if (dialogEnableBadDialog == true && dialogControl == false)
+	if (showBadDialog == true && dialogControl == false && func.GetNome() != stringNames.fired)
 	{
-		dialogLock.SetLock(true);
+		//dialogLock.SetLock(true);
 		timer.PauseGame();
 		GUI.Box (Rect (00,00,120,25), func.GetNome() + " :");
 		GUI.Box (Rect (00,25,600,150), "Boss, this is too much for me, I'm in need of a break.", dialogGuiStyle);
@@ -127,13 +138,14 @@ function BadMoraleDialog(){
 				dialogEnableBadDialog = false;
 				dialogControl = true;
 				dialogLock.SetLock(false);
+				showBadDialog = false;
 		}
 	}
 	GUI.EndGroup ();
 }
 function QuitDialog(){
 	GUI.BeginGroup(Rect (150,Screen.height - 190,1000,1000));
-	if (dialogQuitEnable == true)
+	if (showQuitDialog == true)
 	{
 		dialogLock.SetLock(true);
 		timer.PauseGame();
