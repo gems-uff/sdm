@@ -8,4 +8,5 @@ function TakeProject(newProject : Project){
 	acceptedProject.SetPagamento(newProject.GetPagamento());
 	acceptedProject.SetBugValue(newProject.GetBugValue());
 	acceptedProject.SetLinguagem(newProject.GetLinguagem());
+	acceptedProject.SetStartDay(newProject.GetStartDay());
 }

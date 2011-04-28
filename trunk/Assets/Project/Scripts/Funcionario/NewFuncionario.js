@@ -34,12 +34,6 @@ function ReturnRandomValue(){
 	else
 		aux = (aux + value1) / 2;
 	return aux;
-	/*
-	if (value1 > value2)
-		return value1;
-	else
-		return value2;
-	*/
 }
 
 //--------------------------------------------SetAtributos-----------------------------------------------------------
