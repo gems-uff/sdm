@@ -9,12 +9,14 @@ private var project : Project;
 private var timerObj : GameObject;
 public var timer : GameTime;
 private var showWindow : boolean = false;
+private var showCloseButton : boolean = true;
 //Variavel do Style da GUI
 public var customGuiStyle : GUIStyle;
 private var windowRect : Rect = Rect (700,125,300,395);
 
 //Funcao que permite a exibicao da janela com os dados do projeto
-function SetShowWindow(projectShow : Project){
+function SetShowWindow(projectShow : Project, closeButton : boolean){
+	showCloseButton = closeButton;
 	project = projectShow;
 	showWindow = true;
 }
@@ -32,12 +34,11 @@ function WindowFunction(windowID : int){
 	"\tPrograming Language: " + project.GetLinguagem() + "\n" +
 	"\tMonthly Payment: " + project.GetPagamento() + "\n" +
 	"\tFinal Payment: " + project.GetPagamento()*4), customGuiStyle);
-	
-	if (GUI.Button (Rect (02,368,296,25), "Close Window")) 
-	{
-		showWindow = false;
-
-	}
+	if(showCloseButton)
+		if (GUI.Button (Rect (02,368,296,25), "Close Window")) 
+		{
+			showWindow = false;
+		}
 }
 //--------------------------------------------OnGUI-----------------------------------------------------------
 

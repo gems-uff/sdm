@@ -95,7 +95,7 @@ function ShowProjects(windowID : int){
 		project07 = false;
 		project08 = false;
 		selected = true;
-		projectW.SetShowWindow(newproject01);
+		projectW.SetShowWindow(newproject01, false);
 	}
 	project02 = GUI.Toggle (Rect (10, 080, 198, 30), project02, newproject02.GetNome());
 	if(project02 == true)
@@ -108,7 +108,7 @@ function ShowProjects(windowID : int){
 		project07 = false;
 		project08 = false;
 		selected = true;
-		projectW.SetShowWindow(newproject02);
+		projectW.SetShowWindow(newproject02, false);
 	}
 	project03 = GUI.Toggle (Rect (10, 120, 198, 30), project03, newproject03.GetNome());
 	if(project03 == true)
@@ -121,7 +121,7 @@ function ShowProjects(windowID : int){
 		project07 = false;
 		project08 = false;
 		selected = true;
-		projectW.SetShowWindow(newproject03);
+		projectW.SetShowWindow(newproject03, false);
 	}
 	project04 = GUI.Toggle (Rect (10, 160, 198, 30), project04, newproject04.GetNome());
 	if(project04 == true)
@@ -134,7 +134,7 @@ function ShowProjects(windowID : int){
 		project07 = false;
 		project08 = false;
 		selected = true;
-		projectW.SetShowWindow(newproject04);
+		projectW.SetShowWindow(newproject04, false);
 	}
 	project05 = GUI.Toggle (Rect (208, 040, 198, 30), project05, newproject05.GetNome());
 	if(project05 == true)
@@ -147,7 +147,7 @@ function ShowProjects(windowID : int){
 		project07 = false;
 		project08 = false;
 		selected = true;
-		projectW.SetShowWindow(newproject05);
+		projectW.SetShowWindow(newproject05, false);
 	}
 	project06 = GUI.Toggle (Rect (208, 080, 198, 30), project06, newproject06.GetNome());
 	if(project06 == true)
@@ -160,7 +160,7 @@ function ShowProjects(windowID : int){
 		project07 = false;
 		project08 = false;
 		selected = true;
-		projectW.SetShowWindow(newproject06);
+		projectW.SetShowWindow(newproject06, false);
 	}
 	project07 = GUI.Toggle (Rect (208, 120, 198, 30), project07, newproject07.GetNome());
 	if(project07 == true)
@@ -173,7 +173,7 @@ function ShowProjects(windowID : int){
 		project01 = false;
 		project08 = false;
 		selected = true;
-		projectW.SetShowWindow(newproject07);
+		projectW.SetShowWindow(newproject07, false);
 	}
 	project08 = GUI.Toggle (Rect (208, 160, 198, 30), project08, newproject08.GetNome());
 	if(project08 == true)
@@ -186,7 +186,7 @@ function ShowProjects(windowID : int){
 		project07 = false;
 		project01 = false;
 		selected = true;
-		projectW.SetShowWindow(newproject08);
+		projectW.SetShowWindow(newproject08, false);
 	}
 	if (GUI.Button (Rect (02,210,390,25), "OK")) {
 		showWindow  = false;

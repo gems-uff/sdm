@@ -18,6 +18,7 @@ private var salarioDay : int;
 private var papel : String;
 private var cargo : String;
 private var showJanela	:boolean = false;
+private var showCloseButton : boolean = true;
 private var workHours : int;
 private var morale : int;
 
@@ -29,9 +30,10 @@ function DisableShowWindow(){
 //--------------------------------------------FichaFuncionarioEspecializacao-----------------------------------------------------------
 
 //Funcao que seta os atributos do funcionario corrente, chamada pelo script DialogInstance, item Qualificacao. Primeiro atributo eh para abilitar a janela, os demais sao os atributos em ordem alfabetica
-function SetJanelatributo(funcionario : Funcionario){
+function SetJanelatributo(funcionario : Funcionario, closeButton : boolean){
 	var i : int = 0;
 	var a2 : Especializacoes;
+	showCloseButton = closeButton;
 	if(funcionario.GetNome() != stringNames.fired)
 	{
 		a2 = funcionario.GetEspecializacao();
@@ -171,10 +173,11 @@ function WindowFunction (windowID : int)	{
 	GUI.Box (Rect (200,358,198,20), ("\t" + especializacao_array[16].ToString()),fichaGuiStyle);
 	GUI.Box (Rect (200,378,198,20), ("\t" + especializacao_array[17].ToString()),fichaGuiStyle);
 	
-	if (GUI.Button (Rect (02,398,396,20), "Close Profile")) 
-	{
-		showJanela  = false;
-	}
+	if(showCloseButton)
+		if (GUI.Button (Rect (02,398,396,20), "Close Profile")) 
+		{
+			showJanela  = false;
+		}
 }
 
 //--------------------------------------------Awake-----------------------------------------------------------

@@ -183,7 +183,7 @@ function ShowEmployees(windowID : int){
 		candidate07 = false;
 		candidate08 = false;
 		selected = true;
-		funcWindow.SetJanelatributo(newEmployee01);
+		funcWindow.SetJanelatributo(newEmployee01, false);
 	}
 	candidate02 = GUI.Toggle (Rect (10, 080, 80, 30), candidate02, newEmployee02.GetNome());
 	GUI.Box (Rect (100,080,80,30), "$" + (newEmployee02.GetSalario() + contratacao), priceGuiStyle);
@@ -197,7 +197,7 @@ function ShowEmployees(windowID : int){
 		candidate07 = false;
 		candidate08 = false;
 		selected = true;
-		funcWindow.SetJanelatributo(newEmployee02);
+		funcWindow.SetJanelatributo(newEmployee02, false);
 	}
 	candidate03 = GUI.Toggle (Rect (10, 120, 80, 30), candidate03, newEmployee03.GetNome());
 	GUI.Box (Rect (100,120,80,30), "$" + (newEmployee03.GetSalario() + contratacao), priceGuiStyle);
@@ -211,7 +211,7 @@ function ShowEmployees(windowID : int){
 		candidate07 = false;
 		candidate08 = false;
 		selected = true;
-		funcWindow.SetJanelatributo(newEmployee03);
+		funcWindow.SetJanelatributo(newEmployee03, false);
 	}
 	candidate04 = GUI.Toggle (Rect (10, 160, 80, 30), candidate04, newEmployee04.GetNome());
 	GUI.Box (Rect (100,160,80,30), "$" + (newEmployee04.GetSalario() + contratacao), priceGuiStyle);
@@ -225,7 +225,7 @@ function ShowEmployees(windowID : int){
 		candidate07 = false;
 		candidate08 = false;
 		selected = true;
-		funcWindow.SetJanelatributo(newEmployee04);
+		funcWindow.SetJanelatributo(newEmployee04, false);
 	}
 	candidate05 = GUI.Toggle (Rect (10, 200, 80, 30), candidate05, newEmployee05.GetNome());
 	GUI.Box (Rect (100,200,80,30), "$" + (newEmployee05.GetSalario() + contratacao), priceGuiStyle);
@@ -239,7 +239,7 @@ function ShowEmployees(windowID : int){
 		candidate07 = false;
 		candidate08 = false;
 		selected = true;
-		funcWindow.SetJanelatributo(newEmployee05);
+		funcWindow.SetJanelatributo(newEmployee05, false);
 	}
 	candidate06 = GUI.Toggle (Rect (10, 240, 80, 30), candidate06, newEmployee06.GetNome());
 	GUI.Box (Rect (100,240,80,30), "$" + (newEmployee06.GetSalario() + contratacao), priceGuiStyle);
@@ -253,7 +253,7 @@ function ShowEmployees(windowID : int){
 		candidate07 = false;
 		candidate08 = false;
 		selected = true;
-		funcWindow.SetJanelatributo(newEmployee06);
+		funcWindow.SetJanelatributo(newEmployee06, false);
 	}
 	candidate07 = GUI.Toggle (Rect (10, 280, 80, 30), candidate07, newEmployee07.GetNome());
 	GUI.Box (Rect (100,280,80,30), "$" + (newEmployee07.GetSalario() + contratacao), priceGuiStyle);
@@ -267,7 +267,7 @@ function ShowEmployees(windowID : int){
 		candidate01 = false;
 		candidate08 = false;
 		selected = true;
-		funcWindow.SetJanelatributo(newEmployee07);
+		funcWindow.SetJanelatributo(newEmployee07, false);
 	}
 	candidate08 = GUI.Toggle (Rect (10, 320, 80, 30), candidate08, newEmployee08.GetNome());
 	GUI.Box (Rect (100,320,80,30), "$" + (newEmployee08.GetSalario() + contratacao), priceGuiStyle);
@@ -281,7 +281,7 @@ function ShowEmployees(windowID : int){
 		candidate07 = false;
 		candidate01 = false;
 		selected = true;
-		funcWindow.SetJanelatributo(newEmployee08);
+		funcWindow.SetJanelatributo(newEmployee08, false);
 	}
 	
 //Lado direito: Posicao
@@ -296,7 +296,6 @@ slot01 = GUI.Toggle (Rect (198, 040, 80, 30), slot01, employee01.GetNome());
 		slot07 = false;
 		slot08 = false;
 		selectedSlot = true;
-		//projectW.SetShowWindow(newproject01);
 	}
 	slot02 = GUI.Toggle (Rect (198, 080, 80, 30), slot02, employee02.GetNome());
 	if(slot02 == true)
@@ -309,7 +308,6 @@ slot01 = GUI.Toggle (Rect (198, 040, 80, 30), slot01, employee01.GetNome());
 		slot07 = false;
 		slot08 = false;
 		selectedSlot= true;
-		//projectW.SetShowWindow(newproject02);
 	}
 	slot03 = GUI.Toggle (Rect (198, 120, 80, 30), slot03, employee03.GetNome());
 	if(slot03 == true)
@@ -322,7 +320,6 @@ slot01 = GUI.Toggle (Rect (198, 040, 80, 30), slot01, employee01.GetNome());
 		slot07 = false;
 		slot08 = false;
 		selectedSlot = true;
-		//projectW.SetShowWindow(newproject03);
 	}
 	slot04 = GUI.Toggle (Rect (198, 160, 80, 30), slot04, employee04.GetNome());
 	if(slot04 == true)
@@ -335,7 +332,6 @@ slot01 = GUI.Toggle (Rect (198, 040, 80, 30), slot01, employee01.GetNome());
 		slot07 = false;
 		slot08 = false;
 		selectedSlot = true;
-		//projectW.SetShowWindow(newproject04);
 	}
 	slot05 = GUI.Toggle (Rect (198, 200, 80, 30), slot05, employee05.GetNome());
 	if(slot05 == true)
@@ -348,7 +344,6 @@ slot01 = GUI.Toggle (Rect (198, 040, 80, 30), slot01, employee01.GetNome());
 		slot07 = false;
 		slot08 = false;
 		selectedSlot = true;
-		//projectW.SetShowWindow(newproject05);
 	}
 	slot06 = GUI.Toggle (Rect (198, 240, 80, 30), slot06, employee06.GetNome());
 	if(slot06 == true)
@@ -361,7 +356,6 @@ slot01 = GUI.Toggle (Rect (198, 040, 80, 30), slot01, employee01.GetNome());
 		slot07 = false;
 		slot08 = false;
 		selectedSlot = true;
-		//projectW.SetShowWindow(newproject06);
 	}
 	slot07 = GUI.Toggle (Rect (198, 280, 80, 30), slot07, employee07.GetNome());
 	if(slot07 == true)
@@ -374,7 +368,6 @@ slot01 = GUI.Toggle (Rect (198, 040, 80, 30), slot01, employee01.GetNome());
 		slot01 = false;
 		slot08 = false;
 		selectedSlot = true;
-		//projectW.SetShowWindow(newproject07);
 	}
 	slot08 = GUI.Toggle (Rect (198, 320, 80, 30), slot08, employee08.GetNome());
 	if(slot08 == true)
@@ -387,13 +380,11 @@ slot01 = GUI.Toggle (Rect (198, 040, 80, 30), slot01, employee01.GetNome());
 		slot07 = false;
 		slot01 = false;
 		selectedSlot = true;
-		//projectW.SetShowWindow(newproject08);
 	}
 	if ( !candidate01 && !candidate02 && !candidate03 && !candidate04 && !candidate05 && !candidate06 && !candidate07 && !candidate08 )
 		selected = false;
 	if ( !slot01 && !slot02 && !slot03 && !slot04 && !slot05 && !slot06 && !slot07 && !slot08 )
 		selectedSlot = false;
-	//if ( selected == false || selectedSlot == false)
 	
 	if ( selected == true && selectedSlot == true)
 	{
