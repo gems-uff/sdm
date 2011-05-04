@@ -3,6 +3,12 @@
 //private var project : Project;
 //projectObj = GameObject.Find("Project");
 //project = projectObj.GetComponent(Project);
+public var SIMPLE : int = 525;		//Max 35 atributo "Programador" por programador por dia (3 programadores)
+public var REGULAR : int = 900;	//Max 60
+public var COMPLEX : int = 1200;	//Max 80
+public var LOW : int = 1500;
+public var NORMAL : int = 3000;
+public var HIGH : int = 4500;
 
 public var timer : GameTime;
 public var nome : String;
@@ -13,17 +19,11 @@ public var maxCodeLines : int = 0;	//size of the software to be done
 public var linguagemProgramacao : String = "";	//Linguagem: Escolher apenas uma linguagem
 public var pagamento : int = 0;
 public var bugValue : int = 1000;
-public var SIMPLE : int = 525;		//Max 35 atributo "Programador" por programador por dia (3 programadores)
-public var REGULAR : int = 900;	//Max 60
-public var COMPLEX : int = 1200;	//Max 80
-												//Insane > 80 por programador
-public var LOW : int = 1500;
-public var NORMAL : int = 3000;
-public var HIGH : int = 4500;
+
 private var startDay : int = 1;
 private var projectSize : String = "";
 private var projectQuality : String = "";
-private var sincronismo = 0.0;		//sincronismo
+private var sincronismo : float = 0.0;		//sincronismo
 private var completed : boolean = false;
 private var bugs : float = 0.0 ;				//number of bugs in the software
 private var codeLinesDone : int = 0;	//number of lines done by the team

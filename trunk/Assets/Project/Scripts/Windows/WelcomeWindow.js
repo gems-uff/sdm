@@ -25,7 +25,7 @@ function WindowFunction(windowID : int){
 	if (GUI.Button (Rect (02,368,296,25), "Close Window")) 
 	{
 		welcome  = true;
-		projectW.SetShowWindow(project);
+		projectW.SetShowWindow(project, true);
 	}
 }
 

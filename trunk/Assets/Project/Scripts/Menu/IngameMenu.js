@@ -1,18 +1,14 @@
 
 public var pauseStyle : GUIStyle;
+public var GameSaver : SaveGame;
+public var ingameMenuToggle 	: boolean = false;
+public var icon : Texture2D;
 
 private var TIMESLOW : float = 2.0;
 private var TIMENORMAL : float = 1.0;
 private var TIMEFAST : float = 0.5;
 private var TIMEVERYFAST : float = 0.25;
 private var TIMEHYPERFAST : float = 0.125;
-
-
-public var ingameMenuToggle 	: boolean = false;
-//var helpMenuToggle 		: boolean = false;
-//var scoreboardToggle		: boolean = false;
-
-public var icon : Texture2D;
 
 private var saldoText = "";
 private var timeText = "";
@@ -152,25 +148,17 @@ function MainMenu(){
 				//Application.LoadLevel ("StartMenu");
 				Application.Quit();
 		}
-		if (GUI.Button (Rect (Screen.width - 100,70, 100, 20), "2: Help")) {
-				//Fazer o Help
+		if (GUI.Button (Rect (Screen.width - 100,70, 100, 20), "2: Save")) {
+				GameSaver.SaveGame();
 		}
-		/*
-		if (Input.GetKeyDown("1")){
-			Application.LoadLevel ("StartMenu");
+		if (GUI.Button (Rect (Screen.width - 100,90, 100, 20), "3: Load")) {
+				GameSaver.LoadGame();
 		}
-		if (Input.GetKeyDown("2")){
-			ingameMenuToggle = false ;
-			Time.timeScale = 1 ;
-			Screen.lockCursor = true;
-		}
-		*/
-		if (GUI.Button( Rect (Screen.width - 100,90,100,20), "3: Resume") )
+		if (GUI.Button( Rect (Screen.width - 100,110,100,20), "4: Resume") )
 		{
 			ingameMenuToggle = false ;
 			//Time.timeScale = TIMESCALE ;
 			//Screen.lockCursor = true;
-
 		}
 	}
 }
