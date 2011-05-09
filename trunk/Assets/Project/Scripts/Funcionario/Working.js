@@ -30,6 +30,7 @@ public var PROG_BUG_MOD : float = 0.4;
 public var TESTER_DURANTE : float = 0.4;
 //Fim Constantes
 public var workingHoursModifier : float = 1.0;
+public var maxTrainingDays : int = 14;
 private var morale : float = 1.0;		//Valor entre 0.0 e 1.0
 private var func : Funcionario;
 private var treino : Treinamento;
@@ -289,8 +290,14 @@ function TesterWork(modificador_positivo : float, penal : float){
 }
 
 function Treinando(){
-	//Quando terminar o treinamento o funcionario ganhará a especializaçao na qual treinou.
-	BroadcastMessage("ShowTrainingBar");
+	//Quando terminar o treinamento o funcionario ganhará a especializaçao na qual treinou. A duração do treinamento depende do atributo Auto-Didata
+	var aux : float;
+	var trainingTime : int;
+	aux = 125 - func.GetAutoDidata();
+	aux = aux / 100;
+	aux = maxTrainingDays * aux;
+	trainingTime = parseInt(aux);
+	BroadcastMessage("ShowTrainingBar", trainingTime);
 	if ((timer.GetGameTime() > treino.GetDeadline_Treino()) && (treino.GetDeadline_Treino() >0))
 	{
 		treino.SetDeadline_Treino(0.0);

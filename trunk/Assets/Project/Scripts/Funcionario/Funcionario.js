@@ -46,11 +46,11 @@ function GetAdaptabilidade() {
 function SetAdaptabilidade(t: int) {
 	atributos.adaptabilidade = t;
 }
-function GetAutoDitada() {
-	return atributos.autoDitada;
+function GetAutoDidata() {
+	return atributos.autoDidata;
 }
 function SetAutoDitada(t: int) {
-	atributos.autoDitada = t;
+	atributos.autoDidata = t;
 }
 function GetDetalhista() {
 	return atributos.detalhista;
@@ -133,7 +133,7 @@ function SetMorale(t: float) {
 //Get e Set Atributos de cada papel
 
 function GetAtributoPapel(p1: float, p2: float, p3: float, p4: float, p5: float, p6: float, p7: float, p8: float, p9: float){
-	var atributoPapel = (atributos.adaptabilidade*p1) + (atributos.autoDitada*p2) + (atributos.detalhista*p3) + (atributos.negociacao*p4) + 
+	var atributoPapel = (atributos.adaptabilidade*p1) + (atributos.autoDidata*p2) + (atributos.detalhista*p3) + (atributos.negociacao*p4) + 
 	(atributos.objetividade*p5) + (atributos.organizacao*p6) + (atributos.paciencia*p7) + (atributos.raciocinioLogico*p8) + (atributos.relacionamentoHumano*p9);
 	return atributoPapel;
 }
