@@ -141,7 +141,7 @@ function WindowFunction (windowID : int)	{
 	GUI.Box (Rect (02,178,198,20), (" "),fichaGuiStyle);
 	//Lado direito
 	GUI.Box (Rect (200,018,198,20), (" Adaptability: "+ atributos.adaptabilidade),fichaGuiStyle);
-	GUI.Box (Rect (200,038,198,20), (" Autodidact: "+ atributos.autoDitada),fichaGuiStyle);
+	GUI.Box (Rect (200,038,198,20), (" Autodidact: "+ atributos.autoDidata),fichaGuiStyle);
 	GUI.Box (Rect (200,058,198,20), (" Human Relations: "+ atributos.relacionamentoHumano),fichaGuiStyle);
 	GUI.Box (Rect (200,078,198,20), (" Logical Reasoning: "+ atributos.raciocinioLogico),fichaGuiStyle);
 	GUI.Box (Rect (200,098,198,20), (" Meticulous: "+ atributos.detalhista),fichaGuiStyle);

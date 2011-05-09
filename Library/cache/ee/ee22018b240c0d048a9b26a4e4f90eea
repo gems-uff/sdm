@@ -41,7 +41,7 @@ function ReturnRandomValue(){
 function SetAtributos()
 {
 	atributos.adaptabilidade = ReturnRandomValue();
-	atributos.autoDitada = ReturnRandomValue();
+	atributos.autoDidata = ReturnRandomValue();
 	atributos.detalhista = ReturnRandomValue();
 	atributos.negociacao = ReturnRandomValue();
 	atributos.objetividade = ReturnRandomValue();
@@ -181,7 +181,7 @@ function NewSalario(){
 	var aux : float;
 	
 	aux = randomModifier * 0.01;
-	salario = atributos.adaptabilidade + atributos.autoDitada +	atributos.detalhista + atributos.negociacao + atributos.objetividade + atributos.organizacao + atributos.paciencia + atributos.raciocinioLogico + atributos.relacionamentoHumano;
+	salario = atributos.adaptabilidade + atributos.autoDidata +	atributos.detalhista + atributos.negociacao + atributos.objetividade + atributos.organizacao + atributos.paciencia + atributos.raciocinioLogico + atributos.relacionamentoHumano;
 	salario = salario * aux;
 	salario = salario * 10;
 	//salario = salario * 100;
@@ -206,7 +206,7 @@ function FireFuncionario (t : Funcionario) {
 
 function EmptyFuncionario(){
 	atributos.adaptabilidade = 0;
-	atributos.autoDitada = 0;
+	atributos.autoDidata = 0;
 	atributos.detalhista = 0;
 	atributos.negociacao = 0;
 	atributos.objetividade = 0;

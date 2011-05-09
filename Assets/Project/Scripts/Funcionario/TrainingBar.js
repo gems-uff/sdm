@@ -1,15 +1,16 @@
 public var trainingBar : Transform;
-public var MaxDays : float = 14;	//Tempo de treino -1
 public var MaxBar : float = 0.1;
 public var days : float = 0;
 public var m_Camera : Camera;
 private var showBar : boolean = false;
+private var MaxDays : int = 14;
 
 function IncrementDays(){
 	if (showBar)
 		days = days + 1;
 }
-function ShowTrainingBar(){
+function ShowTrainingBar(time_training : int){
+	MaxDays = time_training;
 	showBar = true;
 	GetComponentInChildren(MeshRenderer).enabled = true;
 }
