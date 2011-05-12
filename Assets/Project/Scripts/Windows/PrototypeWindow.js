@@ -5,14 +5,7 @@
 //menuPrototype = menuObj.GetComponent(PrototypeWindow);
 //menuPrototype.SetShowWindow(func);
 
-public var ARCHITECT_FACTOR : float = 0.06; 	//Multiplicador do bonus dos prototipos pelo arquiteto, no caso usa 10% do valor do arquiteto
-public var SIMPLE_FACTOR : int = 1;			//Multiplicador do bonus dos prototipos pelo tipo de prototipo
-public var REGULAR_FACTOR : int = 2;
-public var COMPLEX_FACTOR : int = 3;
-
-public var SIMPLE_PRICE : int = 3000;		//Custo para fazer cada prototipo
-public var REGULAR_PRICE : int = 7500;
-public var COMPLEX_PRICE : int = 18750;
+public var constant : GameConstants;
 
 public var project : Project;
 public var timer : GameTime;
@@ -24,7 +17,6 @@ private var showWindow : boolean = false;
 private var simpleProt : boolean = false;
 private var regularProt : boolean = false;
 private var complexProt : boolean = false;
-private var picked : boolean = false;
 private var isLocked : boolean = false;
 
 function GetIsLocked(){
@@ -37,7 +29,6 @@ function ResetItems(){
 	simpleProt = false;
 	regularProt = false;
 	complexProt = false;
-	picked = false;
 }
 function SetShowWindow(funcionario){
 	func = funcionario;
@@ -47,73 +38,70 @@ function SetShowWindow(funcionario){
 function ApplyChanges(){
 	var architect : float = func.GetArquiteto();
 	var bonusSincronismo : float = 0;
-	architect = architect  * ARCHITECT_FACTOR;
+	architect = architect  * constant.ARCHITECT_FACTOR;
 	if(simpleProt == true)
 	{
-		bonusSincronismo = architect * SIMPLE_FACTOR;
-		jogador.ChangeSaldo(- SIMPLE_PRICE);
+		bonusSincronismo = architect * constant.SIMPLE_FACTOR;
+		jogador.ChangeSaldo(- constant.SIMPLE_PRICE);
 		project.SetSincronismo(bonusSincronismo);
 	}
 	if(regularProt == true)
 	{
-		bonusSincronismo = architect * REGULAR_FACTOR;
-		jogador.ChangeSaldo(- REGULAR_PRICE);
+		bonusSincronismo = architect * constant.REGULAR_FACTOR;
+		jogador.ChangeSaldo(- constant.REGULAR_PRICE);
 		project.SetSincronismo(bonusSincronismo);
 	}
 	if(complexProt == true)
 	{
-		bonusSincronismo = architect * COMPLEX_FACTOR;
-		jogador.ChangeSaldo(- COMPLEX_PRICE);
+		bonusSincronismo = architect * constant.COMPLEX_FACTOR;
+		jogador.ChangeSaldo(- constant.COMPLEX_PRICE);
 		project.SetSincronismo(bonusSincronismo);
 	}
 }
 function WindowFunction(windowID : int){
 	timer.PauseGame();
 	GUI.Box (Rect (02,020,196,25),"Which type of Prototype");
-	if (jogador.GetSaldo() > SIMPLE_PRICE)
+	if (jogador.GetSaldo() > constant.SIMPLE_PRICE)
 	{
 		simpleProt = GUI.Toggle (Rect (02, 050, 58, 30), simpleProt, "Simple");
 		if(simpleProt == true)
 		{
 			regularProt = false;
 			complexProt = false;
-			picked = true;
 		}
 	}
-	if (jogador.GetSaldo() < SIMPLE_PRICE)
+	if (jogador.GetSaldo() < constant.SIMPLE_PRICE)
 		GUI.Box (Rect (02, 050, 58, 30),"Simple");
-	if (jogador.GetSaldo() > REGULAR_PRICE)
+	if (jogador.GetSaldo() > constant.REGULAR_PRICE)
 	{
 		regularProt = GUI.Toggle (Rect (60, 050, 78, 30), regularProt, "Regular");
 		if(regularProt == true)
 		{
 			simpleProt = false;
 			complexProt = false;
-			picked = true;
 		}
 	}
-	if (jogador.GetSaldo() < REGULAR_PRICE)
+	if (jogador.GetSaldo() < constant.REGULAR_PRICE)
 		GUI.Box (Rect (60, 050, 78, 30),"Regular");
-	if (jogador.GetSaldo() > COMPLEX_PRICE)
+	if (jogador.GetSaldo() > constant.COMPLEX_PRICE)
 	{
 		complexProt = GUI.Toggle (Rect (128, 050, 68, 30), complexProt, "Complex");
 		if(complexProt == true)
 		{
 			simpleProt = false;
 			regularProt = false;
-			picked = true;
 		}
 	}
-	if (jogador.GetSaldo() < COMPLEX_PRICE)
+	if (jogador.GetSaldo() < constant.COMPLEX_PRICE)
 		GUI.Box (Rect (128, 050, 68, 30),"Complex");
 		
-	GUI.Box (Rect (02,080,196,30),"Price : $" + SIMPLE_PRICE + " / $" + REGULAR_PRICE +" / $" + COMPLEX_PRICE);
+	GUI.Box (Rect (02,080,196,30),"Price : $" + constant.SIMPLE_PRICE + " / $" + constant.REGULAR_PRICE +" / $" + constant.COMPLEX_PRICE);
 	if (GUI.Button (Rect (02,110,98,25), "Cancel")) 
 	{
 		showWindow  = false;
 		//timer.SpeedNormal();
 	}
-	if (picked)
+	if ( complexProt == true || regularProt == true || simpleProt == true)
 		if (GUI.Button (Rect (100,110,98,25), "Ok")) 
 		{
 			showWindow  = false;

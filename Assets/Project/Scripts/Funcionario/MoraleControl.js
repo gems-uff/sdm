@@ -3,17 +3,11 @@
 //private var morale : MoraleControl;
 //funcObj = GameObject.Find("Funcionario");
 //morale = funcObj.GetComponent(MoraleControl);
+public var constant : GameConstants;
 public var timer : GameTime;
 public var stringNames : StringNames;
 private var dialog : Dialog;
 public var dialogGuiStyle : GUIStyle;
-public var MODIFICATOR : float = 6.0; 
-public var SLOWRECOVERY : float = -1.0;
-public var RECOVERYBONUS : float = 1.2;
-public var TIREDMORALE : float = 25.0;
-public var BADMORALE : float = 5.0;
-public var DEMITCHANCE : float = 1.0;
-public var MORALE_MOD : int = 25.0;
 
 private var func : Funcionario;
 private var work : Working;
@@ -31,11 +25,11 @@ function ChangeMorale(){
 		changeFactor = work.GetWorkingHoursModifier();
 		moraleMod = (changeFactor - 1);
 		if (moraleMod == 0)		//Se esta trabalhando o numero de horas default (40 horas) entao ele recupera moral bem lentamente
-			moraleMod = SLOWRECOVERY;
+			moraleMod = constant.SLOWRECOVERY;
 		else
 			if (moraleMod < 0 )		//Se estiver trabalhando um numero de horas inferior ao default, entao ele recupera moral (recupera 20% a mais do que ele perderia se fosse o inverso)
-				moraleMod = moraleMod * RECOVERYBONUS;
-		moraleMod = moraleMod * MODIFICATOR;
+				moraleMod = moraleMod * constant.RECOVERYBONUS;
+		moraleMod = moraleMod * constant.MODIFICATOR;
 		morale = morale - moraleMod;
 		if (morale > 100)
 			morale = 100;
@@ -49,13 +43,13 @@ function ChangeMorale(){
 function MoraleActions(){
 	var morale = func.GetMorale();
 	var chance : int = Random.Range (0, 150);
-	if (morale > TIREDMORALE)
+	if (morale > constant.TIREDMORALE)
 		dialog.SetDialogControl();
 	else
 	{
 		dialog.SetDialogBadDialog();
-		if (morale < BADMORALE)
-			if (chance < DEMITCHANCE)
+		if (morale < constant.BADMORALE)
+			if (chance < constant.DEMITCHANCE)
 			{
 				dialog.SetDialogQuitEnable();
 			}
@@ -65,7 +59,7 @@ function MoraleActions(){
 function DecreaseMoralePayment(funcionario : Funcionario)
 {
 	var morale = funcionario.GetMorale();
-	morale = morale - MORALE_MOD;
+	morale = morale - constant.MORALE_MOD;
 	funcionario.SetMorale(morale);
 }
 //--------------------------------------------Awake-----------------------------------------------------------

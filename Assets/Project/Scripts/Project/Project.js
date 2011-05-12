@@ -3,13 +3,8 @@
 //private var project : Project;
 //projectObj = GameObject.Find("Project");
 //project = projectObj.GetComponent(Project);
-public var SIMPLE : int = 525;		//Max 35 atributo "Programador" por programador por dia (3 programadores)
-public var REGULAR : int = 900;	//Max 60
-public var COMPLEX : int = 1200;	//Max 80
-public var LOW : int = 1500;
-public var NORMAL : int = 3000;
-public var HIGH : int = 4500;
 
+public var constant : GameConstants;
 public var timer : GameTime;
 public var nome : String;
 public var description : String;
@@ -140,13 +135,13 @@ function ResetProject(){
 function SetProjectSizeString () {
 	var aux : float = 0;
 	aux = maxCodeLines / deadlineDays;
-	if (aux < SIMPLE)
+	if (aux < constant.SIMPLE)
 		projectSize = "Simple";
 	else
-		if (aux < REGULAR)
+		if (aux < constant.REGULAR)
 			projectSize = "Regular";
 		else
-			if (aux < COMPLEX)
+			if (aux < constant.COMPLEX)
 				projectSize = "Complex";
 			else
 				projectSize = "Insane";
@@ -155,13 +150,13 @@ function GetProjectQuality(){
 	return projectQuality;
 }
 function SetProjectQuality(){
-	if (bugValue < LOW)
+	if (bugValue < constant.LOW)
 		projectQuality = "Not a priority";
 	else
-		if (bugValue < NORMAL)
+		if (bugValue < constant.NORMAL)
 			projectQuality = "Standart";
 		else
-			if(bugValue < HIGH)
+			if(bugValue < constant.HIGH)
 				projectQuality = "High priority";
 			else
 				projectQuality = "Highest priority";

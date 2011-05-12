@@ -5,7 +5,7 @@
 //pagar = playerObj.GetComponent(Pagamentos);
 
 public var DIAS_PAGAMENTO : int = 28;
-public var PROJECT_MULT : int = 2;
+public var PROJECT_MULT : int = 3;
 private var isPago : boolean = false;
 
 public var func1 : Funcionario;
@@ -20,7 +20,7 @@ public var project : Project;
 public var jogador : PlayerStats;
 public var timer : GameTime;
 private var morale : MoraleControl;
-
+public var dialog : NoPaymentDialog;
 
 //--------------------------------------------PagamentoDoFuncionario-----------------------------------------------------------
 
@@ -84,6 +84,8 @@ function ProjetoPagarMensal(){
 	{
 		jogador.ChangeSaldo(project.GetPagamento());
 	}
+	else
+		dialog.ActiveShowWindow();
 }
 function PagarJogadorConclusao(){
 	jogador.ChangeSaldo(CalculaPagamentoFinal());
@@ -93,10 +95,28 @@ function CalculaPagamentoFinal(){
 	var pagamentofinal : int;
 	pagamentofinal = project.GetPagamento();
 	pagamentofinal = pagamentofinal * PROJECT_MULT;
-	pagamentofinal = pagamentofinal * (parseInt(project.GetSincronismo()) / 100);	//reduz de acordo com o sincronismo
-	pagamentofinal = pagamentofinal - (parseInt(project.GetNumBugs()) * project.GetBugValue());		//reduz de acordo com o numero de bugs
+	pagamentofinal = pagamentofinal * (parseInt(project.GetSincronismo())) / 100;	//reduz de acordo com o sincronismo
+	pagamentofinal = pagamentofinal - ((parseInt(project.GetNumBugs())) * project.GetBugValue());		//reduz de acordo com o numero de bugs
 	
 	return pagamentofinal;
+}
+
+function GetPagamentoFinal()
+{
+	var pagamentofinal : int;
+	pagamentofinal = project.GetPagamento();
+	pagamentofinal = pagamentofinal * PROJECT_MULT;
+	return pagamentofinal;
+}
+
+function GetBugPenalty()
+{
+	return (parseInt(project.GetNumBugs()) * project.GetBugValue());
+}
+
+function GetValidadionAdjustment()
+{
+	return PROJECT_MULT * project.GetPagamento()* (parseInt(project.GetSincronismo())) / 100;
 }
 
 //--------------------------------------------Awake-----------------------------------------------------------
