@@ -267,15 +267,15 @@ function LoadGame()
 		_Treinamento03.SetDeadline_Treino(myData._iUser.T_03_deadline);
 		_Treinamento03.SetAprendendo(myData._iUser.T_03_aprendendo);
 		//Funcionario04
-		_Funcionario02.SetAtributos(myData._iUser.F_04_atributos);
-		_Funcionario02.SetEspecializacoes(myData._iUser.F_04_especializacao);
-		_Funcionario02.SetNome(myData._iUser.F_04_nome);
-		_Funcionario02.SetSalarioDefault(myData._iUser.F_04_defaultSalary);
-		_Funcionario02.SetSalario(myData._iUser.F_04_salary);
-		_Funcionario02.SetPapel(myData._iUser.F_04_role);
-		_Funcionario02.SetCargo(myData._iUser.F_04_job);
-		_Funcionario02.SetWorkingHours(myData._iUser.F_04_workingHours);
-		_Funcionario02.SetMorale(myData._iUser.F_04_morale);
+		_Funcionario04.SetAtributos(myData._iUser.F_04_atributos);
+		_Funcionario04.SetEspecializacoes(myData._iUser.F_04_especializacao);
+		_Funcionario04.SetNome(myData._iUser.F_04_nome);
+		_Funcionario04.SetSalarioDefault(myData._iUser.F_04_defaultSalary);
+		_Funcionario04.SetSalario(myData._iUser.F_04_salary);
+		_Funcionario04.SetPapel(myData._iUser.F_04_role);
+		_Funcionario04.SetCargo(myData._iUser.F_04_job);
+		_Funcionario04.SetWorkingHours(myData._iUser.F_04_workingHours);
+		_Funcionario04.SetMorale(myData._iUser.F_04_morale);
 		_Treinamento04.SetLockEscolha(myData._iUser.T_04_lock);
 		_Treinamento04.SetDeadline_Treino(myData._iUser.T_04_deadline);
 		_Treinamento04.SetAprendendo(myData._iUser.T_04_aprendendo);

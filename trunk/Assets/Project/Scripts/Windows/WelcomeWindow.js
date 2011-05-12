@@ -16,7 +16,8 @@ msgWelcome = "\n\nWelcome to S.D.M. \n(Software Development Manager) \n" +
 "\n In this game you are able to have 8 employees, where each can perform different roles, like Analist, Architect, Manager, Marketing, Programmer and Tester. "+
 "Your employees have attributes and specialities that can be useful for a certain kind of role. They also possess a morale stat that control his working produtivity. If his morale is "+
 "too low he can resign.\n" +
-"Your objective is to make a software for a client. While you are developing it, the client will pay you monthly.\n" +
+"Your objective is to make a software with good quality for a client. While you are developing it, the client will pay you monthly.\n" +
+"To interact with an employee you need to be near him and press SPACE BAR. \n" + 
 "That said, good luck with your software.";
 
 function WindowFunction(windowID : int){

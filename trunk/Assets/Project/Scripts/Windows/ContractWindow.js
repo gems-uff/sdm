@@ -188,12 +188,15 @@ function ShowProjects(windowID : int){
 		selected = true;
 		projectW.SetShowWindow(newproject08, false);
 	}
-	if (GUI.Button (Rect (02,210,390,25), "OK")) {
-		showWindow  = false;
-		projectW.DisableShowWindow();
-		SelectProject();
-		ResetItems();
-	}	
+	if ( project08 == true || project07 == true || project06 == true || project05 == true || project04 == true || project03 == true || project02 == true || project01 == true)
+	{
+		if (GUI.Button (Rect (02,210,390,25), "OK")) {
+			showWindow  = false;
+			projectW.DisableShowWindow();
+			SelectProject();
+			ResetItems();
+		}	
+	}
 	GUI.EndGroup ();
 }
 	

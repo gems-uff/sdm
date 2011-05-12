@@ -4,31 +4,13 @@
 //funcObj = GameObject.Find("Funcionario");
 //work = funcObj.GetComponent(Working);
 
-//Constantes
 //Variaves de configuracao de desempenho durante o trabalho
 public var stringNames : StringNames;
 public var equipe : Equipe;
 public var project : Project;
 public var timer : GameTime;
+public var constant : GameConstants;
 
-public var JUNIOR_SALARY : float = 1.0;
-public var PLENO_SALARY : float = 1.3;
-public var SENIOR_SALARY : float = 1.5;
-public var JUNIOR_MODIFICATOR : float = 1.0;
-public var PLENO_MODIFICATOR : float = 1.2;
-public var SENIOR_MODIFICATOR : float = 1.4;
-public var MINPAYMENT : int = 2000;
-public var PENALIDADE : float = 0.3;
-public var BONUS : float = 0.25;
-public var ANALISTA_INICIO : float = 0.8;
-public var ANALISTA_DURANTE : float = 0.01;
-public var GERENTE_ANA : float = 0.4;	// +40%
-public var GERENTE_ARQ : float = 0.4;
-public var GERENTE_PROG : float = 0.4;
-public var PROG_LINES_DAY_MOD : float = 5;
-public var PROG_BUG_MOD : float = 0.4;
-public var TESTER_DURANTE : float = 0.4;
-//Fim Constantes
 public var workingHoursModifier : float = 1.0;
 public var maxTrainingDays : int = 14;
 private var morale : float = 1.0;		//Valor entre 0.0 e 1.0
@@ -74,8 +56,8 @@ function WorkHours(){
 		newSalary = newSalary * 10;		//Para ser 0 na unidade do salario
 		morale = func.GetMorale();
 		morale = morale / 100;
-		if (newSalary < MINPAYMENT)
-			func.SetSalario(MINPAYMENT);
+		if (newSalary < constant.MINPAYMENT)
+			func.SetSalario(constant.MINPAYMENT);
 		else
 			func.SetSalario(newSalary);
 	}
@@ -88,15 +70,15 @@ function AjusteSalario(){
 	switch(func.GetCargo())
 	{
 	   case stringNames.jobJunior: 	//caso analista
-			mod = JUNIOR_SALARY;
+			mod = constant.JUNIOR_SALARY;
 	   break;
 
 	   case stringNames.jobPleno:	//caso arquiteto
-			mod = PLENO_SALARY;
+			mod = constant.PLENO_SALARY;
 	   break;
 	   
 	   case stringNames.jobSenior:	//caso gerente
-			mod = SENIOR_SALARY;
+			mod = constant.SENIOR_SALARY;
 	   break;
 
 	   default:
@@ -112,15 +94,15 @@ function AjusteWork(){
 	switch(func.GetCargo())
 	{
 	   case stringNames.jobJunior: 	//caso analista
-			mod = JUNIOR_MODIFICATOR;
+			mod = constant.JUNIOR_MODIFICATOR;
 	   break;
 
 	   case stringNames.jobPleno:	//caso arquiteto
-			mod = PLENO_MODIFICATOR;
+			mod = constant.PLENO_MODIFICATOR;
 	   break;
 	   
 	   case stringNames.jobSenior:	//caso gerente
-			mod = SENIOR_MODIFICATOR;
+			mod = constant.SENIOR_MODIFICATOR;
 	   break;
 
 	   default:
@@ -130,178 +112,167 @@ function AjusteWork(){
 }
 //--------------------------------------------Work-----------------------------------------------------------
 
-function Work(){	//Função que atualiza os campos de projeto conforme a performace do funcionario no seu papel
-	var modificador_positivo : float = EspecializacaoFerramenta();	//Resultado é um numero >= 0
-	var penal : float = MetodologiaEquipe();	//Resultado é um numero >= 0
-	if(func.GetNome() != stringNames.fired)
+function AnalistaWork(){
+	if( func.GetPapel() == stringNames.papelAnalista)
 	{
-		switch(func.GetPapel())
+		var modificador_positivo : float = EspecializacaoFerramenta();
+		var penal : float = MetodologiaEquipe();
+		var aux : float = 0.0;
+		var analista : float ;
+		analista = func.GetAnalista();
+		if(project.GetSincronismo() == 00)	//Se o projeto esta sendo iniciado, entao o valor de sincronismo inicial varia de acordo com o desempenho do analista
 		{
-		   case stringNames.papelAnalista: 	//caso analista
-			  AnalistaWork(modificador_positivo, penal);
-		   break;
-
-		   case stringNames.papelArquiteto:	//caso arquiteto
-			  ArquitetoWork(modificador_positivo, penal);
-		   break;
-		   
-		   case stringNames.papelGerente:	//caso gerente
-			  GerenteWork(modificador_positivo, penal);
-		   break;
-		   
-		   case stringNames.papelMarketing:	//caso marketing
-			  MarketingWork(modificador_positivo, penal);
-		   break;
-		   
-		   case stringNames.papelProg:	//caso programador
-				ProgramadorWork(modificador_positivo, penal);
-		   break;
-		   
-		   case stringNames.papelTester:	//caso tester
-			  TesterWork(modificador_positivo, penal);
-		   break;
-		   
-		   case stringNames.papelTreinando:	//caso esteja em treinamento
-			  Treinando();
-		   break;
-
-		   default:
-			  break;
-		}
-	}
-}
-
-function AnalistaWork(modificador_positivo : float, penal : float){
-	var aux : float = 0.0;
-	var analista : float ;
-	analista = func.GetAnalista();
-	
-	if(project.GetSincronismo() == 00)	//Se o projeto esta sendo iniciado, entao o valor de sincronismo inicial varia de acordo com o desempenho do analista
-	{
-		aux = analista * ANALISTA_INICIO * (1 + modificador_positivo - penal);
-		project.SetSincronismo(aux);
-	}
-	else
-	{
-		if(project.GetSincronismo() < 100)	//Se o projeto esta em andamento entao o sincronismo vai mudando lentamente de acordo com o analista
-		{
-			aux = analista * ANALISTA_DURANTE * (1 + modificador_positivo - penal);
-			aux = GameModifiers(aux);	//Modificadores de desempenho por gamespeed, moral e horas de trabalho
-			aux = aux * equipe.GetGerBonusAnalista() * equipe.GetMarBonusAnalista();
+			aux = analista * constant.ANALISTA_INICIO * (1 + modificador_positivo - penal);
 			project.SetSincronismo(aux);
 		}
+		else
+		{
+			if(project.GetSincronismo() < 100)	//Se o projeto esta em andamento entao o sincronismo vai mudando lentamente de acordo com o analista
+			{
+				//(project.GetProjectSize() / 1000);
+				aux = analista / (project.GetProjectSize() / 1000) * (1 + modificador_positivo - penal);
+				aux = GameModifiers(aux);
+				aux = aux * equipe.GetGerBonusAnalista() * equipe.GetMarBonusAnalista();
+				project.SetSincronismo(aux);
+			}
+		}
 	}
 }
 
-function ArquitetoWork(modificador_positivo : float, penal : float){
-	var aux : float = 0.0;
-	var arquiteto : float ;
-	
-	arquiteto = func.GetArquiteto();	
-	aux = arquiteto;
-	aux = aux * (1 + modificador_positivo - penal);
-	aux = GameModifiers(aux);	//Modificadores de desempenho por gamespeed, moral e horas de trabalho
-	aux = aux * equipe.GetGerBonusArquiteto();
-	aux = 1 + (aux / 100);
-	equipe.SetFindbugScore(aux);
-}
-
-function GerenteWork(modificador_positivo : float, penal : float){
-	var auxAnalista : float = 0.0;
-	var auxArquiteto : float = 0.0;
-	var auxProg : float = 0;
-	var gerente : float ;
-	var penal_prog : float = PenalidadeProgramacao(penal);
-	var penal_metodo_analista : float = penal;
-	
-	gerente = func.GetGerente();
-	auxAnalista = gerente * GERENTE_ANA;
-	auxArquiteto = gerente * GERENTE_ARQ;
-	auxProg = gerente * GERENTE_PROG;
-	
-	auxAnalista = auxAnalista * (1 + modificador_positivo - penal_metodo_analista);
-	auxArquiteto = auxArquiteto * (1 + modificador_positivo - penal);
-	auxProg = auxProg * (1 + modificador_positivo - penal_prog);
-	auxAnalista = GameModifiers(auxAnalista);
-	auxArquiteto = GameModifiers(auxArquiteto);
-	auxProg = GameModifiers(auxProg);
-	
-	auxAnalista = 1 + (auxAnalista / 100);
-	auxArquiteto = 1 + (auxArquiteto / 100);
-	auxProg = 1 + (auxProg / 100);
-	
-	equipe.SetGerBonusAnalista(auxAnalista);
-	equipe.SetGerBonusArquiteto(auxArquiteto);
-	equipe.SetGerBonusProg(auxProg);
-}
-
-function MarketingWork(modificador_positivo : float, penal : float){
-	var aux : float = 0.0;
-	var marketing : float ;
-	
-	marketing = func.GetMarketing();	
-	aux = marketing * 0.5;
-	aux = aux * (1 + modificador_positivo - penal);
-	aux = GameModifiers(aux);	//Modificadores de desempenho por gamespeed, moral e horas de trabalho
-	aux = 1 + (aux / 100);
-	equipe.SetMarBonusAnalista(aux);
-
-}
-
-function ProgramadorWork(modificador_positivo : float, penal : float){
-	var numBugs : float = 0.0;
-	var programador : float ;
-	var penal_prog : float = PenalidadeProgramacao(penal);
-	var aux : float = 0;
-	programador = func.GetProgramador();
-	
-	if (RequisitoLinguagem() == true)
+function ArquitetoWork(){
+	if( func.GetPapel() == stringNames.papelArquiteto)
 	{
-		numBugs = (100.0 - programador ) * PROG_BUG_MOD; //Para acrescentar/reduzir o numero de bugs, os modificadores tem seu papel invertido 
-		numBugs = numBugs * (1 + modificador_positivo - penal_prog);
-		aux = programador * PROG_LINES_DAY_MOD;
-		aux = aux * (1 + modificador_positivo - penal_prog);
-		//Modificadores de desempenho por gamespeed, moral e horas de trabalho
-		aux = GameModifiers(aux);
-		aux = aux * equipe.GetGerBonusProg();	
-		numBugs = GameModifiers(numBugs);	
-		project.SetNumBugs(numBugs);
-		project.SetLinesDone(aux);
-	}
-}
-
-function TesterWork(modificador_positivo : float, penal : float){
-	var aux : float;
-	var tester : float;
-	var penal_prog : float = PenalidadeProgramacao(penal);
-	tester = func.GetTester();
-	
-	if (RequisitoLinguagem() == true)
-	{
-		aux = tester * TESTER_DURANTE;		//Por parte do tester
-		aux = aux * (1 + modificador_positivo - penal_prog);
+		var modificador_positivo : float = EspecializacaoFerramenta();
+		var penal : float = MetodologiaEquipe();
+		var aux : float = 0.0;
+		var arquiteto : float ;
 		
-		//Modificadores de desempenho por gamespeed, moral e horas de trabalho
+		arquiteto = func.GetArquiteto();	
+		aux = arquiteto;
+		aux = aux * (1 + modificador_positivo - penal);
 		aux = GameModifiers(aux);
-		//aux = aux * equipe.GetGerBonusTester();
-		aux = -aux * equipe.GetFindbugScore();		
-		project.SetNumBugs(aux);
+		aux = aux * equipe.GetGerBonusArquiteto();
+		aux = 1 + (aux / 50);
+		equipe.SetFindbugScore(aux);
+	}
+}
+
+function GerenteWork(){
+	if( func.GetPapel() == stringNames.papelGerente)
+	{
+		var modificador_positivo : float = EspecializacaoFerramenta();
+		var penal : float = MetodologiaEquipe();
+		var auxAnalista : float = 0.0;
+		var auxArquiteto : float = 0.0;
+		var auxProg : float = 0;
+		var gerente : float ;
+		var penal_prog : float = PenalidadeProgramacao(penal);
+		var penal_metodo_analista : float = penal;
+		
+		gerente = func.GetGerente();
+		auxAnalista = gerente * constant.GERENTE_ANA;
+		auxArquiteto = gerente * constant.GERENTE_ARQ;
+		auxProg = gerente * constant.GERENTE_PROG;
+		
+		auxAnalista = auxAnalista * (1 + modificador_positivo - penal_metodo_analista);
+		auxArquiteto = auxArquiteto * (1 + modificador_positivo - penal);
+		auxProg = auxProg * (1 + modificador_positivo - penal_prog);
+		auxAnalista = GameModifiers(auxAnalista);
+		auxArquiteto = GameModifiers(auxArquiteto);
+		auxProg = GameModifiers(auxProg);
+		
+		auxAnalista = 1 + (auxAnalista / 100);
+		auxArquiteto = 1 + (auxArquiteto / 100);
+		auxProg = 1 + (auxProg / 100);
+		
+		equipe.SetGerBonusAnalista(auxAnalista);
+		equipe.SetGerBonusArquiteto(auxArquiteto);
+		equipe.SetGerBonusProg(auxProg);
+	}
+}
+
+function MarketingWork(){
+	if( func.GetPapel() == stringNames.papelMarketing)
+	{
+		var modificador_positivo : float = EspecializacaoFerramenta();
+		var penal : float = MetodologiaEquipe();
+		var aux : float = 0.0;
+		var marketing : float ;
+		
+		marketing = func.GetMarketing();	
+		aux = marketing * 0.5;
+		aux = aux * (1 + modificador_positivo - penal);
+		aux = GameModifiers(aux);
+		aux = 1 + (aux / 100);
+		equipe.SetMarBonusAnalista(aux);
+	}
+
+}
+
+function ProgramadorWork(){
+	if( func.GetPapel() == stringNames.papelProg)
+	{
+		var modificador_positivo : float = EspecializacaoFerramenta();
+		var penal : float = MetodologiaEquipe();
+		var numBugs : float = 0.0;
+		var programador : float ;
+		var penal_prog : float = PenalidadeProgramacao(penal);
+		var aux : float = 0;
+		programador = func.GetProgramador();
+		
+		if (RequisitoLinguagem() == true)
+		{
+			numBugs = (100.0 - programador ) * constant.PROG_BUG_MOD; //Para acrescentar/reduzir o numero de bugs, os modificadores tem seu papel invertido 
+			numBugs = numBugs * (1 + modificador_positivo - penal_prog);
+			aux = programador * constant.PROG_LINES_DAY_MOD;
+			aux = aux * (1 + modificador_positivo - penal_prog);
+			//Modificadores de desempenho por gamespeed, moral e horas de trabalho
+			aux = GameModifiers(aux);
+			aux = aux * equipe.GetGerBonusProg();	
+			numBugs = GameModifiers(numBugs);	
+			project.SetNumBugs(numBugs);
+			project.SetLinesDone(aux);
+		}
+	}
+}
+
+function TesterWork(){
+	if( func.GetPapel() == stringNames.papelTester)
+	{
+		var modificador_positivo : float = EspecializacaoFerramenta();
+		var penal : float = MetodologiaEquipe();
+		var aux : float;
+		var tester : float;
+		var penal_prog : float = PenalidadeProgramacao(penal);
+		tester = func.GetTester();
+		
+		if (RequisitoLinguagem() == true)
+		{
+			aux = tester * constant.TESTER_DURANTE;		//Por parte do tester
+			aux = aux * (1 + modificador_positivo - penal_prog);
+			aux = GameModifiers(aux);
+			aux = -aux * equipe.GetFindbugScore();		
+			project.SetNumBugs(aux);
+		}
 	}
 }
 
 function Treinando(){
 	//Quando terminar o treinamento o funcionario ganhará a especializaçao na qual treinou. A duração do treinamento depende do atributo Auto-Didata
-	var aux : float;
-	var trainingTime : int;
-	aux = 125 - func.GetAutoDidata();
-	aux = aux / 100;
-	aux = maxTrainingDays * aux;
-	trainingTime = parseInt(aux);
-	BroadcastMessage("ShowTrainingBar", trainingTime);
-	if ((timer.GetGameTime() > treino.GetDeadline_Treino()) && (treino.GetDeadline_Treino() >0))
+	if ( func.GetPapel() == stringNames.papelTreinando)
 	{
-		treino.SetDeadline_Treino(0.0);
-		treino.Especializando();
+		var aux : float;
+		var trainingTime : int;
+		aux = 125 - func.GetAutoDidata();
+		aux = aux / 100;
+		aux = maxTrainingDays * aux;
+		trainingTime = parseInt(aux);
+		BroadcastMessage("ShowTrainingBar", trainingTime);
+		if ((timer.GetGameTime() > treino.GetDeadline_Treino()) && (treino.GetDeadline_Treino() >0))
+		{
+			treino.SetDeadline_Treino(0.0);
+			treino.Especializando();
+		}
 	}
 }
 
@@ -312,7 +283,7 @@ function PenalidadeProgramacao(penal : float){
 
 //Funcao para avaliar se o funcionario possui o requisito necessario para o projeto. O valor retornado é 0 ou PENALIDADE
 function LinguagemProgEquipe(){
-	var modificador : float = PENALIDADE;
+	var modificador : float = constant.PENALIDADE;
 	
 	switch(equipe.GetLinguagem())
 	{
@@ -342,7 +313,7 @@ function LinguagemProgEquipe(){
 	   break;
 	   
 	   default:
-			modificador = PENALIDADE;
+			modificador = constant.PENALIDADE;
 		  break;
 	}
 	return modificador;
@@ -352,7 +323,7 @@ function LinguagemProgEquipe(){
 
 //Funcao para avaliar se o funcionario possui especialidade na mesma metodologia de trabalho que a equipe esta usando. O valor retornado é 0 ou PENALIDADE
 function MetodologiaEquipe(){
-	var modificador : float = PENALIDADE;
+	var modificador : float = constant.PENALIDADE;
 	
 	switch(equipe.GetMetodologia())
 	{
@@ -421,19 +392,19 @@ function EspecializacaoFerramenta (){
 	{
 	   case stringNames.papelAnalista: 	//caso analista
 			if (func.GetF_metricas() == true)			//Se for especializado na ferramenta de metricas entao se benificiará
-				modificador_positivo = BONUS;
+				modificador_positivo = constant.BONUS;
 	   break;
 
 	   case stringNames.papelArquiteto:	//caso arquiteto
 			if (func.GetF_programas() == true)		//Se for especializado na ferramenta de analise de programas entao se benificiará
-				modificador_positivo = modificador_positivo + BONUS;
+				modificador_positivo = modificador_positivo + constant.BONUS;
 	   break;
 	   
 	   case stringNames.papelGerente:	//caso gerente
 			if (func.GetF_projetos() == true)						//Se for especializado na ferramenta de depuracao entao se benificiará
-				modificador_positivo = modificador_positivo +  BONUS;
+				modificador_positivo = modificador_positivo +  constant.BONUS;
 			if (func.GetF_planejamento() == true)				//Se for especializado na ferramenta de depuracao entao se benificiará
-					modificador_positivo = modificador_positivo + BONUS;
+					modificador_positivo = modificador_positivo + constant.BONUS;
 	   break;
 	   
 	   case stringNames.papelMarketing:	//caso marketing
@@ -442,14 +413,14 @@ function EspecializacaoFerramenta (){
 	   
 	   case stringNames.papelProg:	//caso programador
 			if (func.GetF_depuracao() == true)					//Se for especializado na ferramenta de depuracao entao se benificiará
-				modificador_positivo = modificador_positivo + BONUS;
+				modificador_positivo = modificador_positivo + constant.BONUS;
 	   break;
 	   
 	   case stringNames.papelTester:	//caso tester
 			if (func.GetF_depuracao() == true)					//Se for especializado na ferramenta de depuracao entao se benificiará
-				modificador_positivo = modificador_positivo +  BONUS;
+				modificador_positivo = modificador_positivo +  constant.BONUS;
 			if (func.GetF_teste() == true)							//Se for especializado na ferramenta de testes entao se benificiará
-					modificador_positivo = modificador_positivo + BONUS;
+					modificador_positivo = modificador_positivo + constant.BONUS;
 	   break;
 
 	   default:

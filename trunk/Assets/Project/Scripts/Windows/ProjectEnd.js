@@ -19,8 +19,16 @@ function WindowFunction(windowID : int){
 		GUI.Box (Rect (02,018,296,350), 
 		"\n We conclude the requested project and we've delivered to the customer \n\n" +
 		"Below is the project's data: \n" +
-		"Validation: " + parseInt(project.GetSincronismo()).ToString() + " %" +
+		"\n Complexity: " + project.GetProjectSizeString() +
+		"\n Quality: " + project.GetProjectQuality() +
+		"\n Required Code: " + project.GetLinguagem() + 
+		"\n Completed: " + project.GetFractionDone() + " %" +
+		"\n Validation: " + parseInt(project.GetSincronismo()).ToString() + " %" +
 		"\n # Bugs not fixed: " + parseInt(project.GetNumBugs()).ToString() +
+		"\n Bug Value: $" + project.GetBugValue() +
+		"\n Payment: " + pgjog.GetPagamentoFinal() +
+		"\n Validation Adjustment: " + pgjog.GetValidadionAdjustment() +
+		"\n Penalty for Bugs: " + pgjog.GetBugPenalty() +
 		"\n Final payment: " + pgjog.CalculaPagamentoFinal(), customGuiStyle);
 		if (GUI.Button (Rect (02,368,296,25), "Close Window")) 
 		{
@@ -32,7 +40,14 @@ function WindowFunction(windowID : int){
 	else
 	{
 		timer.PauseGame();
-		GUI.Box (Rect (02,018,296,350), msgFalha, customGuiStyle);
+		GUI.Box (Rect (02,018,296,350), 
+		"\n Time's over \n\n We didn't finish the software in time. \n\n" +
+		"Below is the project's data: \n" +
+		"\n Required Code: " + project.GetLinguagem() + 
+		"\n Completed: " + project.GetFractionDone() + " %" +
+		"\n Validation: " + parseInt(project.GetSincronismo()).ToString() + " %" +
+		"\n # Bugs not fixed: " + parseInt(project.GetNumBugs()).ToString() +
+		"\n Final payment: $0 ", customGuiStyle);
 		if (GUI.Button (Rect (02,368,296,25), "Close Window")) 
 		{
 			project.ResetProject();

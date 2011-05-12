@@ -9,7 +9,7 @@ public var timer : GameTime;
 public var pagar : Pagamentos;
 public var jogador : PlayerStats;
 private var PRECO : int = 7500;
-public var TEMPODETREINO : int = 12;
+public var maxTrainingDays : int = 14;
 private var func : Funcionario;
 private var treino : Treinamento;
 private 	var deadlineTreino : float = 0.0;
@@ -19,9 +19,15 @@ private var windowRect : Rect = Rect (600,125,400,268);
 
 	
 function ExecutaJanelaEsp(t : String){
+	var aux : float;
+	var trainingTime : int;
 	if(jogador.GetSaldo() >= PRECO)
 	{
-		deadlineTreino = timer.GetGameTime() + TEMPODETREINO;
+		aux = 125 - func.GetAutoDidata();
+		aux = aux / 100;
+		aux = maxTrainingDays * aux;
+		trainingTime = parseInt(aux);
+		deadlineTreino = timer.GetGameTime() + trainingTime;
 		func.SetPapel(stringNames.papelTreinando);
 		treino.SetDeadline_Treino(deadlineTreino);
 		treino.SetAprendendo(t);

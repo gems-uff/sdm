@@ -76,12 +76,18 @@ function PassTime () {
 	
 	BroadcastMessage("IncrementDays");
 	BroadcastMessage("WorkHours");
-	BroadcastMessage("Work");
+	
+	BroadcastMessage("GerenteWork");
+	BroadcastMessage("MarketingWork");
+	BroadcastMessage("ArquitetoWork");
+	BroadcastMessage("AnalistaWork");
+	BroadcastMessage("ProgramadorWork");
+	BroadcastMessage("TesterWork");
+	BroadcastMessage("Treinando");
+
 	BroadcastMessage("ChangeMorale");
 	BroadcastMessage("MoraleActions");
-	
-	if ((gameTime % 2) == 1)
-		equipe.ResetBonus();
+	equipe.ResetBonus();
 	if((gameTime % 7) == 0)
 		menuPrototype.Unlock();
 	if ((gameTime % 28) == 0)
