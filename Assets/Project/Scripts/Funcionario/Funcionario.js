@@ -127,6 +127,11 @@ function SetWorkingHours(t: int) {
 function GetMorale() {
 	return morale;
 }
+function GetMoraleforBonus() {
+	if (morale < 20)
+		return 20;
+	return morale;
+}
 function SetMorale(t: float) {
 	morale = t;
 }

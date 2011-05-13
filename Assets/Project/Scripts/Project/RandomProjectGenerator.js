@@ -9,7 +9,7 @@ private var bugValue : int = 1000;
 private var DAYS_MONTH : int = 28;
 private var description : RandomDescriptionGenerator;
 public var timer : GameTime;
-private var PAG_MOD : int = 54;
+private var PAG_MOD : int = 60;
 
 function NewProject(){
 	var t : int = Random.Range (1, 11);

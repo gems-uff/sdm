@@ -7,7 +7,7 @@ public var fired : String = "Fired";
 public var metodo1 : String = "Agile";
 public var metodo2 : String = "Classic";
 
-public var papelAnalista : String = "Analist";
+public var papelAnalista : String = "Analyst";
 public var papelArquiteto : String = "Architect";
 public var papelGerente : String = "Manager";
 public var papelMarketing : String = "Marketing";

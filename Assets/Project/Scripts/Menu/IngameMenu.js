@@ -26,6 +26,9 @@ private var timer : GameTime;
 private var project : Project;
 private var playerstats : PlayerStats;
 
+private var myStyle : GUIStyle = new GUIStyle();
+myStyle.alignment = TextAnchor.MiddleCenter;
+myStyle.normal.textColor = Color.white;
 
 
 //--------------------------------------------StatusProj-----------------------------------------------------------
@@ -69,44 +72,48 @@ function StatusProjeto()	{
 
 //Funcao que permite alterar o gamespeed do jogo
 function GameSpeed()	{
-	GUI.BeginGroup(Rect (00,Screen.height - 75,1000,150));
-	GUI.Box (Rect (00,00,90,25), "Game Speed:");
+	GUI.BeginGroup(Rect (Screen.width - 400,Screen.height - 60,1000,150));
+	//GUI.Box (Rect (00,00,90,50), "Game Speed:");
 	if(timer.GetRepeatTime() != 0)
-		if (GUI.Button (Rect (90, 00, 90, 25), "Pause"))
-					timer.PauseGame();
+		if (GUI.Button (Rect (90, 00, 90, 50), "Pause"))
+			timer.PauseGame();
 	if(timer.GetRepeatTime() == 0)
-		GUI.Box (Rect (90, 00, 90, 25), "Pause");
-	
-	if(timer.GetRepeatTime() != timer.GetTimeS())
-		if (GUI.Button (Rect (180, 00, 90, 25), "Slow"))
-				timer.SpeedSlow();
-	if(timer.GetRepeatTime() == timer.GetTimeS())
-		GUI.Box (Rect (180, 00, 90, 25), "Slow");
-	
+	{
+		GUI.Box (Rect (90, 00, 90, 50), "");
+		GUI.Label (Rect (90, 00, 90, 50), "Pause", myStyle);
+	}
 	if(timer.GetRepeatTime() != timer.GetTimeN())
-		if (GUI.Button (Rect (270,00, 90, 25), "Normal"))
-					timer.SpeedNormal();
+		if (GUI.Button (Rect (180, 00, 90, 50), "Play"))
+			timer.SpeedNormal();
 	if(timer.GetRepeatTime() == timer.GetTimeN())
-		GUI.Box (Rect (270,00, 90, 25), "Normal");
-	
+	{
+		GUI.Box (Rect (180, 00, 90, 50), "");
+		GUI.Label (Rect (180, 00, 90, 50), "Play", myStyle);
+	}
 	if(timer.GetRepeatTime() != timer.GetTimeF())
-		if (GUI.Button (Rect (360,00, 90, 25), "Fast"))
-					timer.SpeedFast();
+		if (GUI.Button (Rect (270,00, 90, 25), "Fast"))
+			timer.SpeedFast();
 	if(timer.GetRepeatTime() == timer.GetTimeF())
-		GUI.Box (Rect (360,00, 90, 25), "Fast");
+		GUI.Box (Rect (270,00, 90, 25), "Fast");
 	
+	if(timer.GetRepeatTime() != timer.GetTimeVF())
+		if (GUI.Button (Rect (270,25, 90, 25), "Fastest"))
+			timer.SpeedVeryFastl();
+	if(timer.GetRepeatTime() == timer.GetTimeVF())
+		GUI.Box (Rect (270,25, 90, 25), "Fastest");
+		
+	/*
 	if(timer.GetRepeatTime() != timer.GetTimeVF())
 		if (GUI.Button (Rect (450, 00, 90, 25), "Very Fast"))
 					timer.SpeedVeryFastl();
 	if(timer.GetRepeatTime() == timer.GetTimeVF())
 		GUI.Box (Rect (450, 00, 90, 25), "Very Fast");
-	
 	if(timer.GetRepeatTime() != timer.GetTimeHF())
 		if (GUI.Button (Rect (540, 00, 90, 25), "Hyper Fast"))
 					timer.SpeedHyperFast();
 	if(timer.GetRepeatTime() == timer.GetTimeHF())
 		GUI.Box (Rect (540, 00, 90, 25), "Hyper Fast");
-	
+	*/
 	GUI.EndGroup ();
 	if (timer.GetRepeatTime() == 0)
 		GUI.Box (Rect (20,400,100,50), "PAUSED", pauseStyle);

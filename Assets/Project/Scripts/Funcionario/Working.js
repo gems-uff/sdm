@@ -10,6 +10,8 @@ public var equipe : Equipe;
 public var project : Project;
 public var timer : GameTime;
 public var constant : GameConstants;
+public var floatingLines : FloatingLines;
+public var floatingBugs : FloatingBugs;
 
 public var workingHoursModifier : float = 1.0;
 public var maxTrainingDays : int = 14;
@@ -54,7 +56,7 @@ function WorkHours(){
 		newSalary = newSalary * workingHoursModifier;
 		newSalary = newSalary / 10;		//Para ser 0 na unidade do salario
 		newSalary = newSalary * 10;		//Para ser 0 na unidade do salario
-		morale = func.GetMorale();
+		morale = func.GetMoraleforBonus();
 		morale = morale / 100;
 		if (newSalary < constant.MINPAYMENT)
 			func.SetSalario(constant.MINPAYMENT);
@@ -129,11 +131,12 @@ function AnalistaWork(){
 		{
 			if(project.GetSincronismo() < 100)	//Se o projeto esta em andamento entao o sincronismo vai mudando lentamente de acordo com o analista
 			{
-				//(project.GetProjectSize() / 1000);
 				aux = analista / (project.GetProjectSize() / 1000) * (1 + modificador_positivo - penal);
 				aux = GameModifiers(aux);
 				aux = aux * equipe.GetGerBonusAnalista() * equipe.GetMarBonusAnalista();
+				aux = Mathf.Round(aux * 100f) / 100f; //Para truncar na segunda casa decimal
 				project.SetSincronismo(aux);
+				floatingLines.showFloatText("+", aux, " Validation");
 			}
 		}
 	}
@@ -154,6 +157,7 @@ function ArquitetoWork(){
 		aux = aux * equipe.GetGerBonusArquiteto();
 		aux = 1 + (aux / 50);
 		equipe.SetFindbugScore(aux);
+		floatingLines.showFloatText("+", parseInt((aux -1)*100), "% Find Bonus");
 	}
 }
 
@@ -167,14 +171,13 @@ function GerenteWork(){
 		var auxProg : float = 0;
 		var gerente : float ;
 		var penal_prog : float = PenalidadeProgramacao(penal);
-		var penal_metodo_analista : float = penal;
 		
 		gerente = func.GetGerente();
-		auxAnalista = gerente * constant.GERENTE_ANA;
-		auxArquiteto = gerente * constant.GERENTE_ARQ;
-		auxProg = gerente * constant.GERENTE_PROG;
+		auxAnalista = gerente * constant.GERENTE;
+		auxArquiteto = gerente * constant.GERENTE;
+		auxProg = gerente * constant.GERENTE;
 		
-		auxAnalista = auxAnalista * (1 + modificador_positivo - penal_metodo_analista);
+		auxAnalista = auxAnalista * (1 + modificador_positivo - penal);
 		auxArquiteto = auxArquiteto * (1 + modificador_positivo - penal);
 		auxProg = auxProg * (1 + modificador_positivo - penal_prog);
 		auxAnalista = GameModifiers(auxAnalista);
@@ -188,6 +191,7 @@ function GerenteWork(){
 		equipe.SetGerBonusAnalista(auxAnalista);
 		equipe.SetGerBonusArquiteto(auxArquiteto);
 		equipe.SetGerBonusProg(auxProg);
+		floatingLines.showFloatText("+", parseInt((auxAnalista -1)*100), "% Team Bonus");
 	}
 }
 
@@ -205,6 +209,7 @@ function MarketingWork(){
 		aux = GameModifiers(aux);
 		aux = 1 + (aux / 100);
 		equipe.SetMarBonusAnalista(aux);
+		floatingLines.showFloatText("+", parseInt((aux -1)*100), "% Val. Bonus");
 	}
 
 }
@@ -218,6 +223,10 @@ function ProgramadorWork(){
 		var programador : float ;
 		var penal_prog : float = PenalidadeProgramacao(penal);
 		var aux : float = 0;
+		var random : int;
+		var i : int;
+		var bugCount : int = 0;
+		var variation : int;
 		programador = func.GetProgramador();
 		
 		if (RequisitoLinguagem() == true)
@@ -226,12 +235,28 @@ function ProgramadorWork(){
 			numBugs = numBugs * (1 + modificador_positivo - penal_prog);
 			aux = programador * constant.PROG_LINES_DAY_MOD;
 			aux = aux * (1 + modificador_positivo - penal_prog);
-			//Modificadores de desempenho por gamespeed, moral e horas de trabalho
 			aux = GameModifiers(aux);
 			aux = aux * equipe.GetGerBonusProg();	
+			variation = aux * 0.2;
+			aux = aux * 0.9;
+			aux = aux + Random.Range (0, variation);
+			aux = parseInt(aux);
 			numBugs = GameModifiers(numBugs);	
-			project.SetNumBugs(numBugs);
+			numBugs = parseInt(numBugs);
+			//Chance to add a bug, to a total of "numBugs"
+			for (i = 0; i < (numBugs + 1); i++)
+			{
+				random = Random.Range (0, 11);
+				if (random > 5)
+				{
+					bugCount++;
+					project.SetNumBugs(1);
+				}
+			}
+			//project.SetNumBugs(numBugs);
 			project.SetLinesDone(aux);
+			floatingLines.showFloatText("+", aux, " Lines");
+			floatingBugs.showNewBugs(bugCount);
 		}
 	}
 }
@@ -244,6 +269,8 @@ function TesterWork(){
 		var aux : float;
 		var tester : float;
 		var penal_prog : float = PenalidadeProgramacao(penal);
+		var bugCount : int = 0;
+		var i : int;
 		tester = func.GetTester();
 		
 		if (RequisitoLinguagem() == true)
@@ -251,8 +278,20 @@ function TesterWork(){
 			aux = tester * constant.TESTER_DURANTE;		//Por parte do tester
 			aux = aux * (1 + modificador_positivo - penal_prog);
 			aux = GameModifiers(aux);
-			aux = -aux * equipe.GetFindbugScore();		
-			project.SetNumBugs(aux);
+			aux = aux * equipe.GetFindbugScore();	
+			aux = parseInt(aux);
+			//Chance to remove a bug, to a total of "aux" bugs
+			for (i = 0; i < aux; i++)
+			{
+				random = Random.Range (0, 11);
+				if (random > 5)
+				{
+					bugCount++;
+					project.SetNumBugs(-1);
+				}
+			}
+			//project.SetNumBugs(aux);
+			floatingLines.showFloatText(" -", bugCount, " Bugs");
 		}
 	}
 }

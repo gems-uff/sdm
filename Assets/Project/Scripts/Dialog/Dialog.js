@@ -133,7 +133,7 @@ function BadMoraleDialog(){
 		//dialogLock.SetLock(true);
 		timer.PauseGame();
 		GUI.Box (Rect (00,00,120,25), func.GetNome() + " :");
-		GUI.Box (Rect (00,25,600,150), "Boss, this is too much for me, I'm in need of a break.", dialogGuiStyle);
+		GUI.Box (Rect (00,25,600,150), "Boss, this is too much for me, I need of a break...", dialogGuiStyle);
 		if (GUI.Button (Rect (600,25, 130, 25), "End")) {
 				dialogEnableBadDialog = false;
 				dialogControl = true;
