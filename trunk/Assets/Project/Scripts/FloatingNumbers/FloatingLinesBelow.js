@@ -2,16 +2,23 @@
 
 private var isShowing : boolean = false;
 
-function showNewBugs(number : float)
+function showFloatText(modifier : String,number : float, fontColor : String, texto : String)
 {
 	if ( !isShowing)
 	{
 		isShowing = true;
 		guiText.pixelOffset.y = 0;
-		guiText.material.color = Color.red;
+		if (fontColor == "red")
+			guiText.material.color = Color.red;
+		else
+			if(fontColor == "blue")
+				guiText.material.color = Color.blue;
+			else
+				guiText.material.color = Color.yellow;
+			
 		guiText.fontSize = 18;
 		guiText.fontStyle =  FontStyle.Bold;
-		guiText.text = "+"+number +" Bugs";
+		guiText.text = modifier + number + texto;
 		
 		for( var i= 0; i < 50; i++)
 		{

@@ -9,7 +9,7 @@ public var timer : GameTime;
 public var nome : String;
 public var description : String;
 public var deadline : int = 1;  //in days
-public var deadlineDays : int =1;
+public var deadlineDays : int =1;	//Deadline Original
 public var maxCodeLines : int = 0;	//size of the software to be done
 public var linguagemProgramacao : String = "";	//Linguagem: Escolher apenas uma linguagem
 public var pagamento : int = 0;
@@ -57,32 +57,32 @@ function GetStartDay () {
 function SetStartDay (t : int) {
 	startDay = t;
 }
-function GetNumBugs () {						//Retorna o numero de bugs no software
+function GetNumBugs () {
 	return bugs;
 }
-function SetNumBugs (t: float) {					//Seta o numero de bugs no software
+function SetNumBugs (t: float) {
 	if (!completed)
 		bugs = bugs + t;
 	if(bugs < 0 )
 		bugs = 0;
 }
-function GetProjectSize () {						//Retorna o numero de linhas que o software deve ter para ficar pronto
+function GetProjectSize () {
 	return maxCodeLines;
 }
-function SetProjectSize (t: int) {				//Seta o tamanho do software que deve ser produzido
+function SetProjectSize (t: int) {
 	maxCodeLines = t;
 }
-function GetLinesDone () {						//Retorna o numero de linhas ja feitas para o software
+function GetLinesDone () {
 	return codeLinesDone;
 }
-function SetLinesDone (t: int) {				//Seta o numero de linhas do software ja feitas
+function SetLinesDone (t: int) {
 	if (!completed)
 		codeLinesDone = codeLinesDone + t;
 }
-function GetIscomplete () {					//Retorna se o projeto esta concluido
+function GetIscomplete () {
 	return completed;
 }
-function SetIscomplete (t: boolean) {		//Seta se o projeto esta concluido ou nao
+function SetIscomplete (t: boolean) {
 	completed = t;
 }
 function GetDeadLine () {						//Retorna o Deadline no formato Data/Hora

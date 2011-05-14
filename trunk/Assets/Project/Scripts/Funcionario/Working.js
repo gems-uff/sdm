@@ -1,17 +1,14 @@
-//Para usar este script:
-//private var func : Funcionario;
-//private var work : Working;
-//funcObj = GameObject.Find("Funcionario");
-//work = funcObj.GetComponent(Working);
+
 
 //Variaves de configuracao de desempenho durante o trabalho
 public var stringNames : StringNames;
 public var equipe : Equipe;
 public var project : Project;
 public var timer : GameTime;
+public var playerStats : PlayerStats;
 public var constant : GameConstants;
 public var floatingLines : FloatingLines;
-public var floatingBugs : FloatingBugs;
+public var floatingLinesBelow : FloatingLinesBelow;
 
 public var workingHoursModifier : float = 1.0;
 public var maxTrainingDays : int = 14;
@@ -24,11 +21,6 @@ private var treino : Treinamento;
 function GetWorkingHoursModifier() {
 	return workingHoursModifier;
 }
-/*
-function SetWorkingHoursModifier(t: int) {
-	workingHoursModifier = t;
-}
-*/
 
 //--------------------------------------------GameModifiers-----------------------------------------------------------
 
@@ -121,6 +113,9 @@ function AnalistaWork(){
 		var penal : float = MetodologiaEquipe();
 		var aux : float = 0.0;
 		var analista : float ;
+		var randomizer : float = Random.Range (0.5, 1.0);
+		
+		
 		analista = func.GetAnalista();
 		if(project.GetSincronismo() == 00)	//Se o projeto esta sendo iniciado, entao o valor de sincronismo inicial varia de acordo com o desempenho do analista
 		{
@@ -133,7 +128,8 @@ function AnalistaWork(){
 			{
 				aux = analista / (project.GetProjectSize() / 1000) * (1 + modificador_positivo - penal);
 				aux = GameModifiers(aux);
-				aux = aux * equipe.GetGerBonusAnalista() * equipe.GetMarBonusAnalista();
+				aux = aux * equipe.GetBonusAnalista();
+				aux = aux * randomizer;
 				aux = Mathf.Round(aux * 100f) / 100f; //Para truncar na segunda casa decimal
 				project.SetSincronismo(aux);
 				floatingLines.showFloatText("+", aux, " Validation");
@@ -149,15 +145,21 @@ function ArquitetoWork(){
 		var penal : float = MetodologiaEquipe();
 		var aux : float = 0.0;
 		var arquiteto : float ;
+		var randomizer : float = Random.Range (0.8, 1.2);
+		var randomizer2 : float = Random.Range (0.8, 1.2);
 		
 		arquiteto = func.GetArquiteto();	
 		aux = arquiteto;
 		aux = aux * (1 + modificador_positivo - penal);
 		aux = GameModifiers(aux);
-		aux = aux * equipe.GetGerBonusArquiteto();
-		aux = 1 + (aux / 50);
+		aux = aux * equipe.GetBonusArquiteto();
+		aux = (aux * 2);
+		aux = parseInt(aux * randomizer);
 		equipe.SetFindbugScore(aux);
-		floatingLines.showFloatText("+", parseInt((aux -1)*100), "% Find Bonus");
+		arquiteto = parseInt(randomizer2 * aux / 10);
+		equipe.SetBonusProg(arquiteto);
+		floatingLines.showFloatText("+", aux, "% Bug Find");
+		floatingLinesBelow.showFloatText("+", arquiteto, "blue", " % Architecture");
 	}
 }
 
@@ -166,32 +168,31 @@ function GerenteWork(){
 	{
 		var modificador_positivo : float = EspecializacaoFerramenta();
 		var penal : float = MetodologiaEquipe();
-		var auxAnalista : float = 0.0;
+		var auxAnaArq : float = 0.0;
 		var auxArquiteto : float = 0.0;
 		var auxProg : float = 0;
 		var gerente : float ;
 		var penal_prog : float = PenalidadeProgramacao(penal);
+		var randomizer : float = Random.Range (0.8, 1.2);
+		var randomizer2 : float = Random.Range (0.7, 1.3);
 		
 		gerente = func.GetGerente();
-		auxAnalista = gerente * constant.GERENTE;
-		auxArquiteto = gerente * constant.GERENTE;
+		auxAnaArq = gerente * constant.GERENTE;
 		auxProg = gerente * constant.GERENTE;
 		
-		auxAnalista = auxAnalista * (1 + modificador_positivo - penal);
-		auxArquiteto = auxArquiteto * (1 + modificador_positivo - penal);
+		auxAnaArq = auxAnaArq * (1 + modificador_positivo - penal);
 		auxProg = auxProg * (1 + modificador_positivo - penal_prog);
-		auxAnalista = GameModifiers(auxAnalista);
-		auxArquiteto = GameModifiers(auxArquiteto);
+		auxAnaArq = GameModifiers(auxAnaArq);
 		auxProg = GameModifiers(auxProg);
 		
-		auxAnalista = 1 + (auxAnalista / 100);
-		auxArquiteto = 1 + (auxArquiteto / 100);
-		auxProg = 1 + (auxProg / 100);
+		auxAnaArq = parseInt(auxAnaArq * randomizer);
+		auxProg = parseInt(auxProg * randomizer2);
 		
-		equipe.SetGerBonusAnalista(auxAnalista);
-		equipe.SetGerBonusArquiteto(auxArquiteto);
-		equipe.SetGerBonusProg(auxProg);
-		floatingLines.showFloatText("+", parseInt((auxAnalista -1)*100), "% Team Bonus");
+		equipe.SetBonusAnalista(auxAnaArq);
+		equipe.SetBonusArquiteto(auxAnaArq);
+		equipe.SetBonusProg(auxProg);
+		floatingLines.showFloatText("+", auxAnaArq, "% Design");
+		floatingLinesBelow.showFloatText("+", auxProg, "blue", " % Dev.");
 	}
 }
 
@@ -202,14 +203,20 @@ function MarketingWork(){
 		var penal : float = MetodologiaEquipe();
 		var aux : float = 0.0;
 		var marketing : float ;
+		var randomizer : float = Random.Range (0.8, 1.2);
+		var randomizer2 : float = Random.Range (0.6, 1.4);
 		
 		marketing = func.GetMarketing();	
 		aux = marketing * 0.5;
 		aux = aux * (1 + modificador_positivo - penal);
 		aux = GameModifiers(aux);
-		aux = 1 + (aux / 100);
-		equipe.SetMarBonusAnalista(aux);
-		floatingLines.showFloatText("+", parseInt((aux -1)*100), "% Val. Bonus");
+		marketing = parseInt(aux * 2 * randomizer2);
+		aux = parseInt(aux * randomizer);
+		equipe.SetBonusAnalista(aux);
+		playerStats.ChangeSaldo(marketing);
+		floatingLines.showFloatText("+", aux, "% Val. Bonus");
+		floatingLinesBelow.showFloatText("+", marketing, "", " Money");
+		
 	}
 
 }
@@ -236,7 +243,7 @@ function ProgramadorWork(){
 			aux = programador * constant.PROG_LINES_DAY_MOD;
 			aux = aux * (1 + modificador_positivo - penal_prog);
 			aux = GameModifiers(aux);
-			aux = aux * equipe.GetGerBonusProg();	
+			aux = aux * equipe.GetBonusProg();	
 			variation = aux * 0.2;
 			aux = aux * 0.9;
 			aux = aux + Random.Range (0, variation);
@@ -244,19 +251,18 @@ function ProgramadorWork(){
 			numBugs = GameModifiers(numBugs);	
 			numBugs = parseInt(numBugs);
 			//Chance to add a bug, to a total of "numBugs"
-			for (i = 0; i < (numBugs + 1); i++)
+			for (i = 0; i < (numBugs+1); i++)
 			{
-				random = Random.Range (0, 11);
-				if (random > 5)
+				random = Random.Range (0, 10);
+				if (random > 4)
 				{
 					bugCount++;
 					project.SetNumBugs(1);
 				}
 			}
-			//project.SetNumBugs(numBugs);
 			project.SetLinesDone(aux);
 			floatingLines.showFloatText("+", aux, " Lines");
-			floatingBugs.showNewBugs(bugCount);
+			floatingLinesBelow.showFloatText("+", bugCount, "red", " Bugs");
 		}
 	}
 }
@@ -271,6 +277,7 @@ function TesterWork(){
 		var penal_prog : float = PenalidadeProgramacao(penal);
 		var bugCount : int = 0;
 		var i : int;
+		var randomizer : float = Random.Range (0.7, 1.0);
 		tester = func.GetTester();
 		
 		if (RequisitoLinguagem() == true)
@@ -279,18 +286,17 @@ function TesterWork(){
 			aux = aux * (1 + modificador_positivo - penal_prog);
 			aux = GameModifiers(aux);
 			aux = aux * equipe.GetFindbugScore();	
-			aux = parseInt(aux);
+			aux = parseInt(aux * randomizer);
 			//Chance to remove a bug, to a total of "aux" bugs
 			for (i = 0; i < aux; i++)
 			{
-				random = Random.Range (0, 11);
+				random = Random.Range (0, 10);
 				if (random > 5)
 				{
 					bugCount++;
 					project.SetNumBugs(-1);
 				}
 			}
-			//project.SetNumBugs(aux);
 			floatingLines.showFloatText(" -", bugCount, " Bugs");
 		}
 	}

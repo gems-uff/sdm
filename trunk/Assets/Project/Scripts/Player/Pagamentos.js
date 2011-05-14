@@ -71,16 +71,23 @@ function PagarJogadorMensal(){
 	}
 }
 function ProjetoPagarMensal(){
-	var aux : int = 0;
+	var neededMonths : int = 0;
+	var monthPercent : float = 0.0;
 	var auxTime : int = 0;
-	aux = project.GetProjectSize() / project.GetDeadlineDays();		//Producao por dia planejada
-	aux = aux * 28;																	//Producao por mes
-	aux = aux * 100 / project.GetProjectSize();								//Percentagem completada por mes planejada
+	var expected : float = 0.0;
+	//aux = project.GetProjectSize() / project.GetDeadlineDays();				//Producao por dia planejada
+	//aux = aux * 28;																	//Producao por mes
+	//aux = aux * 100 / project.GetProjectSize();									//Percentagem completada por mes planejada
+	//auxTime = timer.GetGameTime() - project.GetStartDay();					//Quanto tempo desde que o projeto iniciou
+	//auxTime = auxTime / 28;														//Quantos meses se passaram desde que iniciou
+	//aux = aux * auxTime;															//Multiplica a producao planejada por mes pela quantidade de meses que ja passou
+	
+	neededMonths = (project.GetDeadline() / 28);							//Qnts meses pro projeto
+	monthPercent = 100 / neededMonths; 									//Qnts % por meses
 	auxTime = timer.GetGameTime() - project.GetStartDay();			//Quanto tempo desde que o projeto iniciou
 	auxTime = auxTime / 28;														//Quantos meses se passaram desde que iniciou
-	aux = aux * auxTime;															//Multiplica a producao planejada por mes pela quantidade de meses que ja passou
-	
-	if (aux <= (10 + project.GetFractionDone()))
+	expected = monthPercent * auxTime;										//% concluido esperado
+	if (expected <= (10 + project.GetFractionDone()))
 	{
 		jogador.ChangeSaldo(project.GetPagamento());
 	}

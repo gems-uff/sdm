@@ -9,14 +9,14 @@ private var bugValue : int = 1000;
 private var DAYS_MONTH : int = 28;
 private var description : RandomDescriptionGenerator;
 public var timer : GameTime;
-private var PAG_MOD : int = 60;
+private var PAG_MOD : int = 48;
 
 function NewProject(){
-	var t : int = Random.Range (1, 11);
+	var t : int = Random.Range (1, 9);
 	var auxD1 : int = Random.Range (28, 336); 
 	var auxD2 : int = Random.Range (28, 336); 
 	var auxCL : int = Random.Range (30, 150);
-	var auxPG : float = Random.Range (0.7, 1.3);
+	var auxPG : float = Random.Range (0.8, 1.2);
 	var auxBV : int = Random.Range (10, 100);
 	description.RandomDescription();
 		
