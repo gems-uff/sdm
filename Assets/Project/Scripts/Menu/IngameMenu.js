@@ -72,48 +72,35 @@ function StatusProjeto()	{
 
 //Funcao que permite alterar o gamespeed do jogo
 function GameSpeed()	{
-	GUI.BeginGroup(Rect (Screen.width - 400,Screen.height - 60,1000,150));
-	//GUI.Box (Rect (00,00,90,50), "Game Speed:");
+	GUI.BeginGroup(Rect (Screen.width - 200,Screen.height - 60,1000,150));
 	if(timer.GetRepeatTime() != 0)
-		if (GUI.Button (Rect (90, 00, 90, 50), "Pause"))
+		if (GUI.Button (Rect (00, 00, 50, 50), "Pause"))
 			timer.PauseGame();
 	if(timer.GetRepeatTime() == 0)
 	{
-		GUI.Box (Rect (90, 00, 90, 50), "");
-		GUI.Label (Rect (90, 00, 90, 50), "Pause", myStyle);
+		GUI.Box (Rect (00, 00, 50, 50), "");
+		GUI.Label (Rect (00, 00, 50, 50), "Pause", myStyle);
 	}
 	if(timer.GetRepeatTime() != timer.GetTimeN())
-		if (GUI.Button (Rect (180, 00, 90, 50), "Play"))
+		if (GUI.Button (Rect (50, 00, 50, 50), "Play"))
 			timer.SpeedNormal();
 	if(timer.GetRepeatTime() == timer.GetTimeN())
 	{
-		GUI.Box (Rect (180, 00, 90, 50), "");
-		GUI.Label (Rect (180, 00, 90, 50), "Play", myStyle);
+		GUI.Box (Rect (50, 00, 50, 50), "");
+		GUI.Label (Rect (50, 00, 50, 50), "Play", myStyle);
 	}
 	if(timer.GetRepeatTime() != timer.GetTimeF())
-		if (GUI.Button (Rect (270,00, 90, 25), "Fast"))
+		if (GUI.Button (Rect (100,00, 90, 25), "Fast"))
 			timer.SpeedFast();
 	if(timer.GetRepeatTime() == timer.GetTimeF())
-		GUI.Box (Rect (270,00, 90, 25), "Fast");
+		GUI.Box (Rect (100,00, 90, 25), "Fast");
 	
 	if(timer.GetRepeatTime() != timer.GetTimeVF())
-		if (GUI.Button (Rect (270,25, 90, 25), "Fastest"))
+		if (GUI.Button (Rect (100,25, 90, 25), "Fastest"))
 			timer.SpeedVeryFastl();
 	if(timer.GetRepeatTime() == timer.GetTimeVF())
-		GUI.Box (Rect (270,25, 90, 25), "Fastest");
-		
-	/*
-	if(timer.GetRepeatTime() != timer.GetTimeVF())
-		if (GUI.Button (Rect (450, 00, 90, 25), "Very Fast"))
-					timer.SpeedVeryFastl();
-	if(timer.GetRepeatTime() == timer.GetTimeVF())
-		GUI.Box (Rect (450, 00, 90, 25), "Very Fast");
-	if(timer.GetRepeatTime() != timer.GetTimeHF())
-		if (GUI.Button (Rect (540, 00, 90, 25), "Hyper Fast"))
-					timer.SpeedHyperFast();
-	if(timer.GetRepeatTime() == timer.GetTimeHF())
-		GUI.Box (Rect (540, 00, 90, 25), "Hyper Fast");
-	*/
+		GUI.Box (Rect (100,25, 90, 25), "Fastest");
+	
 	GUI.EndGroup ();
 	if (timer.GetRepeatTime() == 0)
 		GUI.Box (Rect (20,400,100,50), "PAUSED", pauseStyle);
@@ -126,17 +113,11 @@ function EscapePressed()	{
 	if (!ingameMenuToggle)	//Se Menu aberto entao pausa
 	{
 		ingameMenuToggle = true;
-		//Screen.lockCursor = false;
-		//Time.timeScale = 0 ;	// pauze
 	}
 	
 	else //Senao despausa
 	{
-		//Screen.lockCursor = true;
 		ingameMenuToggle = false;
-		//helpMenuToggle = false;
-		//scoreboardToggle = false;
-		//Time.timeScale = TIMENORMAL ;	// unPause,
 	}
 }
 
@@ -164,8 +145,6 @@ function MainMenu(){
 		if (GUI.Button( Rect (Screen.width - 100,110,100,20), "4: Resume") )
 		{
 			ingameMenuToggle = false ;
-			//Time.timeScale = TIMESCALE ;
-			//Screen.lockCursor = true;
 		}
 	}
 }
@@ -190,16 +169,6 @@ function Update(){
 	{
 		EscapePressed();
 	}
-	/*if (Input.GetButtonDown ("Helpmenu")) // Helpmenu == H button in key setup
-	{
-		HelpMenuCall();
-	}
-	
-	if (Input.GetButtonDown ("scoreboard")) // Helpmenu == tab button in key setup
-	{
-		ScoreBoardCall();
-	}*/
-	
 }
 	
 

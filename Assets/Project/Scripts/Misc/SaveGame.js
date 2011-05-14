@@ -11,6 +11,10 @@ class DemoData
 	//GameTime
 	var gameTime : int;
 	
+	//Equipe
+	var language : String;
+	var metology : String;
+	
 	//Player
     var x : float;
     var y : float;
@@ -170,6 +174,7 @@ var _Player : GameObject;
 var _PlayerStats : PlayerStats;
 var _Project : Project;
 var _Time : GameTime;
+var _Equipe : Equipe;
 var _Funcionario01 : Funcionario;
 var _Funcionario02 : Funcionario;
 var _Funcionario03 : Funcionario;
@@ -225,6 +230,10 @@ function LoadGame()
 		_Project.SetIscomplete(myData._iUser.completed);
 		_Project.SetNumBugs(myData._iUser.bugs);
 		_Project.SetLinesDone(myData._iUser.codeLinesDone);
+		
+		//Equipe
+		_Equipe.SetMetodologia(myData._iUser.metology);
+		_Equipe.SetLinguagem(myData._iUser.language);
 		
 		//Funcionario01
 		_Funcionario01.SetAtributos(myData._iUser.F_01_atributos);
@@ -360,6 +369,10 @@ function SaveGame()
 	myData._iUser.completed = _Project.GetIscomplete();
 	myData._iUser.bugs = _Project.GetNumBugs();
 	myData._iUser.codeLinesDone = _Project.GetLinesDone();
+	
+	//Equipe
+	myData._iUser.metology = _Equipe.GetMetodologia();
+	myData._iUser.language = _Equipe.GetLinguagem();
 	
 	//Funcionario01
 	myData._iUser.F_01_atributos = _Funcionario01.GetAtributos();

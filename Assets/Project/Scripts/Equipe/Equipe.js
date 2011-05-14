@@ -8,10 +8,10 @@ public var metodologia : String = "";		//Agile or Classic
 public var linguagemProg : String = "";
 
 private var findBugScore : float = 1.0;
-private var gerBonusAnalista : float = 1.0;
-private var gerBonusArquiteto : float = 1.0;
-private var gerBonusProg : float = 1.0;
-private var marBonusAnalista : float = 1.0;
+private var bonusAnalista : float = 1.0;
+private var bonusArquiteto : float = 1.0;
+private var bonusProg : float = 1.0;
+//private var marBonusAnalista : float = 1.0;
 
 //--------------------------------------------Get/Set-----------------------------------------------------------
 
@@ -31,38 +31,39 @@ function GetFindbugScore () {
 	return findBugScore;
 }
 function SetFindbugScore(t: float){
-	findBugScore = t;
+	findBugScore = findBugScore + (t / 100);
 }
-function GetGerBonusAnalista () {					
-	return gerBonusAnalista;
+function GetBonusAnalista () {					
+	return bonusAnalista;
 }
-function SetGerBonusAnalista(t: float){
-	gerBonusAnalista = t;
+function SetBonusAnalista(t: float){
+	bonusAnalista = bonusAnalista + (t / 100);
 }
-function GetGerBonusArquiteto () {					
-	return gerBonusArquiteto;
+function GetBonusArquiteto () {					
+	return bonusArquiteto;
 }
-function SetGerBonusArquiteto(t: float){
-	gerBonusArquiteto = t;
+function SetBonusArquiteto(t: float){
+	bonusArquiteto = bonusArquiteto + (t / 100);
 }
-function GetGerBonusProg () {					
-	return gerBonusProg;
+function GetBonusProg () {					
+	return bonusProg;
 }
-function SetGerBonusProg(t: float){
-	gerBonusProg = t;
+function SetBonusProg(t: float){
+	bonusProg = bonusProg + (t / 100);
 }
+/*
 function GetMarBonusAnalista () {					
 	return marBonusAnalista;
 }
 function SetMarBonusAnalista(t: float){
-	marBonusAnalista = t;
+	marBonusAnalista = marBonusAnalista + t;
 }
+*/
 //--------------------------------------------Reset-----------------------------------------------------------
 
 function ResetBonus(){
 	findBugScore = 1.0;
-	gerBonusAnalista = 1.0;
-	gerBonusArquiteto = 1.0;
-	gerBonusProg = 1.0;
-	marBonusAnalista = 1.0;
+	bonusAnalista = 1.0;
+	bonusArquiteto = 1.0;
+	bonusProg = 1.0;
 }

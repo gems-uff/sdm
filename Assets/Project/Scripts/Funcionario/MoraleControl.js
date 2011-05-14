@@ -23,14 +23,16 @@ function ChangeMorale(){
 	{
 		morale = func.GetMorale();
 		changeFactor = work.GetWorkingHoursModifier();
-		moraleMod = (changeFactor - 1);
-		if (moraleMod == 0)		//Se esta trabalhando o numero de horas default (40 horas) entao ele recupera moral bem lentamente
-			moraleMod = constant.SLOWRECOVERY;
+		if (changeFactor == 1)		//Se esta trabalhando o numero de horas default (40 horas)
+			moraleMod = 0;
 		else
-			if (moraleMod < 0 )		//Se estiver trabalhando um numero de horas inferior ao default, entao ele recupera moral (recupera 20% a mais do que ele perderia se fosse o inverso)
-				moraleMod = moraleMod * constant.RECOVERYBONUS;
-		moraleMod = moraleMod * constant.MODIFICATOR;
-		morale = morale - moraleMod;
+			if (changeFactor < 1 )		//Se estiver trabalhando um numero de horas inferior ao default, entao ele recupera moral (recupera 20% a mais do que ele perderia se fosse o inverso)
+				moraleMod = (2 - changeFactor) * constant.RECOVERYBONUS;	//Cresce moral
+			else
+				moraleMod = (- changeFactor) * constant.RECOVERYBONUS;		//Decresce moral
+				
+		moraleMod = moraleMod * constant.MODIFICATOR;							//multiplica o modificador por 2.5, dando no maximo +- 6
+		morale = morale + moraleMod;
 		if (morale > 100)
 			morale = 100;
 		else
@@ -59,7 +61,7 @@ function MoraleActions(){
 function DecreaseMoralePayment(funcionario : Funcionario)
 {
 	var morale = funcionario.GetMorale();
-	morale = morale - constant.MORALE_MOD;
+	morale = morale - constant.MORALE_MOD;		//Perde 6 de moral
 	funcionario.SetMorale(morale);
 }
 //--------------------------------------------Awake-----------------------------------------------------------

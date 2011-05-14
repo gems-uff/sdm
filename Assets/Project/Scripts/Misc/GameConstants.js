@@ -16,13 +16,12 @@ public var PROG_BUG_MOD : float = 0.1;
 public var TESTER_DURANTE : float = 0.1;
 
 //Morale
-public var MODIFICATOR : float = 6.0; 
-public var SLOWRECOVERY : float = -1.0;
+public var MODIFICATOR : float = 2.5; 
 public var RECOVERYBONUS : float = 1.2;
 public var TIREDMORALE : float = 25.0;
 public var BADMORALE : float = 5.0;
 public var DEMITCHANCE : float = 1.0;
-public var MORALE_MOD : int = 25.0;
+public var MORALE_MOD : int = 6.0;
 
 //Project
 public var SIMPLE : int = 525;		//Max 35 atributo "Programador" por programador por dia (3 programadores)
