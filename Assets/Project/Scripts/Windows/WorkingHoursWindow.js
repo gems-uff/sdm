@@ -13,6 +13,7 @@ private var showWindow : boolean = false;
 
 function ChangeWorkHours (funcionario : Funcionario){
 	func = funcionario;
+	hSliderValue = func.GetWorkingHours() / 5;
 	if(funcionario.GetNome() != stringNames.fired)
 		showWindow = true;
 }

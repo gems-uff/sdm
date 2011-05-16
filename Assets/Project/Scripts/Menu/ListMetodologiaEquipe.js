@@ -21,7 +21,7 @@ function AlterarMetodologia(metodologia : String)
 //Implementar para permitir alteracao na metodologia
 
 function MetodologiaEquipe(){
-	GUI.BeginGroup(Rect (90,00,220,100));
+	GUI.BeginGroup(Rect (90,25,220,100));
 	GUI.Box (Rect (00,00,90,25), "Methodology:"); //+ equipe.GetMetodologia())
 	if (Popup.List (Rect(00, 25, 90, 25), showList, listEntry, GUIContent( equipe.GetMetodologia()), list, listStyle)) {
 		if (listEntry != 0)

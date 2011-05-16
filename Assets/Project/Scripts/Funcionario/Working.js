@@ -250,8 +250,10 @@ function ProgramadorWork(){
 			aux = parseInt(aux);
 			numBugs = GameModifiers(numBugs);	
 			numBugs = parseInt(numBugs);
+			if (func.GetWorkingHours() > 0 )
+				numBugs = numBugs + 1;
 			//Chance to add a bug, to a total of "numBugs"
-			for (i = 0; i < (numBugs+1); i++)
+			for (i = 0; i < (numBugs); i++)
 			{
 				random = Random.Range (0, 10);
 				if (random > 4)

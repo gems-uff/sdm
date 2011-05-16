@@ -8,6 +8,7 @@ public var timer : GameTime;
 public var stringNames : StringNames;
 private var dialog : Dialog;
 public var dialogGuiStyle : GUIStyle;
+public var floatingLinesBelow : FloatingLinesBelow;
 
 private var func : Funcionario;
 private var work : Working;
@@ -31,8 +32,21 @@ function ChangeMorale(){
 			else
 				moraleMod = (- changeFactor) * constant.RECOVERYBONUS;		//Decresce moral
 				
-		moraleMod = moraleMod * constant.MODIFICATOR;							//multiplica o modificador por 2.5, dando no maximo +- 6
+		moraleMod = parseInt(moraleMod * constant.MODIFICATOR);							//multiplica o modificador por 2.5, dando no maximo +- 6
 		morale = morale + moraleMod;
+		
+		
+		if (moraleMod > 0 && morale < 100)
+		{
+			//Ganha Moral
+			floatingLinesBelow.showFloatText("+", moraleMod, "green", "  Morale");
+		}
+		else
+			if (moraleMod < 0 && morale > 0)
+			{
+				//Perde moral
+				floatingLinesBelow.showFloatText("", moraleMod, "red", "  Morale");
+			}
 		if (morale > 100)
 			morale = 100;
 		else
