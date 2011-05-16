@@ -1,6 +1,6 @@
 //Script para escolher o papel para cada funcinario pelo menu de funcionarios na parte superior da HUD. Tambem serve para exibir a ficha dos funcs.
 
-
+//public var myFont : Font;
 private var showList1 = false;	//Showlist para cada mesa
 private var showList2 = false;
 private var showList3 = false;
@@ -30,9 +30,6 @@ public var menuPapel : PapelWindow;
 public var workHours : WorkingHoursWindow;
 
 private var novopapel = "";
-
-
-
 
 
 //-----------------------------------------Funcoes da Popup List--------------------------------------------------------
@@ -129,29 +126,30 @@ function TakePapel(t: int)
 //--------------------------------------------PopUpList-----------------------------------------------------------
 
 function PopupList(){
-	GUI.BeginGroup(Rect (220,00,700,280));
-	if (Popup.List (Rect(000, 00, 160, 20), showList1, listEntry, GUIContent( func1.GetNome() +": "+ func1.GetPapel()), list, listStyle)) {
+	GUI.Box (Rect (180,00,720,20), "Staff Team");
+	GUI.BeginGroup(Rect (180,20,1200,280));
+	if (Popup.List (Rect(000, 00, 90, 40), showList1, listEntry, GUIContent( func1.GetNome() +"\n"+ func1.GetPapel()), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario1", listEntry);
     }
-	if (Popup.List (Rect(160, 00, 160, 20), showList2, listEntry, GUIContent(func2.GetNome() +": "+ func2.GetPapel()), list, listStyle)) {
+	if (Popup.List (Rect(90, 00, 90, 40), showList2, listEntry, GUIContent(func2.GetNome() +"\n"+ func2.GetPapel()), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario2", listEntry);
     }
-	if (Popup.List (Rect(320, 00, 160, 20), showList3, listEntry, GUIContent(func3.GetNome() +": "+ func3.GetPapel()), list, listStyle)) {
+	if (Popup.List (Rect(180, 00, 90, 40), showList3, listEntry, GUIContent(func3.GetNome() +"\n"+ func3.GetPapel()), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario3", listEntry);
     }
-	if (Popup.List (Rect(480, 00, 160, 20), showList4, listEntry, GUIContent(func4.GetNome() +": "+ func4.GetPapel()), list, listStyle)) {
+	if (Popup.List (Rect(270, 00, 90, 40), showList4, listEntry, GUIContent(func4.GetNome() +"\n"+ func4.GetPapel()), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario4", listEntry);
     }
-	if (Popup.List (Rect(000, 20, 160, 20), showList5, listEntry, GUIContent(func5.GetNome() +": "+ func5.GetPapel()), list, listStyle)) {
+	if (Popup.List (Rect(360, 00, 90, 40), showList5, listEntry, GUIContent(func5.GetNome() +"\n"+ func5.GetPapel()), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario5", listEntry);
     }
-	if (Popup.List (Rect(160, 20, 160, 20), showList6, listEntry, GUIContent(func6.GetNome() +": "+ func6.GetPapel()), list, listStyle)) {
+	if (Popup.List (Rect(450, 00, 90, 40), showList6, listEntry, GUIContent(func6.GetNome() +"\n"+ func6.GetPapel()), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario6", listEntry);
     }
-	if (Popup.List (Rect(320, 20, 160, 20), showList7, listEntry, GUIContent(func7.GetNome() +": "+ func7.GetPapel()), list, listStyle)) {
+	if (Popup.List (Rect(540, 00, 90, 40), showList7, listEntry, GUIContent(func7.GetNome() +"\n"+ func7.GetPapel()), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario7", listEntry);
     }
-	if (Popup.List (Rect(480, 20, 160, 20), showList8, listEntry, GUIContent(func8.GetNome() +": "+ func8.GetPapel()), list, listStyle)) {
+	if (Popup.List (Rect(630, 00, 90, 40), showList8, listEntry, GUIContent(func8.GetNome() +"\n"+ func8.GetPapel()), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario8", listEntry);
     }
 	GUI.EndGroup ();
@@ -179,6 +177,7 @@ function Start () {
     // Make a GUIStyle that has a solid white hover/onHover background to indicate highlighted items
     listStyle = new GUIStyle();
     listStyle.normal.textColor = Color.green;
+	listStyle.fontSize= 12;
     var tex = new Texture2D(2, 2);
     listStyle.hover.background = tex;
     listStyle.onHover.background = tex;
@@ -191,6 +190,7 @@ function Start () {
 //Funcao da lista Popup para cada um das 8 janelas de funcionarios
 function OnGUI () {
 	PopupList();
+	//GUI.skin.button.font = myFont;
 	GUI.backgroundColor = Color.yellow;
 	GUI.backgroundColor = Color.yellow;
 	GUI.contentColor = Color.green;

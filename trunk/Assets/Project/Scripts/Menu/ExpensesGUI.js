@@ -11,7 +11,7 @@ public var func8 : Funcionario;
 
 function ShowWindow()
 {
-	GUI.Box (Rect (00,180,75,220),
+	GUI.Box (Rect (00,190,75,220),
 	("Expenses:" + "\n" +
 	"\n" +
 	func1.GetNome() + " : "+ "\n" +
@@ -27,7 +27,7 @@ function ShowWindow()
 	"\n" +
 	"Monthly :"
 	));
-	GUI.Box (Rect (75,180,75,220),
+	GUI.Box (Rect (75,190,60,220),
 	("\n" +
 	"\n" +
 	" $" + (func1.GetSalario() / 28) + "\n" +
@@ -43,6 +43,18 @@ function ShowWindow()
 	(func5.GetSalario() / 28) + (func6.GetSalario() / 28) + (func7.GetSalario() / 28) + (func8.GetSalario() / 28)) + "\n" +
 	"\n" +
 	" $" + (func1.GetSalario() + func2.GetSalario() + func3.GetSalario() + func4.GetSalario() + func5.GetSalario() + func6.GetSalario() + func7.GetSalario() + func8.GetSalario())
+	));
+	GUI.Box (Rect (135,190,50,160),
+	("Morale:\n" +
+	"\n" +
+	func1.GetMorale() + "\n" +
+	func2.GetMorale() + "\n" +
+	func3.GetMorale() + "\n" +
+	func4.GetMorale() + "\n" +
+	func5.GetMorale() + "\n" +
+	func6.GetMorale() + "\n" +
+	func7.GetMorale() + "\n" +
+	func8.GetMorale() + "\n"
 	));
 }
 

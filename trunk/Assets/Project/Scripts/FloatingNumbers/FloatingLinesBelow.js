@@ -14,7 +14,10 @@ function showFloatText(modifier : String,number : float, fontColor : String, tex
 			if(fontColor == "blue")
 				guiText.material.color = Color.blue;
 			else
-				guiText.material.color = Color.yellow;
+				if(fontColor == "green")
+					guiText.material.color = Color.green;
+				else
+					guiText.material.color = Color.yellow;
 			
 		guiText.fontSize = 18;
 		guiText.fontStyle =  FontStyle.Bold;

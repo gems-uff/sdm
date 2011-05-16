@@ -90,16 +90,16 @@ function GameSpeed()	{
 		GUI.Label (Rect (50, 00, 50, 50), "Play", myStyle);
 	}
 	if(timer.GetRepeatTime() != timer.GetTimeF())
-		if (GUI.Button (Rect (100,00, 90, 25), "Fast"))
+		if (GUI.Button (Rect (100,00, 70, 25), "Fast"))
 			timer.SpeedFast();
 	if(timer.GetRepeatTime() == timer.GetTimeF())
-		GUI.Box (Rect (100,00, 90, 25), "Fast");
+		GUI.Box (Rect (100,00, 70, 25), "Fast");
 	
 	if(timer.GetRepeatTime() != timer.GetTimeVF())
-		if (GUI.Button (Rect (100,25, 90, 25), "Fastest"))
+		if (GUI.Button (Rect (100,25, 70, 25), "Fastest"))
 			timer.SpeedVeryFastl();
 	if(timer.GetRepeatTime() == timer.GetTimeVF())
-		GUI.Box (Rect (100,25, 90, 25), "Fastest");
+		GUI.Box (Rect (100,25, 70, 25), "Fastest");
 	
 	GUI.EndGroup ();
 	if (timer.GetRepeatTime() == 0)
