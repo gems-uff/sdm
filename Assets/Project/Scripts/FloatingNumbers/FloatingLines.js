@@ -11,8 +11,6 @@ function showFloatText(modifier : String, number : float, texto : String)
 		guiText.material.color = Color.blue;
 		guiText.fontSize = 18;
 		guiText.fontStyle =  FontStyle.Bold;
-		//number = parseInt(number);
-		//number = number.toFixed(2);
 		guiText.text = "" + modifier + number + texto;
 		
 		for( var i= 0; i < 50; i++)

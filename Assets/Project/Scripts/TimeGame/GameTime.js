@@ -71,8 +71,8 @@ function PassTime () {
     gameTime += incrementBy;
 	
 	BroadcastMessage("PagarFuncionario");
-	if (gameTime > 2)
-		BroadcastMessage("PagarJogadorMensal");
+	//if (gameTime > 2)
+	BroadcastMessage("PagarJogadorMensal");
 	
 	BroadcastMessage("IncrementDays");
 	BroadcastMessage("WorkHours");

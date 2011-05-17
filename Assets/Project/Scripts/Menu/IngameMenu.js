@@ -103,7 +103,7 @@ function GameSpeed()	{
 	
 	GUI.EndGroup ();
 	if (timer.GetRepeatTime() == 0)
-		GUI.Box (Rect (20,400,100,50), "PAUSED", pauseStyle);
+		GUI.Box (Rect (20,440,100,50), "PAUSED", pauseStyle);
 }
 
 //--------------------------------------------ESCPressed-----------------------------------------------------------

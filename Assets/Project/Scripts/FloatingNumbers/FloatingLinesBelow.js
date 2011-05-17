@@ -2,7 +2,7 @@
 
 private var isShowing : boolean = false;
 
-function showFloatText(modifier : String,number : float, fontColor : String, texto : String)
+function showFloatText(modifier : String, number : String, fontColor : String, texto : String)
 {
 	if ( !isShowing)
 	{
