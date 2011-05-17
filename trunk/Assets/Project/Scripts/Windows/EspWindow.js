@@ -1,9 +1,4 @@
-//Para usar este script:
-//private var menuObj : GameObject;
-//private var menuEsp : EspWindow;
-//menuObj = GameObject.Find("GUI");
-//menuEsp = menuObj.GetComponent(EspWindow);
-//menuEsp.Especializar(func, treino);
+
 public var stringNames : StringNames;
 public var timer : GameTime;
 public var pagar : Pagamentos;
@@ -15,7 +10,7 @@ private var treino : Treinamento;
 private 	var deadlineTreino : float = 0.0;
 private var janelaEsp : boolean = false;
 private var showInsuficientMoneyWindow : boolean = false;
-private var windowRect : Rect = Rect (600,125,400,268);
+private var windowRect : Rect = Rect (600,125,400,293);
 
 	
 function ExecutaJanelaEsp(t : String){
@@ -53,7 +48,7 @@ function Especializar (funcionario : Funcionario, treinamento : Treinamento){
 function WindowFunction(windowID : int){
 	timer.PauseGame();
 	GUI.Box (Rect (02,18,396,25), func.GetNome());
-	GUI.BeginGroup (Rect (02,25,400,243));
+	GUI.BeginGroup (Rect (02,25,400,268));
 	// ---------------Lado Esquerdo---------------
 	GUI.Box (Rect (02,018,198,25), "---Programming Language---");	
 	
@@ -173,7 +168,7 @@ function WindowFunction(windowID : int){
 		GUI.Box (Rect (200,193,198,25), stringNames.showEsp14);
 	
 	//Botao de Cancel
-	if (GUI.Button (Rect (200,218,198,25), "Cancel")) {
+	if (GUI.Button (Rect (02,243,396,25), "Cancel")) {
 		janelaEsp  = false;
 		treino.SetLockEscolha(false);
 	}

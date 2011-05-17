@@ -173,8 +173,8 @@ function GerenteWork(){
 		var auxProg : float = 0;
 		var gerente : float ;
 		var penal_prog : float = PenalidadeProgramacao(penal);
-		var randomizer : float = Random.Range (0.8, 1.2);
-		var randomizer2 : float = Random.Range (0.7, 1.3);
+		var randomizer : float = Random.Range (2.0, 2.5);
+		var randomizer2 : float = Random.Range (1.0, 1.5);
 		
 		gerente = func.GetGerente();
 		auxAnaArq = gerente * constant.GERENTE;
@@ -203,8 +203,8 @@ function MarketingWork(){
 		var penal : float = MetodologiaEquipe();
 		var aux : float = 0.0;
 		var marketing : float ;
-		var randomizer : float = Random.Range (0.8, 1.2);
-		var randomizer2 : float = Random.Range (0.6, 1.4);
+		var randomizer : float = Random.Range (5.0, 7.5);
+		var randomizer2 : float = Random.Range (3.0, 4.5);
 		
 		marketing = func.GetMarketing();	
 		aux = marketing * 0.5;
@@ -440,20 +440,22 @@ function EspecializacaoFerramenta (){
 	switch(func.GetPapel())
 	{
 	   case stringNames.papelAnalista: 	//caso analista
-			if (func.GetF_metricas() == true)			//Se for especializado na ferramenta de metricas entao se benificiará
+			if (func.GetF_metricas() == true)			
 				modificador_positivo = constant.BONUS;
 	   break;
 
 	   case stringNames.papelArquiteto:	//caso arquiteto
-			if (func.GetF_programas() == true)		//Se for especializado na ferramenta de analise de programas entao se benificiará
+			if (func.GetF_programas() == true)		
 				modificador_positivo = modificador_positivo + constant.BONUS;
 	   break;
 	   
 	   case stringNames.papelGerente:	//caso gerente
-			if (func.GetF_projetos() == true)						//Se for especializado na ferramenta de depuracao entao se benificiará
+			if (func.GetF_projetos() == true)						
 				modificador_positivo = modificador_positivo +  constant.BONUS;
-			if (func.GetF_planejamento() == true)				//Se for especializado na ferramenta de depuracao entao se benificiará
-					modificador_positivo = modificador_positivo + constant.BONUS;
+			if (func.GetF_planejamento() == true)			
+				modificador_positivo = modificador_positivo + constant.BONUS;
+			if (func.GetF_versao() == true)			
+				modificador_positivo = modificador_positivo + constant.BONUS;
 	   break;
 	   
 	   case stringNames.papelMarketing:	//caso marketing
@@ -461,15 +463,15 @@ function EspecializacaoFerramenta (){
 	   break;
 	   
 	   case stringNames.papelProg:	//caso programador
-			if (func.GetF_depuracao() == true)					//Se for especializado na ferramenta de depuracao entao se benificiará
+			if (func.GetF_depuracao() == true)					
 				modificador_positivo = modificador_positivo + constant.BONUS;
 	   break;
 	   
 	   case stringNames.papelTester:	//caso tester
-			if (func.GetF_depuracao() == true)					//Se for especializado na ferramenta de depuracao entao se benificiará
+			if (func.GetF_depuracao() == true)					
 				modificador_positivo = modificador_positivo +  constant.BONUS;
-			if (func.GetF_teste() == true)							//Se for especializado na ferramenta de testes entao se benificiará
-					modificador_positivo = modificador_positivo + constant.BONUS;
+			if (func.GetF_teste() == true)						
+				modificador_positivo = modificador_positivo + constant.BONUS;
 	   break;
 
 	   default:

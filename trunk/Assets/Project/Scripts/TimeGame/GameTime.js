@@ -4,10 +4,10 @@
 //timerObj = GameObject.Find("Timer");
 //timer = timerObj.GetComponent(GameTime);
 
-public var TIMESLOW : float = 2.0;
-public var TIMENORMAL : float = 1.0;
-public var TIMEFAST : float = 0.5;
-public var TIMEVERYFAST : float = 0.25;
+public var TIMESLOW : float = 8.0;
+public var TIMENORMAL : float = 6.0;
+public var TIMEFAST : float = 4.0;
+public var TIMEVERYFAST : float = 2.0;
 public var TIMEHYPERFAST : float = 0.125;
 
 private var moraleAction : MoraleControl;
@@ -71,7 +71,6 @@ function PassTime () {
     gameTime += incrementBy;
 	
 	BroadcastMessage("PagarFuncionario");
-	//if (gameTime > 2)
 	BroadcastMessage("PagarJogadorMensal");
 	
 	BroadcastMessage("IncrementDays");
