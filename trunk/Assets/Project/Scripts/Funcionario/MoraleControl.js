@@ -15,9 +15,12 @@ private var work : Working;
 private var dialogEnable : boolean = false;
 private var dialogEnableBadDialog : boolean = false;
 private var dialogControl : boolean = false;
+private var showMorale : boolean = false;
+private var moraleModifier : float;
+private var moralePayment : float;
+private var morale : int;
 
 function ChangeMorale(){
-	var morale : float;
 	var changeFactor : float;
 	var moraleMod : float;
 	if(func.GetNome() != stringNames.fired)
@@ -34,25 +37,15 @@ function ChangeMorale(){
 				
 		moraleMod = parseInt(moraleMod * constant.MODIFICATOR);							//multiplica o modificador por 2.5, dando no maximo +- 6
 		morale = morale + moraleMod;
+		moraleModifier = moraleMod;
 		
-		
-		if (moraleMod > 0 && morale < 100)
-		{
-			//Ganha Moral
-			floatingLinesBelow.showFloatText("+", moraleMod, "green", "  Morale");
-		}
-		else
-			if (moraleMod < 0 && morale > 0)
-			{
-				//Perde moral
-				floatingLinesBelow.showFloatText("", moraleMod, "red", "  Morale");
-			}
 		if (morale > 100)
 			morale = 100;
 		else
 			if (morale < 0)
 				morale = 0;
 		func.SetMorale(morale);
+		showMorale = true;
 	}
 }
 
@@ -74,11 +67,39 @@ function MoraleActions(){
 
 function DecreaseMoralePayment(funcionario : Funcionario)
 {
-	var morale = funcionario.GetMorale();
+	morale = funcionario.GetMorale();
 	morale = morale - constant.MORALE_MOD;		//Perde 6 de moral
+	moralePayment = constant.MORALE_MOD;
+	showMorale = true;
 	funcionario.SetMorale(morale);
 }
+
+function ShowMorale()
+{
+	if(showMorale)
+	{
+		moraleModifier = moraleModifier - moralePayment;
+		if (moraleModifier > 0 && morale < 100)
+		{
+			//Ganha Moral
+			floatingLinesBelow.showFloatText("+", moraleModifier.ToString(), "green", "  Morale");
+		}
+		else
+		{
+			if (moraleModifier < 0 && morale > 0)
+			{
+				//Perde moral
+				floatingLinesBelow.showFloatText("", moraleModifier.ToString(), "red", "  Morale");
+			}
+		}
+		showMorale = false;
+	}
+	moralePayment = 0;
+}
 //--------------------------------------------Awake-----------------------------------------------------------
+function Update(){
+	ShowMorale();
+}
 function OnGUI (){
 }
 

@@ -7,6 +7,7 @@
 public var DIAS_PAGAMENTO : int = 28;
 public var PROJECT_MULT : int = 3;
 private var isPago : boolean = false;
+private var diasFaltando : int = 28;
 
 public var func1 : Funcionario;
 public var func2 : Funcionario;
@@ -59,13 +60,15 @@ function VerificaSaldo(func : Funcionario){
 function PagarJogadorMensal(){
 	var isComplete : boolean;
 	isComplete = project.GetIscomplete();
-	if ( timer.GetGameTime()  != 0)
+	diasFaltando--;
+	if ( timer.GetGameTime()  > 2)
 	{
 		if (isComplete == false)
 		{
 			if ((timer.GetGameTime() % 28) == 1 )
 			{
 				ProjetoPagarMensal();
+				diasFaltando = 28;
 			}
 		}
 	}
@@ -126,6 +129,14 @@ function GetValidadionAdjustment()
 	return PROJECT_MULT * project.GetPagamento()* (parseInt(project.GetSincronismo())) / 100;
 }
 
+function GetDiasFaltando()
+{
+	return diasFaltando;
+}
+function SetDiasFaltando(t : int)
+{
+	diasFaltando = t;
+}
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {

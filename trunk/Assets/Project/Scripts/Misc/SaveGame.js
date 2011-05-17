@@ -20,6 +20,7 @@ class DemoData
     var y : float;
     var z : float;
 	var saldo : int;
+	var diasFaltando : int;
     //var name : String;
 	
 	//Project
@@ -170,8 +171,10 @@ private var _FileLocation : String;
 private var _FileName : String = "SaveData.xml";
 
 //public GameObject _Player;
+var welcome : WelcomeWindow;
 var _Player : GameObject;
 var _PlayerStats : PlayerStats;
+var _Pagamentos : Pagamentos;
 var _Project : Project;
 var _Time : GameTime;
 var _Equipe : Equipe;
@@ -214,6 +217,7 @@ function LoadGame()
 		_Player.transform.position=VPosition;
 		//Player money
 		_PlayerStats.SetSaldo(myData._iUser.saldo);
+		_Pagamentos.SetDiasFaltando(myData._iUser.diasFaltando);
 		//Game Time
 		_Time.SetGameTime(myData._iUser.gameTime);
 		//Project
@@ -353,6 +357,7 @@ function SaveGame()
 	myData._iUser.z = _Player.transform.position.z;
 	//Player money
 	myData._iUser.saldo = _PlayerStats.GetSaldo();
+	myData._iUser.diasFaltando = _Pagamentos.GetDiasFaltando();
 	//Game Time
 	myData._iUser.gameTime = _Time.GetGameTime();
 	//Project
