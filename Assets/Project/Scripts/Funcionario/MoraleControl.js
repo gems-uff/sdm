@@ -50,18 +50,21 @@ function ChangeMorale(){
 }
 
 function MoraleActions(){
-	var morale = func.GetMorale();
+	morale = func.GetMorale();
 	var chance : int = Random.Range (0, 150);
-	if (morale > constant.TIREDMORALE)
-		dialog.SetDialogControl();
-	else
+	if(func.GetNome() != stringNames.fired)
 	{
-		dialog.SetDialogBadDialog();
-		if (morale < constant.BADMORALE)
-			if (chance < constant.DEMITCHANCE)
-			{
-				dialog.SetDialogQuitEnable();
-			}
+		if (morale > constant.TIREDMORALE)
+			dialog.SetDialogControl();
+		else
+		{
+			dialog.SetDialogBadDialog();
+			if (morale < constant.BADMORALE)
+				if (chance < constant.DEMITCHANCE)
+				{
+					dialog.SetDialogQuitEnable();
+				}
+		}
 	}
 }
 
