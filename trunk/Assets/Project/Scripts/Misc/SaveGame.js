@@ -48,6 +48,7 @@ class DemoData
 	var F_01_job : String;
 	var F_01_workingHours : int;
 	var F_01_morale : float;
+	var F_01_stamina : float;
 	var T_01_lock : boolean;
 	var T_01_deadline : float;
 	var T_01_aprendendo : String;
@@ -62,6 +63,7 @@ class DemoData
 	var F_02_job : String;
 	var F_02_workingHours : int;
 	var F_02_morale : float;
+	var F_02_stamina : float;
 	var T_02_lock : boolean;
 	var T_02_deadline : float;
 	var T_02_aprendendo : String;
@@ -75,6 +77,7 @@ class DemoData
 	var F_03_job : String;
 	var F_03_workingHours : int;
 	var F_03_morale : float;
+	var F_03_stamina : float;
 	var T_03_lock : boolean;
 	var T_03_deadline : float;
 	var T_03_aprendendo : String;
@@ -88,6 +91,7 @@ class DemoData
 	var F_04_job : String;
 	var F_04_workingHours : int;
 	var F_04_morale : float;
+	var F_04_stamina : float;
 	var T_04_lock : boolean;
 	var T_04_deadline : float;
 	var T_04_aprendendo : String;
@@ -101,6 +105,7 @@ class DemoData
 	var F_05_job : String;
 	var F_05_workingHours : int;
 	var F_05_morale : float;
+	var F_05_stamina : float;
 	var T_05_lock : boolean;
 	var T_05_deadline : float;
 	var T_05_aprendendo : String;
@@ -114,6 +119,7 @@ class DemoData
 	var F_06_job : String;
 	var F_06_workingHours : int;
 	var F_06_morale : float;
+	var F_06_stamina : float;
 	var T_06_lock : boolean;
 	var T_06_deadline : float;
 	var T_06_aprendendo : String;
@@ -127,6 +133,7 @@ class DemoData
 	var F_07_job : String;
 	var F_07_workingHours : int;
 	var F_07_morale : float;
+	var F_07_stamina : float;
 	var T_07_lock : boolean;
 	var T_07_deadline : float;
 	var T_07_aprendendo : String;
@@ -140,6 +147,7 @@ class DemoData
 	var F_08_job : String;
 	var F_08_workingHours : int;
 	var F_08_morale : float;
+	var F_08_stamina : float;
 	var T_08_lock : boolean;
 	var T_08_deadline : float;
 	var T_08_aprendendo : String;
@@ -238,7 +246,7 @@ function LoadGame()
 		//Equipe
 		_Equipe.SetMetodologia(myData._iUser.metology);
 		_Equipe.SetLinguagem(myData._iUser.language);
-		
+
 		//Funcionario01
 		_Funcionario01.SetAtributos(myData._iUser.F_01_atributos);
 		_Funcionario01.SetEspecializacoes(myData._iUser.F_01_especializacao);
@@ -249,6 +257,7 @@ function LoadGame()
 		_Funcionario01.SetCargo(myData._iUser.F_01_job);
 		_Funcionario01.SetWorkingHours(myData._iUser.F_01_workingHours);
 		_Funcionario01.SetMorale(myData._iUser.F_01_morale);
+		_Funcionario01.SetStamina(myData._iUser.F_01_stamina);
 		_Treinamento01.SetLockEscolha(myData._iUser.T_01_lock);
 		_Treinamento01.SetDeadline_Treino(myData._iUser.T_01_deadline);
 		_Treinamento01.SetAprendendo(myData._iUser.T_01_aprendendo);
@@ -263,6 +272,7 @@ function LoadGame()
 		_Funcionario02.SetCargo(myData._iUser.F_02_job);
 		_Funcionario02.SetWorkingHours(myData._iUser.F_02_workingHours);
 		_Funcionario02.SetMorale(myData._iUser.F_02_morale);
+		_Funcionario02.SetStamina(myData._iUser.F_02_stamina);
 		_Treinamento02.SetLockEscolha(myData._iUser.T_02_lock);
 		_Treinamento02.SetDeadline_Treino(myData._iUser.T_02_deadline);
 		_Treinamento02.SetAprendendo(myData._iUser.T_02_aprendendo);
@@ -276,6 +286,7 @@ function LoadGame()
 		_Funcionario03.SetCargo(myData._iUser.F_03_job);
 		_Funcionario03.SetWorkingHours(myData._iUser.F_03_workingHours);
 		_Funcionario03.SetMorale(myData._iUser.F_03_morale);
+		_Funcionario03.SetStamina(myData._iUser.F_03_stamina);
 		_Treinamento03.SetLockEscolha(myData._iUser.T_03_lock);
 		_Treinamento03.SetDeadline_Treino(myData._iUser.T_03_deadline);
 		_Treinamento03.SetAprendendo(myData._iUser.T_03_aprendendo);
@@ -289,6 +300,7 @@ function LoadGame()
 		_Funcionario04.SetCargo(myData._iUser.F_04_job);
 		_Funcionario04.SetWorkingHours(myData._iUser.F_04_workingHours);
 		_Funcionario04.SetMorale(myData._iUser.F_04_morale);
+		_Funcionario04.SetStamina(myData._iUser.F_04_stamina);
 		_Treinamento04.SetLockEscolha(myData._iUser.T_04_lock);
 		_Treinamento04.SetDeadline_Treino(myData._iUser.T_04_deadline);
 		_Treinamento04.SetAprendendo(myData._iUser.T_04_aprendendo);
@@ -302,6 +314,7 @@ function LoadGame()
 		_Funcionario05.SetCargo(myData._iUser.F_05_job);
 		_Funcionario05.SetWorkingHours(myData._iUser.F_05_workingHours);
 		_Funcionario05.SetMorale(myData._iUser.F_05_morale);
+		_Funcionario05.SetStamina(myData._iUser.F_05_stamina);
 		_Treinamento05.SetLockEscolha(myData._iUser.T_05_lock);
 		_Treinamento05.SetDeadline_Treino(myData._iUser.T_05_deadline);
 		_Treinamento05.SetAprendendo(myData._iUser.T_05_aprendendo);
@@ -315,6 +328,7 @@ function LoadGame()
 		_Funcionario06.SetCargo(myData._iUser.F_06_job);
 		_Funcionario06.SetWorkingHours(myData._iUser.F_06_workingHours);
 		_Funcionario06.SetMorale(myData._iUser.F_06_morale);
+		_Funcionario06.SetStamina(myData._iUser.F_06_stamina);
 		_Treinamento06.SetLockEscolha(myData._iUser.T_06_lock);
 		_Treinamento06.SetDeadline_Treino(myData._iUser.T_06_deadline);
 		_Treinamento06.SetAprendendo(myData._iUser.T_06_aprendendo);
@@ -328,6 +342,7 @@ function LoadGame()
 		_Funcionario07.SetCargo(myData._iUser.F_07_job);
 		_Funcionario07.SetWorkingHours(myData._iUser.F_07_workingHours);
 		_Funcionario07.SetMorale(myData._iUser.F_07_morale);
+		_Funcionario07.SetStamina(myData._iUser.F_07_stamina);
 		_Treinamento07.SetLockEscolha(myData._iUser.T_07_lock);
 		_Treinamento07.SetDeadline_Treino(myData._iUser.T_07_deadline);
 		_Treinamento07.SetAprendendo(myData._iUser.T_07_aprendendo);
@@ -341,6 +356,7 @@ function LoadGame()
 		_Funcionario08.SetCargo(myData._iUser.F_08_job);
 		_Funcionario08.SetWorkingHours(myData._iUser.F_08_workingHours);
 		_Funcionario08.SetMorale(myData._iUser.F_08_morale);
+		_Funcionario08.SetStamina(myData._iUser.F_08_stamina);
 		_Treinamento08.SetLockEscolha(myData._iUser.T_08_lock);
 		_Treinamento08.SetDeadline_Treino(myData._iUser.T_08_deadline);
 		_Treinamento08.SetAprendendo(myData._iUser.T_08_aprendendo);
@@ -389,6 +405,7 @@ function SaveGame()
 	myData._iUser.F_01_job = _Funcionario01.GetCargo();
 	myData._iUser.F_01_workingHours = _Funcionario01.GetWorkingHours();
 	myData._iUser.F_01_morale = _Funcionario01.GetMorale();
+	myData._iUser.F_01_stamina = _Funcionario01.GetStamina();
 	myData._iUser.T_01_lock = _Treinamento01.GetLockEscolha();
 	myData._iUser.T_01_deadline = _Treinamento01.GetDeadline_Treino();
 	myData._iUser.T_01_aprendendo = _Treinamento01.GetAprendendo();
@@ -402,6 +419,7 @@ function SaveGame()
 	myData._iUser.F_02_job = _Funcionario02.GetCargo();
 	myData._iUser.F_02_workingHours = _Funcionario02.GetWorkingHours();
 	myData._iUser.F_02_morale = _Funcionario02.GetMorale();
+	myData._iUser.F_02_stamina = _Funcionario02.GetStamina();
 	myData._iUser.T_02_lock = _Treinamento02.GetLockEscolha();
 	myData._iUser.T_02_deadline = _Treinamento02.GetDeadline_Treino();
 	myData._iUser.T_02_aprendendo = _Treinamento02.GetAprendendo();
@@ -415,6 +433,7 @@ function SaveGame()
 	myData._iUser.F_03_job = _Funcionario03.GetCargo();
 	myData._iUser.F_03_workingHours = _Funcionario03.GetWorkingHours();
 	myData._iUser.F_03_morale = _Funcionario03.GetMorale();
+	myData._iUser.F_03_stamina = _Funcionario03.GetStamina();
 	myData._iUser.T_03_lock = _Treinamento03.GetLockEscolha();
 	myData._iUser.T_03_deadline = _Treinamento03.GetDeadline_Treino();
 	myData._iUser.T_03_aprendendo = _Treinamento03.GetAprendendo();
@@ -428,6 +447,7 @@ function SaveGame()
 	myData._iUser.F_04_job = _Funcionario04.GetCargo();
 	myData._iUser.F_04_workingHours = _Funcionario04.GetWorkingHours();
 	myData._iUser.F_04_morale = _Funcionario04.GetMorale();
+	myData._iUser.F_04_stamina = _Funcionario04.GetStamina();
 	myData._iUser.T_04_lock = _Treinamento04.GetLockEscolha();
 	myData._iUser.T_04_deadline = _Treinamento04.GetDeadline_Treino();
 	myData._iUser.T_04_aprendendo = _Treinamento04.GetAprendendo();
@@ -441,6 +461,7 @@ function SaveGame()
 	myData._iUser.F_05_job = _Funcionario05.GetCargo();
 	myData._iUser.F_05_workingHours = _Funcionario05.GetWorkingHours();
 	myData._iUser.F_05_morale = _Funcionario05.GetMorale();
+	myData._iUser.F_05_stamina = _Funcionario05.GetStamina();
 	myData._iUser.T_05_lock = _Treinamento05.GetLockEscolha();
 	myData._iUser.T_05_deadline = _Treinamento05.GetDeadline_Treino();
 	myData._iUser.T_05_aprendendo = _Treinamento05.GetAprendendo();
@@ -454,6 +475,7 @@ function SaveGame()
 	myData._iUser.F_06_job = _Funcionario06.GetCargo();
 	myData._iUser.F_06_workingHours = _Funcionario06.GetWorkingHours();
 	myData._iUser.F_06_morale = _Funcionario06.GetMorale();
+	myData._iUser.F_06_stamina = _Funcionario06.GetStamina();
 	myData._iUser.T_06_lock = _Treinamento06.GetLockEscolha();
 	myData._iUser.T_06_deadline = _Treinamento06.GetDeadline_Treino();
 	myData._iUser.T_06_aprendendo = _Treinamento06.GetAprendendo();
@@ -467,6 +489,7 @@ function SaveGame()
 	myData._iUser.F_07_job = _Funcionario07.GetCargo();
 	myData._iUser.F_07_workingHours = _Funcionario07.GetWorkingHours();
 	myData._iUser.F_07_morale = _Funcionario07.GetMorale();
+	myData._iUser.F_07_stamina = _Funcionario07.GetStamina();
 	myData._iUser.T_07_lock = _Treinamento07.GetLockEscolha();
 	myData._iUser.T_07_deadline = _Treinamento07.GetDeadline_Treino();
 	myData._iUser.T_07_aprendendo = _Treinamento07.GetAprendendo();
@@ -480,6 +503,7 @@ function SaveGame()
 	myData._iUser.F_08_job = _Funcionario08.GetCargo();
 	myData._iUser.F_08_workingHours = _Funcionario08.GetWorkingHours();
 	myData._iUser.F_08_morale = _Funcionario08.GetMorale();
+	myData._iUser.F_08_stamina = _Funcionario08.GetStamina();
 	myData._iUser.T_08_lock = _Treinamento08.GetLockEscolha();
 	myData._iUser.T_08_deadline = _Treinamento08.GetDeadline_Treino();
 	myData._iUser.T_08_aprendendo = _Treinamento08.GetAprendendo();
@@ -488,7 +512,6 @@ function SaveGame()
 	_data = SerializeObject(myData);
 	// This is the final resulting XML from the serialization process
 	CreateXML();
-	Debug.Log(_data);
 }
 
 function Awake () { 
@@ -564,7 +587,6 @@ function CreateXML()
    }
    writer.Write(_data);
    writer.Close();
-   Debug.Log("File written.");
 }
    
 function LoadXML()

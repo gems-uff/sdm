@@ -16,7 +16,7 @@ function NewProject(){
 	var auxD1 : int = Random.Range (28, 336); 
 	var auxD2 : int = Random.Range (28, 336); 
 	var auxCL : int = Random.Range (30, 150);
-	var auxPG : float = Random.Range (0.8, 1.2);
+	var auxPG : float = Random.Range (0.9, 1.3);
 	var auxBV : int = Random.Range (10, 100);
 	description.RandomDescription();
 		

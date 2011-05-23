@@ -128,21 +128,21 @@ function MainMenu(){
 	if (ingameMenuToggle)	
 	{
 	//Work-around: Need to check why dont work !
-		if (GUI.Button (Rect (Screen.width - 100,0,100,50), icon)) {
+		if (GUI.Button (Rect (Screen.width - 100,100,100,50), icon)) {
 				print ("Made with Unity 3d");
 		}
 
-		if (GUI.Button (Rect (Screen.width - 100,50, 100, 20), "1: Quit")) {
+		if (GUI.Button (Rect (Screen.width - 100,150, 100, 20), "1: Quit")) {
 				//Application.LoadLevel ("StartMenu");
 				Application.Quit();
 		}
-		if (GUI.Button (Rect (Screen.width - 100,70, 100, 20), "2: Save")) {
+		if (GUI.Button (Rect (Screen.width - 100,170, 100, 20), "2: Save")) {
 				GameSaver.SaveGame();
 		}
-		if (GUI.Button (Rect (Screen.width - 100,90, 100, 20), "3: Load")) {
+		if (GUI.Button (Rect (Screen.width - 100,190, 100, 20), "3: Load")) {
 				GameSaver.LoadGame();
 		}
-		if (GUI.Button( Rect (Screen.width - 100,110,100,20), "4: Resume") )
+		if (GUI.Button( Rect (Screen.width - 100,210,100,20), "4: Resume") )
 		{
 			ingameMenuToggle = false ;
 		}

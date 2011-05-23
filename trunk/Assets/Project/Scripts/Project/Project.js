@@ -1,8 +1,3 @@
-//Para usar este script;
-//private var projectObj : GameObject;
-//private var project : Project;
-//projectObj = GameObject.Find("Project");
-//project = projectObj.GetComponent(Project);
 
 public var constant : GameConstants;
 public var timer : GameTime;
@@ -22,6 +17,7 @@ private var sincronismo : float = 0.0;		//sincronismo
 private var completed : boolean = false;
 private var bugs : float = 0.0 ;				//number of bugs in the software
 private var codeLinesDone : int = 0;	//number of lines done by the team
+
 //--------------------------------------------Get/Set-----------------------------------------------------------
 function GetNome () {
 	return nome;

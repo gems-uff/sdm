@@ -1,9 +1,4 @@
-//Para usar este scrip:
-//private var workHoursObj : GameObject;
-//private var workHours : WorkingHoursWindow;
-//workHoursObj = GameObject.Find("GUI");
-//workHours = workHoursObj.GetComponent(WorkingHoursWindow);
-//workHours.ChangeWorkHours(func);
+
 public var stringNames : StringNames;
 private var func : Funcionario;
 public var timer : GameTime;
@@ -33,7 +28,6 @@ function WindowFunction(windowID : int){
 	var aux : int;
 	timer.PauseGame();
 	GUI.Box (Rect (02,18,296,25), func.GetNome());
-	//hSliderValue = func.GetWorkingHours() / 5;
 	hSliderValue = GUI.HorizontalSlider (Rect (022, 75, 246, 25), hSliderValue, 0.0, 16.0);
 	aux = parseInt(hSliderValue);
 	aux = aux * 5;
@@ -49,7 +43,7 @@ function WindowFunction(windowID : int){
 function TeamWorkHoursBar()
 {
 	GUI.BeginGroup (Rect (900,00,400,300));
-	GUI.Box (Rect (00,00,110,20), "Team's Hours");
+	GUI.Box (Rect (00,00,110,20), "Staff's Hours");
 	hSliderValue2 = GUI.HorizontalSlider (Rect (00, 20, 110, 15), hSliderValue2, 0.0, 16.0);
 	barValue = parseInt(hSliderValue2);
 	barValue = barValue * 5;

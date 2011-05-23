@@ -21,6 +21,7 @@ private var showJanela	:boolean = false;
 private var showCloseButton : boolean = true;
 private var workHours : int;
 private var morale : int;
+private var stamina : int;
 
 private var windowRect : Rect = Rect (600,125,400,420);
 
@@ -45,7 +46,8 @@ function SetJanelatributo(funcionario : Funcionario, closeButton : boolean){
 		cargo = funcionario.GetCargo();
 		workHours = funcionario.GetWorkingHours();
 		showJanela = true;
-		morale = parseInt(funcionario.GetMorale());
+		morale = funcionario.GetMorale();
+		stamina = funcionario.GetStamina();
 		
 		for (i=0;i<=17;i++)
 			especializacao_array[i]  = "";
@@ -132,12 +134,12 @@ function WindowFunction (windowID : int)	{
 	//Lado esquerdo
 	GUI.Box (Rect (02,018,198,20), (" Name: "+ nome),fichaGuiStyle);
 	GUI.Box (Rect (02,038,198,20), (" Morale: "+ morale + "%"),fichaGuiStyle);
-	GUI.Box (Rect (02,058,198,20), (" Role: "+ papel),fichaGuiStyle);
-	GUI.Box (Rect (02,078,198,20), (" Grade: "+ cargo),fichaGuiStyle);
-	GUI.Box (Rect (02,098,198,20), (" Weekly Hours: "+ workHours),fichaGuiStyle);
-	GUI.Box (Rect (02,118,198,20), (" Monthly Salary: $"+ salario),fichaGuiStyle);
-	GUI.Box (Rect (02,138,198,20), (" Salary/Day: $"+ salarioDay),fichaGuiStyle);
-	GUI.Box (Rect (02,158,198,20), (" "),fichaGuiStyle);
+	GUI.Box (Rect (02,058,198,20), (" Stamina: "+ stamina + "%"),fichaGuiStyle);
+	GUI.Box (Rect (02,078,198,20), (" Role: "+ papel),fichaGuiStyle);
+	GUI.Box (Rect (02,098,198,20), (" Grade: "+ cargo),fichaGuiStyle);
+	GUI.Box (Rect (02,118,198,20), (" Weekly Hours: "+ workHours),fichaGuiStyle);
+	GUI.Box (Rect (02,138,198,20), (" Monthly Salary: $"+ salario),fichaGuiStyle);
+	GUI.Box (Rect (02,158,198,20), (" Salary/Day: $"+ salarioDay),fichaGuiStyle);
 	GUI.Box (Rect (02,178,198,20), (" "),fichaGuiStyle);
 	//Lado direito
 	GUI.Box (Rect (200,018,198,20), (" Adaptability: "+ atributos.adaptabilidade),fichaGuiStyle);

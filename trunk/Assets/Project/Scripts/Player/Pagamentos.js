@@ -1,8 +1,4 @@
-//Para usar este script:
-//private var playerObj : GameObject;
-//private var pagar : Pagamentos;
-//playerObj = GameObject.Find("PlayerStats");
-//pagar = playerObj.GetComponent(Pagamentos);
+
 
 public var DIAS_PAGAMENTO : int = 28;
 public var PROJECT_MULT : int = 3;
@@ -17,23 +13,32 @@ public var func5 : Funcionario;
 public var func6 : Funcionario;
 public var func7 : Funcionario;
 public var func8 : Funcionario;
+private var morale1 : MoraleControl;
+private var morale2 : MoraleControl;
+private var morale3 : MoraleControl;
+private var morale4 : MoraleControl;
+private var morale5 : MoraleControl;
+private var morale6 : MoraleControl;
+private var morale7 : MoraleControl;
+private var morale8 : MoraleControl;
+
 public var project : Project;
 public var jogador : PlayerStats;
 public var timer : GameTime;
-private var morale : MoraleControl;
 public var dialog : NoPaymentDialog;
 
+private var pagouTodos : boolean = true;
 //--------------------------------------------PagamentoDoFuncionario-----------------------------------------------------------
 
 function PagarFuncionario(){
-	VerificaSaldo(func1);
-	VerificaSaldo(func2);
-	VerificaSaldo(func3);
-	VerificaSaldo(func4);
-	VerificaSaldo(func5);
-	VerificaSaldo(func6);
-	VerificaSaldo(func7);
-	VerificaSaldo(func8);
+	VerificaSaldo(func1, morale1);
+	VerificaSaldo(func2, morale2);
+	VerificaSaldo(func3, morale3);
+	VerificaSaldo(func4, morale4);
+	VerificaSaldo(func5, morale5);
+	VerificaSaldo(func6, morale6);
+	VerificaSaldo(func7, morale7);
+	VerificaSaldo(func8, morale8);
 }
 
 function PagarFuncionarioTreinamento(preco : int){
@@ -42,15 +47,15 @@ function PagarFuncionarioTreinamento(preco : int){
 
 //--------------------------------------------VerificaSaldo-----------------------------------------------------------
 
-function VerificaSaldo(func : Funcionario){
+function VerificaSaldo(func : Funcionario, morale : MoraleControl){
 	var saldo : int;
 	var salario : int;
 	saldo = jogador.GetSaldo();
 	salario = func.GetSalario() / DIAS_PAGAMENTO;
 	if (saldo < salario)
 	{
-		morale = func.GetComponentInChildren(MoraleControl);
-		morale.DecreaseMoralePayment(func);
+		morale.DecreaseMoralePayment();
+		pagouTodos = false;
 	}
 	else
 		jogador.ChangeSaldo(- salario);
@@ -69,21 +74,29 @@ function PagarJogadorMensal(){
 			{
 				ProjetoPagarMensal();
 				diasFaltando = 28;
+				if (pagouTodos)
+				{
+					morale1.IncreaseMoraleMonthly();
+					morale2.IncreaseMoraleMonthly();
+					morale3.IncreaseMoraleMonthly();
+					morale4.IncreaseMoraleMonthly();
+					morale5.IncreaseMoraleMonthly();
+					morale6.IncreaseMoraleMonthly();
+					morale7.IncreaseMoraleMonthly();
+					morale8.IncreaseMoraleMonthly();
+				}
+				else
+					pagouTodos = true;
 			}
 		}
 	}
 }
+
 function ProjetoPagarMensal(){
 	var neededMonths : int = 0;
 	var monthPercent : float = 0.0;
 	var auxTime : int = 0;
 	var expected : float = 0.0;
-	//aux = project.GetProjectSize() / project.GetDeadlineDays();				//Producao por dia planejada
-	//aux = aux * 28;																	//Producao por mes
-	//aux = aux * 100 / project.GetProjectSize();									//Percentagem completada por mes planejada
-	//auxTime = timer.GetGameTime() - project.GetStartDay();					//Quanto tempo desde que o projeto iniciou
-	//auxTime = auxTime / 28;														//Quantos meses se passaram desde que iniciou
-	//aux = aux * auxTime;															//Multiplica a producao planejada por mes pela quantidade de meses que ja passou
 	
 	neededMonths = (project.GetDeadline() / 28);							//Qnts meses pro projeto
 	monthPercent = 100 / neededMonths; 									//Qnts % por meses
@@ -95,8 +108,11 @@ function ProjetoPagarMensal(){
 		jogador.ChangeSaldo(project.GetPagamento());
 	}
 	else
+	{
 		dialog.ActiveShowWindow();
+	}
 }
+
 function PagarJogadorConclusao(){
 	jogador.ChangeSaldo(CalculaPagamentoFinal());
 }
@@ -140,5 +156,13 @@ function SetDiasFaltando(t : int)
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
+	morale1 = func1.GetComponentInChildren(MoraleControl);
+	morale2 = func2.GetComponentInChildren(MoraleControl);
+	morale3 = func3.GetComponentInChildren(MoraleControl);
+	morale4 = func4.GetComponentInChildren(MoraleControl);
+	morale5 = func5.GetComponentInChildren(MoraleControl);
+	morale6 = func6.GetComponentInChildren(MoraleControl);
+	morale7 = func7.GetComponentInChildren(MoraleControl);
+	morale8 = func8.GetComponentInChildren(MoraleControl);
 
 }
