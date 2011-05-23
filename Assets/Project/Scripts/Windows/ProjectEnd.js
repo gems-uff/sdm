@@ -13,6 +13,7 @@ msgFalha = "\n Time's over \n\n We didn't finish the software in time.";
 
 //Funcao que exibe o resultado de conclusao do projeto
 function WindowFunction(windowID : int){
+	var aux : float;
 	if(project.GetFractionDone() >= 100)							//Tela que projeto foi concluido a tempo
 	{
 		timer.PauseGame();
@@ -35,6 +36,8 @@ function WindowFunction(windowID : int){
 			pgjog.PagarJogadorConclusao();
 			project.ResetProject();
 			contractWindow.SetShowWindow();
+			aux = pgjog.CalculaPagamentoFinal() / pgjog.GetPagamentoFinal();
+			BroadcastMessage("IncreaseMoraleFinishedProject", aux);
 		}
 	}
 	else
@@ -52,6 +55,7 @@ function WindowFunction(windowID : int){
 		{
 			project.ResetProject();
 			contractWindow.SetShowWindow();
+			BroadcastMessage("DecreaseMoraleFailProject");
 		}
 	}
 }

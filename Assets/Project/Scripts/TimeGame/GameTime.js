@@ -84,8 +84,10 @@ function PassTime () {
 	BroadcastMessage("TesterWork");
 	BroadcastMessage("Treinando");
 
-	BroadcastMessage("ChangeMorale");
+	BroadcastMessage("ChangeStamina");
+	BroadcastMessage("StaminaActions");
 	BroadcastMessage("MoraleActions");
+	
 	equipe.ResetBonus();
 	if((gameTime % 7) == 0)
 		menuPrototype.Unlock();

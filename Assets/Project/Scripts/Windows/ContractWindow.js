@@ -44,38 +44,58 @@ function ResetItems(){
 	selected = false;
 }
 
+function increaseMorale(project00 : Project)
+{
+	if(project00.GetProjectSizeString() == "Regular")
+			BroadcastMessage("IncreaseMoraleDificulty", 1);
+		else
+			if(project00.GetProjectSizeString() == "Complex")
+				BroadcastMessage("IncreaseMoraleDificulty", 2);
+			else
+				if(project00.GetProjectSizeString() == "Insane")
+					BroadcastMessage("IncreaseMoraleDificulty", 4);
+}
 function SelectProject(){
 	if(project01 == true)
 	{
 		addProject.TakeProject(newproject01);
+		increaseMorale(newproject01);
+		
 	}
 	if(project02 == true)
 	{
 		addProject.TakeProject(newproject02);
+		increaseMorale(newproject02);
 	}
 	if(project03 == true)
 	{
 		addProject.TakeProject(newproject03);
+		increaseMorale(newproject03);
 	}
 	if(project04 == true)
 	{
 		addProject.TakeProject(newproject04);
+		increaseMorale(newproject04);
 	}
 	if(project05 == true)
 	{
 		addProject.TakeProject(newproject05);
+		increaseMorale(newproject05);
 	}
 	if(project06 == true)
 	{
 		addProject.TakeProject(newproject06);
+		increaseMorale(newproject06);
 	}
 	if(project07 == true)
 	{
 		addProject.TakeProject(newproject07);
+		increaseMorale(newproject07);
 	}
 	if(project08 == true)
 	{
 		addProject.TakeProject(newproject08);
+		increaseMorale(newproject08);
 	}
 }
 

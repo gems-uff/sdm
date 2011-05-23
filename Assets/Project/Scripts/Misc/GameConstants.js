@@ -32,11 +32,11 @@ public var NORMAL : int = 3000;
 public var HIGH : int = 4500;
 
 //Prototype
-public var ARCHITECT_FACTOR : float = 0.06; 	//Multiplicador do bonus dos prototipos pelo arquiteto, no caso usa 10% do valor do arquiteto
+public var ARCHITECT_FACTOR : float = 0.1; 	//Multiplicador do bonus dos prototipos pelo arquiteto, no caso usa 10% do valor do arquiteto
 public var SIMPLE_FACTOR : int = 1;			//Multiplicador do bonus dos prototipos pelo tipo de prototipo
 public var REGULAR_FACTOR : int = 2;
 public var COMPLEX_FACTOR : int = 3;
 
-public var SIMPLE_PRICE : int = 3000;		//Custo para fazer cada prototipo
-public var REGULAR_PRICE : int = 7500;
-public var COMPLEX_PRICE : int = 18750;
+public var SIMPLE_PRICE : int = 6000;		//Custo para fazer cada prototipo
+public var REGULAR_PRICE : int = 12000;
+public var COMPLEX_PRICE : int = 24000;

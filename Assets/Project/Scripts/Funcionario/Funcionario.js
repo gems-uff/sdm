@@ -15,8 +15,8 @@ private var salary : int;
 private var role : String;
 private var job : String;		//Junior, plain, senior
 private var workingHours : int = 40;
-private var morale : float = 100.0;
-//private var isEmploee : boolean = false;
+private var morale : int = 100;
+private var stamina : int = 100;
 
 //--------------------------------------------Get/Set-----------------------------------------------------------
 
@@ -124,16 +124,27 @@ function GetWorkingHours() {
 function SetWorkingHours(t: int) {
 	workingHours = t;
 }
-function GetMorale() {
-	return morale;
-}
-function GetMoraleforBonus() {
+function GetMoraleForBonus() {
 	if (morale < 20)
 		return 20;
 	return morale;
 }
-function SetMorale(t: float) {
+function GetMorale() {
+	return morale;
+}
+function SetMorale(t: int) {
 	morale = t;
+}
+function GetStaminaForBonus() {
+	if (stamina < 20)
+		return 20;
+	return stamina;
+}
+function GetStamina() {
+	return stamina;
+}
+function SetStamina(t: int) {
+	stamina = t;
 }
 //Get e Set Atributos de cada papel
 
@@ -266,12 +277,6 @@ function GetF_teste () {
 function SetF_teste (t: boolean) {
 	especializacao.teste = t;
 }
-
-//--------------------------------------------Awake-----------------------------------------------------------
-
-function Awake() 
-{ 
-} 
 
 //--------------------------------------------Update-----------------------------------------------------------
 

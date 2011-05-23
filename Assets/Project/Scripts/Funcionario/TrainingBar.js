@@ -37,7 +37,7 @@ function Progress_Bar(){
     }
     if(transform.localScale.x <= 0.04)
     {
-        transform.renderer.material.color = Color.red;
+        transform.renderer.material.color = Color.cyan;
     }
 }
 function Update()

@@ -54,14 +54,26 @@ function ShowWindow()
 	GUI.Box (Rect (135,190,50,160),
 	("Morale:\n" +
 	"\n" +
-	func1.GetMorale() + "\n" +
-	func2.GetMorale() + "\n" +
-	func3.GetMorale() + "\n" +
-	func4.GetMorale() + "\n" +
-	func5.GetMorale() + "\n" +
-	func6.GetMorale() + "\n" +
-	func7.GetMorale() + "\n" +
-	func8.GetMorale() + "\n"
+	func1.GetMorale() + "%\n" +
+	func2.GetMorale() + "%\n" +
+	func3.GetMorale() + "%\n" +
+	func4.GetMorale() + "%\n" +
+	func5.GetMorale() + "%\n" +
+	func6.GetMorale() + "%\n" +
+	func7.GetMorale() + "%\n" +
+	func8.GetMorale() + "%\n"
+	));
+	GUI.Box (Rect (185,190,60,160),
+	("Stamina:\n" +
+	"\n" +
+	func1.GetStamina() + "%\n" +
+	func2.GetStamina() + "%\n" +
+	func3.GetStamina() + "%\n" +
+	func4.GetStamina() + "%\n" +
+	func5.GetStamina() + "%\n" +
+	func6.GetStamina() + "%\n" +
+	func7.GetStamina() + "%\n" +
+	func8.GetStamina() + "%\n"
 	));
 
 }

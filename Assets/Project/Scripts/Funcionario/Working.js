@@ -12,7 +12,8 @@ public var floatingLinesBelow : FloatingLinesBelow;
 
 public var workingHoursModifier : float = 1.0;
 public var maxTrainingDays : int = 14;
-private var morale : float = 1.0;		//Valor entre 0.0 e 1.0
+private var stamina : float = 1.0;		//Valor entre 0.0 e 1.0
+private var morale : float = 1.0;
 private var func : Funcionario;
 private var treino : Treinamento;
 
@@ -27,7 +28,7 @@ function GetWorkingHoursModifier() {
 function GameModifiers( aux : float ){
 	var cargo_mod : float;
 	cargo_mod = AjusteWork();
-	aux = aux * cargo_mod * workingHoursModifier * morale;
+	aux = aux * cargo_mod * workingHoursModifier * stamina * morale;
 	return aux;
 }
 
@@ -48,7 +49,9 @@ function WorkHours(){
 		newSalary = newSalary * workingHoursModifier;
 		newSalary = newSalary / 10;		//Para ser 0 na unidade do salario
 		newSalary = newSalary * 10;		//Para ser 0 na unidade do salario
-		morale = func.GetMoraleforBonus();
+		stamina = func.GetStaminaForBonus();
+		stamina = stamina / 100;
+		morale = func.GetMoraleForBonus();
 		morale = morale / 100;
 		if (newSalary < constant.MINPAYMENT)
 			func.SetSalario(constant.MINPAYMENT);
@@ -126,7 +129,7 @@ function AnalistaWork(){
 		{
 			if(project.GetSincronismo() < 100)	//Se o projeto esta em andamento entao o sincronismo vai mudando lentamente de acordo com o analista
 			{
-				aux = analista / (project.GetProjectSize() / 1000) * (1 + modificador_positivo - penal);
+				aux = analista / (project.GetProjectSize() / 2000) * (1 + modificador_positivo - penal);
 				aux = GameModifiers(aux);
 				aux = aux * equipe.GetBonusAnalista();
 				aux = aux * randomizer;
@@ -199,18 +202,17 @@ function GerenteWork(){
 function MarketingWork(){
 	if( func.GetPapel() == stringNames.papelMarketing)
 	{
-		var modificador_positivo : float = EspecializacaoFerramenta();
 		var penal : float = MetodologiaEquipe();
 		var aux : float = 0.0;
 		var marketing : float ;
 		var randomizer : float = Random.Range (5.0, 7.5);
-		var randomizer2 : float = Random.Range (3.0, 4.5);
+		var randomizer2 : float = Random.Range (4.0, 6.0);
 		
 		marketing = func.GetMarketing();	
 		aux = marketing * 0.5;
-		aux = aux * (1 + modificador_positivo - penal);
+		aux = aux * (1 - penal);
 		aux = GameModifiers(aux);
-		marketing = parseInt(aux * 2 * randomizer2);
+		marketing = parseInt(aux * randomizer2);
 		aux = parseInt(aux * randomizer);
 		equipe.SetBonusAnalista(aux);
 		playerStats.ChangeSaldo(marketing);

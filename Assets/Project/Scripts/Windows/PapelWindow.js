@@ -12,6 +12,7 @@ private var windowRect : Rect = Rect (600,125,400,248);
 private var windowRect2 : Rect = Rect (600,125,300,100);
 private var janelaPapel : boolean = false;
 private var fireDialogEnable : boolean = false;
+private var morale : MoraleControl;
 
 function MudarPapel (funcionario : Funcionario, treino : Treinamento){
 	func = funcionario;
@@ -29,6 +30,8 @@ function ExecutaJanelaPapel(t : String){
 }
 function ExecutaJanelaCargo(t : String){
 	func.SetCargo(t);
+	morale = func.GetComponentInChildren(MoraleControl);
+	morale.IncreaseMoralePromotion();
 	janelaPapel  = false;
 }
 function ExecutaJanelaFire(){
@@ -112,21 +115,19 @@ function WindowFunction(windowID : int){
 	//---------------------------------------------------------------------------------------------------------------------	
 	GUI.Box (Rect (200,18,198,25), "Grades:");
 	//---------------------------------------------------------------------------------------------------------------------	
-	if(func.GetCargo() != stringNames.jobJunior)	
-		if (GUI.Button (Rect (200,43,198,25), stringNames.jobJunior)) {
-			ExecutaJanelaCargo(stringNames.jobJunior);
-		}
+	//if(func.GetCargo() != stringNames.jobJunior)	
+	//	if (GUI.Button (Rect (200,43,198,25), stringNames.jobJunior)) {
+	//		ExecutaJanelaCargo(stringNames.jobJunior);
+	//	}
 	if(func.GetCargo() == stringNames.jobJunior)	
 		GUI.Box (Rect (200,43,198,25), stringNames.jobJunior);
-	
 	//---------------------------------------------------------------------------------------------------------------------	
-	if(func.GetCargo() != stringNames.jobPleno)	
+	if(func.GetCargo() != stringNames.jobPleno && func.GetCargo() != stringNames.jobSenior)	
 		if (GUI.Button (Rect (200,68,198,25), stringNames.jobPleno)) {
 			ExecutaJanelaCargo(stringNames.jobPleno);
 		}
 	if(func.GetCargo() == stringNames.jobPleno)	
 		GUI.Box (Rect (200,68,198,25), stringNames.jobPleno);
-	
 	//---------------------------------------------------------------------------------------------------------------------	
 	if(func.GetCargo() != stringNames.jobSenior)	
 		if (GUI.Button (Rect (200,93,198,25), stringNames.jobSenior)) {
