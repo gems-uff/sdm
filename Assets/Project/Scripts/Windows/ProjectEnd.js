@@ -7,10 +7,48 @@ public var contractWindow : ContractWindow;
 public var msgFalha : String;
 public var customGuiStyle : GUIStyle;
 private var windowRect : Rect = Rect (700,125,300,395);
+private var enableOptionEnd : boolean = false;
+private var locked : boolean = false;
 
 msgFalha = "\n Time's over \n\n We didn't finish the software in time.";
 //--------------------------------------------FimdeProjeto-----------------------------------------------------------
+function Unlock()
+{
+	locked = false;
+}
 
+function EndProjectQuestion()
+{
+	if(!locked)
+	{
+		if(timer.GetGameTime() < project.GetDeadline())	//Se não chegou no deadline
+		{
+			if(project.GetFractionDone() >= 100)	//Se ja terminou a codificação
+			{
+				enableOptionEnd = true;
+			}
+		}
+		else
+		{
+			enableOptionEnd = false;
+			project.SetIscomplete(true);
+			locked = true;
+		}
+	}
+}
+
+function ShowEndOption()
+{
+	if(enableOptionEnd)
+	{
+		if (GUI.Button (Rect (00,500,120,50), "Deliver Product")) 
+		{
+			locked = true;
+			project.SetIscomplete(true);
+			enableOptionEnd = false;
+		}
+	}
+}
 //Funcao que exibe o resultado de conclusao do projeto
 function WindowFunction(windowID : int){
 	var aux : float;
@@ -61,10 +99,14 @@ function WindowFunction(windowID : int){
 }
 
 //--------------------------------------------OnGUI-----------------------------------------------------------
-
+function Update()
+{
+	EndProjectQuestion();
+}
 //Funcao da unity para a GUI
 function OnGUI (){
 	//Conclusão de projeto
+	ShowEndOption();
 	if(project.GetIscomplete())
 		windowRect = GUI.Window (3, windowRect, WindowFunction, "Project Results");
 }

@@ -49,11 +49,13 @@ function ChangeStamina(){
 function MoraleActions()
 {
 	morale = func.GetMorale();
-	var chance : int = Random.Range (0, 150);
+	var chance : int = Random.Range (0, 100);
 	if(func.GetNome() != stringNames.fired)
+	{
 		if (morale < constant.BADMORALE)
 			if (chance < constant.DEMITCHANCE)
 				dialog.SetDialogQuitEnable();
+	}
 }
 
 function StaminaActions()
@@ -63,9 +65,11 @@ function StaminaActions()
 	if(func.GetNome() != stringNames.fired)
 	{
 		if (stamina > constant.TIREDMORALE)
+		{
 			dialog.SetDialogControl();
+		}
 		else
-			dialog.SetDialogBadDialog();
+			dialog.SetDialogBadDialog(true);
 	}
 }
 

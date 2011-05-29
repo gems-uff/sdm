@@ -1,4 +1,5 @@
 
+public var projectEnd : ProjectEnd;
 public var timer : GameTime;
 public var projectW : ProjectWindow;
 public var project : Project;
@@ -46,6 +47,7 @@ function ResetItems(){
 
 function increaseMorale(project00 : Project)
 {
+	projectEnd.Unlock();
 	if(project00.GetProjectSizeString() == "Regular")
 			BroadcastMessage("IncreaseMoraleDificulty", 1);
 		else

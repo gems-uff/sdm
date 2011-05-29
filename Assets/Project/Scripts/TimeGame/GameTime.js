@@ -95,12 +95,6 @@ function PassTime () {
 	{
 		BroadcastMessage("NewEmployees");
 	}
-	if(gameTime > project.GetDeadline() || project.GetFractionDone() >= 100)
-	{
-		project.SetIscomplete(true);
-		BroadcastMessage("NewProject");
-		BroadcastMessage("UnLockNegotiation");
-	}
 }
 
 //--------------------------------------------Speed-----------------------------------------------------------
@@ -141,6 +135,15 @@ function SpeedHyperFast(){
 	InvokeRepeating("PassTime", incrementTime, TIMEHYPERFAST);
 }
 
+function FixedUpdate()
+{
+	if(project.GetIscomplete())
+	{
+		print("DONE!");
+		BroadcastMessage("NewProject");
+		BroadcastMessage("UnLockNegotiation");
+	}
+}
 //--------------------------------------------Start-----------------------------------------------------------
 
 function Start () {
