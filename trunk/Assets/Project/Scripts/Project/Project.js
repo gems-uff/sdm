@@ -40,6 +40,7 @@ function SetDeadline (t : int) {
 }
 function SetNewDeadline(t: int){
 	deadline = t + timer.GetGameTime();
+	print(timer.GetGameTime());
 }
 function GetDeadlineDays () {
 	return deadlineDays;

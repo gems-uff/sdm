@@ -1,6 +1,7 @@
 
 public var dialogGuiStyle : GUIStyle;
 public var stringNames : StringNames;
+public var constant : GameConstants;
 
 public var menuAtr : FuncWindow;
 public var menuEsp : EspWindow;
@@ -32,23 +33,38 @@ function SetDialogQuitEnable(){
 function SetDialogControl(){
 	dialogControl = false;
 }
-function SetDialogBadDialog(){
-	dialogEnableBadDialog = true;
+function SetDialogBadDialog(t : boolean){
+	dialogEnableBadDialog = t;
 }
 //--------------------------------------------Update-----------------------------------------------------------
 
 function Update(){
-	if (Input.GetKeyDown("space") && insideCollider == true && !dialogLock.GetLock())
-		dialogEnable = true;
-	if (dialogEnableBadDialog == true && !dialogLock.GetLock())
+	if(!dialogLock.GetLock())
 	{
-		showBadDialog = true;
-		dialogLock.SetLock(true);
-	}
-	if (dialogQuitEnable == true && !dialogLock.GetLock())
-	{
-		showQuitDialog = true;
-		dialogLock.SetLock(true);
+		if (Input.GetKeyDown("space") && insideCollider == true)
+			dialogEnable = true;
+		
+		if( func.GetNome() != stringNames.fired)
+		{
+			if(func.GetStamina() < constant.TIREDMORALE)
+			{
+				if (dialogEnableBadDialog == true && dialogControl == false)
+				{
+					showBadDialog = true;
+					dialogLock.SetLock(true);
+				}
+			}
+			else
+			{
+				dialogEnableBadDialog = false;
+			}
+			
+			if (dialogQuitEnable == true)
+			{
+				showQuitDialog = true;
+				dialogLock.SetLock(true);
+			}
+		}
 	}
 }
 //--------------------------------------------OnTriggerEnter-----------------------------------------------------------
@@ -127,10 +143,9 @@ function Dialog_Funcionario (){
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function BadMoraleDialog(){
-	GUI.BeginGroup(Rect (150,Screen.height - 190,1000,1000));
-	if (showBadDialog == true && dialogControl == false && func.GetNome() != stringNames.fired)
+	GUI.BeginGroup(Rect (150,Screen.height - 265,1000,1000));
+	if (showBadDialog == true && dialogControl == false)
 	{
-		//dialogLock.SetLock(true);
 		timer.PauseGame();
 		GUI.Box (Rect (00,00,120,25), func.GetNome() + " :");
 		GUI.Box (Rect (00,25,600,150), "Boss, this is too much for me, I need of a break...", dialogGuiStyle);
@@ -144,10 +159,9 @@ function BadMoraleDialog(){
 	GUI.EndGroup ();
 }
 function QuitDialog(){
-	GUI.BeginGroup(Rect (150,Screen.height - 190,1000,1000));
+	GUI.BeginGroup(Rect (150,Screen.height - 265,1000,1000));
 	if (showQuitDialog == true)
 	{
-		dialogLock.SetLock(true);
 		timer.PauseGame();
 		GUI.Box (Rect (00,00,120,25), func.GetNome() + " :");
 		GUI.Box (Rect (00,25,600,150), "Boss, i can't take this anymore, im quitting !", dialogGuiStyle);
@@ -155,6 +169,7 @@ function QuitDialog(){
 				fire.FireFuncionario(func);
 				dialogQuitEnable = false;
 				dialogLock.SetLock(false);
+				showQuitDialog = false;
 		}
 	}
 	GUI.EndGroup ();

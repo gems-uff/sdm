@@ -9,7 +9,7 @@ function ActiveShowWindow()
 
 function NoPayment()
 {
-	GUI.BeginGroup(Rect (150,Screen.height - 190,1000,1000));
+	GUI.BeginGroup(Rect (150,Screen.height - 300,1000,1000));
 	if(showWindow)
 	{
 		timer.PauseGame();
