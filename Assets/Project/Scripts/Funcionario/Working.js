@@ -238,7 +238,7 @@ function ProgramadorWork(){
 		var variation : int;
 		programador = func.GetProgramador();
 		
-		if (RequisitoLinguagem() == true)
+		if (RequisitoLinguagem() == true && project.GetFractionDone() < 100)
 		{
 			numBugs = (100.0 - programador ) * constant.PROG_BUG_MOD; //Para acrescentar/reduzir o numero de bugs, os modificadores tem seu papel invertido 
 			numBugs = numBugs * (1 + modificador_positivo - penal_prog);
