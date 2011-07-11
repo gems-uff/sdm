@@ -51,6 +51,7 @@ function ShowWindow()
 	pagamento.GetDiasFaltando() + "Days"
 	));
 	
+	GUI.contentColor = Color.green;
 	GUI.Box (Rect (135,190,50,160),
 	("Morale:\n" +
 	"\n" +
@@ -63,6 +64,8 @@ function ShowWindow()
 	func7.GetMorale() + "%\n" +
 	func8.GetMorale() + "%\n"
 	));
+	
+	GUI.contentColor = Color.yellow;
 	GUI.Box (Rect (185,190,60,160),
 	("Stamina:\n" +
 	"\n" +
@@ -77,7 +80,6 @@ function ShowWindow()
 	));
 
 }
-
 
 function OnGUI()
 {

@@ -265,7 +265,7 @@ function ProgramadorWork(){
 				}
 			}
 			project.SetLinesDone(aux);
-			floatingLines.showFloatText("+", aux, " Lines");
+			floatingLines.showFloatText("+", aux, " Progress");
 			floatingLinesBelow.showFloatText("+", bugCount.ToString(), "red", " Bugs");
 		}
 	}

@@ -3,6 +3,7 @@ public var pauseStyle : GUIStyle;
 public var GameSaver : SaveGame;
 public var ingameMenuToggle 	: boolean = false;
 public var icon : Texture2D;
+public var welcomeWindow : WelcomeWindow;
 
 private var TIMESLOW : float = 2.0;
 private var TIMENORMAL : float = 1.0;
@@ -129,20 +130,26 @@ function MainMenu(){
 	{
 	//Work-around: Need to check why dont work !
 		if (GUI.Button (Rect (Screen.width - 100,100,100,50), icon)) {
-				print ("Made with Unity 3d");
+			print ("Made with Unity 3d");
 		}
 
 		if (GUI.Button (Rect (Screen.width - 100,150, 100, 20), "1: Quit")) {
-				//Application.LoadLevel ("StartMenu");
-				Application.Quit();
+			//Application.LoadLevel ("StartMenu");
+			Application.Quit();
 		}
 		if (GUI.Button (Rect (Screen.width - 100,170, 100, 20), "2: Save")) {
-				GameSaver.SaveGame();
+			GameSaver.SaveGame();
+			ingameMenuToggle = false;
 		}
 		if (GUI.Button (Rect (Screen.width - 100,190, 100, 20), "3: Load")) {
-				GameSaver.LoadGame();
+			GameSaver.LoadGame();
+			ingameMenuToggle = false;
 		}
-		if (GUI.Button( Rect (Screen.width - 100,210,100,20), "4: Resume") )
+		if (GUI.Button (Rect (Screen.width - 100,210, 100, 20), "4: Help")) {
+			welcomeWindow.ShowRoleHelpWindow();
+			ingameMenuToggle = false;
+		}
+		if (GUI.Button( Rect (Screen.width - 100,230,100,20), "5: Resume") )
 		{
 			ingameMenuToggle = false ;
 		}

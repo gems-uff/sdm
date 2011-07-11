@@ -8,6 +8,7 @@ public var timer : GameTime;
 private var welcome : boolean = true;
 private var window01 : boolean = true;
 private var window02 : boolean = false;
+private var showRoleHelp : boolean = false;
 //Variaveis de Dialogo
 private var msgWelcome : String;
 private var msg02 : String;
@@ -55,6 +56,20 @@ function WindowFunction(windowID : int){
 	}
 }
 
+
+function ShowRoleHelp()
+{
+	GUI.Box (Rect (02,018,296,350), (msg02), customGuiStyle);
+	if (GUI.Button (Rect (02,368,296,25), "Close Window")) 
+	{
+		showRoleHelp = false;
+	}
+}
+
+function ShowRoleHelpWindow()
+{
+	showRoleHelp = true;
+}
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
@@ -65,4 +80,6 @@ function Awake () {
 function OnGUI () {
 	if(welcome)
 		windowRect = GUI.Window (5, windowRect, WindowFunction, "Welcome");
+	if(showRoleHelp)
+		windowRect = GUI.Window (5, windowRect, ShowRoleHelp, "Help");
 }
