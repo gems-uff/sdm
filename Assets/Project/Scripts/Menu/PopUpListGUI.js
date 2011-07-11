@@ -79,48 +79,41 @@ function TakePapel(t: int)
 	{
 	   case 2: 	//caso analista
 		  papel = "Analyst";
-		  return papel;
 	   break;
+	   
 	   case 3:	//caso arquiteto
 			papel = "Architect";
-			return papel;
 	   break;
 	   
 	   case 4:	//caso gerente
 			papel = "Manager";
-			return papel;
 	   break;
 	   
 	   case 5:	//caso marketing
 			papel = "Marketing";
-			return papel;
 	   break;
 	   
 	   case 6:	//caso programador
 			papel = "Programmer";
-			return papel;
 	   break;
 	   
 	   case 7:	//caso tester
 			papel = "Tester";
-			return papel;
 	   break;
 	   
 	   case 8:	//caso nenhum papel
 			papel = "None";
-			return papel;
 	   break;
 	   
 	   case 9:	//caso treinamento
 			papel = "Training";
-			return papel;
 	   break;
 
 	   default:
 			papel = "None";
-			return papel;
 		break;
 	}
+	return papel;
 }
 
 //--------------------------------------------PopUpList-----------------------------------------------------------

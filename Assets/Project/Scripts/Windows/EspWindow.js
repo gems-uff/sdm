@@ -197,7 +197,6 @@ function Awake () {
 //Funcao da lista Popup para cada um das 8 janelas de funcionarios
 function OnGUI () {
 	GUI.backgroundColor = Color.yellow;
-	GUI.backgroundColor = Color.yellow;
 	GUI.contentColor = Color.green;
 	if(janelaEsp)
 		windowRect = GUI.Window (0, windowRect, WindowFunction, ("Especializations / Price: " +PRECO) );
