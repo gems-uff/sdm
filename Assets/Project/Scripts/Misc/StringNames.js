@@ -3,7 +3,7 @@ public var jobJunior : String = "Junior";
 public var jobPleno : String = "Mid-Level";
 public var jobSenior : String = "Senior";
 
-public var fired : String = "Fired";
+public var fired : String = "Vacant";
 public var metodo1 : String = "Agile";
 public var metodo2 : String = "Classic";
 

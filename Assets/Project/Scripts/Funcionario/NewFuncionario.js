@@ -248,15 +248,55 @@ function ClearFuncionario (t : Funcionario) {
 
 //Esta funcao server para gerar um funcionario inicial totalmente randomico
 function RandomFuncionarioStarter () {
-	SetAtributos();
-	SetEspecializacoes();
-	func.SetNome(newNome.RandomName());
-	func.SetCargo(stringNames.jobJunior);
-	func.SetPapel(stringNames.papelNenhum);
-	func.SetMorale(100);
-	func.SetWorkingHours(40);
-	func.SetSalarioDefault(NewSalario());
-	func.SetSalario(NewSalario());
+	if(func.startEmpty == false)
+	{
+		SetAtributosStarter();
+		SetEspecializacoes();
+		func.SetNome(newNome.RandomName());
+		func.SetCargo(stringNames.jobJunior);
+		func.SetPapel(stringNames.papelNenhum);
+		func.SetMorale(100);
+		func.SetWorkingHours(40);
+		func.SetSalarioDefault(NewSalario());
+		func.SetSalario(NewSalario());
+	}
+	else
+		FireFuncionario(func);
+}
+
+//Diferenciado para evitar que o jogador começe com funcionarios muito ruins
+function ReturnRandomValueStarter(){
+	var value1 : int;
+	var value2 : int;
+	var aux : int = 0;
+	while (aux < 30)
+	{
+		value1 = Random.Range (10, 101);
+		value2 = Random.Range (10, 101);
+		aux = (value1 + value2) / 2;
+		if (value1 > value2)
+			aux = (aux + value1) / 2;
+		else
+			aux = (aux + value1) / 2;
+	}
+	return aux;
+}
+
+//--------------------------------------------SetAtributos-----------------------------------------------------------
+
+function SetAtributosStarter()
+{
+	atributos.adaptabilidade = ReturnRandomValueStarter();
+	atributos.autoDidata = ReturnRandomValueStarter();
+	atributos.detalhista = ReturnRandomValueStarter();
+	atributos.negociacao = ReturnRandomValueStarter();
+	atributos.objetividade = ReturnRandomValueStarter();
+	atributos.organizacao = ReturnRandomValueStarter();
+	atributos.paciencia = ReturnRandomValueStarter();
+	atributos.raciocinioLogico = ReturnRandomValueStarter();
+	atributos.relacionamentoHumano = ReturnRandomValueStarter();
+	
+	func.SetAtributos(atributos);
 }
 //--------------------------------------------Awake-----------------------------------------------------------
 

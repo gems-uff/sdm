@@ -118,18 +118,20 @@ function AnalistaWork(){
 		var analista : float ;
 		var randomizer : float = Random.Range (0.5, 1.0);
 		
+		func.WorkingAnalista();
 		
 		analista = func.GetAnalista();
 		if(project.GetSincronismo() == 00)	//Se o projeto esta sendo iniciado, entao o valor de sincronismo inicial varia de acordo com o desempenho do analista
 		{
 			aux = analista * constant.ANALISTA_INICIO * (1 + modificador_positivo - penal);
 			project.SetSincronismo(aux);
+			print("Inicio :" + aux);
 		}
 		else
 		{
 			if(project.GetSincronismo() < 100)	//Se o projeto esta em andamento entao o sincronismo vai mudando lentamente de acordo com o analista
 			{
-				aux = analista / (project.GetProjectSize() / 2000) * (1 + modificador_positivo - penal);
+				aux = analista / (project.GetProjectSize() * 0.0002) * (1 + modificador_positivo - penal);
 				aux = GameModifiers(aux);
 				aux = aux * equipe.GetBonusAnalista();
 				aux = aux * randomizer;
@@ -150,6 +152,8 @@ function ArquitetoWork(){
 		var arquiteto : float ;
 		var randomizer : float = Random.Range (0.8, 1.2);
 		var randomizer2 : float = Random.Range (0.8, 1.2);
+		
+		func.WorkingArquiteto();
 		
 		arquiteto = func.GetArquiteto();	
 		aux = arquiteto;
@@ -178,6 +182,8 @@ function GerenteWork(){
 		var penal_prog : float = PenalidadeProgramacao(penal);
 		var randomizer : float = Random.Range (2.0, 2.5);
 		var randomizer2 : float = Random.Range (1.0, 1.5);
+		
+		func.WorkingGerente();
 		
 		gerente = func.GetGerente();
 		auxAnaArq = gerente * constant.GERENTE;
@@ -208,6 +214,8 @@ function MarketingWork(){
 		var randomizer : float = Random.Range (5.0, 7.5);
 		var randomizer2 : float = Random.Range (4.0, 6.0);
 		
+		func.WorkingMarketing();
+		
 		marketing = func.GetMarketing();	
 		aux = marketing * 0.5;
 		aux = aux * (1 - penal);
@@ -237,6 +245,8 @@ function ProgramadorWork(){
 		var bugCount : int = 0;
 		var variation : int;
 		programador = func.GetProgramador();
+		
+		func.WorkingProgramador();
 		
 		if (RequisitoLinguagem() == true && project.GetFractionDone() < 100)
 		{
@@ -283,6 +293,8 @@ function TesterWork(){
 		var i : int;
 		var randomizer : float = Random.Range (0.7, 1.0);
 		tester = func.GetTester();
+		
+		func.WorkingTester();
 		
 		if (RequisitoLinguagem() == true)
 		{

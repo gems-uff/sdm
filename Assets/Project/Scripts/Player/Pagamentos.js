@@ -43,9 +43,8 @@ function PagarFuncionario(){
 
 function PagarFuncionarioTreinamento(preco : int){
 	jogador.ChangeSaldo(- preco);
+	jogador.ChangeExpenses(preco);
 }
-
-//--------------------------------------------VerificaSaldo-----------------------------------------------------------
 
 function VerificaSaldo(func : Funcionario, morale : MoraleControl){
 	var saldo : int;
@@ -58,9 +57,39 @@ function VerificaSaldo(func : Funcionario, morale : MoraleControl){
 		pagouTodos = false;
 	}
 	else
+	{
 		jogador.ChangeSaldo(- salario);
+		jogador.ChangeExpenses(salario);
+	}
 }
 //--------------------------------------------PagamentoDoProjeto-----------------------------------------------------------
+
+function ProjetoPagarMensal(){
+	var neededMonths : int = 0;
+	var monthPercent : float = 0.0;
+	var auxTime : int = 0;
+	var expected : float = 0.0;
+	
+	neededMonths = (project.GetDeadline() / 28);							//Qnts meses pro projeto
+	monthPercent = 100 / neededMonths; 									//Qnts % por meses
+	auxTime = timer.GetGameTime() - project.GetStartDay();			//Quanto tempo desde que o projeto iniciou
+	auxTime = auxTime / 28;														//Quantos meses se passaram desde que iniciou
+	expected = monthPercent * auxTime;										//% concluido esperado
+	if (expected <= (10 + project.GetFractionDone()))
+	{
+		jogador.ChangeSaldo(project.GetPagamento());
+		jogador.ChangeIncome(project.GetPagamento());
+	}
+	else
+	{
+		dialog.ActiveShowWindow();
+	}
+}
+
+function PagarJogadorConclusao(){
+	jogador.ChangeSaldo(CalculaPagamentoFinal());
+	jogador.ChangeIncome(CalculaPagamentoFinal());
+}
 
 function PagarJogadorMensal(){
 	var isComplete : boolean;
@@ -90,31 +119,6 @@ function PagarJogadorMensal(){
 			}
 		}
 	}
-}
-
-function ProjetoPagarMensal(){
-	var neededMonths : int = 0;
-	var monthPercent : float = 0.0;
-	var auxTime : int = 0;
-	var expected : float = 0.0;
-	
-	neededMonths = (project.GetDeadline() / 28);							//Qnts meses pro projeto
-	monthPercent = 100 / neededMonths; 									//Qnts % por meses
-	auxTime = timer.GetGameTime() - project.GetStartDay();			//Quanto tempo desde que o projeto iniciou
-	auxTime = auxTime / 28;														//Quantos meses se passaram desde que iniciou
-	expected = monthPercent * auxTime;										//% concluido esperado
-	if (expected <= (10 + project.GetFractionDone()))
-	{
-		jogador.ChangeSaldo(project.GetPagamento());
-	}
-	else
-	{
-		dialog.ActiveShowWindow();
-	}
-}
-
-function PagarJogadorConclusao(){
-	jogador.ChangeSaldo(CalculaPagamentoFinal());
 }
 
 function CalculaPagamentoFinal(){

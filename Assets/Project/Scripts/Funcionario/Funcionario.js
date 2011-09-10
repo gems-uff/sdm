@@ -1,7 +1,8 @@
 
 private var atributos : Atributos = new Atributos();
 private var especializacao : Especializacoes = new Especializacoes();
-
+public var floatingLevel : FloatingLevel;
+public var startEmpty : boolean = false;
 //Atributos de cada Papel
 private var analista : float = 0;
 private var arquiteto : float = 0;
@@ -18,6 +19,216 @@ private var workingHours : int = 40;
 private var morale : int = 100;
 private var stamina : int = 100;
 
+//variaveis referentes a level do funcionario
+private var EXPERIENCE_MOD : int = 100;
+//private var PROJECT_EXPERIENCE : int = 5;
+private var level : int = 1;
+private var experience : int = 0;
+private var requiredExperience : int = level * level * EXPERIENCE_MOD;
+private var days_modifier : int = 1;
+//variaveis referentes aos modificadores de atributos quando subir de level
+private var days_analista : int = 0;
+private var days_arquiteto : int = 0;
+private var days_gerente: int = 0;
+private var days_marketing : int = 0;
+private var days_programador : int = 0;
+private var days_tester : int = 0;
+//Historico de modificadores do level up
+private var aux_adap: int = 0;
+private var aux_auto : int = 0;
+private var aux_det : int = 0;
+private var aux_neg : int = 0;
+private var aux_obj : int = 0;
+private var aux_org : int = 0;
+private var aux_pac : int = 0;
+private var aux_rac : int = 0;
+private var aux_rel : int = 0;
+
+function GetLevel(){
+	return level;
+}
+
+function GetExperience(){
+	return experience;
+}
+
+function GetReq_Experience(){
+	return requiredExperience;
+}
+
+function GetAdapMod(){
+	return aux_adap;
+}
+function GetAutoMod(){
+	return aux_auto;
+}
+function GetDetMod(){
+	return aux_det;
+}
+function GetNegMod(){
+	return aux_neg;
+}
+function GetObjMod(){
+	return aux_obj;
+}
+function GetOrgMod(){
+	return aux_org;
+}
+function GetPacMod(){
+	return aux_pac;
+}
+function GetRacMod(){
+	return aux_rac;
+}
+function GetRelMod(){
+	return aux_rel;
+}
+function ResetLevel(){
+	ResetDays();
+	level =1;
+	experience = 0;
+	requiredExperience = level * level * EXPERIENCE_MOD;
+	aux_adap = 0;
+	aux_auto = 0;
+	aux_det = 0;
+	aux_neg = 0;
+	aux_obj = 0;
+	aux_org = 0;
+	aux_pac = 0;
+	aux_rac = 0;
+	aux_rel = 0;
+}
+function ResetDays(){
+	days_analista = 0;
+	days_arquiteto = 0;
+	days_gerente = 0;
+	days_marketing = 0;
+	days_programador = 0;
+	days_tester = 0;
+}
+
+function WorkingAnalista(){
+	days_analista = days_analista + 1;
+}
+
+function WorkingArquiteto(){
+	days_arquiteto = days_arquiteto + 1;
+}
+
+function WorkingGerente(){
+	days_gerente = days_gerente + 1;
+}
+
+function WorkingMarketing(){
+	days_marketing = days_marketing + 1;
+}
+
+function WorkingProgramador(){
+	days_programador = days_programador + 1;
+}
+
+function WorkingTester(){
+	days_tester = days_tester + 1;
+}
+
+function LevelUp(){
+	var count : int = 0;
+	if ( experience > requiredExperience)
+	{
+		count = 0;
+		while ( experience > requiredExperience)
+		{
+			level = level + 1;
+			experience = experience - requiredExperience;
+			requiredExperience = level * level * EXPERIENCE_MOD;
+			IncreaseAttributes();
+			count = count + 1;
+		}
+		ResetDays();
+		floatingLevel.showFloatText(count);
+	}
+}
+
+function SetExperienceDaysModifier( mod : int){
+//A experiencia ganha é em função do numero de semanas trabalhadas.
+	days_modifier = mod / 7;
+	if (days_modifier < 1)
+		days_modifier = 1;
+	//print("Days Mod: "+days_modifier);
+	//print("Mod: " +mod);
+}
+function IncreaseExp(project_mod : int){
+	//project_mod = 1(simple) 2(regular) 3(complex) 4(insane)
+	var quantity : int =  0;
+	
+	quantity = (project_mod * days_modifier * atributos.autoDidata);
+	experience = experience + quantity;
+	floatingLevel.showFloatTextExperience(quantity);
+}
+
+//Ganha experiencia se fizer prototipos
+function EarnExperiencePrototype(mod : int){
+	experience = experience + mod * 5;
+	days_arquiteto = days_arquiteto + mod;
+	floatingLevel.showFloatTextExperience(mod * 5);
+}
+
+//Ganha experiencia se fizer negociação
+function EarnExperienceNegotiation(mod : int){
+	experience = experience + mod * 4;
+	days_marketing = days_marketing + mod;
+	floatingLevel.showFloatTextExperience(mod * 4);
+}
+
+function IncreaseAttributes(){
+	var aux : int =0;
+	
+	aux = CalculaAcrescimo(days_analista * 0.2, days_arquiteto * 0.25, days_gerente * 0.1, days_marketing * 0.05, days_programador * 0.05, days_tester * 0.05);
+	atributos.adaptabilidade = atributos.adaptabilidade + aux;
+	aux_adap = aux_adap + aux;
+	
+	aux = CalculaAcrescimo(days_analista * 0.05, days_arquiteto * 0.05, days_gerente * 0.1, days_marketing * 0.05, days_programador * 0.2, days_tester * 0.05);
+	atributos.autoDidata = atributos.autoDidata + aux;
+	aux_auto = aux_auto + aux;
+	
+	aux = CalculaAcrescimo(days_analista * 0.1, days_arquiteto * 0.15, days_gerente * 0.05, days_marketing * 0.05, days_programador * 0.05, days_tester * 0.25);
+	atributos.detalhista = atributos.detalhista + aux;
+	aux_det = aux_det + aux;
+	
+	aux = CalculaAcrescimo(days_analista * 0.05, days_arquiteto * 0.05, days_gerente * 0.1, days_marketing * 0.25, days_programador * 0.05, days_tester * 0.05);
+	atributos.negociacao = atributos.negociacao + aux;
+	aux_neg = aux_neg + aux;
+	
+	aux = CalculaAcrescimo(days_analista * 0.1, days_arquiteto * 0.1, days_gerente * 0.05, days_marketing * 0.05, days_programador * 0.15, days_tester * 0.1);
+	atributos.objetividade = atributos.objetividade + aux;
+	aux_obj = aux_obj + aux;
+	
+	aux = CalculaAcrescimo(days_analista * 0.05, days_arquiteto * 0.1, days_gerente * 0.25, days_marketing * 0.05, days_programador * 0.1, days_tester * 0.1);
+	atributos.organizacao = atributos.organizacao + aux;
+	aux_org = aux_org + aux;
+	
+	aux = CalculaAcrescimo(days_analista * 0.1, days_arquiteto * 0.1, days_gerente * 0.1, days_marketing * 0.2, days_programador * 0.1, days_tester * 0.15);
+	atributos.paciencia = atributos.paciencia + aux;
+	aux_pac = aux_pac + aux;
+	
+	aux = CalculaAcrescimo(days_analista * 0.1, days_arquiteto * 0.15, days_gerente * 0.05, days_marketing * 0.05, days_programador * 0.25, days_tester * 0.2);
+	atributos.raciocinioLogico = atributos.raciocinioLogico + aux;
+	aux_rac = aux_rac + aux;
+	
+	aux = CalculaAcrescimo(days_analista * 0.25, days_arquiteto * 0.05, days_gerente * 0.2, days_marketing * 0.25, days_programador * 0.05, days_tester * 0.05);
+	atributos.relacionamentoHumano = atributos.relacionamentoHumano + aux;
+	aux_rel = aux_rel + aux;
+}
+
+function CalculaAcrescimo ( m1 : int, m2 : int, m3 : int, m4 : int, m5 : int, m6 : int)
+{
+	var aux : int = 0;
+	aux = 2 + ( (m1 + m2 + m3 + m4 + m5 + m6) / 9 );
+	if (aux > 5)
+		aux = 5;
+	aux = Random.Range (0, aux);
+	return aux;
+}
 //--------------------------------------------Get/Set-----------------------------------------------------------
 
 //Get e Set dos atributos humanos e mesa

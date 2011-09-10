@@ -57,6 +57,7 @@ function ApplyChanges(){
 	marketing = (marketing / MARKETING_FACTOR / 100);
 	marketing_more = 1 + marketing;
 	marketing_less = 1 - marketing;
+	func.EarnExperienceNegotiation(parseInt(marketing * 100));
 	
 	if(scopeBool == true)
 	{

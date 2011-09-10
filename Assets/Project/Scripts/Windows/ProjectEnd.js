@@ -1,16 +1,16 @@
 
-
+public var jogador : PlayerStats;
 public var project : Project;
 public var pgjog : Pagamentos;
 public var timer : GameTime;
 public var contractWindow : ContractWindow;
-public var msgFalha : String;
 public var customGuiStyle : GUIStyle;
 private var windowRect : Rect = Rect (700,125,300,395);
 private var enableOptionEnd : boolean = false;
 private var locked : boolean = false;
 
-msgFalha = "\n Time's over \n\n We didn't finish the software in time.";
+private var aux_projectsize : int = 1;
+
 //--------------------------------------------FimdeProjeto-----------------------------------------------------------
 function Unlock()
 {
@@ -52,6 +52,16 @@ function ShowEndOption()
 //Funcao que exibe o resultado de conclusao do projeto
 function WindowFunction(windowID : int){
 	var aux : float;
+	var experience : int = 0;
+	aux_projectsize = 1;
+	if(project.GetProjectSizeString() == "Regular")
+				aux_projectsize = 2;
+			else
+				if(project.GetProjectSizeString() == "Complex")
+					aux_projectsize = 3;
+				else
+					if(project.GetProjectSizeString() == "Insane")
+						aux_projectsize = 4;	
 	if(project.GetFractionDone() >= 100)							//Tela que projeto foi concluido a tempo
 	{
 		timer.PauseGame();
@@ -68,15 +78,22 @@ function WindowFunction(windowID : int){
 		"\n Payment: " + pgjog.GetPagamentoFinal() +
 		"\n Validation Adjustment: " + pgjog.GetValidadionAdjustment() +
 		"\n Penalty for Bugs: " + pgjog.GetBugPenalty() +
-		"\n Final payment: " + pgjog.CalculaPagamentoFinal(), customGuiStyle);
+		"\n Final payment: " + pgjog.CalculaPagamentoFinal() + 
+		"\n Earned Company Experience: " + (aux_projectsize * parseInt(project.GetSincronismo()) - 10 * parseInt(project.GetNumBugs())), customGuiStyle);
 		if (GUI.Button (Rect (02,368,296,25), "Close Window")) 
 		{
 			pgjog.PagarJogadorConclusao();
-			project.ResetProject();
 			contractWindow.SetShowWindow();
 			aux = pgjog.CalculaPagamentoFinal() / pgjog.GetPagamentoFinal();
 			BroadcastMessage("IncreaseMoraleFinishedProject", aux);
+			BroadcastMessage("SetExperienceDaysModifier", (timer.GetGameTime() - project.GetStartDay()));
+			BroadcastMessage("IncreaseExp", aux_projectsize);
+			jogador.ChangeCompleted();
+			jogador.CompanyIncreaseExp(aux_projectsize, parseInt(project.GetSincronismo()), parseInt(project.GetNumBugs()));
+			project.ResetProject();
 		}
+		
+		
 	}
 	else
 	{
@@ -88,13 +105,20 @@ function WindowFunction(windowID : int){
 		"\n Completed: " + project.GetFractionDone() + " %" +
 		"\n Validation: " + parseInt(project.GetSincronismo()).ToString() + " %" +
 		"\n # Bugs not fixed: " + parseInt(project.GetNumBugs()).ToString() +
-		"\n Final payment: $0 ", customGuiStyle);
+		"\n Final payment: $0 " + 
+		"\n Earned Company Experience: " + (-aux_projectsize * parseInt(project.GetSincronismo())), customGuiStyle);
+		
 		if (GUI.Button (Rect (02,368,296,25), "Close Window")) 
 		{
 			project.ResetProject();
 			contractWindow.SetShowWindow();
 			BroadcastMessage("DecreaseMoraleFailProject");
+			BroadcastMessage("SetExperienceDaysModifier", (timer.GetGameTime() - project.GetStartDay()));
+			BroadcastMessage("IncreaseExp", (aux_projectsize / 10));
+			jogador.ChangeFailed();
+			jogador.CompanyIncreaseExp(-aux_projectsize, 150, 0);
 		}
+		
 	}
 }
 

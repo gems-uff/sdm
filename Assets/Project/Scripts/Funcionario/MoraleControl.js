@@ -76,68 +76,86 @@ function StaminaActions()
 function DecreaseMoralePayment()
 {
 	var moraleChange : int;
-	morale = func.GetMorale();
-	moraleChange = -(constant.MORALE_MOD / 3);
-	morale = morale + moraleChange;		//Perde 2 de moral
-	morale = CheckMorale(morale);
-	func.SetMorale(morale);
-	if (morale > 0)
-		moraleDisplay.showFloatText("", moraleChange.ToString(), "red", "  Morale");
+	if(func.GetNome() != stringNames.fired)
+	{
+		morale = func.GetMorale();
+		moraleChange = -(constant.MORALE_MOD / 3);
+		morale = morale + moraleChange;		//Perde 2 de moral
+		morale = CheckMorale(morale);
+		func.SetMorale(morale);
+		if (morale > 0)
+			moraleDisplay.showFloatText("", moraleChange.ToString(), "red", "  Morale");
+	}
 }
 
 function DecreaseMoraleFailProject()
 {
 	var moraleChange : int;
-	morale = func.GetMorale();
-	moraleChange = - 2 * constant.MORALE_MOD;
-	morale = morale + moraleChange;		//Perde 12 de moral
-	morale = CheckMorale(morale);
-	func.SetMorale(morale);
-	moraleDisplay.showFloatText("", moraleChange.ToString(), "red", "  Morale");
+	if(func.GetNome() != stringNames.fired)
+	{
+		morale = func.GetMorale();
+		moraleChange = - 2 * constant.MORALE_MOD;
+		morale = morale + moraleChange;		//Perde 12 de moral
+		morale = CheckMorale(morale);
+		func.SetMorale(morale);
+		moraleDisplay.showFloatText("", moraleChange.ToString(), "red", "  Morale");
+	}
 }
 
 function IncreaseMoraleFinishedProject(mod : float)
 {
 	var moraleChange : int;
-	morale = func.GetMorale();
-	moraleChange = 2 * constant.MORALE_MOD * mod;
-	morale = morale + moraleChange;		//Recupera 12 de moral
-	morale = CheckMorale(morale);
-	func.SetMorale(morale);
-	moraleDisplay.showFloatText("+", moraleChange.ToString(), "green", "  Morale");
+	if(func.GetNome() != stringNames.fired)
+	{
+		morale = func.GetMorale();
+		moraleChange = 2 * constant.MORALE_MOD * mod;
+		morale = morale + moraleChange;		//Recupera 12 de moral
+		morale = CheckMorale(morale);
+		func.SetMorale(morale);
+		moraleDisplay.showFloatText("+", moraleChange.ToString(), "green", "  Morale");
+	}
 }
 
 function IncreaseMoralePromotion()
 {
 	var moraleChange : int;
-	morale = func.GetMorale();
-	moraleChange = 5 * constant.MORALE_MOD;
-	morale = morale + moraleChange;		//Recupera 30
-	morale = CheckMorale(morale);
-	func.SetMorale(morale);
-	moraleDisplay.showFloatText("+", moraleChange.ToString(), "green", "  Morale");
+	if(func.GetNome() != stringNames.fired)
+	{
+		morale = func.GetMorale();
+		moraleChange = 5 * constant.MORALE_MOD;
+		morale = morale + moraleChange;		//Recupera 30
+		morale = CheckMorale(morale);
+		func.SetMorale(morale);
+		moraleDisplay.showFloatText("+", moraleChange.ToString(), "green", "  Morale");
+	}
 }
 
 function IncreaseMoraleDificulty(change : int)
 {	//Recupera 0, 6 12, 24 (simples, regular, complexo, insano)
 	var moraleChange : int;
-	morale = func.GetMorale();
-	moraleChange = change * constant.MORALE_MOD;
-	morale = morale + moraleChange;	
-	morale = CheckMorale(morale);
-	func.SetMorale(morale);
-	moraleDisplay.showFloatText("+", moraleChange.ToString(), "green", "  Morale");
+	if(func.GetNome() != stringNames.fired)
+	{
+		morale = func.GetMorale();
+		moraleChange = change * constant.MORALE_MOD;
+		morale = morale + moraleChange;	
+		morale = CheckMorale(morale);
+		func.SetMorale(morale);
+		moraleDisplay.showFloatText("+", moraleChange.ToString(), "green", "  Morale");
+	}
 }
 
 function IncreaseMoraleMonthly()
 {
 	var moraleChange : int;
-	morale = func.GetMorale();
-	moraleChange = constant.MORALE_MOD;
-	morale = morale + moraleChange;	
-	morale = CheckMorale(morale);
-	func.SetMorale(morale);
-	moraleDisplay.showFloatText("+", moraleChange.ToString(), "green", "  Morale");
+	if(func.GetNome() != stringNames.fired)
+	{
+		morale = func.GetMorale();
+		moraleChange = constant.MORALE_MOD;
+		morale = morale + moraleChange;	
+		morale = CheckMorale(morale);
+		func.SetMorale(morale);
+		moraleDisplay.showFloatText("+", moraleChange.ToString(), "green", "  Morale");
+	}
 }
 function CheckMorale(moraleCheck : int)
 {

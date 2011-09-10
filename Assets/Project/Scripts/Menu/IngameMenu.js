@@ -149,7 +149,12 @@ function MainMenu(){
 			welcomeWindow.ShowRoleHelpWindow();
 			ingameMenuToggle = false;
 		}
-		if (GUI.Button( Rect (Screen.width - 100,230,100,20), "5: Resume") )
+		if (GUI.Button( Rect (Screen.width - 100,230,100,20), "5: Statistics") )
+		{
+			playerstats.ShowStatistics();
+			ingameMenuToggle = false ;
+		}
+		if (GUI.Button( Rect (Screen.width - 100,250,100,20), "6: Resume") )
 		{
 			ingameMenuToggle = false ;
 		}
