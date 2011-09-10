@@ -142,9 +142,11 @@ function SetProjectSizeString () {
 			else
 				projectSize = "Insane";
 }
+
 function GetProjectQuality(){
 	return projectQuality;
 }
+
 function SetProjectQuality(){
 	if (bugValue < constant.LOW)
 		projectQuality = "Not a priority";

@@ -18,15 +18,31 @@ private var salarioDay : int;
 private var papel : String;
 private var cargo : String;
 private var showJanela	:boolean = false;
+private var showJanelaLevel	:boolean = false;
 private var showCloseButton : boolean = true;
 private var workHours : int;
 private var morale : int;
 private var stamina : int;
+private var level : int;
+private var experience : int;
+private var req_exp : int;
+
+private var aux_adap: int = 0;
+private var aux_auto : int = 0;
+private var aux_det : int = 0;
+private var aux_neg : int = 0;
+private var aux_obj : int = 0;
+private var aux_org : int = 0;
+private var aux_pac : int = 0;
+private var aux_rac : int = 0;
+private var aux_rel : int = 0;
 
 private var windowRect : Rect = Rect (600,125,400,420);
+private var windowRect2 : Rect = Rect (300,125,200,280);
 
 function DisableShowWindow(){
 	showJanela = false;
+	showJanelaLevel = false;
 }
 //--------------------------------------------FichaFuncionarioEspecializacao-----------------------------------------------------------
 
@@ -48,6 +64,19 @@ function SetJanelatributo(funcionario : Funcionario, closeButton : boolean){
 		showJanela = true;
 		morale = funcionario.GetMorale();
 		stamina = funcionario.GetStamina();
+		level = funcionario.GetLevel();
+		experience = funcionario.GetExperience();
+		req_exp = funcionario.GetReq_Experience();
+		
+		aux_adap = funcionario.GetAdapMod();
+		aux_auto = funcionario.GetAutoMod();
+		aux_det = funcionario.GetDetMod();
+		aux_neg = funcionario.GetNegMod();
+		aux_obj = funcionario.GetObjMod();
+		aux_org = funcionario.GetOrgMod();
+		aux_pac = funcionario.GetPacMod();
+		aux_rac = funcionario.GetRacMod();
+		aux_rel = funcionario.GetRelMod();
 		
 		for (i=0;i<=17;i++)
 			especializacao_array[i]  = "";
@@ -138,9 +167,10 @@ function WindowFunction (windowID : int)	{
 	GUI.Box (Rect (02,078,198,20), (" Role: "+ papel),fichaGuiStyle);
 	GUI.Box (Rect (02,098,198,20), (" Grade: "+ cargo),fichaGuiStyle);
 	GUI.Box (Rect (02,118,198,20), (" Weekly Hours: "+ workHours),fichaGuiStyle);
-	GUI.Box (Rect (02,138,198,20), (" Monthly Salary: $"+ salario),fichaGuiStyle);
-	GUI.Box (Rect (02,158,198,20), (" Salary/Day: $"+ salarioDay),fichaGuiStyle);
-	GUI.Box (Rect (02,178,198,20), (" "),fichaGuiStyle);
+	//GUI.Box (Rect (02,138,198,20), (" Monthly Salary: $"+ salario),fichaGuiStyle);
+	GUI.Box (Rect (02,138,198,20), (" Salary/Day: $"+ salarioDay),fichaGuiStyle);
+	GUI.Box (Rect (02,158,198,20), (" Level: " +level),fichaGuiStyle);
+	GUI.Box (Rect (02,178,198,20), (" Experience: " +experience + " / " + req_exp),fichaGuiStyle);
 	//Lado direito
 	GUI.Box (Rect (200,018,198,20), (" Adaptability: "+ atributos.adaptabilidade),fichaGuiStyle);
 	GUI.Box (Rect (200,038,198,20), (" Autodidact: "+ atributos.autoDidata),fichaGuiStyle);
@@ -176,12 +206,41 @@ function WindowFunction (windowID : int)	{
 	GUI.Box (Rect (200,378,198,20), ("\t" + especializacao_array[17].ToString()),fichaGuiStyle);
 	
 	if(showCloseButton)
-		if (GUI.Button (Rect (02,398,396,20), "Close Profile")) 
+		if (GUI.Button (Rect (02,398,198,20), "Close Profile")) 
 		{
 			showJanela  = false;
 		}
+	if(showCloseButton)
+		if (GUI.Button (Rect (200,398,198,20), "View Level Up Modifiers")) 
+		{
+			showJanela  = false;
+			showJanelaLevel = true;
+		}
 }
 
+//--------------------------------------------FichaFuncionario-----------------------------------------------------------
+
+//Funcao que exibe na tela os status do funcionario
+function WindowFunction_Level (windowID : int)	{
+	timer.PauseGame();
+	//Lado esquerdo
+	GUI.Box (Rect (02,018,198,20), (" Name: "+ nome),fichaGuiStyle);
+	GUI.Box (Rect (02,038,198,20), (" Level: "+ level),fichaGuiStyle);
+	GUI.Box (Rect (02,058,198,20), (" Experience: "+ experience + " / " + req_exp),fichaGuiStyle);
+	GUI.Box (Rect (02,078,198,20), (" Adaptability: +"+ aux_adap),fichaGuiStyle);
+	GUI.Box (Rect (02,098,198,20), (" Autodidact: +"+ aux_auto),fichaGuiStyle);
+	GUI.Box (Rect (02,118,198,20), (" Human Relations: +"+ aux_rel),fichaGuiStyle);
+	GUI.Box (Rect (02,138,198,20), (" Logical Reasoning: +"+ aux_rac),fichaGuiStyle);
+	GUI.Box (Rect (02,158,198,20), (" Meticulous: +" +aux_det),fichaGuiStyle);
+	GUI.Box (Rect (02,178,198,20), (" Negotiation: +" +aux_neg),fichaGuiStyle);
+	GUI.Box (Rect (02,198,198,20), (" Objectivity: +"+ aux_obj),fichaGuiStyle);
+	GUI.Box (Rect (02,218,198,20), (" Organization: +"+ aux_org),fichaGuiStyle);
+	GUI.Box (Rect (02,238,198,20), (" Patience: +"+ aux_pac),fichaGuiStyle);
+	if (GUI.Button (Rect (02,258,198,20), "Close")) 
+	{
+		showJanelaLevel  = false;
+	}
+}
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
@@ -193,4 +252,6 @@ function Awake () {
 function OnGUI (){
 	if(showJanela)
 		windowRect = GUI.Window (1, windowRect, WindowFunction, "Profile");
+	if(showJanelaLevel)
+		windowRect2 = GUI.Window (100, windowRect2, WindowFunction_Level, "Level Up Changes");
 }

@@ -44,18 +44,21 @@ function ApplyChanges(){
 		bonusSincronismo = architect * constant.SIMPLE_FACTOR;
 		jogador.ChangeSaldo(- constant.SIMPLE_PRICE);
 		project.SetSincronismo(bonusSincronismo);
+		func.EarnExperiencePrototype(2);
 	}
 	if(regularProt == true)
 	{
 		bonusSincronismo = architect * constant.REGULAR_FACTOR;
 		jogador.ChangeSaldo(- constant.REGULAR_PRICE);
 		project.SetSincronismo(bonusSincronismo);
+		func.EarnExperiencePrototype(4);
 	}
 	if(complexProt == true)
 	{
 		bonusSincronismo = architect * constant.COMPLEX_FACTOR;
 		jogador.ChangeSaldo(- constant.COMPLEX_PRICE);
 		project.SetSincronismo(bonusSincronismo);
+		func.EarnExperiencePrototype(6);
 	}
 }
 function WindowFunction(windowID : int){

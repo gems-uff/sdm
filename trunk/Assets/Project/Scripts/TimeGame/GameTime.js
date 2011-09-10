@@ -1,8 +1,3 @@
-//Para usar este script:
-//private var timerObj : GameObject;
-//private var timer : GameTime;
-//timerObj = GameObject.Find("Timer");
-//timer = timerObj.GetComponent(GameTime);
 
 public var TIMESLOW : float = 8.0;
 public var TIMENORMAL : float = 6.0;
@@ -23,7 +18,7 @@ public var equipe : Equipe;
 public var menuPrototype : PrototypeWindow;
 
 //--------------------------------------------Get/Set-----------------------------------------------------------
-
+//Retorna o dia atual
 function GetGameTime(){
 	return gameTime;
 }
@@ -54,7 +49,7 @@ function GetTimeHF(){
 	return TIMEHYPERFAST;
 }
 
-function GetTime () {	//Retorna o tempo no formato data/hora
+function GetTime () {	//Retorna o tempo no formato semana/dia
 	var gametime : String = GetTimeString(gameTime);
 	return gametime;
 }
@@ -87,6 +82,8 @@ function PassTime () {
 	BroadcastMessage("ChangeStamina");
 	BroadcastMessage("StaminaActions");
 	BroadcastMessage("MoraleActions");
+	BroadcastMessage("LevelUp");
+	BroadcastMessage("CompanyLevelUp");
 	
 	equipe.ResetBonus();
 	if((gameTime % 7) == 0)
@@ -138,8 +135,7 @@ function SpeedHyperFast(){
 function FixedUpdate()
 {
 	if(project.GetIscomplete())
-	{
-		print("DONE!");
+	{	
 		BroadcastMessage("NewProject");
 		BroadcastMessage("UnLockNegotiation");
 	}
