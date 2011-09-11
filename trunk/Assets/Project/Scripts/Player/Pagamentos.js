@@ -43,7 +43,6 @@ function PagarFuncionario(){
 
 function PagarFuncionarioTreinamento(preco : int){
 	jogador.ChangeSaldo(- preco);
-	jogador.ChangeExpenses(preco);
 }
 
 function VerificaSaldo(func : Funcionario, morale : MoraleControl){
@@ -59,7 +58,6 @@ function VerificaSaldo(func : Funcionario, morale : MoraleControl){
 	else
 	{
 		jogador.ChangeSaldo(- salario);
-		jogador.ChangeExpenses(salario);
 	}
 }
 //--------------------------------------------PagamentoDoProjeto-----------------------------------------------------------
@@ -78,7 +76,6 @@ function ProjetoPagarMensal(){
 	if (expected <= (10 + project.GetFractionDone()))
 	{
 		jogador.ChangeSaldo(project.GetPagamento());
-		jogador.ChangeIncome(project.GetPagamento());
 	}
 	else
 	{
@@ -88,7 +85,6 @@ function ProjetoPagarMensal(){
 
 function PagarJogadorConclusao(){
 	jogador.ChangeSaldo(CalculaPagamentoFinal());
-	jogador.ChangeIncome(CalculaPagamentoFinal());
 }
 
 function PagarJogadorMensal(){
