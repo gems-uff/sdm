@@ -52,10 +52,8 @@ function CompanyLevelUp(){
 		print("Level UP");
 		companyLevel = companyLevel + 1;
 		companyExperience = companyExperience - companyRequiredExp;
-		companyRequiredExp = companyLevel * companyLevel * EXPERIENCE_MOD;
+		//companyRequiredExp = companyLevel * companyLevel * EXPERIENCE_MOD;
 		companyLevelUp.showFloatTextCompanyLevelUp();
-		//ResetDays();
-		//floatingLevel.showFloatText(count);
 	}
 	if ( companyExperience < 0 )	//Perde Level
 	{
@@ -68,9 +66,10 @@ function CompanyLevelUp(){
 	{
 		companyLevel = 1;
 		companyExperience = 0;
-		companyRequiredExp = companyLevel * companyLevel * EXPERIENCE_MOD;
+		//companyRequiredExp = companyLevel * companyLevel * EXPERIENCE_MOD;
 	}
 	AllowedProjectSize();
+	companyRequiredExp = companyLevel * companyLevel * EXPERIENCE_MOD;
 }
 
 function CompanyIncreaseExp(project_mod : int, projectQuality : int, numberBugs : int){
@@ -91,6 +90,10 @@ function SetSaldo(t: int) {
 
 function ChangeSaldo(t: int){
 	saldo = saldo + t;
+	if (t > 0)
+		ChangeIncome(t);
+	else
+		ChangeExpenses(t);
 }
 
 function BelowZero(){
@@ -99,6 +102,8 @@ function BelowZero(){
 		saldo = 0;
 	}
 }
+
+
 
 function GetCompleted() {
 	return completedProjects;
@@ -132,6 +137,25 @@ function ChangeIncome(t: int){
 }
 function ChangeExpenses(t: int){
 	totalExpenses = totalExpenses + t;
+}
+
+function SetCompleted(t: int) {
+	completedProjects = t;
+}
+function SetFailed(t: int) {
+	failedProjects = t;
+}
+function SetIncome(t: int) {
+	totalIncome = t;
+}
+function SetExpenses(t: int) {
+	totalExpenses = t;
+}
+function SetCompany(t: int) {
+	companyLevel = t;
+}
+function SetCompanyExperience(t: int) {
+	companyExperience = t;
 }
 
 function ShowStatistics(){

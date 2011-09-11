@@ -44,18 +44,37 @@ private var aux_pac : int = 0;
 private var aux_rac : int = 0;
 private var aux_rel : int = 0;
 
-function GetLevel(){
-	return level;
-}
-
-function GetExperience(){
-	return experience;
-}
-
 function GetReq_Experience(){
 	return requiredExperience;
 }
 
+function GetLevel(){
+	return level;
+}
+function GetExperience(){
+	return experience;
+}
+function GetDaysModifier(){
+	return days_modifier;
+}
+function GetDaysAnalista(){
+	return days_analista;
+}
+function GetDaysArquiteto(){
+	return days_arquiteto;
+}
+function GetDaysGerente(){
+	return days_gerente;
+}
+function GetDaysMarketing(){
+	return days_marketing;
+}
+function GetDaysProgramador(){
+	return days_programador;
+}
+function GetDaysTester(){
+	return days_tester;
+}
 function GetAdapMod(){
 	return aux_adap;
 }
@@ -83,6 +102,62 @@ function GetRacMod(){
 function GetRelMod(){
 	return aux_rel;
 }
+
+function SetLevel(t : int){
+	level = t;
+}
+function SetExperience(t : int){
+	experience = t;
+}
+function SetDaysModifier(t : int){
+	days_modifier = t;
+}
+function SetDaysAnalista(t : int){
+	days_analista = t;
+}
+function SetDaysArquiteto(t : int){
+	days_arquiteto = t;
+}
+function SetDaysGerente(t : int){
+	days_gerente = t;
+}
+function SetDaysMarketing(t : int){
+	days_marketing = t;
+}
+function SetDaysProgramador(t : int){
+	days_programador = t;
+}
+function SetDaysTester(t : int){
+	days_tester = t;
+}
+function SetAdapMod(t : int){
+	aux_adap = t;
+}
+function SetAutoMod(t : int){
+	aux_auto = t;
+}
+function SetDetMod(t : int){
+	aux_det = t;
+}
+function SetNegMod(t : int){
+	aux_neg = t;
+}
+function SetObjMod(t : int){
+	aux_obj = t;
+}
+function SetOrgMod(t : int){
+	aux_org = t;
+}
+function SetPacMod(t : int){
+	aux_pac = t;
+}
+function SetRacMod(t : int){
+	aux_rac = t;
+}
+function SetRelMod(t : int){
+	aux_rel = t;
+}
+
 function ResetLevel(){
 	ResetDays();
 	level =1;
@@ -147,6 +222,7 @@ function LevelUp(){
 		ResetDays();
 		floatingLevel.showFloatText(count);
 	}
+	requiredExperience = level * level * EXPERIENCE_MOD;
 }
 
 function SetExperienceDaysModifier( mod : int){
