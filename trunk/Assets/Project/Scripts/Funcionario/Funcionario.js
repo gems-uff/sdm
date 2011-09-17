@@ -44,6 +44,8 @@ private var aux_pac : int = 0;
 private var aux_rac : int = 0;
 private var aux_rel : int = 0;
 
+public var report : WeeklyReport;
+
 function GetReq_Experience(){
 	return requiredExperience;
 }
@@ -237,7 +239,8 @@ function IncreaseExp(project_mod : int){
 	//project_mod = 1(simple) 2(regular) 3(complex) 4(insane)
 	var quantity : int =  0;
 	
-	quantity = (project_mod * days_modifier * atributos.autoDidata);
+	quantity = (project_mod * days_modifier * (50 + (atributos.autoDidata * 0.5)));
+	quantity = quantity * 0.5;
 	experience = experience + quantity;
 	floatingLevel.showFloatTextExperience(quantity);
 }

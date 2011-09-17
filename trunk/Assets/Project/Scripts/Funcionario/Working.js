@@ -17,7 +17,105 @@ private var morale : float = 1.0;
 private var func : Funcionario;
 private var treino : Treinamento;
 
+private var report : WeeklyReport;
+public var funcWindow : FuncWindow;
 
+function GetReport(){	
+	return report;
+}
+function SetReport(t : WeeklyReport){
+	report = t;
+}
+function AnalistReport(t : int)
+{
+	report.analistReport = report.analistReport + t;
+}
+function ArchitectReport(bug : int, archt : int)
+{
+	report.architectReport_bug = report.architectReport_bug + bug;
+	report.architectReport_archt = report.architectReport_archt + archt;
+}
+function ManagerReport(design : int, dev : int)
+{
+	report.managerReport_design = report.managerReport_design + design;
+	report.managerReport_dev = report.managerReport_dev + dev;
+}
+function MarketingReport(val : int, money : int)
+{
+	report.marketingReport_val = report.marketingReport_val + val;
+	report.marketingReport_money = report.marketingReport_money + money;
+}
+function ProgReport(prog : int, bugs)
+{
+	report.programmerReport_prog = report.programmerReport_prog + prog;
+	report.programmerReport_bug = report.programmerReport_bug + bugs;
+}
+function TesterReport(bug : int)
+{
+	report.testerReport = report.testerReport + bug;
+}
+function WeeklyReport()
+{
+	//Exibo o historico
+	
+	//Mudo a semana
+	func.report.previous3AnalistReport = 					func.report.previous2AnalistReport;
+	func.report.previous3ArchitectReport_bug = 		func.report.previous2ArchitectReport_bug;
+	func.report.previous3ArchitectReport_archt = 		func.report.previous2ArchitectReport_archt;
+	func.report.previous3ManagerReport_design = 		func.report.previous2ManagerReport_design;
+	func.report.previous3ManagerReport_dev = 			func.report.previous2ManagerReport_dev;
+	func.report.previous3MarketingReport_val = 			func.report.previous2MarketingReport_val;
+	func.report.previous3MarketingReport_money = 	func.report.previous2MarketingReport_money;
+	func.report.previous3ProgrammerReport_prog = 	func.report.previous2ProgrammerReport_prog;
+	func.report.previous3ProgrammerReport_bug = 		func.report.previous2ProgrammerReport_bug;
+	func.report.previous3TesterReport = 					func.report.previous2TesterReport;
+	
+	func.report.previous2AnalistReport = 					func.report.previousAnalistReport;
+	func.report.previous2ArchitectReport_bug = 		func.report.previousArchitectReport_bug;
+	func.report.previous2ArchitectReport_archt = 		func.report.previousArchitectReport_archt;
+	func.report.previous2ManagerReport_design = 		func.report.previousManagerReport_design;
+	func.report.previous2ManagerReport_dev = 			func.report.previousManagerReport_dev;
+	func.report.previous2MarketingReport_val = 			func.report.previousMarketingReport_val;
+	func.report.previous2MarketingReport_money = 	func.report.previousMarketingReport_money;
+	func.report.previous2ProgrammerReport_prog = 	func.report.previousProgrammerReport_prog;
+	func.report.previous2ProgrammerReport_bug = 		func.report.previousProgrammerReport_bug;
+	func.report.previous2TesterReport = 					func.report.previousTesterReport;
+	
+	func.report.previousAnalistReport = 					func.report.analistReport;
+	func.report.previousArchitectReport_bug = 			func.report.architectReport_bug;
+	func.report.previousArchitectReport_archt = 		func.report.architectReport_archt;
+	func.report.previousManagerReport_design = 		func.report.managerReport_design;
+	func.report.previousManagerReport_dev = 			func.report.managerReport_dev;
+	func.report.previousMarketingReport_val = 			func.report.marketingReport_val;
+	func.report.previousMarketingReport_money = 		func.report.marketingReport_money;
+	func.report.previousProgrammerReport_prog = 		func.report.programmerReport_prog;
+	func.report.previousProgrammerReport_bug = 		func.report.programmerReport_bug;
+	func.report.previousTesterReport = 					func.report.testerReport;
+	
+	func.report.analistReport = 								report.analistReport;
+	func.report.architectReport_bug = 						report.architectReport_bug / 7;
+	func.report.architectReport_archt = 					report.architectReport_archt /7;
+	func.report.managerReport_dev = 						report.managerReport_dev / 7;
+	func.report.managerReport_design = 					report.managerReport_design / 7;
+	func.report.marketingReport_val = 						report.marketingReport_val / 7;
+	func.report.marketingReport_money = 				report.marketingReport_money;
+	func.report.programmerReport_prog = 					report.programmerReport_prog;
+	func.report.programmerReport_bug = 					report.programmerReport_bug;
+	func.report.testerReport = 								report.testerReport;
+	//Reinicio para a proxima semana
+	
+	
+	report.analistReport = 0;
+	report.architectReport_bug = 0;
+	report.architectReport_archt = 0;
+	report.managerReport_design = 0;
+	report.managerReport_dev = 0;
+	report.marketingReport_val = 0;
+	report.marketingReport_money = 0;
+	report.programmerReport_prog = 0;
+	report.programmerReport_bug = 0;
+	report.testerReport = 0;
+}
 //--------------------------------------------Get-----------------------------------------------------------
 function GetWorkingHoursModifier() {
 	return workingHoursModifier;
@@ -123,20 +221,23 @@ function AnalistaWork(){
 		analista = func.GetAnalista();
 		if(project.GetSincronismo() == 00)	//Se o projeto esta sendo iniciado, entao o valor de sincronismo inicial varia de acordo com o desempenho do analista
 		{
-			aux = analista * constant.ANALISTA_INICIO * (1 + modificador_positivo - penal);
+			aux = analista * constant.ANALISTA_INICIO * (1 + modificador_positivo - penal) * randomizer;
 			project.SetSincronismo(aux);
-			print("Inicio :" + aux);
+			AnalistReport(aux);
+			floatingLines.showFloatText("+", aux, " Validation");
+			//print("Inicio :" + aux);
 		}
 		else
 		{
 			if(project.GetSincronismo() < 100)	//Se o projeto esta em andamento entao o sincronismo vai mudando lentamente de acordo com o analista
 			{
-				aux = analista / (project.GetProjectSize() * 0.0002) * (1 + modificador_positivo - penal);
+				aux = analista / (project.GetProjectSize() * 0.0005) * (1 + modificador_positivo - penal);
 				aux = GameModifiers(aux);
 				aux = aux * equipe.GetBonusAnalista();
 				aux = aux * randomizer;
 				aux = Mathf.Round(aux * 100f) / 100f; //Para truncar na segunda casa decimal
 				project.SetSincronismo(aux);
+				AnalistReport(aux);
 				floatingLines.showFloatText("+", aux, " Validation");
 			}
 		}
@@ -165,6 +266,7 @@ function ArquitetoWork(){
 		equipe.SetFindbugScore(aux);
 		arquiteto = parseInt(randomizer2 * aux / 10);
 		equipe.SetBonusProg(arquiteto);
+		ArchitectReport(aux, arquiteto);
 		floatingLines.showFloatText("+", aux, "% Bug Find");
 		floatingLinesBelow.showFloatText("+", arquiteto.ToString(), "blue", " % Architecture");
 	}
@@ -200,6 +302,7 @@ function GerenteWork(){
 		equipe.SetBonusAnalista(auxAnaArq);
 		equipe.SetBonusArquiteto(auxAnaArq);
 		equipe.SetBonusProg(auxProg);
+		ManagerReport(auxAnaArq, auxProg);
 		floatingLines.showFloatText("+", auxAnaArq, "% Design");
 		floatingLinesBelow.showFloatText("+", auxProg.ToString(), "blue", " % Dev.");
 	}
@@ -224,6 +327,7 @@ function MarketingWork(){
 		aux = parseInt(aux * randomizer);
 		equipe.SetBonusAnalista(aux);
 		playerStats.ChangeSaldo(marketing);
+		MarketingReport(aux, marketing);
 		floatingLines.showFloatText("+", aux, "% Val. Bonus");
 		floatingLinesBelow.showFloatText("+", marketing.ToString(), "", " Money");
 		
@@ -275,6 +379,7 @@ function ProgramadorWork(){
 				}
 			}
 			project.SetLinesDone(aux);
+			ProgReport(aux, bugCount);
 			floatingLines.showFloatText("+", aux, " Progress");
 			floatingLinesBelow.showFloatText("+", bugCount.ToString(), "red", " Bugs");
 		}
@@ -313,6 +418,7 @@ function TesterWork(){
 					project.SetNumBugs(-1);
 				}
 			}
+			TesterReport(bugCount);
 			floatingLines.showFloatText(" -", bugCount, " Bugs");
 		}
 	}
@@ -499,4 +605,24 @@ function EspecializacaoFerramenta (){
 function Awake () {
 	func = GetComponentInChildren(Funcionario);
 	treino = GetComponentInChildren(Treinamento);
+	report.previousAnalistReport = 0;
+	report.previousArchitectReport_bug = 0;
+	report.previousArchitectReport_archt = 0;
+	report.previousManagerReport_design = 0;
+	report.previousManagerReport_dev = 0;
+	report.previousMarketingReport_val = 0;
+	report.previousMarketingReport_money = 0;
+	report.previousProgrammerReport_prog = 0;
+	report.previousProgrammerReport_bug = 0;
+	report.previousTesterReport = 0;
+	report.analistReport = 0;
+	report.architectReport_bug = 0;
+	report.architectReport_archt = 0;
+	report.managerReport_design = 0;
+	report.managerReport_dev = 0;
+	report.marketingReport_val = 0;
+	report.marketingReport_money = 0;
+	report.programmerReport_prog = 0;
+	report.programmerReport_bug = 0;
+	report.testerReport = 0;
 }

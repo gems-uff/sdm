@@ -154,7 +154,12 @@ function MainMenu(){
 			playerstats.ShowStatistics();
 			ingameMenuToggle = false ;
 		}
-		if (GUI.Button( Rect (Screen.width - 100,250,100,20), "6: Resume") )
+		if (GUI.Button( Rect (Screen.width - 100,250,100,20), "6: Staff Report") )
+		{
+			equipe.ShowReport();
+			ingameMenuToggle = false ;
+		}
+		if (GUI.Button( Rect (Screen.width - 100,270,100,20), "7: Resume") )
 		{
 			ingameMenuToggle = false ;
 		}

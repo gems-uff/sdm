@@ -58,7 +58,7 @@ function ExecutaBotaoPopup(t : String, listEntry : int){
 		   break;
 		   
 		   case 4: 	//"Profile"
-				menuAtr.SetJanelatributo(func, true);
+				menuAtr.SetJanelatributo(func, true, func.report);
 		   break;
 		   
 		   case 5: 	//"Work Hours"

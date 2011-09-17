@@ -13,6 +13,7 @@ class SavePlayer extends System.ValueType{
 	//Equipe
 	public var language : String;
 	public var metology : String;
+	public var report : WeeklyReport;
 	
 	//GameTime
 	var gameTime : int;
@@ -32,6 +33,7 @@ class SavePlayer extends System.ValueType{
 		language = _Equipe.GetLinguagem();
 		
 		gameTime = _Time.GetGameTime();
+		report = _Equipe.GetReport();
 	}
 	
 	function SetPlayerVariables(_PlayerStats : PlayerStats, _Pagamentos : Pagamentos, _Equipe : Equipe, _Time : GameTime)
@@ -47,6 +49,7 @@ class SavePlayer extends System.ValueType{
 		
 		_Equipe.SetMetodologia(metology);
 		_Equipe.SetLinguagem(language);
+		_Equipe.SetReport(report);
 		
 		_Time.SetGameTime(gameTime);
 	}

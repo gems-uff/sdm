@@ -87,7 +87,12 @@ function PassTime () {
 	
 	equipe.ResetBonus();
 	if((gameTime % 7) == 0)
+	{
 		menuPrototype.Unlock();
+		BroadcastMessage("WeeklyReport");
+		BroadcastMessage("ResetStaffReport");
+		BroadcastMessage("StaffReport");
+	}
 	if ((gameTime % 28) == 0)
 	{
 		BroadcastMessage("NewEmployees");
