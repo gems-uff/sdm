@@ -35,9 +35,14 @@ class SaveFuncionario extends System.ValueType{
 	public var aux_pac : int;
 	public var aux_rac : int;
 	public var aux_rel : int;
+	
+	public var report : WeeklyReport;
+	public var thisWeekReport : WeeklyReport;
 
 	function GetFuncionarioVariables(func : Funcionario, treinamento : Treinamento)
 	{
+		var work : Working;
+		work = func.GetComponentInChildren(Working);
 		f_atributos = func.GetAtributos();
 		f_especializacao = func.GetEspecializacao();
 		nome = func.GetNome();
@@ -73,10 +78,15 @@ class SaveFuncionario extends System.ValueType{
 		aux_pac = func.GetPacMod();
 		aux_rac = func.GetRacMod();
 		aux_rel = func.GetRelMod();
+		
+		report = func.report;
+		thisWeekReport = work.GetReport();
 	}
 	
 	function SetFuncionarioVariables(func : Funcionario, treinamento : Treinamento)
 	{
+		var work : Working;
+		work = func.GetComponentInChildren(Working);
 		func.SetAtributos(f_atributos);
 		func.SetEspecializacoes(f_especializacao);
 		func.SetNome(nome);
@@ -112,5 +122,8 @@ class SaveFuncionario extends System.ValueType{
 		func.SetPacMod(aux_pac);
 		func.SetRacMod(aux_rac);
 		func.SetRelMod(aux_rel);
+		
+		func.report = report;
+		work.SetReport(thisWeekReport);
 	}
 }

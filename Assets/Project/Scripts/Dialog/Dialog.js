@@ -98,7 +98,7 @@ function Dialog_Funcionario (){
 		GUI.Box (Rect (00,00,120,25), func.GetNome() + " :");
 		GUI.Box (Rect (00,25,600,150), "Hello boss. What's up ?", dialogGuiStyle);
 		if (GUI.Button (Rect (600,25, 130, 25), "Profile")) {
-				menuAtr.SetJanelatributo(func, true);
+				menuAtr.SetJanelatributo(func, true, func.report);
 				dialogEnable = false;
 		}
 		if (GUI.Button (Rect (600,50, 130, 25), "Train")) {

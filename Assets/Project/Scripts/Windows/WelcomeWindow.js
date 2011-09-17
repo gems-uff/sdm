@@ -21,7 +21,8 @@ msgWelcome = "Welcome to S.D.M. \n(Software Development Manager) \n" +
 "Your employees have attributes and specialities that can be useful for a certain kind of role. They also possess morale and stamina stats that control his working productivity. If his morale is "+
 "too low he can resign.\n" +
 "Your objective is to make a software with good quality for a client. The client will pay you monthly.\n" +
-"To interact with an employee you need to be near him and press SPACE BAR. Also, you MUST obey the client restrictions, like Programming Language. \n" + 
+"To interact with an employee you need to be near him and press SPACE BAR. Also, you MUST obey the client restrictions, like Programming Language. "+
+"To access the game menu press ESC key\n" + 
 "That said, good luck with your software.";
 
 msg02 = "Quick Guide\n\n" + 

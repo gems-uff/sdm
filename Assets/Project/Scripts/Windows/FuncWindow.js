@@ -17,8 +17,9 @@ private var salario : int;
 private var salarioDay : int;
 private var papel : String;
 private var cargo : String;
-private var showJanela	:boolean = false;
+private var showJanela :boolean = false;
 private var showJanelaLevel	:boolean = false;
+private var showJanelaReport :boolean = false;
 private var showCloseButton : boolean = true;
 private var workHours : int;
 private var morale : int;
@@ -37,17 +38,21 @@ private var aux_pac : int = 0;
 private var aux_rac : int = 0;
 private var aux_rel : int = 0;
 
+private var report : WeeklyReport;
+
 private var windowRect : Rect = Rect (600,125,400,420);
 private var windowRect2 : Rect = Rect (300,125,200,280);
+private var windowRect3 : Rect = Rect (300,125,600,280);
 
 function DisableShowWindow(){
 	showJanela = false;
 	showJanelaLevel = false;
+	showJanelaReport = false;
 }
 //--------------------------------------------FichaFuncionarioEspecializacao-----------------------------------------------------------
 
 //Funcao que seta os atributos do funcionario corrente, chamada pelo script DialogInstance, item Qualificacao. Primeiro atributo eh para abilitar a janela, os demais sao os atributos em ordem alfabetica
-function SetJanelatributo(funcionario : Funcionario, closeButton : boolean){
+function SetJanelatributo(funcionario : Funcionario, closeButton : boolean, weeklyReport : WeeklyReport){
 	var i : int = 0;
 	var a2 : Especializacoes;
 	showCloseButton = closeButton;
@@ -77,6 +82,8 @@ function SetJanelatributo(funcionario : Funcionario, closeButton : boolean){
 		aux_pac = funcionario.GetPacMod();
 		aux_rac = funcionario.GetRacMod();
 		aux_rel = funcionario.GetRelMod();
+		
+		SetReport(weeklyReport);
 		
 		for (i=0;i<=17;i++)
 			especializacao_array[i]  = "";
@@ -206,15 +213,21 @@ function WindowFunction (windowID : int)	{
 	GUI.Box (Rect (200,378,198,20), ("\t" + especializacao_array[17].ToString()),fichaGuiStyle);
 	
 	if(showCloseButton)
-		if (GUI.Button (Rect (02,398,198,20), "Close Profile")) 
+		if (GUI.Button (Rect (02,398,98,20), "Close Profile")) 
 		{
 			showJanela  = false;
 		}
 	if(showCloseButton)
-		if (GUI.Button (Rect (200,398,198,20), "View Level Up Modifiers")) 
+		if (GUI.Button (Rect (100,398,200,20), "View Level Up Modifiers")) 
 		{
 			showJanela  = false;
 			showJanelaLevel = true;
+		}
+	if(showCloseButton)
+		if (GUI.Button (Rect (300,398,98,20), "View Report")) 
+		{
+			showJanela  = false;
+			showJanelaReport = true;
 		}
 }
 
@@ -224,22 +237,143 @@ function WindowFunction (windowID : int)	{
 function WindowFunction_Level (windowID : int)	{
 	timer.PauseGame();
 	//Lado esquerdo
-	GUI.Box (Rect (02,018,198,20), (" Name: "+ nome),fichaGuiStyle);
-	GUI.Box (Rect (02,038,198,20), (" Level: "+ level),fichaGuiStyle);
-	GUI.Box (Rect (02,058,198,20), (" Experience: "+ experience + " / " + req_exp),fichaGuiStyle);
-	GUI.Box (Rect (02,078,198,20), (" Adaptability: +"+ aux_adap),fichaGuiStyle);
-	GUI.Box (Rect (02,098,198,20), (" Autodidact: +"+ aux_auto),fichaGuiStyle);
-	GUI.Box (Rect (02,118,198,20), (" Human Relations: +"+ aux_rel),fichaGuiStyle);
-	GUI.Box (Rect (02,138,198,20), (" Logical Reasoning: +"+ aux_rac),fichaGuiStyle);
-	GUI.Box (Rect (02,158,198,20), (" Meticulous: +" +aux_det),fichaGuiStyle);
-	GUI.Box (Rect (02,178,198,20), (" Negotiation: +" +aux_neg),fichaGuiStyle);
-	GUI.Box (Rect (02,198,198,20), (" Objectivity: +"+ aux_obj),fichaGuiStyle);
-	GUI.Box (Rect (02,218,198,20), (" Organization: +"+ aux_org),fichaGuiStyle);
-	GUI.Box (Rect (02,238,198,20), (" Patience: +"+ aux_pac),fichaGuiStyle);
-	if (GUI.Button (Rect (02,258,198,20), "Close")) 
+	GUI.Box (Rect (02,018,196,20), (" Name: "+ nome),fichaGuiStyle);
+	GUI.Box (Rect (02,038,196,20), (" Level: "+ level),fichaGuiStyle);
+	GUI.Box (Rect (02,058,196,20), (" Experience: "+ experience + " / " + req_exp),fichaGuiStyle);
+	GUI.Box (Rect (02,078,196,20), (" Adaptability: +"+ aux_adap),fichaGuiStyle);
+	GUI.Box (Rect (02,098,196,20), (" Autodidact: +"+ aux_auto),fichaGuiStyle);
+	GUI.Box (Rect (02,118,196,20), (" Human Relations: +"+ aux_rel),fichaGuiStyle);
+	GUI.Box (Rect (02,138,196,20), (" Logical Reasoning: +"+ aux_rac),fichaGuiStyle);
+	GUI.Box (Rect (02,158,196,20), (" Meticulous: +" +aux_det),fichaGuiStyle);
+	GUI.Box (Rect (02,178,196,20), (" Negotiation: +" +aux_neg),fichaGuiStyle);
+	GUI.Box (Rect (02,198,196,20), (" Objectivity: +"+ aux_obj),fichaGuiStyle);
+	GUI.Box (Rect (02,218,196,20), (" Organization: +"+ aux_org),fichaGuiStyle);
+	GUI.Box (Rect (02,238,196,20), (" Patience: +"+ aux_pac),fichaGuiStyle);
+	if (GUI.Button (Rect (02,258,196,20), "Close")) 
 	{
 		showJanelaLevel  = false;
 	}
+}
+
+//--------------------------------------------RelatorioFuncionario-----------------------------------------------------------
+
+//Funcao que exibe na tela os status do funcionario
+function WindowFunction_Report (windowID : int)	{
+	timer.PauseGame();
+	//Lado esquerdo
+	GUI.Box (Rect (02,018,198,20), (" Name: "+ nome),fichaGuiStyle);
+	GUI.Box (Rect (02,038,198,20), (" Analyst's Validation:"),fichaGuiStyle);
+	GUI.Box (Rect (02,058,198,20), (" Architect's Bug Find:"),fichaGuiStyle);
+	GUI.Box (Rect (02,078,198,20), (" Architect's Architecture:"),fichaGuiStyle);
+	GUI.Box (Rect (02,098,198,20), (" Manager's Design:"),fichaGuiStyle);
+	GUI.Box (Rect (02,118,198,20), (" Manager's Development:"),fichaGuiStyle);
+	GUI.Box (Rect (02,138,198,20), (" Marketing's Validation:"),fichaGuiStyle);
+	GUI.Box (Rect (02,158,198,20), (" Marketing's Money:"),fichaGuiStyle);
+	GUI.Box (Rect (02,178,198,20), (" Programmer's Progress:"),fichaGuiStyle);
+	GUI.Box (Rect (02,198,198,20), (" Programmer's Bugs:"),fichaGuiStyle);
+	GUI.Box (Rect (02,218,198,20), (" Tester's Bug removal:"),fichaGuiStyle);
+	//Relatorio da semana
+	GUI.Box (Rect (200,018,100,20), (" Last week"),fichaGuiStyle);
+	GUI.Box (Rect (200,038,100,20), (" + " +report.analistReport + " %"),fichaGuiStyle);
+	GUI.Box (Rect (200,058,100,20), (" + "+ report.architectReport_bug+ " %"),fichaGuiStyle);
+	GUI.Box (Rect (200,078,100,20), (" + "+ report.architectReport_archt+ " %"),fichaGuiStyle);
+	GUI.Box (Rect (200,098,100,20), (" + "+ report.managerReport_design+ " %"),fichaGuiStyle);
+	GUI.Box (Rect (200,118,100,20), (" + "+ report.managerReport_dev+ " %"),fichaGuiStyle);
+	GUI.Box (Rect (200,138,100,20), (" + "+ report.marketingReport_val + " %"),fichaGuiStyle);
+	GUI.Box (Rect (200,158,100,20), (" + $"+ report.marketingReport_money),fichaGuiStyle);
+	GUI.Box (Rect (200,178,100,20), (" + "+ report.programmerReport_prog),fichaGuiStyle);
+	GUI.Box (Rect (200,198,100,20), (" + "+ report.programmerReport_bug),fichaGuiStyle);
+	GUI.Box (Rect (200,218,100,20), (" - "+ report.testerReport),fichaGuiStyle);
+	//Relatorio da semana passada
+	GUI.Box (Rect (300,018,100,20), (" 2 weeks ago"),fichaGuiStyle);
+	GUI.Box (Rect (300,038,100,20), (" + " +report.previousAnalistReport+ " %"),fichaGuiStyle);
+	GUI.Box (Rect (300,058,100,20), (" + "+ report.previousArchitectReport_bug+ " %"),fichaGuiStyle);
+	GUI.Box (Rect (300,078,100,20), (" + "+ report.previousArchitectReport_archt+ " %"),fichaGuiStyle);
+	GUI.Box (Rect (300,098,100,20), (" + "+ report.previousManagerReport_design+ " %"),fichaGuiStyle);
+	GUI.Box (Rect (300,118,100,20), (" + "+ report.previousManagerReport_dev+ " %"),fichaGuiStyle);
+	GUI.Box (Rect (300,138,100,20), (" + "+ report.previousMarketingReport_val ),fichaGuiStyle);
+	GUI.Box (Rect (300,158,100,20), (" + $"+ report.previousMarketingReport_money),fichaGuiStyle);
+	GUI.Box (Rect (300,178,100,20), (" + "+ report.previousProgrammerReport_prog),fichaGuiStyle);
+	GUI.Box (Rect (300,198,100,20), (" + "+ report.previousProgrammerReport_bug),fichaGuiStyle);
+	GUI.Box (Rect (300,218,100,20), (" - "+ report.previousTesterReport),fichaGuiStyle);
+	//Retrasada
+	GUI.Box (Rect (400,018,100,20), (" 3 weeks ago"),fichaGuiStyle);
+	GUI.Box (Rect (400,038,100,20), (" + " +report.previous2AnalistReport+ " %"),fichaGuiStyle);
+	GUI.Box (Rect (400,058,100,20), (" + "+ report.previous2ArchitectReport_bug+ " %"),fichaGuiStyle);
+	GUI.Box (Rect (400,078,100,20), (" + "+ report.previous2ArchitectReport_archt+ " %"),fichaGuiStyle);
+	GUI.Box (Rect (400,098,100,20), (" + "+ report.previous2ManagerReport_design+ " %"),fichaGuiStyle);
+	GUI.Box (Rect (400,118,100,20), (" + "+ report.previous2ManagerReport_dev+ " %"),fichaGuiStyle);
+	GUI.Box (Rect (400,138,100,20), (" + "+ report.previous2MarketingReport_val ),fichaGuiStyle);
+	GUI.Box (Rect (400,158,100,20), (" + $"+ report.previous2MarketingReport_money),fichaGuiStyle);
+	GUI.Box (Rect (400,178,100,20), (" + "+ report.previous2ProgrammerReport_prog),fichaGuiStyle);
+	GUI.Box (Rect (400,198,100,20), (" + "+ report.previous2ProgrammerReport_bug),fichaGuiStyle);
+	GUI.Box (Rect (400,218,100,20), (" - "+ report.previous2TesterReport),fichaGuiStyle);
+	//3 semanas atras
+	GUI.Box (Rect (500,018,98,20), (" 4 weeks ago"),fichaGuiStyle);
+	GUI.Box (Rect (500,038,98,20), (" + " +report.previous3AnalistReport+ " %"),fichaGuiStyle);
+	GUI.Box (Rect (500,058,98,20), (" + "+ report.previous3ArchitectReport_bug+ " %"),fichaGuiStyle);
+	GUI.Box (Rect (500,078,98,20), (" + "+ report.previous3ArchitectReport_archt+ " %"),fichaGuiStyle);
+	GUI.Box (Rect (500,098,98,20), (" + "+ report.previous3ManagerReport_design+ " %"),fichaGuiStyle);
+	GUI.Box (Rect (500,118,98,20), (" + "+ report.previous3ManagerReport_dev+ " %"),fichaGuiStyle);
+	GUI.Box (Rect (500,138,98,20), (" + "+ report.previous3MarketingReport_val ),fichaGuiStyle);
+	GUI.Box (Rect (500,158,98,20), (" + $"+ report.previous3MarketingReport_money),fichaGuiStyle);
+	GUI.Box (Rect (500,178,98,20), (" + "+ report.previous3ProgrammerReport_prog),fichaGuiStyle);
+	GUI.Box (Rect (500,198,98,20), (" + "+ report.previous3ProgrammerReport_bug),fichaGuiStyle);
+	GUI.Box (Rect (500,218,98,20), (" - "+ report.previous3TesterReport),fichaGuiStyle);
+	
+	GUI.Box (Rect (002,238,596,20), (" "),fichaGuiStyle);
+	GUI.Box (Rect (200,258,398,20), (" "),fichaGuiStyle);
+	if (GUI.Button (Rect (02,258,196,20), "Close")) 
+	{
+		showJanelaReport  = false;
+	}
+}
+
+function SetReport(weeklyReport : WeeklyReport)
+{
+	report.analistReport = 								weeklyReport.analistReport;
+	report.architectReport_bug = 					weeklyReport.architectReport_bug;
+	report.architectReport_archt = 					weeklyReport.architectReport_archt;
+	report.managerReport_design = 					weeklyReport.managerReport_design;
+	report.managerReport_dev = 						weeklyReport.managerReport_dev;
+	report.marketingReport_val = 					weeklyReport.marketingReport_val;
+	report.marketingReport_money = 				weeklyReport.marketingReport_money;
+	report.programmerReport_prog = 				weeklyReport.programmerReport_prog;
+	report.programmerReport_bug = 				weeklyReport.programmerReport_bug;
+	report.testerReport = 								weeklyReport.testerReport;
+	
+	report.previousAnalistReport = 					weeklyReport.previousAnalistReport;
+	report.previousArchitectReport_bug = 			weeklyReport.previousArchitectReport_bug;
+	report.previousArchitectReport_archt = 		weeklyReport.previousArchitectReport_archt;
+	report.previousManagerReport_design = 		weeklyReport.previousManagerReport_design;
+	report.previousManagerReport_dev = 			weeklyReport.previousManagerReport_dev;
+	report.previousMarketingReport_val = 			weeklyReport.previousMarketingReport_val;
+	report.previousMarketingReport_money = 	weeklyReport.previousMarketingReport_money;
+	report.previousProgrammerReport_prog = 	weeklyReport.previousProgrammerReport_prog;
+	report.previousProgrammerReport_bug = 		weeklyReport.previousProgrammerReport_bug;
+	report.previousTesterReport = 					weeklyReport.previousTesterReport;
+	
+	report.previous2AnalistReport = 					weeklyReport.previous2AnalistReport;
+	report.previous2ArchitectReport_bug = 		weeklyReport.previous2ArchitectReport_bug;
+	report.previous2ArchitectReport_archt = 		weeklyReport.previous2ArchitectReport_archt;
+	report.previous2ManagerReport_design = 	weeklyReport.previous2ManagerReport_design;
+	report.previous2ManagerReport_dev = 		weeklyReport.previous2ManagerReport_dev;
+	report.previous2MarketingReport_val = 		weeklyReport.previous2MarketingReport_val;
+	report.previous2MarketingReport_money = 	weeklyReport.previous2MarketingReport_money;
+	report.previous2ProgrammerReport_prog = 	weeklyReport.previous2ProgrammerReport_prog;
+	report.previous2ProgrammerReport_bug = 	weeklyReport.previous2ProgrammerReport_bug;
+	report.previous2TesterReport = 					weeklyReport.previous2TesterReport;
+	
+	report.previous3AnalistReport = 					weeklyReport.previous3AnalistReport;
+	report.previous3ArchitectReport_bug = 		weeklyReport.previous3ArchitectReport_bug;
+	report.previous3ArchitectReport_archt = 		weeklyReport.previous3ArchitectReport_archt;
+	report.previous3ManagerReport_design = 	weeklyReport.previous3ManagerReport_design;
+	report.previous3ManagerReport_dev = 		weeklyReport.previous3ManagerReport_dev;
+	report.previous3MarketingReport_val = 		weeklyReport.previous3MarketingReport_val;
+	report.previous3MarketingReport_money = 	weeklyReport.previous3MarketingReport_money;
+	report.previous3ProgrammerReport_prog = 	weeklyReport.previous3ProgrammerReport_prog;
+	report.previous3ProgrammerReport_bug = 	weeklyReport.previous3ProgrammerReport_bug;
+	report.previous3TesterReport = 					weeklyReport.previous3TesterReport;
 }
 //--------------------------------------------Awake-----------------------------------------------------------
 
@@ -253,5 +387,7 @@ function OnGUI (){
 	if(showJanela)
 		windowRect = GUI.Window (1, windowRect, WindowFunction, "Profile");
 	if(showJanelaLevel)
-		windowRect2 = GUI.Window (100, windowRect2, WindowFunction_Level, "Level Up Changes");
+		windowRect2 = GUI.Window (100, windowRect2, WindowFunction_Level, "Level Up Changes History");
+	if(showJanelaReport)
+		windowRect3 = GUI.Window (100, windowRect3, WindowFunction_Report, "Employee Report");
 }

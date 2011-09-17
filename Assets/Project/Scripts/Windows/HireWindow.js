@@ -183,7 +183,7 @@ function ShowEmployees(windowID : int){
 		candidate07 = false;
 		candidate08 = false;
 		selected = true;
-		funcWindow.SetJanelatributo(newEmployee01, false);
+		funcWindow.SetJanelatributo(newEmployee01, false, newEmployee01.report);
 	}
 	candidate02 = GUI.Toggle (Rect (10, 080, 80, 30), candidate02, newEmployee02.GetNome());
 	GUI.Box (Rect (100,080,80,30), "$" + (newEmployee02.GetSalario() + contratacao), priceGuiStyle);
@@ -197,7 +197,7 @@ function ShowEmployees(windowID : int){
 		candidate07 = false;
 		candidate08 = false;
 		selected = true;
-		funcWindow.SetJanelatributo(newEmployee02, false);
+		funcWindow.SetJanelatributo(newEmployee02, false, newEmployee02.report);
 	}
 	candidate03 = GUI.Toggle (Rect (10, 120, 80, 30), candidate03, newEmployee03.GetNome());
 	GUI.Box (Rect (100,120,80,30), "$" + (newEmployee03.GetSalario() + contratacao), priceGuiStyle);
@@ -211,7 +211,7 @@ function ShowEmployees(windowID : int){
 		candidate07 = false;
 		candidate08 = false;
 		selected = true;
-		funcWindow.SetJanelatributo(newEmployee03, false);
+		funcWindow.SetJanelatributo(newEmployee03, false, newEmployee03.report);
 	}
 	candidate04 = GUI.Toggle (Rect (10, 160, 80, 30), candidate04, newEmployee04.GetNome());
 	GUI.Box (Rect (100,160,80,30), "$" + (newEmployee04.GetSalario() + contratacao), priceGuiStyle);
@@ -225,7 +225,7 @@ function ShowEmployees(windowID : int){
 		candidate07 = false;
 		candidate08 = false;
 		selected = true;
-		funcWindow.SetJanelatributo(newEmployee04, false);
+		funcWindow.SetJanelatributo(newEmployee04, false, newEmployee04.report);
 	}
 	candidate05 = GUI.Toggle (Rect (10, 200, 80, 30), candidate05, newEmployee05.GetNome());
 	GUI.Box (Rect (100,200,80,30), "$" + (newEmployee05.GetSalario() + contratacao), priceGuiStyle);
@@ -239,7 +239,7 @@ function ShowEmployees(windowID : int){
 		candidate07 = false;
 		candidate08 = false;
 		selected = true;
-		funcWindow.SetJanelatributo(newEmployee05, false);
+		funcWindow.SetJanelatributo(newEmployee05, false, newEmployee05.report);
 	}
 	candidate06 = GUI.Toggle (Rect (10, 240, 80, 30), candidate06, newEmployee06.GetNome());
 	GUI.Box (Rect (100,240,80,30), "$" + (newEmployee06.GetSalario() + contratacao), priceGuiStyle);
@@ -253,7 +253,7 @@ function ShowEmployees(windowID : int){
 		candidate07 = false;
 		candidate08 = false;
 		selected = true;
-		funcWindow.SetJanelatributo(newEmployee06, false);
+		funcWindow.SetJanelatributo(newEmployee06, false, newEmployee06.report);
 	}
 	candidate07 = GUI.Toggle (Rect (10, 280, 80, 30), candidate07, newEmployee07.GetNome());
 	GUI.Box (Rect (100,280,80,30), "$" + (newEmployee07.GetSalario() + contratacao), priceGuiStyle);
@@ -267,7 +267,7 @@ function ShowEmployees(windowID : int){
 		candidate01 = false;
 		candidate08 = false;
 		selected = true;
-		funcWindow.SetJanelatributo(newEmployee07, false);
+		funcWindow.SetJanelatributo(newEmployee07, false, newEmployee07.report);
 	}
 	candidate08 = GUI.Toggle (Rect (10, 320, 80, 30), candidate08, newEmployee08.GetNome());
 	GUI.Box (Rect (100,320,80,30), "$" + (newEmployee08.GetSalario() + contratacao), priceGuiStyle);
@@ -281,7 +281,7 @@ function ShowEmployees(windowID : int){
 		candidate07 = false;
 		candidate01 = false;
 		selected = true;
-		funcWindow.SetJanelatributo(newEmployee08, false);
+		funcWindow.SetJanelatributo(newEmployee08, false, newEmployee08.report);
 	}
 	
 //Lado direito: Posicao
