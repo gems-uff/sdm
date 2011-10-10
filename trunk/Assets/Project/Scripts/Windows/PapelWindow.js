@@ -8,8 +8,8 @@ public var stringNames : StringNames;
 public var timer : GameTime;
 private var fire : NewFuncionario;
 private var func : Funcionario;
-private var windowRect : Rect = Rect (600,125,400,248);
-private var windowRect2 : Rect = Rect (600,125,300,100);
+private var windowRect : Rect = Rect (400,125,400,248);
+private var windowRect2 : Rect = Rect (400,125,300,100);
 private var janelaPapel : boolean = false;
 private var fireDialogEnable : boolean = false;
 private var morale : MoraleControl;
@@ -56,16 +56,26 @@ function WindowFunction(windowID : int){
 	GUI.Box (Rect (02,18,396,25), func.GetNome());
 	GUI.BeginGroup (Rect (02,25,400,220));
 	//---------------------------------------------------------------------------------------------------------------------
+	/*
 	if(func.GetPapel() != stringNames.papelAnalista)
 		if (GUI.Button (Rect (02,18,198,25), stringNames.papelAnalista)) {
 			ExecutaJanelaPapel(stringNames.papelAnalista);
 		}
+	*/	
+	if(func.GetPapel() != stringNames.papelAnalista)
+	{    
+		if (GUI.Button (Rect (02,18,198,25), GUIContent (stringNames.papelAnalista, "+ Validadtion")))
+		{
+			ExecutaJanelaPapel(stringNames.papelAnalista);
+		}
+	}
 	if(func.GetPapel() == stringNames.papelAnalista)
 		GUI.Box (Rect (02,18,198,25), stringNames.papelAnalista);
 	
 	//---------------------------------------------------------------------------------------------------------------------
 	if(func.GetPapel() != stringNames.papelArquiteto)
-		if (GUI.Button (Rect (02,43,198,25), stringNames.papelArquiteto)) {
+		if (GUI.Button (Rect (02,43,198,25), GUIContent (stringNames.papelArquiteto, "+ finding bugs \n + Architecture"))) 
+		{
 			ExecutaJanelaPapel(stringNames.papelArquiteto);
 		}
 	if(func.GetPapel() == stringNames.papelArquiteto)
@@ -73,7 +83,8 @@ function WindowFunction(windowID : int){
 	
 	//---------------------------------------------------------------------------------------------------------------------
 	if(func.GetPapel() != stringNames.papelGerente)
-		if (GUI.Button (Rect (02,68,198,25), stringNames.papelGerente)) {
+		if (GUI.Button (Rect (02,68,198,25), GUIContent (stringNames.papelGerente, "+ Design \n + Development"))) 
+		{
 			ExecutaJanelaPapel(stringNames.papelGerente);
 		}
 	if(func.GetPapel() == stringNames.papelGerente)
@@ -81,7 +92,8 @@ function WindowFunction(windowID : int){
 	
 	//---------------------------------------------------------------------------------------------------------------------
 	if(func.GetPapel() != stringNames.papelMarketing)
-		if (GUI.Button (Rect (02,93,198,25), stringNames.papelMarketing)) {
+		if (GUI.Button (Rect (02,93,198,25), GUIContent (stringNames.papelMarketing, "+ Validation Bonus \n + Money"))) 
+		{
 			ExecutaJanelaPapel(stringNames.papelMarketing);
 		}
 	if(func.GetPapel() == stringNames.papelMarketing)
@@ -89,7 +101,8 @@ function WindowFunction(windowID : int){
 		
 	//---------------------------------------------------------------------------------------------------------------------
 	if(func.GetPapel() != stringNames.papelProg)
-		if (GUI.Button (Rect (02,118,198,25), stringNames.papelProg)) {
+		if (GUI.Button (Rect (02,118,198,25), GUIContent (stringNames.papelProg, "+ Progress \n + Bugs"))) 
+		{
 			ExecutaJanelaPapel(stringNames.papelProg);
 		}
 	if(func.GetPapel() == stringNames.papelProg)
@@ -97,7 +110,8 @@ function WindowFunction(windowID : int){
 	
 	//---------------------------------------------------------------------------------------------------------------------
 	if(func.GetPapel() != stringNames.papelTester)	
-		if (GUI.Button (Rect (02,143,198,25), stringNames.papelTester)) {
+		if (GUI.Button (Rect (02,143,198,25), GUIContent (stringNames.papelTester, "- Bugs"))) 
+		{
 			ExecutaJanelaPapel(stringNames.papelTester);
 		}
 	if(func.GetPapel() == stringNames.papelTester)
@@ -113,31 +127,34 @@ function WindowFunction(windowID : int){
 		
 	//Lado esquerdo
 	//---------------------------------------------------------------------------------------------------------------------	
-	GUI.Box (Rect (200,18,198,25), "Grades:");
+	GUI.Box (Rect (200,68,198,25), "Grades:");
 	//---------------------------------------------------------------------------------------------------------------------	
 	//if(func.GetCargo() != stringNames.jobJunior)	
 	//	if (GUI.Button (Rect (200,43,198,25), stringNames.jobJunior)) {
 	//		ExecutaJanelaCargo(stringNames.jobJunior);
 	//	}
 	if(func.GetCargo() == stringNames.jobJunior)	
-		GUI.Box (Rect (200,43,198,25), stringNames.jobJunior);
+		GUI.Box (Rect (200,93,198,25), stringNames.jobJunior);
 	//---------------------------------------------------------------------------------------------------------------------	
 	if(func.GetCargo() != stringNames.jobPleno && func.GetCargo() != stringNames.jobSenior)	
-		if (GUI.Button (Rect (200,68,198,25), stringNames.jobPleno)) {
+		if (GUI.Button (Rect (200,118,198,25), GUIContent (stringNames.jobPleno, "+ 20% Produtivity \n + 30% Salary"))) 
+		{
 			ExecutaJanelaCargo(stringNames.jobPleno);
 		}
 	if(func.GetCargo() == stringNames.jobPleno)	
-		GUI.Box (Rect (200,68,198,25), stringNames.jobPleno);
+		GUI.Box (Rect (200,118,198,25), stringNames.jobPleno);
 	//---------------------------------------------------------------------------------------------------------------------	
 	if(func.GetCargo() != stringNames.jobSenior)	
-		if (GUI.Button (Rect (200,93,198,25), stringNames.jobSenior)) {
+		if (GUI.Button (Rect (200,143,198,25), GUIContent (stringNames.jobSenior, "+ 40% Produtivity \n + 50% Salary"))) 
+		{
 			ExecutaJanelaCargo(stringNames.jobSenior);
 		}
 	if(func.GetCargo() == stringNames.jobSenior)	
-		GUI.Box (Rect (200,93,198,25), stringNames.jobSenior);
+		GUI.Box (Rect (200,143,198,25), stringNames.jobSenior);
 	
 	//---------------------------------------------------------------------------------------------------------------------
-	if (GUI.Button (Rect (200,143,198,25), "Fire!")) {
+	if (GUI.Button (Rect (200,168,198,25), GUIContent ("Fire!", "Fire the employee"))) 
+	{
 		ExecutaJanelaFire();
 	}
 	//Botao de Cancel
@@ -145,6 +162,7 @@ function WindowFunction(windowID : int){
 		janelaPapel  = false;
 		//timer.SpeedNormal();
 	}
+	GUI.Box (Rect (200,18,198,50), GUI.tooltip);
 	GUI.EndGroup ();
 }
 
