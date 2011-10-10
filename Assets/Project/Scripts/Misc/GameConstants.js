@@ -11,7 +11,7 @@ public var PENALIDADE : float = 0.3;
 public var BONUS : float = 0.25;
 public var ANALISTA_INICIO : float = 0.8;
 public var GERENTE : float = 0.4;	// +40%
-public var PROG_LINES_DAY_MOD : float = 5;
+public var PROG_LINES_DAY_MOD : float = 3;
 public var PROG_BUG_MOD : float = 0.1;
 public var TESTER_DURANTE : float = 0.1;
 
@@ -24,9 +24,12 @@ public var DEMITCHANCE : float = 1.0;
 public var MORALE_MOD : int = 6.0;
 
 //Project
-public var SIMPLE : int = 525;		//Max 35 atributo "Programador" por programador por dia (3 programadores)
-public var REGULAR : int = 900;	//Max 60
-public var COMPLEX : int = 1200;	//Max 80
+//public var SIMPLE : int = 525;		//Max 35 atributo "Programador" por programador por dia (3 programadores)
+//public var REGULAR : int = 900;	//Max 60
+//ublic var COMPLEX : int = 1200;	//Max 80
+public var SIMPLE : int = 1500;		//50 * 3
+public var REGULAR : int = 2100;	//70 * 3
+public var COMPLEX : int = 4000;	//100 * 4
 public var LOW : int = 1500;
 public var NORMAL : int = 3000;
 public var HIGH : int = 4500;

@@ -13,7 +13,7 @@ private var description : RandomDescriptionGenerator;
 public var timer : GameTime;
 private var PAG_MOD : int = 48;
 
-//Fazer: Limitar as escolhas de projetos de acordo com o level. Fazer com que so crie projetos permitidos pelo lvl do jogador. While (tamanhoProjeto > permitido) recrie.
+
 function NewProject(){
 	var t : int = Random.Range (1, 9); //Linguagem
 	var auxD1 : int; //Deadline
@@ -25,38 +25,67 @@ function NewProject(){
 	
 	var aux_project_size : int;
 	//Controle de criação de projetos
-	switch(jogador.GetAllowedProjects())
-	{
-	   case 1: 
-			allowedProject = constant.SIMPLE;
-	   break;
-
-	   case 2:
-			allowedProject = constant.REGULAR;
-	   break;
-	   
-	   case 3:
-			allowedProject = constant.COMPLEX;
-	   break;
-	   
-	   case 4:
-			allowedProject = constant.COMPLEX * 2;
-	   break;
-  
-	   default:
-			allowedProject = constant.SIMPLE;
-		  break;
-	}
-	aux_project_size = allowedProject * 2; //Para sempre fazer uma etapa do while
 	
-	//Verificar o level do jogador e ver que tamanho de projeto é possivel
+	aux_project_size = constant.COMPLEX * 10;
 	while(aux_project_size > allowedProject)
 	{
-		auxD1 = Random.Range (28, 336); //Deadline
-		auxD2 = Random.Range (28, 336); //Deadline
-		auxCL = Random.Range (30, 150);  //Code Lines : Tamanho do programa
-		auxPG = Random.Range (0.9, 1.3); //Modificador de Pagamento
-		auxBV = Random.Range (10, 100); //BugValue
+		switch(jogador.GetAllowedProjects())
+		{
+		   case 1: 
+				allowedProject = constant.SIMPLE;
+				auxD1 = Random.Range (28, 84); //Deadline
+				auxD2 = Random.Range (28, 84); //Deadline
+				auxCL = Random.Range (30, 150);  //Code Lines : Tamanho do programa
+				auxPG = Random.Range (1.5, 2.0); //Modificador de Pagamento
+				auxBV = Random.Range (10, 100); //BugValue
+		   break;
+
+		   case 2:
+				allowedProject = constant.REGULAR;
+				auxD1 = Random.Range (56, 112); //Deadline
+				auxD2 = Random.Range (56, 112); //Deadline
+				auxCL = Random.Range (151, 210);  //Code Lines : Tamanho do programa
+				auxPG = Random.Range (1.3, 1.8); //Modificador de Pagamento
+				auxBV = Random.Range (10, 100); //BugValue
+		   break;
+		   
+		   case 3:
+				allowedProject = constant.COMPLEX;
+				auxD1 = Random.Range (84, 168); //Deadline
+				auxD2 = Random.Range (84, 168); //Deadline
+				auxCL = Random.Range (211, 400);  //Code Lines : Tamanho do programa
+				auxPG = Random.Range (1.0, 1.5); //Modificador de Pagamento
+				auxBV = Random.Range (10, 100); //BugValue
+		   break;
+		   
+		   case 4:
+				allowedProject = constant.COMPLEX * 10;
+				auxD1 = Random.Range (112, 224); //Deadline
+				auxD2 = Random.Range (112, 224); //Deadline
+				auxCL = Random.Range (401, 500);  //Code Lines : Tamanho do programa
+				auxPG = Random.Range (1.0, 1.5); //Modificador de Pagamento
+				auxBV = Random.Range (10, 100); //BugValue
+		   break;
+	  
+		   default:
+				allowedProject = constant.SIMPLE;
+				auxD1 = Random.Range (28, 84); //Deadline
+				auxD2 = Random.Range (28, 84); //Deadline
+				auxCL = Random.Range (30, 150);  //Code Lines : Tamanho do programa
+				auxPG = Random.Range (1.5, 2.0); //Modificador de Pagamento
+				auxBV = Random.Range (10, 100); //BugValue
+			  break;
+		}
+	//aux_project_size = allowedProject * 2; //Para sempre fazer uma etapa do while
+	
+	//Verificar o level do jogador e ver que tamanho de projeto é possivel
+	//while(aux_project_size > allowedProject)
+	//{
+		//auxD1 = Random.Range (28, 336); //Deadline
+		//auxD2 = Random.Range (28, 336); //Deadline
+		//auxCL = Random.Range (30, 150);  //Code Lines : Tamanho do programa
+		//auxPG = Random.Range (0.9, 1.3); //Modificador de Pagamento
+		//auxBV = Random.Range (10, 100); //BugValue
 		description.RandomDescription();
 			
 		if (auxD1 > auxD2)
@@ -67,7 +96,7 @@ function NewProject(){
 		{
 			deadline = auxD1;
 		}
-		auxCL = auxCL * 10;
+		auxCL = auxCL * 2.5;
 		linguagemProgramacao = LinguagemProg(t);
 		pagamento = PAG_MOD * auxPG  * auxCL;
 		pagamento = pagamento / 100;

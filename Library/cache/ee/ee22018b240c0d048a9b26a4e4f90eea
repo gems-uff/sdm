@@ -271,8 +271,8 @@ function ReturnRandomValueStarter(){
 	var aux : int = 0;
 	while (aux < 30)
 	{
-		value1 = Random.Range (10, 101);
-		value2 = Random.Range (10, 101);
+		value1 = Random.Range (30, 101);
+		value2 = Random.Range (25, 101);
 		aux = (value1 + value2) / 2;
 		if (value1 > value2)
 			aux = (aux + value1) / 2;

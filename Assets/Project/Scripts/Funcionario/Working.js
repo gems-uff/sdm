@@ -231,7 +231,7 @@ function AnalistaWork(){
 		{
 			if(project.GetSincronismo() < 100)	//Se o projeto esta em andamento entao o sincronismo vai mudando lentamente de acordo com o analista
 			{
-				aux = analista / (project.GetProjectSize() * 0.0005) * (1 + modificador_positivo - penal);
+				aux = analista / (project.GetProjectSize() * 0.001) * (1 + modificador_positivo - penal);
 				aux = GameModifiers(aux);
 				aux = aux * equipe.GetBonusAnalista();
 				aux = aux * randomizer;
@@ -363,11 +363,19 @@ function ProgramadorWork(){
 			variation = aux * 0.2;
 			aux = aux * 0.9;
 			aux = aux + Random.Range (0, variation);
+			aux = aux * (project.GetSincronismo() / 100);
 			aux = parseInt(aux);
 			numBugs = GameModifiers(numBugs);	
 			numBugs = parseInt(numBugs);
-			if (func.GetWorkingHours() > 0 )
-				numBugs = numBugs + 1;
+			if (project.GetSincronismo() == 0 )
+				numBugs = 0;
+			else
+			{
+				if (func.GetWorkingHours() > 0 )
+					numBugs = numBugs + 1;
+				else
+					numBugs = 0;
+			}
 			//Chance to add a bug, to a total of "numBugs"
 			for (i = 0; i < (numBugs); i++)
 			{

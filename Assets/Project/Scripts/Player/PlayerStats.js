@@ -6,7 +6,7 @@ private var failedProjects : int = 0;
 private var totalIncome : int = 0;
 private var totalExpenses : int = 0;
 
-private var EXPERIENCE_MOD : int = 400;
+private var EXPERIENCE_MOD : int = 200;
 private var companyLevel : int = 1;
 private var companyExperience : int = 0;
 private var companyRequiredExp : int = companyLevel * companyLevel * EXPERIENCE_MOD;
