@@ -1,6 +1,7 @@
 //Script para escolher o papel para cada funcinario pelo menu de funcionarios na parte superior da HUD. Tambem serve para exibir a ficha dos funcs.
 
 //public var myFont : Font;
+public var stringNames : StringNames;
 private var showList1 = false;	//Showlist para cada mesa
 private var showList2 = false;
 private var showList3 = false;
@@ -121,30 +122,105 @@ function TakePapel(t: int)
 function PopupList(){
 	GUI.Box (Rect (180,00,720,20), "Staff Team");
 	GUI.BeginGroup(Rect (180,20,1200,280));
-	if (Popup.List (Rect(000, 00, 90, 40), showList1, listEntry, GUIContent( func1.GetNome() +"\n"+ func1.GetPapel()), list, listStyle)) {
+	var sFunc1 : String;
+	var sFunc2 : String;
+	var sFunc3 : String;
+	var sFunc4 : String;
+	var sFunc5 : String;
+	var sFunc6 : String;
+	var sFunc7 : String;
+	var sFunc8 : String;
+	
+	if (func1.GetNome() != stringNames.fired)
+	{
+		sFunc1 = func1.GetNome() +"\n"+ func1.GetPapel();
+	}
+	else
+	{
+		sFunc1 = "";
+	}
+	if (func2.GetNome() != stringNames.fired)
+	{
+		sFunc2 = func2.GetNome() +"\n"+ func2.GetPapel();
+	}
+	else
+	{
+		sFunc2 = "";
+	}
+	if (func3.GetNome() != stringNames.fired)
+	{
+		sFunc3 = func3.GetNome() +"\n"+ func3.GetPapel();
+	}
+	else
+	{
+		sFunc3 = "";
+	}
+	if (func4.GetNome() != stringNames.fired)
+	{
+		sFunc4 = func4.GetNome() +"\n"+ func4.GetPapel();
+	}
+	else
+	{
+		sFunc4 = "";
+	}
+	if (func5.GetNome() != stringNames.fired)
+	{
+		sFunc5 = func5.GetNome() +"\n"+ func5.GetPapel();
+	}
+	else
+	{
+		sFunc5 = "";
+	}
+	if (func6.GetNome() != stringNames.fired)
+	{
+		sFunc6 = func6.GetNome() +"\n"+ func6.GetPapel();
+	}
+	else
+	{
+		sFunc6 = "";
+	}
+	if (func7.GetNome() != stringNames.fired)
+	{
+		sFunc7 = func7.GetNome() +"\n"+ func7.GetPapel();
+	}
+	else
+	{
+		sFunc7 = "";
+	}
+	if (func8.GetNome() != stringNames.fired)
+	{
+		sFunc8 = func8.GetNome() +"\n"+ func8.GetPapel();
+	}
+	else
+	{
+		sFunc8 = "";
+	}
+	
+	if (Popup.List (Rect(000, 00, 90, 40), showList1, listEntry, GUIContent(sFunc1), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario1", listEntry);
     }
-	if (Popup.List (Rect(90, 00, 90, 40), showList2, listEntry, GUIContent(func2.GetNome() +"\n"+ func2.GetPapel()), list, listStyle)) {
+	if (Popup.List (Rect(90, 00, 90, 40), showList2, listEntry, GUIContent(sFunc2), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario2", listEntry);
     }
-	if (Popup.List (Rect(180, 00, 90, 40), showList3, listEntry, GUIContent(func3.GetNome() +"\n"+ func3.GetPapel()), list, listStyle)) {
+	if (Popup.List (Rect(180, 00, 90, 40), showList3, listEntry, GUIContent(sFunc3), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario3", listEntry);
     }
-	if (Popup.List (Rect(270, 00, 90, 40), showList4, listEntry, GUIContent(func4.GetNome() +"\n"+ func4.GetPapel()), list, listStyle)) {
+	if (Popup.List (Rect(270, 00, 90, 40), showList4, listEntry, GUIContent(sFunc4), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario4", listEntry);
     }
-	if (Popup.List (Rect(360, 00, 90, 40), showList5, listEntry, GUIContent(func5.GetNome() +"\n"+ func5.GetPapel()), list, listStyle)) {
+	if (Popup.List (Rect(360, 00, 90, 40), showList5, listEntry, GUIContent(sFunc5), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario5", listEntry);
     }
-	if (Popup.List (Rect(450, 00, 90, 40), showList6, listEntry, GUIContent(func6.GetNome() +"\n"+ func6.GetPapel()), list, listStyle)) {
+	if (Popup.List (Rect(450, 00, 90, 40), showList6, listEntry, GUIContent(sFunc6), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario6", listEntry);
     }
-	if (Popup.List (Rect(540, 00, 90, 40), showList7, listEntry, GUIContent(func7.GetNome() +"\n"+ func7.GetPapel()), list, listStyle)) {
+	if (Popup.List (Rect(540, 00, 90, 40), showList7, listEntry, GUIContent(sFunc7), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario7", listEntry);
     }
-	if (Popup.List (Rect(630, 00, 90, 40), showList8, listEntry, GUIContent(func8.GetNome() +"\n"+ func8.GetPapel()), list, listStyle)) {
-		ExecutaBotaoPopup("Funcionario8", listEntry);
-    }
+	if (Popup.List (Rect(630, 00, 90, 40), showList8, listEntry, GUIContent(sFunc8), list, listStyle)) {
+			ExecutaBotaoPopup("Funcionario8", listEntry);
+		}
+
 	GUI.EndGroup ();
 }
 

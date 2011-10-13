@@ -121,6 +121,9 @@ function SetBugValue (t : int) {
 function GetProjectSizeString () {					//Retorna o valor de cada bug
 	return projectSize;
 }
+function SetProjectSizeString(t : String) {					//Retorna o valor de cada bug
+	projectSize = t;
+}
 function ResetProject(){
 	bugs = 0;
 	sincronismo = 0;
@@ -128,6 +131,7 @@ function ResetProject(){
 	completed = false;
 }
 
+/*
 function SetProjectSizeString () {
 	var aux : float = 0;
 	aux = maxCodeLines / deadlineDays;
@@ -142,6 +146,7 @@ function SetProjectSizeString () {
 			else
 				projectSize = "Insane";
 }
+*/
 
 function GetProjectQuality(){
 	return projectQuality;
@@ -161,7 +166,7 @@ function SetProjectQuality(){
 }
 //--------------------------------------------Awake-----------------------------------------------------------
 function Awake(){
-	SetProjectSizeString();
+	//SetProjectSizeString();
 	SetProjectQuality();
 }
 function Update(){

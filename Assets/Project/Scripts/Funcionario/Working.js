@@ -608,6 +608,18 @@ function EspecializacaoFerramenta (){
 	return modificador_positivo;
 }
 
+
+function Body(){
+	if(func.GetNome() == stringNames.fired)
+		func.GetComponentInChildren(MeshRenderer).enabled = false;
+	else
+		func.GetComponentInChildren(MeshRenderer).enabled = true;
+}
+
+function Update(){
+	Body();
+}
+	
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
