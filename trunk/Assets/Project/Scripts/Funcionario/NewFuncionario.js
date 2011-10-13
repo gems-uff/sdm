@@ -1,7 +1,7 @@
 
 public var stringNames : StringNames;
 private var func : Funcionario;
-private var atualizado : boolean = false;
+//private var atualizado : boolean = false;
 
 private var nome : String = "John";
 private var assembly : boolean = false;
@@ -196,6 +196,7 @@ function FireFuncionario (t : Funcionario) {
 	func = t;
 	EmptyFuncionario();
 	func.SetNome(stringNames.fired);
+	func.SetCargo(stringNames.jobJunior);
 	func.SetPapel(stringNames.papelNenhum);
 	func.SetMorale(100);
 	func.SetWorkingHours(0);
@@ -238,12 +239,26 @@ function ClearFuncionario (t : Funcionario) {
 	func = t;
 	EmptyFuncionario();
 	func.SetNome(stringNames.vazio);
+	func.SetCargo(stringNames.jobJunior);
 	func.SetPapel(stringNames.vazio);
 	func.SetMorale(100);
 	func.SetWorkingHours(0);
 	func.SetSalarioDefault(0);
 	func.SetSalario(0);
 }
+
+function RandomFuncionario() {
+	SetAtributos();
+	SetEspecializacoes();
+	func.SetNome(newNome.RandomName());
+	func.SetCargo(stringNames.jobJunior);
+	func.SetPapel(stringNames.papelNenhum);
+	func.SetMorale(100);
+	func.SetWorkingHours(40);
+	func.SetSalarioDefault(NewSalario());
+	func.SetSalario(NewSalario());
+}
+
 //--------------------------------------------RandomFuncionarioStarter-----------------------------------------------------------
 
 //Esta funcao server para gerar um funcionario inicial totalmente randomico
@@ -302,10 +317,11 @@ function SetAtributosStarter()
 
 function Awake () {
 	func = GetComponentInChildren(Funcionario);
+	RandomFuncionarioStarter();
 	}
 
 //--------------------------------------------Update-----------------------------------------------------------
-
+/*
 function Update () {
 	if (!atualizado)
 	{
@@ -313,3 +329,4 @@ function Update () {
 		RandomFuncionarioStarter();
 	}
 }
+*/

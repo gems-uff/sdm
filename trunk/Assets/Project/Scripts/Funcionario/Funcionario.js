@@ -568,6 +568,9 @@ function SetF_teste (t: boolean) {
 	especializacao.teste = t;
 }
 
+
+
+
 //--------------------------------------------Update-----------------------------------------------------------
 
 function Update () {
@@ -578,3 +581,5 @@ function Update () {
 	SetProgramador();
 	SetTester();
 }
+
+	

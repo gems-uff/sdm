@@ -13,110 +13,124 @@ private var description : RandomDescriptionGenerator;
 public var timer : GameTime;
 private var PAG_MOD : int = 48;
 
-
+private var auxD1 : int; //Deadline
+private var auxD2 : int; //Deadline
+private var auxCL : int;  //Code Lines : Tamanho do programa
+private var auxPG : float; //Modificador de Pagamento
+private var auxBV : int; //BugValue
+//private var allowedProject : int;
+	
+function SimpleProject(){
+	//allowedProject = constant.SIMPLE;
+	auxD1 = Random.Range (28, 84); //Deadline
+	auxD2 = Random.Range (28, 84); //Deadline
+	auxCL = Random.Range (30, 150);  //Code Lines : Tamanho do programa
+	auxPG = Random.Range (1.5, 2.0); //Modificador de Pagamento
+	auxBV = Random.Range (10, 100); //BugValue
+	projeto.SetProjectSizeString("Simple");
+}
+function RegularProject(){
+	//allowedProject = constant.REGULAR;
+	auxD1 = Random.Range (56, 112); //Deadline
+	auxD2 = Random.Range (56, 112); //Deadline
+	auxCL = Random.Range (151, 210);  //Code Lines : Tamanho do programa
+	auxPG = Random.Range (1.3, 1.8); //Modificador de Pagamento
+	auxBV = Random.Range (10, 100); //BugValue
+	projeto.SetProjectSizeString("Regular");
+}
+function ComplexProject(){
+	//allowedProject = constant.COMPLEX;
+	auxD1 = Random.Range (84, 168); //Deadline
+	auxD2 = Random.Range (84, 168); //Deadline
+	auxCL = Random.Range (211, 400);  //Code Lines : Tamanho do programa
+	auxPG = Random.Range (1.0, 1.5); //Modificador de Pagamento
+	auxBV = Random.Range (10, 100); //BugValue
+	projeto.SetProjectSizeString("Complex");
+}
+function InsaneProject(){
+	//allowedProject = constant.COMPLEX * 10;
+	auxD1 = Random.Range (112, 224); //Deadline
+	auxD2 = Random.Range (112, 224); //Deadline
+	auxCL = Random.Range (401, 500);  //Code Lines : Tamanho do programa
+	auxPG = Random.Range (1.0, 1.5); //Modificador de Pagamento
+	auxBV = Random.Range (10, 100); //BugValue
+	projeto.SetProjectSizeString("Insane");
+}
 function NewProject(){
 	var t : int = Random.Range (1, 9); //Linguagem
-	var auxD1 : int; //Deadline
-	var auxD2 : int; //Deadline
-	var auxCL : int;  //Code Lines : Tamanho do programa
-	var auxPG : float; //Modificador de Pagamento
-	var auxBV : int; //BugValue
-	var allowedProject : int;
 	
+	var chance : int;
 	var aux_project_size : int;
 	//Controle de criação de projetos
-	
 	aux_project_size = constant.COMPLEX * 10;
-	while(aux_project_size > allowedProject)
+	chance = Random.Range (1, 10);
+	switch(jogador.GetAllowedProjects())
 	{
-		switch(jogador.GetAllowedProjects())
-		{
-		   case 1: 
-				allowedProject = constant.SIMPLE;
-				auxD1 = Random.Range (28, 84); //Deadline
-				auxD2 = Random.Range (28, 84); //Deadline
-				auxCL = Random.Range (30, 150);  //Code Lines : Tamanho do programa
-				auxPG = Random.Range (1.5, 2.0); //Modificador de Pagamento
-				auxBV = Random.Range (10, 100); //BugValue
-		   break;
+	   case 1: 
+			SimpleProject();
+	   break;
 
-		   case 2:
-				allowedProject = constant.REGULAR;
-				auxD1 = Random.Range (56, 112); //Deadline
-				auxD2 = Random.Range (56, 112); //Deadline
-				auxCL = Random.Range (151, 210);  //Code Lines : Tamanho do programa
-				auxPG = Random.Range (1.3, 1.8); //Modificador de Pagamento
-				auxBV = Random.Range (10, 100); //BugValue
-		   break;
-		   
-		   case 3:
-				allowedProject = constant.COMPLEX;
-				auxD1 = Random.Range (84, 168); //Deadline
-				auxD2 = Random.Range (84, 168); //Deadline
-				auxCL = Random.Range (211, 400);  //Code Lines : Tamanho do programa
-				auxPG = Random.Range (1.0, 1.5); //Modificador de Pagamento
-				auxBV = Random.Range (10, 100); //BugValue
-		   break;
-		   
-		   case 4:
-				allowedProject = constant.COMPLEX * 10;
-				auxD1 = Random.Range (112, 224); //Deadline
-				auxD2 = Random.Range (112, 224); //Deadline
-				auxCL = Random.Range (401, 500);  //Code Lines : Tamanho do programa
-				auxPG = Random.Range (1.0, 1.5); //Modificador de Pagamento
-				auxBV = Random.Range (10, 100); //BugValue
-		   break;
-	  
-		   default:
-				allowedProject = constant.SIMPLE;
-				auxD1 = Random.Range (28, 84); //Deadline
-				auxD2 = Random.Range (28, 84); //Deadline
-				auxCL = Random.Range (30, 150);  //Code Lines : Tamanho do programa
-				auxPG = Random.Range (1.5, 2.0); //Modificador de Pagamento
-				auxBV = Random.Range (10, 100); //BugValue
-			  break;
-		}
-	//aux_project_size = allowedProject * 2; //Para sempre fazer uma etapa do while
-	
-	//Verificar o level do jogador e ver que tamanho de projeto é possivel
-	//while(aux_project_size > allowedProject)
-	//{
-		//auxD1 = Random.Range (28, 336); //Deadline
-		//auxD2 = Random.Range (28, 336); //Deadline
-		//auxCL = Random.Range (30, 150);  //Code Lines : Tamanho do programa
-		//auxPG = Random.Range (0.9, 1.3); //Modificador de Pagamento
-		//auxBV = Random.Range (10, 100); //BugValue
-		description.RandomDescription();
-			
-		if (auxD1 > auxD2)
-		{
-			deadline = auxD2;
-		}
-		else
-		{
-			deadline = auxD1;
-		}
-		auxCL = auxCL * 2.5;
-		linguagemProgramacao = LinguagemProg(t);
-		pagamento = PAG_MOD * auxPG  * auxCL;
-		pagamento = pagamento / 100;
-		pagamento = pagamento * 100;
-		maxCodeLines = auxCL * deadline;
-		bugValue = auxBV * 50;
-		projeto.SetNewDeadline(deadline);
-		projeto.SetDeadlineDays(deadline);
-		projeto.SetStartDay(timer.GetGameTime());
-		projeto.SetProjectSize(maxCodeLines);
-		projeto.SetPagamento(pagamento);
-		projeto.SetBugValue(bugValue);
-		projeto.SetLinguagem(linguagemProgramacao);
-		projeto.SetNome(description.nome);
-		projeto.SetDescription(description.description);
-		projeto.SetProjectSizeString();
-		projeto.SetProjectQuality();
-		
-		aux_project_size = maxCodeLines / deadline;
+	   case 2:
+			if (chance < 4)
+				SimpleProject();
+			else
+				RegularProject();
+	   break;
+	   
+	   case 3:
+			if (chance < 2)
+					SimpleProject();
+				else
+					if (chance < 5)
+						RegularProject();
+					else
+						ComplexProject();
+	   break;
+	   
+	   case 4:
+			if (chance < 2)
+					SimpleProject();
+				else
+					if (chance < 3)
+						RegularProject();
+					else 
+						if (chance < 5)
+							ComplexProject();
+						else
+							InsaneProject();
+	   break;
+  
+	   default:
+			SimpleProject();
+		  break;
 	}
+	description.RandomDescription();
+		
+	if (auxD1 > auxD2)
+	{
+		deadline = auxD2;
+	}
+	else
+	{
+		deadline = auxD1;
+	}
+	auxCL = auxCL * 2.5;
+	linguagemProgramacao = LinguagemProg(t);
+	pagamento = PAG_MOD * auxPG  * auxCL;
+	pagamento = pagamento / 100;
+	pagamento = pagamento * 100;
+	maxCodeLines = auxCL * deadline;
+	bugValue = auxBV * 50;
+	projeto.SetNewDeadline(deadline);
+	projeto.SetDeadlineDays(deadline);
+	projeto.SetStartDay(timer.GetGameTime());
+	projeto.SetProjectSize(maxCodeLines);
+	projeto.SetPagamento(pagamento);
+	projeto.SetBugValue(bugValue);
+	projeto.SetLinguagem(linguagemProgramacao);
+	projeto.SetNome(description.nome);
+	projeto.SetDescription(description.description);
+	projeto.SetProjectQuality();
 }
 
 function LinguagemProg(t : int){

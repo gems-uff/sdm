@@ -14,7 +14,7 @@ public var papelMarketing : String = "Marketing";
 public var papelProg : String = "Programmer";
 public var papelTester : String = "Tester";
 public var papelTreinando : String = "Training";
-public var papelNenhum : String = "None";
+public var papelNenhum : String = "Idle";
 
 public var esp01 : String = "assembly";
 public var esp02 : String = "csharp";

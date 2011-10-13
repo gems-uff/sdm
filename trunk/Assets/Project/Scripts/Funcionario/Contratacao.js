@@ -2,7 +2,7 @@
 
 function NewEmployees()
 {
-	BroadcastMessage("RandomFuncionarioStarter");
+	BroadcastMessage("RandomFuncionario");
 }
 function Update () {
 }

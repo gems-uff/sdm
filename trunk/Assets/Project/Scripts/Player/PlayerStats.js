@@ -1,5 +1,6 @@
 public var saldo = 0;
 public var companyLevelUp : FloatingLevel;
+public var statisticsStyle : GUIStyle;
 
 private var completedProjects : int = 0;
 private var failedProjects : int = 0;
@@ -162,13 +163,13 @@ function ShowStatistics(){
 	showJanela = true;
 }
 function WindowFunction (windowID : int)	{
-	GUI.Box (Rect (02,020,298,25), (" Completed Projects: "+ completedProjects));
-	GUI.Box (Rect (02,045,298,25), (" Failed Projects: "+ failedProjects));
-	GUI.Box (Rect (02,070,298,25), (" Total Income: $"+ totalIncome));
-	GUI.Box (Rect (02,095,298,25), (" Total Expenses: $"+ totalExpenses));
-	GUI.Box (Rect (02,0120,298,25), (" Company Level: "+ companyLevel));
-	GUI.Box (Rect (02,0145,298,25), (" Company Experiencie: "+ companyExperience + " / " + companyRequiredExp));
-	GUI.Box (Rect (02,0170,298,25), (" Allowed Projects: "+ stringAllowedProjects));
+	GUI.Box (Rect (02,020,298,25), (" Completed Projects: "+ completedProjects), statisticsStyle);
+	GUI.Box (Rect (02,045,298,25), (" Failed Projects: "+ failedProjects), statisticsStyle);
+	GUI.Box (Rect (02,070,298,25), (" Total Income: $"+ totalIncome), statisticsStyle);
+	GUI.Box (Rect (02,095,298,25), (" Total Expenses: $"+ totalExpenses), statisticsStyle);
+	GUI.Box (Rect (02,0120,298,25), (" Company Level: "+ companyLevel), statisticsStyle);
+	GUI.Box (Rect (02,0145,298,25), (" Company Experiencie: "+ companyExperience + " / " + companyRequiredExp), statisticsStyle);
+	GUI.Box (Rect (02,0170,298,25), (" Allowed Projects: "+ stringAllowedProjects), statisticsStyle);
 	if (GUI.Button (Rect (02,195,298,25), "Close")) 
 	{
 		showJanela  = false;
@@ -176,9 +177,8 @@ function WindowFunction (windowID : int)	{
 }
 
 function OnGUI (){
-	GUI.backgroundColor = Color.yellow;
-	GUI.backgroundColor = Color.yellow;
-	GUI.contentColor = Color.green;
+	//GUI.backgroundColor = Color.yellow;
+	//GUI.contentColor = Color.green;
 	if(showJanela)
 		windowRect = GUI.Window (1, windowRect, WindowFunction, "Player Statistics");
 }
