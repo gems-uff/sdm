@@ -2,6 +2,7 @@
 public var stringNames : StringNames;
 private var func : Funcionario;
 public var timer : GameTime;
+public var playStyle : GameplayStyle;
 private var windowRect : Rect = Rect (700,325,300,120);
 private var hSliderValue : float = 8.0;
 private var showWindow : boolean = false;
@@ -16,6 +17,7 @@ public var func5 : Funcionario;
 public var func6 : Funcionario;
 public var func7 : Funcionario;
 public var func8 : Funcionario;
+
 
 function ChangeWorkHours (funcionario : Funcionario){
 	func = funcionario;
@@ -66,7 +68,8 @@ function Awake () {
 }
 
 function OnGUI () {
-	TeamWorkHoursBar();
+	if(playStyle.GetPlayStyle() == false)
+		TeamWorkHoursBar();
 	if (showWindow)
 		windowRect = GUI.Window (6, windowRect, WindowFunction, "Working Hours");
 }

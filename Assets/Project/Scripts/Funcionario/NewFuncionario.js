@@ -235,7 +235,6 @@ function EmptyFuncionario(){
 }
 
 function ClearFuncionario (t : Funcionario) {
-	var body : GameObject;
 	func = t;
 	EmptyFuncionario();
 	func.SetNome(stringNames.vazio);

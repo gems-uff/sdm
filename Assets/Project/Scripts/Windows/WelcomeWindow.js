@@ -1,8 +1,9 @@
 
 
 public var project : Project;
-public var projectW : ProjectWindow;
+//public var projectW : ProjectWindow;
 public var timer : GameTime;
+public var style : StyleChoiceWindow;
 
 //Variaveis de controle do dialogo
 private var welcome : boolean = true;
@@ -52,7 +53,8 @@ function WindowFunction(windowID : int){
 		{
 			window02 = false;
 			welcome = false;
-			projectW.SetShowWindow(project, true);
+			//projectW.SetShowWindow(project, true);
+			style.ShowStyleChoiceWindow();
 		}
 	}
 }

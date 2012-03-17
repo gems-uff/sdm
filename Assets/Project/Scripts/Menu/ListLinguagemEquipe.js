@@ -5,6 +5,7 @@ private var listStyle : GUIStyle;
 private var showList = false;
 public var equipe : Equipe;
 public var stringNames : StringNames;
+public var playStyle : GameplayStyle;
 public var customGuiStyle : GUIStyle;
 
 
@@ -16,34 +17,42 @@ function LinguagemEquipe(){
 	GUI.Box (Rect (00,00,180,25), "Staff's Settings");
 	GUI.BeginGroup(Rect (00,25,220,175));
 	GUI.Box (Rect (00,00,90,25), "Language:"); //+ equipe.GetMetodologia())
-	if (Popup.List (Rect(00, 25, 90, 25), showList, listEntry, GUIContent( equipe.GetLinguagem()), list, listStyle)) {
-		if (listEntry != 0)
+	if(playStyle.GetPlayStyle() == false)
+	{
+		if (Popup.List (Rect(00, 25, 90, 25), showList, listEntry, GUIContent( equipe.GetLinguagem()), list, listStyle)) 
 		{
-			switch(listEntry)
+			if (listEntry != 0)
 			{
-			   case 1: 	//caso asembly
-					equipe.SetLinguagem(stringNames.esp01);
-			   break;
-			   
-			   case 2: 	//caso csharp
-					equipe.SetLinguagem(stringNames.esp02);
-			   break;
-			   
-			   case 3: 	//caso java
-					equipe.SetLinguagem(stringNames.esp03);
-			   break;
-			   
-			   case 4: 	//caso perl
-					equipe.SetLinguagem(stringNames.esp04);
-			   break;
-			   case 5: 	//caso ruby
-					equipe.SetLinguagem(stringNames.esp05);
-			   break;
-			   
-			   default:
-				break;
+				switch(listEntry)
+				{
+				   case 1: 	//caso asembly
+						equipe.SetLinguagem(stringNames.esp01);
+				   break;
+				   
+				   case 2: 	//caso csharp
+						equipe.SetLinguagem(stringNames.esp02);
+				   break;
+				   
+				   case 3: 	//caso java
+						equipe.SetLinguagem(stringNames.esp03);
+				   break;
+				   
+				   case 4: 	//caso perl
+						equipe.SetLinguagem(stringNames.esp04);
+				   break;
+				   case 5: 	//caso ruby
+						equipe.SetLinguagem(stringNames.esp05);
+				   break;
+				   
+				   default:
+					break;
+				}
 			}
 		}
+	}
+	else
+	{
+		GUI.Box (Rect (00,25,90,25), equipe.GetLinguagem());
 	}
 	GUI.EndGroup ();
 	

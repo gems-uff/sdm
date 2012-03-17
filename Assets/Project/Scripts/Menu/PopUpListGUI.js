@@ -29,6 +29,7 @@ public var menuAtr : FuncWindow;
 public var menuEsp : EspWindow;
 public var menuPapel : PapelWindow;
 public var workHours : WorkingHoursWindow;
+public var playStyle : GameplayStyle;
 
 private var novopapel = "";
 
@@ -45,12 +46,12 @@ function ExecutaBotaoPopup(t : String, listEntry : int){
 		switch(listEntry)
 		{
 			case 2: 	//"Change Task"
-				if (treino.GetLockEscolha() == false)
+				if (treino.GetLockEscolha() == false && playStyle.GetPlayStyle() == false)
 					menuPapel.MudarPapel(func, treino);
 		   break;
 		   
 		   case 3: 	//"Train"
-				if (treino.GetLockEscolha() == false)
+				if (treino.GetLockEscolha() == false && playStyle.GetPlayStyle() == false)
 				{
 					treino.SetLockEscolha(true);
 					novopapel = TakePapel(listEntry);
@@ -63,7 +64,8 @@ function ExecutaBotaoPopup(t : String, listEntry : int){
 		   break;
 		   
 		   case 5: 	//"Work Hours"
-				workHours.ChangeWorkHours(func);
+				if(playStyle.GetPlayStyle() == false)
+					workHours.ChangeWorkHours(func);
 		   break;
 		   
 		   default:
@@ -131,6 +133,27 @@ function PopupList(){
 	var sFunc7 : String;
 	var sFunc8 : String;
 	
+	//If Micro Style
+	if(playStyle.GetPlayStyle() == false)
+	{
+		list[0] = new GUIContent("");
+		list[1] = new GUIContent("");
+	    list[2] = new GUIContent("Change Task");
+	    list[3] = new GUIContent("Train");
+	    list[4] = new GUIContent("Profile");
+	    list[5] = new GUIContent("Work Hours");
+    }
+    else
+    {
+    //If Macro Style
+		list[0] = new GUIContent("");
+		list[1] = new GUIContent("");
+		list[2] = new GUIContent("");
+		list[3] = new GUIContent("");
+		list[4] = new GUIContent("Profile");
+		list[5] = new GUIContent("");
+	}
+	//
 	if (func1.GetNome() != stringNames.fired)
 	{
 		sFunc1 = func1.GetNome() +"\n"+ func1.GetPapel();
@@ -193,7 +216,7 @@ function PopupList(){
 	}
 	else
 	{
-		sFunc8 = "";
+		sFunc8 = "\n Manager";
 	}
 	
 	if (Popup.List (Rect(000, 00, 90, 40), showList1, listEntry, GUIContent(sFunc1), list, listStyle)) {

@@ -1,5 +1,6 @@
 
 public var acceptedProject : Project;
+public var style : StyleChoiceWindow;
 private var projeto : Project;
 
 function TakeProject(newProject : Project){
@@ -9,4 +10,5 @@ function TakeProject(newProject : Project){
 	acceptedProject.SetBugValue(newProject.GetBugValue());
 	acceptedProject.SetLinguagem(newProject.GetLinguagem());
 	acceptedProject.SetStartDay(newProject.GetStartDay());
+	style.ShowStyleChoiceWindow();
 }

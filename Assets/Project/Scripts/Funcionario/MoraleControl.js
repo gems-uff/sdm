@@ -4,8 +4,8 @@ public var timer : GameTime;
 public var stringNames : StringNames;
 private var dialog : Dialog;
 public var dialogGuiStyle : GUIStyle;
-public var moraleDisplay : FloatingLinesBelow;
-public var staminaDisplay : FloatingLinesBelow;
+public var moraleDisplay : FloatingLines;
+public var staminaDisplay : FloatingLines;
 
 private var func : Funcionario;
 private var work : Working;
@@ -27,14 +27,14 @@ function ChangeStamina(){
 				staminaMod = (2 - changeFactor) * constant.RECOVERYBONUS;	//Cresce estamina
 				staminaMod = parseInt(staminaMod * constant.MODIFICATOR);
 				if (stamina < 100)
-					staminaDisplay.showFloatText("+", staminaMod.ToString(), "green", "  Stamina");
+					staminaDisplay.showFloatText3("+", staminaMod.ToString(), "green", "  Stamina");
 			}
 			else
 			{
 				staminaMod = (- changeFactor) * constant.RECOVERYBONUS;		//Decresce estamina
 				staminaMod = parseInt(staminaMod * constant.MODIFICATOR);	
 				if (stamina > 0)
-					staminaDisplay.showFloatText("", staminaMod.ToString(), "red", "  Stamina");
+					staminaDisplay.showFloatText4("", staminaMod.ToString(), "red", "  Stamina");
 			}
 		stamina = stamina + staminaMod;
 		if (stamina > 100)
