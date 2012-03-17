@@ -2,6 +2,7 @@
 public var dialogGuiStyle : GUIStyle;
 public var stringNames : StringNames;
 public var constant : GameConstants;
+public var playStyle : GameplayStyle;
 
 public var menuAtr : FuncWindow;
 public var menuEsp : EspWindow;
@@ -101,17 +102,29 @@ function Dialog_Funcionario (){
 				menuAtr.SetJanelatributo(func, true, func.report);
 				dialogEnable = false;
 		}
-		if (GUI.Button (Rect (600,50, 130, 25), "Train")) {
-				menuEsp.Especializar(func, treino);
-				dialogEnable = false;
+		GUI.Box (Rect (600,50, 130, 25), "");
+		if(playStyle.GetPlayStyle() == false)
+		{
+			if (GUI.Button (Rect (600,50, 130, 25), "Train")) {
+					menuEsp.Especializar(func, treino);
+					dialogEnable = false;
+			}
 		}
-		if (GUI.Button (Rect (600,75, 130, 25), "Change Task")) {
-				menuPapel.MudarPapel(func, treino);
-				dialogEnable = false;
+		GUI.Box (Rect (600,75, 130, 25), "");
+		if(playStyle.GetPlayStyle() == false)
+		{
+			if (GUI.Button (Rect (600,75, 130, 25), "Change Task")) {
+					menuPapel.MudarPapel(func, treino);
+					dialogEnable = false;
+			}
 		}
-		if (GUI.Button (Rect (600,100, 130, 25), "Working Hours")) {
-				workHours.ChangeWorkHours(func);
-				dialogEnable = false;
+		GUI.Box (Rect (600,100, 130, 25), "");
+		if(playStyle.GetPlayStyle() == false)
+		{
+			if (GUI.Button (Rect (600,100, 130, 25), "Working Hours")) {
+					workHours.ChangeWorkHours(func);
+					dialogEnable = false;
+			}
 		}
 		//Vazio
 		GUI.Box (Rect (600,125, 130, 25), "");

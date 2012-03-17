@@ -6,12 +6,17 @@
 //menuPapel.MudarPapel(func);
 public var stringNames : StringNames;
 public var timer : GameTime;
+public var managerSlot : Funcionario;
+public var equipe : Equipe;
+private var newFunc : NewFuncionario;
 private var fire : NewFuncionario;
 private var func : Funcionario;
 private var windowRect : Rect = Rect (400,125,400,248);
 private var windowRect2 : Rect = Rect (400,125,300,100);
+private var windowRect3 : Rect = Rect (400,125,300,100);
 private var janelaPapel : boolean = false;
 private var fireDialogEnable : boolean = false;
+private var promoteDialogEnable : boolean = false;
 private var morale : MoraleControl;
 
 function MudarPapel (funcionario : Funcionario, treino : Treinamento){
@@ -43,6 +48,8 @@ function WindowFire(windowID : int){
 	GUI.BeginGroup (Rect (02,45,300,100));
 	if (GUI.Button (Rect (02,00,296,25), "Sure?")) {
 		fireDialogEnable = false;
+		if(func == managerSlot)
+			equipe.SetHasManager(false);
 		fire.FireFuncionario(func);
 	}
 	if (GUI.Button (Rect (02,25,296,25), "Cancel")) {
@@ -62,7 +69,7 @@ function WindowFunction(windowID : int){
 			ExecutaJanelaPapel(stringNames.papelAnalista);
 		}
 	*/	
-	if(func.GetPapel() != stringNames.papelAnalista)
+	if((func.GetPapel() != stringNames.papelAnalista) && (managerSlot != func))
 	{    
 		if (GUI.Button (Rect (02,18,198,25), GUIContent (stringNames.papelAnalista, "+ Validadtion")))
 		{
@@ -73,7 +80,7 @@ function WindowFunction(windowID : int){
 		GUI.Box (Rect (02,18,198,25), stringNames.papelAnalista);
 	
 	//---------------------------------------------------------------------------------------------------------------------
-	if(func.GetPapel() != stringNames.papelArquiteto)
+	if((func.GetPapel() != stringNames.papelArquiteto) && (managerSlot != func))
 		if (GUI.Button (Rect (02,43,198,25), GUIContent (stringNames.papelArquiteto, "+ finding bugs \n + Architecture"))) 
 		{
 			ExecutaJanelaPapel(stringNames.papelArquiteto);
@@ -82,16 +89,19 @@ function WindowFunction(windowID : int){
 		GUI.Box (Rect (02,43,198,25), stringNames.papelArquiteto);
 	
 	//---------------------------------------------------------------------------------------------------------------------
-	if(func.GetPapel() != stringNames.papelGerente)
+	if((func.GetPapel() != stringNames.papelGerente) && (managerSlot != func))
 		if (GUI.Button (Rect (02,68,198,25), GUIContent (stringNames.papelGerente, "+ Design \n + Development"))) 
 		{
-			ExecutaJanelaPapel(stringNames.papelGerente);
+			//ExecutaJanelaPapel(stringNames.papelGerente);
+			//PromoteToManager();
+			promoteDialogEnable = true;
+			janelaPapel  = false;
 		}
 	if(func.GetPapel() == stringNames.papelGerente)
 		GUI.Box (Rect (02,68,198,25), stringNames.papelGerente);
 	
 	//---------------------------------------------------------------------------------------------------------------------
-	if(func.GetPapel() != stringNames.papelMarketing)
+	if((func.GetPapel() != stringNames.papelMarketing) && (managerSlot != func))
 		if (GUI.Button (Rect (02,93,198,25), GUIContent (stringNames.papelMarketing, "+ Validation Bonus \n + Money"))) 
 		{
 			ExecutaJanelaPapel(stringNames.papelMarketing);
@@ -100,7 +110,7 @@ function WindowFunction(windowID : int){
 		GUI.Box (Rect (02,93,198,25), stringNames.papelMarketing);
 		
 	//---------------------------------------------------------------------------------------------------------------------
-	if(func.GetPapel() != stringNames.papelProg)
+	if((func.GetPapel() != stringNames.papelProg) && (managerSlot != func))
 		if (GUI.Button (Rect (02,118,198,25), GUIContent (stringNames.papelProg, "+ Progress \n + Bugs"))) 
 		{
 			ExecutaJanelaPapel(stringNames.papelProg);
@@ -109,7 +119,7 @@ function WindowFunction(windowID : int){
 		GUI.Box (Rect (02,118,198,25), stringNames.papelProg);
 	
 	//---------------------------------------------------------------------------------------------------------------------
-	if(func.GetPapel() != stringNames.papelTester)	
+	if((func.GetPapel() != stringNames.papelTester)	&& (managerSlot != func))
 		if (GUI.Button (Rect (02,143,198,25), GUIContent (stringNames.papelTester, "- Bugs"))) 
 		{
 			ExecutaJanelaPapel(stringNames.papelTester);
@@ -118,7 +128,7 @@ function WindowFunction(windowID : int){
 		GUI.Box (Rect (02,143,198,25), stringNames.papelTester);	
 		
 	//---------------------------------------------------------------------------------------------------------------------	
-	if(func.GetPapel() != stringNames.papelNenhum)	
+	if((func.GetPapel() != stringNames.papelNenhum) && (managerSlot != func))	
 		if (GUI.Button (Rect (02,168,198,25), stringNames.papelNenhum)) {
 			ExecutaJanelaPapel(stringNames.papelNenhum);
 		}
@@ -166,6 +176,35 @@ function WindowFunction(windowID : int){
 	GUI.EndGroup ();
 }
 
+
+function PromoteToManager()
+{
+	managerSlot.SetPapel(stringNames.papelGerente);
+	managerSlot.SetMorale(100);
+	managerSlot.SetAtributos(func.GetAtributos());
+	managerSlot.SetWorkingHours(40);
+	managerSlot.SetEspecializacoes(func.GetEspecializacao());
+	managerSlot.SetNome(func.GetNome());
+	managerSlot.SetSalarioDefault(func.GetSalarioDefault());
+	managerSlot.SetSalario(func.GetSalario());
+	managerSlot.GetComponentInChildren(MeshRenderer).enabled = false;
+	fire.FireFuncionario(func);
+	janelaPapel  = false;
+	equipe.SetHasManager(true);
+}
+
+function WindowPromoteManager(windowID : int){
+	GUI.Box (Rect (02,20,296,25), "Name: " + func.GetNome());
+	GUI.BeginGroup (Rect (02,45,300,100));
+	if (GUI.Button (Rect (02,00,296,25), "Sure? The last manager will be fired")) {
+		promoteDialogEnable = false;
+		PromoteToManager();
+	}
+	if (GUI.Button (Rect (02,25,296,25), "Cancel")) {
+		promoteDialogEnable = false;
+	}
+	GUI.EndGroup ();
+}
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
@@ -182,4 +221,6 @@ function OnGUI () {
 		windowRect = GUI.Window (2, windowRect, WindowFunction, "Roles");
 	if(fireDialogEnable)
 		windowRect2 = GUI.Window (10, windowRect2, WindowFire, "Confirmation: Firing employee");
+	if(promoteDialogEnable)
+		windowRect3 = GUI.Window (10, windowRect3, WindowPromoteManager, "Confirmation: Promote employee");
 }

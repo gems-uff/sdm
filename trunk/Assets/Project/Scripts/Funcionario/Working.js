@@ -8,7 +8,7 @@ public var timer : GameTime;
 public var playerStats : PlayerStats;
 public var constant : GameConstants;
 public var floatingLines : FloatingLines;
-public var floatingLinesBelow : FloatingLinesBelow;
+//public var floatingLinesBelow : FloatingLines;
 
 public var workingHoursModifier : float = 1.0;
 public var maxTrainingDays : int = 14;
@@ -224,7 +224,7 @@ function AnalistaWork(){
 			aux = analista * constant.ANALISTA_INICIO * (1 + modificador_positivo - penal) * randomizer;
 			project.SetSincronismo(aux);
 			AnalistReport(aux);
-			floatingLines.showFloatText("+", aux, " Validation");
+			floatingLines.showFloatText2("+", aux.ToString(), "blue", " Val.");
 			//print("Inicio :" + aux);
 		}
 		else
@@ -238,7 +238,7 @@ function AnalistaWork(){
 				aux = Mathf.Round(aux * 100f) / 100f; //Para truncar na segunda casa decimal
 				project.SetSincronismo(aux);
 				AnalistReport(aux);
-				floatingLines.showFloatText("+", aux, " Validation");
+				floatingLines.showFloatText2("+", aux.ToString(), "blue", " Val.");
 			}
 		}
 	}
@@ -267,8 +267,8 @@ function ArquitetoWork(){
 		arquiteto = parseInt(randomizer2 * aux / 10);
 		equipe.SetBonusProg(arquiteto);
 		ArchitectReport(aux, arquiteto);
-		floatingLines.showFloatText("+", aux, "% Bug Find");
-		floatingLinesBelow.showFloatText("+", arquiteto.ToString(), "blue", " % Architecture");
+		floatingLines.showFloatText1("+", aux.ToString(), "blue","% Testing");
+		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue", " % Archit.");
 	}
 }
 
@@ -303,8 +303,8 @@ function GerenteWork(){
 		equipe.SetBonusArquiteto(auxAnaArq);
 		equipe.SetBonusProg(auxProg);
 		ManagerReport(auxAnaArq, auxProg);
-		floatingLines.showFloatText("+", auxAnaArq, "% Design");
-		floatingLinesBelow.showFloatText("+", auxProg.ToString(), "blue", " % Dev.");
+		floatingLines.showFloatText1("+", auxAnaArq.ToString(), "blue", "% Design");
+		floatingLines.showFloatText2("+", auxProg.ToString(), "blue", " % Dev.");
 	}
 }
 
@@ -328,8 +328,8 @@ function MarketingWork(){
 		equipe.SetBonusAnalista(aux);
 		playerStats.ChangeSaldo(marketing);
 		MarketingReport(aux, marketing);
-		floatingLines.showFloatText("+", aux, "% Val. Bonus");
-		floatingLinesBelow.showFloatText("+", marketing.ToString(), "", " Money");
+		floatingLines.showFloatText1("+", aux.ToString(), "blue", "% Val.");
+		floatingLines.showFloatText2("+", marketing.ToString(), "", " Money");
 		
 	}
 
@@ -388,8 +388,8 @@ function ProgramadorWork(){
 			}
 			project.SetLinesDone(aux);
 			ProgReport(aux, bugCount);
-			floatingLines.showFloatText("+", aux, " Progress");
-			floatingLinesBelow.showFloatText("+", bugCount.ToString(), "red", " Bugs");
+			floatingLines.showFloatText1("+", aux.ToString(), "blue", " Progress");
+			floatingLines.showFloatText2("+", bugCount.ToString(), "red", " Bugs");
 		}
 	}
 }
@@ -427,7 +427,7 @@ function TesterWork(){
 				}
 			}
 			TesterReport(bugCount);
-			floatingLines.showFloatText(" -", bugCount, " Bugs");
+			floatingLines.showFloatText1(" -", bugCount.ToString(), "blue", " Bugs");
 		}
 	}
 }
@@ -448,7 +448,7 @@ function Treinando(){
 			treino.SetDeadline_Treino(0.0);
 			treino.Especializando();
 			timer.PauseGame();
-			floatingLinesBelow.showFloatText("", "", "green", " Training Complete");
+			floatingLines.showFloatText1("", "", "green", " Training Complete");
 		}
 	}
 }

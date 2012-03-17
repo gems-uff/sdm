@@ -1,0 +1,42 @@
+SDM Changes:
+
+-Slot exclusivo para Marketing e outro para Gerente
+
+-Uma segunda equipe, onde o jogador monta e com menos micro-managing.
+	>Essa equipe trabalhará fora do escritorio em grandes projetos
+	de empresas.
+		-O jogador monta inicialmente a equipe com os cargos que
+		terá.
+	>Essa equipe é utilizada para storytelling
+		-O storytelling será feito pelas decisoes que o jogador toma
+		durante o decorrer do projeto da segunda equipe e pelas
+		decisoes iniciais
+
+		-Contratação por cargo (gerente, programador, tester, 
+			arquiteto, analista)
+			-Ficha reduzida ? Por grau (senior, pleno, junior)?
+		-Tamanho maximo da equipe ? 8 ? 1, 4, 2, 1, 1
+		-Pagamento da equipe mensalmente + dispesas pelo storytelling
+		
+		-Elementos de Storytelling: (Semanalmente)
+		>Decisoes:
+			-Treinamento/Preparamento para o novo projeto
+			-Recrutamento caso falta
+			-Demitir e contratar
+			-Elementos de desenvolvimento de projeto
+				-Focar nas etapas de desemvolvimento
+				-Fazer ou nao plano de riscos
+					-contençao/contigencia
+				-Aconteceu algo inesperado! Tomar decisoes
+					-de acordo com o plano de riscos
+					-improvisado
+				-Projeto atrasado
+					-contratar outra equipe <tercerizado>
+					-mudar o foco do projeto
+					-outras opçoes
+
+
+
+			-Resultado final do projeto afeta reputação
+			
+

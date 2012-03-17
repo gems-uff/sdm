@@ -14,6 +14,7 @@ private var findBugScore : float = 1.0;
 private var bonusAnalista : float = 1.0;
 private var bonusArquiteto : float = 1.0;
 private var bonusProg : float = 1.0;
+private var hasManager : boolean = false;
 //private var marBonusAnalista : float = 1.0;
 
 public var report : WeeklyReport;
@@ -211,6 +212,13 @@ function GetBonusProg () {
 function SetBonusProg(t: float){
 	bonusProg = bonusProg + (t / 100);
 }
+
+function GetHasManager () {					
+	return hasManager;
+}
+function SetHasManager(t: boolean){
+	hasManager =  t;
+}
 /*
 function GetMarBonusAnalista () {					
 	return marBonusAnalista;
@@ -234,4 +242,9 @@ function ResetBonus(){
 function OnGUI (){
 	if(showJanelaReport)
 		windowRect = GUI.Window (100, windowRect, WindowFunction_Report, "Staff Report");
+}
+
+function Update()
+{
+	//Debug.Log("hasManager = " + hasManager);
 }

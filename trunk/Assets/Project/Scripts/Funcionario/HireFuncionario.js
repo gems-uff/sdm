@@ -3,6 +3,7 @@ private var func : Funcionario;
 public var HIRE_PRICE : int = 1000;
 public var playerStats : PlayerStats;
 public var stringNames : StringNames;
+public var managerSlot : Funcionario;
 
 function GetHire_Price(){
 	return HIRE_PRICE;
@@ -18,6 +19,8 @@ function ContratarFuncionario(contratado : Funcionario, Func_Slot : Funcionario)
 		{
 			func = contratado;
 			Func_Slot.SetPapel(stringNames.papelNenhum);
+			if( managerSlot == Func_Slot)
+				Func_Slot.SetPapel(stringNames.papelGerente);
 			Func_Slot.SetMorale(100);
 			Func_Slot.SetAtributos(func.GetAtributos());
 			Func_Slot.SetWorkingHours(40);
