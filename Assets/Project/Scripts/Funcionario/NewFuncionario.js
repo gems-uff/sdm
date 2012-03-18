@@ -230,7 +230,7 @@ function EmptyFuncionario(){
 	especializacao.depuracao = false;
 	especializacao.teste = false;
 	especializacao.analiseDeProgramas = false;
-	
+	func.ResetLevel();
 	func.SetEspecializacoes(especializacao);
 }
 

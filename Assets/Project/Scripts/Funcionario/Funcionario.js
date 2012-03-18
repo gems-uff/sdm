@@ -160,6 +160,21 @@ function SetRelMod(t : int){
 	aux_rel = t;
 }
 
+function CopyLevel(t : Funcionario){
+	ResetDays();
+	level =t.GetLevel();
+	experience = t.GetExperience();
+	requiredExperience = level * level * EXPERIENCE_MOD;
+	aux_adap = t.GetAdapMod();
+	aux_auto = t.GetAutoMod();
+	aux_det = t.GetDetMod();
+	aux_neg = t.GetNegMod();
+	aux_obj = t.GetObjMod();
+	aux_org = t.GetOrgMod();
+	aux_pac = t.GetPacMod();
+	aux_rac = t.GetRacMod();
+	aux_rel = t.GetRelMod();
+}
 function ResetLevel(){
 	ResetDays();
 	level =1;

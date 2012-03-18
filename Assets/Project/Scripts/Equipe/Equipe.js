@@ -3,7 +3,7 @@
 //private var equipe : Equipe;
 //equipeObj = GameObject.Find("Equipe");
 //equipe = equipeObj.GetComponent(Equipe);
-
+public var stringNames : StringNames;
 public var metodologia : String = "";		//Agile or Classic
 public var linguagemProg : String = "";
 
@@ -15,6 +15,7 @@ private var bonusAnalista : float = 1.0;
 private var bonusArquiteto : float = 1.0;
 private var bonusProg : float = 1.0;
 private var hasManager : boolean = false;
+private var hasMarketing : boolean = false;
 //private var marBonusAnalista : float = 1.0;
 
 public var report : WeeklyReport;
@@ -30,6 +31,18 @@ public var func08 : Funcionario;
 private var showJanelaReport : boolean = false;
 private var windowRect : Rect = Rect (300,125,600,280);
 
+//int from 0 to 6, to be used on the func[i] array
+private var staffMainProgrammer : int;//can also belong to any of the main staff roles
+private var staffMainAnalyst : int;
+private var staffMainArchitect : int;
+private var staffMainTester : int;
+
+
+private var staffSecondaryAnaliyst : int;
+//private var staffSecondaryArchitect : int;
+private var staffSecondaryTester : int;
+//private var staffMarketing : int;
+
 private var func = new Array();
 func[0] = func01;
 func[1] = func02;
@@ -39,6 +52,126 @@ func[4] = func05;
 func[5] = func06;
 func[6] = func07;
 func[7] = func08;
+
+//////////////////////////////////////////////////////////////////////////////
+function SetStaffRoles()
+{
+	var aux : int = 0;
+	var number : int = 0;
+	var i : int = 0;
+	
+	//Select the best programmer in the staff
+	aux = func[0].GetProgramador();
+	for(i = 1; i < 7; i++)
+	{
+		if ( aux < func[i].GetProgramador())
+		{
+			aux = func[i].GetProgramador();
+			number = i;
+		}
+	}
+	staffMainProgrammer = number;
+	
+	//Select the best analyst in the staff
+	aux = func[0].GetAnalista();
+	number = 0;
+	for(i = 1; i < 7; i++)
+	{
+		if(i != staffMainProgrammer)
+		{
+			if ( aux < func[i].GetAnalista())
+			{
+				aux = func[i].GetAnalista();
+				number = i;
+			}
+		}
+	}
+	staffMainAnalyst = number;
+	
+	//Select the best architect in the staff
+	aux = func[0].GetArquiteto();
+	number = 0;
+	for(i = 1; i < 7; i++)
+	{
+		if((i != staffMainProgrammer) && ( i != staffMainAnalyst))
+		{
+			if ( aux < func[i].GetArquiteto())
+			{
+				aux = func[i].GetArquiteto();
+				number = i;
+			}
+		}
+	}
+	staffMainArchitect = number;
+	
+	//Select the best tester in the staff
+	aux = func[0].GetTester();
+	number = 0;
+	for(i = 1; i < 7; i++)
+	{
+		if((i != staffMainProgrammer) && ( i != staffMainAnalyst) && (i != staffMainArchitect))
+		{
+			if ( aux < func[i].GetTester())
+			{
+				aux = func[i].GetTester();
+				number = i;
+			}
+		}
+	}
+	staffMainTester = number;
+	
+	//Select the secondary tester in the staff
+	aux = func[0].GetTester();
+	number = 0;
+	for(i = 1; i < 7; i++)
+	{
+		if((i != staffMainProgrammer) && ( i != staffMainTester) && (i != staffMainArchitect))
+		{
+			if ( aux < func[i].GetTester())
+			{
+				aux = func[i].GetTester();
+				number = i;
+			}
+		}
+	}
+	staffSecondaryTester = number;
+	
+	//Select the secondary analyst in the staff
+	aux = func[0].GetAnalista();
+	number = 0;
+	for(i = 1; i < 7; i++)
+	{
+		if((i != staffMainProgrammer) && ( i != staffMainAnalyst))
+		{
+			if ( aux < func[i].GetAnalista())
+			{
+				aux = func[i].GetAnalista();
+				number = i;
+			}
+		}
+	}
+	staffSecondaryAnaliyst = number;
+
+}
+
+function VacantSlot()
+{
+	var i : int = 0;
+	var vacantSlot = -1;
+	while ( i < 7)
+	{
+		if(func[i].GetNome() == stringNames.fired)
+		{
+			vacantSlot = i;
+			i = 10;
+		}
+		i++;
+	}
+	return vacantSlot;
+}
+
+
+
 
 function GetReport(){
 	return report;
@@ -218,6 +351,12 @@ function GetHasManager () {
 }
 function SetHasManager(t: boolean){
 	hasManager =  t;
+}
+function GetHasMarketing () {					
+	return hasManager;
+}
+function SetHasMarketing(t: boolean){
+	hasMarketing =  t;
 }
 /*
 function GetMarBonusAnalista () {					
