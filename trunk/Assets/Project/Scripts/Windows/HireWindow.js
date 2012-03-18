@@ -1,9 +1,11 @@
 
 private var contratacao;
+public var stringNames : StringNames;
 public var timer : GameTime;
 public var funcWindow : FuncWindow;
 public var hireFuncionario : HireFuncionario;
 public var jogador : PlayerStats;
+public var equipe : Equipe;
 //Candidatos
 public var newEmployee01 : Funcionario;
 public var newEmployee02 : Funcionario;
@@ -45,8 +47,10 @@ public var priceGuiStyle : GUIStyle;
 
 private var selectedSlot : boolean = false;
 private var showWindow : boolean = false;
+private var showWindowManagerHiring : boolean = false;
 private var showInsuficientMoneyWindow : boolean = false;
 private var windowRect : Rect = Rect (300,125,300,412);
+private var windowRect2 : Rect = Rect (400,125,300,200);
 
 function GetShowWindow(){
 	return showWindow;
@@ -402,6 +406,252 @@ slot01 = GUI.Toggle (Rect (198, 040, 80, 30), slot01, employee01.GetNome());
 	}	
 	GUI.EndGroup ();
 }
+
+function ManagerHiring(role : String)
+{
+	var first : int;
+	var second : int;
+	var third : int;
+	
+	var slot : int;
+	var i : int = 0;
+	var func = new Array();
+	func[0] = newEmployee01;
+	func[1] = newEmployee02;
+	func[2] = newEmployee03;
+	func[3] = newEmployee04;
+	func[4] = newEmployee05;
+	func[5] = newEmployee06;
+	func[6] = newEmployee07;
+	func[7] = newEmployee08;
+	var staff = new Array();
+	staff[0] = employee01;
+	staff[1] = employee02;
+	staff[2] = employee03;
+	staff[3] = employee04;
+	staff[4] = employee05;
+	staff[5] = employee06;
+	staff[6] = employee07;
+	staff[7] = employee08;
+	
+	first = 0;
+	second = 0;
+	third = 0;
+	
+	slot = equipe.VacantSlot();
+	//No available slots
+	if(slot == -1)
+	{
+		//Show window telling that staff is full
+	}
+	else
+	{
+		if(role == stringNames.papelAnalista)
+		{
+			//Hire analyst
+			for(i = 1; i < 8; i++)
+			{
+				if( func[i].GetAnalista() > func[first].GetAnalista())
+				{
+					third = second;
+					second = first;
+					first = i;
+				}
+				else
+				{
+					if( func[i].GetAnalista() > func[second].GetAnalista())
+					{
+						third = second;
+						second = i;
+					}
+					else
+					{
+						if( func[i].GetAnalista() > func[third].GetAnalista())
+						{
+							third = i;
+						}//if third
+					}//if second
+				}//if first
+			}//for
+		}
+		if(role == stringNames.papelArquiteto)
+		{
+			//Hire architect
+			for(i = 1; i < 8; i++)
+			{
+				if( func[i].GetArquiteto() > func[first].GetArquiteto())
+				{
+					third = second;
+					second = first;
+					first = i;
+				}
+				else
+				{
+					if( func[i].GetArquiteto() > func[second].GetArquiteto())
+					{
+						third = second;
+						second = i;
+					}
+					else
+					{
+						if( func[i].GetArquiteto() > func[third].GetArquiteto())
+						{
+							third = i;
+						}//if third
+					}//if second
+				}//if first
+			}//for
+		}
+		if(role == stringNames.papelProg)
+		{
+			//Hire programmer
+			for(i = 1; i < 8; i++)
+			{
+				if( func[i].GetProgramador() > func[first].GetProgramador())
+				{
+					third = second;
+					second = first;
+					first = i;
+				}
+				else
+				{
+					if( func[i].GetProgramador() > func[second].GetProgramador())
+					{
+						third = second;
+						second = i;
+					}
+					else
+					{
+						if( func[i].GetProgramador() > func[third].GetProgramador())
+						{
+							third = i;
+						}//if third
+					}//if second
+				}//if first
+			}//for
+		}
+		if(role == stringNames.papelTester)
+		{
+			//Hire tester
+			for(i = 1; i < 8; i++)
+			{
+				if( func[i].GetTester() > func[first].GetTester())
+				{
+					third = second;
+					second = first;
+					first = i;
+				}
+				else
+				{
+					if( func[i].GetTester() > func[second].GetTester())
+					{
+						third = second;
+						second = i;
+					}
+					else
+					{
+						if( func[i].GetTester() > func[third].GetTester())
+						{
+							third = i;
+						}//if third
+					}//if second
+				}//if first
+			}//for
+		}
+		if(role == stringNames.papelMarketing)
+		{
+			//Hire marketing
+			slot = 6;
+			for(i = 1; i < 8; i++)
+			{
+				if( func[i].GetMarketing() > func[first].GetMarketing())
+				{
+					third = second;
+					second = first;
+					first = i;
+				}
+				else
+				{
+					if( func[i].GetMarketing() > func[second].GetMarketing())
+					{
+						third = second;
+						second = i;
+					}
+					else
+					{
+						if( func[i].GetMarketing() > func[third].GetMarketing())
+						{
+							third = i;
+						}//if third
+					}//if second
+				}//if first
+			}//for
+		}
+		//roll to decide which from the 3 the manager will hire
+		var aux : int;
+		aux = staff[7].GetGerente();
+		var rolled : int = Random.Range (01, 100);
+		
+		if(rolled > aux)
+		{//third
+			hireFuncionario.ContratarFuncionario(func[third], staff[slot]);
+		}
+		else
+		{//seocnd
+			if(rolled > aux * 0.4)
+			{
+				hireFuncionario.ContratarFuncionario(func[second], staff[slot]);
+			}
+			else
+			{//first
+				hireFuncionario.ContratarFuncionario(func[first], staff[slot]);
+			}
+		}
+		staff[slot].SetPapel(role);
+	}//end-else
+}
+
+function WindowManagerHiring(windowID : int){
+	GUI.Box (Rect (02,20,296,25), "Hire role:");
+	GUI.BeginGroup (Rect (02,45,300,200));
+	if( equipe.VacantSlot() != -1)
+	{
+		if (GUI.Button (Rect (02,00,296,25), "Analyst")) {
+			ManagerHiring(stringNames.papelAnalista);
+			showWindowManagerHiring = false;
+		}
+		if (GUI.Button (Rect (02,25,296,25), "Architect")) {
+			ManagerHiring(stringNames.papelArquiteto);
+			showWindowManagerHiring = false;
+		}
+		if (GUI.Button (Rect (02,50,296,25), "Marketing")) {
+			ManagerHiring(stringNames.papelMarketing);
+			showWindowManagerHiring = false;
+		}
+		if (GUI.Button (Rect (02,75,296,25), "Programmer")) {
+			ManagerHiring(stringNames.papelProg);
+			showWindowManagerHiring = false;
+		}
+		if (GUI.Button (Rect (02,100,296,25), "Tester")) {
+			ManagerHiring(stringNames.papelTester);
+			showWindowManagerHiring = false;
+		}
+	}
+	else
+	{
+		GUI.Box (Rect (02,00,296,25), "Full Staff");
+		GUI.Box (Rect (02,25,296,25), "Need to fire someone before hiring");
+	}
+	if (GUI.Button (Rect (02,125,296,25), "Cancel")) {
+		showWindowManagerHiring = false;
+	}
+	GUI.EndGroup ();
+}
+
+function SetShowWindowMHiring(){
+	showWindowManagerHiring = true;
+}
+
 function OnGUI () {
 	GUI.backgroundColor = Color.yellow;
 	GUI.backgroundColor = Color.yellow;
@@ -410,6 +660,8 @@ function OnGUI () {
 		windowRect = GUI.Window (20, windowRect, ShowEmployees, ("Possible candidates") );
 	if (showInsuficientMoneyWindow)
 		ShowInsuficientMoneyWindow();
+	if(showWindowManagerHiring)
+		windowRect2 = GUI.Window (20, windowRect2, WindowManagerHiring, ("Manager Hiring") );
 }
 function Awake () {
 	contratacao = hireFuncionario.GetHire_Price();

@@ -46,7 +46,7 @@ function ExecutaBotaoPopup(t : String, listEntry : int){
 		switch(listEntry)
 		{
 			case 2: 	//"Change Task"
-				if (treino.GetLockEscolha() == false && playStyle.GetPlayStyle() == false)
+				if (treino.GetLockEscolha() == false)// && playStyle.GetPlayStyle() == false)
 					menuPapel.MudarPapel(func, treino);
 		   break;
 		   
@@ -148,7 +148,7 @@ function PopupList(){
     //If Macro Style
 		list[0] = new GUIContent("");
 		list[1] = new GUIContent("");
-		list[2] = new GUIContent("");
+		list[2] = new GUIContent("Change Task");
 		list[3] = new GUIContent("");
 		list[4] = new GUIContent("Profile");
 		list[5] = new GUIContent("");
@@ -208,7 +208,7 @@ function PopupList(){
 	}
 	else
 	{
-		sFunc7 = "";
+		sFunc7 = "\n Marketing";
 	}
 	if (func8.GetNome() != stringNames.fired)
 	{

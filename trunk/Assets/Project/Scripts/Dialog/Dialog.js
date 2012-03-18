@@ -111,13 +111,13 @@ function Dialog_Funcionario (){
 			}
 		}
 		GUI.Box (Rect (600,75, 130, 25), "");
-		if(playStyle.GetPlayStyle() == false)
-		{
-			if (GUI.Button (Rect (600,75, 130, 25), "Change Task")) {
-					menuPapel.MudarPapel(func, treino);
-					dialogEnable = false;
-			}
+		//if(playStyle.GetPlayStyle() == false)
+		//{
+		if (GUI.Button (Rect (600,75, 130, 25), "Change Task")) {
+				menuPapel.MudarPapel(func, treino);
+				dialogEnable = false;
 		}
+		//}
 		GUI.Box (Rect (600,100, 130, 25), "");
 		if(playStyle.GetPlayStyle() == false)
 		{
@@ -136,9 +136,13 @@ function Dialog_Funcionario (){
 			}
 		//Se gerente
 		if(func.GetPapel() == stringNames.papelGerente)
-			if (GUI.Button (Rect (600,125, 130, 25), "Hire")) {
+			if (GUI.Button (Rect (600,125, 130, 25), "Hire")) 
+			{
+				if(playStyle.GetPlayStyle() == false)
 					menuHire.SetShowWindow();
-					dialogEnable = false;
+				else
+					menuHire.SetShowWindowMHiring();
+				dialogEnable = false;
 			}
 		//se Marketing
 		if(func.GetPapel() == stringNames.papelMarketing && menuNegotiation.GetLockNegotiation() == false)

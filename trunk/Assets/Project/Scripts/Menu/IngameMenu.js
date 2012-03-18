@@ -4,6 +4,8 @@ public var GameSaver : SaveGame;
 public var ingameMenuToggle 	: boolean = false;
 public var icon : Texture2D;
 public var welcomeWindow : WelcomeWindow;
+public var playStyle : GameplayStyle;
+//public var equipe : Equipe;
 
 private var TIMESLOW : float = 2.0;
 private var TIMENORMAL : float = 1.0;
@@ -82,25 +84,36 @@ function GameSpeed()	{
 		GUI.Box (Rect (00, 00, 50, 50), "");
 		GUI.Label (Rect (00, 00, 50, 50), "Pause", myStyle);
 	}
-	if(timer.GetRepeatTime() != timer.GetTimeN())
-		if (GUI.Button (Rect (50, 00, 50, 50), "Play"))
-			timer.SpeedNormal();
-	if(timer.GetRepeatTime() == timer.GetTimeN())
+	//If it is on Macro game style, then the player can not pass the time while no manager is assigned
+	if((playStyle.GetPlayStyle() == true)&& equipe.GetHasManager() == false)
 	{
 		GUI.Box (Rect (50, 00, 50, 50), "");
 		GUI.Label (Rect (50, 00, 50, 50), "Play", myStyle);
-	}
-	if(timer.GetRepeatTime() != timer.GetTimeF())
-		if (GUI.Button (Rect (100,00, 70, 25), "Fast"))
-			timer.SpeedFast();
-	if(timer.GetRepeatTime() == timer.GetTimeF())
 		GUI.Box (Rect (100,00, 70, 25), "Fast");
-	
-	if(timer.GetRepeatTime() != timer.GetTimeVF())
-		if (GUI.Button (Rect (100,25, 70, 25), "Fastest"))
-			timer.SpeedVeryFastl();
-	if(timer.GetRepeatTime() == timer.GetTimeVF())
 		GUI.Box (Rect (100,25, 70, 25), "Fastest");
+	}
+	else
+	{
+		if(timer.GetRepeatTime() != timer.GetTimeN())
+			if (GUI.Button (Rect (50, 00, 50, 50), "Play"))
+				timer.SpeedNormal();
+		if(timer.GetRepeatTime() == timer.GetTimeN())
+		{
+			GUI.Box (Rect (50, 00, 50, 50), "");
+			GUI.Label (Rect (50, 00, 50, 50), "Play", myStyle);
+		}
+		if(timer.GetRepeatTime() != timer.GetTimeF())
+			if (GUI.Button (Rect (100,00, 70, 25), "Fast"))
+				timer.SpeedFast();
+		if(timer.GetRepeatTime() == timer.GetTimeF())
+			GUI.Box (Rect (100,00, 70, 25), "Fast");
+		
+		if(timer.GetRepeatTime() != timer.GetTimeVF())
+			if (GUI.Button (Rect (100,25, 70, 25), "Fastest"))
+				timer.SpeedVeryFastl();
+		if(timer.GetRepeatTime() == timer.GetTimeVF())
+			GUI.Box (Rect (100,25, 70, 25), "Fastest");
+	}
 	
 	GUI.EndGroup ();
 	if (timer.GetRepeatTime() == 0)
