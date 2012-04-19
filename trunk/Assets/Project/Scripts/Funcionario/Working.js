@@ -18,18 +18,22 @@ private var func : Funcionario;
 private var treino : Treinamento;
 
 private var report : WeeklyReport;
+private var delayTime : float = 0.6;
 public var funcWindow : FuncWindow;
 
+//Report
 function GetReport(){	
 	return report;
 }
 function SetReport(t : WeeklyReport){
 	report = t;
 }
+/*
 function AnalistReport(t : int)
 {
 	report.analistReport = report.analistReport + t;
 }
+
 function ArchitectReport(bug : int, archt : int)
 {
 	report.architectReport_bug = report.architectReport_bug + bug;
@@ -45,7 +49,7 @@ function MarketingReport(val : int, money : int)
 	report.marketingReport_val = report.marketingReport_val + val;
 	report.marketingReport_money = report.marketingReport_money + money;
 }
-function ProgReport(prog : int, bugs)
+function ProgReport(prog : int, bugs : int)
 {
 	report.programmerReport_prog = report.programmerReport_prog + prog;
 	report.programmerReport_bug = report.programmerReport_bug + bugs;
@@ -54,6 +58,7 @@ function TesterReport(bug : int)
 {
 	report.testerReport = report.testerReport + bug;
 }
+*/
 function WeeklyReport()
 {
 	//Exibo o historico
@@ -122,11 +127,18 @@ function GetWorkingHoursModifier() {
 }
 
 //--------------------------------------------GameModifiers-----------------------------------------------------------
-
+/*
 function GameModifiers( aux : float ){
 	var cargo_mod : float;
 	cargo_mod = AjusteWork();
 	aux = aux * cargo_mod * workingHoursModifier * stamina * morale;
+	return aux;
+}
+*/
+function GameModifiers(){
+	var cargo_mod : float;
+	cargo_mod = AjusteWork();
+	var aux = cargo_mod * workingHoursModifier * stamina * morale;
 	return aux;
 }
 
@@ -188,15 +200,15 @@ function AjusteWork(){
 	var mod : float = 1.0;
 	switch(func.GetCargo())
 	{
-	   case stringNames.jobJunior: 	//caso analista
+	   case stringNames.jobJunior: 	//caso Junior
 			mod = constant.JUNIOR_MODIFICATOR;
 	   break;
 
-	   case stringNames.jobPleno:	//caso arquiteto
+	   case stringNames.jobPleno:	//caso Pleno
 			mod = constant.PLENO_MODIFICATOR;
 	   break;
 	   
-	   case stringNames.jobSenior:	//caso gerente
+	   case stringNames.jobSenior:	//caso Senior
 			mod = constant.SENIOR_MODIFICATOR;
 	   break;
 
@@ -208,59 +220,115 @@ function AjusteWork(){
 //--------------------------------------------Work-----------------------------------------------------------
 
 function AnalistaWork(){
-	if( func.GetPapel() == stringNames.papelAnalista)
+	var rate : int;
+	var work : boolean = false;
+	var delay : float = 0.0;
+	if(func.GetPapel() == stringNames.papelAnalista)
+	{
+		rate = func.GetPapelRate();
+		work = true;
+	}
+	else
+	{
+		if(func.GetPapelSec() == stringNames.papelAnalista)
+		{
+			rate = func.GetPapelSecRate();
+			work = true;
+			delay = delayTime;
+		}
+		else
+		{
+			rate = 0;
+			work = false;
+		}
+	}
+	if(work)
 	{
 		var modificador_positivo : float = EspecializacaoFerramenta();
 		var penal : float = MetodologiaEquipe();
-		var aux : float = 0.0;
 		var analista : float ;
+		var mod : float = GameModifiers();
 		var randomizer : float = Random.Range (0.5, 1.0);
+		yield WaitForSeconds(delay);
 		
 		func.WorkingAnalista();
 		
 		analista = func.GetAnalista();
+		analista = analista * rate * mod * constant.ANALISTA * equipe.GetBonusAnalista() * (1 + modificador_positivo - penal) ;
+		var Analista : Analyst;
+		Analista.Work(func, project, report, floatingLines, equipe, constant, analista);
+		/*
 		if(project.GetSincronismo() == 00)	//Se o projeto esta sendo iniciado, entao o valor de sincronismo inicial varia de acordo com o desempenho do analista
 		{
-			aux = analista * constant.ANALISTA_INICIO * (1 + modificador_positivo - penal) * randomizer;
-			project.SetSincronismo(aux);
-			AnalistReport(aux);
-			floatingLines.showFloatText2("+", aux.ToString(), "blue", " Val.");
-			//print("Inicio :" + aux);
+			analista = analista * constant.ANALISTA_INICIO * randomizer;
+			analista = Mathf.Round(analista * 100f) / 100f;
+			project.SetSincronismo(analista);
+			AnalistReport(parseInt(analista));
+			floatingLines.showFloatText2("+", analista.ToString(), "blue", " Val.");
 		}
 		else
 		{
 			if(project.GetSincronismo() < 100)	//Se o projeto esta em andamento entao o sincronismo vai mudando lentamente de acordo com o analista
 			{
-				aux = analista / (project.GetProjectSize() * 0.001) * (1 + modificador_positivo - penal);
-				aux = GameModifiers(aux);
-				aux = aux * equipe.GetBonusAnalista();
-				aux = aux * randomizer;
-				aux = Mathf.Round(aux * 100f) / 100f; //Para truncar na segunda casa decimal
-				project.SetSincronismo(aux);
-				AnalistReport(aux);
-				floatingLines.showFloatText2("+", aux.ToString(), "blue", " Val.");
+				analista = analista / (project.GetProjectSize() * 0.001) ;
+				//analista = analista * mod;
+				//analista = analista * equipe.GetBonusAnalista();
+				analista = analista * randomizer;
+				analista = Mathf.Round(analista * 100f) / 100f; //Para truncar na segunda casa decimal
+				project.SetSincronismo(analista);
+				AnalistReport(parseInt(analista));
+				floatingLines.showFloatText2("+", analista.ToString(), "blue", " Val.");
 			}
 		}
+		*/
 	}
 }
 
 function ArquitetoWork(){
-	if( func.GetPapel() == stringNames.papelArquiteto)
+	var rate : int;
+	var work : boolean = false;
+	var delay : float = 0.0;
+	if(func.GetPapel() == stringNames.papelArquiteto)
+	{
+		rate = func.GetPapelRate();
+		work = true;
+	}
+	else
+	{
+		if(func.GetPapelSec() == stringNames.papelArquiteto)
+		{
+			rate = func.GetPapelSecRate();
+			work = true;
+			delay = delayTime;
+		}
+		else
+		{
+			rate = 0;
+			work = false;
+		}
+	}
+	if(work)
 	{
 		var modificador_positivo : float = EspecializacaoFerramenta();
 		var penal : float = MetodologiaEquipe();
-		var aux : float = 0.0;
+		//var aux : float = 0.0;
 		var arquiteto : float ;
-		var randomizer : float = Random.Range (0.8, 1.2);
-		var randomizer2 : float = Random.Range (0.8, 1.2);
-		
+		var mod : float = GameModifiers();
+		//var randomizer : float = Random.Range (0.8, 1.2);
+		//var randomizer2 : float = Random.Range (0.8, 1.2);
+
+		yield WaitForSeconds(delay);
 		func.WorkingArquiteto();
 		
-		arquiteto = func.GetArquiteto();	
+		arquiteto = func.GetArquiteto() * rate * mod * constant.ARCHITECT * (1 + modificador_positivo - penal) * equipe.GetBonusArquiteto();	
+		
+		var Architect : Architect;
+		Architect.Work(func, project, report, floatingLines, equipe, constant, arquiteto);
+		/*
 		aux = arquiteto;
-		aux = aux * (1 + modificador_positivo - penal);
-		aux = GameModifiers(aux);
-		aux = aux * equipe.GetBonusArquiteto();
+		//aux = aux * (1 + modificador_positivo - penal);
+		//aux = aux * mod;
+		//aux = aux * equipe.GetBonusArquiteto();
 		aux = (aux * 2);
 		aux = parseInt(aux * randomizer);
 		equipe.SetFindbugScore(aux);
@@ -269,33 +337,64 @@ function ArquitetoWork(){
 		ArchitectReport(aux, arquiteto);
 		floatingLines.showFloatText1("+", aux.ToString(), "blue","% Testing");
 		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue", " % Archit.");
+		*/
 	}
 }
 
 function GerenteWork(){
-	if( func.GetPapel() == stringNames.papelGerente)
+	var rate : int;
+	var work : boolean = false;
+	var delay : float = 0.0;
+	
+	if(func.GetPapel() == stringNames.papelGerente)
+	{
+		rate = func.GetPapelRate();
+		work = true;
+	}
+	else
+	{
+		if(func.GetPapelSec() == stringNames.papelGerente)
+		{
+			rate = func.GetPapelSecRate();
+			work = true;
+			delay = delayTime;
+		}
+		else
+		{
+			rate = 0;
+			work = false;
+		}
+	}
+	if(work)
 	{
 		var modificador_positivo : float = EspecializacaoFerramenta();
 		var penal : float = MetodologiaEquipe();
+		var mod : float = GameModifiers();
 		var auxAnaArq : float = 0.0;
 		var auxArquiteto : float = 0.0;
 		var auxProg : float = 0;
 		var gerente : float ;
 		var penal_prog : float = PenalidadeProgramacao(penal);
-		var randomizer : float = Random.Range (2.0, 2.5);
-		var randomizer2 : float = Random.Range (1.0, 1.5);
+		//var randomizer : float = Random.Range (2.0, 2.5);
+		//var randomizer2 : float = Random.Range (1.0, 1.5);
 		
+		yield WaitForSeconds(delay);
 		func.WorkingGerente();
 		
-		gerente = func.GetGerente();
-		auxAnaArq = gerente * constant.GERENTE;
-		auxProg = gerente * constant.GERENTE;
+		gerente = func.GetGerente() * rate * constant.GERENTE * mod;
+
+		auxAnaArq = gerente;
+		auxProg = gerente;
 		
 		auxAnaArq = auxAnaArq * (1 + modificador_positivo - penal);
 		auxProg = auxProg * (1 + modificador_positivo - penal_prog);
-		auxAnaArq = GameModifiers(auxAnaArq);
-		auxProg = GameModifiers(auxProg);
 		
+		var Manager : Manager;
+		Manager.Work(func, project, report, floatingLines, equipe, constant, gerente, auxAnaArq, auxProg);
+		
+		//auxAnaArq = auxAnaArq * GameModifiers();
+		//auxProg = auxProg * GameModifiers();
+		/*
 		auxAnaArq = parseInt(auxAnaArq * randomizer);
 		auxProg = parseInt(auxProg * randomizer2);
 		
@@ -305,24 +404,55 @@ function GerenteWork(){
 		ManagerReport(auxAnaArq, auxProg);
 		floatingLines.showFloatText1("+", auxAnaArq.ToString(), "blue", "% Design");
 		floatingLines.showFloatText2("+", auxProg.ToString(), "blue", " % Dev.");
+		*/
 	}
 }
 
 function MarketingWork(){
-	if( func.GetPapel() == stringNames.papelMarketing)
+	var rate : int;
+	var work : boolean = false;
+	var delay : float = 0.0;
+	
+	if(func.GetPapel() == stringNames.papelMarketing)
+	{
+		rate = func.GetPapelRate();
+		work = true;
+	}
+	else
+	{
+		if(func.GetPapelSec() == stringNames.papelMarketing)
+		{
+			rate = func.GetPapelSecRate();
+			work = true;
+			delay = delayTime;
+		}
+		else
+		{
+			rate = 0;
+			work = false;
+		}
+	}
+	if(work)
 	{
 		var penal : float = MetodologiaEquipe();
-		var aux : float = 0.0;
+		//var aux : float = 0.0;
+		var mod : float = GameModifiers();
 		var marketing : float ;
-		var randomizer : float = Random.Range (5.0, 7.5);
-		var randomizer2 : float = Random.Range (4.0, 6.0);
+		//var randomizer : float = Random.Range (5.0, 7.5);
+		//var randomizer2 : float = Random.Range (4.0, 6.0);
 		
+		yield WaitForSeconds(delay);
 		func.WorkingMarketing();
 		
-		marketing = func.GetMarketing();	
+		marketing = func.GetMarketing() * rate * (1 - penal) * mod * 0.01;	
+		
+		var Marketing : Marketing;
+		Marketing.Work(func, project, report, floatingLines, equipe, constant, playerStats, marketing);
+		
+		/*
 		aux = marketing * 0.5;
-		aux = aux * (1 - penal);
-		aux = GameModifiers(aux);
+		//aux = aux * (1 - penal);
+		//aux = aux * GameModifiers();
 		marketing = parseInt(aux * randomizer2);
 		aux = parseInt(aux * randomizer);
 		equipe.SetBonusAnalista(aux);
@@ -330,42 +460,73 @@ function MarketingWork(){
 		MarketingReport(aux, marketing);
 		floatingLines.showFloatText1("+", aux.ToString(), "blue", "% Val.");
 		floatingLines.showFloatText2("+", marketing.ToString(), "", " Money");
-		
+		*/
 	}
-
+		
 }
 
 function ProgramadorWork(){
-	if( func.GetPapel() == stringNames.papelProg)
+	var rate : int;
+	var work : boolean = false;
+	var delay : float = 0.0;
+
+	if(func.GetPapel() == stringNames.papelProg)
+	{
+		rate = func.GetPapelRate();
+		work = true;
+	}
+	else
+	{
+		if(func.GetPapelSec() == stringNames.papelProg)
+		{
+			rate = func.GetPapelSecRate();
+			work = true;
+			delay = delayTime;
+		}
+		else
+		{
+			rate = 0;
+			work = false;
+		}
+	}
+	if(work)
 	{
 		var modificador_positivo : float = EspecializacaoFerramenta();
 		var penal : float = MetodologiaEquipe();
-		var numBugs : float = 0.0;
+		var mod : float = GameModifiers();
+		//var numBugs : float = 0.0;
 		var programador : float ;
 		var penal_prog : float = PenalidadeProgramacao(penal);
-		var aux : float = 0;
-		var random : int;
-		var i : int;
-		var bugCount : int = 0;
-		var variation : int;
-		programador = func.GetProgramador();
+		//var aux : float = 0;
+		//var random : int;
+		//var i : int;
+		//var bugCount : int = 0;
+		//var variation : int;
+		
+		yield WaitForSeconds(delay);
 		
 		func.WorkingProgramador();
 		
+		programador = func.GetProgramador() * rate * (1 + modificador_positivo - penal_prog) * mod;
+				
+		var Programmer : Programmer;
+		Programmer.Work(func, project, report, floatingLines, equipe, constant, programador, RequisitoLinguagem());
+		
+		/*
 		if (RequisitoLinguagem() == true && project.GetFractionDone() < 100)
 		{
 			numBugs = (100.0 - programador ) * constant.PROG_BUG_MOD; //Para acrescentar/reduzir o numero de bugs, os modificadores tem seu papel invertido 
-			numBugs = numBugs * (1 + modificador_positivo - penal_prog);
+			//numBugs = numBugs * (1 + modificador_positivo - penal_prog);
 			aux = programador * constant.PROG_LINES_DAY_MOD;
-			aux = aux * (1 + modificador_positivo - penal_prog);
-			aux = GameModifiers(aux);
+			//aux = aux * (1 + modificador_positivo - penal_prog);
+			//aux = aux * GameModifiers();
 			aux = aux * equipe.GetBonusProg();	
 			variation = aux * 0.2;
 			aux = aux * 0.9;
 			aux = aux + Random.Range (0, variation);
 			aux = aux * (project.GetSincronismo() / 100);
 			aux = parseInt(aux);
-			numBugs = GameModifiers(numBugs);	
+			//numBugs = numBugs * GameModifiers();	
 			numBugs = parseInt(numBugs);
 			if (project.GetSincronismo() == 0 )
 				numBugs = 0;
@@ -391,33 +552,67 @@ function ProgramadorWork(){
 			floatingLines.showFloatText1("+", aux.ToString(), "blue", " Progress");
 			floatingLines.showFloatText2("+", bugCount.ToString(), "red", " Bugs");
 		}
+		*/
 	}
 }
 
 function TesterWork(){
-	if( func.GetPapel() == stringNames.papelTester)
+	var rate : int;
+	var work : boolean = false;
+	var delay : float = 0.0;
+	
+	if(func.GetPapel() == stringNames.papelTester)
+	{
+		rate = func.GetPapelRate();
+		work = true;
+	}
+	else
+	{
+		if(func.GetPapelSec() == stringNames.papelTester)
+		{
+			rate = func.GetPapelSecRate();
+			work = true;
+			delay = delayTime;
+		}
+		else
+		{
+			rate = 0;
+			work = false;
+		}
+	}
+	if(work)
 	{
 		var modificador_positivo : float = EspecializacaoFerramenta();
 		var penal : float = MetodologiaEquipe();
-		var aux : float;
+		var mod : float = GameModifiers();
+		//var aux : float;
 		var tester : float;
 		var penal_prog : float = PenalidadeProgramacao(penal);
-		var bugCount : int = 0;
-		var i : int;
-		var randomizer : float = Random.Range (0.7, 1.0);
-		tester = func.GetTester();
+		
+		//var bugCount : int = 0;
+		//var i : int;
+		//var randomizer : float = Random.Range (0.7, 1.0);
+		//var random : int;
 		
 		func.WorkingTester();
+		tester = func.GetTester() * rate * constant.TESTER_DURANTE * (1 + modificador_positivo - penal_prog) * mod * equipe.GetFindbugScore();
 		
+		yield WaitForSeconds(delay);
+		
+		var Tester : Tester;
+		Tester.Work(func, project, report, floatingLines, equipe, constant, tester, RequisitoLinguagem());
+		
+		/*		
 		if (RequisitoLinguagem() == true)
 		{
-			aux = tester * constant.TESTER_DURANTE;		//Por parte do tester
-			aux = aux * (1 + modificador_positivo - penal_prog);
-			aux = GameModifiers(aux);
-			aux = aux * equipe.GetFindbugScore();	
-			aux = parseInt(aux * randomizer);
+			//aux = tester;		
+			//Por parte do tester
+			//tester = tester * (1 + modificador_positivo - penal_prog);
+			//tester = tester * GameModifiers();
+			//tester = tester * equipe.GetFindbugScore();	
+			tester = parseInt(tester * randomizer);
 			//Chance to remove a bug, to a total of "aux" bugs
-			for (i = 0; i < aux; i++)
+			for (i = 0; i < tester; i++)
 			{
 				random = Random.Range (0, 10);
 				if (random > 5)
@@ -429,6 +624,7 @@ function TesterWork(){
 			TesterReport(bugCount);
 			floatingLines.showFloatText1(" -", bugCount.ToString(), "blue", " Bugs");
 		}
+		*/
 	}
 }
 

@@ -16,6 +16,10 @@ private var nome : String;
 private var salario : int;
 private var salarioDay : int;
 private var papel : String;
+private var papelSec : String;
+private var papelRate : int;
+private var papelSecRate : int;
+
 private var cargo : String;
 private var showJanela :boolean = false;
 private var showJanelaLevel	:boolean = false;
@@ -40,7 +44,7 @@ private var aux_rel : int = 0;
 
 private var report : WeeklyReport;
 
-private var windowRect : Rect = Rect (600,125,400,420);
+private var windowRect : Rect = Rect (600,125,400,480);
 private var windowRect2 : Rect = Rect (300,125,200,280);
 private var windowRect3 : Rect = Rect (300,125,600,280);
 
@@ -64,6 +68,9 @@ function SetJanelatributo(funcionario : Funcionario, closeButton : boolean, week
 		salario = funcionario.GetSalario();
 		salarioDay = salario / DAYS_MONTH;
 		papel = funcionario.GetPapel();
+		papelSec = funcionario.GetPapelSec();
+		papelRate = funcionario.GetPapelRate();
+		papelSecRate = funcionario.GetPapelSecRate();
 		cargo = funcionario.GetCargo();
 		workHours = funcionario.GetWorkingHours();
 		showJanela = true;
@@ -172,12 +179,17 @@ function WindowFunction (windowID : int)	{
 	GUI.Box (Rect (02,038,198,20), (" Morale: "+ morale + "%"),fichaGuiStyle);
 	GUI.Box (Rect (02,058,198,20), (" Stamina: "+ stamina + "%"),fichaGuiStyle);
 	GUI.Box (Rect (02,078,198,20), (" Role: "+ papel),fichaGuiStyle);
-	GUI.Box (Rect (02,098,198,20), (" Grade: "+ cargo),fichaGuiStyle);
-	GUI.Box (Rect (02,118,198,20), (" Weekly Hours: "+ workHours),fichaGuiStyle);
+	
+	GUI.Box (Rect (02,098,198,20), (" Sec Role: "+ papelSec),fichaGuiStyle);
+	GUI.Box (Rect (02,118,198,20), (" Role Rate: "+ papelRate),fichaGuiStyle);
+	GUI.Box (Rect (02,138,198,20), (" Sec Role Rate: "+ papelSecRate),fichaGuiStyle);
+	
+	GUI.Box (Rect (02,158,198,20), (" Grade: "+ cargo),fichaGuiStyle);
+	GUI.Box (Rect (02,178,198,20), (" Weekly Hours: "+ workHours),fichaGuiStyle);
 	//GUI.Box (Rect (02,138,198,20), (" Monthly Salary: $"+ salario),fichaGuiStyle);
-	GUI.Box (Rect (02,138,198,20), (" Salary/Day: $"+ salarioDay),fichaGuiStyle);
-	GUI.Box (Rect (02,158,198,20), (" Level: " +level),fichaGuiStyle);
-	GUI.Box (Rect (02,178,198,20), (" Experience: " +experience + " / " + req_exp),fichaGuiStyle);
+	GUI.Box (Rect (02,198,198,20), (" Salary/Day: $"+ salarioDay),fichaGuiStyle);
+	GUI.Box (Rect (02,218,198,20), (" Level: " +level),fichaGuiStyle);
+	GUI.Box (Rect (02,238,198,20), (" Experience: " +experience + " / " + req_exp),fichaGuiStyle);
 	//Lado direito
 	GUI.Box (Rect (200,018,198,20), (" Adaptability: "+ atributos.adaptabilidade),fichaGuiStyle);
 	GUI.Box (Rect (200,038,198,20), (" Autodidact: "+ atributos.autoDidata),fichaGuiStyle);
@@ -188,43 +200,46 @@ function WindowFunction (windowID : int)	{
 	GUI.Box (Rect (200,138,198,20), (" Objectivity: "+ atributos.objetividade),fichaGuiStyle);
 	GUI.Box (Rect (200,158,198,20), (" Organization: "+ atributos.organizacao),fichaGuiStyle);
 	GUI.Box (Rect (200,178,198,20), (" Patience: "+ atributos.paciencia),fichaGuiStyle);
+	GUI.Box (Rect (200,198,198,20), ("  "),fichaGuiStyle);
+	GUI.Box (Rect (200,218,198,20), ("  "),fichaGuiStyle);
+	GUI.Box (Rect (200,238,198,20), ("  "),fichaGuiStyle);
 	
 	//Embaixo dos atributos
-	GUI.Box (Rect (02,198,396,20), ("-------------------------------- Specialties --------------------------------"),fichaGuiStyle);
+	GUI.Box (Rect (02,258,396,20), ("-------------------------------- Specialties --------------------------------"),fichaGuiStyle);
 	//Lado esquerdo
-	GUI.Box (Rect (02,218,198,20), ("\t" + especializacao_array[0].ToString()),fichaGuiStyle);
-	GUI.Box (Rect (02,238,198,20), ("\t" + especializacao_array[1].ToString()),fichaGuiStyle);
-	GUI.Box (Rect (02,258,198,20), ("\t" + especializacao_array[2].ToString()),fichaGuiStyle);
-	GUI.Box (Rect (02,278,198,20), ("\t" + especializacao_array[3].ToString()),fichaGuiStyle);
-	GUI.Box (Rect (02,298,198,20), ("\t" + especializacao_array[4].ToString()),fichaGuiStyle);
-	GUI.Box (Rect (02,318,198,20), ("\t" + especializacao_array[5].ToString()),fichaGuiStyle);
-	GUI.Box (Rect (02,338,198,20), ("\t" + especializacao_array[6].ToString()),fichaGuiStyle);
-	GUI.Box (Rect (02,358,198,20), ("\t" + especializacao_array[7].ToString()),fichaGuiStyle);
-	GUI.Box (Rect (02,378,198,20), ("\t" + especializacao_array[8].ToString()),fichaGuiStyle);
+	GUI.Box (Rect (02,278,198,20), ("\t" + especializacao_array[0].ToString()),fichaGuiStyle);
+	GUI.Box (Rect (02,298,198,20), ("\t" + especializacao_array[1].ToString()),fichaGuiStyle);
+	GUI.Box (Rect (02,318,198,20), ("\t" + especializacao_array[2].ToString()),fichaGuiStyle);
+	GUI.Box (Rect (02,338,198,20), ("\t" + especializacao_array[3].ToString()),fichaGuiStyle);
+	GUI.Box (Rect (02,358,198,20), ("\t" + especializacao_array[4].ToString()),fichaGuiStyle);
+	GUI.Box (Rect (02,378,198,20), ("\t" + especializacao_array[5].ToString()),fichaGuiStyle);
+	GUI.Box (Rect (02,398,198,20), ("\t" + especializacao_array[6].ToString()),fichaGuiStyle);
+	GUI.Box (Rect (02,418,198,20), ("\t" + especializacao_array[7].ToString()),fichaGuiStyle);
+	GUI.Box (Rect (02,438,198,20), ("\t" + especializacao_array[8].ToString()),fichaGuiStyle);
 	//Lado direito
-	GUI.Box (Rect (200,218,198,20), ("\t" + especializacao_array[9].ToString()),fichaGuiStyle);
-	GUI.Box (Rect (200,238,198,20), ("\t" + especializacao_array[10].ToString()),fichaGuiStyle);
-	GUI.Box (Rect (200,258,198,20), ("\t" + especializacao_array[11].ToString()),fichaGuiStyle);
-	GUI.Box (Rect (200,278,198,20), ("\t" + especializacao_array[12].ToString()),fichaGuiStyle);
-	GUI.Box (Rect (200,298,198,20), ("\t" + especializacao_array[13].ToString()),fichaGuiStyle);
-	GUI.Box (Rect (200,318,198,20), ("\t" + especializacao_array[14].ToString()),fichaGuiStyle);
-	GUI.Box (Rect (200,338,198,20), ("\t" + especializacao_array[15].ToString()),fichaGuiStyle);
-	GUI.Box (Rect (200,358,198,20), ("\t" + especializacao_array[16].ToString()),fichaGuiStyle);
-	GUI.Box (Rect (200,378,198,20), ("\t" + especializacao_array[17].ToString()),fichaGuiStyle);
+	GUI.Box (Rect (200,278,198,20), ("\t" + especializacao_array[9].ToString()),fichaGuiStyle);
+	GUI.Box (Rect (200,298,198,20), ("\t" + especializacao_array[10].ToString()),fichaGuiStyle);
+	GUI.Box (Rect (200,318,198,20), ("\t" + especializacao_array[11].ToString()),fichaGuiStyle);
+	GUI.Box (Rect (200,338,198,20), ("\t" + especializacao_array[12].ToString()),fichaGuiStyle);
+	GUI.Box (Rect (200,358,198,20), ("\t" + especializacao_array[13].ToString()),fichaGuiStyle);
+	GUI.Box (Rect (200,378,198,20), ("\t" + especializacao_array[14].ToString()),fichaGuiStyle);
+	GUI.Box (Rect (200,398,198,20), ("\t" + especializacao_array[15].ToString()),fichaGuiStyle);
+	GUI.Box (Rect (200,418,198,20), ("\t" + especializacao_array[16].ToString()),fichaGuiStyle);
+	GUI.Box (Rect (200,438,198,20), ("\t" + especializacao_array[17].ToString()),fichaGuiStyle);
 	
 	if(showCloseButton)
-		if (GUI.Button (Rect (02,398,98,20), "Close Profile")) 
+		if (GUI.Button (Rect (02,458,98,20), "Close Profile")) 
 		{
 			showJanela  = false;
 		}
 	if(showCloseButton)
-		if (GUI.Button (Rect (100,398,200,20), "View Level Up Modifiers")) 
+		if (GUI.Button (Rect (100,458,200,20), "View Level Up Modifiers")) 
 		{
 			showJanela  = false;
 			showJanelaLevel = true;
 		}
 	if(showCloseButton)
-		if (GUI.Button (Rect (300,398,98,20), "View Report")) 
+		if (GUI.Button (Rect (300,458,98,20), "View Report")) 
 		{
 			showJanela  = false;
 			showJanelaReport = true;

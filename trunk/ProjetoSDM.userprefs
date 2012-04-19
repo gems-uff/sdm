@@ -1,15 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Windows\PapelWindow.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Funcionario\Working.js">
     <Files>
-      <File FileName="Assets\Project\Scripts\Equipe\Equipe.js" Line="359" Column="14" />
-      <File FileName="Assets\Project\Scripts\Windows\PapelWindow.js" Line="70" Column="2" />
-      <File FileName="Assets\Project\Scripts\Menu\PopUpListGUI.js" Line="211" Column="25" />
-      <File FileName="Assets\Project\Scripts\MacroplayStyle\GameplayStyle.js" Line="8" Column="22" />
-      <File FileName="Assets\Project\Scripts\Dialog\Dialog.js" Line="145" Column="5" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Funcionario.js" Line="405" Column="18" />
-      <File FileName="Assets\Project\Scripts\Windows\HireWindow.js" Line="564" Column="13" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Working.js" Line="4" Column="1" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Working.js" Line="447" Column="68" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Manager.js" Line="9" Column="3" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Architect.js" Line="11" Column="12" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Programmer.js" Line="51" Column="44" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Tester.js" Line="4" Column="15" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Marketing.js" Line="12" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
