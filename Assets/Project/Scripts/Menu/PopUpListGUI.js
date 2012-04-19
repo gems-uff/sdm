@@ -156,7 +156,7 @@ function PopupList(){
 	//
 	if (func1.GetNome() != stringNames.fired)
 	{
-		sFunc1 = func1.GetNome() +"\n"+ func1.GetPapel();
+		sFunc1 = func1.GetNome() +"\n"+ func1.GetPapel()+"\n"+ func1.GetPapelSec();
 	}
 	else
 	{
@@ -164,7 +164,7 @@ function PopupList(){
 	}
 	if (func2.GetNome() != stringNames.fired)
 	{
-		sFunc2 = func2.GetNome() +"\n"+ func2.GetPapel();
+		sFunc2 = func2.GetNome() +"\n"+ func2.GetPapel()+"\n"+ func2.GetPapelSec();
 	}
 	else
 	{
@@ -172,7 +172,7 @@ function PopupList(){
 	}
 	if (func3.GetNome() != stringNames.fired)
 	{
-		sFunc3 = func3.GetNome() +"\n"+ func3.GetPapel();
+		sFunc3 = func3.GetNome() +"\n"+ func3.GetPapel()+"\n"+ func3.GetPapelSec();
 	}
 	else
 	{
@@ -180,7 +180,7 @@ function PopupList(){
 	}
 	if (func4.GetNome() != stringNames.fired)
 	{
-		sFunc4 = func4.GetNome() +"\n"+ func4.GetPapel();
+		sFunc4 = func4.GetNome() +"\n"+ func4.GetPapel()+"\n"+ func4.GetPapelSec();
 	}
 	else
 	{
@@ -188,7 +188,7 @@ function PopupList(){
 	}
 	if (func5.GetNome() != stringNames.fired)
 	{
-		sFunc5 = func5.GetNome() +"\n"+ func5.GetPapel();
+		sFunc5 = func5.GetNome() +"\n"+ func5.GetPapel()+"\n"+ func5.GetPapelSec();
 	}
 	else
 	{
@@ -196,7 +196,7 @@ function PopupList(){
 	}
 	if (func6.GetNome() != stringNames.fired)
 	{
-		sFunc6 = func6.GetNome() +"\n"+ func6.GetPapel();
+		sFunc6 = func6.GetNome() +"\n"+ func6.GetPapel()+"\n"+ func6.GetPapelSec();
 	}
 	else
 	{
@@ -204,43 +204,43 @@ function PopupList(){
 	}
 	if (func7.GetNome() != stringNames.fired)
 	{
-		sFunc7 = func7.GetNome() +"\n"+ func7.GetPapel();
+		sFunc7 = func7.GetNome() +"\n"+ func7.GetPapel()+"\n"+ func7.GetPapelSec();
 	}
 	else
 	{
-		sFunc7 = "\n Marketing";
+		sFunc7 = "\n Marketing \n";
 	}
 	if (func8.GetNome() != stringNames.fired)
 	{
-		sFunc8 = func8.GetNome() +"\n"+ func8.GetPapel();
+		sFunc8 = func8.GetNome() +"\n"+ func8.GetPapel()+"\n"+ func8.GetPapelSec();
 	}
 	else
 	{
-		sFunc8 = "\n Manager";
+		sFunc8 = "\n Manager \n";
 	}
 	
-	if (Popup.List (Rect(000, 00, 90, 40), showList1, listEntry, GUIContent(sFunc1), list, listStyle)) {
+	if (Popup.List (Rect(000, 00, 90, 60), showList1, listEntry, GUIContent(sFunc1), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario1", listEntry);
     }
-	if (Popup.List (Rect(90, 00, 90, 40), showList2, listEntry, GUIContent(sFunc2), list, listStyle)) {
+	if (Popup.List (Rect(90, 00, 90, 60), showList2, listEntry, GUIContent(sFunc2), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario2", listEntry);
     }
-	if (Popup.List (Rect(180, 00, 90, 40), showList3, listEntry, GUIContent(sFunc3), list, listStyle)) {
+	if (Popup.List (Rect(180, 00, 90, 60), showList3, listEntry, GUIContent(sFunc3), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario3", listEntry);
     }
-	if (Popup.List (Rect(270, 00, 90, 40), showList4, listEntry, GUIContent(sFunc4), list, listStyle)) {
+	if (Popup.List (Rect(270, 00, 90, 60), showList4, listEntry, GUIContent(sFunc4), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario4", listEntry);
     }
-	if (Popup.List (Rect(360, 00, 90, 40), showList5, listEntry, GUIContent(sFunc5), list, listStyle)) {
+	if (Popup.List (Rect(360, 00, 90, 60), showList5, listEntry, GUIContent(sFunc5), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario5", listEntry);
     }
-	if (Popup.List (Rect(450, 00, 90, 40), showList6, listEntry, GUIContent(sFunc6), list, listStyle)) {
+	if (Popup.List (Rect(450, 00, 90, 60), showList6, listEntry, GUIContent(sFunc6), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario6", listEntry);
     }
-	if (Popup.List (Rect(540, 00, 90, 40), showList7, listEntry, GUIContent(sFunc7), list, listStyle)) {
+	if (Popup.List (Rect(540, 00, 90, 60), showList7, listEntry, GUIContent(sFunc7), list, listStyle)) {
 		ExecutaBotaoPopup("Funcionario7", listEntry);
     }
-	if (Popup.List (Rect(630, 00, 90, 40), showList8, listEntry, GUIContent(sFunc8), list, listStyle)) {
+	if (Popup.List (Rect(630, 00, 90, 60), showList8, listEntry, GUIContent(sFunc8), list, listStyle)) {
 			ExecutaBotaoPopup("Funcionario8", listEntry);
 		}
 

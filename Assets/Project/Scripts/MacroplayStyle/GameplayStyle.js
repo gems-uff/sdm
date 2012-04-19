@@ -20,6 +20,6 @@ function Start () {
 }
 
 function Update () {
-	Debug.Log("gameStyle = " + gameStyle);
+	//Debug.Log("gameStyle = " + gameStyle);
 
 }

@@ -6,13 +6,13 @@ public var icon : Texture2D;
 public var welcomeWindow : WelcomeWindow;
 public var playStyle : GameplayStyle;
 //public var equipe : Equipe;
-
+/*
 private var TIMESLOW : float = 2.0;
 private var TIMENORMAL : float = 1.0;
 private var TIMEFAST : float = 0.5;
 private var TIMEVERYFAST : float = 0.25;
 private var TIMEHYPERFAST : float = 0.125;
-
+*/
 private var saldoText = "";
 private var timeText = "";
 private var deadlineText = "";
@@ -110,7 +110,7 @@ function GameSpeed()	{
 		
 		if(timer.GetRepeatTime() != timer.GetTimeVF())
 			if (GUI.Button (Rect (100,25, 70, 25), "Fastest"))
-				timer.SpeedVeryFastl();
+				timer.SpeedVeryFast();
 		if(timer.GetRepeatTime() == timer.GetTimeVF())
 			GUI.Box (Rect (100,25, 70, 25), "Fastest");
 	}

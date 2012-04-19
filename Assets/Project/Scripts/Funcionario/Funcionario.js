@@ -13,7 +13,10 @@ private var tester : float = 0;
 private var nome : String;
 private var defaultSalary : int;
 private var salary : int;
-private var role : String;
+private var mainRole : String;
+private var secRole : String;
+private var mainRoleRate : int;
+private var secRoleRate : int;
 private var job : String;		//Junior, plain, senior
 private var workingHours : int = 40;
 private var morale : int = 100;
@@ -46,119 +49,6 @@ private var aux_rel : int = 0;
 
 public var report : WeeklyReport;
 
-function GetReq_Experience(){
-	return requiredExperience;
-}
-
-function GetLevel(){
-	return level;
-}
-function GetExperience(){
-	return experience;
-}
-function GetDaysModifier(){
-	return days_modifier;
-}
-function GetDaysAnalista(){
-	return days_analista;
-}
-function GetDaysArquiteto(){
-	return days_arquiteto;
-}
-function GetDaysGerente(){
-	return days_gerente;
-}
-function GetDaysMarketing(){
-	return days_marketing;
-}
-function GetDaysProgramador(){
-	return days_programador;
-}
-function GetDaysTester(){
-	return days_tester;
-}
-function GetAdapMod(){
-	return aux_adap;
-}
-function GetAutoMod(){
-	return aux_auto;
-}
-function GetDetMod(){
-	return aux_det;
-}
-function GetNegMod(){
-	return aux_neg;
-}
-function GetObjMod(){
-	return aux_obj;
-}
-function GetOrgMod(){
-	return aux_org;
-}
-function GetPacMod(){
-	return aux_pac;
-}
-function GetRacMod(){
-	return aux_rac;
-}
-function GetRelMod(){
-	return aux_rel;
-}
-
-function SetLevel(t : int){
-	level = t;
-}
-function SetExperience(t : int){
-	experience = t;
-}
-function SetDaysModifier(t : int){
-	days_modifier = t;
-}
-function SetDaysAnalista(t : int){
-	days_analista = t;
-}
-function SetDaysArquiteto(t : int){
-	days_arquiteto = t;
-}
-function SetDaysGerente(t : int){
-	days_gerente = t;
-}
-function SetDaysMarketing(t : int){
-	days_marketing = t;
-}
-function SetDaysProgramador(t : int){
-	days_programador = t;
-}
-function SetDaysTester(t : int){
-	days_tester = t;
-}
-function SetAdapMod(t : int){
-	aux_adap = t;
-}
-function SetAutoMod(t : int){
-	aux_auto = t;
-}
-function SetDetMod(t : int){
-	aux_det = t;
-}
-function SetNegMod(t : int){
-	aux_neg = t;
-}
-function SetObjMod(t : int){
-	aux_obj = t;
-}
-function SetOrgMod(t : int){
-	aux_org = t;
-}
-function SetPacMod(t : int){
-	aux_pac = t;
-}
-function SetRacMod(t : int){
-	aux_rac = t;
-}
-function SetRelMod(t : int){
-	aux_rel = t;
-}
 
 function CopyLevel(t : Funcionario){
 	ResetDays();
@@ -400,11 +290,30 @@ function SetRelacionamentoHumano(t: int) {
 	atributos.relacionamentoHumano = t;
 }
 function GetPapel() {
-	return role;
+	return mainRole;
+}
+function GetPapelSec() {
+	return secRole;
 }
 function SetPapel(t: String) {
-	role = t;
+	mainRole = t;
 }
+function SetPapelSec(t: String) {
+	secRole = t;
+}
+function GetPapelRate() {
+	return mainRoleRate;
+}
+function GetPapelSecRate() {
+	return secRoleRate;
+}
+function SetPapelRate(t: int) {
+	mainRoleRate = t;
+}
+function SetPapelSecRate(t: int) {
+	secRoleRate = t;
+}
+
 function GetCargo() {
 	return job;
 }
@@ -447,6 +356,120 @@ function GetStaminaForBonus() {
 }
 function GetStamina() {
 	return stamina;
+}
+
+function GetReq_Experience(){
+	return requiredExperience;
+}
+
+function GetLevel(){
+	return level;
+}
+function GetExperience(){
+	return experience;
+}
+function GetDaysModifier(){
+	return days_modifier;
+}
+function GetDaysAnalista(){
+	return days_analista;
+}
+function GetDaysArquiteto(){
+	return days_arquiteto;
+}
+function GetDaysGerente(){
+	return days_gerente;
+}
+function GetDaysMarketing(){
+	return days_marketing;
+}
+function GetDaysProgramador(){
+	return days_programador;
+}
+function GetDaysTester(){
+	return days_tester;
+}
+function GetAdapMod(){
+	return aux_adap;
+}
+function GetAutoMod(){
+	return aux_auto;
+}
+function GetDetMod(){
+	return aux_det;
+}
+function GetNegMod(){
+	return aux_neg;
+}
+function GetObjMod(){
+	return aux_obj;
+}
+function GetOrgMod(){
+	return aux_org;
+}
+function GetPacMod(){
+	return aux_pac;
+}
+function GetRacMod(){
+	return aux_rac;
+}
+function GetRelMod(){
+	return aux_rel;
+}
+
+function SetLevel(t : int){
+	level = t;
+}
+function SetExperience(t : int){
+	experience = t;
+}
+function SetDaysModifier(t : int){
+	days_modifier = t;
+}
+function SetDaysAnalista(t : int){
+	days_analista = t;
+}
+function SetDaysArquiteto(t : int){
+	days_arquiteto = t;
+}
+function SetDaysGerente(t : int){
+	days_gerente = t;
+}
+function SetDaysMarketing(t : int){
+	days_marketing = t;
+}
+function SetDaysProgramador(t : int){
+	days_programador = t;
+}
+function SetDaysTester(t : int){
+	days_tester = t;
+}
+function SetAdapMod(t : int){
+	aux_adap = t;
+}
+function SetAutoMod(t : int){
+	aux_auto = t;
+}
+function SetDetMod(t : int){
+	aux_det = t;
+}
+function SetNegMod(t : int){
+	aux_neg = t;
+}
+function SetObjMod(t : int){
+	aux_obj = t;
+}
+function SetOrgMod(t : int){
+	aux_org = t;
+}
+function SetPacMod(t : int){
+	aux_pac = t;
+}
+function SetRacMod(t : int){
+	aux_rac = t;
+}
+function SetRelMod(t : int){
+	aux_rel = t;
 }
 function SetStamina(t: int) {
 	stamina = t;

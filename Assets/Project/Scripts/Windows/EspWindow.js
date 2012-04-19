@@ -24,6 +24,11 @@ function ExecutaJanelaEsp(t : String){
 		trainingTime = parseInt(aux);
 		deadlineTreino = timer.GetGameTime() + trainingTime;
 		func.SetPapel(stringNames.papelTreinando);
+		
+		func.SetPapelSec(stringNames.papelNenhum);
+		func.SetPapelRate(100);
+		func.SetPapelSecRate(0);
+		
 		treino.SetDeadline_Treino(deadlineTreino);
 		treino.SetAprendendo(t);
 		pagar.PagarFuncionarioTreinamento(PRECO);

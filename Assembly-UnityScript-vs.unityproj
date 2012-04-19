@@ -69,6 +69,12 @@
      <Compile Include="Assets\Project\Scripts\Funcionario\MoraleControl.js" />
      <Compile Include="Assets\Project\Scripts\Funcionario\NewFuncionario.js" />
      <Compile Include="Assets\Project\Scripts\Funcionario\PapelIcon.js" />
+     <Compile Include="Assets\Project\Scripts\Funcionario\Roles\Analyst.js" />
+     <Compile Include="Assets\Project\Scripts\Funcionario\Roles\Architect.js" />
+     <Compile Include="Assets\Project\Scripts\Funcionario\Roles\Manager.js" />
+     <Compile Include="Assets\Project\Scripts\Funcionario\Roles\Marketing.js" />
+     <Compile Include="Assets\Project\Scripts\Funcionario\Roles\Programmer.js" />
+     <Compile Include="Assets\Project\Scripts\Funcionario\Roles\Tester.js" />
      <Compile Include="Assets\Project\Scripts\Funcionario\StaminaBar.js" />
      <Compile Include="Assets\Project\Scripts\Funcionario\TrainingBar.js" />
      <Compile Include="Assets\Project\Scripts\Funcionario\Treinamento.js" />
@@ -110,12 +116,15 @@
      <Compile Include="Assets\Project\Scripts\Windows\WorkingHoursWindow.js" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Blob-Shadow\ShadowProjection.shader" />
+     <None Include="Assets\Shaders\UnlitAlpha.shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Standard Assets\Skyboxes\skybox info.txt" />
+     <None Include="Assets\Shaders\AlphaSelfIllum.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
+     <None Include="Assets\Shaders\unlit.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>

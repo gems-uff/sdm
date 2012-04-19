@@ -124,7 +124,7 @@ function SpeedFast(){
 	CancelInvoke();
 	InvokeRepeating("PassTime", incrementTime, TIMEFAST);
 }
-function SpeedVeryFastl(){
+function SpeedVeryFast(){
 	repeatTime = TIMEVERYFAST;
 	timeSpeed = 4.0;
 	CancelInvoke();

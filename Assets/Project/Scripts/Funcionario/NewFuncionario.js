@@ -198,6 +198,9 @@ function FireFuncionario (t : Funcionario) {
 	func.SetNome(stringNames.fired);
 	func.SetCargo(stringNames.jobJunior);
 	func.SetPapel(stringNames.papelNenhum);
+	func.SetPapelSec(stringNames.papelNenhum);
+	func.SetPapelRate(100);
+	func.SetPapelSecRate(0);
 	func.SetMorale(100);
 	func.SetWorkingHours(0);
 	func.SetSalarioDefault(0);
@@ -240,6 +243,9 @@ function ClearFuncionario (t : Funcionario) {
 	func.SetNome(stringNames.vazio);
 	func.SetCargo(stringNames.jobJunior);
 	func.SetPapel(stringNames.vazio);
+	func.SetPapelSec(stringNames.vazio);
+	func.SetPapelRate(100);
+	func.SetPapelSecRate(0);
 	func.SetMorale(100);
 	func.SetWorkingHours(0);
 	func.SetSalarioDefault(0);
@@ -252,6 +258,9 @@ function RandomFuncionario() {
 	func.SetNome(newNome.RandomName());
 	func.SetCargo(stringNames.jobJunior);
 	func.SetPapel(stringNames.papelNenhum);
+	func.SetPapelSec(stringNames.papelNenhum);
+	func.SetPapelRate(100);
+	func.SetPapelSecRate(0);
 	func.SetMorale(100);
 	func.SetWorkingHours(40);
 	func.SetSalarioDefault(NewSalario());
@@ -269,6 +278,9 @@ function RandomFuncionarioStarter () {
 		func.SetNome(newNome.RandomName());
 		func.SetCargo(stringNames.jobJunior);
 		func.SetPapel(stringNames.papelNenhum);
+		func.SetPapelSec(stringNames.papelNenhum);
+		func.SetPapelRate(100);
+		func.SetPapelSecRate(0);
 		func.SetMorale(100);
 		func.SetWorkingHours(40);
 		func.SetSalarioDefault(NewSalario());
