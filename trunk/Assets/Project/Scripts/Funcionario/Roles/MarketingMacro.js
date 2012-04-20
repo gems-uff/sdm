@@ -1,5 +1,5 @@
 #pragma strict
-class Marketing extends System.ValueType{
+class MarketingMacro extends System.ValueType{
 						
 	function Work(func : Funcionario, project : Project, report : WeeklyReport, floatingLines : FloatingLines, equipe : Equipe, constant : GameConstants, playerStats : PlayerStats, marketing : float)
 	{

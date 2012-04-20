@@ -1,5 +1,5 @@
 #pragma strict
-class Manager extends System.ValueType{
+class ManagerMicro extends System.ValueType{
 						
 	function Work(func : Funcionario, project : Project, report : WeeklyReport, floatingLines : FloatingLines, equipe : Equipe, constant : GameConstants, gerente : float, auxAnaArq : float, auxProg : float)
 	{

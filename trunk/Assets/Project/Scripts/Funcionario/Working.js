@@ -6,6 +6,7 @@ public var equipe : Equipe;
 public var project : Project;
 public var timer : GameTime;
 public var playerStats : PlayerStats;
+public var playStyle : GameplayStyle;
 public var constant : GameConstants;
 public var floatingLines : FloatingLines;
 //public var floatingLinesBelow : FloatingLines;
@@ -21,6 +22,19 @@ private var report : WeeklyReport;
 private var delayTime : float = 0.6;
 public var funcWindow : FuncWindow;
 
+//Different work for each type of the game (Micro/Macro)
+private var AnalistaMicro : AnalystMicro;
+private var AnalistaMacro : AnalystMacro;
+private var ArchitectMicro : ArchitectMicro;
+private var ArchitectMacro : ArchitectMacro;
+private var ManagerMicro : ManagerMicro;
+private var ManagerMacro : ManagerMacro;
+private var MarketingMicro : MarketingMicro;
+private var MarketingMacro : MarketingMacro;	
+private var ProgrammerMicro : ProgrammerMicro;
+private var ProgrammerMacro : ProgrammerMacro;
+private var TesterMicro : TesterMicro;
+private var TesterMacro : TesterMacro;
 //Report
 function GetReport(){	
 	return report;
@@ -254,33 +268,15 @@ function AnalistaWork(){
 		func.WorkingAnalista();
 		
 		analista = func.GetAnalista();
-		analista = analista * rate * mod * constant.ANALISTA * equipe.GetBonusAnalista() * (1 + modificador_positivo - penal) ;
-		var Analista : Analyst;
-		Analista.Work(func, project, report, floatingLines, equipe, constant, analista);
-		/*
-		if(project.GetSincronismo() == 00)	//Se o projeto esta sendo iniciado, entao o valor de sincronismo inicial varia de acordo com o desempenho do analista
+		analista = analista * (rate * 0.01) * mod * constant.ANALISTA * equipe.GetBonusAnalista() * (1 + modificador_positivo - penal) ;
+		if(playStyle.IsMacro() == false)
 		{
-			analista = analista * constant.ANALISTA_INICIO * randomizer;
-			analista = Mathf.Round(analista * 100f) / 100f;
-			project.SetSincronismo(analista);
-			AnalistReport(parseInt(analista));
-			floatingLines.showFloatText2("+", analista.ToString(), "blue", " Val.");
+			AnalistaMicro.Work(func, project, report, floatingLines, equipe, constant, analista);
 		}
 		else
 		{
-			if(project.GetSincronismo() < 100)	//Se o projeto esta em andamento entao o sincronismo vai mudando lentamente de acordo com o analista
-			{
-				analista = analista / (project.GetProjectSize() * 0.001) ;
-				//analista = analista * mod;
-				//analista = analista * equipe.GetBonusAnalista();
-				analista = analista * randomizer;
-				analista = Mathf.Round(analista * 100f) / 100f; //Para truncar na segunda casa decimal
-				project.SetSincronismo(analista);
-				AnalistReport(parseInt(analista));
-				floatingLines.showFloatText2("+", analista.ToString(), "blue", " Val.");
-			}
+			AnalistaMacro.Work(func, project, report, floatingLines, equipe, constant, analista);
 		}
-		*/
 	}
 }
 
@@ -311,33 +307,22 @@ function ArquitetoWork(){
 	{
 		var modificador_positivo : float = EspecializacaoFerramenta();
 		var penal : float = MetodologiaEquipe();
-		//var aux : float = 0.0;
 		var arquiteto : float ;
 		var mod : float = GameModifiers();
-		//var randomizer : float = Random.Range (0.8, 1.2);
-		//var randomizer2 : float = Random.Range (0.8, 1.2);
 
 		yield WaitForSeconds(delay);
 		func.WorkingArquiteto();
 		
-		arquiteto = func.GetArquiteto() * rate * mod * constant.ARCHITECT * (1 + modificador_positivo - penal) * equipe.GetBonusArquiteto();	
+		arquiteto = func.GetArquiteto() * (rate * 0.01) * mod * constant.ARCHITECT * (1 + modificador_positivo - penal) * equipe.GetBonusArquiteto();	
 		
-		var Architect : Architect;
-		Architect.Work(func, project, report, floatingLines, equipe, constant, arquiteto);
-		/*
-		aux = arquiteto;
-		//aux = aux * (1 + modificador_positivo - penal);
-		//aux = aux * mod;
-		//aux = aux * equipe.GetBonusArquiteto();
-		aux = (aux * 2);
-		aux = parseInt(aux * randomizer);
-		equipe.SetFindbugScore(aux);
-		arquiteto = parseInt(randomizer2 * aux / 10);
-		equipe.SetBonusProg(arquiteto);
-		ArchitectReport(aux, arquiteto);
-		floatingLines.showFloatText1("+", aux.ToString(), "blue","% Testing");
-		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue", " % Archit.");
-		*/
+		if(playStyle.IsMacro() == false)
+		{
+			ArchitectMicro.Work(func, project, report, floatingLines, equipe, constant, arquiteto);
+		}
+		else
+		{
+			ArchitectMacro.Work(func, project, report, floatingLines, equipe, constant, arquiteto);
+		}
 	}
 }
 
@@ -375,13 +360,11 @@ function GerenteWork(){
 		var auxProg : float = 0;
 		var gerente : float ;
 		var penal_prog : float = PenalidadeProgramacao(penal);
-		//var randomizer : float = Random.Range (2.0, 2.5);
-		//var randomizer2 : float = Random.Range (1.0, 1.5);
 		
 		yield WaitForSeconds(delay);
 		func.WorkingGerente();
 		
-		gerente = func.GetGerente() * rate * constant.GERENTE * mod;
+		gerente = func.GetGerente() * (rate * 0.01) * constant.GERENTE * mod;
 
 		auxAnaArq = gerente;
 		auxProg = gerente;
@@ -389,22 +372,14 @@ function GerenteWork(){
 		auxAnaArq = auxAnaArq * (1 + modificador_positivo - penal);
 		auxProg = auxProg * (1 + modificador_positivo - penal_prog);
 		
-		var Manager : Manager;
-		Manager.Work(func, project, report, floatingLines, equipe, constant, gerente, auxAnaArq, auxProg);
-		
-		//auxAnaArq = auxAnaArq * GameModifiers();
-		//auxProg = auxProg * GameModifiers();
-		/*
-		auxAnaArq = parseInt(auxAnaArq * randomizer);
-		auxProg = parseInt(auxProg * randomizer2);
-		
-		equipe.SetBonusAnalista(auxAnaArq);
-		equipe.SetBonusArquiteto(auxAnaArq);
-		equipe.SetBonusProg(auxProg);
-		ManagerReport(auxAnaArq, auxProg);
-		floatingLines.showFloatText1("+", auxAnaArq.ToString(), "blue", "% Design");
-		floatingLines.showFloatText2("+", auxProg.ToString(), "blue", " % Dev.");
-		*/
+		if(playStyle.IsMacro() == false)
+		{
+			ManagerMicro.Work(func, project, report, floatingLines, equipe, constant, gerente, auxAnaArq, auxProg);
+		}
+		else
+		{
+			ManagerMacro.Work(func, project, report, floatingLines, equipe, constant, gerente, auxAnaArq, auxProg);
+		}
 	}
 }
 
@@ -435,32 +410,22 @@ function MarketingWork(){
 	if(work)
 	{
 		var penal : float = MetodologiaEquipe();
-		//var aux : float = 0.0;
 		var mod : float = GameModifiers();
 		var marketing : float ;
-		//var randomizer : float = Random.Range (5.0, 7.5);
-		//var randomizer2 : float = Random.Range (4.0, 6.0);
 		
 		yield WaitForSeconds(delay);
 		func.WorkingMarketing();
 		
-		marketing = func.GetMarketing() * rate * (1 - penal) * mod * 0.01;	
+		marketing = func.GetMarketing() * (rate * 0.01) * (1 - penal) * mod * 0.01;	
 		
-		var Marketing : Marketing;
-		Marketing.Work(func, project, report, floatingLines, equipe, constant, playerStats, marketing);
-		
-		/*
-		aux = marketing * 0.5;
-		//aux = aux * (1 - penal);
-		//aux = aux * GameModifiers();
-		marketing = parseInt(aux * randomizer2);
-		aux = parseInt(aux * randomizer);
-		equipe.SetBonusAnalista(aux);
-		playerStats.ChangeSaldo(marketing);
-		MarketingReport(aux, marketing);
-		floatingLines.showFloatText1("+", aux.ToString(), "blue", "% Val.");
-		floatingLines.showFloatText2("+", marketing.ToString(), "", " Money");
-		*/
+		if(playStyle.IsMacro() == false)
+		{
+			MarketingMicro.Work(func, project, report, floatingLines, equipe, constant, playerStats, marketing);
+		}
+		else
+		{
+			MarketingMacro.Work(func, project, report, floatingLines, equipe, constant, playerStats, marketing);
+		}
 	}
 		
 }
@@ -493,66 +458,26 @@ function ProgramadorWork(){
 	{
 		var modificador_positivo : float = EspecializacaoFerramenta();
 		var penal : float = MetodologiaEquipe();
-		var mod : float = GameModifiers();
-		//var numBugs : float = 0.0;
+		var gameMod : float = GameModifiers();
 		var programador : float ;
 		var penal_prog : float = PenalidadeProgramacao(penal);
-		//var aux : float = 0;
-		//var random : int;
-		//var i : int;
-		//var bugCount : int = 0;
-		//var variation : int;
 		
 		yield WaitForSeconds(delay);
 		
 		func.WorkingProgramador();
 		
-		programador = func.GetProgramador() * rate * (1 + modificador_positivo - penal_prog) * mod;
-				
-		var Programmer : Programmer;
-		Programmer.Work(func, project, report, floatingLines, equipe, constant, programador, RequisitoLinguagem());
+		programador = func.GetProgramador() * (rate * 0.01) * (1 + modificador_positivo - penal_prog) * gameMod;
 		
-		/*
-		if (RequisitoLinguagem() == true && project.GetFractionDone() < 100)
-		{
-			numBugs = (100.0 - programador ) * constant.PROG_BUG_MOD; //Para acrescentar/reduzir o numero de bugs, os modificadores tem seu papel invertido 
-			//numBugs = numBugs * (1 + modificador_positivo - penal_prog);
-			aux = programador * constant.PROG_LINES_DAY_MOD;
-			//aux = aux * (1 + modificador_positivo - penal_prog);
-			//aux = aux * GameModifiers();
-			aux = aux * equipe.GetBonusProg();	
-			variation = aux * 0.2;
-			aux = aux * 0.9;
-			aux = aux + Random.Range (0, variation);
-			aux = aux * (project.GetSincronismo() / 100);
-			aux = parseInt(aux);
-			//numBugs = numBugs * GameModifiers();	
-			numBugs = parseInt(numBugs);
-			if (project.GetSincronismo() == 0 )
-				numBugs = 0;
-			else
-			{
-				if (func.GetWorkingHours() > 0 )
-					numBugs = numBugs + 1;
-				else
-					numBugs = 0;
-			}
-			//Chance to add a bug, to a total of "numBugs"
-			for (i = 0; i < (numBugs); i++)
-			{
-				random = Random.Range (0, 10);
-				if (random > 4)
-				{
-					bugCount++;
-					project.SetNumBugs(1);
-				}
-			}
-			project.SetLinesDone(aux);
-			ProgReport(aux, bugCount);
-			floatingLines.showFloatText1("+", aux.ToString(), "blue", " Progress");
-			floatingLines.showFloatText2("+", bugCount.ToString(), "red", " Bugs");
+		programador = programador * equipe.GetBonusProg();
+		
+		if(playStyle.IsMacro() == false)
+		{	
+			ProgrammerMicro.Work(func, project, report, floatingLines, equipe, constant, programador, RequisitoLinguagem());
 		}
-		*/
+		else
+		{
+			ProgrammerMacro.Work(func, project, report, floatingLines, equipe, constant, programador, RequisitoLinguagem());
+		}
 	}
 }
 
@@ -585,46 +510,22 @@ function TesterWork(){
 		var modificador_positivo : float = EspecializacaoFerramenta();
 		var penal : float = MetodologiaEquipe();
 		var mod : float = GameModifiers();
-		//var aux : float;
 		var tester : float;
 		var penal_prog : float = PenalidadeProgramacao(penal);
-		
-		//var bugCount : int = 0;
-		//var i : int;
-		//var randomizer : float = Random.Range (0.7, 1.0);
-		//var random : int;
-		
+
 		func.WorkingTester();
-		tester = func.GetTester() * rate * constant.TESTER_DURANTE * (1 + modificador_positivo - penal_prog) * mod * equipe.GetFindbugScore();
+		tester = func.GetTester() * (rate * 0.01) * constant.TESTER_DURANTE * (1 + modificador_positivo - penal_prog) * mod * equipe.GetFindbugScore();
 		
 		yield WaitForSeconds(delay);
 		
-		var Tester : Tester;
-		Tester.Work(func, project, report, floatingLines, equipe, constant, tester, RequisitoLinguagem());
-		
-		/*		
-		if (RequisitoLinguagem() == true)
+		if(playStyle.IsMacro() == false)
 		{
-			//aux = tester;		
-			//Por parte do tester
-			//tester = tester * (1 + modificador_positivo - penal_prog);
-			//tester = tester * GameModifiers();
-			//tester = tester * equipe.GetFindbugScore();	
-			tester = parseInt(tester * randomizer);
-			//Chance to remove a bug, to a total of "aux" bugs
-			for (i = 0; i < tester; i++)
-			{
-				random = Random.Range (0, 10);
-				if (random > 5)
-				{
-					bugCount++;
-					project.SetNumBugs(-1);
-				}
-			}
-			TesterReport(bugCount);
-			floatingLines.showFloatText1(" -", bugCount.ToString(), "blue", " Bugs");
+			TesterMicro.Work(func, project, report, floatingLines, equipe, constant, tester, RequisitoLinguagem());
 		}
-		*/
+		else
+		{
+			TesterMacro.Work(func, project, report, floatingLines, equipe, constant, tester);
+		}
 	}
 }
 

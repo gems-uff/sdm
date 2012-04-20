@@ -5,7 +5,7 @@ private var gameStyle : boolean = false;
 //true = macro management
 //false = micro management
 
-function GetPlayStyle()
+function IsMacro()
 {
  return gameStyle;
 }

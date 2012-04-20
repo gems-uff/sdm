@@ -1,5 +1,5 @@
 #pragma strict
-class Architect extends System.ValueType{
+class ArchitectMacro extends System.ValueType{
 						
 	function Work(func : Funcionario, project : Project, report : WeeklyReport, floatingLines : FloatingLines, equipe : Equipe, constant : GameConstants, arquiteto : float)
 	{

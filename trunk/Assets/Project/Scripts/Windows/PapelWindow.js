@@ -75,8 +75,8 @@ function WindowFunction(windowID : int){
 	GUI.BeginGroup (Rect (02,25,600,260));
 	//---------------------------------------------------------------------------------------------------------------------
 	//if gameplay style is micro, then player can change roles
-	if(playStyle.GetPlayStyle() == false)
-	{		
+	//if(playStyle.IsMacro() == false)
+	//{		
 		//Main Role
 		if((func.GetPapel() != stringNames.papelAnalista) && (managerSlot != func) && (marketingSlot != func))
 		{    
@@ -153,7 +153,7 @@ function WindowFunction(windowID : int){
 			}
 		if(func.GetPapelSec() == stringNames.papelTester)
 			GUI.Box (Rect (200,93,198,25), stringNames.papelTester);	
-	}	
+	//}	
 	//---------------------------------------------------------------------------------------------------------------------	
 	//Both on micro and macro the player can assign the manager and marketing role
 	if((func.GetPapel() != stringNames.papelGerente) && (managerSlot != func))

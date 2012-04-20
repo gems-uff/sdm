@@ -103,7 +103,7 @@ function Dialog_Funcionario (){
 				dialogEnable = false;
 		}
 		GUI.Box (Rect (600,50, 130, 25), "");
-		if(playStyle.GetPlayStyle() == false)
+		if(playStyle.IsMacro() == false)
 		{
 			if (GUI.Button (Rect (600,50, 130, 25), "Train")) {
 					menuEsp.Especializar(func, treino);
@@ -111,7 +111,7 @@ function Dialog_Funcionario (){
 			}
 		}
 		GUI.Box (Rect (600,75, 130, 25), "");
-		//if(playStyle.GetPlayStyle() == false)
+		//if(playStyle.IsMacro() == false)
 		//{
 		if (GUI.Button (Rect (600,75, 130, 25), "Change Task")) {
 				menuPapel.MudarPapel(func, treino);
@@ -119,7 +119,7 @@ function Dialog_Funcionario (){
 		}
 		//}
 		GUI.Box (Rect (600,100, 130, 25), "");
-		if(playStyle.GetPlayStyle() == false)
+		if(playStyle.IsMacro() == false)
 		{
 			if (GUI.Button (Rect (600,100, 130, 25), "Working Hours")) {
 					workHours.ChangeWorkHours(func);
@@ -138,7 +138,7 @@ function Dialog_Funcionario (){
 		if(func.GetPapel() == stringNames.papelGerente)
 			if (GUI.Button (Rect (600,125, 130, 25), "Hire")) 
 			{
-				if(playStyle.GetPlayStyle() == false)
+				if(playStyle.IsMacro() == false)
 					menuHire.SetShowWindow();
 				else
 					menuHire.SetShowWindowMHiring();

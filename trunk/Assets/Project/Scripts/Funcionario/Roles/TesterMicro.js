@@ -1,5 +1,5 @@
 #pragma strict
-class Tester extends System.ValueType{
+class TesterMicro extends System.ValueType{
 						
 	function Work(func : Funcionario, project : Project, report : WeeklyReport, floatingLines : FloatingLines, equipe : Equipe, constant : GameConstants, tester : float, RequisitoLinguagem : boolean)
 	{
@@ -10,11 +10,6 @@ class Tester extends System.ValueType{
 		
 		if (RequisitoLinguagem)
 		{
-			//aux = tester;		
-			//Por parte do tester
-			//tester = tester * (1 + modificador_positivo - penal_prog);
-			//tester = tester * GameModifiers();
-			//tester = tester * equipe.GetFindbugScore();	
 			tester = parseInt(tester * randomizer);
 			//Chance to remove a bug, to a total of "aux" bugs
 			for (i = 0; i < tester; i++)
@@ -32,8 +27,8 @@ class Tester extends System.ValueType{
 	}
 	
 	function TesterReport(bug : int, report : WeeklyReport)
-{
+	{
 	report.testerReport = report.testerReport + bug;
-}
+	}
 
 }
