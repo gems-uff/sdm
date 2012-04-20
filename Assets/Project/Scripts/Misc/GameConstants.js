@@ -9,13 +9,14 @@ public var SENIOR_MODIFICATOR : float = 1.4;
 public var MINPAYMENT : int = 2000;
 public var PENALIDADE : float = 0.3;
 public var BONUS : float = 0.25;
+//Roles Constant modifiers
 public var ANALISTA_INICIO : float = 0.8;
-public var ANALISTA : float = 0.01;
-public var ARCHITECT : float = 0.01;
-public var GERENTE : float = 0.006;	// +40%
-public var PROG_LINES_DAY_MOD : float = 0.03;
-public var PROG_BUG_MOD : float = 0.001;
-public var TESTER_DURANTE : float = 0.001;
+public var ANALISTA : float = 1;
+public var ARCHITECT : float = 1;
+public var GERENTE : float = 0.6;	// +40%
+public var PROG_LINES_DAY_MOD : float = 3;
+public var PROG_BUG_MOD : float = 0.1;
+public var TESTER_DURANTE : float = 0.1;
 
 //Morale
 public var MODIFICATOR : float = 2.5; 

@@ -1,5 +1,5 @@
 #pragma strict
-class Analyst extends System.ValueType{
+class AnalystMicro extends System.ValueType{
 						
 	function Work(func : Funcionario, project : Project, report : WeeklyReport, floatingLines : FloatingLines, equipe : Equipe, constant : GameConstants, analista : float)
 	{

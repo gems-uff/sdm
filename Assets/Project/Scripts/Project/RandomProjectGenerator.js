@@ -131,6 +131,7 @@ function NewProject(){
 	projeto.SetNome(description.nome);
 	projeto.SetDescription(description.description);
 	projeto.SetProjectQuality();
+	projeto.ResetBugsTypes();
 }
 
 function LinguagemProg(t : int){

@@ -68,7 +68,7 @@ function Awake () {
 }
 
 function OnGUI () {
-	if(playStyle.GetPlayStyle() == false)
+	if(playStyle.IsMacro() == false)
 		TeamWorkHoursBar();
 	if (showWindow)
 		windowRect = GUI.Window (6, windowRect, WindowFunction, "Working Hours");

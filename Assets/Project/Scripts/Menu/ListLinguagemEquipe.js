@@ -17,7 +17,7 @@ function LinguagemEquipe(){
 	GUI.Box (Rect (00,00,180,25), "Staff's Settings");
 	GUI.BeginGroup(Rect (00,25,220,175));
 	GUI.Box (Rect (00,00,90,25), "Language:"); //+ equipe.GetMetodologia())
-	if(playStyle.GetPlayStyle() == false)
+	if(playStyle.IsMacro() == false)
 	{
 		if (Popup.List (Rect(00, 25, 90, 25), showList, listEntry, GUIContent( equipe.GetLinguagem()), list, listStyle)) 
 		{
