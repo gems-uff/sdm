@@ -10,6 +10,6 @@ function TakeProject(newProject : Project){
 	acceptedProject.SetBugValue(newProject.GetBugValue());
 	acceptedProject.SetLinguagem(newProject.GetLinguagem());
 	acceptedProject.SetStartDay(newProject.GetStartDay());
-	acceptedProject.ResetBugsTypes();
+	//acceptedProject.ResetBugsTypes();
 	style.ShowStyleChoiceWindow();
 }

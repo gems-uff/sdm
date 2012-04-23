@@ -17,6 +17,8 @@ private var sincronismo : float = 0.0;		//sincronismo
 private var completed : boolean = false;
 private var bugs : float = 0.0 ;				//number of bugs in the software
 
+private var codeLinesDone : int = 0;	//number of lines done by the team
+
 //New types of bug
 private var bugUnitary : int = 0;
 private var bugIntegration : int = 0;
@@ -33,8 +35,143 @@ private var bugIntegrationRepaired : int = 0;
 private var bugSystemRepaired : int = 0;
 private var bugAcceptionRepaired : int = 0;
 
-private var codeLinesDone : int = 0;	//number of lines done by the team
 
+
+
+//New additions
+//Modificador que reduz a validação ja feita com o passar do tempo
+private var volatility : float = 1.0;
+private var lastValidation : int = 0.0;
+//Qualidade do codigo, o que interfere na remoção/inserção de bugs
+private var codeQuality : float = 0.8; //from 0.1 to 1.2
+//Project model. The hightest valor equals Validation (Sincronismo)
+private var model : float = 0.0;
+
+function ResetProject(){
+	bugs = 0;
+	sincronismo = 0;
+	codeLinesDone = 0;
+	completed = false;
+	ResetBugsTypes();
+	
+	model = 0.0;
+	volatility = 1.0;
+	lastValidation = timer.GetGameTime();
+	codeQuality = 0.8;
+}
+
+//---------------------------------------------------------------------------------------------------------------
+//--------------------------------------------Sincronismo/Volatility for Macro-----------------------------------
+//---------------------------------------------------------------------------------------------------------------
+function GetVolatility()
+{
+	return volatility;
+}
+function SetVolatility(t : float)
+{
+	volatility = t;
+}
+function ResetLastValidation()
+{
+	lastValidation = timer.GetGameTime();
+}
+
+function UpdateValidation(t : float)
+{
+	var change : float;
+	var passedTime : int;
+	change = t;
+	passedTime = timer.GetGameTime() - lastValidation;
+	passedTime = volatility * passedTime / (GetProjectSize() * 0.005);
+	if (!completed)
+	{
+		sincronismo = sincronismo - passedTime;
+		sincronismo = sincronismo + change;
+	}
+	if (sincronismo > 100.0)
+	{
+		sincronismo = 100.0;
+	}
+	else
+	{
+		if(sincronismo < 0.0)
+		{
+			sincronismo = 0.0;
+		}
+	}
+	CheckModel();
+	ResetLastValidation();
+		
+}
+
+//---------------------------------------------------------------------------------------------------------------
+//--------------------------------------------Code Quality-------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------
+function GetCodeQuality()
+{
+	return codeQuality;
+}
+function ChangeCodeQuality(t : float)
+{
+	codeQuality += t;
+	if(codeQuality > 1.2)
+	{
+		codeQuality = 1.2;
+	}
+	else
+	{
+		if(codeQuality < 0.1)
+		{
+			codeQuality = 0.1;
+		}
+	}
+}
+function ResetCodeQuality()
+{
+	codeQuality = 0.8;
+}
+function SetCodeQuality(t : float)
+{
+	codeQuality = t;
+}
+
+//---------------------------------------------------------------------------------------------------------------
+//--------------------------------------------Model-----------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------
+function GetModel()
+{
+	return model;
+}
+function ChangeModel(t : float)
+{
+	model += t;
+	CheckModel();
+	
+}
+function ResetModel()
+{
+	model = 0.0;
+}
+function SetModel(t : float)
+{
+	model = t;
+}
+
+//Model cant be highter than validation nor lower than 0.0
+function CheckModel()
+{
+	if(model > sincronismo)
+	{
+		model = sincronismo;
+	}
+	else
+	{
+		if(model < 0.0)
+		{
+			model = 0.0;
+		}
+	}
+}
 //---------------------------------------------------------------------------------------------------------------
 //--------------------------------------------Bugs Types-----------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------
@@ -114,10 +251,11 @@ function SetBugsRepairedByType(unitary : int, integration : int, system : int, a
 	bugAcceptionRepaired = acception; 
 	
 	//Everytime a bug is repaired, there is a chance to add another bug
-	var newBugChance : int = 20; //20%
-	var random : int;
-	random = Random.Range (0, 100);
+	var newBugChance : float = 20.0; //20%
+	var random : float;
+	random = Random.Range (0.0, 100.0);
 	//Add bug
+	newBugChance = newBugChance * (2 - codeQuality);
 	if(random < newBugChance)
 	{
 		random = Random.Range (0, 5);
@@ -334,12 +472,6 @@ function GetProjectSizeString () {					//Retorna o valor de cada bug
 function SetProjectSizeString(t : String) {					//Retorna o valor de cada bug
 	projectSize = t;
 }
-function ResetProject(){
-	bugs = 0;
-	sincronismo = 0;
-	codeLinesDone = 0;
-	completed = false;
-}
 
 /*
 function SetProjectSizeString () {
@@ -374,6 +506,8 @@ function SetProjectQuality(){
 			else
 				projectQuality = "Highest priority";
 }
+
+
 //--------------------------------------------Awake-----------------------------------------------------------
 function Awake(){
 	//SetProjectSizeString();

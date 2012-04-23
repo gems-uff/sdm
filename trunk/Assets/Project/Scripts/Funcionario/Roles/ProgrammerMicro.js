@@ -6,8 +6,9 @@ class ProgrammerMicro extends System.ValueType{
 		var random : int;
 		var i : int;
 		var bugCount : int = 0;
-		var variation : int;
+		//var variation : int;
 		var numBugs : float = 0.0;
+		var randomizer : float = Random.Range (0.8, 1.2);
 		
 		if (RequisitoLinguagem == true && project.GetFractionDone() < 100)
 		{
@@ -18,9 +19,9 @@ class ProgrammerMicro extends System.ValueType{
 			if (RequisitoLinguagem == true && project.GetFractionDone() < 100)
 			{			
 				//For a small variation during each day
-				variation = codeLines * 0.2;
-				codeLines = codeLines * 0.9;
-				codeLines = codeLines + Random.Range (0, variation);
+				//variation = codeLines * 0.2;
+				codeLines = codeLines * equipe.GetBonusProg();
+				codeLines = codeLines * randomizer;
 				codeLines = codeLines * (project.GetSincronismo() / 100);
 							
 				maxBugs = (100.0 - func.GetProgramador()) * constant.PROG_BUG_MOD; 
