@@ -1,25 +1,67 @@
 #pragma strict
 class ArchitectMacro extends System.ValueType{
-						
-	function Work(func : Funcionario, project : Project, report : WeeklyReport, floatingLines : FloatingLines, equipe : Equipe, constant : GameConstants, arquiteto : float)
+			
+	private var func : Funcionario;
+	private var project : Project;
+	private var report : WeeklyReport;
+	private var floatingLines : FloatingLines;
+	private var equipe : Equipe;
+	private var constant : GameConstants;
+	private var arquiteto : float;	
+				
+	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, constantP : GameConstants, arquitetoP : float)
 	{
-		var aux : float = arquiteto;
+		func = funcP;
+		project = projectP;
+		report = reportP;
+		floatingLines = floatingLinesP;
+		equipe = equipeP;
+		constant = constantP;
+		arquiteto = arquitetoP;
+		
 		var randomizer : float = Random.Range (0.8, 1.2);
-		var randomizer2 : float = Random.Range (0.8, 1.2);
-		aux = (aux * 2);
-		aux = parseInt(aux * randomizer);
-		equipe.SetFindbugScore(aux);
-		arquiteto = parseInt(randomizer2 * aux / 10);
+		
+		arquiteto = parseInt(randomizer * arquiteto);
+		
+		MakePrototype();
+		MakeSystemCases();
+		MakeIntegrationCases();
+		ModularizateCode();
+	}
+	
+	//Makes a prototype for the analyst
+	function MakePrototype()
+	{
+		//ArchitectReport(aux, arquiteto, report);
+	}
+	
+	//Make test cases for system bugs
+	function MakeSystemCases()
+	{
+		equipe.SetSystemBonus(arquiteto);
+		floatingLines.showFloatText1("+", arquiteto.ToString(), "blue","% Testing");
+		//ArchitectReport(aux, arquiteto, report);
+	}
+	
+	//Make test cases for integration bugs
+	function MakeIntegrationCases()
+	{
+		equipe.SetIntegrationBonus(arquiteto);
+		floatingLines.showFloatText1("+", arquiteto.ToString(), "blue","% Testing");
+		//ArchitectReport(aux, arquiteto, report);
+	}
+	
+	//Modularizate the code to aid the programmers
+	function ModularizateCode()
+	{
 		equipe.SetBonusProg(arquiteto);
-		ArchitectReport(aux, arquiteto, report);
-		floatingLines.showFloatText1("+", aux.ToString(), "blue","% Testing");
 		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue", " % Archit.");
 	}
 	
 	function ArchitectReport(bug : int, archt : int, report : WeeklyReport)
-{
-	report.architectReport_bug = report.architectReport_bug + bug;
-	report.architectReport_archt = report.architectReport_archt + archt;
-}
+	{
+		report.architectReport_bug = report.architectReport_bug + bug;
+		report.architectReport_archt = report.architectReport_archt + archt;
+	}
 
 }

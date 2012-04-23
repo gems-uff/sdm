@@ -10,6 +10,7 @@ class TesterMicro extends System.ValueType{
 		
 		if (RequisitoLinguagem)
 		{
+			tester = tester * equipe.GetFindbugScore() * constant.TESTER_DURANTE;
 			tester = parseInt(tester * randomizer);
 			//Chance to remove a bug, to a total of "aux" bugs
 			for (i = 0; i < tester; i++)

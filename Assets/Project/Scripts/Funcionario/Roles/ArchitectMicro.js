@@ -6,10 +6,10 @@ class ArchitectMicro extends System.ValueType{
 		var aux : float = arquiteto;
 		var randomizer : float = Random.Range (0.8, 1.2);
 		var randomizer2 : float = Random.Range (0.8, 1.2);
-		aux = (aux * 2);
+		//aux = (aux * 2);
 		aux = parseInt(aux * randomizer);
 		equipe.SetFindbugScore(aux);
-		arquiteto = parseInt(randomizer2 * aux / 10);
+		arquiteto = parseInt(randomizer2 * arquiteto);
 		equipe.SetBonusProg(arquiteto);
 		ArchitectReport(aux, arquiteto, report);
 		floatingLines.showFloatText1("+", aux.ToString(), "blue","% Testing");

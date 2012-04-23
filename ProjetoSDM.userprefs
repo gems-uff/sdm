@@ -1,10 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Funcionario\Roles\ProgrammerMacro.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Funcionario\Roles\AnalystMacro.js">
     <Files>
-      <File FileName="Assets\Project\Scripts\Funcionario\Roles\TesterMacro.js" Line="73" Column="34" />
-      <File FileName="Assets\Project\Scripts\Project\Project.js" Line="117" Column="36" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Roles\ProgrammerMacro.js" Line="182" Column="84" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\AnalystMacro.js" Line="58" Column="49" />
+      <File FileName="Assets\Project\Scripts\Equipe\Equipe.js" Line="391" Column="52" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Working.js" Line="517" Column="43" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\ArchitectMacro.js" Line="50" Column="46" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\TesterMacro.js" Line="42" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

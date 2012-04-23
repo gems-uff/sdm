@@ -18,6 +18,7 @@ private var auxD2 : int; //Deadline
 private var auxCL : int;  //Code Lines : Tamanho do programa
 private var auxPG : float; //Modificador de Pagamento
 private var auxBV : int; //BugValue
+private var auxV : float; //Volacity
 //private var allowedProject : int;
 	
 function SimpleProject(){
@@ -27,6 +28,9 @@ function SimpleProject(){
 	auxCL = Random.Range (30, 150);  //Code Lines : Tamanho do programa
 	auxPG = Random.Range (1.5, 2.0); //Modificador de Pagamento
 	auxBV = Random.Range (10, 100); //BugValue
+	auxV = Random.Range (0.3, 0.8); //Volacity
+	
+	projeto.SetVolatility(auxV);
 	projeto.SetProjectSizeString("Simple");
 }
 function RegularProject(){
@@ -36,6 +40,9 @@ function RegularProject(){
 	auxCL = Random.Range (151, 210);  //Code Lines : Tamanho do programa
 	auxPG = Random.Range (1.3, 1.8); //Modificador de Pagamento
 	auxBV = Random.Range (10, 100); //BugValue
+	auxV = Random.Range (0.5, 1.0); //Volacity
+	
+	projeto.SetVolatility(auxV);
 	projeto.SetProjectSizeString("Regular");
 }
 function ComplexProject(){
@@ -45,6 +52,9 @@ function ComplexProject(){
 	auxCL = Random.Range (211, 400);  //Code Lines : Tamanho do programa
 	auxPG = Random.Range (1.0, 1.5); //Modificador de Pagamento
 	auxBV = Random.Range (10, 100); //BugValue
+	auxV = Random.Range (0.7, 1.2); //Volacity
+	
+	projeto.SetVolatility(auxV);
 	projeto.SetProjectSizeString("Complex");
 }
 function InsaneProject(){
@@ -54,6 +64,9 @@ function InsaneProject(){
 	auxCL = Random.Range (401, 500);  //Code Lines : Tamanho do programa
 	auxPG = Random.Range (1.0, 1.5); //Modificador de Pagamento
 	auxBV = Random.Range (10, 100); //BugValue
+	auxV = Random.Range (0.8, 1.4); //Volacity
+	
+	projeto.SetVolatility(auxV);
 	projeto.SetProjectSizeString("Insane");
 }
 function NewProject(){
@@ -121,6 +134,8 @@ function NewProject(){
 	pagamento = pagamento * 100;
 	maxCodeLines = auxCL * deadline;
 	bugValue = auxBV * 50;
+	
+	
 	projeto.SetNewDeadline(deadline);
 	projeto.SetDeadlineDays(deadline);
 	projeto.SetStartDay(timer.GetGameTime());

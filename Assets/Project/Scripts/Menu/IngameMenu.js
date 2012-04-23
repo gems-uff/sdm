@@ -5,6 +5,7 @@ public var ingameMenuToggle 	: boolean = false;
 public var icon : Texture2D;
 public var welcomeWindow : WelcomeWindow;
 public var playStyle : GameplayStyle;
+public var bugsWindow : BugsWindow;
 //public var equipe : Equipe;
 /*
 private var TIMESLOW : float = 2.0;
@@ -47,7 +48,7 @@ function StatusProjeto()	{
 	}
 	else
 	{
-		bugsText = parseInt(project.GetTotalBugsFound()).ToString();
+		bugsText = parseInt(project.GetTotalBugsFound() - project.GetTotalBugsRepaired()).ToString();
 	}
 	completedText = (project.GetFractionDone().ToString() + " %");
 	sincronismoText = (parseInt(project.GetSincronismo()).ToString() + " %");	//parseint para converter o float para inteiro
@@ -179,7 +180,12 @@ function MainMenu(){
 			equipe.ShowReport();
 			ingameMenuToggle = false ;
 		}
-		if (GUI.Button( Rect (Screen.width - 100,270,100,20), "7: Resume") )
+		if (GUI.Button( Rect (Screen.width - 100,270,100,20), "7: Bugs Report") )
+		{
+			bugsWindow.ShowBugWindow();
+			ingameMenuToggle = false ;
+		}
+		if (GUI.Button( Rect (Screen.width - 100,290,100,20), "8: Resume") )
 		{
 			ingameMenuToggle = false ;
 		}

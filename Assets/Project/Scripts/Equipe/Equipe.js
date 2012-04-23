@@ -3,13 +3,15 @@
 //private var equipe : Equipe;
 //equipeObj = GameObject.Find("Equipe");
 //equipe = equipeObj.GetComponent(Equipe);
+
 public var stringNames : StringNames;
 public var metodologia : String = "";		//Agile or Classic
 public var linguagemProg : String = "";
-
+public var playStyle : GameplayStyle;
 public var timer : GameTime;
 public var fichaGuiStyle : GUIStyle;
 
+//For Micro Style
 private var findBugScore : float = 1.0;
 private var bonusAnalista : float = 1.0;
 private var bonusArquiteto : float = 1.0;
@@ -18,6 +20,13 @@ private var hasManager : boolean = false;
 private var hasMarketing : boolean = false;
 //private var marBonusAnalista : float = 1.0;
 
+//For Macro Style
+private var chanceUnitary : float = 1.0;		//Default
+private var chanceIntegration : float = 1.0;	//Architect
+private var chanceSystem : float = 1.0;			//Architect
+private var chanceAcception : float = 1.0;		//Analyst
+
+//Reports
 public var report : WeeklyReport;
 public var func01 : Funcionario;
 public var func02 : Funcionario;
@@ -28,16 +37,16 @@ public var func06 : Funcionario;
 public var func07 : Funcionario;
 public var func08 : Funcionario;
 
+//Windows
 private var showJanelaReport : boolean = false;
 private var windowRect : Rect = Rect (300,125,600,280);
 
+//For the manager control
 //int from 0 to 6, to be used on the func[i] array
 private var staffMainProgrammer : int;//can also belong to any of the main staff roles
 private var staffMainAnalyst : int;
 private var staffMainArchitect : int;
 private var staffMainTester : int;
-
-
 private var staffSecondaryAnaliyst : int;
 //private var staffSecondaryArchitect : int;
 private var staffSecondaryTester : int;
@@ -195,11 +204,19 @@ function WindowFunction_Report (windowID : int)	{
 	GUI.Box (Rect (02,138,198,20), (" Marketing's Validation:"),fichaGuiStyle);
 	GUI.Box (Rect (02,158,198,20), (" Marketing's Money:"),fichaGuiStyle);
 	GUI.Box (Rect (02,178,198,20), (" Programmer's Progress:"),fichaGuiStyle);
-	GUI.Box (Rect (02,198,198,20), (" Programmer's Bugs:"),fichaGuiStyle);
-	GUI.Box (Rect (02,218,198,20), (" Tester's Bug removal:"),fichaGuiStyle);
+	if(playStyle.IsMacro() == false)
+	{
+		GUI.Box (Rect (02,198,198,20), (" Programmer's Bugs:"),fichaGuiStyle);
+		GUI.Box (Rect (02,218,198,20), (" Tester's Bug removal:"),fichaGuiStyle);
+	}
+	else
+	{
+		GUI.Box (Rect (02,198,198,20), (" Programmer's Bugs repaired:"),fichaGuiStyle);
+		GUI.Box (Rect (02,218,198,20), (" Tester's Bug find:"),fichaGuiStyle);
+	}
 	//Relatorio da semana
 	GUI.Box (Rect (200,018,100,20), (" Last week"),fichaGuiStyle);
-	GUI.Box (Rect (200,038,100,20), (" + " +report.analistReport + " %"),fichaGuiStyle);
+	GUI.Box (Rect (200,038,100,20), (" + "+ report.analistReport + " %"),fichaGuiStyle);
 	GUI.Box (Rect (200,058,100,20), (" + "+ report.architectReport_bug+ " %"),fichaGuiStyle);
 	GUI.Box (Rect (200,078,100,20), (" + "+ report.architectReport_archt+ " %"),fichaGuiStyle);
 	GUI.Box (Rect (200,098,100,20), (" + "+ report.managerReport_design+ " %"),fichaGuiStyle);
@@ -321,29 +338,30 @@ function GetLinguagem(){
 function SetLinguagem(t: String){
 	linguagemProg = t;
 }
+
+function GetBonusProg () {					
+	return bonusProg;
+}
+function SetBonusProg(t: float){
+	bonusProg = bonusProg + (t * 0.01);
+}
 function GetFindbugScore () {					
 	return findBugScore;
 }
 function SetFindbugScore(t: float){
-	findBugScore = findBugScore + (t / 100);
+	findBugScore = findBugScore + (t * 0.01);
 }
 function GetBonusAnalista () {					
 	return bonusAnalista;
 }
 function SetBonusAnalista(t: float){
-	bonusAnalista = bonusAnalista + (t / 100);
+	bonusAnalista = bonusAnalista + (t * 0.01);
 }
 function GetBonusArquiteto () {					
 	return bonusArquiteto;
 }
 function SetBonusArquiteto(t: float){
-	bonusArquiteto = bonusArquiteto + (t / 100);
-}
-function GetBonusProg () {					
-	return bonusProg;
-}
-function SetBonusProg(t: float){
-	bonusProg = bonusProg + (t / 100);
+	bonusArquiteto = bonusArquiteto + (t * 0.01);
 }
 
 function GetHasManager () {					
@@ -358,6 +376,33 @@ function GetHasMarketing () {
 function SetHasMarketing(t: boolean){
 	hasMarketing =  t;
 }
+
+//Gets Sets for Macro style
+function GetUnitaryBonus() {					
+	return chanceUnitary;
+}
+function SetUnitaryBonus(t: float){
+	chanceUnitary = chanceUnitary + (t * 0.01);
+}
+function GetIntegrationBonus () {					
+	return chanceIntegration;
+}
+function SetIntegrationBonus(t: float){
+	chanceIntegration = chanceIntegration + (t * 0.01);
+}
+function GetSystemBonus () {					
+	return chanceSystem;
+}
+function SetSystemBonus(t: float){
+	chanceSystem = chanceSystem + (t * 0.01);
+}
+function GetAcceptionBonus () {					
+	return chanceAcception;
+}
+function SetAcceptionBonus(t: float){
+	chanceAcception = chanceAcception + (t * 0.01);
+}
+
 /*
 function GetMarBonusAnalista () {					
 	return marBonusAnalista;
@@ -373,8 +418,37 @@ function ResetBonus(){
 	bonusAnalista = 1.0;
 	bonusArquiteto = 1.0;
 	bonusProg = 1.0;
+	DecrementMacroBonus();
 }
 
+function DecrementMacroBonus()
+{
+	chanceUnitary = chanceUnitary - 0.1;
+	chanceIntegration = chanceIntegration - 0.1;
+	chanceSystem = chanceSystem - 0.1;
+	chanceAcception = chanceAcception - 0.1;
+	
+	//Unitary
+	if(chanceUnitary < 1.0)
+	{
+		chanceUnitary = 1.0;
+	}
+	//Integration
+	if(chanceIntegration < 1.0)
+	{
+		chanceIntegration = 1.0;
+	}
+	//System
+	if(chanceSystem < 1.0)
+	{
+		chanceSystem = 1.0;
+	}
+	//Acception
+	if(chanceAcception < 1.0)
+	{
+		chanceAcception = 1.0;
+	}
+}
 //--------------------------------------------OnGUI-----------------------------------------------------------
 
 //Funcao da unity para a GUI

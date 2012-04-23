@@ -468,7 +468,7 @@ function ProgramadorWork(){
 		
 		programador = func.GetProgramador() * (rate * 0.01) * (1 + modificador_positivo - penal_prog) * gameMod;
 		
-		programador = programador * equipe.GetBonusProg();
+		//programador = programador * equipe.GetBonusProg();
 		
 		if(playStyle.IsMacro() == false)
 		{	
@@ -514,7 +514,7 @@ function TesterWork(){
 		var penal_prog : float = PenalidadeProgramacao(penal);
 
 		func.WorkingTester();
-		tester = func.GetTester() * (rate * 0.01) * constant.TESTER_DURANTE * (1 + modificador_positivo - penal_prog) * mod * equipe.GetFindbugScore();
+		tester = func.GetTester() * (rate * 0.01) * (1 + modificador_positivo - penal_prog) * mod;
 		
 		yield WaitForSeconds(delay);
 		

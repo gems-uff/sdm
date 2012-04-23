@@ -23,40 +23,31 @@ class ProgrammerMacro extends System.ValueType{
 		
 		//Work on the code in order to expand it
 		Evolution();
-		/*
-		var random : int;
-		random = Random.Range (0, 10);
-		if(random < 6)
-		{
-			Evolution();
-		}
-		//Work on the code in order to repair bugs
-		else
-		{
-			Repair();
-		}
-		*/
+		//Work on the code in order to remove bugs
+		//Repair();
 	}
 	function Evolution()
 	{
-		//var aux : int = 0;
 		var random : int;
 		var i : int;
 		var bugCount : int = 0;
-		var variation : int;
-		//var numBugs : float = 0.0;
 		var maxBugs : float = 0.0;
 		var codeLines : float = 0.0;
+		var randomizer : float = Random.Range (0.8, 1.2);
+		
 		codeLines = programador;
 		if (RequisitoLinguagem == true && project.GetFractionDone() < 100)
 		{			
-			//For a small variation during each day
-			variation = codeLines * 0.2;
-			codeLines = codeLines * 0.9;
-			codeLines = codeLines + Random.Range (0, variation);
+			//Modify by the architect's bonus
+			codeLines = codeLines * (1 + equipe.GetBonusProg());
+			//Apply a small variation
+			codeLines = codeLines * randomizer;
+			//Cap at model
 			codeLines = codeLines * (project.GetSincronismo() / 100);
 						
 			maxBugs = (100.0 - func.GetProgramador()) * constant.PROG_BUG_MOD; 
+			//Number of bugs is influenced by the code quality
+			maxBugs = maxBugs * ( 2 - project.GetCodeQuality());
 			codeLines = codeLines * constant.PROG_LINES_DAY_MOD;
 			
 			maxBugs = parseInt(maxBugs);
@@ -83,7 +74,7 @@ class ProgrammerMacro extends System.ValueType{
 	}
 	function Repair()
 	{
-		var random : int;
+		var random : float;
 		var i : int;
 		var bugUnitary : int = 0;
 		var bugIntegration : int = 0;
@@ -98,9 +89,10 @@ class ProgrammerMacro extends System.ValueType{
 		Debug.Log("Repair #Bugs: " + t);
 		while(i < t)
 		{
-			random = Random.Range (0, 10);
+			random = Random.Range (0.0, 2.0);
+			Debug.Log("Prog Random = " + random);
 			i++;
-			if (random > codeQuality)
+			if (random < project.GetCodeQuality())
 			{ 
 				if(project.GetBugUnitaryFound() > project.GetBugUnitaryRepaired())
 				{

@@ -25,6 +25,7 @@ private var stamina : int = 100;
 //variaveis referentes a level do funcionario
 private var EXPERIENCE_MOD : int = 100;
 //private var PROJECT_EXPERIENCE : int = 5;
+private var levelCap : int = 20;
 private var level : int = 1;
 private var experience : int = 0;
 private var requiredExperience : int = level * level * EXPERIENCE_MOD;
@@ -120,11 +121,27 @@ function LevelUp(){
 		count = 0;
 		while ( experience > requiredExperience)
 		{
+			/*
 			level = level + 1;
 			experience = experience - requiredExperience;
 			requiredExperience = level * level * EXPERIENCE_MOD;
 			IncreaseAttributes();
 			count = count + 1;
+			*/
+			if (level >= levelCap)
+			{
+				level = levelCap;
+				experience = levelCap * levelCap * EXPERIENCE_MOD;
+				requiredExperience = experience;
+			}
+			else
+			{
+				level = level + 1;
+				experience = experience - requiredExperience;
+				requiredExperience = level * level * EXPERIENCE_MOD;
+				IncreaseAttributes();
+				count = count + 1;
+			}
 		}
 		ResetDays();
 		floatingLevel.showFloatText(count);
@@ -143,7 +160,6 @@ function SetExperienceDaysModifier( mod : int){
 function IncreaseExp(project_mod : int){
 	//project_mod = 1(simple) 2(regular) 3(complex) 4(insane)
 	var quantity : int =  0;
-	
 	quantity = (project_mod * days_modifier * (50 + (atributos.autoDidata * 0.5)));
 	quantity = quantity * 0.5;
 	experience = experience + quantity;
@@ -164,43 +180,62 @@ function EarnExperienceNegotiation(mod : int){
 	floatingLevel.showFloatTextExperience(mod * 4);
 }
 
+function IncreaseAttribute(att : int, aux : int)
+{
+	att += aux;
+	if( att > 100)
+	{
+		aux = aux - (att - 100);
+		att = 100;
+	}
+	return aux;
+}
 function IncreaseAttributes(){
 	var aux : int =0;
 	
 	aux = CalculaAcrescimo(days_analista * 0.2, days_arquiteto * 0.25, days_gerente * 0.1, days_marketing * 0.05, days_programador * 0.05, days_tester * 0.05);
-	atributos.adaptabilidade = atributos.adaptabilidade + aux;
+	//atributos.adaptabilidade = atributos.adaptabilidade + aux;
+	aux = IncreaseAttribute(atributos.adaptabilidade, aux);
 	aux_adap = aux_adap + aux;
 	
 	aux = CalculaAcrescimo(days_analista * 0.05, days_arquiteto * 0.05, days_gerente * 0.1, days_marketing * 0.05, days_programador * 0.2, days_tester * 0.05);
-	atributos.autoDidata = atributos.autoDidata + aux;
+	//atributos.autoDidata = atributos.autoDidata + aux;
+	aux = IncreaseAttribute(atributos.autoDidata, aux);
 	aux_auto = aux_auto + aux;
 	
 	aux = CalculaAcrescimo(days_analista * 0.1, days_arquiteto * 0.15, days_gerente * 0.05, days_marketing * 0.05, days_programador * 0.05, days_tester * 0.25);
-	atributos.detalhista = atributos.detalhista + aux;
+	//atributos.detalhista = atributos.detalhista + aux;
+	aux = IncreaseAttribute(atributos.detalhista, aux);
 	aux_det = aux_det + aux;
 	
 	aux = CalculaAcrescimo(days_analista * 0.05, days_arquiteto * 0.05, days_gerente * 0.1, days_marketing * 0.25, days_programador * 0.05, days_tester * 0.05);
-	atributos.negociacao = atributos.negociacao + aux;
+	//atributos.negociacao = atributos.negociacao + aux;
+	aux = IncreaseAttribute(atributos.negociacao, aux);
 	aux_neg = aux_neg + aux;
 	
 	aux = CalculaAcrescimo(days_analista * 0.1, days_arquiteto * 0.1, days_gerente * 0.05, days_marketing * 0.05, days_programador * 0.15, days_tester * 0.1);
-	atributos.objetividade = atributos.objetividade + aux;
+	//atributos.objetividade = atributos.objetividade + aux;
+	aux = IncreaseAttribute(atributos.objetividade, aux);
 	aux_obj = aux_obj + aux;
 	
 	aux = CalculaAcrescimo(days_analista * 0.05, days_arquiteto * 0.1, days_gerente * 0.25, days_marketing * 0.05, days_programador * 0.1, days_tester * 0.1);
-	atributos.organizacao = atributos.organizacao + aux;
+	//atributos.organizacao = atributos.organizacao + aux;
+	aux = IncreaseAttribute(atributos.organizacao, aux);
 	aux_org = aux_org + aux;
 	
 	aux = CalculaAcrescimo(days_analista * 0.1, days_arquiteto * 0.1, days_gerente * 0.1, days_marketing * 0.2, days_programador * 0.1, days_tester * 0.15);
-	atributos.paciencia = atributos.paciencia + aux;
+	//atributos.paciencia = atributos.paciencia + aux;
+	aux = IncreaseAttribute(atributos.paciencia, aux);
 	aux_pac = aux_pac + aux;
 	
 	aux = CalculaAcrescimo(days_analista * 0.1, days_arquiteto * 0.15, days_gerente * 0.05, days_marketing * 0.05, days_programador * 0.25, days_tester * 0.2);
-	atributos.raciocinioLogico = atributos.raciocinioLogico + aux;
+	//atributos.raciocinioLogico = atributos.raciocinioLogico + aux;
+	aux = IncreaseAttribute(atributos.raciocinioLogico, aux);
 	aux_rac = aux_rac + aux;
 	
 	aux = CalculaAcrescimo(days_analista * 0.25, days_arquiteto * 0.05, days_gerente * 0.2, days_marketing * 0.25, days_programador * 0.05, days_tester * 0.05);
-	atributos.relacionamentoHumano = atributos.relacionamentoHumano + aux;
+	//atributos.relacionamentoHumano = atributos.relacionamentoHumano + aux;
+	aux = IncreaseAttribute(atributos.relacionamentoHumano, aux);
 	aux_rel = aux_rel + aux;
 }
 
