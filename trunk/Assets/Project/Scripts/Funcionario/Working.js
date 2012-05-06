@@ -416,7 +416,7 @@ function MarketingWork(){
 		yield WaitForSeconds(delay);
 		func.WorkingMarketing();
 		
-		marketing = func.GetMarketing() * (rate * 0.01) * (1 - penal) * mod * 0.01;	
+		marketing = func.GetMarketing() * (rate * 0.01) * (1 - penal) * mod * constant.MARKETING;	
 		
 		if(playStyle.IsMacro() == false)
 		{

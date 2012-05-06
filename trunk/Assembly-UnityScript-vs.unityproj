@@ -95,6 +95,7 @@
      <Compile Include="Assets\Project\Scripts\Menu\Menu.js" />
      <Compile Include="Assets\Project\Scripts\Menu\PopUpListGUI.js" />
      <Compile Include="Assets\Project\Scripts\Menu\StartMenuGUI.js" />
+     <Compile Include="Assets\Project\Scripts\Misc\FPS.js" />
      <Compile Include="Assets\Project\Scripts\Misc\GameConstants.js" />
      <Compile Include="Assets\Project\Scripts\Misc\SaveGame.js" />
      <Compile Include="Assets\Project\Scripts\Misc\StringNames.js" />

@@ -39,7 +39,7 @@ class ArchitectMacro extends System.ValueType{
 	function MakeSystemCases()
 	{
 		equipe.SetSystemBonus(arquiteto);
-		floatingLines.showFloatText1("+", arquiteto.ToString(), "blue","% Testing");
+		floatingLines.showFloatText1("+", arquiteto.ToString(), "blue","% Testing Sys.");
 		//ArchitectReport(aux, arquiteto, report);
 	}
 	
@@ -47,7 +47,7 @@ class ArchitectMacro extends System.ValueType{
 	function MakeIntegrationCases()
 	{
 		equipe.SetIntegrationBonus(arquiteto);
-		floatingLines.showFloatText1("+", arquiteto.ToString(), "blue","% Testing");
+		floatingLines.showFloatText1("+", arquiteto.ToString(), "blue","% Testing Int.");
 		//ArchitectReport(aux, arquiteto, report);
 	}
 	

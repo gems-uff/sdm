@@ -11,10 +11,11 @@ public var PENALIDADE : float = 0.3;
 public var BONUS : float = 0.25;
 //Roles Constant modifiers
 public var ANALISTA_INICIO : float = 0.8;
-public var ANALISTA : float = 1;
-public var ARCHITECT : float = 1;
-public var GERENTE : float = 0.6;	// +40%
-public var PROG_LINES_DAY_MOD : float = 3;
+public var ANALISTA : float = 1.0;
+public var ARCHITECT : float = 1.0;
+public var GERENTE : float = 1.0;	// +40%
+public var MARKETING : float = 1.0;
+public var PROG_LINES_DAY_MOD : float = 3.0;
 public var PROG_BUG_MOD : float = 0.1;
 public var TESTER_DURANTE : float = 0.1;
 
