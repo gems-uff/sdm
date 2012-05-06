@@ -45,7 +45,7 @@ class AnalystMacro extends System.ValueType{
 			//Update project validation rate
 			project.UpdateValidation(val);
 			AnalistReport(parseInt(val), report);
-			floatingLines.showFloatText2("+", analista.ToString(), "blue", " Val.");
+			floatingLines.showFloatText1("+", analista.ToString(), "blue", " Val.");
 			ClientFindBug();
 		}
 	}
@@ -53,10 +53,29 @@ class AnalystMacro extends System.ValueType{
 	function ClientFindBug()
 	{
 		var random : int = Random.Range (0, 100);
+		if ((random < 20))
+		{
+			if((project.GetTotalBugs() - project.GetTotalBugsRepaired()) > 0)
+			{
+				random = Random.Range (0, 100);
+				var aux : float;
+				aux = (project.GetTotalBugsFound() - project.GetTotalBugsRepaired()) / (project.GetTotalBugs() - project.GetTotalBugsRepaired());
+				if(random > (aux * 100))
+				{
+					//Found a bug that the staff didnt report
+					project.RandomizeBugs(1);
+					//project.IncrementBugsFoundByType(0, 0, 0, 1);
+					floatingLines.showFloatText2("+", analista.ToString(), "blue","Bug");
+				}
+			}
+		}
+		/*
 		if ((random < 20)&& project.GetBugAcception() > project.GetBugAcceptionFound())
 		{
 			project.IncrementBugsFoundByType(0, 0, 0, 1);
+			floatingLines.showFloatText2("+", analista.ToString(), "blue","Bug");
 		}
+		*/
 	}
 	
 	function MakeModel()

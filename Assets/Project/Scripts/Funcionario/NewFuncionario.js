@@ -21,6 +21,8 @@ private var teste : boolean = false;
 private var atributos : Atributos = new Atributos();
 private var especializacao : Especializacoes = new Especializacoes();
 private var newNome : RandomNameGenerator = new RandomNameGenerator();
+private var staminaBar : StaminaBar;
+private var moraleBar : MoraleBar;
 
 //--------------------------------------------ReturnRandomValue-----------------------------------------------------------
 
@@ -206,6 +208,11 @@ function FireFuncionario (t : Funcionario) {
 	func.SetSalarioDefault(0);
 	func.SetSalario(0);
 	func.GetComponentInChildren(MeshRenderer).enabled = false;
+	staminaBar = func.GetComponentInChildren(StaminaBar);
+	moraleBar = func.GetComponentInChildren(MoraleBar);
+	staminaBar.Stamina_Bar();
+	moraleBar.Morale_Bar();
+	
 }
 
 function EmptyFuncionario(){

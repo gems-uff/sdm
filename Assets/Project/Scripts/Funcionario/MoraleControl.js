@@ -6,6 +6,8 @@ private var dialog : Dialog;
 public var dialogGuiStyle : GUIStyle;
 public var moraleDisplay : FloatingLines;
 public var staminaDisplay : FloatingLines;
+public var staminaBar : StaminaBar;
+public var moraleBar : MoraleBar;
 
 private var func : Funcionario;
 private var work : Working;
@@ -43,6 +45,7 @@ function ChangeStamina(){
 			if (stamina < 0)
 				stamina = 0;
 		func.SetStamina(stamina);
+		staminaBar.Stamina_Bar();
 	}
 }
 
@@ -83,6 +86,7 @@ function DecreaseMoralePayment()
 		morale = morale + moraleChange;		//Perde 2 de moral
 		morale = CheckMorale(morale);
 		func.SetMorale(morale);
+		moraleBar.Morale_Bar();
 		if (morale > 0)
 			moraleDisplay.showFloatText("", moraleChange.ToString(), "red", "  Morale");
 	}
@@ -98,6 +102,7 @@ function DecreaseMoraleFailProject()
 		morale = morale + moraleChange;		//Perde 12 de moral
 		morale = CheckMorale(morale);
 		func.SetMorale(morale);
+		moraleBar.Morale_Bar();
 		moraleDisplay.showFloatText("", moraleChange.ToString(), "red", "  Morale");
 	}
 }
@@ -112,6 +117,7 @@ function IncreaseMoraleFinishedProject(mod : float)
 		morale = morale + moraleChange;		//Recupera 12 de moral
 		morale = CheckMorale(morale);
 		func.SetMorale(morale);
+		moraleBar.Morale_Bar();
 		moraleDisplay.showFloatText("+", moraleChange.ToString(), "green", "  Morale");
 	}
 }
@@ -126,6 +132,7 @@ function IncreaseMoralePromotion()
 		morale = morale + moraleChange;		//Recupera 30
 		morale = CheckMorale(morale);
 		func.SetMorale(morale);
+		moraleBar.Morale_Bar();
 		moraleDisplay.showFloatText("+", moraleChange.ToString(), "green", "  Morale");
 	}
 }
@@ -140,6 +147,7 @@ function IncreaseMoraleDificulty(change : int)
 		morale = morale + moraleChange;	
 		morale = CheckMorale(morale);
 		func.SetMorale(morale);
+		moraleBar.Morale_Bar();
 		moraleDisplay.showFloatText("+", moraleChange.ToString(), "green", "  Morale");
 	}
 }
@@ -154,6 +162,7 @@ function IncreaseMoraleMonthly()
 		morale = morale + moraleChange;	
 		morale = CheckMorale(morale);
 		func.SetMorale(morale);
+		moraleBar.Morale_Bar();
 		moraleDisplay.showFloatText("+", moraleChange.ToString(), "green", "  Morale");
 	}
 }

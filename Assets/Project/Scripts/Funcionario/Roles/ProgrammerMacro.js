@@ -64,7 +64,7 @@ class ProgrammerMacro extends System.ValueType{
 					maxBugs = 0;
 			}
 			//Chance to add bugs, to a total of "maxBugs"
-			bugCount = RandomizeBugs(maxBugs);
+			bugCount = project.RandomizeBugs(maxBugs);
 			
 			project.SetLinesDone(codeLines);
 			ProgReport(codeLines, bugCount, report);
@@ -130,6 +130,7 @@ class ProgrammerMacro extends System.ValueType{
 	}
 	
 	//Function that randomizes the types of bugs inserted in the code by a max o t bugs
+	/*
 	function RandomizeBugs(t : int)
 	{
 		var i : int = 0;
@@ -176,6 +177,7 @@ class ProgrammerMacro extends System.ValueType{
 		aux = (bugUnitary + bugIntegration + bugSystem + bugAcception);
 		return aux;
 	}
+	*/
 	function ProgReport(prog : int, bugs : int, report : WeeklyReport)
 	{
 		report.programmerReport_prog = report.programmerReport_prog + prog;

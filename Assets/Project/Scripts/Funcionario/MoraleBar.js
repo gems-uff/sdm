@@ -34,5 +34,10 @@ function Morale_Bar(){
 
 function Update()
 {
+	//Morale_Bar();
+}
+
+function Start()
+{
 	Morale_Bar();
 }

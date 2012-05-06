@@ -182,12 +182,60 @@ function ResetBugsTypes()
 	SetBugsRepairedByType(0,0,0,0);
 }
 
+function RandomizeBugs(t : int)
+{
+	var i : int = 0;
+	var random : int;
+	codeQuality = 4;
+	var bugUnitary : int = 0;
+	var bugIntegration : int = 0;
+	var bugSystem : int = 0;
+	var bugAcception : int = 0;
+	
+	while(i < t)
+	{
+		random = Random.Range (0, 10);
+		if (random > codeQuality)
+		{
+			i++;
+			random = Random.Range (0, 5);
+			switch(random)
+			{
+			   case 1: 
+				  bugUnitary++;
+			   break;
+		
+			   case 2:
+				  bugIntegration++;
+			   break;
+			   
+			   case 3:
+				  bugSystem++;;
+			   break;
+			   
+			   case 4:
+				  bugAcception++;
+			   break;
+			   
+			   default:
+					bugUnitary++;
+				  break;
+			}
+		}
+	}
+	IncrementBugsByType(bugUnitary, bugIntegration, bugSystem, bugAcception);
+	var aux : int;
+	aux = (bugUnitary + bugIntegration + bugSystem + bugAcception);
+	return aux;
+} 
+
 function SetBugsByType(unitary : int, integration : int, system : int, acception : int)
 {
 	bugUnitary = unitary;
 	bugIntegration = integration;
 	bugSystem = system;
 	bugAcception = acception; 
+	/*
 	Debug.Log("-----------------------");
 	Debug.Log("--- SetBugsByType ----");
 	Debug.Log("bugUnitary: " + bugUnitary);
@@ -196,6 +244,7 @@ function SetBugsByType(unitary : int, integration : int, system : int, acception
 	Debug.Log("bugAcception: " + bugAcception);
 	Debug.Log("Bugs in software: " + GetTotalBugs());
 	Debug.Log("-----------------------");
+	*/
 }
 function IncrementBugsByType(unitary : int, integration : int, system : int, acception : int)
 {
@@ -203,6 +252,7 @@ function IncrementBugsByType(unitary : int, integration : int, system : int, acc
 	bugIntegration += integration;
 	bugSystem += system;
 	bugAcception += acception; 
+	/*
 	Debug.Log("-----------------------");
 	Debug.Log("--- IncrementBugsByType ----");
 	Debug.Log("bugUnitary: " + bugUnitary);
@@ -211,6 +261,7 @@ function IncrementBugsByType(unitary : int, integration : int, system : int, acc
 	Debug.Log("bugAcception: " + bugAcception);
 	Debug.Log("Bugs in software: " + GetTotalBugs());
 	Debug.Log("-----------------------");
+	*/
 }
 
 function SetBugsFoundByType(unitary : int, integration : int, system : int, acception : int)
@@ -219,6 +270,7 @@ function SetBugsFoundByType(unitary : int, integration : int, system : int, acce
 	bugIntegrationFound = integration;
 	bugSystemFound = system;
 	bugAcceptionFound = acception; 
+	/*
 	Debug.Log("-----------------------");
 	Debug.Log("--- SetBugsFoundByType ----");
 	Debug.Log("bugUnitaryFound: " + bugUnitaryFound);
@@ -227,6 +279,7 @@ function SetBugsFoundByType(unitary : int, integration : int, system : int, acce
 	Debug.Log("bugAcceptionFound: " + bugAcceptionFound);
 	Debug.Log("Bugs Found in software: " + GetTotalBugsFound());
 	Debug.Log("-----------------------");
+	*/
 }
 function IncrementBugsFoundByType(unitary : int, integration : int, system : int, acception : int)
 {
@@ -234,6 +287,7 @@ function IncrementBugsFoundByType(unitary : int, integration : int, system : int
 	bugIntegrationFound += integration;
 	bugSystemFound += system;
 	bugAcceptionFound += acception; 
+	/*
 	Debug.Log("-----------------------");
 	Debug.Log("--- IncrementBugsFoundByType ----");
 	Debug.Log("bugUnitaryFound: " + bugUnitaryFound);
@@ -242,6 +296,7 @@ function IncrementBugsFoundByType(unitary : int, integration : int, system : int
 	Debug.Log("bugAcceptionFound: " + bugAcceptionFound);
 	Debug.Log("Bugs Found in software: " + GetTotalBugsFound());
 	Debug.Log("-----------------------");
+	*/
 }
 function SetBugsRepairedByType(unitary : int, integration : int, system : int, acception : int)
 {
@@ -283,7 +338,7 @@ function SetBugsRepairedByType(unitary : int, integration : int, system : int, a
 		}
 	}
 	
-	
+	/*
 	Debug.Log("-----------------------");
 	Debug.Log("--- SetBugsRepairedByType ----");
 	Debug.Log("bugUnitaryRepaired: " + bugUnitaryRepaired);
@@ -291,6 +346,7 @@ function SetBugsRepairedByType(unitary : int, integration : int, system : int, a
 	Debug.Log("bugSystemRepaired: " + bugSystemRepaired);
 	Debug.Log("bugAcceptionRepaired: " + bugAcceptionRepaired);
 	Debug.Log("-----------------------");
+	*/
 }
 function IncrementBugsRepairedByType(unitary : int, integration : int, system : int, acception : int)
 {
@@ -298,6 +354,7 @@ function IncrementBugsRepairedByType(unitary : int, integration : int, system : 
 	bugIntegrationRepaired = bugIntegrationRepaired + integration;
 	bugSystemRepaired = bugSystemRepaired + system;
 	bugAcceptionRepaired = bugAcceptionRepaired + acception; 
+	/*
 	Debug.Log("-----------------------");
 	Debug.Log("--- IncrementBugsRepairedByType ----");
 	Debug.Log("bugUnitaryRepaired: " + bugUnitaryRepaired);
@@ -306,6 +363,7 @@ function IncrementBugsRepairedByType(unitary : int, integration : int, system : 
 	Debug.Log("bugAcceptionRepaired: " + bugAcceptionRepaired);
 	Debug.Log("Bugs Found in software: " + GetTotalBugsRepaired());
 	Debug.Log("-----------------------");
+	*/
 }
 
 function GetTotalBugs()

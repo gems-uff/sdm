@@ -418,7 +418,11 @@ function ResetBonus(){
 	bonusAnalista = 1.0;
 	bonusArquiteto = 1.0;
 	bonusProg = 1.0;
-	DecrementMacroBonus();
+	//DecrementMacroBonus();
+	chanceUnitary =  1.0;
+	chanceIntegration = 1.0;
+	chanceSystem = 1.0;
+	chanceAcception = 1.0;
 }
 
 function DecrementMacroBonus()

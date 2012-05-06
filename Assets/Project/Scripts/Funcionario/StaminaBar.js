@@ -34,5 +34,10 @@ function Stamina_Bar(){
 
 function Update()
 {
+	//Stamina_Bar();
+}
+
+function Start()
+{
 	Stamina_Bar();
 }

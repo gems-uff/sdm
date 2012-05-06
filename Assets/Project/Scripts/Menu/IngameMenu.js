@@ -40,7 +40,8 @@ myStyle.normal.textColor = Color.white;
 //Funcao que exibe os detalhes do andamento do projeto na HUD
 function StatusProjeto()	{
 	saldoText = "$ " + playerstats.GetSaldo().ToString();
-	timeText = timer.GetTime().ToString();
+	//timeText = timer.GetTime().ToString();
+	timeText = timer.GetTimeDaysString();
 	deadlineText = project.GetDeadLine().ToString();
 	if(playStyle.IsMacro() == false)
 	{

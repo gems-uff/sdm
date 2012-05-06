@@ -23,6 +23,8 @@ private var promoteDialogEnable : boolean = false;
 private var promoteDialogEnable2 : boolean = false;
 private var morale : MoraleControl;
 private var hSliderValue : int = 0;
+private var staminaBar : StaminaBar;
+private var moraleBar : MoraleBar;
 
 function MudarPapel (funcionario : Funcionario, treino : Treinamento){
 	func = funcionario;
@@ -254,6 +256,7 @@ function WindowFunction(windowID : int){
 function PromoteToManager()
 {
 	fire.ClearFuncionario(managerSlot);
+	managerSlot.GetComponentInChildren(MeshRenderer).enabled = false;
 	managerSlot.SetPapel(stringNames.papelGerente);
 	managerSlot.SetMorale(100);
 	managerSlot.SetAtributos(func.GetAtributos());
@@ -263,7 +266,12 @@ function PromoteToManager()
 	managerSlot.SetSalarioDefault(func.GetSalarioDefault());
 	managerSlot.SetSalario(func.GetSalario());
 	managerSlot.CopyLevel(func);
-	managerSlot.GetComponentInChildren(MeshRenderer).enabled = false;
+	
+	staminaBar = managerSlot.GetComponentInChildren(StaminaBar);
+	moraleBar = managerSlot.GetComponentInChildren(MoraleBar);
+	staminaBar.Stamina_Bar();
+	moraleBar.Morale_Bar();
+	
 	fire.FireFuncionario(func);
 	janelaPapel  = false;
 	equipe.SetHasManager(true);
@@ -285,6 +293,7 @@ function WindowPromoteManager(windowID : int){
 function PromoteToMarketing()
 {
 	fire.ClearFuncionario(marketingSlot);
+	marketingSlot.GetComponentInChildren(MeshRenderer).enabled = false;
 	marketingSlot.SetPapel(stringNames.papelMarketing);
 	marketingSlot.SetMorale(100);
 	marketingSlot.SetAtributos(func.GetAtributos());
@@ -294,7 +303,12 @@ function PromoteToMarketing()
 	marketingSlot.SetSalarioDefault(func.GetSalarioDefault());
 	marketingSlot.SetSalario(func.GetSalario());
 	marketingSlot.CopyLevel(func);
-	marketingSlot.GetComponentInChildren(MeshRenderer).enabled = false;
+	
+	staminaBar = marketingSlot.GetComponentInChildren(StaminaBar);
+	moraleBar = marketingSlot.GetComponentInChildren(MoraleBar);
+	staminaBar.Stamina_Bar();
+	moraleBar.Morale_Bar();
+	
 	fire.FireFuncionario(func);
 	janelaPapel  = false;
 	equipe.SetHasMarketing(true);

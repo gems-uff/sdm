@@ -60,6 +60,42 @@ function GetTimeString(t : int) :String{
     return ("Week: " + semana.ToString("000") + "   Day: " + dia.ToString("0"));
 }
 
+function GetTimeDaysString() :String{
+	var semana : int = gameTime / 7 ;
+    var dia : int = (gameTime % 7) +1;
+    var day : String;
+    switch(dia)
+	{
+	   case 1: 
+		  day = "Mon";
+	   break;
+
+	   case 2:
+		  day = "Tue";
+	   break;
+	   
+	   case 3:
+		  day = "Wed";
+	   break;
+	   
+	   case 4:
+		  day = "Thu";
+	   break;
+	   
+	   case 5:
+			day = "Fri";
+	   break;
+	   
+	   case 6:
+			day = "Sat";
+	   break;
+	   
+	   case 7:
+			day = "Sun";
+	   break;
+	}
+    return ("Wk: " + semana.ToString("000") + " Day: " + day);
+}
 //--------------------------------------------PassTime-----------------------------------------------------------
 
 function PassTime () {

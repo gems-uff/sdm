@@ -81,7 +81,7 @@ class TesterMacro extends System.ValueType{
 	
 	function TesterReport(bug : int, report : WeeklyReport)
 	{
-	report.testerReport = report.testerReport + bug;
+		report.testerReport = report.testerReport + bug;
 	}
 
 }
