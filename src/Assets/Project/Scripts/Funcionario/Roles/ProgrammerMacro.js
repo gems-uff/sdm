@@ -11,10 +11,10 @@ class ProgrammerMacro extends System.ValueType{
 	var codeQuality : int;
 	
 	var isEspecialized : int;
-	var behaivor : BehaivorPlanner;
+	var behavior : BehaviorPlanner;
 	var date : int;
 						
-	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, constantP : GameConstants, programadorP : float, RequisitoLinguagemP : boolean, isEspecializedP : int, behaivorP : BehaivorPlanner, dateP : int)
+	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, constantP : GameConstants, programadorP : float, RequisitoLinguagemP : boolean, isEspecializedP : int, behaviorP : BehaviorPlanner, dateP : int)
 	{
 		var actionNode : ActionNode = new ActionNode();
 		
@@ -28,7 +28,7 @@ class ProgrammerMacro extends System.ValueType{
 		RequisitoLinguagem = RequisitoLinguagemP;
 		
 		isEspecialized = isEspecializedP;
-		behaivor = behaivorP;
+		behavior = behaviorP;
 		date = dateP;
 		
 		DecisionTree(actionNode);
@@ -58,7 +58,7 @@ class ProgrammerMacro extends System.ValueType{
 			//--------------------------------------------
 			//Not under pressure
 			//--------------------------------------------
-			if(!behaivor.GetPressure())
+			if(!behavior.GetPressure())
 			{
 				//Good programmer
 				if(progFactor > 75)
@@ -156,7 +156,7 @@ class ProgrammerMacro extends System.ValueType{
 			//--------------------------------------------
 			//Not under pressure
 			//--------------------------------------------
-			if(!behaivor.GetPressure())
+			if(!behavior.GetPressure())
 			{
 				//Good programmer
 				if(progFactor > 75)
@@ -244,14 +244,14 @@ class ProgrammerMacro extends System.ValueType{
 		NewAction(actionNode, isEsp, isPressured, prog);
 		
 		//Decide which task will be done
-		if(behaivor.GetProgEvolution())
+		if(behavior.GetProgEvolution())
 		{
 			actionNode.task = "Evolution: Adhoc";
 			Evolution();
 		}
 		else
 		{
-			if(behaivor.GetProgRepair())
+			if(behavior.GetProgRepair())
 			{
 				actionNode.task = "Repair: Adhoc";
 				Repair();
@@ -267,14 +267,14 @@ class ProgrammerMacro extends System.ValueType{
 		NewAction(actionNode, isEsp, isPressured, prog);
 		
 		//Decide which task will be done
-		if(behaivor.GetProgEvolution())
+		if(behavior.GetProgEvolution())
 		{
 			actionNode.task = "Evolution: Draw-code";
 			Evolution();
 		}
 		else
 		{
-			if(behaivor.GetProgRepair())
+			if(behavior.GetProgRepair())
 			{
 				actionNode.task = "Repair: Draw-code";
 				Repair();
@@ -290,14 +290,14 @@ class ProgrammerMacro extends System.ValueType{
 		NewAction(actionNode, isEsp, isPressured, prog);
 		
 		//Decide which task will be done
-		if(behaivor.GetProgEvolution())
+		if(behavior.GetProgEvolution())
 		{
 			actionNode.task = "Evolution: Test-Driven";
 			Evolution();
 		}
 		else
 		{
-			if(behaivor.GetProgRepair())
+			if(behavior.GetProgRepair())
 			{
 				actionNode.task = "Repair: Test-Driven";
 				Repair();
@@ -339,7 +339,7 @@ class ProgrammerMacro extends System.ValueType{
 		
 		if(isPressured)
 		{
-			actionNode.externalReason = behaivor.GetPAction();
+			actionNode.externalReason = behavior.GetPAction();
 		}
 		else
 			actionNode.externalReason = null;

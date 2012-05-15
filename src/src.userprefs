@@ -1,12 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\TimeGame\GameTime.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Funcionario\Roles\ProgrammerMacro.js">
     <Files>
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\ProgrammerMacro.js" Line="159" Column="1" />
       <File FileName="Assets\Project\Scripts\TimeGame\GameTime.js" Line="141" Column="5" />
-      <File FileName="Assets\Project\Scripts\Behaivor\BehaivorPlanner.js" Line="44" Column="20" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Working.js" Line="492" Column="17" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Working.js" Line="13" Column="16" />
       <File FileName="Assets\Project\Scripts\Class\LinkedList\testList.js" Line="80" Column="26" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Roles\ProgrammerMacro.js" Line="356" Column="15" />
       <File FileName="Assets\Project\Scripts\Class\LinkedList\ActionList.js" Line="24" Column="2" />
       <File FileName="Assets\Project\Scripts\Windows\ActionWindow.js" Line="32" Column="30" />
     </Files>

@@ -10,7 +10,7 @@ public var playStyle : GameplayStyle;
 public var constant : GameConstants;
 public var floatingLines : FloatingLines;
 
-public var behaivor : BehaivorPlanner;
+public var behavior : BehaviorPlanner;
 //public var floatingLinesBelow : FloatingLines;
 
 public var workingHoursModifier : float = 1.0;
@@ -489,7 +489,7 @@ function ProgramadorWork(){
 		}
 		else
 		{
-			actionNode = ProgrammerMacro.Work(func, project, report, floatingLines, equipe, constant, programador, RequisitoLinguagem(), isEspecialized, behaivor, timer.GetGameTime());
+			actionNode = ProgrammerMacro.Work(func, project, report, floatingLines, equipe, constant, programador, RequisitoLinguagem(), isEspecialized, behavior, timer.GetGameTime());
 		}
 	}
 }

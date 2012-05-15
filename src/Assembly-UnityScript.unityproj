@@ -46,7 +46,7 @@
   <ItemGroup>
      <Compile Include="Assets\Project\Player\SuperMarioAnimation.js" />
      <Compile Include="Assets\Project\Player\SuperMarioController.js" />
-     <Compile Include="Assets\Project\Scripts\Behaivor\BehaivorPlanner.js" />
+     <Compile Include="Assets\Project\Scripts\Behavior\BehaviorPlanner.js" />
      <Compile Include="Assets\Project\Scripts\Camera\MouseLook2.js" />
      <Compile Include="Assets\Project\Scripts\Class\Atributos.js" />
      <Compile Include="Assets\Project\Scripts\Class\Especializacoes.js" />
