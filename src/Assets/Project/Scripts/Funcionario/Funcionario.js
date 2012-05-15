@@ -641,12 +641,33 @@ function SetF_teste (t: boolean) {
 	especializacao.teste = t;
 }
 
+//Creates a copy of this employee
+function Copy()
+{
+	var func : Funcionario;
+	func = Instantiate(this);
+	func.SetNome(nome);
+	func.SetCargo(job);
+	func.SetPapel(mainRole);
+	func.SetPapelSec(secRole);
+	func.SetPapelRate(mainRoleRate);
+	func.SetPapelSecRate(secRoleRate);
+	func.SetMorale(morale);
+	func.SetWorkingHours(workingHours);
+	func.SetSalarioDefault(defaultSalary);
+	func.SetSalario(salary);
+	func.SetAtributos(atributos);
+	func.SetEspecializacoes(especializacao);
+	
+	return func;
+	
+}
 
 
 
 //--------------------------------------------Update-----------------------------------------------------------
 
-function Update () {
+function FixedUpdate () {
 	SetAnalista();
 	SetArquiteto();
 	SetGerente();

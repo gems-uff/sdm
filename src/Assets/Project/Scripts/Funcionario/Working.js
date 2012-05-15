@@ -9,6 +9,8 @@ public var playerStats : PlayerStats;
 public var playStyle : GameplayStyle;
 public var constant : GameConstants;
 public var floatingLines : FloatingLines;
+
+public var behaivor : BehaivorPlanner;
 //public var floatingLinesBelow : FloatingLines;
 
 public var workingHoursModifier : float = 1.0;
@@ -35,6 +37,14 @@ private var ProgrammerMicro : ProgrammerMicro;
 private var ProgrammerMacro : ProgrammerMacro;
 private var TesterMicro : TesterMicro;
 private var TesterMacro : TesterMacro;
+
+
+private var actionNode : ActionNode;
+
+function GetAction()
+{
+	return actionNode;
+}
 //Report
 function GetReport(){	
 	return report;
@@ -460,7 +470,10 @@ function ProgramadorWork(){
 		var penal : float = MetodologiaEquipe();
 		var gameMod : float = GameModifiers();
 		var programador : float ;
-		var penal_prog : float = PenalidadeProgramacao(penal);
+		
+		var isEspecialized : int = LinguagemProgEquipe();
+		//var penal_prog : float = PenalidadeProgramacao(penal);
+		var penal_prog : float = penal + (isEspecialized * constant.PENALIDADE);
 		
 		yield WaitForSeconds(delay);
 		
@@ -476,7 +489,7 @@ function ProgramadorWork(){
 		}
 		else
 		{
-			ProgrammerMacro.Work(func, project, report, floatingLines, equipe, constant, programador, RequisitoLinguagem());
+			actionNode = ProgrammerMacro.Work(func, project, report, floatingLines, equipe, constant, programador, RequisitoLinguagem(), isEspecialized, behaivor, timer.GetGameTime());
 		}
 	}
 }
@@ -557,40 +570,48 @@ function PenalidadeProgramacao(penal : float){
 
 //Funcao para avaliar se o funcionario possui o requisito necessario para o projeto. O valor retornado é 0 ou PENALIDADE
 function LinguagemProgEquipe(){
-	var modificador : float = constant.PENALIDADE;
-	
+	//var modificador : float = constant.PENALIDADE;
+	var especialized : int = 1;
+	// 0 if specialized, 1 if not
 	switch(equipe.GetLinguagem())
 	{
 	   case stringNames.esp01: 
 		  if (func.GetL_assembly() == true)
-				modificador = 0;
+				//modificador = 0;
+				especialized = 0;
 	   break;
 
 	   case stringNames.esp02:
 		  if (func.GetL_csharp() == true)
-				modificador = 0;
+				//modificador = 0;
+				especialized = 0;
 	   break;
 	   
 	   case stringNames.esp03:
 		  if (func.GetL_java() == true)
-				modificador = 0;
+				//modificador = 0;
+				especialized = 0;
 	   break;
 	   
 	   case stringNames.esp04:
 		  if (func.GetL_perl() == true)
-				modificador = 0;
+				//modificador = 0;
+				especialized = 0;
 	   break;
 	   
 	   case stringNames.esp05:
 			if (func.GetL_ruby() == true)
-				modificador = 0;
+				//modificador = 0;
+				especialized = 0;
 	   break;
 	   
 	   default:
-			modificador = constant.PENALIDADE;
+			//modificador = constant.PENALIDADE;
+			especialized = 1;
 		  break;
 	}
-	return modificador;
+	//return modificador;
+	return especialized;
 }
 
 //--------------------------------------------ReqMetodologia-----------------------------------------------------------

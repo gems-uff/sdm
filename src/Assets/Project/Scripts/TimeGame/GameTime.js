@@ -133,6 +133,12 @@ function PassTime () {
 	{
 		BroadcastMessage("NewEmployees");
 	}
+	
+	//Testing
+	/*
+	if((gameTime > 2))
+		BroadcastMessage("ShowActionWindow");
+		*/
 }
 
 //--------------------------------------------Speed-----------------------------------------------------------
