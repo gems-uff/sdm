@@ -29,14 +29,14 @@ class ProjectNode
 	public var project : Project;
 
 	//Staff list
-	public var slot01 : EmployeetList;
-	public var slot02 : EmployeetList;
-	public var slot03 : EmployeetList;
-	public var slot04 : EmployeetList;
-	public var slot05 : EmployeetList;
-	public var slot06 : EmployeetList;
-	public var slot07 : EmployeetList;
-	public var slot08 : EmployeetList;
+	public var slot01 : EmployeeList;
+	public var slot02 : EmployeeList;
+	public var slot03 : EmployeeList;
+	public var slot04 : EmployeeList;
+	public var slot05 : EmployeeList;
+	public var slot06 : EmployeeList;
+	public var slot07 : EmployeeList;
+	public var slot08 : EmployeeList;
 	
 	//Project List
 	public var next : ProjectNode;
@@ -52,14 +52,14 @@ class ProjectNode
 	{
 		this.project = null;
 		
-		this.slot01 = new EmployeetList();
-		this.slot02 = new EmployeetList();
-		this.slot03 = new EmployeetList();
-		this.slot04 = new EmployeetList();
-		this.slot05 = new EmployeetList();
-		this.slot06 = new EmployeetList();
-		this.slot07 = new EmployeetList();
-		this.slot08 = new EmployeetList();
+		this.slot01 = new EmployeeList();
+		this.slot02 = new EmployeeList();
+		this.slot03 = new EmployeeList();
+		this.slot04 = new EmployeeList();
+		this.slot05 = new EmployeeList();
+		this.slot06 = new EmployeeList();
+		this.slot07 = new EmployeeList();
+		this.slot08 = new EmployeeList();
 		
 		this.next = new ProjectNode();
 		this.before = new ProjectNode();

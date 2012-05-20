@@ -477,6 +477,8 @@ function ProgramadorWork(){
 		
 		yield WaitForSeconds(delay);
 		
+		var action : ActionNode = new ActionNode();
+		
 		func.WorkingProgramador();
 		
 		programador = func.GetProgramador() * (rate * 0.01) * (1 + modificador_positivo - penal_prog) * gameMod;
@@ -489,7 +491,8 @@ function ProgramadorWork(){
 		}
 		else
 		{
-			actionNode = ProgrammerMacro.Work(func, project, report, floatingLines, equipe, constant, programador, RequisitoLinguagem(), isEspecialized, behavior, timer.GetGameTime());
+			action = ProgrammerMacro.Work(func, project, report, floatingLines, equipe, constant, programador, RequisitoLinguagem(), isEspecialized, behavior, timer.GetGameTime());
+			behavior.AddAction(action);
 		}
 	}
 }

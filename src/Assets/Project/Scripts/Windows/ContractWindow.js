@@ -1,4 +1,5 @@
 
+public var windowController : WindowController;
 public var projectEnd : ProjectEnd;
 public var timer : GameTime;
 public var projectW : ProjectWindow;
@@ -13,8 +14,8 @@ public var newproject06 : Project;
 public var newproject07 : Project;
 public var newproject08 : Project;
 public var customGuiStyle : GUIStyle;
-private var showWindow : boolean = false;
-private var windowRect : Rect = Rect (300,125,400,268);
+//private var showWindow : boolean = false;
+//private var windowRect : Rect = Rect (300,125,400,268);
 private var project01 : boolean = false;
 private var project02 : boolean = false;
 private var project03 : boolean = false;
@@ -25,11 +26,11 @@ private var project07 : boolean = false;
 private var project08 : boolean = false;
 private var selected : boolean = false;
 
-function GetShowWindow(){
-	return showWindow;
-}
+//function GetShowWindow(){
+//	return showWindow;
+//}
 
-function SetShowWindow(){
+function SetShowWindow(a : int){
 	showWindow = true;
 }
 
@@ -213,20 +214,22 @@ function ShowProjects(windowID : int){
 	if ( project08 == true || project07 == true || project06 == true || project05 == true || project04 == true || project03 == true || project02 == true || project01 == true)
 	{
 		if (GUI.Button (Rect (02,210,390,25), "OK")) {
-			showWindow  = false;
+			//showWindow  = false;
+			windowController.DisableContractWindow();
 			projectW.DisableShowWindow();
 			SelectProject();
 			ResetItems();
 		}	
 	}
 	GUI.EndGroup ();
+	GUI.DragWindow();
 }
 	
 function OnGUI () {
-	GUI.backgroundColor = Color.blue;
-	GUI.contentColor = Color.green;
-	if(showWindow)
-		windowRect = GUI.Window (20, windowRect, ShowProjects, ("Possible Projects ") );
+	//GUI.backgroundColor = Color.blue;
+	//GUI.contentColor = Color.green;
+	//if(showWindow)
+	//	windowRect = GUI.Window (20, windowRect, ShowProjects, ("Possible Projects ") );
 }
 function Awake () {
 

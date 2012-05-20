@@ -8,6 +8,7 @@
 public var MARKETING_FACTOR : int = 4; //O max que o marketing pode alterar eh em 25% (100 / 4)
 public var project : Project;
 public var timer : GameTime;
+public var windowController : WindowController;
 private var windowRect : Rect = Rect (800,125,200,215);
 private var showWindow : boolean = false;
 
@@ -30,9 +31,9 @@ function GetLockNegotiation(){
 function UnLockNegotiation(){	//Usado quando terminar o projeto
 	lockNegotiation = false;
 }
-function SetShowWindow(funcionario){
+function SetShowWindow(funcionario : Funcionario){
 	func = funcionario;
-	showWindow = true;
+	//showWindow = true;
 }
 
 function ResetItems(){
@@ -197,23 +198,26 @@ function WindowFunction(windowID : int){
 		tradeOffSet = false;
 	if (GUI.Button (Rect (02,188,98,25), "Cancel")) 
 	{
-		showWindow  = false;
+		//showWindow  = false;
+		windowController.DisableNegWindow();
 	}
 	if ( tradeOffSet && tradeSet)
 		if (GUI.Button (Rect (100,188,98,25), "Ok")) 
 		{
-			showWindow  = false;
+			//showWindow  = false;
+			windowController.DisableNegWindow();
 			ApplyChanges();
 			lockNegotiation = true;
 			ResetItems();
 		}
+	GUI.DragWindow();
 }
 
 //--------------------------------------------OnGUI-----------------------------------------------------------
 
 function OnGUI () {
-	GUI.backgroundColor = Color.yellow;
-	GUI.contentColor = Color.green;
-	if(showWindow && !lockNegotiation)
-		windowRect = GUI.Window (7, windowRect, WindowFunction, "Negotiation");
+	//GUI.backgroundColor = Color.yellow;
+	//GUI.contentColor = Color.green;
+	//if(showWindow && !lockNegotiation)
+	//	windowRect = GUI.Window (7, windowRect, WindowFunction, "Negotiation");
 }

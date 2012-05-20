@@ -1,6 +1,6 @@
 #pragma strict
 
-class EmployeetList extends EmployeeNode
+class EmployeeList extends EmployeeNode
 {
 	public var first : EmployeeNode;
 	public var last : EmployeeNode;
@@ -20,6 +20,12 @@ class EmployeetList extends EmployeeNode
 			//Update the last one
 			this.last = t;
 		}
+	}
+	
+	function RemoveLast()
+	{
+		this.last.before = null;
+		this.last = this.last.before;
 	}
 }
 

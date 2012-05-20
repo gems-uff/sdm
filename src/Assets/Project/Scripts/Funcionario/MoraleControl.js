@@ -88,7 +88,7 @@ function DecreaseMoralePayment()
 		func.SetMorale(morale);
 		moraleBar.Morale_Bar();
 		if (morale > 0)
-			moraleDisplay.showFloatText("", moraleChange.ToString(), "red", "  Morale");
+			moraleDisplay.showFloatText3("", moraleChange.ToString(), "red", "  Morale");
 	}
 }
 
@@ -103,7 +103,7 @@ function DecreaseMoraleFailProject()
 		morale = CheckMorale(morale);
 		func.SetMorale(morale);
 		moraleBar.Morale_Bar();
-		moraleDisplay.showFloatText("", moraleChange.ToString(), "red", "  Morale");
+		moraleDisplay.showFloatText3("", moraleChange.ToString(), "red", "  Morale");
 	}
 }
 
@@ -118,7 +118,7 @@ function IncreaseMoraleFinishedProject(mod : float)
 		morale = CheckMorale(morale);
 		func.SetMorale(morale);
 		moraleBar.Morale_Bar();
-		moraleDisplay.showFloatText("+", moraleChange.ToString(), "green", "  Morale");
+		moraleDisplay.showFloatText3("+", moraleChange.ToString(), "green", "  Morale");
 	}
 }
 
@@ -133,7 +133,7 @@ function IncreaseMoralePromotion()
 		morale = CheckMorale(morale);
 		func.SetMorale(morale);
 		moraleBar.Morale_Bar();
-		moraleDisplay.showFloatText("+", moraleChange.ToString(), "green", "  Morale");
+		moraleDisplay.showFloatText3("+", moraleChange.ToString(), "green", "  Morale");
 	}
 }
 
@@ -148,7 +148,7 @@ function IncreaseMoraleDificulty(change : int)
 		morale = CheckMorale(morale);
 		func.SetMorale(morale);
 		moraleBar.Morale_Bar();
-		moraleDisplay.showFloatText("+", moraleChange.ToString(), "green", "  Morale");
+		moraleDisplay.showFloatText3("+", moraleChange.ToString(), "green", "  Morale");
 	}
 }
 
@@ -163,7 +163,7 @@ function IncreaseMoraleMonthly()
 		morale = CheckMorale(morale);
 		func.SetMorale(morale);
 		moraleBar.Morale_Bar();
-		moraleDisplay.showFloatText("+", moraleChange.ToString(), "green", "  Morale");
+		moraleDisplay.showFloatText3("+", moraleChange.ToString(), "green", "  Morale");
 	}
 }
 function CheckMorale(moraleCheck : int)

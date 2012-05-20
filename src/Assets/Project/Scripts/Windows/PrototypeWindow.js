@@ -6,14 +6,14 @@
 //menuPrototype.SetShowWindow(func);
 
 public var constant : GameConstants;
-
+public var winCon : WindowController;
 public var project : Project;
 public var timer : GameTime;
 public var jogador : PlayerStats;
 
 private var func : Funcionario;
-private var windowRect : Rect = Rect (800,125,200,145);
-private var showWindow : boolean = false;
+//private var windowRect : Rect = Rect (800,125,200,145);
+//private var showWindow : boolean = false;
 private var simpleProt : boolean = false;
 private var regularProt : boolean = false;
 private var complexProt : boolean = false;
@@ -30,9 +30,9 @@ function ResetItems(){
 	regularProt = false;
 	complexProt = false;
 }
-function SetShowWindow(funcionario){
+function SetShowWindow(funcionario : Funcionario){
 	func = funcionario;
-	showWindow = true;
+	//showWindow = true;
 }
 
 function ApplyChanges(){
@@ -101,13 +101,15 @@ function WindowFunction(windowID : int){
 	GUI.Box (Rect (02,080,196,30),"Price : $" + constant.SIMPLE_PRICE + " / $" + constant.REGULAR_PRICE +" / $" + constant.COMPLEX_PRICE);
 	if (GUI.Button (Rect (02,110,98,25), "Cancel")) 
 	{
-		showWindow  = false;
+		//showWindow  = false;
+		winCon.DisableProtWindow();
 		//timer.SpeedNormal();
 	}
 	if ( complexProt == true || regularProt == true || simpleProt == true)
 		if (GUI.Button (Rect (100,110,98,25), "Ok")) 
 		{
-			showWindow  = false;
+			//showWindow  = false;
+			winCon.DisableProtWindow();
 			ApplyChanges();
 			ResetItems();
 			isLocked = true;
@@ -123,8 +125,8 @@ function Awake () {
 //--------------------------------------------OnGUI-----------------------------------------------------------
 
 function OnGUI () {
-	GUI.backgroundColor = Color.blue;
-	GUI.contentColor = Color.green;
-	if(showWindow)
-		windowRect = GUI.Window (8, windowRect, WindowFunction, "Prototype");
+	//GUI.backgroundColor = Color.blue;
+	//GUI.contentColor = Color.green;
+	//if(showWindow)
+	//	windowRect = GUI.Window (8, windowRect, WindowFunction, "Prototype");
 }

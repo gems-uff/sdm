@@ -2,8 +2,9 @@
 
 public var project : Project;
 public var timer : GameTime;
-private var windowRect : Rect = Rect (600,125,400,300);
-private var showWindow : boolean = false;
+public var windowController : WindowController;
+//private var windowRect : Rect = Rect (600,125,400,300);
+//private var showWindow : boolean = false;
 
 function Start () {
 
@@ -12,12 +13,12 @@ function Start () {
 function Update () {
 
 }
-
+/*
 function ShowBugWindow()
 {
 	showWindow = true;
 }
-
+*/
 function WindowFunction(windowID : int){
 	timer.PauseGame();
 	GUI.BeginGroup (Rect (02,20,400,300));
@@ -47,13 +48,17 @@ function WindowFunction(windowID : int){
 	//GUI.Box (Rect (02,250,196,25), "Total Bugs: " + project.GetTotalBugs());
 	if (GUI.Button (Rect (02,250,396,25), "Cancel")) 
 	{
-		showWindow  = false;
+		//showWindow  = false;
+		windowController.DisableBugWindow();
 	}
 	GUI.EndGroup ();
+	GUI.DragWindow();
 }
 function OnGUI () {
-	GUI.backgroundColor = Color.yellow;
-	GUI.contentColor = Color.green;
-	if(showWindow)
-		windowRect = GUI.Window (0, windowRect, WindowFunction, ("Bugs: ") );
+	
+	//GUI.backgroundColor = Color.yellow;
+	//GUI.contentColor = Color.green;
+	//if(showWindow)
+	//	windowRect = GUI.Window (0, windowRect, WindowFunction, ("Bugs: ") );
+		
 }

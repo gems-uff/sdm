@@ -1,4 +1,6 @@
 
+public var stringNames : StringNames;
+
 private var atributos : Atributos = new Atributos();
 private var especializacao : Especializacoes = new Especializacoes();
 public var floatingLevel : FloatingLevel;
@@ -641,7 +643,9 @@ function SetF_teste (t: boolean) {
 	especializacao.teste = t;
 }
 
+//
 //Creates a copy of this employee
+//
 function Copy()
 {
 	var func : Funcionario;
@@ -663,8 +667,253 @@ function Copy()
 	
 }
 
+//--------------------------------------------------------------------------------------
+//Fire this employee
+//--------------------------------------------------------------------------------------
+
+public var log : HistoryLog;
+function FireEmployee (event : boolean) {
+	var body : GameObject;
+	
+	if(event)
+	{
+		//fire action
+		var slot : EmployeeList;
+		slot = log.GetSlot(this);
+		log.NewFiredAction(slot);
+	}
+	EmptyEmployee();
+	this.SetNome(stringNames.fired);
+	this.SetCargo(stringNames.jobJunior);
+	this.SetPapel(stringNames.papelNenhum);
+	this.SetPapelSec(stringNames.papelNenhum);
+	this.SetPapelRate(100);
+	this.SetPapelSecRate(0);
+	this.SetMorale(100);
+	this.SetWorkingHours(0);
+	this.SetSalarioDefault(0);
+	this.SetSalario(0);
+	this.GetComponentInChildren(MeshRenderer).enabled = false;
+	staminaBar = this.GetComponentInChildren(StaminaBar);
+	moraleBar = this.GetComponentInChildren(MoraleBar);
+	staminaBar.Stamina_Bar();
+	moraleBar.Morale_Bar();
+	
+}
+
+function EmptyEmployee(){
+	atributos.adaptabilidade = 0;
+	atributos.autoDidata = 0;
+	atributos.detalhista = 0;
+	atributos.negociacao = 0;
+	atributos.objetividade = 0;
+	atributos.organizacao = 0;
+	atributos.paciencia = 0;
+	atributos.raciocinioLogico = 0;
+	atributos.relacionamentoHumano = 0;
+	this.SetAtributos(atributos);
+	especializacao.assembly = false;
+	especializacao.csharp = false;
+	especializacao.java = false;
+	especializacao.perl = false;
+	especializacao.ruby = false;
+	especializacao.metodoAgil = false;
+	especializacao.metodoClassico = false;
+	especializacao.controleDeVersao = false;
+	especializacao.planejamento = false;
+	especializacao.metricas = false;
+	especializacao.gerenciaDeProjetos = false;
+	especializacao.depuracao = false;
+	especializacao.teste = false;
+	especializacao.analiseDeProgramas = false;
+	this.ResetLevel();
+	this.SetEspecializacoes(especializacao);
+}
+
+function ClearEmployee () {
+	EmptyEmployee();
+	this.SetNome(stringNames.vazio);
+	this.SetCargo(stringNames.jobJunior);
+	this.SetPapel(stringNames.vazio);
+	this.SetPapelSec(stringNames.vazio);
+	this.SetPapelRate(100);
+	this.SetPapelSecRate(0);
+	this.SetMorale(100);
+	this.SetWorkingHours(0);
+	this.SetSalarioDefault(0);
+	this.SetSalario(0);
+}
+
+//--------------------------------------------------------------------------------------
+//Random Starter
+//--------------------------------------------------------------------------------------
+
+//Esta funcao server para gerar um funcionario inicial totalmente randomico
+function RandomFuncionarioStarter () {
+	if(this.startEmpty == false)
+	{
+		var newNome : RandomNameGenerator = new RandomNameGenerator();
+		
+		SetAtributosStarter();
+		SetEspecializacoes();
+		this.SetNome(newNome.RandomName());
+		this.SetCargo(stringNames.jobJunior);
+		this.SetPapel(stringNames.papelNenhum);
+		this.SetPapelSec(stringNames.papelNenhum);
+		this.SetPapelRate(100);
+		this.SetPapelSecRate(0);
+		this.SetMorale(100);
+		this.SetWorkingHours(40);
+		this.SetSalarioDefault(this.NewSalary());
+		this.SetSalario(this.NewSalary());
+	}
+	else
+		//FireFuncionario(func);
+		this.FireEmployee(false);
+}
+
+//Diferenciado para evitar que o jogador começe com funcionarios muito ruins
+function ReturnRandomValueStarter(){
+	var value1 : int;
+	var value2 : int;
+	var aux : int = 0;
+	while (aux < 30)
+	{
+		value1 = Random.Range (30, 101);
+		value2 = Random.Range (25, 101);
+		aux = (value1 + value2) / 2;
+		if (value1 > value2)
+			aux = (aux + value1) / 2;
+		else
+			aux = (aux + value1) / 2;
+	}
+	return aux;
+}
+
+//--------------------------------------------SetAtributos-----------------------------------------------------------
+
+function SetAtributosStarter()
+{
+	atributos.adaptabilidade = ReturnRandomValueStarter();
+	atributos.autoDidata = ReturnRandomValueStarter();
+	atributos.detalhista = ReturnRandomValueStarter();
+	atributos.negociacao = ReturnRandomValueStarter();
+	atributos.objetividade = ReturnRandomValueStarter();
+	atributos.organizacao = ReturnRandomValueStarter();
+	atributos.paciencia = ReturnRandomValueStarter();
+	atributos.raciocinioLogico = ReturnRandomValueStarter();
+	atributos.relacionamentoHumano = ReturnRandomValueStarter();
+	
+	SetAtributos(atributos);
+}
+
+function NewSalary(){
+	var salario : int = 0;
+	var randomModifier : int = Random.Range(100, 121);
+	var aux : float;
+	
+	aux = randomModifier * 0.01;
+	salario = atributos.adaptabilidade + atributos.autoDidata +	atributos.detalhista + atributos.negociacao + atributos.objetividade + atributos.organizacao + atributos.paciencia + atributos.raciocinioLogico + atributos.relacionamentoHumano;
+	salario = salario * aux;
+	salario = salario * 10;
+	//salario = salario * 100;
+	
+	return salario;
+}
+
+function SetEspecializacao (t: int){
+	switch(t)
+	{
+		//Linguagens comeca apartir do 01
+	   case 1:
+		  especializacao.assembly = true;
+	   break;
+	   
+	   case 2:
+			especializacao.csharp = true;
+	   break;
+	   
+	   case 3:
+			especializacao.java = true;
+	   break;
+	   
+	   case 4:
+			especializacao.perl = true;
+	   break;
+	   
+	   case 5:
+			especializacao.ruby = true;
+	   break;
+	   
+	   //Metodos comeca apartir do 21
+	   
+	   case 21:
+			especializacao.metodoAgil = true;
+	   break;
+	   
+	   case 22:
+			especializacao.metodoClassico = true;
+	   break;
+	   
+	   //Ferramentas comeca apartir do 31
+	   case 31:
+			especializacao.controleDeVersao = true;
+	   break;
+	   
+	   case 32:
+		  especializacao.planejamento = true;
+	   break;
+	   case 33:
+			especializacao.metricas = true;
+	   break;
+	   
+	   case 34:
+			especializacao.gerenciaDeProjetos = true;
+	   break;
+	   
+	   case 35:
+			especializacao.depuracao = true;
+	   break;
+	   
+	   case 36:
+			especializacao.teste = true;
+	   break;
+	   
+	   case 37:
+			especializacao.analiseDeProgramas = true;
+	   break;
+
+	   default:
+		break;
+	}
+}
+
+//--------------------------------------------SetEspecializacoes-----------------------------------------------------------
+
+function SetEspecializacoes()
+{
+	var espLing : int = Random.Range(1, 20);	//Linguagem
+	var espM : int = Random.Range(21, 30);		//Metodo
+	var espF : int = Random.Range(31, 61);		//Ferramentas
+	var esp1 : int = Random.Range(1, 251);		//Qualquer incommum
+	var esp2 : int = Random.Range(1, 451);		//Qualquer raro
+	var esp3 : int = Random.Range(1, 851);		//Qualquer muito raro
+	var esp4 : int = Random.Range(1, 1651);		//Qualquer muito^2 raro
+
+	SetEspecializacao(espLing);
+	SetEspecializacao(espM);
+	SetEspecializacao(espF);
+	SetEspecializacao(esp1);
+	SetEspecializacao(esp2);
+	SetEspecializacao(esp3);
+	SetEspecializacao(esp4);
+
+}
 
 
+//--------------------------------------------------------------------------------------
+//Update
+//--------------------------------------------------------------------------------------
 //--------------------------------------------Update-----------------------------------------------------------
 
 function FixedUpdate () {
@@ -676,4 +925,7 @@ function FixedUpdate () {
 	SetTester();
 }
 
-	
+function Awake () 
+{
+	RandomFuncionarioStarter();
+}	

@@ -7,14 +7,16 @@ public var playStyle : GameplayStyle;
 public var menuAtr : FuncWindow;
 public var menuEsp : EspWindow;
 public var menuPapel : PapelWindow;
-public var menuNegotiation : NegotiationWindow;
+//public var menuNegotiation : NegotiationWindow;
 public var menuPrototype : PrototypeWindow;
-public var menuHire : HireWindow;
+public var windowController : WindowController;
 public var timer : GameTime;
 public var workHours : WorkingHoursWindow;
 public var dialogLock : BlockDialog;
 
 public var endOnExit : boolean = true;
+
+//public var log : HistoryLog;
 
 private var func : Funcionario;
 private var treino : Treinamento;
@@ -114,7 +116,7 @@ function Dialog_Funcionario (){
 		//if(playStyle.IsMacro() == false)
 		//{
 		if (GUI.Button (Rect (600,75, 130, 25), "Change Task")) {
-				menuPapel.MudarPapel(func, treino);
+				windowController.ShowRoleWindow(func, treino);
 				dialogEnable = false;
 		}
 		//}
@@ -131,7 +133,7 @@ function Dialog_Funcionario (){
 		//Se arquiteto
 		if(func.GetPapel() == stringNames.papelArquiteto && menuPrototype.GetIsLocked() == false)
 			if (GUI.Button (Rect (600,125, 130, 25), "Prototype")) {
-					menuPrototype.SetShowWindow(func);
+					windowController.ShowProtWindow(func);
 					dialogEnable = false;
 			}
 		//Se gerente
@@ -139,15 +141,16 @@ function Dialog_Funcionario (){
 			if (GUI.Button (Rect (600,125, 130, 25), "Hire")) 
 			{
 				if(playStyle.IsMacro() == false)
-					menuHire.SetShowWindow();
+					windowController.ShowHireWindow();
 				else
-					menuHire.SetShowWindowMHiring();
+					//menuHire.SetShowWindowMHiring();
+					windowController.ShowManagerHireWindow();
 				dialogEnable = false;
 			}
 		//se Marketing
-		if(func.GetPapel() == stringNames.papelMarketing && menuNegotiation.GetLockNegotiation() == false)
+		if(func.GetPapel() == stringNames.papelMarketing && windowController.GetNegLock() == false)
 			if (GUI.Button (Rect (600,125, 130, 25), "Negotiation")) {
-					menuNegotiation.SetShowWindow(func);
+					windowController.ShowNegWindow(func);
 					dialogEnable = false;
 			}
 		if (GUI.Button (Rect (600,150, 130, 25), "End")) {
@@ -182,11 +185,20 @@ function QuitDialog(){
 		timer.PauseGame();
 		GUI.Box (Rect (00,00,120,25), func.GetNome() + " :");
 		GUI.Box (Rect (00,25,600,150), "Boss, i can't take this anymore, im quitting !", dialogGuiStyle);
-		if (GUI.Button (Rect (600,25, 130, 25), "End")) {
-				fire.FireFuncionario(func);
-				dialogQuitEnable = false;
-				dialogLock.SetLock(false);
-				showQuitDialog = false;
+		if (GUI.Button (Rect (600,25, 130, 25), "End")) 
+		{
+			/*
+			//fire action
+			var slot : EmployeeList;
+			slot = log.GetSlot(func);
+			log.NewFiredAction(slot);
+			*/
+			//Is fired
+			//fire.FireFuncionario(func);
+			func.FireEmployee(true);
+			dialogQuitEnable = false;
+			dialogLock.SetLock(false);
+			showQuitDialog = false;
 		}
 	}
 	GUI.EndGroup ();

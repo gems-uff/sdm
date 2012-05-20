@@ -135,10 +135,13 @@ function PassTime () {
 	}
 	
 	//Testing
-	/*
-	if((gameTime > 2))
-		BroadcastMessage("ShowActionWindow");
-		*/
+	
+	if((gameTime == 1))
+	{
+		//BroadcastMessage("NewProjectNode");
+		BroadcastMessage("ShowLogWindow");
+	}
+		
 }
 
 //--------------------------------------------Speed-----------------------------------------------------------

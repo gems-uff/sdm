@@ -227,6 +227,7 @@ function WindowFunction (windowID : int)	{
 	GUI.Box (Rect (200,418,198,20), ("\t" + especializacao_array[16].ToString()),fichaGuiStyle);
 	GUI.Box (Rect (200,438,198,20), ("\t" + especializacao_array[17].ToString()),fichaGuiStyle);
 	
+	GUI.DragWindow();
 	if(showCloseButton)
 		if (GUI.Button (Rect (02,458,98,20), "Close Profile")) 
 		{
@@ -264,6 +265,7 @@ function WindowFunction_Level (windowID : int)	{
 	GUI.Box (Rect (02,198,196,20), (" Objectivity: +"+ aux_obj),fichaGuiStyle);
 	GUI.Box (Rect (02,218,196,20), (" Organization: +"+ aux_org),fichaGuiStyle);
 	GUI.Box (Rect (02,238,196,20), (" Patience: +"+ aux_pac),fichaGuiStyle);
+	GUI.DragWindow();
 	if (GUI.Button (Rect (02,258,196,20), "Close")) 
 	{
 		showJanelaLevel  = false;
@@ -338,6 +340,7 @@ function WindowFunction_Report (windowID : int)	{
 	
 	GUI.Box (Rect (002,238,596,20), (" "),fichaGuiStyle);
 	GUI.Box (Rect (200,258,398,20), (" "),fichaGuiStyle);
+	GUI.DragWindow();
 	if (GUI.Button (Rect (02,258,196,20), "Close")) 
 	{
 		showJanelaReport  = false;

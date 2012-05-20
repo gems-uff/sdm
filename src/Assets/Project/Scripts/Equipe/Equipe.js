@@ -41,6 +41,20 @@ public var func08 : Funcionario;
 private var showJanelaReport : boolean = false;
 private var windowRect : Rect = Rect (300,125,600,280);
 
+private var func = new Array();
+func[0] = func01;
+func[1] = func02;
+func[2] = func03;
+func[3] = func04;
+func[4] = func05;
+func[5] = func06;
+func[6] = func07;
+func[7] = func08;
+
+
+//--------------------------------------------------------------
+//Manager variables
+//--------------------------------------------------------------
 //For the manager control
 //int from 0 to 6, to be used on the func[i] array
 private var staffMainProgrammer : int;//can also belong to any of the main staff roles
@@ -52,17 +66,13 @@ private var staffSecondaryAnaliyst : int;
 private var staffSecondaryTester : int;
 //private var staffMarketing : int;
 
-private var func = new Array();
-func[0] = func01;
-func[1] = func02;
-func[2] = func03;
-func[3] = func04;
-func[4] = func05;
-func[5] = func06;
-func[6] = func07;
-func[7] = func08;
 
+
+//--------------------------------------------------------------
+//Manager Functions
+//--------------------------------------------------------------
 //////////////////////////////////////////////////////////////////////////////
+/*
 function SetStaffRoles()
 {
 	var aux : int = 0;
@@ -162,7 +172,11 @@ function SetStaffRoles()
 	staffSecondaryAnaliyst = number;
 
 }
+*/
 
+//--------------------------------------------------------------
+//Macro Hiring Functions
+//--------------------------------------------------------------
 function VacantSlot()
 {
 	var i : int = 0;
@@ -181,7 +195,9 @@ function VacantSlot()
 
 
 
-
+//--------------------------------------------------------------
+//Report Functions
+//--------------------------------------------------------------
 function GetReport(){
 	return report;
 }
@@ -371,7 +387,7 @@ function SetHasManager(t: boolean){
 	hasManager =  t;
 }
 function GetHasMarketing () {					
-	return hasManager;
+	return hasMarketing;
 }
 function SetHasMarketing(t: boolean){
 	hasMarketing =  t;

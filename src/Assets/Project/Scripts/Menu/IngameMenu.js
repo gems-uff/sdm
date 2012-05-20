@@ -3,9 +3,10 @@ public var pauseStyle : GUIStyle;
 public var GameSaver : SaveGame;
 public var ingameMenuToggle 	: boolean = false;
 public var icon : Texture2D;
-public var welcomeWindow : WelcomeWindow;
+//public var welcomeWindow : WelcomeWindow;
 public var playStyle : GameplayStyle;
-public var bugsWindow : BugsWindow;
+//public var bugsWindow : BugsWindow;
+public var windowController : WindowController;
 //public var equipe : Equipe;
 /*
 private var TIMESLOW : float = 2.0;
@@ -168,7 +169,7 @@ function MainMenu(){
 			ingameMenuToggle = false;
 		}
 		if (GUI.Button (Rect (Screen.width - 100,210, 100, 20), "4: Help")) {
-			welcomeWindow.ShowRoleHelpWindow();
+			windowController.ShowRoleHelpWindow();
 			ingameMenuToggle = false;
 		}
 		if (GUI.Button( Rect (Screen.width - 100,230,100,20), "5: Statistics") )
@@ -183,7 +184,8 @@ function MainMenu(){
 		}
 		if (GUI.Button( Rect (Screen.width - 100,270,100,20), "7: Bugs Report") )
 		{
-			bugsWindow.ShowBugWindow();
+			//bugsWindow.ShowBugWindow();
+			windowController.ShowBugWindow();
 			ingameMenuToggle = false ;
 		}
 		if (GUI.Button( Rect (Screen.width - 100,290,100,20), "8: Resume") )

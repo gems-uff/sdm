@@ -47,6 +47,7 @@
      <Compile Include="Assets\Project\Player\SuperMarioAnimation.js" />
      <Compile Include="Assets\Project\Player\SuperMarioController.js" />
      <Compile Include="Assets\Project\Scripts\Behavior\BehaviorPlanner.js" />
+     <Compile Include="Assets\Project\Scripts\Behavior\HistoryLog.js" />
      <Compile Include="Assets\Project\Scripts\Camera\MouseLook2.js" />
      <Compile Include="Assets\Project\Scripts\Class\Atributos.js" />
      <Compile Include="Assets\Project\Scripts\Class\Especializacoes.js" />
@@ -121,6 +122,7 @@
      <Compile Include="Assets\Project\Scripts\Windows\EspWindow.js" />
      <Compile Include="Assets\Project\Scripts\Windows\FuncWindow.js" />
      <Compile Include="Assets\Project\Scripts\Windows\HireWindow.js" />
+     <Compile Include="Assets\Project\Scripts\Windows\LogWindow.js" />
      <Compile Include="Assets\Project\Scripts\Windows\NegotiationWindow.js" />
      <Compile Include="Assets\Project\Scripts\Windows\PapelWindow.js" />
      <Compile Include="Assets\Project\Scripts\Windows\ProjectEnd.js" />
@@ -128,6 +130,7 @@
      <Compile Include="Assets\Project\Scripts\Windows\PrototypeWindow.js" />
      <Compile Include="Assets\Project\Scripts\Windows\WeeklyReportWindow.js" />
      <Compile Include="Assets\Project\Scripts\Windows\WelcomeWindow.js" />
+     <Compile Include="Assets\Project\Scripts\Windows\WindowController.js" />
      <Compile Include="Assets\Project\Scripts\Windows\WorkingHoursWindow.js" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Blob-Shadow\ShadowProjection.shader" />

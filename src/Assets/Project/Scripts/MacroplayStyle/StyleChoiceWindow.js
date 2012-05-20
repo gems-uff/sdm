@@ -36,6 +36,7 @@ function WindowFunction(windowID : int){
 			projectW.SetShowWindow(project, true);
 		}
 	}
+	GUI.DragWindow();
 }
 
 function ChangeStyle(){

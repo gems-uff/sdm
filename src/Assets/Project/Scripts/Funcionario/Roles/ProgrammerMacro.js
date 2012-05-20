@@ -246,14 +246,14 @@ class ProgrammerMacro extends System.ValueType{
 		//Decide which task will be done
 		if(behavior.GetProgEvolution())
 		{
-			actionNode.task = "Evolution: Adhoc";
+			actionNode.task = "Evolution Adhoc";
 			Evolution();
 		}
 		else
 		{
 			if(behavior.GetProgRepair())
 			{
-				actionNode.task = "Repair: Adhoc";
+				actionNode.task = "Repair Adhoc";
 				Repair();
 			}
 		}
@@ -269,14 +269,14 @@ class ProgrammerMacro extends System.ValueType{
 		//Decide which task will be done
 		if(behavior.GetProgEvolution())
 		{
-			actionNode.task = "Evolution: Draw-code";
+			actionNode.task = "Evolution Draw-code";
 			Evolution();
 		}
 		else
 		{
 			if(behavior.GetProgRepair())
 			{
-				actionNode.task = "Repair: Draw-code";
+				actionNode.task = "Repair Draw-code";
 				Repair();
 			}
 		}
@@ -292,14 +292,14 @@ class ProgrammerMacro extends System.ValueType{
 		//Decide which task will be done
 		if(behavior.GetProgEvolution())
 		{
-			actionNode.task = "Evolution: Test-Driven";
+			actionNode.task = "Evolution Test-Driven";
 			Evolution();
 		}
 		else
 		{
 			if(behavior.GetProgRepair())
 			{
-				actionNode.task = "Repair: Test-Driven";
+				actionNode.task = "Repair Test-Driven";
 				Repair();
 			}
 		}
@@ -335,7 +335,8 @@ class ProgrammerMacro extends System.ValueType{
 			pressure = "not";
 			
 		actionNode.date = date;
-		actionNode.who = func.Copy();
+		//actionNode.who = func.Copy();
+		actionNode.role = "Programmer";
 		
 		if(isPressured)
 		{
@@ -372,12 +373,16 @@ class ProgrammerMacro extends System.ValueType{
 			//Cap at model
 			codeLines = codeLines * (project.GetSincronismo() / 100);
 						
-			maxBugs = (100.0 - func.GetProgramador()) * constant.PROG_BUG_MOD; 
+			maxBugs = (100.0 - func.GetProgramador()) * constant.PROG_BUG_MOD;
+			Debug.Log("MaxBugs1 : " + maxBugs); 
 			//Number of bugs is influenced by the code quality
 			maxBugs = maxBugs * ( 2 - project.GetCodeQuality());
+			Debug.Log("MaxBugs2 : " + maxBugs);
+			Debug.Log("GetCodeQuality : " + project.GetCodeQuality());
 			codeLines = codeLines * constant.PROG_LINES_DAY_MOD;
 			
 			maxBugs = parseInt(maxBugs);
+			Debug.Log("MaxBugs3 : " + maxBugs);
 			codeLines = parseInt(codeLines);
 			
 			//Cant add bug if you cant code
@@ -390,8 +395,10 @@ class ProgrammerMacro extends System.ValueType{
 				else
 					maxBugs = 0;
 			}
+			Debug.Log("MaxBugs4 : " + maxBugs);
 			//Chance to add bugs, to a total of "maxBugs"
 			bugCount = project.RandomizeBugs(maxBugs);
+			Debug.Log("bugCount : " + bugCount);
 			
 			project.SetLinesDone(codeLines);
 			ProgReport(codeLines, bugCount, report);

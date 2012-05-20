@@ -17,7 +17,7 @@ function ShowActionWindow()
 
 function WindowFunction(windowID : int){
 	var actionNode : ActionNode = work.GetAction();
-	who = actionNode.who.GetNome();
+	//who = actionNode.who.GetNome();
 	date = actionNode.date;
 	task = actionNode.task;
 	reason = "";
@@ -26,7 +26,7 @@ function WindowFunction(windowID : int){
 	//Upper Left
 	GUI.Box (Rect (02,000,196,25), "----Action----");
 	GUI.Box (Rect (02,025,196,25), "Date: " + date);
-	GUI.Box (Rect (02,050,196,25), "Who: " + who);
+	//GUI.Box (Rect (02,050,196,25), "Who: " + who);
 	GUI.Box (Rect (02,075,196,25), "Task: " + task);
 	GUI.Box (Rect (02,100,196,25), "ExtReason: " + reason);
 	GUI.Box (Rect (02,125,396,75), "Description: " + descr);
@@ -38,6 +38,7 @@ function WindowFunction(windowID : int){
 	}
 	GUI.EndGroup ();
 }
+
 function OnGUI () {
 	GUI.backgroundColor = Color.yellow;
 	GUI.contentColor = Color.green;

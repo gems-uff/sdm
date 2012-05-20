@@ -26,8 +26,9 @@ class ActiontList extends ActionNode
 class ActionNode
 {
 	public var date : int;
-	public var who : Funcionario;
+	//public var who : Funcionario;
 	public var task : String;
+	public var role : String;
 	public var externalReason : ActionNode;
 	public var description : String;
 	
@@ -44,8 +45,9 @@ class ActionNode
 	function NewNode()
 	{
 		this.date = 0;
-		this.who = null;
+		//this.who = null;
 		this.task = "";
+		this.role = "";
 		this.externalReason = null;
 		this.description = "";
 		

@@ -86,4 +86,5 @@ function showFloatTextCompanyDeLevel()
 
 function Start()
 {
+	v = Camera.main.WorldToViewportPoint(transform.position);
 }

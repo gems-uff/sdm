@@ -1,12 +1,12 @@
 
-
+public var winCon : WindowController;
 public var project : Project;
 //public var projectW : ProjectWindow;
 public var timer : GameTime;
 public var style : StyleChoiceWindow;
 
 //Variaveis de controle do dialogo
-private var welcome : boolean = true;
+//private var welcome : boolean = true;
 private var window01 : boolean = true;
 private var window02 : boolean = false;
 private var showRoleHelp : boolean = false;
@@ -15,7 +15,10 @@ private var msgWelcome : String;
 private var msg02 : String;
 //Variavel do Style da GUI
 public var customGuiStyle : GUIStyle;
-private var windowRect : Rect = Rect (700,125,300,395);
+
+public var log : HistoryLog;
+
+//private var windowRect : Rect = Rect (700,125,300,395);
 
 msgWelcome = "Welcome to S.D.M. \n(Software Development Manager) \n" + 
 "\n In this game you are able to have 8 employees, where each can perform different roles, like Analyst, Architect, Manager, Marketing, Programmer and Tester. "+
@@ -52,11 +55,14 @@ function WindowFunction(windowID : int){
 		if (GUI.Button (Rect (02,368,296,25), "Close Window")) 
 		{
 			window02 = false;
-			welcome = false;
+			//welcome = false;
+			winCon.DisableWelWindow();
 			//projectW.SetShowWindow(project, true);
+			log.NewProjectNode();
 			style.ShowStyleChoiceWindow();
 		}
 	}
+	GUI.DragWindow();
 }
 
 
@@ -66,10 +72,12 @@ function ShowRoleHelp()
 	if (GUI.Button (Rect (02,368,296,25), "Close Window")) 
 	{
 		showRoleHelp = false;
+		winCon.DisableRoleHelpWindow();
 	}
+	GUI.DragWindow();
 }
 
-function ShowRoleHelpWindow()
+function ShowRoleHelpWindow(a : int)
 {
 	showRoleHelp = true;
 }
@@ -81,8 +89,8 @@ function Awake () {
 //--------------------------------------------OnGUI-----------------------------------------------------------
 
 function OnGUI () {
-	if(welcome)
-		windowRect = GUI.Window (5, windowRect, WindowFunction, "Welcome");
-	if(showRoleHelp)
-		windowRect = GUI.Window (5, windowRect, ShowRoleHelp, "Help");
+	//if(welcome)
+	//	windowRect = GUI.Window (5, windowRect, WindowFunction, "Welcome");
+	//if(showRoleHelp)
+	//	windowRect = GUI.Window (5, windowRect, ShowRoleHelp, "Help");
 }

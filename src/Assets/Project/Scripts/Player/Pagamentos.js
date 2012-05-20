@@ -1,5 +1,5 @@
 
-
+public var gameStyle : GameplayStyle;
 public var DIAS_PAGAMENTO : int = 28;
 public var PROJECT_MULT : int = 3;
 private var isPago : boolean = false;
@@ -119,10 +119,19 @@ function PagarJogadorMensal(){
 
 function CalculaPagamentoFinal(){
 	var pagamentofinal : int;
+	var auxBugs : int;
+	if(gameStyle.IsMacro())
+	{
+		auxBugs = parseInt(project.GetTotalBugsNotFixed());
+	}
+	else
+	{
+		auxBugs = parseInt(project.GetNumBugs());
+	}
 	pagamentofinal = project.GetPagamento();
 	pagamentofinal = pagamentofinal * PROJECT_MULT;
 	pagamentofinal = pagamentofinal * (parseInt(project.GetSincronismo())) / 100;	//reduz de acordo com o sincronismo
-	pagamentofinal = pagamentofinal - ((parseInt(project.GetNumBugs())) * project.GetBugValue());		//reduz de acordo com o numero de bugs
+	pagamentofinal = pagamentofinal - (auxBugs * project.GetBugValue());		//reduz de acordo com o numero de bugs
 	
 	return pagamentofinal;
 }
@@ -135,9 +144,9 @@ function GetPagamentoFinal()
 	return pagamentofinal;
 }
 
-function GetBugPenalty()
+function GetBugPenalty(auxBugs : int)
 {
-	return (parseInt(project.GetNumBugs()) * project.GetBugValue());
+	return (parseInt(auxBugs) * project.GetBugValue());
 }
 
 function GetValidadionAdjustment()

@@ -1,4 +1,5 @@
 
+//public var windowController : WindowController;
 public var stringNames : StringNames;
 public var timer : GameTime;
 public var pagar : Pagamentos;
@@ -178,6 +179,7 @@ function WindowFunction(windowID : int){
 		treino.SetLockEscolha(false);
 	}
 	GUI.EndGroup ();
+	GUI.DragWindow();
 }
 
 function ShowInsuficientMoneyWindow()

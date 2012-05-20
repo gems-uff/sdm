@@ -186,7 +186,7 @@ function RandomizeBugs(t : int)
 {
 	var i : int = 0;
 	var random : int;
-	codeQuality = 4;
+	codeQuality = GetCodeQuality();
 	var bugUnitary : int = 0;
 	var bugIntegration : int = 0;
 	var bugSystem : int = 0;
@@ -194,10 +194,10 @@ function RandomizeBugs(t : int)
 	
 	while(i < t)
 	{
-		random = Random.Range (0, 10);
-		if (random > codeQuality)
+		random = Random.Range (0, 30);
+		i++;
+		if (random < (2 - codeQuality)  * 10)
 		{
-			i++;
 			random = Random.Range (0, 5);
 			switch(random)
 			{
@@ -385,6 +385,10 @@ function GetTotalBugsRepaired()
 	return aux;
 }
 
+function GetTotalBugsNotFixed()
+{
+	return GetTotalBugs() - GetTotalBugsRepaired();
+}
 function GetBugUnitary() {
 	return bugUnitary;
 }

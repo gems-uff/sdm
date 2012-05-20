@@ -1,13 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Funcionario\Roles\ProgrammerMacro.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Project\Project.js">
     <Files>
-      <File FileName="Assets\Project\Scripts\Funcionario\Roles\ProgrammerMacro.js" Line="159" Column="1" />
-      <File FileName="Assets\Project\Scripts\TimeGame\GameTime.js" Line="141" Column="5" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Working.js" Line="13" Column="16" />
-      <File FileName="Assets\Project\Scripts\Class\LinkedList\testList.js" Line="80" Column="26" />
-      <File FileName="Assets\Project\Scripts\Class\LinkedList\ActionList.js" Line="24" Column="2" />
-      <File FileName="Assets\Project\Scripts\Windows\ActionWindow.js" Line="32" Column="30" />
+      <File FileName="Assets\Project\Scripts\Behavior\HistoryLog.js" Line="124" Column="34" />
+      <File FileName="Assets\Project\Scripts\Windows\LogWindow.js" Line="157" Column="25" />
+      <File FileName="Assets\Project\Scripts\Windows\ActionWindow.js" Line="4" Column="38" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Working.js" Line="11" Column="1" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\ProgrammerMacro.js" Line="400" Column="12" />
+      <File FileName="Assets\Project\Scripts\Project\Project.js" Line="197" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

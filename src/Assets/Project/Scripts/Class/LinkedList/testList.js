@@ -2,7 +2,7 @@
 
 //Lists
 var projectList : ProjectList;
-var employeetList : EmployeetList;
+var employeetList : EmployeeList;
 var actionList : ActiontList;
 //Nodes
 var projectNode : ProjectNode;
@@ -41,8 +41,8 @@ function doLinkedListTest () {
 	employeeNode = new EmployeeNode();
 	employeeNode2 = new EmployeeNode();
 	
-	employeeList = new EmployeetList();
-	employeeList2 = new EmployeetList();
+	employeeList = new EmployeeList();
+	employeeList2 = new EmployeeList();
 	/*
 	employeeList3 = new EmployeetList();
 	employeeList4 = new EmployeetList();

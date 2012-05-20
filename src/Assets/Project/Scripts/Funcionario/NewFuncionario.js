@@ -55,8 +55,31 @@ function SetAtributos()
 	func.SetAtributos(atributos);
 }
 
-//--------------------------------------------SetEspecializacao-----------------------------------------------------------
+function RandomFuncionario() {
+	SetAtributos();
+	func.SetEspecializacoes();
+	func.SetNome(newNome.RandomName());
+	func.SetCargo(stringNames.jobJunior);
+	func.SetPapel(stringNames.papelNenhum);
+	func.SetPapelSec(stringNames.papelNenhum);
+	func.SetPapelRate(100);
+	func.SetPapelSecRate(0);
+	func.SetMorale(100);
+	func.SetWorkingHours(40);
+	func.SetSalarioDefault(func.NewSalary());
+	func.SetSalario(func.NewSalary());
+}
 
+//--------------------------------------------Awake-----------------------------------------------------------
+
+function Awake () {
+	func = GetComponentInChildren(Funcionario);
+	//RandomFuncionarioStarter();
+	RandomFuncionario();
+	}
+	
+//--------------------------------------------SetEspecializacao-----------------------------------------------------------
+/*
 function SetEspecializacao (t: int){
 	switch(t)
 	{
@@ -174,9 +197,9 @@ function SetEspecializacoes()
 	
 	func.SetEspecializacoes(especializacao);
 }
-
+*/
 //--------------------------------------------NewSalary-----------------------------------------------------------
-
+/*
 function NewSalario(){
 	var salario : int = 0;
 	var randomModifier : int = Random.Range(100, 121);
@@ -190,9 +213,10 @@ function NewSalario(){
 	
 	return salario;
 }
-
+*/
 //--------------------------------------------NewFuncionario-----------------------------------------------------------
 //Esta funcao serve para criar um funcionario randomico para possivel contratacao
+/*
 function FireFuncionario (t : Funcionario) {
 	var body : GameObject;
 	func = t;
@@ -258,22 +282,10 @@ function ClearFuncionario (t : Funcionario) {
 	func.SetSalarioDefault(0);
 	func.SetSalario(0);
 }
+*/
 
-function RandomFuncionario() {
-	SetAtributos();
-	SetEspecializacoes();
-	func.SetNome(newNome.RandomName());
-	func.SetCargo(stringNames.jobJunior);
-	func.SetPapel(stringNames.papelNenhum);
-	func.SetPapelSec(stringNames.papelNenhum);
-	func.SetPapelRate(100);
-	func.SetPapelSecRate(0);
-	func.SetMorale(100);
-	func.SetWorkingHours(40);
-	func.SetSalarioDefault(NewSalario());
-	func.SetSalario(NewSalario());
-}
 
+/*
 //--------------------------------------------RandomFuncionarioStarter-----------------------------------------------------------
 
 //Esta funcao server para gerar um funcionario inicial totalmente randomico
@@ -294,7 +306,8 @@ function RandomFuncionarioStarter () {
 		func.SetSalario(NewSalario());
 	}
 	else
-		FireFuncionario(func);
+		//FireFuncionario(func);
+		func.FireEmployee();
 }
 
 //Diferenciado para evitar que o jogador começe com funcionarios muito ruins
@@ -331,12 +344,8 @@ function SetAtributosStarter()
 	
 	func.SetAtributos(atributos);
 }
-//--------------------------------------------Awake-----------------------------------------------------------
+*/
 
-function Awake () {
-	func = GetComponentInChildren(Funcionario);
-	RandomFuncionarioStarter();
-	}
 
 //--------------------------------------------Update-----------------------------------------------------------
 /*

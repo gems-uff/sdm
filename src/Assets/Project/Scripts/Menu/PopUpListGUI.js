@@ -2,6 +2,7 @@
 
 //public var myFont : Font;
 public var stringNames : StringNames;
+public var windowController : WindowController;
 private var showList1 = false;	//Showlist para cada mesa
 private var showList2 = false;
 private var showList3 = false;
@@ -47,7 +48,7 @@ function ExecutaBotaoPopup(t : String, listEntry : int){
 		{
 			case 2: 	//"Change Task"
 				if (treino.GetLockEscolha() == false)// && playStyle.IsMacro() == false)
-					menuPapel.MudarPapel(func, treino);
+					windowController.ShowRoleWindow(func, treino);
 		   break;
 		   
 		   case 3: 	//"Train"
@@ -208,7 +209,8 @@ function PopupList(){
 	}
 	else
 	{
-		sFunc7 = "\n Marketing \n";
+		//sFunc7 = "\n Marketing \n";
+		sFunc7 = "";
 	}
 	if (func8.GetNome() != stringNames.fired)
 	{
@@ -216,7 +218,8 @@ function PopupList(){
 	}
 	else
 	{
-		sFunc8 = "\n Manager \n";
+		//sFunc8 = "\n Manager \n";
+		sFunc8 = "";
 	}
 	
 	if (Popup.List (Rect(000, 00, 90, 60), showList1, listEntry, GUIContent(sFunc1), list, listStyle)) {

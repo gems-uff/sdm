@@ -39,6 +39,7 @@ function WindowFunction(windowID : int){
 	if (GUI.Button (Rect (02,93,296,25), "Close")) {
 		showWindow  = false;
 	}
+	GUI.DragWindow();
 }
 
 //Função para setar as horas de trabalho de todos os funcionarios
