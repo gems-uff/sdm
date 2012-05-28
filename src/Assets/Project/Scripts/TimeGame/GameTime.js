@@ -135,12 +135,13 @@ function PassTime () {
 	}
 	
 	//Testing
-	
+	/*
 	if((gameTime == 1))
 	{
 		//BroadcastMessage("NewProjectNode");
 		BroadcastMessage("ShowLogWindow");
 	}
+	*/
 		
 }
 

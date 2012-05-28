@@ -8,6 +8,7 @@ public var playStyle : GameplayStyle;
 //public var bugsWindow : BugsWindow;
 public var windowController : WindowController;
 //public var equipe : Equipe;
+public var logWindow : LogWindow;
 /*
 private var TIMESLOW : float = 2.0;
 private var TIMENORMAL : float = 1.0;
@@ -188,7 +189,13 @@ function MainMenu(){
 			windowController.ShowBugWindow();
 			ingameMenuToggle = false ;
 		}
-		if (GUI.Button( Rect (Screen.width - 100,290,100,20), "8: Resume") )
+		if (GUI.Button( Rect (Screen.width - 100,290,100,20), "8: Action Log") )
+		{
+			//bugsWindow.ShowBugWindow();
+			logWindow.ShowLogWindow();
+			ingameMenuToggle = false ;
+		}
+		if (GUI.Button( Rect (Screen.width - 100,310,100,20), "9: Resume") )
 		{
 			ingameMenuToggle = false ;
 		}

@@ -128,7 +128,7 @@ function WindowFunction(windowID : int){
 		}
 	}
 	else
-		GUI.Box (Rect (200,225,196,25), "Action: " + aux02);
+		GUI.Box (Rect (200,225,196,25), "Action: " + aux06);
 	
 	
 	if(pList.last.slot07.last.actionList.last != null)
@@ -195,10 +195,9 @@ function ActionWindowFunction(windowID : int){
 	GUI.Box (Rect (02,100,196,25), "ExtReason: " + "none");
 	GUI.Box (Rect (02,125,396,75), "Description: " + actionNode.description);
 	
-	//GUI.Box (Rect (02,250,196,25), "Total Bugs: " + project.GetTotalBugs());
 	if (GUI.Button (Rect (02,250,396,25), "Cancel")) 
 	{
-		showWindow  = false;
+		showActionWindow  = false;
 	}
 	GUI.EndGroup ();
 	GUI.DragWindow();
