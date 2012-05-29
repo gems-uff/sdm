@@ -381,15 +381,14 @@ class ProgrammerMacro extends System.ValueType{
 			//codeLines = codeLines * (1 + equipe.GetBonusProg());
 			if(equipe.influenceProg.GetBonusProg()!= 1.0)
 			{
-				Debug.Log("IM INSIDE");
 				codeLines = codeLines * (1 + equipe.influenceProg.GetBonusProg());
 				actionNode.influence = equipe.influenceProg.GetInfluence();
-				Debug.Log("Who: " + actionNode.influence.progArchInfluence.who);
+				//Debug.Log("Who: " + actionNode.influence.progArchInfluence.who);
 			}
 			//Apply a small variation
 			codeLines = codeLines * randomizer;
 			//Cap at model
-			codeLines = codeLines * (project.GetSincronismo() / 100);
+			//codeLines = codeLines * (project.GetSincronismo() / 100);
 						
 			maxBugs = (100.0 - func.GetProgramador()) * constant.PROG_BUG_MOD;
 			//Debug.Log("MaxBugs1 : " + maxBugs); 

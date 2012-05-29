@@ -1,7 +1,7 @@
 
 public var winCon : WindowController;
 public var project : Project;
-//public var projectW : ProjectWindow;
+public var projectW : ProjectWindow;
 public var timer : GameTime;
 public var style : StyleChoiceWindow;
 
@@ -57,9 +57,9 @@ function WindowFunction(windowID : int){
 			window02 = false;
 			//welcome = false;
 			winCon.DisableWelWindow();
-			//projectW.SetShowWindow(project, true);
 			log.NewProjectNode();
-			style.ShowStyleChoiceWindow();
+			projectW.SetShowWindow(project, true);
+			//style.ShowStyleChoiceWindow();
 		}
 	}
 	GUI.DragWindow();

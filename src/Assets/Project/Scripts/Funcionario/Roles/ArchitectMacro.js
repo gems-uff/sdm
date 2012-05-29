@@ -153,8 +153,8 @@ class ArchitectMacro extends System.ValueType{
 	//Makes a prototype for the analyst
 	function MakePrototype()
 	{
-		//ArchitectReport(aux, arquiteto, report);
 		floatingLines.showFloatText1("", "Prototype", "blue","");
+		ArchitectReport(0, 0, 0, report);
 	}
 	
 	//Make test cases for system bugs
@@ -163,7 +163,7 @@ class ArchitectMacro extends System.ValueType{
 		equipe.SetSystemBonus(arquiteto);
 		floatingLines.showFloatText1("", "System Cases", "blue","");
 		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue","% System");
-		//ArchitectReport(aux, arquiteto, report);
+		ArchitectReport(arquiteto, 0, 0, report);
 	}
 	
 	//Make test cases for integration bugs
@@ -172,7 +172,7 @@ class ArchitectMacro extends System.ValueType{
 		equipe.SetIntegrationBonus(arquiteto);
 		floatingLines.showFloatText1("", "Integr Cases", "blue","");
 		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue","% Integration");
-		//ArchitectReport(aux, arquiteto, report);
+		ArchitectReport(0, arquiteto, 0, report);
 	}
 	
 	//Modularizate the code to aid the programmers
@@ -182,6 +182,7 @@ class ArchitectMacro extends System.ValueType{
 		equipe.influenceProg.SetBonusProg(arquiteto, actionNode);
 		floatingLines.showFloatText1("", "Modularization", "blue","");
 		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue", " % Archit.");
+		ArchitectReport(0, 0, arquiteto, report);
 	}
 	
 	//--------------------------------------------

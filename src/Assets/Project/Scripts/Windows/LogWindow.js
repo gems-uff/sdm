@@ -1,9 +1,10 @@
 #pragma strict
 
 public var log : HistoryLog;
-private var windowRect : Rect = Rect (600,125,400,400);
-private var windowRect2 : Rect = Rect (600,125,400,300);
-private var windowRect3 : Rect = Rect (600,125,400,300);
+public var projectWindow : ProjectWindow;
+private var windowRect : Rect = Rect (200,125,400,400);
+private var windowRect2 : Rect = Rect (600,125,400,325);
+private var windowRect3 : Rect = Rect (600,450,400,300);
 private var showWindow : boolean = false;
 
 private var pList : ProjectList;
@@ -26,19 +27,26 @@ function ShowLogWindow()
 function WindowFunction(windowID : int){
 	GUI.BeginGroup (Rect (02,20,400,400));
 	//Upper Left
+	var projectNode : ProjectNode = pList.last;
+	var project : Project = projectNode.project;
 	GUI.Box (Rect (02,000,196,25), "----Project----");
-	GUI.Box (Rect (02,025,196,25), "Name: " + pList.last.project.GetNome());
-	GUI.Box (Rect (02,050,196,25), "Start Day: " + pList.last.project.GetStartDay());
+	GUI.Box (Rect (02,025,196,25), "Name: " + project.GetNome());
+	GUI.Box (Rect (02,050,196,25), "Start Day: " + project.GetStartDay());
+	
+	if (GUI.Button (Rect (200,025,196,50), "Project Info")) 
+	{
+		projectWindow.SetShowWindow(project, true);
+	}
 	
 	GUI.Box (Rect (02,075,196,25), "----Employee----");
-	GUI.Box (Rect (02,100,196,25), "Slot01: " + pList.last.slot01.last.employee.GetNome());
-	GUI.Box (Rect (02,125,196,25), "Slot02: " + pList.last.slot02.last.employee.GetNome());
-	GUI.Box (Rect (02,150,196,25), "Slot03: " + pList.last.slot03.last.employee.GetNome());
-	GUI.Box (Rect (02,175,196,25), "Slot04: " + pList.last.slot04.last.employee.GetNome());
-	GUI.Box (Rect (02,200,196,25), "Slot05: " + pList.last.slot05.last.employee.GetNome());
-	GUI.Box (Rect (02,225,196,25), "Slot06: " + pList.last.slot06.last.employee.GetNome());
-	GUI.Box (Rect (02,250,196,25), "Slot07: " + pList.last.slot07.last.employee.GetNome());
-	GUI.Box (Rect (02,275,196,25), "Slot08: " + pList.last.slot08.last.employee.GetNome());
+	GUI.Box (Rect (02,100,196,25), "Slot01: " + projectNode.slot01.last.employee.GetNome());
+	GUI.Box (Rect (02,125,196,25), "Slot02: " + projectNode.slot02.last.employee.GetNome());
+	GUI.Box (Rect (02,150,196,25), "Slot03: " + projectNode.slot03.last.employee.GetNome());
+	GUI.Box (Rect (02,175,196,25), "Slot04: " + projectNode.slot04.last.employee.GetNome());
+	GUI.Box (Rect (02,200,196,25), "Slot05: " + projectNode.slot05.last.employee.GetNome());
+	GUI.Box (Rect (02,225,196,25), "Slot06: " + projectNode.slot06.last.employee.GetNome());
+	GUI.Box (Rect (02,250,196,25), "Slot07: " + projectNode.slot07.last.employee.GetNome());
+	GUI.Box (Rect (02,275,196,25), "Slot08: " + projectNode.slot08.last.employee.GetNome());
 	
 	var aux01: String = "";
 	var aux02: String = "";
@@ -50,12 +58,12 @@ function WindowFunction(windowID : int){
 	var aux08: String = "";
 	
 	
-	if(pList.last.slot01.last.actionList.last != null)
+	if(projectNode.slot01.last.actionList.last != null)
 	{
-		aux01 = pList.last.slot01.last.actionList.last.task;
+		aux01 = projectNode.slot01.last.actionList.last.task;
 		if (GUI.Button (Rect (200,100,196,25), "Action: " + aux01)) 
 		{
-			actionNode  = pList.last.slot01.last.actionList.last;
+			actionNode  = projectNode.slot01.last.actionList.last;
 			showActionWindow = true;
 			showInfluenceWindow = false;
 		}	
@@ -63,12 +71,12 @@ function WindowFunction(windowID : int){
 	else
 		GUI.Box (Rect (200,100,196,25), "Action: " + aux01);
 		
-	if(pList.last.slot02.last.actionList.last != null)
+	if(projectNode.slot02.last.actionList.last != null)
 	{
-		aux02 = pList.last.slot02.last.actionList.last.task;
+		aux02 = projectNode.slot02.last.actionList.last.task;
 		if (GUI.Button (Rect (200,125,196,25), "Action: " + aux02)) 
 		{
-			actionNode  = pList.last.slot02.last.actionList.last;
+			actionNode  = projectNode.slot02.last.actionList.last;
 			showActionWindow = true;
 			showInfluenceWindow = false;
 		}
@@ -76,12 +84,12 @@ function WindowFunction(windowID : int){
 	else
 		GUI.Box (Rect (200,125,196,25), "Action: " + aux02);
 	
-	if(pList.last.slot03.last.actionList.last != null)
+	if(projectNode.slot03.last.actionList.last != null)
 	{
-		aux03 = pList.last.slot03.last.actionList.last.task;
+		aux03 = projectNode.slot03.last.actionList.last.task;
 		if (GUI.Button (Rect (200,150,196,25), "Action: " + aux03)) 
 		{
-			actionNode  = pList.last.slot03.last.actionList.last;
+			actionNode  = projectNode.slot03.last.actionList.last;
 			showActionWindow = true;
 			showInfluenceWindow = false;
 		}
@@ -89,12 +97,12 @@ function WindowFunction(windowID : int){
 	else
 		GUI.Box (Rect (200,150,196,25), "Action: " + aux03);
 		
-	if(pList.last.slot04.last.actionList.last != null)
+	if(projectNode.slot04.last.actionList.last != null)
 	{
-		aux04 = pList.last.slot04.last.actionList.last.task;
+		aux04 = projectNode.slot04.last.actionList.last.task;
 		if (GUI.Button (Rect (200,175,196,25), "Action: " + aux04)) 
 		{
-			actionNode  = pList.last.slot04.last.actionList.last;
+			actionNode  = projectNode.slot04.last.actionList.last;
 			showActionWindow = true;
 			showInfluenceWindow = false;
 		}
@@ -102,12 +110,12 @@ function WindowFunction(windowID : int){
 	else
 		GUI.Box (Rect (200,175,196,25), "Action: " + aux04);	
 	
-	if(pList.last.slot05.last.actionList.last != null)
+	if(projectNode.slot05.last.actionList.last != null)
 	{
-		aux05 = pList.last.slot05.last.actionList.last.task;
+		aux05 = projectNode.slot05.last.actionList.last.task;
 		if (GUI.Button (Rect (200,200,196,25), "Action: " + aux05)) 
 		{
-			actionNode  = pList.last.slot05.last.actionList.last;
+			actionNode  = projectNode.slot05.last.actionList.last;
 			showActionWindow = true;
 			showInfluenceWindow = false;
 		}
@@ -116,12 +124,12 @@ function WindowFunction(windowID : int){
 		GUI.Box (Rect (200,200,196,25), "Action: " + aux05);
 	
 	
-	if(pList.last.slot06.last.actionList.last != null)
+	if(projectNode.slot06.last.actionList.last != null)
 	{
-		aux06 = pList.last.slot06.last.actionList.last.task;
+		aux06 = projectNode.slot06.last.actionList.last.task;
 		if (GUI.Button (Rect (200,225,196,25), "Action: " + aux06)) 
 		{
-			actionNode  = pList.last.slot06.last.actionList.last;
+			actionNode  = projectNode.slot06.last.actionList.last;
 			showActionWindow = true;
 			showInfluenceWindow = false;
 		}
@@ -130,12 +138,12 @@ function WindowFunction(windowID : int){
 		GUI.Box (Rect (200,225,196,25), "Action: " + aux06);
 	
 	
-	if(pList.last.slot07.last.actionList.last != null)
+	if(projectNode.slot07.last.actionList.last != null)
 	{
-		aux07 = pList.last.slot07.last.actionList.last.task;
+		aux07 = projectNode.slot07.last.actionList.last.task;
 		if (GUI.Button (Rect (200,250,196,25), "Action: " + aux07)) 
 		{
-			actionNode  = pList.last.slot07.last.actionList.last;
+			actionNode  = projectNode.slot07.last.actionList.last;
 			showActionWindow = true;
 			showInfluenceWindow = false;
 		}
@@ -144,12 +152,12 @@ function WindowFunction(windowID : int){
 		GUI.Box (Rect (200,250,196,25), "Action: " + aux07);
 		
 		
-	if(pList.last.slot08.last.actionList.last != null)
+	if(projectNode.slot08.last.actionList.last != null)
 	{
-		aux08 = pList.last.slot08.last.actionList.last.task;
+		aux08 = projectNode.slot08.last.actionList.last.task;
 		if (GUI.Button (Rect (200,275,196,25), "Action: " + aux08)) 
 		{
-			actionNode  = pList.last.slot08.last.actionList.last;
+			actionNode  = projectNode.slot08.last.actionList.last;
 			showActionWindow = true;
 			showInfluenceWindow = false;
 		}
@@ -198,7 +206,31 @@ function ActionWindowFunction(windowID : int){
 	//End influence button	
 	GUI.Box (Rect (02,175,396,75), "Description: " + actionNode.description);
 	
-	if (GUI.Button (Rect (02,250,396,25), "Cancel")) 
+	//Move through the action list
+	//Previous
+	if(actionNode.previous != null)
+	{
+		if (GUI.Button (Rect (02,250,198,25), "Previous")) 
+		{
+			actionNode  = actionNode.previous;
+		}
+	}
+	else
+		GUI.Box (Rect (02,250,198,25), "Previous");
+	
+	//Next
+	if(actionNode.next != null)
+	{
+		if (GUI.Button (Rect (200,250,198,25), "Next")) 
+		{
+			actionNode  = actionNode.next;
+		}
+	}
+	else
+		GUI.Box (Rect (200,250,198,25), "Next");
+	
+	//Close button	
+	if (GUI.Button (Rect (02,275,396,25), "Close")) 
 	{
 		showActionWindow  = false;
 	}

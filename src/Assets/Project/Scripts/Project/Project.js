@@ -44,8 +44,8 @@ private var volatility : float = 1.0;
 private var lastValidation : int = 0.0;
 //Qualidade do codigo, o que interfere na remoção/inserção de bugs
 private var codeQuality : float = 0.8; //from 0.1 to 1.2
-//Project model. The hightest valor equals Validation (Sincronismo)
-private var model : float = 0.0;
+//Project requirements. The hightest valor equals Validation (Sincronismo)
+private var requirements : float = 0.0;
 
 function ResetProject(){
 	bugs = 0;
@@ -54,7 +54,7 @@ function ResetProject(){
 	completed = false;
 	ResetBugsTypes();
 	
-	model = 0.0;
+	requirements = 0.0;
 	volatility = 1.0;
 	lastValidation = timer.GetGameTime();
 	codeQuality = 0.8;
@@ -71,16 +71,16 @@ function SetVolatility(t : float)
 {
 	volatility = t;
 }
-function ResetLastValidation()
+function ResetLastElicitation()
 {
 	lastValidation = timer.GetGameTime();
 }
 
-function UpdateValidation(t : float)
+function UpdateElicitation(t : float, prototype : boolean)
 {
 	var change : float;
 	var passedTime : int;
-	change = t;
+	change = t / (GetProjectSize() * 0.005);
 	passedTime = timer.GetGameTime() - lastValidation;
 	passedTime = volatility * passedTime / (GetProjectSize() * 0.005);
 	if (!completed)
@@ -99,9 +99,13 @@ function UpdateValidation(t : float)
 			sincronismo = 0.0;
 		}
 	}
-	CheckModel();
-	ResetLastValidation();
-		
+	CheckRequirements();
+	ResetLastElicitation();
+}
+
+function GetElicitation()
+{
+	return sincronismo;
 }
 
 //---------------------------------------------------------------------------------------------------------------
@@ -138,37 +142,37 @@ function SetCodeQuality(t : float)
 //---------------------------------------------------------------------------------------------------------------
 //--------------------------------------------Model-----------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------
-function GetModel()
+function GetRequirements()
 {
-	return model;
+	return requirements;
 }
-function ChangeModel(t : float)
+function ChangeRequirements(t : float)
 {
-	model += t;
-	CheckModel();
+	requirements += t;
+	CheckRequirements();
 	
 }
-function ResetModel()
+function ResetRequirements()
 {
-	model = 0.0;
+	requirements = 0.0;
 }
-function SetModel(t : float)
+function SetRequirements(t : float)
 {
-	model = t;
+	requirements = t;
 }
 
-//Model cant be highter than validation nor lower than 0.0
-function CheckModel()
+//Requirements cant be highter than validation nor lower than 0.0
+function CheckRequirements()
 {
-	if(model > sincronismo)
+	if(requirements > sincronismo)
 	{
-		model = sincronismo;
+		requirements = sincronismo;
 	}
 	else
 	{
-		if(model < 0.0)
+		if(requirements < 0.0)
 		{
-			model = 0.0;
+			requirements = 0.0;
 		}
 	}
 }
@@ -481,9 +485,17 @@ function SetProjectSize (t: int) {
 function GetLinesDone () {
 	return codeLinesDone;
 }
+
+//It will cap on the model
 function SetLinesDone (t: int) {
 	if (!completed)
+	{
 		codeLinesDone = codeLinesDone + t;
+		if(GetFractionDone() > GetRequirements())
+		{
+			codeLinesDone = GetRequirements() * 0.01 * maxCodeLines;
+		}
+	}
 }
 function GetIscomplete () {
 	return completed;
@@ -568,7 +580,6 @@ function SetProjectQuality(){
 			else
 				projectQuality = "Highest priority";
 }
-
 
 //--------------------------------------------Awake-----------------------------------------------------------
 function Awake(){

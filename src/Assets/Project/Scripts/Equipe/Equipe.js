@@ -223,6 +223,7 @@ function WindowFunction_Report (windowID : int)	{
 	GUI.Box (Rect (02,158,198,20), (" Marketing's Validation:"),fichaGuiStyle);
 	GUI.Box (Rect (02,178,198,20), (" Marketing's Money:"),fichaGuiStyle);
 	GUI.Box (Rect (02,198,198,20), (" Programmer's Progress:"),fichaGuiStyle);
+	/*
 	if(playStyle.IsMacro() == false)
 	{
 		GUI.Box (Rect (02,218,198,20), (" Programmer's Bugs:"),fichaGuiStyle);
@@ -230,9 +231,10 @@ function WindowFunction_Report (windowID : int)	{
 	}
 	else
 	{
-		GUI.Box (Rect (02,218,198,20), (" Programmer's Bugs repaired:"),fichaGuiStyle);
-		GUI.Box (Rect (02,238,198,20), (" Tester's Bug find:"),fichaGuiStyle);
-	}
+	*/
+	GUI.Box (Rect (02,218,198,20), (" Programmer's Bugs repaired:"),fichaGuiStyle);
+	GUI.Box (Rect (02,238,198,20), (" Tester's Bug find:"),fichaGuiStyle);
+	//}
 	//Relatorio da semana
 	GUI.Box (Rect (200,018,100,20), (" Last week"),fichaGuiStyle);
 	GUI.Box (Rect (200,038,100,20), (" + "+ report.analistReport + " %"),fichaGuiStyle);

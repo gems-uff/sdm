@@ -22,6 +22,7 @@ private var deadlineText = "";
 private var bugsText = "";
 private var completedText = "";
 private var sincronismoText = "";
+private var modelText = "";
 private var reqlingText = "";
 private var valorMensalText = "";
 
@@ -54,11 +55,12 @@ function StatusProjeto()	{
 		bugsText = parseInt(project.GetTotalBugsFound() - project.GetTotalBugsRepaired()).ToString();
 	}
 	completedText = (project.GetFractionDone().ToString() + " %");
+	modelText = (parseInt(project.GetRequirements()).ToString() + " %");
 	sincronismoText = (parseInt(project.GetSincronismo()).ToString() + " %");	//parseint para converter o float para inteiro
 	reqlingText = project.GetLinguagem ();
 	valorMensalText = "$ " + (parseInt(project.GetPagamento()).ToString());
 	
-	GUI.BeginGroup(Rect (00,Screen.height - 50,1020,200));
+	GUI.BeginGroup(Rect (00,Screen.height - 75,1020,200));
 	GUI.Box (Rect (00,00,90,25), "Money");
 	GUI.Box (Rect (00,25,90,25), "Monthly Inc.");
 	GUI.Box (Rect (90,00,130,25), saldoText);
@@ -69,13 +71,15 @@ function StatusProjeto()	{
 	GUI.Box (Rect (310,00,130,25), timeText);
 	GUI.Box (Rect (310,25,130,25), deadlineText);
 	
-	GUI.Box (Rect (440,00,90,25), "% complete");
-	GUI.Box (Rect (440,25,90,25), "Validation");
+	GUI.Box (Rect (440,00,90,25), "Req. Done");
 	GUI.Box (Rect (530,00,90,25), completedText);
-	GUI.Box (Rect (530,25,90,25), sincronismoText);
+	GUI.Box (Rect (440,25,90,25), "Req. Modeled");
+	GUI.Box (Rect (530,25,90,25), modelText);
+	GUI.Box (Rect (440,50,90,25), "Client's Req.");
+	GUI.Box (Rect (530,50,90,25), sincronismoText);
 	
 	GUI.Box (Rect (620,00,90,25), "# bugs");
-	GUI.Box (Rect (620,25,90,25), "Req. Code");
+	GUI.Box (Rect (620,25,90,25), "Code Lang.");
 	GUI.Box (Rect (710,00,90,25), bugsText);
 	GUI.Box (Rect (710,25,90,25), reqlingText);
 

@@ -1,15 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Equipe\Equipe.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Funcionario\Roles\TesterMacro.js">
     <Files>
-      <File FileName="Assets\Project\Scripts\Funcionario\Roles\ProgrammerMacro.js" Line="350" Column="34" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Roles\ArchitectMacro.js" Line="192" Column="35" />
-      <File FileName="Assets\Project\Scripts\Behavior\BehaviorPlanner.js" Line="3" Column="20" />
-      <File FileName="Assets\Project\Scripts\Equipe\Equipe.js" Line="14" Column="37" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Funcionario.js" Line="652" Column="20" />
       <File FileName="Assets\Project\Scripts\Equipe\Influence.js" Line="5" Column="29" />
-      <File FileName="Assets\Project\Scripts\Windows\LogWindow.js" Line="154" Column="32" />
-      <File FileName="Assets\Project\Scripts\Class\LinkedList\ActionList.js" Line="49" Column="16" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\AnalystMacro.js" Line="75" Column="49" />
+      <File FileName="Assets\Project\Scripts\Project\Project.js" Line="145" Column="25" />
+      <File FileName="Assets\Project\Scripts\Menu\IngameMenu.js" Line="82" Column="43" />
+      <File FileName="Assets\Project\Scripts\Windows\WorkingHoursWindow.js" Line="7" Column="50" />
+      <File FileName="Assets\Project\Scripts\Behavior\BehaviorPlanner.js" Line="232" Column="2" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\TesterMacro.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

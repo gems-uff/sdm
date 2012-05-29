@@ -16,6 +16,15 @@ private var archTestCases : String = "both"; //system, integration, both
 //private var archPrototype : boolean = false;
 //private var employeeNode : EmployeeNode;
 
+//For Analysts
+private var anaElicitation : boolean = false;
+private var anaEspecification : boolean = false;
+private var anaQuality : boolean = false;
+private var anaRounded : boolean = true;
+
+
+
+//For everyone
 private var employeeList : EmployeeList;
 private var func : Funcionario;
 public var Log : HistoryLog;
@@ -77,6 +86,42 @@ function ActivateArchRounded()
 	SetArchEvolution(false);
 	SetArchAnalysis(false);
 	SetArchRounded(true);
+}
+
+//-------------------------------------------------------------------------------------------------------
+//Functions for Analyst
+//-------------------------------------------------------------------------------------------------------
+
+function ActivateAnaElicitation()
+{
+	SetAnaElicitation(true);
+	SetAnaEspecification(false);
+	SetAnaQuality(false);
+	SetAnaRounded(false);
+}
+
+function ActivateAnaEspecification()
+{
+	SetAnaElicitation(false);
+	SetAnaEspecification(true);
+	SetAnaQuality(false);
+	SetAnaRounded(false);
+}
+
+function ActivateAnaQuality()
+{
+	SetAnaElicitation(false);
+	SetAnaEspecification(false);
+	SetAnaQuality(true);
+	SetAnaRounded(false);
+}
+
+function ActivateAnaRounded()
+{
+	SetAnaElicitation(false);
+	SetAnaEspecification(false);
+	SetAnaQuality(false);
+	SetAnaRounded(true);
 }
 
 //-------------------------------------------------------------------------------------------------------
@@ -185,7 +230,7 @@ function GetArchPrototype()
 */
 function SetTestCases(t : String)
 {
-	Debug.Log("TestCases: " +t);
+	//Debug.Log("TestCases: " +t);
 	if(t.Equals("system") || t.Equals("integration") || t.Equals("both"))
 		archTestCases = t;
 	else
@@ -194,6 +239,47 @@ function SetTestCases(t : String)
 function GetTestCases()
 {
 	return archTestCases;
+}
+function CheckTestCase(t: String)
+{
+	if(archTestCases.Equals(t))
+		return true;
+	else
+		return false;
+}
+
+//Analyst Gets/Sets
+function SetAnaElicitation(t : boolean)
+{
+	anaElicitation = t;
+}
+function GetAnaElicitation()
+{
+	return anaElicitation;
+}
+function SetAnaEspecification(t : boolean)
+{
+	anaEspecification = t;
+}
+function GetAnaEspecification()
+{
+	return anaEspecification;
+}
+function SetAnaQuality(t : boolean)
+{
+	anaQuality = t;
+}
+function GetAnaQuality()
+{
+	return anaQuality;
+}
+function SetAnaRounded(t : boolean)
+{
+	anaRounded = t;
+}
+function GetAnaRounded()
+{
+	return anaRounded;
 }
 //-------------------------------------------------------------------------------------------------------
 //Awake

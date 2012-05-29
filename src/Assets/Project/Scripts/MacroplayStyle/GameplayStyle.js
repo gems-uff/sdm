@@ -1,7 +1,7 @@
 #pragma strict
 
 
-private var gameStyle : boolean = false;
+private var gameStyle : boolean = true;
 //true = macro management
 //false = micro management
 

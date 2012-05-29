@@ -4,7 +4,7 @@ private var func : Funcionario;
 private var behavior : BehaviorPlanner;
 public var timer : GameTime;
 public var playStyle : GameplayStyle;
-private var windowRect : Rect = Rect (400,125,300,520);
+private var windowRect : Rect = Rect (400,125,400,520);
 private var hSliderValue : float = 8.0;
 private var showWindow : boolean = false;
 
@@ -42,33 +42,46 @@ function WindowFunction(windowID : int){
 	func.SetWorkingHours(aux);
 	
 	//Behavior
+	//Programmer
 	var progRepair : boolean = behavior.GetProgRepair();
 	var progEvolution : boolean = behavior.GetProgEvolution();
 	
+	//Architect
 	var archVerification : boolean = behavior.GetArchVerification();
 	var archEvolution : boolean = behavior.GetArchEvolution();
 	var archAnalysis : boolean = behavior.GetArchAnalysis();
 	var archRounded : boolean = behavior.GetArchRounded();
-	var archTestCases : String = behavior.GetTestCases();
+	//var archTestCases : String = behavior.GetTestCases();
+	var archIntegration : boolean = behavior.CheckTestCase("integration");
+	var archSystem : boolean = behavior.CheckTestCase("system");
+	var archBoth : boolean = behavior.CheckTestCase("both");
 	
+	//Analyst
+	var anaElicitation : boolean = behavior.GetAnaElicitation();
+	var anaEspecification : boolean = behavior.GetAnaEspecification();
+	var anaQuality : boolean = behavior.GetAnaQuality();
+	var anaRounded : boolean = behavior.GetAnaRounded();
+
 	var isPressured : boolean = behavior.GetPressure();
 	
-	GUI.Box (Rect (02,100,150,25), "Programmer task");
-	progRepair = GUI.Toggle (Rect (10, 125, 100, 25), progRepair, "Repair");
+	//Programmer
+	GUI.Box (Rect (02,100,200,25), "Programmer task");
+	progRepair = GUI.Toggle (Rect (10, 125, 90, 25), progRepair, "Repair");
 	if(progRepair)
 	{
 		progEvolution = false;
 		behavior.ActivateProgRepair();
 	}
-	progEvolution = GUI.Toggle (Rect (10, 150, 100, 25), progEvolution, "Evolution");	
+	progEvolution = GUI.Toggle (Rect (10, 150, 90, 25), progEvolution, "Evolution");	
 	if(progEvolution)
 	{
 		progRepair = false;
 		behavior.ActivateProgEvolution();
 	}
 	
-	GUI.Box (Rect (02,175,150,25), "Architect task");
-	archVerification = GUI.Toggle (Rect (10, 200, 100, 25), archVerification, "Verification");
+	//Architect
+	GUI.Box (Rect (02,175,200,25), "Architect task");
+	archVerification = GUI.Toggle (Rect (10, 200, 90, 25), archVerification, "Verification");
 	if(archVerification)
 	{
 		archEvolution = false;
@@ -77,7 +90,7 @@ function WindowFunction(windowID : int){
 		behavior.ActivateArchVerification();
 	}
 	
-	archEvolution = GUI.Toggle (Rect (10, 225, 100, 25), archEvolution, "Evolution");
+	archEvolution = GUI.Toggle (Rect (10, 225, 90, 25), archEvolution, "Evolution");
 	if(archEvolution)
 	{
 		archVerification = false;
@@ -86,7 +99,7 @@ function WindowFunction(windowID : int){
 		behavior.ActivateArchEvolution();
 	}
 	
-	archAnalysis = GUI.Toggle (Rect (10, 250, 100, 25), archAnalysis, "Analysis");
+	archAnalysis = GUI.Toggle (Rect (10, 250, 90, 25), archAnalysis, "Analysis");
 	if(archAnalysis)
 	{
 		archEvolution = false;
@@ -94,7 +107,7 @@ function WindowFunction(windowID : int){
 		archRounded = false;
 		behavior.ActivateArchAnalysis();
 	}
-	archRounded = GUI.Toggle (Rect (10, 275, 100, 25), archRounded, "Rounded");
+	archRounded = GUI.Toggle (Rect (10, 275, 90, 25), archRounded, "Rounded");
 	if(archRounded)
 	{
 		archEvolution = false;
@@ -102,9 +115,67 @@ function WindowFunction(windowID : int){
 		archVerification = false;
 		behavior.ActivateArchRounded();
 	}
+	//Test Cases
+	archIntegration = GUI.Toggle (Rect (110, 225, 90, 25), archIntegration, "Integration");
+	if(archIntegration)
+	{
+		archSystem = false;
+		archBoth = false;
+		behavior.SetTestCases("integration");
+	}
+	archSystem = GUI.Toggle (Rect (110, 250, 90, 25), archSystem, "System");
+	if(archSystem)
+	{
+		archIntegration = false;
+		archBoth = false;
+		behavior.SetTestCases("system");
+	}
+	archBoth = GUI.Toggle (Rect (110, 275, 90, 25), archBoth, "Both");
+	if(archBoth)
+	{
+		archIntegration = false;
+		archSystem = false;
+		behavior.SetTestCases("both");
+	}
+	
+	//Analyst
+	GUI.Box (Rect (02,325,200,25), "Analyst task");
+	anaElicitation = GUI.Toggle (Rect (10, 350, 90, 25), anaElicitation, "Elicitation");
+	if(anaElicitation)
+	{
+		anaEspecification = false;
+		anaQuality = false;
+		anaRounded = false;
+		behavior.ActivateAnaElicitation();
+	}
+	anaEspecification = GUI.Toggle (Rect (10, 375, 90, 25), anaEspecification, "Especification");
+	if(anaEspecification)
+	{
+		anaElicitation = false;
+		anaQuality = false;
+		anaRounded = false;
+		behavior.ActivateAnaEspecification();
+	}
+	
+	anaQuality = GUI.Toggle (Rect (10, 400, 90, 25), anaQuality, "Quality");
+	if(anaQuality)
+	{
+		anaElicitation = false;
+		anaEspecification = false;
+		anaRounded = false;
+		behavior.ActivateAnaQuality();
+	}
+	anaRounded = GUI.Toggle (Rect (10, 425, 90, 25), anaRounded, "Rounded");
+	if(anaRounded)
+	{
+		anaElicitation = false;
+		anaEspecification = false;
+		anaRounded = false;
+		behavior.ActivateAnaRounded();
+	}
 	
 	
-	isPressured = GUI.Toggle (Rect (10, 450, 100, 25), isPressured, "Pressure");
+	isPressured = GUI.Toggle (Rect (110, 125, 90, 25), isPressured, "Pressure");
 	if(isPressured)
 	{
 		behavior.SetPressure(true);

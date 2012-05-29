@@ -35,12 +35,12 @@ class ActionNode
 	
 	//For the linked List
 	public var next : ActionNode;
-	public var before : ActionNode;
+	public var previous : ActionNode;
 
 	function Add(t : ActionNode)
 	{
 		this.next = t;
-		t.before = this;
+		t.previous = this;
 	}
 	
 	function NewNode()
@@ -54,7 +54,7 @@ class ActionNode
 		this.description = "";
 		
 		this.next = null;
-		this.before = null;
+		this.previous = null;
 	}
 }
 

@@ -278,20 +278,26 @@ function AnalistaWork(){
 		var analista : float ;
 		var mod : float = GameModifiers();
 		var randomizer : float = Random.Range (0.5, 1.0);
+		
+		var action : ActionNode = new ActionNode();
+		
 		yield WaitForSeconds(delay);
 		
 		func.WorkingAnalista();
 		
 		analista = func.GetAnalista();
 		analista = analista * (rate * 0.01) * mod * constant.ANALISTA * equipe.GetBonusAnalista() * (1 + modificador_positivo - penal) ;
+		/*
 		if(playStyle.IsMacro() == false)
 		{
 			AnalistaMicro.Work(func, project, report, floatingLines, equipe, constant, analista);
 		}
 		else
 		{
-			AnalistaMacro.Work(func, project, report, floatingLines, equipe, constant, analista);
-		}
+		*/
+		action = AnalistaMacro.Work(func, project, report, floatingLines, equipe, constant, analista, behavior, timer.GetGameTime());
+		behavior.AddAction(action);
+		//}
 	}
 }
 
@@ -332,15 +338,17 @@ function ArquitetoWork(){
 		
 		arquiteto = func.GetArquiteto() * (rate * 0.01) * mod * constant.ARCHITECT * (1 + modificador_positivo - penal) * equipe.GetBonusArquiteto();	
 		
+		/*
 		if(playStyle.IsMacro() == false)
 		{
 			ArchitectMicro.Work(func, project, report, floatingLines, equipe, constant, arquiteto);
 		}
 		else
 		{
-			action = ArchitectMacro.Work(func, project, report, floatingLines, equipe, constant, arquiteto, behavior, timer.GetGameTime());
-			behavior.AddAction(action);
-		}
+		*/
+		action = ArchitectMacro.Work(func, project, report, floatingLines, equipe, constant, arquiteto, behavior, timer.GetGameTime());
+		behavior.AddAction(action);
+		//}
 	}
 }
 
@@ -389,15 +397,16 @@ function GerenteWork(){
 		
 		auxAnaArq = auxAnaArq * (1 + modificador_positivo - penal);
 		auxProg = auxProg * (1 + modificador_positivo - penal_prog);
-		
+		/*
 		if(playStyle.IsMacro() == false)
 		{
 			ManagerMicro.Work(func, project, report, floatingLines, equipe, constant, gerente, auxAnaArq, auxProg);
 		}
 		else
 		{
-			ManagerMacro.Work(func, project, report, floatingLines, equipe, constant, gerente, auxAnaArq, auxProg);
-		}
+		*/
+		ManagerMacro.Work(func, project, report, floatingLines, equipe, constant, gerente, auxAnaArq, auxProg);
+		//}
 	}
 }
 
@@ -436,14 +445,16 @@ function MarketingWork(){
 		
 		marketing = func.GetMarketing() * (rate * 0.01) * (1 - penal) * mod * constant.MARKETING;	
 		
+		/*
 		if(playStyle.IsMacro() == false)
 		{
 			MarketingMicro.Work(func, project, report, floatingLines, equipe, constant, playerStats, marketing);
 		}
 		else
 		{
-			MarketingMacro.Work(func, project, report, floatingLines, equipe, constant, playerStats, marketing);
-		}
+		*/
+		MarketingMacro.Work(func, project, report, floatingLines, equipe, constant, playerStats, marketing);
+		//}
 	}
 		
 }
@@ -492,16 +503,17 @@ function ProgramadorWork(){
 		programador = func.GetProgramador() * (rate * 0.01) * (1 + modificador_positivo - penal_prog) * gameMod;
 		
 		//programador = programador * equipe.GetBonusProg();
-		
+		/*
 		if(playStyle.IsMacro() == false)
 		{	
 			ProgrammerMicro.Work(func, project, report, floatingLines, equipe, constant, programador, RequisitoLinguagem());
 		}
 		else
 		{
-			action = ProgrammerMacro.Work(func, project, report, floatingLines, equipe, constant, programador, RequisitoLinguagem(), isEspecialized, behavior, timer.GetGameTime());
-			behavior.AddAction(action);
-		}
+		*/
+		action = ProgrammerMacro.Work(func, project, report, floatingLines, equipe, constant, programador, RequisitoLinguagem(), isEspecialized, behavior, timer.GetGameTime());
+		behavior.AddAction(action);
+		//}
 	}
 }
 
@@ -542,14 +554,15 @@ function TesterWork(){
 		
 		yield WaitForSeconds(delay);
 		
+		/*
 		if(playStyle.IsMacro() == false)
 		{
 			TesterMicro.Work(func, project, report, floatingLines, equipe, constant, tester, RequisitoLinguagem());
 		}
 		else
-		{
-			TesterMacro.Work(func, project, report, floatingLines, equipe, constant, tester);
-		}
+		{*/
+		TesterMacro.Work(func, project, report, floatingLines, equipe, constant, tester);
+		//}
 	}
 }
 

@@ -50,7 +50,7 @@ function ChangeStyle(){
 	}
 }
 
-function ShowStyleChoiceWindow()
+function ShowStyleChoiceWindow(t:int)
 {
 	showWindow = true;
 }
