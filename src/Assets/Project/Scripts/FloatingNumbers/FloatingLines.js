@@ -12,7 +12,7 @@ function showFloatText1(modifier : String, number : String, fontColor : String, 
 	{
 		x = v.x;
 		y = v.y;
-    	var gui: Transform = Instantiate(ptsPrefab,Vector3(x - 0.03,y,0),Quaternion.identity);
+    	var gui: Transform = Instantiate(ptsPrefab,Vector3(x - 0.03,y + 0.03,0),Quaternion.identity);
     	
 		isShowing = true;
 		
@@ -46,7 +46,7 @@ function showFloatText2(modifier : String, number : String, fontColor : String, 
 	{
 		x = v.x;
 		y = v.y;
-    	var gui: Transform = Instantiate(ptsPrefab,Vector3(x - 0.03,y + 0.03,0),Quaternion.identity);
+    	var gui: Transform = Instantiate(ptsPrefab,Vector3(x - 0.03,y,0),Quaternion.identity);
     	
 		isShowing = true;
 		

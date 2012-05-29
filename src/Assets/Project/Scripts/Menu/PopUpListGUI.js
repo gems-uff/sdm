@@ -52,7 +52,7 @@ function ExecutaBotaoPopup(t : String, listEntry : int){
 		   break;
 		   
 		   case 3: 	//"Train"
-				if (treino.GetLockEscolha() == false && playStyle.IsMacro() == false)
+				if (treino.GetLockEscolha() == false)// && playStyle.IsMacro() == false)
 				{
 					treino.SetLockEscolha(true);
 					novopapel = TakePapel(listEntry);
@@ -65,7 +65,7 @@ function ExecutaBotaoPopup(t : String, listEntry : int){
 		   break;
 		   
 		   case 5: 	//"Work Hours"
-				if(playStyle.IsMacro() == false)
+				//if(playStyle.IsMacro() == false)
 					workHours.ChangeWorkHours(func);
 		   break;
 		   
@@ -135,15 +135,16 @@ function PopupList(){
 	var sFunc8 : String;
 	
 	//If Micro Style
-	if(playStyle.IsMacro() == false)
-	{
+	//if(playStyle.IsMacro() == false)
+	//{
 		list[0] = new GUIContent("");
 		list[1] = new GUIContent("");
 	    list[2] = new GUIContent("Change Task");
 	    list[3] = new GUIContent("Train");
 	    list[4] = new GUIContent("Profile");
 	    list[5] = new GUIContent("Work Hours");
-    }
+    //}
+    /*
     else
     {
     //If Macro Style
@@ -154,6 +155,7 @@ function PopupList(){
 		list[4] = new GUIContent("Profile");
 		list[5] = new GUIContent("");
 	}
+	*/
 	//
 	if (func1.GetNome() != stringNames.fired)
 	{

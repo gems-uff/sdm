@@ -2,8 +2,18 @@
 
 private var isPressured : boolean = false;
 private var pAction : ActionNode;
+
+//For programmers
 private var progRepair : boolean = false;
 private var progEvolution : boolean = true;
+
+//For architects
+private var archVerification : boolean = false;
+private var archEvolution : boolean = false;
+private var archAnalysis : boolean = false;
+private var archRounded : boolean = true;
+private var archTestCases : String = "both"; //system, integration, both
+//private var archPrototype : boolean = false;
 //private var employeeNode : EmployeeNode;
 
 private var employeeList : EmployeeList;
@@ -11,7 +21,96 @@ private var func : Funcionario;
 public var Log : HistoryLog;
 
 
+//-------------------------------------------------------------------------------------------------------
+//Functions for Programmer
+//-------------------------------------------------------------------------------------------------------
 
+function ActivateProgRepair()
+{
+	SetProgRepair(true);
+	SetProgEvolution(false);
+}
+
+function ActivateProgEvolution()
+{
+	SetProgRepair(false);
+	SetProgEvolution(true);
+}
+
+function UnderPressure(t : ActionNode)
+{
+	pAction = t;
+	isPressured = true;
+}
+
+//-------------------------------------------------------------------------------------------------------
+//Functions for Architect
+//-------------------------------------------------------------------------------------------------------
+
+function ActivateArchVerification()
+{
+	SetArchVerification(true);
+	SetArchEvolution(false);
+	SetArchAnalysis(false);
+	SetArchRounded(false);
+}
+
+function ActivateArchEvolution()
+{
+	SetArchVerification(false);
+	SetArchEvolution(true);
+	SetArchAnalysis(false);
+	SetArchRounded(false);
+}
+
+function ActivateArchAnalysis()
+{
+	SetArchVerification(false);
+	SetArchEvolution(false);
+	SetArchAnalysis(true);
+	SetArchRounded(false);
+}
+
+function ActivateArchRounded()
+{
+	SetArchVerification(false);
+	SetArchEvolution(false);
+	SetArchAnalysis(false);
+	SetArchRounded(true);
+}
+
+//-------------------------------------------------------------------------------------------------------
+//Functions below are for the linked lists
+//-------------------------------------------------------------------------------------------------------
+function GetNode()
+{
+	return employeeList.last;
+}
+function UpdateSlot()
+{
+	employeeList = Log.GetSlot(func);
+}
+
+function AddAction(newAction : ActionNode)
+{
+	UpdateSlot();
+	employeeList.last.actionList.Add(newAction);
+}
+
+//-------------------------------------------------------------------------------------------------------
+//Gets and Sets
+//-------------------------------------------------------------------------------------------------------
+function GetPAction()
+{
+	return pAction;
+}
+
+function SetPAction(t : ActionNode)
+{
+	pAction = t;
+}
+
+//Programmer
 function GetPressure()
 {
 	return isPressured;
@@ -27,70 +126,74 @@ function GetProgRepair()
 	return progRepair;
 }
 
-function SetProgRepair(t : boolean)
-{
-	progRepair = t;
-}
-
 function GetProgEvolution()
 {
 	return progEvolution;
 }
 
+function SetProgRepair(t : boolean)
+{
+	progRepair = t;
+}
 function SetProgEvolution(t : boolean)
 {
 	progEvolution = t;
 }
 
-function UnderPressure(t : ActionNode)
+//Architect
+function SetArchVerification(t : boolean)
 {
-	pAction = t;
-	isPressured = true;
+	archVerification = t;
 }
-
-function GetPAction()
+function GetArchVerification()
 {
-	return pAction;
+	return archVerification;
 }
-
-function SetPAction(t : ActionNode)
+function SetArchEvolution(t : boolean)
 {
-	pAction = t;
+	archEvolution = t;
 }
-
-//-------------------------------------------------------------------------------------------------------
-//Functions below are for the linked lists
-//-------------------------------------------------------------------------------------------------------
-function GetNode()
+function GetArchEvolution()
 {
-	return employeeList.last;
+	return archEvolution;
+}
+function SetArchAnalysis(t : boolean)
+{
+	archAnalysis = t;
+}
+function GetArchAnalysis()
+{
+	return archAnalysis;
+}
+function SetArchRounded(t : boolean)
+{
+	archRounded = t;
+}
+function GetArchRounded()
+{
+	return archRounded;
 }
 /*
-function SetNode(t : EmployeeNode)
+function SetArchPrototype(t : boolean)
 {
-	employeeNode = t;
+	archPrototype = t;
+}
+function GetArchPrototype()
+{
+	return archPrototype;
 }
 */
-/*
-function NewNode()
+function SetTestCases(t : String)
 {
-	var employeeNode : EmployeeNode = new EmployeeNode();
-	
-	employeeNode.employee = Instantiate(func);
-	employeeNode.actionList = new ActiontList();
-	
-	employeeList.Add(employeeNode);
+	Debug.Log("TestCases: " +t);
+	if(t.Equals("system") || t.Equals("integration") || t.Equals("both"))
+		archTestCases = t;
+	else
+		archTestCases = "both";
 }
-*/
-function UpdateSlot()
+function GetTestCases()
 {
-	employeeList = Log.GetSlot(func);
-}
-
-function AddAction(newAction : ActionNode)
-{
-	UpdateSlot();
-	employeeList.last.actionList.Add(newAction);
+	return archTestCases;
 }
 //-------------------------------------------------------------------------------------------------------
 //Awake

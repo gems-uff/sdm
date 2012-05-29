@@ -11,14 +11,15 @@ class ArchitectMicro extends System.ValueType{
 		equipe.SetFindbugScore(aux);
 		arquiteto = parseInt(randomizer2 * arquiteto);
 		equipe.SetBonusProg(arquiteto);
-		ArchitectReport(aux, arquiteto, report);
+		ArchitectReport(aux, aux, arquiteto, report);
 		floatingLines.showFloatText1("+", aux.ToString(), "blue","% Testing");
 		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue", " % Archit.");
 	}
 	
-	function ArchitectReport(bug : int, archt : int, report : WeeklyReport)
+	function ArchitectReport(system : int, integration : int, archt : int, report : WeeklyReport)
 {
-	report.architectReport_bug = report.architectReport_bug + bug;
+	report.architectReport_bugSystem = report.architectReport_bugSystem + system;
+	report.architectReport_bugIntegration = report.architectReport_bugIntegration + integration;
 	report.architectReport_archt = report.architectReport_archt + archt;
 }
 

@@ -33,7 +33,7 @@ private var welcomeWindowRect : Rect = Rect (700,125,300,395);
 public var roleWindow : PapelWindow;
 private var showRoleWindow : boolean = false;
 private var showFireDialogRoleWindow : boolean = false;
-private var roleWindowRect : Rect = Rect (400,125,600,288);
+private var roleWindowRect : Rect = Rect (400,125,600,300);
 private var roleFireWindowRect : Rect = Rect (400,125,300,100);
 
 public var prototypeWindow : PrototypeWindow;

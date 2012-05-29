@@ -3,11 +3,16 @@
 public var log : HistoryLog;
 private var windowRect : Rect = Rect (600,125,400,400);
 private var windowRect2 : Rect = Rect (600,125,400,300);
+private var windowRect3 : Rect = Rect (600,125,400,300);
 private var showWindow : boolean = false;
 
 private var pList : ProjectList;
 private var actionNode : ActionNode;
 private var showActionWindow : boolean = false;
+
+private var influenceNode : Influence;
+private var showInfluenceWindow : boolean = false;
+
 
 function ShowLogWindow()
 {
@@ -15,6 +20,9 @@ function ShowLogWindow()
 	showWindow = true;
 }
 
+//----------------------------------------------------------
+// Log Window
+//----------------------------------------------------------
 function WindowFunction(windowID : int){
 	GUI.BeginGroup (Rect (02,20,400,400));
 	//Upper Left
@@ -42,21 +50,6 @@ function WindowFunction(windowID : int){
 	var aux08: String = "";
 	
 	
-	/*
-	if(pList.last.slot03.last.actionList.last != null)
-		aux03 = pList.last.slot03.last.actionList.last.task;
-	if(pList.last.slot04.last.actionList.last != null)
-		aux04 = pList.last.slot04.last.actionList.last.task;
-	if(pList.last.slot05.last.actionList.last != null)
-		aux05 = pList.last.slot05.last.actionList.last.task;
-	if(pList.last.slot06.last.actionList.last != null)
-		aux06 = pList.last.slot06.last.actionList.last.task;
-	if(pList.last.slot07.last.actionList.last != null)
-		aux07 = pList.last.slot07.last.actionList.last.task;
-	if(pList.last.slot08.last.actionList.last != null)
-		aux08 = pList.last.slot08.last.actionList.last.task;
-	*/
-	
 	if(pList.last.slot01.last.actionList.last != null)
 	{
 		aux01 = pList.last.slot01.last.actionList.last.task;
@@ -64,6 +57,7 @@ function WindowFunction(windowID : int){
 		{
 			actionNode  = pList.last.slot01.last.actionList.last;
 			showActionWindow = true;
+			showInfluenceWindow = false;
 		}	
 	}
 	else
@@ -76,6 +70,7 @@ function WindowFunction(windowID : int){
 		{
 			actionNode  = pList.last.slot02.last.actionList.last;
 			showActionWindow = true;
+			showInfluenceWindow = false;
 		}
 	}
 	else
@@ -88,6 +83,7 @@ function WindowFunction(windowID : int){
 		{
 			actionNode  = pList.last.slot03.last.actionList.last;
 			showActionWindow = true;
+			showInfluenceWindow = false;
 		}
 	}
 	else
@@ -100,6 +96,7 @@ function WindowFunction(windowID : int){
 		{
 			actionNode  = pList.last.slot04.last.actionList.last;
 			showActionWindow = true;
+			showInfluenceWindow = false;
 		}
 	}
 	else
@@ -112,6 +109,7 @@ function WindowFunction(windowID : int){
 		{
 			actionNode  = pList.last.slot05.last.actionList.last;
 			showActionWindow = true;
+			showInfluenceWindow = false;
 		}
 	}
 	else
@@ -125,6 +123,7 @@ function WindowFunction(windowID : int){
 		{
 			actionNode  = pList.last.slot06.last.actionList.last;
 			showActionWindow = true;
+			showInfluenceWindow = false;
 		}
 	}
 	else
@@ -138,6 +137,7 @@ function WindowFunction(windowID : int){
 		{
 			actionNode  = pList.last.slot07.last.actionList.last;
 			showActionWindow = true;
+			showInfluenceWindow = false;
 		}
 	}
 	else
@@ -151,31 +151,13 @@ function WindowFunction(windowID : int){
 		{
 			actionNode  = pList.last.slot08.last.actionList.last;
 			showActionWindow = true;
+			showInfluenceWindow = false;
 		}
 	}
 	else
 		GUI.Box (Rect (200,275,196,25), "Action: " + aux08);
 		
-	/*
-	//GUI.Box (Rect (200,100,196,25), "Action: " + aux01);
-	//GUI.Box (Rect (200,125,196,25), "Action: " + aux02);
-	//GUI.Box (Rect (200,150,196,25), "Action: " + aux03);
-	//GUI.Box (Rect (200,175,196,25), "Action: " + aux04);
-	GUI.Box (Rect (200,200,196,25), "Action: " + aux05);
-	GUI.Box (Rect (200,225,196,25), "Action: " + aux06);
-	GUI.Box (Rect (200,250,196,25), "Action: " + aux07);
-	GUI.Box (Rect (200,275,196,25), "Action: " + aux08);
-	*/
-	/*
-	//Upper Right
-	GUI.Box (Rect (200,000,196,25), "-------------");
-	GUI.Box (Rect (200,025,196,25), "Unitary: " + project.GetBugUnitaryRepaired());
-	GUI.Box (Rect (200,050,196,25), "Integration: " + project.GetBugIntegrationRepaired());
-	GUI.Box (Rect (200,75,196,25), "System: " + project.GetBugSystemRepaired());
-	GUI.Box (Rect (200,100,196,25), "Acception: " + project.GetBugAcceptionRepaired());
-	GUI.Box (Rect (200,125,196,25), "Total Bugs Repaired: " + project.GetTotalBugsRepaired());
-	*/
-	//GUI.Box (Rect (02,250,196,25), "Total Bugs: " + project.GetTotalBugs());
+		
 	if (GUI.Button (Rect (02,300,396,25), "Cancel")) 
 	{
 		showWindow  = false;
@@ -184,16 +166,37 @@ function WindowFunction(windowID : int){
 	GUI.DragWindow();
 }
 
-
+//----------------------------------------------------------
+// Action Window
+//----------------------------------------------------------
 function ActionWindowFunction(windowID : int){
 	GUI.BeginGroup (Rect (02,20,400,300));
+	
+	var influenceString : String = "None";
+	
 	//Upper Left
 	GUI.Box (Rect (02,000,196,25), "----Action----");
-	GUI.Box (Rect (02,025,196,25), "Date: " + actionNode.date);
-	GUI.Box (Rect (02,050,196,25), "Role: " + actionNode.role);
-	GUI.Box (Rect (02,075,196,25), "Task: " + actionNode.task);
-	GUI.Box (Rect (02,100,196,25), "ExtReason: " + "none");
-	GUI.Box (Rect (02,125,396,75), "Description: " + actionNode.description);
+	GUI.Box (Rect (02,025,196,25), "Who: " + actionNode.who);
+	GUI.Box (Rect (02,050,196,25), "Date: " + actionNode.date);
+	GUI.Box (Rect (02,075,196,25), "Role: " + actionNode.role);
+	GUI.Box (Rect (02,100,196,25), "Task: " + actionNode.task);
+	GUI.Box (Rect (02,125,196,25), "Pressure: " + "none");
+	
+	//Influence button
+	if(actionNode.influence != null)
+	{
+		influenceString = "Influenced";
+		if (GUI.Button (Rect (02,150,196,25), "Influence: " + influenceString)) 
+		{
+			influenceNode  = actionNode.influence;
+			showInfluenceWindow = true;
+		}
+	}
+	else
+		GUI.Box (Rect (02,150,196,25), "Influence: " + influenceString);
+		
+	//End influence button	
+	GUI.Box (Rect (02,175,396,75), "Description: " + actionNode.description);
 	
 	if (GUI.Button (Rect (02,250,396,25), "Cancel")) 
 	{
@@ -202,15 +205,57 @@ function ActionWindowFunction(windowID : int){
 	GUI.EndGroup ();
 	GUI.DragWindow();
 }
+
+//----------------------------------------------------------
+// Influence Window
+//----------------------------------------------------------
+function InfluenceWindowFunction(windowID : int){
+	GUI.BeginGroup (Rect (02,20,400,300));
+	
+	var actionString : String = "None";
+	
+	//Upper Left
+	GUI.Box (Rect (02,000,196,25), "----Influence----");
+	GUI.Box (Rect (02,025,196,25), "Prog Bonus: " + influenceNode.GetBonusProg());
+
+	//Action button
+	if(actionNode.role == "Programmer")
+	{
+		if(influenceNode.GetProgArchInfluence() != null)
+		{
+			var action : ActionNode = influenceNode.GetProgArchInfluence();
+			actionString = action.who;
+			if (GUI.Button (Rect (02,050,196,25), "Action: " + actionString)) 
+			{
+				actionNode  = influenceNode.progArchInfluence;
+				showInfluenceWindow = false;
+			}
+		}
+	}
+	else
+		GUI.Box (Rect (02,050,196,25), "Influence: " + actionString);
+		
+	//End influence button	
+	
+	if (GUI.Button (Rect (02,250,396,25), "Cancel")) 
+	{
+		showInfluenceWindow  = false;
+	}
+	GUI.EndGroup ();
+	GUI.DragWindow();
+}
+
 function OnGUI () {
 	
 	if(showWindow)
 	{
 		GUI.backgroundColor = Color.yellow;
 		GUI.contentColor = Color.green;
-		windowRect = GUI.Window (0, windowRect, WindowFunction, ("Log: ") );
+		windowRect = GUI.Window (0, windowRect, WindowFunction, ("Log") );
 		if(showActionWindow)
-			windowRect2 = GUI.Window (1, windowRect2, ActionWindowFunction, ("Action: ") );
+			windowRect2 = GUI.Window (1, windowRect2, ActionWindowFunction, ("Action") );
+		if(showInfluenceWindow)
+			windowRect3 = GUI.Window (2, windowRect3, InfluenceWindowFunction, ("Influence") );
 	}
 }
 

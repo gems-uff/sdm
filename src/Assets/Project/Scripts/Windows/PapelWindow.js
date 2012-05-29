@@ -105,7 +105,7 @@ function WindowFunction(windowID : int){
 	timer.PauseGame();
 	GUI.Box (Rect (02,18,196,25), "Main Role");
 	GUI.Box (Rect (200,18,196,25), "Sec Role");
-	GUI.BeginGroup (Rect (02,25,600,260));
+	GUI.BeginGroup (Rect (02,25,600,270));
 	//---------------------------------------------------------------------------------------------------------------------
 	//if gameplay style is micro, then player can change roles
 	//if(playStyle.IsMacro() == false)
@@ -281,7 +281,7 @@ function WindowFunction(windowID : int){
 	//Botao de Cancel
 	//---------------------------------------------------------------------------------------------------------------------
 	//+40 02,193,396,25
-	if (GUI.Button (Rect (02,233,396,25), "Close")) {
+	if (GUI.Button (Rect (02,240,396,25), "Close")) {
 		//janelaPapel  = false;
 		winCon.DisableRoleWindow();
 		//timer.SpeedNormal();

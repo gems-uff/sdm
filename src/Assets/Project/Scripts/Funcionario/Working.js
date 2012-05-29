@@ -89,7 +89,8 @@ function WeeklyReport()
 	
 	//Mudo a semana
 	func.report.previous3AnalistReport = 					func.report.previous2AnalistReport;
-	func.report.previous3ArchitectReport_bug = 		func.report.previous2ArchitectReport_bug;
+	func.report.previous3ArchitectReport_bugSystem = 		func.report.previous2ArchitectReport_bugSystem;
+	func.report.previous3ArchitectReport_bugIntegration = 		func.report.previous2ArchitectReport_bugIntegration;
 	func.report.previous3ArchitectReport_archt = 		func.report.previous2ArchitectReport_archt;
 	func.report.previous3ManagerReport_design = 		func.report.previous2ManagerReport_design;
 	func.report.previous3ManagerReport_dev = 			func.report.previous2ManagerReport_dev;
@@ -100,7 +101,8 @@ function WeeklyReport()
 	func.report.previous3TesterReport = 					func.report.previous2TesterReport;
 	
 	func.report.previous2AnalistReport = 					func.report.previousAnalistReport;
-	func.report.previous2ArchitectReport_bug = 		func.report.previousArchitectReport_bug;
+	func.report.previous2ArchitectReport_bugSystem = 		func.report.previousArchitectReport_bugSystem;
+	func.report.previous2ArchitectReport_bugIntegration = 		func.report.previousArchitectReport_bugIntegration;
 	func.report.previous2ArchitectReport_archt = 		func.report.previousArchitectReport_archt;
 	func.report.previous2ManagerReport_design = 		func.report.previousManagerReport_design;
 	func.report.previous2ManagerReport_dev = 			func.report.previousManagerReport_dev;
@@ -111,7 +113,8 @@ function WeeklyReport()
 	func.report.previous2TesterReport = 					func.report.previousTesterReport;
 	
 	func.report.previousAnalistReport = 					func.report.analistReport;
-	func.report.previousArchitectReport_bug = 			func.report.architectReport_bug;
+	func.report.previousArchitectReport_bugSystem = 			func.report.architectReport_bugSystem;
+	func.report.previousArchitectReport_bugIntegration = 			func.report.architectReport_bugIntegration;
 	func.report.previousArchitectReport_archt = 		func.report.architectReport_archt;
 	func.report.previousManagerReport_design = 		func.report.managerReport_design;
 	func.report.previousManagerReport_dev = 			func.report.managerReport_dev;
@@ -122,7 +125,8 @@ function WeeklyReport()
 	func.report.previousTesterReport = 					func.report.testerReport;
 	
 	func.report.analistReport = 								report.analistReport;
-	func.report.architectReport_bug = 						report.architectReport_bug / 7;
+	func.report.architectReport_bugSystem = 						report.architectReport_bugSystem / 7;
+	func.report.architectReport_bugIntegration = 						report.architectReport_bugIntegration / 7;
 	func.report.architectReport_archt = 					report.architectReport_archt /7;
 	func.report.managerReport_dev = 						report.managerReport_dev / 7;
 	func.report.managerReport_design = 					report.managerReport_design / 7;
@@ -135,7 +139,8 @@ function WeeklyReport()
 	
 	
 	report.analistReport = 0;
-	report.architectReport_bug = 0;
+	report.architectReport_bugSystem = 0;
+	report.architectReport_bugIntegration = 0;
 	report.architectReport_archt = 0;
 	report.managerReport_design = 0;
 	report.managerReport_dev = 0;
@@ -319,6 +324,8 @@ function ArquitetoWork(){
 		var penal : float = MetodologiaEquipe();
 		var arquiteto : float ;
 		var mod : float = GameModifiers();
+		
+		var action : ActionNode = new ActionNode();
 
 		yield WaitForSeconds(delay);
 		func.WorkingArquiteto();
@@ -331,7 +338,8 @@ function ArquitetoWork(){
 		}
 		else
 		{
-			ArchitectMacro.Work(func, project, report, floatingLines, equipe, constant, arquiteto);
+			action = ArchitectMacro.Work(func, project, report, floatingLines, equipe, constant, arquiteto, behavior, timer.GetGameTime());
+			behavior.AddAction(action);
 		}
 	}
 }
@@ -747,7 +755,8 @@ function Awake () {
 	func = GetComponentInChildren(Funcionario);
 	treino = GetComponentInChildren(Treinamento);
 	report.previousAnalistReport = 0;
-	report.previousArchitectReport_bug = 0;
+	report.previousArchitectReport_bugSystem = 0;
+	report.previousArchitectReport_bugIntegration = 0;
 	report.previousArchitectReport_archt = 0;
 	report.previousManagerReport_design = 0;
 	report.previousManagerReport_dev = 0;
@@ -757,7 +766,8 @@ function Awake () {
 	report.previousProgrammerReport_bug = 0;
 	report.previousTesterReport = 0;
 	report.analistReport = 0;
-	report.architectReport_bug = 0;
+	report.architectReport_bugSystem = 0;
+	report.architectReport_bugIntegration = 0;
 	report.architectReport_archt = 0;
 	report.managerReport_design = 0;
 	report.managerReport_dev = 0;

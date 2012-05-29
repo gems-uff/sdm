@@ -1,9 +1,10 @@
 
 public var stringNames : StringNames;
 private var func : Funcionario;
+private var behavior : BehaviorPlanner;
 public var timer : GameTime;
 public var playStyle : GameplayStyle;
-private var windowRect : Rect = Rect (700,325,300,120);
+private var windowRect : Rect = Rect (400,125,300,520);
 private var hSliderValue : float = 8.0;
 private var showWindow : boolean = false;
 
@@ -21,6 +22,9 @@ public var func8 : Funcionario;
 
 function ChangeWorkHours (funcionario : Funcionario){
 	func = funcionario;
+	
+	behavior = func.GetComponentInChildren(BehaviorPlanner);
+	
 	hSliderValue = func.GetWorkingHours() / 5;
 	if(funcionario.GetNome() != stringNames.fired)
 		showWindow = true;
@@ -29,15 +33,90 @@ function ChangeWorkHours (funcionario : Funcionario){
 function WindowFunction(windowID : int){
 	var aux : int;
 	timer.PauseGame();
+	//Working hours
 	GUI.Box (Rect (02,18,296,25), func.GetNome());
 	hSliderValue = GUI.HorizontalSlider (Rect (022, 75, 246, 25), hSliderValue, 0.0, 16.0);
 	aux = parseInt(hSliderValue);
 	aux = aux * 5;
 	GUI.Box (Rect (02,043,296, 25), "Weekly: " + aux);
-	func.SetWorkingHours(aux);	
-	//Botao de Cancel
-	if (GUI.Button (Rect (02,93,296,25), "Close")) {
+	func.SetWorkingHours(aux);
+	
+	//Behavior
+	var progRepair : boolean = behavior.GetProgRepair();
+	var progEvolution : boolean = behavior.GetProgEvolution();
+	
+	var archVerification : boolean = behavior.GetArchVerification();
+	var archEvolution : boolean = behavior.GetArchEvolution();
+	var archAnalysis : boolean = behavior.GetArchAnalysis();
+	var archRounded : boolean = behavior.GetArchRounded();
+	var archTestCases : String = behavior.GetTestCases();
+	
+	var isPressured : boolean = behavior.GetPressure();
+	
+	GUI.Box (Rect (02,100,150,25), "Programmer task");
+	progRepair = GUI.Toggle (Rect (10, 125, 100, 25), progRepair, "Repair");
+	if(progRepair)
+	{
+		progEvolution = false;
+		behavior.ActivateProgRepair();
+	}
+	progEvolution = GUI.Toggle (Rect (10, 150, 100, 25), progEvolution, "Evolution");	
+	if(progEvolution)
+	{
+		progRepair = false;
+		behavior.ActivateProgEvolution();
+	}
+	
+	GUI.Box (Rect (02,175,150,25), "Architect task");
+	archVerification = GUI.Toggle (Rect (10, 200, 100, 25), archVerification, "Verification");
+	if(archVerification)
+	{
+		archEvolution = false;
+		archAnalysis = false;
+		archRounded = false;
+		behavior.ActivateArchVerification();
+	}
+	
+	archEvolution = GUI.Toggle (Rect (10, 225, 100, 25), archEvolution, "Evolution");
+	if(archEvolution)
+	{
+		archVerification = false;
+		archAnalysis = false;
+		archRounded = false;
+		behavior.ActivateArchEvolution();
+	}
+	
+	archAnalysis = GUI.Toggle (Rect (10, 250, 100, 25), archAnalysis, "Analysis");
+	if(archAnalysis)
+	{
+		archEvolution = false;
+		archVerification = false;
+		archRounded = false;
+		behavior.ActivateArchAnalysis();
+	}
+	archRounded = GUI.Toggle (Rect (10, 275, 100, 25), archRounded, "Rounded");
+	if(archRounded)
+	{
+		archEvolution = false;
+		archAnalysis = false;
+		archVerification = false;
+		behavior.ActivateArchRounded();
+	}
+	
+	
+	isPressured = GUI.Toggle (Rect (10, 450, 100, 25), isPressured, "Pressure");
+	if(isPressured)
+	{
+		behavior.SetPressure(true);
+	}
+	else
+	{
+		behavior.SetPressure(false);
+	}
+	//Close button
+	if (GUI.Button (Rect (02,493,296,25), "Close")) {
 		showWindow  = false;
+		
 	}
 	GUI.DragWindow();
 }

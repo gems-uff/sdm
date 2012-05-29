@@ -47,186 +47,196 @@ class ProgrammerMacro extends System.ValueType{
 	{
 		var progFactor : int = func.GetProgramador();
 		var chance : int = Random.Range (0, 100);
-		var quality : float;
+		var quality : float = project.GetCodeQuality();
 		//Decide how will perform the task
 		
-		//--------------------------------------------
 		//Especialized
-		//--------------------------------------------
 		if(isEspecialized == 0)
 		{
-			//--------------------------------------------
 			//Not under pressure
-			//--------------------------------------------
 			if(!behavior.GetPressure())
+				EspecializedNotUnderPressure(actionNode, progFactor, quality, chance);
+			//Under pressure
+			else
+				EspecializedUnderPressure(actionNode, progFactor, chance);
+		}
+		//Not Especialized
+		else
+		{
+			//Not under pressure
+			if(!behavior.GetPressure())
+				NotEspecializedNotUnderPressure(actionNode, progFactor, chance);
+			//Under pressure
+			else
+				NotEspecializedUnderPressure(actionNode, progFactor, chance);
+		}
+	}
+	
+	//--------------------------------------------
+	//Especialized
+	//--------------------------------------------
+	//Not Under Pressure
+	function EspecializedNotUnderPressure(actionNode : ActionNode, progFactor : int, quality : float, chance : int)
+	{
+		//Good programmer
+		if(progFactor > 75)
+		{
+			if(chance < 10)
+				Adhoc(actionNode, true, false, "good");
+			else
 			{
-				//Good programmer
-				if(progFactor > 75)
+				chance = Random.Range (0, 100);
+				if(chance < 40)
+					DrawCode(actionNode, true, false, "good");
+				else
 				{
-					if(chance < 10)
-						Adhoc(actionNode, true, false, "good");
+					//quality = project.GetCodeQuality();
+					if(quality < 0.5)
+						Refactoring(actionNode, true, false, "good");
 					else
 					{
 						chance = Random.Range (0, 100);
-						if(chance < 40)
-							DrawCode(actionNode, true, false, "good");
+						if((chance < 50) && (quality < 1.2))
+							Refactoring(actionNode, true, false, "good");
 						else
-						{
-							quality = project.GetCodeQuality();
-							if(quality < 0.5)
-								Refactoring(actionNode, true, false, "good");
-							else
-							{
-								chance = Random.Range (0, 100);
-								if((chance < 50) && (quality < 1.2))
-									Refactoring(actionNode, true, false, "good");
-								else
-									TestDriven(actionNode, true, false, "good");
-							}
-						}
-					}
-				}
-				else
-				{
-					//Moderate programmer
-					if(progFactor > 50)
-					{
-						if(chance < 25)
-							Adhoc(actionNode, true, false, "moderate");
-						else
-						{
-							chance = Random.Range (0, 100);
-							if((chance < 10) && (quality < 1.0))
-								Refactoring(actionNode, true, false, "moderate");
-							else
-							{
-								if(chance < 70)
-									DrawCode(actionNode, true, false, "moderate");
-								else
-									TestDriven(actionNode, true, false, "moderate");
-							}
-						}
-					}	
-					else
-					{
-						//Bad programmer
-						if(chance < 40)
-							Adhoc(actionNode, true, false, "bad");
-						else
-							DrawCode(actionNode, true, false, "bad");
-					}
-				}
-			}
-			//--------------------------------------------
-			//Under pressure
-			//--------------------------------------------
-			else
-			{
-				//Good programmer
-				if(progFactor > 75)
-				{
-					if(chance < 20)
-						Adhoc(actionNode, true, true, "good");
-					else
-						DrawCode(actionNode, true, true, "good");
-				}
-				else
-				{
-					//Moderate programmer
-					if(progFactor > 50)
-					{
-						if(chance < 40)
-							Adhoc(actionNode, true, true, "moderate");
-						else
-							DrawCode(actionNode, true, true, "moderate");	
-					}
-					else
-					{
-						//Bad programmer
-						Adhoc(actionNode, true, true, "bad");
+							TestDriven(actionNode, true, false, "good");
 					}
 				}
 			}
 		}
-		//---------------------------------------------------------------------------
-		//Not especialized
-		//---------------------------------------------------------------------------
 		else
 		{
-			//--------------------------------------------
-			//Not under pressure
-			//--------------------------------------------
-			if(!behavior.GetPressure())
+			//Moderate programmer
+			if(progFactor > 50)
 			{
-				//Good programmer
-				if(progFactor > 75)
-				{
-					if(chance < 20)
-						Adhoc(actionNode, false, false, "good");
-					else
-					{
-						chance = Random.Range (0, 100);
-						if(chance < 50)
-							DrawCode(actionNode, false, false, "good");
-						else
-							TestDriven(actionNode, false, false, "good");
-					}
-				}
+				if(chance < 25)
+					Adhoc(actionNode, true, false, "moderate");
 				else
 				{
-					//Moderate programmer
-					if(progFactor > 50)
-					{
-						if(chance < 40)
-						Adhoc(actionNode, false, false, "moderate");
-						else
-						{
-							chance = Random.Range (0, 100);
-							if(chance < 60)
-								DrawCode(actionNode, false, false, "moderate");
-							else
-								TestDriven(actionNode, false, false, "moderate");
-						}
-					}	
+					chance = Random.Range (0, 100);
+					if((chance < 10) && (quality < 1.0))
+						Refactoring(actionNode, true, false, "moderate");
 					else
 					{
-						//Bad programmer
 						if(chance < 70)
-							Adhoc(actionNode, false, false, "bad");
+							DrawCode(actionNode, true, false, "moderate");
 						else
-							DrawCode(actionNode, false, false, "bad");
+							TestDriven(actionNode, true, false, "moderate");
 					}
 				}
-			}
-			//--------------------------------------------
-			//Under pressure
-			//--------------------------------------------
+			}	
 			else
 			{
-				//Good programmer
-				if(progFactor > 75)
-				{
-					if(chance < 20)
-						Adhoc(actionNode, false, true, "good");
-					else
-						DrawCode(actionNode, false, true, "good");
-				}
+				//Bad programmer
+				if(chance < 40)
+					Adhoc(actionNode, true, false, "bad");
+				else
+					DrawCode(actionNode, true, false, "bad");
+			}
+		}
+	}
+	
+	//Under Pressure
+	function EspecializedUnderPressure(actionNode : ActionNode, progFactor : int, chance : int)
+	{
+		//Good programmer
+		if(progFactor > 75)
+		{
+			if(chance < 20)
+				Adhoc(actionNode, true, true, "good");
+			else
+				DrawCode(actionNode, true, true, "good");
+		}
+		else
+		{
+			//Moderate programmer
+			if(progFactor > 50)
+			{
+				if(chance < 40)
+					Adhoc(actionNode, true, true, "moderate");
+				else
+					DrawCode(actionNode, true, true, "moderate");	
+			}
+			else
+			{
+				//Bad programmer
+				Adhoc(actionNode, true, true, "bad");
+			}
+		}
+	}
+	
+	//--------------------------------------------
+	//Not Especialized
+	//--------------------------------------------
+	//Not Under Pressure
+	function NotEspecializedNotUnderPressure(actionNode : ActionNode, progFactor : int, chance : int)
+	{
+		//Good programmer
+		if(progFactor > 75)
+		{
+			if(chance < 20)
+				Adhoc(actionNode, false, false, "good");
+			else
+			{
+				chance = Random.Range (0, 100);
+				if(chance < 50)
+					DrawCode(actionNode, false, false, "good");
+				else
+					TestDriven(actionNode, false, false, "good");
+			}
+		}
+		else
+		{
+			//Moderate programmer
+			if(progFactor > 50)
+			{
+				if(chance < 40)
+				Adhoc(actionNode, false, false, "moderate");
 				else
 				{
-					//Moderate programmer
-					if(progFactor > 50)
-					{
-						if(chance < 50)
-							Adhoc(actionNode, false, true, "moderate");
-						else
-							DrawCode(actionNode, false, true, "moderate");	
-					}
+					chance = Random.Range (0, 100);
+					if(chance < 60)
+						DrawCode(actionNode, false, false, "moderate");
 					else
-					{
-						//Bad programmer
-						Adhoc(actionNode, false, true, "bad");
-					}
+						TestDriven(actionNode, false, false, "moderate");
 				}
+			}	
+			else
+			{
+				//Bad programmer
+				if(chance < 70)
+					Adhoc(actionNode, false, false, "bad");
+				else
+					DrawCode(actionNode, false, false, "bad");
+			}
+		}
+	}
+	
+	//Under Pressure
+	function NotEspecializedUnderPressure(actionNode : ActionNode, progFactor : int, chance : int)
+	{
+		//Good programmer
+		if(progFactor > 75)
+		{
+			if(chance < 20)
+				Adhoc(actionNode, false, true, "good");
+			else
+				DrawCode(actionNode, false, true, "good");
+		}
+		else
+		{
+			//Moderate programmer
+			if(progFactor > 50)
+			{
+				if(chance < 50)
+					Adhoc(actionNode, false, true, "moderate");
+				else
+					DrawCode(actionNode, false, true, "moderate");	
+			}
+			else
+			{
+				//Bad programmer
+				Adhoc(actionNode, false, true, "bad");
 			}
 		}
 	}
@@ -247,7 +257,7 @@ class ProgrammerMacro extends System.ValueType{
 		if(behavior.GetProgEvolution())
 		{
 			actionNode.task = "Evolution Adhoc";
-			Evolution();
+			Evolution(actionNode);
 		}
 		else
 		{
@@ -270,7 +280,7 @@ class ProgrammerMacro extends System.ValueType{
 		if(behavior.GetProgEvolution())
 		{
 			actionNode.task = "Evolution Draw-code";
-			Evolution();
+			Evolution(actionNode);
 		}
 		else
 		{
@@ -293,7 +303,7 @@ class ProgrammerMacro extends System.ValueType{
 		if(behavior.GetProgEvolution())
 		{
 			actionNode.task = "Evolution Test-Driven";
-			Evolution();
+			Evolution(actionNode);
 		}
 		else
 		{
@@ -333,18 +343,19 @@ class ProgrammerMacro extends System.ValueType{
 			esp = "not";
 		if(!isPressured)
 			pressure = "not";
-			
+		
+		actionNode.who = func.GetNome();
 		actionNode.date = date;
 		//actionNode.who = func.Copy();
 		actionNode.role = "Programmer";
 		
 		if(isPressured)
 		{
-			actionNode.externalReason = behavior.GetPAction();
+			actionNode.pressure = behavior.GetPAction();
 		}
 		else
-			actionNode.externalReason = null;
-			
+			actionNode.pressure = null;
+		
 		actionNode.description = "Employee is " + esp + " especialized, \n is a " + prog + " programmer and \n is " + pressure +" under pressure";
 		
 		//return actionNode;
@@ -354,7 +365,7 @@ class ProgrammerMacro extends System.ValueType{
 	//Old functions
 	//--------------------------------------------
 	
-	function Evolution()
+	function Evolution(actionNode : ActionNode)
 	{
 		var random : int;
 		var i : int;
@@ -367,22 +378,29 @@ class ProgrammerMacro extends System.ValueType{
 		if (RequisitoLinguagem == true && project.GetFractionDone() < 100)
 		{			
 			//Modify by the architect's bonus
-			codeLines = codeLines * (1 + equipe.GetBonusProg());
+			//codeLines = codeLines * (1 + equipe.GetBonusProg());
+			if(equipe.influenceProg.GetBonusProg()!= 1.0)
+			{
+				Debug.Log("IM INSIDE");
+				codeLines = codeLines * (1 + equipe.influenceProg.GetBonusProg());
+				actionNode.influence = equipe.influenceProg.GetInfluence();
+				Debug.Log("Who: " + actionNode.influence.progArchInfluence.who);
+			}
 			//Apply a small variation
 			codeLines = codeLines * randomizer;
 			//Cap at model
 			codeLines = codeLines * (project.GetSincronismo() / 100);
 						
 			maxBugs = (100.0 - func.GetProgramador()) * constant.PROG_BUG_MOD;
-			Debug.Log("MaxBugs1 : " + maxBugs); 
+			//Debug.Log("MaxBugs1 : " + maxBugs); 
 			//Number of bugs is influenced by the code quality
 			maxBugs = maxBugs * ( 2 - project.GetCodeQuality());
-			Debug.Log("MaxBugs2 : " + maxBugs);
-			Debug.Log("GetCodeQuality : " + project.GetCodeQuality());
+			//Debug.Log("MaxBugs2 : " + maxBugs);
+			//Debug.Log("GetCodeQuality : " + project.GetCodeQuality());
 			codeLines = codeLines * constant.PROG_LINES_DAY_MOD;
 			
 			maxBugs = parseInt(maxBugs);
-			Debug.Log("MaxBugs3 : " + maxBugs);
+			//Debug.Log("MaxBugs3 : " + maxBugs);
 			codeLines = parseInt(codeLines);
 			
 			//Cant add bug if you cant code
@@ -395,15 +413,17 @@ class ProgrammerMacro extends System.ValueType{
 				else
 					maxBugs = 0;
 			}
-			Debug.Log("MaxBugs4 : " + maxBugs);
+			//Debug.Log("MaxBugs4 : " + maxBugs);
 			//Chance to add bugs, to a total of "maxBugs"
 			bugCount = project.RandomizeBugs(maxBugs);
-			Debug.Log("bugCount : " + bugCount);
+			//Debug.Log("bugCount : " + bugCount);
 			
 			project.SetLinesDone(codeLines);
-			ProgReport(codeLines, bugCount, report);
-			floatingLines.showFloatText1("+", codeLines.ToString(), "blue", " Progress");
-			floatingLines.showFloatText2("+", bugCount.ToString(), "red", " Bugs");
+			ProgReport(codeLines, 0, report);
+			floatingLines.showFloatText1("", "Evolution", "blue", "");
+			floatingLines.showFloatText2("+", codeLines.ToString(), "blue", " Progress");			
+			//Will be ommited
+			floatingLines.showFloatText3("+", bugCount.ToString(), "red", " Bugs");
 		}
 	}
 	
@@ -422,11 +442,11 @@ class ProgrammerMacro extends System.ValueType{
 		t = parseInt(programador / 10);
 		
 		i = 0;
-		Debug.Log("Repair #Bugs: " + t);
+		//Debug.Log("Repair #Bugs: " + t);
 		while(i < t)
 		{
 			random = Random.Range (0.0, 2.0);
-			Debug.Log("Prog Random = " + random);
+			//Debug.Log("Prog Random = " + random);
 			i++;
 			if (random < project.GetCodeQuality())
 			{ 
@@ -461,7 +481,9 @@ class ProgrammerMacro extends System.ValueType{
 				}
 			}
 		}
-		floatingLines.showFloatText1("+", repaired.ToString(), "blue", " Bugs Repaired");
+		ProgReport(0, - repaired, report);
+		floatingLines.showFloatText1("", "Repair", "blue", "");
+		floatingLines.showFloatText2("+", repaired.ToString(), "blue", " Bugs Repaired");
 		//project.IncrementBugsRepairedByType(bugUnitary, bugIntegration, bugSystem, bugAcception);
 	}
 	

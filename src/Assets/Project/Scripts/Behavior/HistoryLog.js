@@ -115,7 +115,7 @@ function NewFiredAction(slot : EmployeeList)
 	newAction.task = "fired";
 	newAction.role = "fired";
 	newAction.description = "fired";
-	newAction.externalReason = null;
+	newAction.influence = null;
 	
 	slot.last.actionList.Add(newAction);
 }
