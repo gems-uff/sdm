@@ -65,14 +65,14 @@ function WindowFunction(windowID : int){
 	var isPressured : boolean = behavior.GetPressure();
 	
 	//Programmer
-	GUI.Box (Rect (02,100,200,25), "Programmer task");
-	progRepair = GUI.Toggle (Rect (10, 125, 90, 25), progRepair, "Repair");
+	GUI.Box (Rect (02,100,210,25), "Programmer task");
+	progRepair = GUI.Toggle (Rect (10, 125, 100, 25), progRepair, "Repair");
 	if(progRepair)
 	{
 		progEvolution = false;
 		behavior.ActivateProgRepair();
 	}
-	progEvolution = GUI.Toggle (Rect (10, 150, 90, 25), progEvolution, "Evolution");	
+	progEvolution = GUI.Toggle (Rect (10, 150, 100, 25), progEvolution, "Evolution");	
 	if(progEvolution)
 	{
 		progRepair = false;
@@ -80,8 +80,8 @@ function WindowFunction(windowID : int){
 	}
 	
 	//Architect
-	GUI.Box (Rect (02,175,200,25), "Architect task");
-	archVerification = GUI.Toggle (Rect (10, 200, 90, 25), archVerification, "Verification");
+	GUI.Box (Rect (02,175,210,25), "Architect task");
+	archVerification = GUI.Toggle (Rect (10, 200, 100, 25), archVerification, "Verification");
 	if(archVerification)
 	{
 		archEvolution = false;
@@ -89,8 +89,7 @@ function WindowFunction(windowID : int){
 		archRounded = false;
 		behavior.ActivateArchVerification();
 	}
-	
-	archEvolution = GUI.Toggle (Rect (10, 225, 90, 25), archEvolution, "Evolution");
+	archEvolution = GUI.Toggle (Rect (10, 225, 100, 25), archEvolution, "Evolution");
 	if(archEvolution)
 	{
 		archVerification = false;
@@ -99,7 +98,7 @@ function WindowFunction(windowID : int){
 		behavior.ActivateArchEvolution();
 	}
 	
-	archAnalysis = GUI.Toggle (Rect (10, 250, 90, 25), archAnalysis, "Analysis");
+	archAnalysis = GUI.Toggle (Rect (10, 250, 100, 25), archAnalysis, "Analysis");
 	if(archAnalysis)
 	{
 		archEvolution = false;
@@ -107,7 +106,7 @@ function WindowFunction(windowID : int){
 		archRounded = false;
 		behavior.ActivateArchAnalysis();
 	}
-	archRounded = GUI.Toggle (Rect (10, 275, 90, 25), archRounded, "Rounded");
+	archRounded = GUI.Toggle (Rect (10, 275, 100, 25), archRounded, "Balanced");
 	if(archRounded)
 	{
 		archEvolution = false;
@@ -116,21 +115,22 @@ function WindowFunction(windowID : int){
 		behavior.ActivateArchRounded();
 	}
 	//Test Cases
-	archIntegration = GUI.Toggle (Rect (110, 225, 90, 25), archIntegration, "Integration");
+	GUI.Box (Rect (110, 200, 100, 25), "Test Cases");
+	archIntegration = GUI.Toggle (Rect (110, 225, 100, 25), archIntegration, "Integration");
 	if(archIntegration)
 	{
 		archSystem = false;
 		archBoth = false;
 		behavior.SetTestCases("integration");
 	}
-	archSystem = GUI.Toggle (Rect (110, 250, 90, 25), archSystem, "System");
+	archSystem = GUI.Toggle (Rect (110, 250, 100, 25), archSystem, "System");
 	if(archSystem)
 	{
 		archIntegration = false;
 		archBoth = false;
 		behavior.SetTestCases("system");
 	}
-	archBoth = GUI.Toggle (Rect (110, 275, 90, 25), archBoth, "Both");
+	archBoth = GUI.Toggle (Rect (110, 275, 100, 25), archBoth, "Both");
 	if(archBoth)
 	{
 		archIntegration = false;
@@ -139,8 +139,8 @@ function WindowFunction(windowID : int){
 	}
 	
 	//Analyst
-	GUI.Box (Rect (02,325,200,25), "Analyst task");
-	anaElicitation = GUI.Toggle (Rect (10, 350, 90, 25), anaElicitation, "Elicitation");
+	GUI.Box (Rect (02,325,210,25), "Analyst task");
+	anaElicitation = GUI.Toggle (Rect (10, 350, 100, 25), anaElicitation, "Elicitation");
 	if(anaElicitation)
 	{
 		anaEspecification = false;
@@ -148,7 +148,7 @@ function WindowFunction(windowID : int){
 		anaRounded = false;
 		behavior.ActivateAnaElicitation();
 	}
-	anaEspecification = GUI.Toggle (Rect (10, 375, 90, 25), anaEspecification, "Especification");
+	anaEspecification = GUI.Toggle (Rect (10, 375, 100, 25), anaEspecification, "Especification");
 	if(anaEspecification)
 	{
 		anaElicitation = false;
@@ -157,7 +157,7 @@ function WindowFunction(windowID : int){
 		behavior.ActivateAnaEspecification();
 	}
 	
-	anaQuality = GUI.Toggle (Rect (10, 400, 90, 25), anaQuality, "Quality");
+	anaQuality = GUI.Toggle (Rect (10, 400, 100, 25), anaQuality, "Quality");
 	if(anaQuality)
 	{
 		anaElicitation = false;
@@ -165,7 +165,7 @@ function WindowFunction(windowID : int){
 		anaRounded = false;
 		behavior.ActivateAnaQuality();
 	}
-	anaRounded = GUI.Toggle (Rect (10, 425, 90, 25), anaRounded, "Rounded");
+	anaRounded = GUI.Toggle (Rect (10, 425, 100, 25), anaRounded, "Balanced");
 	if(anaRounded)
 	{
 		anaElicitation = false;
@@ -175,7 +175,7 @@ function WindowFunction(windowID : int){
 	}
 	
 	
-	isPressured = GUI.Toggle (Rect (110, 125, 90, 25), isPressured, "Pressure");
+	isPressured = GUI.Toggle (Rect (110, 125, 100, 25), isPressured, "Pressure");
 	if(isPressured)
 	{
 		behavior.SetPressure(true);

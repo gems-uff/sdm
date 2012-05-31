@@ -138,12 +138,12 @@ class ArchitectMacro extends System.ValueType{
 		if(chance < 50)
 		{
 			chance = Random.Range (0, 100); 
-			Verification(actionNode, testCase, chance, "Rounded", "Rounded");
+			Verification(actionNode, testCase, chance, "Balanced", "Balanced");
 		}
 		else
 		{
 			chance = Random.Range (0, 100); 
-			Evolution(actionNode, testCase, chance, "Rounded", "Rounded");
+			Evolution(actionNode, testCase, chance, "Balanced", "Balanced");
 		}
 	}
 	

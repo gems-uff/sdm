@@ -351,6 +351,14 @@ function SetPapelSecRate(t: int) {
 	secRoleRate = t;
 }
 
+function SetRates(t : int)
+{
+	if(t < 50)
+		t = 50;
+	mainRoleRate = t;
+	secRoleRate = 100 - t;
+}
+
 function GetCargo() {
 	return job;
 }
@@ -514,7 +522,7 @@ function SetStamina(t: int) {
 //Get e Set Atributos de cada papel
 
 function GetAtributoPapel(p1: float, p2: float, p3: float, p4: float, p5: float, p6: float, p7: float, p8: float, p9: float){
-	var atributoPapel = (atributos.adaptabilidade*p1) + (atributos.autoDidata*p2) + (atributos.detalhista*p3) + (atributos.negociacao*p4) + 
+	var atributoPapel : int = (atributos.adaptabilidade*p1) + (atributos.autoDidata*p2) + (atributos.detalhista*p3) + (atributos.negociacao*p4) + 
 	(atributos.objetividade*p5) + (atributos.organizacao*p6) + (atributos.paciencia*p7) + (atributos.raciocinioLogico*p8) + (atributos.relacionamentoHumano*p9);
 	return atributoPapel;
 }

@@ -74,11 +74,11 @@ class AnalystMacro extends System.ValueType{
 					chance = Random.Range (0, 100);
 					if((chance < 50) && project.GetRequirements() < project.GetElicitation())
 						//Especification Path
-						Especification(actionNode, "Rounded Especification", "Rounded");
+						Especification(actionNode, "Balanced Especification", "Balanced");
 					else
 					{
 						//Elicitation path
-						Elicitation(actionNode, "Rounded Elicitation", "Rounded");
+						Elicitation(actionNode, "Balanced Elicitation", "Balanced");
 					}
 				}
 			}

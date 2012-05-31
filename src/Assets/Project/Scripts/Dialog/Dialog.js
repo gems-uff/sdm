@@ -105,13 +105,13 @@ function Dialog_Funcionario (){
 				dialogEnable = false;
 		}
 		GUI.Box (Rect (600,50, 130, 25), "");
-		if(playStyle.IsMacro() == false)
-		{
-			if (GUI.Button (Rect (600,50, 130, 25), "Train")) {
-					menuEsp.Especializar(func, treino);
-					dialogEnable = false;
-			}
+		//if(playStyle.IsMacro() == false)
+		//{
+		if (GUI.Button (Rect (600,50, 130, 25), "Train")) {
+				menuEsp.Especializar(func, treino);
+				dialogEnable = false;
 		}
+		//}
 		GUI.Box (Rect (600,75, 130, 25), "");
 		//if(playStyle.IsMacro() == false)
 		//{
@@ -121,13 +121,13 @@ function Dialog_Funcionario (){
 		}
 		//}
 		GUI.Box (Rect (600,100, 130, 25), "");
-		if(playStyle.IsMacro() == false)
-		{
-			if (GUI.Button (Rect (600,100, 130, 25), "Working Hours")) {
-					workHours.ChangeWorkHours(func);
-					dialogEnable = false;
-			}
+		//if(playStyle.IsMacro() == false)
+		//{
+		if (GUI.Button (Rect (600,100, 130, 25), "Working Hours")) {
+				workHours.ChangeWorkHours(func);
+				dialogEnable = false;
 		}
+		//}
 		//Vazio
 		GUI.Box (Rect (600,125, 130, 25), "");
 		//Se arquiteto
@@ -140,6 +140,7 @@ function Dialog_Funcionario (){
 		if(func.GetPapel() == stringNames.papelGerente)
 			if (GUI.Button (Rect (600,125, 130, 25), "Hire")) 
 			{
+				//Need to change this for player to hire or allow the manager to hire
 				if(playStyle.IsMacro() == false)
 					windowController.ShowHireWindow();
 				else

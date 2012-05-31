@@ -17,6 +17,8 @@ private var windowRect : Rect = Rect (600,125,400,293);
 function ExecutaJanelaEsp(t : String){
 	var aux : float;
 	var trainingTime : int;
+	treino.SetLockEscolha(true);
+	
 	if(jogador.GetSaldo() >= PRECO)
 	{
 		aux = 125 - func.GetAutoDidata();
@@ -45,9 +47,10 @@ function ExecutaJanelaEsp(t : String){
 function Especializar (funcionario : Funcionario, treinamento : Treinamento){
 	func = funcionario;
 	treino = treinamento;
-	if( func.GetNome() != stringNames.fired )
+	
+	if(( func.GetNome() != stringNames.fired ) && (treino.GetLockEscolha() == false))
 	{
-		treino.SetLockEscolha(true);
+		//treino.SetLockEscolha(true);
 		janelaEsp = true;
 	}
 }
@@ -176,7 +179,7 @@ function WindowFunction(windowID : int){
 	//Botao de Cancel
 	if (GUI.Button (Rect (02,243,396,25), "Cancel")) {
 		janelaEsp  = false;
-		treino.SetLockEscolha(false);
+		//treino.SetLockEscolha(false);
 	}
 	GUI.EndGroup ();
 	GUI.DragWindow();

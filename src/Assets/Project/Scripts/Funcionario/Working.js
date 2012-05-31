@@ -21,7 +21,7 @@ private var func : Funcionario;
 private var treino : Treinamento;
 
 private var report : WeeklyReport;
-private var delayTime : float = 0.6;
+private var delayTime : float = 1.5;
 public var funcWindow : FuncWindow;
 
 //Different work for each type of the game (Micro/Macro)
@@ -259,7 +259,7 @@ function AnalistaWork(){
 	}
 	else
 	{
-		if(func.GetPapelSec() == stringNames.papelAnalista)
+		if((func.GetPapelSec() == stringNames.papelAnalista) && (func.GetPapelSecRate() > 0))
 		{
 			rate = func.GetPapelSecRate();
 			work = true;
@@ -312,7 +312,7 @@ function ArquitetoWork(){
 	}
 	else
 	{
-		if(func.GetPapelSec() == stringNames.papelArquiteto)
+		if((func.GetPapelSec() == stringNames.papelArquiteto) && (func.GetPapelSecRate() > 0))
 		{
 			rate = func.GetPapelSecRate();
 			work = true;
@@ -364,7 +364,7 @@ function GerenteWork(){
 	}
 	else
 	{
-		if(func.GetPapelSec() == stringNames.papelGerente)
+		if((func.GetPapelSec() == stringNames.papelGerente) && (func.GetPapelSecRate() > 0))
 		{
 			rate = func.GetPapelSecRate();
 			work = true;
@@ -380,12 +380,13 @@ function GerenteWork(){
 	{
 		var modificador_positivo : float = EspecializacaoFerramenta();
 		var penal : float = MetodologiaEquipe();
+		var isEspecialized : int = LinguagemProgEquipe();
 		var mod : float = GameModifiers();
 		var auxAnaArq : float = 0.0;
 		var auxArquiteto : float = 0.0;
 		var auxProg : float = 0;
 		var gerente : float ;
-		var penal_prog : float = PenalidadeProgramacao(penal);
+		var penal_prog : float = PenalidadeProgramacao(penal, isEspecialized);
 		
 		yield WaitForSeconds(delay);
 		func.WorkingGerente();
@@ -422,7 +423,7 @@ function MarketingWork(){
 	}
 	else
 	{
-		if(func.GetPapelSec() == stringNames.papelMarketing)
+		if((func.GetPapelSec() == stringNames.papelMarketing) && (func.GetPapelSecRate() > 0))
 		{
 			rate = func.GetPapelSecRate();
 			work = true;
@@ -471,7 +472,7 @@ function ProgramadorWork(){
 	}
 	else
 	{
-		if(func.GetPapelSec() == stringNames.papelProg)
+		if((func.GetPapelSec() == stringNames.papelProg) && (func.GetPapelSecRate() > 0))
 		{
 			rate = func.GetPapelSecRate();
 			work = true;
@@ -529,7 +530,7 @@ function TesterWork(){
 	}
 	else
 	{
-		if(func.GetPapelSec() == stringNames.papelTester)
+		if((func.GetPapelSec() == stringNames.papelTester) && (func.GetPapelSecRate() > 0))
 		{
 			rate = func.GetPapelSecRate();
 			work = true;
@@ -543,15 +544,27 @@ function TesterWork(){
 	}
 	if(work)
 	{
-		var modificador_positivo : float = EspecializacaoFerramenta();
-		var penal : float = MetodologiaEquipe();
+		//var modificador_positivo : float = EspecializacaoFerramenta();
+		//var penal : float = MetodologiaEquipe();
 		var mod : float = GameModifiers();
 		var tester : float;
-		var penal_prog : float = PenalidadeProgramacao(penal);
-
-		func.WorkingTester();
-		tester = func.GetTester() * (rate * 0.01) * (1 + modificador_positivo - penal_prog) * mod;
 		
+		//var isEspecialized : int = LinguagemProgEquipe();
+		//var penal_prog : float = PenalidadeProgramacao(penal, isEspecialized);
+		//var penal_prog : float = penal + (isEspecialized * constant.PENALIDADE);
+		func.WorkingTester();
+		
+		//tester = func.GetTester() * (rate * 0.01) * (1 + modificador_positivo - penal_prog) * mod;
+		
+		tester = func.GetTester() * (rate * 0.01) * mod;
+		
+		//Debug.Log("Tester Att = " + func.GetTester());
+		//Debug.Log("Rate = " + (rate * 0.01));
+		//Debug.Log("Positivo = " + modificador_positivo);
+		//Debug.Log("Negativo = " + penal_prog);
+		//Debug.Log("Mods = " + ((1 + modificador_positivo - penal_prog)));
+		//Debug.Log("Mod = " + mod);
+		//Debug.Log("Tester = " + tester);
 		yield WaitForSeconds(delay);
 		
 		/*
@@ -587,8 +600,9 @@ function Treinando(){
 	}
 }
 
-function PenalidadeProgramacao(penal : float){
-	return penal + LinguagemProgEquipe();
+function PenalidadeProgramacao(penal : float, isEspecialized : int){
+	//return penal + LinguagemProgEquipe();
+	return (penal + (isEspecialized * constant.PENALIDADE));
 }
 //--------------------------------------------ReqLinguagem-----------------------------------------------------------
 

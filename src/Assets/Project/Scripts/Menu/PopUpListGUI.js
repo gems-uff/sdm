@@ -47,17 +47,17 @@ function ExecutaBotaoPopup(t : String, listEntry : int){
 		switch(listEntry)
 		{
 			case 2: 	//"Change Task"
-				if (treino.GetLockEscolha() == false)// && playStyle.IsMacro() == false)
+				//if (treino.GetLockEscolha() == false)// && playStyle.IsMacro() == false)
 					windowController.ShowRoleWindow(func, treino);
 		   break;
 		   
 		   case 3: 	//"Train"
-				if (treino.GetLockEscolha() == false)// && playStyle.IsMacro() == false)
-				{
-					treino.SetLockEscolha(true);
-					novopapel = TakePapel(listEntry);
+				//if (treino.GetLockEscolha() == false)// && playStyle.IsMacro() == false)
+				//{
+					//treino.SetLockEscolha(true);
+					//novopapel = TakePapel(listEntry);
 					menuEsp.Especializar(func, treino);
-				}
+				//}
 		   break;
 		   
 		   case 4: 	//"Profile"

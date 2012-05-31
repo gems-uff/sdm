@@ -9,6 +9,7 @@ public var playStyle : GameplayStyle;
 public var windowController : WindowController;
 //public var equipe : Equipe;
 public var logWindow : LogWindow;
+public var managerPlanner : ManagerPlanner;
 /*
 private var TIMESLOW : float = 2.0;
 private var TIMENORMAL : float = 1.0;
@@ -199,7 +200,12 @@ function MainMenu(){
 			logWindow.ShowLogWindow();
 			ingameMenuToggle = false ;
 		}
-		if (GUI.Button( Rect (Screen.width - 100,310,100,20), "9: Resume") )
+		if (GUI.Button( Rect (Screen.width - 100,310,100,20), "9: Planner") )
+		{
+			//ingameMenuToggle = false ;
+			managerPlanner.ShowPlannerWindow();
+		}
+		if (GUI.Button( Rect (Screen.width - 100,330,100,20), "10: Resume") )
 		{
 			ingameMenuToggle = false ;
 		}

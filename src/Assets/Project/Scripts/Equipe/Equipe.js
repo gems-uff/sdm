@@ -43,7 +43,7 @@ public var func08 : Funcionario;
 private var showJanelaReport : boolean = false;
 private var windowRect : Rect = Rect (300,125,600,300);
 
-private var func = new Array();
+private var func = new Array(8);
 func[0] = func01;
 func[1] = func02;
 func[2] = func03;
@@ -69,113 +69,6 @@ private var staffSecondaryTester : int;
 //private var staffMarketing : int;
 
 
-
-//--------------------------------------------------------------
-//Manager Functions
-//--------------------------------------------------------------
-//////////////////////////////////////////////////////////////////////////////
-/*
-function SetStaffRoles()
-{
-	var aux : int = 0;
-	var number : int = 0;
-	var i : int = 0;
-	
-	//Select the best programmer in the staff
-	aux = func[0].GetProgramador();
-	for(i = 1; i < 7; i++)
-	{
-		if ( aux < func[i].GetProgramador())
-		{
-			aux = func[i].GetProgramador();
-			number = i;
-		}
-	}
-	staffMainProgrammer = number;
-	
-	//Select the best analyst in the staff
-	aux = func[0].GetAnalista();
-	number = 0;
-	for(i = 1; i < 7; i++)
-	{
-		if(i != staffMainProgrammer)
-		{
-			if ( aux < func[i].GetAnalista())
-			{
-				aux = func[i].GetAnalista();
-				number = i;
-			}
-		}
-	}
-	staffMainAnalyst = number;
-	
-	//Select the best architect in the staff
-	aux = func[0].GetArquiteto();
-	number = 0;
-	for(i = 1; i < 7; i++)
-	{
-		if((i != staffMainProgrammer) && ( i != staffMainAnalyst))
-		{
-			if ( aux < func[i].GetArquiteto())
-			{
-				aux = func[i].GetArquiteto();
-				number = i;
-			}
-		}
-	}
-	staffMainArchitect = number;
-	
-	//Select the best tester in the staff
-	aux = func[0].GetTester();
-	number = 0;
-	for(i = 1; i < 7; i++)
-	{
-		if((i != staffMainProgrammer) && ( i != staffMainAnalyst) && (i != staffMainArchitect))
-		{
-			if ( aux < func[i].GetTester())
-			{
-				aux = func[i].GetTester();
-				number = i;
-			}
-		}
-	}
-	staffMainTester = number;
-	
-	//Select the secondary tester in the staff
-	aux = func[0].GetTester();
-	number = 0;
-	for(i = 1; i < 7; i++)
-	{
-		if((i != staffMainProgrammer) && ( i != staffMainTester) && (i != staffMainArchitect))
-		{
-			if ( aux < func[i].GetTester())
-			{
-				aux = func[i].GetTester();
-				number = i;
-			}
-		}
-	}
-	staffSecondaryTester = number;
-	
-	//Select the secondary analyst in the staff
-	aux = func[0].GetAnalista();
-	number = 0;
-	for(i = 1; i < 7; i++)
-	{
-		if((i != staffMainProgrammer) && ( i != staffMainAnalyst))
-		{
-			if ( aux < func[i].GetAnalista())
-			{
-				aux = func[i].GetAnalista();
-				number = i;
-			}
-		}
-	}
-	staffSecondaryAnaliyst = number;
-
-}
-*/
-
 //--------------------------------------------------------------
 //Macro Hiring Functions
 //--------------------------------------------------------------
@@ -183,11 +76,12 @@ function VacantSlot()
 {
 	var i : int = 0;
 	var vacantSlot = -1;
-	while ( i < 7)
+	while ( i < 8)
 	{
 		if(func[i].GetNome() == stringNames.fired)
 		{
 			vacantSlot = i;
+			//Leave the while
 			i = 10;
 		}
 		i++;
@@ -291,11 +185,11 @@ function WindowFunction_Report (windowID : int)	{
 	GUI.Box (Rect (002,258,596,20), (" "),fichaGuiStyle);
 	GUI.Box (Rect (200,278,398,20), (" "),fichaGuiStyle);
 	
-	GUI.DragWindow();
 	if (GUI.Button (Rect (02,278,196,20), "Close")) 
 	{
 		showJanelaReport  = false;
 	}
+	GUI.DragWindow();
 }
 
 function ResetStaffReport(){

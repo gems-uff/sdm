@@ -412,6 +412,9 @@ slot01 = GUI.Toggle (Rect (198, 040, 80, 30), slot01, employee01.GetNome());
 	GUI.DragWindow();
 }
 
+//--------------------------------------------------------------
+//Manager Hiring Functions
+//--------------------------------------------------------------
 function ManagerHiring(role : String)
 {
 	var first : int;

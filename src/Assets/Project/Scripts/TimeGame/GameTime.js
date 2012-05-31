@@ -3,7 +3,7 @@ public var TIMESLOW : float = 8.0;
 public var TIMENORMAL : float = 6.0;
 public var TIMEFAST : float = 4.0;
 public var TIMEVERYFAST : float = 2.0;
-public var TIMEHYPERFAST : float = 0.125;
+public var TIMEHYPERFAST : float = 1.7;
 
 private var moraleAction : MoraleControl;
 

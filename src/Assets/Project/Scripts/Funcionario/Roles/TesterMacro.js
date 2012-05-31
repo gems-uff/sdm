@@ -16,7 +16,7 @@ class TesterMacro extends System.ValueType{
 		var i : int = 0;
 		var totalBugsFound : int = 0;
 		var random : float;
-		var randomizer : float = Random.Range (0.7, 1.0);
+		var randomizer : float = Random.Range (0.8, 1.2);
 		var findScore : int = 0;
 		
 		//Chances to find each bug type

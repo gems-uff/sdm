@@ -67,6 +67,7 @@
      <Compile Include="Assets\Project\Scripts\Dialog\NoPaymentDialog.js" />
      <Compile Include="Assets\Project\Scripts\Equipe\Equipe.js" />
      <Compile Include="Assets\Project\Scripts\Equipe\Influence.js" />
+     <Compile Include="Assets\Project\Scripts\Equipe\ManagerPlanner.js" />
      <Compile Include="Assets\Project\Scripts\FloatingNumbers\FloatingLevel.js" />
      <Compile Include="Assets\Project\Scripts\FloatingNumbers\FloatingLines.js" />
      <Compile Include="Assets\Project\Scripts\FloatingNumbers\FlyingText.js" />

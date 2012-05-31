@@ -22,7 +22,11 @@ private var anaEspecification : boolean = false;
 private var anaQuality : boolean = false;
 private var anaRounded : boolean = true;
 
-
+//For Managers
+private var managerAnalysis : boolean = false;
+private var managerCodefication : boolean = false;
+private var managerQuality : boolean = false;
+private var managerBalanced : boolean = false;
 
 //For everyone
 private var employeeList : EmployeeList;
