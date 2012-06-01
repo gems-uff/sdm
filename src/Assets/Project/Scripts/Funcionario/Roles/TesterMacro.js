@@ -30,7 +30,7 @@ class TesterMacro extends System.ValueType{
 		findScore = parseInt(tester * randomizer * constant.TESTER_DURANTE);
 		//Chance to find a bug, to a total of "aux" bugs
 		i = 0;
-		Debug.Log("Find #Bugs: " + findScore);
+		//Debug.Log("Find #Bugs: " + findScore);
 		while(i < findScore)
 		{
 			i++;

@@ -4,7 +4,7 @@ private var func : Funcionario;
 private var behavior : BehaviorPlanner;
 public var timer : GameTime;
 public var playStyle : GameplayStyle;
-private var windowRect : Rect = Rect (400,125,400,520);
+private var windowRect : Rect = Rect (400,125,460,520);
 private var hSliderValue : float = 8.0;
 private var showWindow : boolean = false;
 
@@ -45,6 +45,7 @@ function WindowFunction(windowID : int){
 	//Programmer
 	var progRepair : boolean = behavior.GetProgRepair();
 	var progEvolution : boolean = behavior.GetProgEvolution();
+	var isPressured : boolean = behavior.GetPressure();
 	
 	//Architect
 	var archVerification : boolean = behavior.GetArchVerification();
@@ -61,8 +62,20 @@ function WindowFunction(windowID : int){
 	var anaEspecification : boolean = behavior.GetAnaEspecification();
 	var anaQuality : boolean = behavior.GetAnaQuality();
 	var anaRounded : boolean = behavior.GetAnaRounded();
-
-	var isPressured : boolean = behavior.GetPressure();
+	
+	//Manager
+	var manAnalysis : boolean = behavior.GetManagerAnalysis();
+	var manCodification : boolean = behavior.GetManagerCodification();
+	var manQuality : boolean = behavior.GetManagerQuality();
+	var manBalanced : boolean = behavior.GetManagerBalanced();
+	
+	var manAnalyst : boolean = behavior.GetManagerAnalyst();
+	var manArchitect : boolean = behavior.GetManagerArchitect();
+	var manProgrammer : boolean = behavior.GetManagerProgrammer();
+	
+	var manAutonomous : boolean = behavior.managerAutonomous;
+	var manDecideFocus : boolean = behavior.managerDecideFocus;
+	
 	
 	//Programmer
 	GUI.Box (Rect (02,100,210,25), "Programmer task");
@@ -78,9 +91,17 @@ function WindowFunction(windowID : int){
 		progRepair = false;
 		behavior.ActivateProgEvolution();
 	}
-	
+	isPressured = GUI.Toggle (Rect (110, 125, 100, 25), isPressured, "Pressure");
+	if(isPressured)
+	{
+		behavior.SetPressure(true);
+	}
+	else
+	{
+		behavior.SetPressure(false);
+	}
 	//Architect
-	GUI.Box (Rect (02,175,210,25), "Architect task");
+	GUI.Box (Rect (02,175,210,25), "Architect tasks");
 	archVerification = GUI.Toggle (Rect (10, 200, 100, 25), archVerification, "Verification");
 	if(archVerification)
 	{
@@ -139,7 +160,7 @@ function WindowFunction(windowID : int){
 	}
 	
 	//Analyst
-	GUI.Box (Rect (02,325,210,25), "Analyst task");
+	GUI.Box (Rect (02,325,210,25), "Analyst tasks");
 	anaElicitation = GUI.Toggle (Rect (10, 350, 100, 25), anaElicitation, "Elicitation");
 	if(anaElicitation)
 	{
@@ -174,16 +195,90 @@ function WindowFunction(windowID : int){
 		behavior.ActivateAnaRounded();
 	}
 	
+	//Manager
+	GUI.Box (Rect (212,100,210,25), "Manager tasks");
 	
-	isPressured = GUI.Toggle (Rect (110, 125, 100, 25), isPressured, "Pressure");
-	if(isPressured)
+	//Autonomy
+	GUI.Box (Rect (212,125,100,25), "Autonomy");
+	manAutonomous = GUI.Toggle (Rect (220, 150, 100, 25), manAutonomous, "Autonomy");
+	if(manAutonomous)
 	{
-		behavior.SetPressure(true);
+		behavior.managerAutonomous = true;
 	}
 	else
 	{
-		behavior.SetPressure(false);
+		manDecideFocus = false;
+		behavior.managerAutonomous = false;
+		behavior.managerDecideFocus = false;
 	}
+	manDecideFocus = GUI.Toggle (Rect (220, 175, 100, 25), manDecideFocus, "Decide Mode");
+	if(manDecideFocus)
+	{
+		behavior.managerAutonomous = true;
+		behavior.managerDecideFocus = true;
+	}
+	else
+	{
+		behavior.managerDecideFocus = false;
+	}
+	//Modes
+	GUI.Box (Rect (220, 200, 100, 25), "Priority");
+	manAnalysis = GUI.Toggle (Rect (220, 225, 100, 25), manAnalysis, "Analysis");
+	if(manAnalysis)
+	{
+		manCodification = false;
+		manQuality = false;
+		manBalanced = false;
+		behavior.ActivateAnalysis();
+	}
+	manCodification = GUI.Toggle (Rect (220, 250, 100, 25), manCodification, "Codification");	
+	if(manCodification)
+	{
+		manAnalysis = false;
+		manQuality = false;
+		manBalanced = false;
+		behavior.ActivateCodification();
+	}
+	manQuality = GUI.Toggle (Rect (220, 275, 100, 25), manQuality, "Quality");	
+	if(manQuality)
+	{
+		manAnalysis = false;
+		manCodification = false;
+		manBalanced = false;
+		behavior.ActivateQuality();
+	}
+	manBalanced = GUI.Toggle (Rect (220, 300, 100, 25), manBalanced, "Balanced");	
+	if(manBalanced)
+	{
+		manAnalysis = false;
+		manCodification = false;
+		manQuality = false;
+		behavior.ActivateBalanced();
+	}
+	//Aids
+	GUI.Box (Rect (320, 125, 100, 25), "Aid");
+	manAnalyst = GUI.Toggle (Rect (320, 150, 100, 25), manAnalyst, "Aid Analysts");	
+	if(manAnalyst)
+	{
+		manArchitect = false;
+		manProgrammer = false;
+		behavior.ActivateAnalystAid();
+	}
+	manArchitect = GUI.Toggle (Rect (320, 175, 100, 25), manArchitect, "Aid Architects");	
+	if(manArchitect)
+	{
+		manAnalyst = false;
+		manProgrammer = false;
+		behavior.ActivateArchitectAid();
+	}
+	manProgrammer = GUI.Toggle (Rect (320, 200, 100, 25), manProgrammer, "Aid Programmers");	
+	if(manProgrammer)
+	{
+		manAnalyst = false;
+		manArchitect = false;
+		behavior.ActivateProgrammerAid();
+	}
+	
 	//Close button
 	if (GUI.Button (Rect (02,493,296,25), "Close")) {
 		showWindow  = false;
@@ -222,5 +317,5 @@ function OnGUI () {
 	if(playStyle.IsMacro() == false)
 		TeamWorkHoursBar();
 	if (showWindow)
-		windowRect = GUI.Window (6, windowRect, WindowFunction, "Working Hours");
+		windowRect = GUI.Window (6, windowRect, WindowFunction, "Task Configuration");
 }

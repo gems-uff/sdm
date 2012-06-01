@@ -13,8 +13,6 @@ private var archEvolution : boolean = false;
 private var archAnalysis : boolean = false;
 private var archRounded : boolean = true;
 private var archTestCases : String = "both"; //system, integration, both
-//private var archPrototype : boolean = false;
-//private var employeeNode : EmployeeNode;
 
 //For Analysts
 private var anaElicitation : boolean = false;
@@ -24,10 +22,18 @@ private var anaRounded : boolean = true;
 
 //For Managers
 private var managerAnalysis : boolean = false;
-private var managerCodefication : boolean = false;
+private var managerCodification : boolean = false;
 private var managerQuality : boolean = false;
 private var managerBalanced : boolean = false;
 
+private var managerChangedMode : boolean = false;
+
+private var managerAnalyst : boolean = false;
+private var managerProgrammer : boolean = false;
+private var managerArchitect : boolean = false;
+
+public var managerAutonomous : boolean = false;
+public var managerDecideFocus : boolean = false;
 //For everyone
 private var employeeList : EmployeeList;
 private var func : Funcionario;
@@ -127,7 +133,134 @@ function ActivateAnaRounded()
 	SetAnaQuality(false);
 	SetAnaRounded(true);
 }
+//-------------------------------------------------------------------------------------------------------
+//Functions for Manager
+//-------------------------------------------------------------------------------------------------------
 
+function GetManagerAnalyst()
+{
+	return managerAnalyst;
+}
+
+function SetManagerAnalyst(t : boolean)
+{
+	managerAnalyst = t;
+}
+
+function GetManagerArchitect()
+{
+	return managerArchitect;
+}
+
+function SetManagerArchitect(t : boolean)
+{
+	managerArchitect = t;
+}
+
+function GetManagerProgrammer()
+{
+	return managerProgrammer;
+}
+
+function SetManagerProgrammer(t : boolean)
+{
+	managerProgrammer = t;
+}
+
+function ActivateAnalystAid()
+{
+	managerAnalyst = true;
+	managerArchitect = false;
+	managerProgrammer = false;
+}
+
+function ActivateArchitectAid()
+{
+	managerAnalyst = false;
+	managerArchitect = true;
+	managerProgrammer = false;
+}
+
+function ActivateProgrammerAid()
+{
+	managerAnalyst = false;
+	managerArchitect = false;
+	managerProgrammer = true;
+}
+
+function GetManagerAnalysis()
+{
+	return managerAnalysis;
+}
+
+function GetManagerCodification()
+{
+	return managerCodification;
+}
+
+function GetManagerQuality()
+{
+	return managerQuality;
+}
+
+function GetManagerBalanced()
+{
+	return managerBalanced;
+}
+
+function GetManagerChangedMode()
+{
+	return managerChangedMode;
+}
+
+function SetManagerChangedMode(t : boolean)
+{
+	managerChangedMode = t;
+}
+
+function ActivateAnalysis()
+{
+	if(managerAnalysis == false)
+		managerChangedMode = true;
+	
+	managerAnalysis = true;
+	managerCodification = false;
+	managerQuality = false;
+	managerBalanced = false;
+}
+
+function ActivateCodification()
+{
+	if(managerCodification == false)
+		managerChangedMode = true;
+	
+	managerAnalysis = false;
+	managerCodification = true;
+	managerQuality = false;
+	managerBalanced = false;
+}
+
+function ActivateQuality()
+{
+	if(managerQuality == false)
+		managerChangedMode = true;
+	
+	managerAnalysis = false;
+	managerCodification = false;
+	managerQuality = true;
+	managerBalanced = false;
+}
+
+function ActivateBalanced()
+{
+	if(managerBalanced == false)
+		managerChangedMode = true;
+	
+	managerAnalysis = false;
+	managerCodification = false;
+	managerQuality = false;
+	managerBalanced = true;
+}
 //-------------------------------------------------------------------------------------------------------
 //Functions below are for the linked lists
 //-------------------------------------------------------------------------------------------------------

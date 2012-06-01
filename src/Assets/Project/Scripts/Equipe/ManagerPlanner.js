@@ -118,7 +118,10 @@ function ResetUsed()
 	slot_secUsed[7] = false;
 }
 
-
+//--------------------------------------------------------------
+//Analysis Mode Function
+//--------------------------------------------------------------
+//This function will distribute roles according to the priorities of the Mode, in this case Analysis
 function AnalysisMode()
 {
 	var tester : String = stringNames.papelTester;
@@ -130,121 +133,137 @@ function AnalysisMode()
 	CleanRoles();
 	DefineStaffRoles();
 	
-	Debug.Log("#1 ANALYSTELICITATION");
 	NeedRole(analista, false, false, 1, 100, tester, arquiteto, programmador, analista, "anaElicitation");
-	Debug.Log("#2 ANALYST ESPECIFICATTION");
 	NeedRole(analista, true, true, 1, 50, tester, arquiteto, programmador, analista,"anaEspecification");
 	
 	//Lets test
 	var ok : boolean = false;
 	//Prog
-	Debug.Log("#1 PROGRAMMER");
-	ok = NeedRole(analista, false, true, 1, 50, tester, arquiteto, analista, programmador,"progEvolution");
-	if(!ok)
-		NeedRole(analista, true, true, 1, 50, tester, arquiteto, analista, programmador,"progEvolution");
+	//ok = NeedRole(programmador, false, true, 1, 50, tester, arquiteto, analista, programmador,"progEvolution");
+	//if(!ok)
+		NeedRole(programmador, true, true, 1, 50, tester, arquiteto, analista, programmador,"progEvolution");
 	//Arc
-	Debug.Log("#1 ARCHITECT");
-	ok = NeedRole(analista, false, true, 1, 40, tester, analista, programmador, arquiteto,"archEvolution");
-	if(!ok)
-		NeedRole(analista, true, true, 1, 40, tester, analista, programmador, arquiteto,"archEvolution");
+	//ok = NeedRole(arquiteto, false, true, 1, 40, tester, analista, programmador, arquiteto,"archEvolution");
+	//if(!ok)
+		NeedRole(arquiteto, true, true, 1, 40, tester, analista, programmador, arquiteto,"archEvolution");
 	//Prog
-	Debug.Log("#2 PROGRAMMER");
-	ok = NeedRole(analista, false, true, 1, 50, tester, arquiteto, analista, programmador,"progEvolution");
-	if(!ok)
-		NeedRole(analista, true, true, 1, 50, tester, arquiteto, analista, programmador,"progEvolution");
+	//ok = NeedRole(programmador, false, true, 1, 50, tester, arquiteto, analista, programmador,"progEvolution");
+	//if(!ok)
+		NeedRole(programmador, true, true, 1, 50, tester, arquiteto, analista, programmador,"progEvolution");
 	//Tester Do not have a task yet implemented
-	Debug.Log("#1 TESTER");
-	ok = NeedRole(analista, false, true, 1, 30, analista, programmador, arquiteto, tester,"testerAll");
-	if(!ok)
-		NeedRole(analista, true, true, 1, 30, analista, programmador, arquiteto, tester,"testerAll");
+	//ok = NeedRole(tester, false, true, 1, 30, analista, programmador, arquiteto, tester,"testerAll");
+	//if(!ok)
+		NeedRole(tester, true, true, 1, 30, analista, programmador, arquiteto, tester,"testerAll");
 		
 	//Analista
-	Debug.Log("#3 ANALYST ELICITATION");
-	ok = NeedRole(analista, false, true, 1, 50, tester, arquiteto, programmador, analista,"anaElicitation");
-	if(!ok)
+	//ok = NeedRole(analista, false, true, 1, 50, tester, arquiteto, programmador, analista,"anaElicitation");
+	//if(!ok)
 		NeedRole(analista, true, true, 1, 50, tester, arquiteto, programmador, analista,"anaElicitation");
 	//Programador
-	Debug.Log("#3 PROGRAMMER");
-	ok = NeedRole(programmador, false, true, 1, 50, tester, arquiteto, analista, programmador,"progEvolution");
-	if(!ok)
+	//ok = NeedRole(programmador, false, true, 1, 50, tester, arquiteto, analista, programmador,"progEvolution");
+	//if(!ok)
 		NeedRole(programmador, true, true, 1, 50, tester, arquiteto, analista, programmador,"progEvolution");
 }
 
-function CleanRoles()
+//--------------------------------------------------------------
+//Codification Mode Function
+//--------------------------------------------------------------
+//This function will distribute roles according to the priorities of the Mode
+function CodificationMode()
 {
-	var i : int = 0;
-	//We cant change the Manager
-	for(i = 0; i < 8; i++)
-	{
-		slot[i].SetPapelSec(stringNames.papelNenhum);
-		slot[i].SetRates(100);
-		if((slot[i].GetPapel() == stringNames.papelGerente))
-			slot_mainUsed[i] = true;
-		else
-			slot[i].SetPapel(stringNames.papelNenhum);
-	}
+	var tester : String = stringNames.papelTester;
+	var arquiteto : String = stringNames.papelArquiteto;
+	var programmador : String = stringNames.papelProg;
+	var analista : String = stringNames.papelAnalista;
+	
+	ResetUsed();
+	CleanRoles();
+	DefineStaffRoles();
+	
+	NeedRole(programmador, false, false, 1, 100, tester, arquiteto, programmador, analista, "progEvolution");
+	NeedRole(programmador, true, true, 1, 50, tester, arquiteto, programmador, analista,"progEvolution");
+	
+	//Architect
+	NeedRole(arquiteto, true, true, 1, 40, tester, analista, programmador, arquiteto,"archEvolution");
+	//Tester Do not have a task yet implemented
+	NeedRole(tester, true, true, 1, 30, analista, programmador, arquiteto, tester,"testerAll");
+		
+	//Analysts
+	NeedRole(analista, true, true, 1, 50, tester, arquiteto, programmador, analista,"anaElicitation");
+	NeedRole(analista, true, true, 1, 50, tester, arquiteto, programmador, analista,"anaEspecification");
+		
+	//Programmer
+	NeedRole(programmador, true, true, 1, 50, tester, arquiteto, analista, programmador,"progRepair");
+	NeedRole(programmador, true, true, 1, 50, tester, arquiteto, programmador, analista,"progEvolution");
 }
 
-function SetRole(func : Funcionario, role : String, isSec : boolean, task : String)
+//--------------------------------------------------------------
+//Quality Mode Function
+//--------------------------------------------------------------
+//This function will distribute roles according to the priorities of the Mode
+function QualityMode()
 {
-	var behavior : BehaviorPlanner;
-	if(!isSec)
-		func.SetPapel(role);
-	else
-		func.SetPapelSec(role);
-	behavior = func.GetComponentInChildren(BehaviorPlanner);
-
-	switch(task)
-	{
-	   case "progRepair":
-			behavior.ActivateProgRepair();
-	   break;
-
-	   case "progEvolution":
-			behavior.ActivateProgEvolution();
-	   break;
-	   
-	   case "archVerification":
-			behavior.ActivateArchVerification();
-	   break;
-	   
-	   case "archEvolution":
-			behavior.ActivateArchEvolution();
-	   break;
-	   
-	   case "archAnalysis":
-			behavior.ActivateArchAnalysis();
-	   break;
-	   
-	   case "archRounded":
-			behavior.ActivateArchRounded();
-	   break;
-	   
-	   case "archTestCases":
-			//behavior.ActivateProgEvolution();
-			Debug.Log("TO DO");
-	   break;
-	   
-	   case "anaElicitation":
-			behavior.ActivateAnaElicitation();
-	   break;
-	   
-	   case "anaEspecification":
-			behavior.ActivateAnaEspecification();
-	   break;
-	   
-	   case "anaQuality":
-			behavior.ActivateAnaQuality();
-	   break;
-	   
-	   case "anaRounded":
-			behavior.ActivateAnaRounded();
-	   break;
-
-	   default:
-		  break;
-	}
+	var tester : String = stringNames.papelTester;
+	var arquiteto : String = stringNames.papelArquiteto;
+	var programmador : String = stringNames.papelProg;
+	var analista : String = stringNames.papelAnalista;
+	
+	ResetUsed();
+	CleanRoles();
+	DefineStaffRoles();
+	
+	NeedRole(programmador, false, false, 1, 100, tester, arquiteto, programmador, analista, "progRepair");
+	
+	NeedRole(tester, true, true, 2, 30, analista, programmador, arquiteto, tester,"testerAll");
+	
+	//Architect
+	NeedRole(arquiteto, true, true, 1, 40, tester, analista, programmador, arquiteto,"archTestCases");
+		
+	//Analysts
+	NeedRole(analista, true, true, 1, 50, tester, arquiteto, programmador, analista,"anaQuality");
+	NeedRole(analista, true, true, 1, 50, tester, arquiteto, programmador, analista,"anaRounded");
+		
+	//Programmer
+	NeedRole(tester, true, true, 1, 30, analista, programmador, arquiteto, tester,"testerAll");
+	NeedRole(programmador, true, true, 1, 50, tester, arquiteto, analista, programmador,"progRepair");
+	NeedRole(programmador, true, true, 3, 50, tester, arquiteto, programmador, analista,"progEvolution");
 }
+
+//--------------------------------------------------------------
+//Balanced Mode Function
+//--------------------------------------------------------------
+//This function will distribute roles according to the priorities of the Mode
+function BalancedMode()
+{
+	var tester : String = stringNames.papelTester;
+	var arquiteto : String = stringNames.papelArquiteto;
+	var programmador : String = stringNames.papelProg;
+	var analista : String = stringNames.papelAnalista;
+	
+	ResetUsed();
+	CleanRoles();
+	DefineStaffRoles();
+	
+	NeedRole(programmador, false, false, 1, 100, tester, arquiteto, programmador, analista, "progEvolution");
+	NeedRole(programmador, true, true, 1, 50, tester, arquiteto, programmador, analista,"progRepair");
+	//Architect
+	NeedRole(arquiteto, true, true, 1, 40, tester, analista, programmador, arquiteto,"archRounded");
+	//Tester Do not have a task yet implemented
+	NeedRole(tester, true, true, 1, 30, analista, programmador, arquiteto, tester,"testerAll");
+		
+	//Analysts
+	//NeedRole(analista, true, true, 1, 50, tester, arquiteto, programmador, analista,"anaQuality");
+	NeedRole(analista, true, true, 1, 50, tester, arquiteto, programmador, analista,"anaRounded");
+		
+	//Programmer
+	NeedRole(programmador, true, true, 1, 50, tester, arquiteto, programmador, analista,"progEvolution");
+}
+
+
+//--------------------------------------------------------------
+//Need Role
+//--------------------------------------------------------------
+//This function will, if possible, assign someone in the staff to perform the WantedRole
 //////////////////////////////////////////////////////////////////////////////
 function NeedRole(wantedRole : String, wantedCanBeSec : boolean, wantedCanHaveSec : boolean, 
 qnt : int, wantedRate : int, turn1 : String, turn2 : String, turn3 : String, turn4 : String, task : String)
@@ -267,7 +286,7 @@ qnt : int, wantedRate : int, turn1 : String, turn2 : String, turn3 : String, tur
 			//slot[i].SetPapel(wantedRole);
 			//SetRole(slot[i], wantedRole, false, task);
 			
-			Debug.Log("Found #1 in main");
+			//Debug.Log("Found #1 in main");
 			if(!wantedCanHaveSec && slot_secUsed[i] == false)
 			{
 				slot_secUsed[i] = true;
@@ -295,7 +314,7 @@ qnt : int, wantedRate : int, turn1 : String, turn2 : String, turn3 : String, tur
 				SetRole(slot[i], wantedRole, true, task);
 				slot[i].SetRates(wantedRate);
 				
-				Debug.Log("Found #1 in sec");
+				//Debug.Log("Found #1 in sec");
 			}
 		}
 
@@ -322,9 +341,9 @@ qnt : int, wantedRate : int, turn1 : String, turn2 : String, turn3 : String, tur
 	{
 		if(slot_mainUsed[i] == false)
 		{
-			Debug.Log("Main not used");
-			Debug.Log("Slot = " + slot_mainRole[i]);
-			Debug.Log("Turn = " + roleTurn[j]);
+			//Debug.Log("Main not used");
+			//Debug.Log("Slot = " + slot_mainRole[i]);
+			//Debug.Log("Turn = " + roleTurn[j]);
 			//Main slot is not used, and it is the one we seek
 			if(slot_mainRole[i] == roleTurn[j])
 			{
@@ -334,7 +353,7 @@ qnt : int, wantedRate : int, turn1 : String, turn2 : String, turn3 : String, tur
 					//I can only use it if the secondary role is dif from wanted role
 					if(slot[i].GetPapelSec() != wantedRole)
 					{
-						Debug.Log("Changed #1 in main");
+						//Debug.Log("Changed #1 in main");
 						howManyFound = howManyFound + 1;
 						slot_mainUsed[i] = true;
 						SetRole(slot[i], wantedRole, false, task);
@@ -347,12 +366,12 @@ qnt : int, wantedRate : int, turn1 : String, turn2 : String, turn3 : String, tur
 				}
 				else
 				{
-					Debug.Log("cant have secondary");
+					//Debug.Log("cant have secondary");
 					//He cant have secondary and can only use this slot if secondary is not being used
 					if(slot_secUsed[i] == false)
 					{
-						Debug.Log("Secondary not used then lets use it !");
-						Debug.Log("Changed #1 in main");
+						//Debug.Log("Secondary not used then lets use it !");
+						//Debug.Log("Changed #1 in main");
 						howManyFound = howManyFound + 1;
 						slot_mainUsed[i] = true;
 						slot_secUsed[i] = true;
@@ -376,23 +395,23 @@ qnt : int, wantedRate : int, turn1 : String, turn2 : String, turn3 : String, tur
 						SetRole(slot[i], wantedRole, true, task);
 						slot[i].SetRates(wantedRate);
 						
-						Debug.Log("Found #1 in sec");
+						//Debug.Log("Found #1 in sec");
 					}
 				}
 			}
 		}
 
 		i++;
-		Debug.Log("i = " + i);
+		//Debug.Log("i = " + i);
 		if(i == 8)
 		{
 			i = 0;
-			Debug.Log("Next turn");
+			//Debug.Log("Next turn");
 			j++;
 		}
 		if(j == 4)
 		{
-			Debug.Log("Couldnt complete");
+			//Debug.Log("Couldnt complete");
 			break;
 		}
 	}
@@ -415,9 +434,14 @@ function SetStaffRoles()
 		slot[i].SetPapelSec(slot_secRole[i]);
 	}
 }
+
+//--------------------------------------------------------------
+//Define Staff Roles Function
+//--------------------------------------------------------------
 /*
 //This function will set the main and secondary roles for each employee to be used by the manager
 */
+
 function DefineStaffRoles()
 {
 	var i : int = 0;
@@ -549,6 +573,89 @@ function DefineStaffRoles()
 }
 
 //--------------------------------------------------------------
+//Clean Roles Function
+//--------------------------------------------------------------
+//This function simply set all employees to have no role, with the exception of the manager
+function CleanRoles()
+{
+	var i : int = 0;
+	//We cant change the Manager
+	for(i = 0; i < 8; i++)
+	{
+		slot[i].SetPapelSec(stringNames.papelNenhum);
+		slot[i].SetRates(100);
+		if((slot[i].GetPapel() == stringNames.papelGerente))
+			slot_mainUsed[i] = true;
+		else
+			slot[i].SetPapel(stringNames.papelNenhum);
+	}
+}
+
+//--------------------------------------------------------------
+//SetRole Function
+//--------------------------------------------------------------
+//Function to set a role and its corresponding task
+function SetRole(func : Funcionario, role : String, isSec : boolean, task : String)
+{
+	var behavior : BehaviorPlanner;
+	if(!isSec)
+		func.SetPapel(role);
+	else
+		func.SetPapelSec(role);
+	behavior = func.GetComponentInChildren(BehaviorPlanner);
+
+	switch(task)
+	{
+	   case "progRepair":
+			behavior.ActivateProgRepair();
+	   break;
+
+	   case "progEvolution":
+			behavior.ActivateProgEvolution();
+	   break;
+	   
+	   case "archVerification":
+			behavior.ActivateArchVerification();
+	   break;
+	   
+	   case "archEvolution":
+			behavior.ActivateArchEvolution();
+	   break;
+	   
+	   case "archAnalysis":
+			behavior.ActivateArchAnalysis();
+	   break;
+	   
+	   case "archRounded":
+			behavior.ActivateArchRounded();
+	   break;
+	   
+	   case "archTestCases":
+			behavior.SetTestCases("both");
+			Debug.Log("TO DO");
+	   break;
+	   
+	   case "anaElicitation":
+			behavior.ActivateAnaElicitation();
+	   break;
+	   
+	   case "anaEspecification":
+			behavior.ActivateAnaEspecification();
+	   break;
+	   
+	   case "anaQuality":
+			behavior.ActivateAnaQuality();
+	   break;
+	   
+	   case "anaRounded":
+			behavior.ActivateAnaRounded();
+	   break;
+
+	   default:
+		  break;
+	}
+}
+//--------------------------------------------------------------
 //Removes any secondary role if rate == 0
 //--------------------------------------------------------------
 function CleanRolesWithZeroRate()
@@ -654,42 +761,31 @@ function WindowFunction (windowID : int)
 	GUI.Box (Rect (422,158,40,20), (""+ slot[7].GetTester()));
 
 	//------------------
-	if (GUI.Button (Rect (200,198,196,20), "Clean")) 
-	{
-		Debug.Log("Need Analyst #2");
-		CleanRoles();
-		//NeedRole(stringNames.papelAnalista, "", "", "", 1, 50, false, false);
-	}
-	if (GUI.Button (Rect (200,218,196,20), "1 programmer")) 
-	{
-		Debug.Log("Need programmer #1");
-		//Prog1();
-		//NeedRole(stringNames.papelProg, stringNames.papelAnalista, "", "", 1, 50, false, false);
-	}
-	if (GUI.Button (Rect (200,238,196,20), "1 architect")) 
-	{
-		Debug.Log("Need Architect #1");
-		//Arq1();
-		//NeedRole(stringNames.papelArquiteto, stringNames.papelAnalista, stringNames.papelProg, "", 1, 50, true, false);
-	}
-	if (GUI.Button (Rect (200,258,196,20), "2 programmers")) 
-	{
-		Debug.Log("Need programmer #2");
-		//Prog1();
-		//NeedRole(stringNames.papelProg, stringNames.papelAnalista, stringNames.papelArquiteto, "", 2, 50, true, false);
-	}
-	if (GUI.Button (Rect (200,278,196,20), "1 tester")) 
-	{
-		Debug.Log("Need Tester #1");
-		//Test1();
-		//NeedRole(stringNames.papelTester, stringNames.papelAnalista, stringNames.papelArquiteto, stringNames.papelProg, 2, 70, true, true);
-		//CleanRolesWithZeroRate();
-	}
-	//---------------------
-	
-	if (GUI.Button (Rect (02,188,196,20), "Test Focus Analyst")) 
+	if (GUI.Button (Rect (200,198,196,20), "Analysis Mode")) 
 	{
 		AnalysisMode();
+	}
+	if (GUI.Button (Rect (200,218,196,20), "Codification Mode")) 
+	{
+		CodificationMode();
+	}
+	if (GUI.Button (Rect (200,238,196,20), "Quality Mode")) 
+	{
+		QualityMode();
+	}
+	if (GUI.Button (Rect (200,258,196,20), "Balanced Mode")) 
+	{
+		BalancedMode();
+	}
+	//if (GUI.Button (Rect (200,278,196,20), "1 tester")) 
+	//{
+	
+	//}
+	//---------------------
+	
+	if (GUI.Button (Rect (02,188,196,20), "Clean")) 
+	{
+		CleanRoles();
 	}
 	
 	if (GUI.Button (Rect (02,218,196,20), "Set roles")) 

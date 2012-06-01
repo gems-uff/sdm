@@ -388,6 +388,8 @@ function GerenteWork(){
 		var gerente : float ;
 		var penal_prog : float = PenalidadeProgramacao(penal, isEspecialized);
 		
+		var action : ActionNode = new ActionNode();
+		
 		yield WaitForSeconds(delay);
 		func.WorkingGerente();
 		
@@ -406,7 +408,8 @@ function GerenteWork(){
 		else
 		{
 		*/
-		ManagerMacro.Work(func, project, report, floatingLines, equipe, constant, gerente, auxAnaArq, auxProg);
+		action = ManagerMacro.Work(func, project, report, floatingLines, equipe, constant, gerente, auxAnaArq, auxProg, behavior, timer.GetGameTime());
+		behavior.AddAction(action);
 		//}
 	}
 }

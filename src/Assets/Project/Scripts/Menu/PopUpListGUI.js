@@ -142,7 +142,7 @@ function PopupList(){
 	    list[2] = new GUIContent("Change Task");
 	    list[3] = new GUIContent("Train");
 	    list[4] = new GUIContent("Profile");
-	    list[5] = new GUIContent("Work Hours");
+	    list[5] = new GUIContent("Task Config.");
     //}
     /*
     else

@@ -1,14 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Equipe\ManagerPlanner.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Behavior\BehaviorPlanner.js">
     <Files>
-      <File FileName="Assets\Project\Scripts\Equipe\Equipe.js" Line="84" Column="21" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Funcionario.js" Line="344" Column="25" />
-      <File FileName="Assets\Project\Scripts\Misc\StringNames.js" Line="17" Column="23" />
-      <File FileName="Assets\Project\Scripts\Equipe\ManagerPlanner.js" Line="420" Column="4" />
-      <File FileName="Assets\Project\Scripts\Behavior\BehaviorPlanner.js" Line="28" Column="46" />
-      <File FileName="Assets\Project\Scripts\Windows\WorkingHoursWindow.js" Line="26" Column="58" />
-      <File FileName="Assets\Project\Scripts\Menu\IngameMenu.js" Line="208" Column="60" />
+      <File FileName="Assets\Project\Scripts\Equipe\ManagerPlanner.js" Line="634" Column="25" />
+      <File FileName="Assets\Project\Scripts\Behavior\BehaviorPlanner.js" Line="15" Column="73" />
+      <File FileName="Assets\Project\Scripts\Windows\WorkingHoursWindow.js" Line="304" Column="35" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\ManagerMacro.js" Line="211" Column="60" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\ArchitectMacro.js" Line="100" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

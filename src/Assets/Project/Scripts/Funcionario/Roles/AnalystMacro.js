@@ -118,7 +118,7 @@ class AnalystMacro extends System.ValueType{
 	
 	function Especification(actionNode : ActionNode, task : String, descr : String)
 	{
-		Debug.Log("Elicitation");
+		//Debug.Log("Elicitation");
 		if(func.GetAnalista() > 50)
 		{
 			//Above Moderate

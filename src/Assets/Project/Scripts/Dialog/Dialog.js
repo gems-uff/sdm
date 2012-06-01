@@ -123,7 +123,7 @@ function Dialog_Funcionario (){
 		GUI.Box (Rect (600,100, 130, 25), "");
 		//if(playStyle.IsMacro() == false)
 		//{
-		if (GUI.Button (Rect (600,100, 130, 25), "Working Hours")) {
+		if (GUI.Button (Rect (600,100, 130, 25), "Task Config.")) {
 				workHours.ChangeWorkHours(func);
 				dialogEnable = false;
 		}
