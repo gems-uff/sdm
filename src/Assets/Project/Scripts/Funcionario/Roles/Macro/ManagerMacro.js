@@ -170,7 +170,7 @@ class ManagerMacro extends System.ValueType{
 		behavior.ActivateCodification();
 		if(behavior.GetManagerChangedMode())
 		{
-			//planner.AnalysisMode();
+			planner.CodificationMode();
 			behavior.SetManagerChangedMode(false);
 			descr = "Entered Codification Mode";
 		}
@@ -182,7 +182,7 @@ class ManagerMacro extends System.ValueType{
 		behavior.ActivateQuality();
 		if(behavior.GetManagerChangedMode())
 		{
-			//planner.AnalysisMode();
+			planner.QualityMode();
 			behavior.SetManagerChangedMode(false);
 			descr = "Entered Quality Mode";
 		}
@@ -195,7 +195,7 @@ class ManagerMacro extends System.ValueType{
 		behavior.ActivateBalanced();
 		if(behavior.GetManagerChangedMode())
 		{
-			//planner.AnalysisMode();
+			planner.BalancedMode();
 			behavior.SetManagerChangedMode(false);
 			descr = "Entered Balanced Mode";
 		}

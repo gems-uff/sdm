@@ -438,13 +438,13 @@ class ProgrammerMacro extends System.ValueType{
 		var t : int = 0.0;
 		var repaired : int = 0;
 		
-		t = parseInt(programador / 10);
+		t = parseInt(programador * 0.25);
 		
 		i = 0;
 		//Debug.Log("Repair #Bugs: " + t);
 		while(i < t)
 		{
-			random = Random.Range (0.0, 2.0);
+			random = Random.Range (0.0, 1.0);
 			//Debug.Log("Prog Random = " + random);
 			i++;
 			if (random < project.GetCodeQuality())
