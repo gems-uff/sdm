@@ -1,9 +1,9 @@
 
-
+/*
 //Lists
 var projectList : ProjectList;
 var employeetList : EmployeeList;
-var actionList : ActiontList;
+var actionList : ActionList;
 //Nodes
 var projectNode : ProjectNode;
 var employeeNode : EmployeeNode;
@@ -16,7 +16,7 @@ public var emp02 : Funcionario;
 
 var employee01;
 var employee02;
-
+*/
 /*
 public var employee03 : Funcionario;
 public var employee04 : Funcionario;
@@ -29,13 +29,13 @@ public var employee08 : Funcionario;
 public var node : MyNode;
 public var list : MyLinkedList;
 */
-
+/*
 function doLinkedListTest () {
 
 	employee01 = emp01.Copy();
 	employee02 = emp02.Copy();
 	
-	actionList = new ActiontList();
+	actionList = new ActionList();
 	actionNode = new ActionNode();
 	
 	employeeNode = new EmployeeNode();
@@ -43,6 +43,7 @@ function doLinkedListTest () {
 	
 	employeeList = new EmployeeList();
 	employeeList2 = new EmployeeList();
+	*/
 	/*
 	employeeList3 = new EmployeetList();
 	employeeList4 = new EmployeetList();
@@ -51,6 +52,7 @@ function doLinkedListTest () {
 	employeeList7 = new EmployeetList();
 	employeeList8 = new EmployeetList();
 	*/
+	/*
 	projectList = new ProjectList();
 	projectNode = new ProjectNode();
 	
@@ -121,3 +123,4 @@ function Update () {
 	}
 	
 }
+*/

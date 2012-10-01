@@ -1,4 +1,8 @@
 #pragma strict
+
+//Find bugs
+//Need to redo Tester. Create leaf nodes and influences link.
+
 class TesterMacro extends System.ValueType{
 	
 	var chance : float;

@@ -569,7 +569,7 @@ function ManagerHiring(role : String)
 		if(role == stringNames.papelMarketing)
 		{
 			//Hire marketing
-			slot = 6;
+			//slot = 6;
 			for(i = 1; i < 8; i++)
 			{
 				if( func[i].GetMarketing() > func[first].GetMarketing())
@@ -634,10 +634,18 @@ function WindowManagerHiring(windowID : int){
 			//showWindowManagerHiring = false;
 			windowController.DisableManagerHireWindow();
 		}
-		if (GUI.Button (Rect (02,50,296,25), "Marketing")) {
-			ManagerHiring(stringNames.papelMarketing);
-			//showWindowManagerHiring = false;
-			windowController.DisableManagerHireWindow();
+		if((equipe.GetHasMarketing() == false))
+		{
+			if (GUI.Button (Rect (02,50,296,25), "Marketing")) {
+				ManagerHiring(stringNames.papelMarketing);
+				equipe.SetHasMarketing(true);
+				//showWindowManagerHiring = false;
+				windowController.DisableManagerHireWindow();
+			}
+		}
+		else
+		{
+			GUI.Box (Rect (02,50,296,25), "Marketing");
 		}
 		if (GUI.Button (Rect (02,75,296,25), "Programmer")) {
 			ManagerHiring(stringNames.papelProg);

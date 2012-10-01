@@ -1,4 +1,9 @@
 #pragma strict
+
+//Elicitcation: Validation
+//Especification: Discovery (Update Validation) and Documentation
+//Quality: Aid Tester (Acception)
+
 class AnalystMacro extends System.ValueType{
 		
 	private var func : Funcionario;
@@ -28,8 +33,14 @@ class AnalystMacro extends System.ValueType{
 		behavior = behaviorP;
 		date = dateP;
 		
-		
 		var randomizer : float = Random.Range (0.5, 1.0);
+
+		if(equipe.influences.GetBonusAnalyst()!= 1.0)
+		{
+			analista = analista * (1 + equipe.influences.GetBonusAnalyst());
+			actionNode.influence = equipe.influences.GetInfluenceAnalyst();
+		}
+		
 		val = analista / (project.GetProjectSize() * 0.001);
 		val = val * randomizer;
 		val = Mathf.Round(val * 100f) / 100f;
@@ -91,10 +102,16 @@ class AnalystMacro extends System.ValueType{
 	//--------------------------------------------
 	function Elicitation(actionNode : ActionNode, task : String, descr : String)
 	{
-		if(false)
+		if(project.GetPrototype() > 0)
 		{
 			//Validation with Prototype
 			NewAction(actionNode, task + " Prototype", "Employee was ordered to \n focus on " + descr + " \n and validated a Prototype");
+			project.ConsumePrototype();
+			val = val * 1.5;
+			project.UpdateElicitation(val, false);
+			AnalistReport(parseInt(val), report);
+			floatingLines.showFloatText1("", "Validation", "blue","");
+			floatingLines.showFloatText2("+", val.ToString(), "blue", " Val.");
 		}
 		else
 		{
@@ -110,7 +127,7 @@ class AnalystMacro extends System.ValueType{
 			project.UpdateElicitation(val, false);
 			AnalistReport(parseInt(val), report);
 			floatingLines.showFloatText1("", "Validation", "blue","");
-			floatingLines.showFloatText2("+", analista.ToString(), "blue", " Val.");
+			floatingLines.showFloatText2("+", val.ToString(), "blue", " Val.");
 			ClientFindBug();
 			//}
 		}
@@ -150,7 +167,7 @@ class AnalystMacro extends System.ValueType{
 	function Quality(actionNode : ActionNode, task : String, descr : String)
 	{
 		NewAction(actionNode, task, "Employee was ordered to \n focus on " + descr + " \n and because he was moderate \n he did discovery");
-		MakeAcceptionCases();
+		MakeAcceptionCases(actionNode);
 	}
 	
 	//--------------------------------------------
@@ -169,9 +186,10 @@ class AnalystMacro extends System.ValueType{
 		Specifying();
 	}
 	
-	function MakeAcceptionCases()
+	function MakeAcceptionCases(actionNode : ActionNode)
 	{
 		equipe.SetAcceptionBonus(analista);
+		equipe.influences.SetBonusTesterAnalyst(analista, actionNode);
 		floatingLines.showFloatText1("", "Test Cases", "blue","");
 		floatingLines.showFloatText2("+", analista.ToString(), "blue","% Testing");
 		
@@ -190,7 +208,7 @@ class AnalystMacro extends System.ValueType{
 		actionNode.task = task;
 		actionNode.date = date;
 		actionNode.role = "Analyst";
-		actionNode.influence = null;
+		//actionNode.influence = null;
 		actionNode.description = description;
 	}
 	

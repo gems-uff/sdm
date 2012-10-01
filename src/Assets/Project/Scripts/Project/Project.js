@@ -47,6 +47,9 @@ private var codeQuality : float = 0.8; //from 0.1 to 1.2
 //Project requirements. The hightest valor equals Validation (Sincronismo)
 private var requirements : float = 0.0;
 
+//Prototype, for architect task
+private var prototype_num : int = 0.0;
+
 function ResetProject(){
 	bugs = 0;
 	sincronismo = 0;
@@ -60,6 +63,21 @@ function ResetProject(){
 	codeQuality = 0.8;
 }
 
+//Prototype functions for analyst and architect
+function AddPrototype()
+{
+	prototype_num++;
+}
+function ConsumePrototype()
+{
+	prototype_num--;
+	if(prototype_num < 0)
+	 prototype_num = 0;
+}
+function GetPrototype()
+{
+	return prototype_num;
+}
 //---------------------------------------------------------------------------------------------------------------
 //--------------------------------------------Sincronismo/Volatility for Macro-----------------------------------
 //---------------------------------------------------------------------------------------------------------------

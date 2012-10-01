@@ -103,7 +103,7 @@ function NewEmployeeNode(emp : Funcionario, slot : EmployeeList)
 	var employeeNode : EmployeeNode = new EmployeeNode();
 	
 	employeeNode.employee = emp.Copy();
-	employeeNode.actionList = new ActiontList();
+	employeeNode.actionList = new ActionList();
 	
 	slot.Add(employeeNode);
 }

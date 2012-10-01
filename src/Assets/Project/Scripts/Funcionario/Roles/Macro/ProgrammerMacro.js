@@ -1,4 +1,9 @@
 #pragma strict
+
+//Repair Code
+//Develop Code
+//Improve Code: Refactoring
+
 class ProgrammerMacro extends System.ValueType{
 	var func : Funcionario;
 	var project : Project;
@@ -31,6 +36,12 @@ class ProgrammerMacro extends System.ValueType{
 		behavior = behaviorP;
 		date = dateP;
 		
+		if(equipe.influences.GetBonusProg()!= 1.0)
+		{
+			programador = programador * (1 + equipe.influences.GetBonusProg());
+			actionNode.influence = equipe.influences.GetInfluenceProg();
+		}
+			
 		DecisionTree(actionNode);
 		//Work on the code in order to expand it
 		//Evolution();
@@ -379,12 +390,15 @@ class ProgrammerMacro extends System.ValueType{
 		{			
 			//Modify by the architect's bonus
 			//codeLines = codeLines * (1 + equipe.GetBonusProg());
-			if(equipe.influenceProg.GetBonusProg()!= 1.0)
+			
+			/*
+			if(equipe.GetBonusProg()!= 1.0)
 			{
-				codeLines = codeLines * (1 + equipe.influenceProg.GetBonusProg());
-				actionNode.influence = equipe.influenceProg.GetInfluence();
-				//Debug.Log("Who: " + actionNode.influence.progArchInfluence.who);
+				codeLines = codeLines * (1 + equipe.GetBonusProg());
+				actionNode.influence = equipe.GetInfluenceProg();
 			}
+			*/
+			
 			//Apply a small variation
 			codeLines = codeLines * randomizer;
 			//Cap at model

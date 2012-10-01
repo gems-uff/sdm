@@ -33,7 +33,7 @@ class EmployeeNode
 {
 	//Employee data
 	public var employee : Funcionario;
-	public var actionList : ActiontList;
+	public var actionList : ActionList;
 	
 	//Employee List
 	public var next : EmployeeNode;
@@ -48,7 +48,7 @@ class EmployeeNode
 	function NewNode()
 	{
 		this.employee = new Funcionario();
-		this.actionList = new ActiontList();
+		this.actionList = new ActionList();
 		this.next = new EmployeeNode();
 		this.before = new EmployeeNode();
 	}

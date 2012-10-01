@@ -11,7 +11,8 @@ public var playStyle : GameplayStyle;
 public var timer : GameTime;
 public var fichaGuiStyle : GUIStyle;
 
-public var influenceProg : Influence;
+//public var influences : Influence = new Influence();
+public var influences : Influence;
 
 //For Micro Style
 private var findBugScore : float = 1.0;
@@ -328,17 +329,10 @@ function SetAcceptionBonus(t: float){
 	chanceAcception = chanceAcception + (t * 0.01);
 }
 
-/*
-function GetMarBonusAnalista () {					
-	return marBonusAnalista;
-}
-function SetMarBonusAnalista(t: float){
-	marBonusAnalista = marBonusAnalista + t;
-}
-*/
 //--------------------------------------------Reset-----------------------------------------------------------
 
 function ResetBonus(){
+	
 	findBugScore = 1.0;
 	bonusAnalista = 1.0;
 	bonusArquiteto = 1.0;
@@ -349,7 +343,7 @@ function ResetBonus(){
 	chanceSystem = 1.0;
 	chanceAcception = 1.0;
 	//Influences
-	influenceProg.Reset();
+	influences.Reset();
 }
 
 function DecrementMacroBonus()
@@ -401,9 +395,4 @@ function Check(t : float)
 function OnGUI (){
 	if(showJanelaReport)
 		windowRect = GUI.Window (100, windowRect, WindowFunction_Report, "Staff Report");
-}
-
-function Update()
-{
-	//Debug.Log("hasManager = " + hasManager);
 }

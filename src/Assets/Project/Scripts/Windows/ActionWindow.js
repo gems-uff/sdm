@@ -1,5 +1,5 @@
 #pragma strict
-
+/*
 public var work : Working;
 private var windowRect : Rect = Rect (600,125,400,300);
 private var showWindow : boolean = false;
@@ -53,3 +53,4 @@ function Start () {
 function Update () {
 
 }
+*/

@@ -1,4 +1,10 @@
 #pragma strict
+//
+//Analysis: Allocate employees
+//Codification: Allocate employees
+//Quality: Allocate employees
+//Aid: Analyst, Programmer, Architect
+
 class ManagerMacro extends System.ValueType{
 			
 	var func : Funcionario;
@@ -40,14 +46,14 @@ class ManagerMacro extends System.ValueType{
 		auxAnaArq = parseInt(auxAnaArqP * randomizer);
 		auxProg = parseInt(auxProgP * randomizer2);
 		
-		if(behavior.managerAutonomous)
-			DecisionTree(actionNode);
-		else
-			DecideAid(actionNode);
+		//if(behavior.managerAutonomous)
+		//	DecisionTree(actionNode);
+		//else
+		DecideAid(actionNode);
 		
 		return actionNode;
 	}
-	
+	/*
 	//--------------------------------------------
 	//Decision Tree
 	//--------------------------------------------
@@ -130,22 +136,6 @@ class ManagerMacro extends System.ValueType{
 		}
 	}
 	
-	//--------------------------------------------
-	//Decide Aid
-	//--------------------------------------------
-	//Enter when manager makes no Decision on his own
-	function DecideAid(actionNode : ActionNode)
-	{
-		if(behavior.GetManagerAnalyst())
-			AidAnalyst(actionNode, "Aid Analyst", "has no automomy");
-		else
-		{
-			if(behavior.GetManagerArchitect())
-				AidProgrammer(actionNode, "Aid Programmer", "has no automomy");
-			else
-				AidArchitect(actionNode, "Aid Architect", "has no automomy");
-		}
-	}
 	
 	//--------------------------------------------
 	//Iteration focus Mode functions
@@ -201,13 +191,32 @@ class ManagerMacro extends System.ValueType{
 		}
 		AidProgrammer(actionNode, task, descr);
 	}
+	*/
+	
+	//--------------------------------------------
+	//Decide Aid
+	//--------------------------------------------
+	//Enter when manager makes no Decision on his own
+	function DecideAid(actionNode : ActionNode)
+	{
+		if(behavior.GetManagerAnalyst())
+			AidAnalyst(actionNode, "Aid Analyst", "has no automomy");
+		else
+		{
+			if(behavior.GetManagerArchitect())
+				AidArchitect(actionNode, "Aid Architect", "has no automomy");
+			else
+				AidProgrammer(actionNode, "Aid Programmer", "has no automomy");
+		}
+	}
 	
 	//--------------------------------------------
 	//Aid functions
 	//--------------------------------------------
 	function AidAnalyst(actionNode : ActionNode, task : String, descr : String)
 	{
-		equipe.SetBonusAnalista(auxAnaArq);
+		//equipe.SetBonusAnalista(auxAnaArq);
+		equipe.influences.SetBonusAnalystManager(auxAnaArq, actionNode);
 		floatingLines.showFloatText1("", "Aid Analyst", "blue", "");
 		floatingLines.showFloatText2("+", auxAnaArq.ToString(), "blue", " % Dev.");
 		ManagerReport(auxAnaArq, 0, report);
@@ -217,7 +226,8 @@ class ManagerMacro extends System.ValueType{
 	
 	function AidProgrammer(actionNode : ActionNode, task : String, descr : String)
 	{
-		equipe.SetBonusProg(auxProg);
+		//equipe.SetBonusProg(auxProg);
+		equipe.influences.SetBonusProgManager(auxProg, actionNode);
 		floatingLines.showFloatText1("", "Aid Programmer", "blue", "");
 		floatingLines.showFloatText2("+", auxProg.ToString(), "blue", " % Dev.");
 		ManagerReport(0, auxProg, report);
@@ -227,7 +237,8 @@ class ManagerMacro extends System.ValueType{
 	
 	function AidArchitect(actionNode : ActionNode, task : String, descr : String)
 	{
-		equipe.SetBonusArquiteto(auxAnaArq);
+		//equipe.SetBonusArquiteto(auxAnaArq);
+		equipe.influences.SetBonusArchManager(auxAnaArq, actionNode);
 		floatingLines.showFloatText1("", "Aid Architect", "blue", "");
 		floatingLines.showFloatText2("+", auxAnaArq.ToString(), "blue", " % Dev.");
 		ManagerReport(auxAnaArq, 0, report);
@@ -243,7 +254,7 @@ class ManagerMacro extends System.ValueType{
 		actionNode.task = task;
 		actionNode.date = date;
 		actionNode.role = "Manager";
-		actionNode.influence = null;
+		//actionNode.influence = null;
 		actionNode.description = description;
 	}
 	

@@ -100,6 +100,7 @@ function GetTimeDaysString() :String{
 
 function PassTime () {
     gameTime += incrementBy;
+    equipe.ResetBonus();
 	
 	BroadcastMessage("PagarFuncionario");
 	BroadcastMessage("PagarJogadorMensal");
@@ -114,14 +115,13 @@ function PassTime () {
 	BroadcastMessage("ProgramadorWork");
 	BroadcastMessage("TesterWork");
 	BroadcastMessage("Treinando");
-
+	
 	BroadcastMessage("ChangeStamina");
 	BroadcastMessage("StaminaActions");
 	BroadcastMessage("MoraleActions");
 	BroadcastMessage("LevelUp");
 	BroadcastMessage("CompanyLevelUp");
 	
-	equipe.ResetBonus();
 	if((gameTime % 7) == 0)
 	{
 		menuPrototype.Unlock();

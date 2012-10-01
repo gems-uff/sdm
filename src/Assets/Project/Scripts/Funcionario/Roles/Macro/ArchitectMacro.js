@@ -1,4 +1,11 @@
 #pragma strict
+
+//Make Prototypes for the analyst
+//Make System Cases: Aid Tester
+//Make Integration Cases: Aid Tester
+//Modularizate Code: Aid Programmer
+
+
 class ArchitectMacro extends System.ValueType{
 			
 	private var func : Funcionario;
@@ -26,6 +33,13 @@ class ArchitectMacro extends System.ValueType{
 		
 		behavior = behaviorP;
 		date = dateP;
+		 
+		
+		if(equipe.influences.GetBonusArch()!= 1.0)
+		{
+			arquiteto = arquiteto * (1 + equipe.influences.GetBonusArch());
+			actionNode.influence = equipe.influences.GetInfluenceArchitect();
+		}
 		
 		var randomizer : float = Random.Range (0.8, 1.2);
 		
@@ -87,7 +101,7 @@ class ArchitectMacro extends System.ValueType{
 		if(behavior.GetTestCases() == "system")
 		{
 			NewAction(actionNode, task + " System", "Employee was ordered to \n focus on " + descr + " \n and make System test cases");
-			MakeSystemCases();
+			MakeSystemCases(actionNode);
 		}
 		else
 		{
@@ -95,7 +109,7 @@ class ArchitectMacro extends System.ValueType{
 			if(behavior.GetTestCases() == "integration")
 			{
 				NewAction(actionNode, task + " Integration", "Employee was ordered to \n focus on " + descr + " \n and make Integration test cases");
-				MakeIntegrationCases();
+				MakeIntegrationCases(actionNode);
 			}
 			//Both
 			else
@@ -103,12 +117,12 @@ class ArchitectMacro extends System.ValueType{
 				if(chance < 50)
 				{
 					NewAction(actionNode, task + " System", "Employee was ordered to \n focus on " + descr + " \n and make both types of test cases");
-					MakeSystemCases();
+					MakeSystemCases(actionNode);
 				}
 				else
 				{
 					NewAction(actionNode, task + " Integration", "Employee was ordered to \n focus on " + descr + " \n and make both types of test cases");
-					MakeIntegrationCases();
+					MakeIntegrationCases(actionNode);
 				}
 			}
 		}
@@ -123,14 +137,14 @@ class ArchitectMacro extends System.ValueType{
 		else
 		{
 			NewAction(actionNode, task + " Prototype", "Employee was ordered to \n focus on " + descr + "\n and made a prototype");
-			MakePrototype();
+			MakePrototype(actionNode);
 		}
 	}
 	
 	function Analysis(actionNode : ActionNode)
 	{
 		NewAction(actionNode, "Analysis Prototype", "Employee was ordered to \n do a prototype");
-		MakePrototype();
+		MakePrototype(actionNode);
 	}
 	
 	function Rounded(actionNode : ActionNode, testCase : String, chance : int)
@@ -151,25 +165,30 @@ class ArchitectMacro extends System.ValueType{
 	//Leaf Functions
 	//--------------------------------------------
 	//Makes a prototype for the analyst
-	function MakePrototype()
+	function MakePrototype(actionNode : ActionNode)
 	{
+		//equipe.SetBonusAnalystArchitect(1.0, actionNode);
+		equipe.influences.SetBonusAnalystArchitect(1.0, actionNode);
 		floatingLines.showFloatText1("", "Prototype", "blue","");
+		project.AddPrototype();
 		ArchitectReport(0, 0, 0, report);
 	}
 	
 	//Make test cases for system bugs
-	function MakeSystemCases()
+	function MakeSystemCases(actionNode : ActionNode)
 	{
-		equipe.SetSystemBonus(arquiteto);
+		//equipe.SetSystemBonus(arquiteto);
+		equipe.influences.SetBonusTesterArchSystem(arquiteto, actionNode);
 		floatingLines.showFloatText1("", "System Cases", "blue","");
 		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue","% System");
 		ArchitectReport(arquiteto, 0, 0, report);
 	}
 	
 	//Make test cases for integration bugs
-	function MakeIntegrationCases()
+	function MakeIntegrationCases(actionNode : ActionNode)
 	{
-		equipe.SetIntegrationBonus(arquiteto);
+		//equipe.SetIntegrationBonus(arquiteto);
+		equipe.influences.SetBonusTesterArchIntegration(arquiteto, actionNode);
 		floatingLines.showFloatText1("", "Integr Cases", "blue","");
 		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue","% Integration");
 		ArchitectReport(0, arquiteto, 0, report);
@@ -178,8 +197,8 @@ class ArchitectMacro extends System.ValueType{
 	//Modularizate the code to aid the programmers
 	function ModularizateCode(actionNode : ActionNode)
 	{
-		equipe.SetBonusProg(arquiteto);
-		equipe.influenceProg.SetBonusProg(arquiteto, actionNode);
+		//equipe.SetBonusProg(arquiteto);
+		equipe.influences.SetBonusProgArch(arquiteto, actionNode);
 		floatingLines.showFloatText1("", "Modularization", "blue","");
 		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue", " % Archit.");
 		ArchitectReport(0, 0, arquiteto, report);
@@ -194,7 +213,7 @@ class ArchitectMacro extends System.ValueType{
 		actionNode.task = task;
 		actionNode.date = date;
 		actionNode.role = "Architect";
-		actionNode.influence = null;
+		//actionNode.influence = null;
 		actionNode.description = description;
 	}
 	

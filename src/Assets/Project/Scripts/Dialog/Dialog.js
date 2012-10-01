@@ -41,13 +41,26 @@ function SetDialogBadDialog(t : boolean){
 }
 //--------------------------------------------Update-----------------------------------------------------------
 
+function CloseDialog()
+{
+	dialogLock.SetLock(false);
+	dialogEnable = false;
+}
+function OnMouseDown () 
+{
+	if((!dialogLock.GetLock()) && (func.GetNome() != stringNames.fired))
+	{
+		dialogEnable = true;
+	}
+
+}
 function Update(){
 	if(!dialogLock.GetLock())
 	{
 		if (Input.GetKeyDown("space") && insideCollider == true)
 			dialogEnable = true;
 		
-		if( func.GetNome() != stringNames.fired)
+		if(func.GetNome() != stringNames.fired)
 		{
 			if(func.GetStamina() < constant.TIREDMORALE)
 			{
@@ -70,6 +83,7 @@ function Update(){
 		}
 	}
 }
+//Both trigger functions are for dialog through avatar
 //--------------------------------------------OnTriggerEnter-----------------------------------------------------------
 
 function OnTriggerEnter( collider1 : Collider )
@@ -97,19 +111,20 @@ function Dialog_Funcionario (){
 	GUI.BeginGroup(Rect (150,Screen.height - 265,1000,1000));
 	if (dialogEnable == true)
 	{
+		dialogLock.SetLock(true);
 		timer.PauseGame();
 		GUI.Box (Rect (00,00,120,25), func.GetNome() + " :");
 		GUI.Box (Rect (00,25,600,150), "Hello boss. What's up ?", dialogGuiStyle);
 		if (GUI.Button (Rect (600,25, 130, 25), "Profile")) {
 				menuAtr.SetJanelatributo(func, true, func.report);
-				dialogEnable = false;
+				CloseDialog();
 		}
 		GUI.Box (Rect (600,50, 130, 25), "");
 		//if(playStyle.IsMacro() == false)
 		//{
 		if (GUI.Button (Rect (600,50, 130, 25), "Train")) {
 				menuEsp.Especializar(func, treino);
-				dialogEnable = false;
+				CloseDialog();
 		}
 		//}
 		GUI.Box (Rect (600,75, 130, 25), "");
@@ -117,7 +132,7 @@ function Dialog_Funcionario (){
 		//{
 		if (GUI.Button (Rect (600,75, 130, 25), "Change Task")) {
 				windowController.ShowRoleWindow(func, treino);
-				dialogEnable = false;
+				CloseDialog();
 		}
 		//}
 		GUI.Box (Rect (600,100, 130, 25), "");
@@ -125,7 +140,7 @@ function Dialog_Funcionario (){
 		//{
 		if (GUI.Button (Rect (600,100, 130, 25), "Task Config.")) {
 				workHours.ChangeWorkHours(func);
-				dialogEnable = false;
+				CloseDialog();
 		}
 		//}
 		//Vazio
@@ -134,7 +149,7 @@ function Dialog_Funcionario (){
 		if(func.GetPapel() == stringNames.papelArquiteto && menuPrototype.GetIsLocked() == false)
 			if (GUI.Button (Rect (600,125, 130, 25), "Prototype")) {
 					windowController.ShowProtWindow(func);
-					dialogEnable = false;
+					CloseDialog();
 			}
 		//Se gerente
 		if(func.GetPapel() == stringNames.papelGerente)
@@ -146,16 +161,16 @@ function Dialog_Funcionario (){
 				else
 					//menuHire.SetShowWindowMHiring();
 					windowController.ShowManagerHireWindow();
-				dialogEnable = false;
+				CloseDialog();
 			}
 		//se Marketing
 		if(func.GetPapel() == stringNames.papelMarketing && windowController.GetNegLock() == false)
 			if (GUI.Button (Rect (600,125, 130, 25), "Negotiation")) {
 					windowController.ShowNegWindow(func);
-					dialogEnable = false;
+					CloseDialog();
 			}
 		if (GUI.Button (Rect (600,150, 130, 25), "End")) {
-				dialogEnable = false;
+				CloseDialog();
 		}
 	}
 	GUI.EndGroup ();

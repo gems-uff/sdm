@@ -39,50 +39,26 @@ private var TesterMicro : TesterMicro;
 private var TesterMacro : TesterMacro;
 
 
-private var actionNode : ActionNode;
+//private var actionNode : ActionNode;
 
+private var action : ActionNode = new ActionNode();
+public var wasInfluenced : boolean = false;
+/*
 function GetAction()
 {
 	return actionNode;
 }
+*/
+
 //Report
 function GetReport(){	
 	return report;
 }
+
 function SetReport(t : WeeklyReport){
 	report = t;
 }
-/*
-function AnalistReport(t : int)
-{
-	report.analistReport = report.analistReport + t;
-}
 
-function ArchitectReport(bug : int, archt : int)
-{
-	report.architectReport_bug = report.architectReport_bug + bug;
-	report.architectReport_archt = report.architectReport_archt + archt;
-}
-function ManagerReport(design : int, dev : int)
-{
-	report.managerReport_design = report.managerReport_design + design;
-	report.managerReport_dev = report.managerReport_dev + dev;
-}
-function MarketingReport(val : int, money : int)
-{
-	report.marketingReport_val = report.marketingReport_val + val;
-	report.marketingReport_money = report.marketingReport_money + money;
-}
-function ProgReport(prog : int, bugs : int)
-{
-	report.programmerReport_prog = report.programmerReport_prog + prog;
-	report.programmerReport_bug = report.programmerReport_bug + bugs;
-}
-function TesterReport(bug : int)
-{
-	report.testerReport = report.testerReport + bug;
-}
-*/
 function WeeklyReport()
 {
 	//Exibo o historico
@@ -156,14 +132,6 @@ function GetWorkingHoursModifier() {
 }
 
 //--------------------------------------------GameModifiers-----------------------------------------------------------
-/*
-function GameModifiers( aux : float ){
-	var cargo_mod : float;
-	cargo_mod = AjusteWork();
-	aux = aux * cargo_mod * workingHoursModifier * stamina * morale;
-	return aux;
-}
-*/
 function GameModifiers(){
 	var cargo_mod : float;
 	cargo_mod = AjusteWork();
@@ -286,18 +254,10 @@ function AnalistaWork(){
 		func.WorkingAnalista();
 		
 		analista = func.GetAnalista();
-		analista = analista * (rate * 0.01) * mod * constant.ANALISTA * equipe.GetBonusAnalista() * (1 + modificador_positivo - penal) ;
-		/*
-		if(playStyle.IsMacro() == false)
-		{
-			AnalistaMicro.Work(func, project, report, floatingLines, equipe, constant, analista);
-		}
-		else
-		{
-		*/
+		analista = analista * (rate * 0.01) * mod * constant.ANALISTA * (1 + modificador_positivo - penal); //* equipe.GetBonusAnalista()
+
 		action = AnalistaMacro.Work(func, project, report, floatingLines, equipe, constant, analista, behavior, timer.GetGameTime());
 		behavior.AddAction(action);
-		//}
 	}
 }
 
@@ -329,26 +289,17 @@ function ArquitetoWork(){
 		var modificador_positivo : float = EspecializacaoFerramenta();
 		var penal : float = MetodologiaEquipe();
 		var arquiteto : float ;
-		var mod : float = GameModifiers();
+		var gameMod : float = GameModifiers();
 		
 		var action : ActionNode = new ActionNode();
 
 		yield WaitForSeconds(delay);
 		func.WorkingArquiteto();
 		
-		arquiteto = func.GetArquiteto() * (rate * 0.01) * mod * constant.ARCHITECT * (1 + modificador_positivo - penal) * equipe.GetBonusArquiteto();	
-		
-		/*
-		if(playStyle.IsMacro() == false)
-		{
-			ArchitectMicro.Work(func, project, report, floatingLines, equipe, constant, arquiteto);
-		}
-		else
-		{
-		*/
+		arquiteto = func.GetArquiteto() * (rate * 0.01) * gameMod * constant.ARCHITECT * (1 + modificador_positivo - penal);// * equipe.GetBonusArquiteto();	
+
 		action = ArchitectMacro.Work(func, project, report, floatingLines, equipe, constant, arquiteto, behavior, timer.GetGameTime());
 		behavior.AddAction(action);
-		//}
 	}
 }
 
@@ -400,17 +351,9 @@ function GerenteWork(){
 		
 		auxAnaArq = auxAnaArq * (1 + modificador_positivo - penal);
 		auxProg = auxProg * (1 + modificador_positivo - penal_prog);
-		/*
-		if(playStyle.IsMacro() == false)
-		{
-			ManagerMicro.Work(func, project, report, floatingLines, equipe, constant, gerente, auxAnaArq, auxProg);
-		}
-		else
-		{
-		*/
+
 		action = ManagerMacro.Work(func, project, report, floatingLines, equipe, constant, gerente, auxAnaArq, auxProg, behavior, timer.GetGameTime());
 		behavior.AddAction(action);
-		//}
 	}
 }
 
@@ -442,23 +385,17 @@ function MarketingWork(){
 	{
 		var penal : float = MetodologiaEquipe();
 		var mod : float = GameModifiers();
-		var marketing : float ;
+		var marketing : float;
+		
+		var action : ActionNode = new ActionNode();
 		
 		yield WaitForSeconds(delay);
 		func.WorkingMarketing();
 		
 		marketing = func.GetMarketing() * (rate * 0.01) * (1 - penal) * mod * constant.MARKETING;	
 		
-		/*
-		if(playStyle.IsMacro() == false)
-		{
-			MarketingMicro.Work(func, project, report, floatingLines, equipe, constant, playerStats, marketing);
-		}
-		else
-		{
-		*/
-		MarketingMacro.Work(func, project, report, floatingLines, equipe, constant, playerStats, marketing);
-		//}
+		action = MarketingMacro.Work(func, project, report, floatingLines, equipe, constant, playerStats, marketing, timer.GetGameTime());
+		behavior.AddAction(action);
 	}
 		
 }
@@ -495,7 +432,6 @@ function ProgramadorWork(){
 		var programador : float ;
 		
 		var isEspecialized : int = LinguagemProgEquipe();
-		//var penal_prog : float = PenalidadeProgramacao(penal);
 		var penal_prog : float = penal + (isEspecialized * constant.PENALIDADE);
 		
 		yield WaitForSeconds(delay);
@@ -505,19 +441,9 @@ function ProgramadorWork(){
 		func.WorkingProgramador();
 		
 		programador = func.GetProgramador() * (rate * 0.01) * (1 + modificador_positivo - penal_prog) * gameMod;
-		
-		//programador = programador * equipe.GetBonusProg();
-		/*
-		if(playStyle.IsMacro() == false)
-		{	
-			ProgrammerMicro.Work(func, project, report, floatingLines, equipe, constant, programador, RequisitoLinguagem());
-		}
-		else
-		{
-		*/
+
 		action = ProgrammerMacro.Work(func, project, report, floatingLines, equipe, constant, programador, RequisitoLinguagem(), isEspecialized, behavior, timer.GetGameTime());
 		behavior.AddAction(action);
-		//}
 	}
 }
 
@@ -547,17 +473,9 @@ function TesterWork(){
 	}
 	if(work)
 	{
-		//var modificador_positivo : float = EspecializacaoFerramenta();
-		//var penal : float = MetodologiaEquipe();
 		var mod : float = GameModifiers();
 		var tester : float;
-		
-		//var isEspecialized : int = LinguagemProgEquipe();
-		//var penal_prog : float = PenalidadeProgramacao(penal, isEspecialized);
-		//var penal_prog : float = penal + (isEspecialized * constant.PENALIDADE);
 		func.WorkingTester();
-		
-		//tester = func.GetTester() * (rate * 0.01) * (1 + modificador_positivo - penal_prog) * mod;
 		
 		tester = func.GetTester() * (rate * 0.01) * mod;
 		
@@ -570,15 +488,7 @@ function TesterWork(){
 		//Debug.Log("Tester = " + tester);
 		yield WaitForSeconds(delay);
 		
-		/*
-		if(playStyle.IsMacro() == false)
-		{
-			TesterMicro.Work(func, project, report, floatingLines, equipe, constant, tester, RequisitoLinguagem());
-		}
-		else
-		{*/
-		TesterMacro.Work(func, project, report, floatingLines, equipe, constant, tester);
-		//}
+		TesterMacro.Work(func, project, report, floatingLines, equipe, constant, tester);//wasInfluenced
 	}
 }
 

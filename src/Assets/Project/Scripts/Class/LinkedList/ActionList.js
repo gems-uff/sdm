@@ -1,6 +1,6 @@
 #pragma strict
 
-class ActiontList extends ActionNode
+class ActionList extends ActionNode
 {
 	public var first : ActionNode;
 	public var last : ActionNode;
@@ -8,7 +8,7 @@ class ActiontList extends ActionNode
 	function Add(t : ActionNode)
 	{
 		//if empty
-		if(this.first == null)
+		if((this.first == null) || (this.first.who == ""))
 		{
 			this.first = t;
 			this.last = t;
