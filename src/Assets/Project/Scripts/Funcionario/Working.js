@@ -677,15 +677,17 @@ function EspecializacaoFerramenta (){
 	return modificador_positivo;
 }
 
-
+//public var body : MeshRenderer;
 function Body(){
 	if(func.GetNome() == stringNames.fired)
 		func.GetComponentInChildren(MeshRenderer).enabled = false;
+		//body.enabled = false;
 	else
 		func.GetComponentInChildren(MeshRenderer).enabled = true;
+		//body.enabled = true;
 }
 
-function Update(){
+function FixedUpdate(){
 	Body();
 }
 	

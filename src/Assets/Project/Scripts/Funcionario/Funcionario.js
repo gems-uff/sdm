@@ -680,6 +680,10 @@ function Copy()
 //--------------------------------------------------------------------------------------
 
 public var log : HistoryLog;
+public var staminaBar : StaminaBar;
+public var moraleBar : MoraleBar;
+public var body : MeshRenderer;
+
 function FireEmployee (event : boolean) {
 	var body : GameObject;
 	
@@ -702,6 +706,7 @@ function FireEmployee (event : boolean) {
 	this.SetSalarioDefault(0);
 	this.SetSalario(0);
 	this.GetComponentInChildren(MeshRenderer).enabled = false;
+	//body.enable = false;
 	staminaBar = this.GetComponentInChildren(StaminaBar);
 	moraleBar = this.GetComponentInChildren(MoraleBar);
 	staminaBar.Stamina_Bar();

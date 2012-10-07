@@ -1,6 +1,7 @@
 
 public var pauseStyle : GUIStyle;
 public var GameSaver : SaveGame;
+public var LogExport : ExportLogFile;
 public var ingameMenuToggle 	: boolean = false;
 public var icon : Texture2D;
 //public var welcomeWindow : WelcomeWindow;
@@ -205,7 +206,12 @@ function MainMenu(){
 			//ingameMenuToggle = false ;
 			managerPlanner.ShowPlannerWindow();
 		}
-		if (GUI.Button( Rect (Screen.width - 100,330,100,20), "10: Resume") )
+		if (GUI.Button( Rect (Screen.width - 100,330,100,20), "10: Export") )
+		{
+			//ingameMenuToggle = false ;
+			LogExport.exportLog();
+		}
+		if (GUI.Button( Rect (Screen.width - 100,350,100,20), "11: Resume") )
 		{
 			ingameMenuToggle = false ;
 		}

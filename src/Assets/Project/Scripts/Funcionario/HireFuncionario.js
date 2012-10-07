@@ -46,7 +46,7 @@ function ContratarFuncionario(contratado : Funcionario, Func_Slot : Funcionario)
 			moraleBar = Func_Slot.GetComponentInChildren(MoraleBar);
 			staminaBar.Stamina_Bar();
 			moraleBar.Morale_Bar();
-			
+			//Func_Slot.body.enable = true;
 			Func_Slot.GetComponentInChildren(MeshRenderer).enabled = true;
 			
 			//Create a new employee Node

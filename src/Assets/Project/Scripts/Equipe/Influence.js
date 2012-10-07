@@ -294,7 +294,6 @@ function SetBonusAnalystManager(t: float, action : ActionNode)
 	bonusAnalyst = bonusAnalyst + (t * 0.01);
 
 	bonusAnalyst = System.Math.Round(bonusAnalyst, 3);
-	Debug.Log("Rounded bonusAnalyst = " + bonusAnalyst);
 	analystManagerInfluence = action;
 }
 function SetBonusAnalystMarketing(t: float, action : ActionNode)

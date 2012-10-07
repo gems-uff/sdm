@@ -216,9 +216,9 @@ function ActionWindowFunction(windowID : int){
 			action7 = null;
 			action8 = null;
 			
-			if(influenceNode.GetAnalystArchInfluence().first != null)
+			if(influenceNode.GetAnalystArchInfluence().last != null)
 			{
-				action1 = influenceNode.GetAnalystArchInfluence().first;
+				action1 = influenceNode.GetAnalystArchInfluence().last;
 			}
 			if(influenceNode.GetAnalystManagerInfluence() != null)
 			{
@@ -236,17 +236,17 @@ function ActionWindowFunction(windowID : int){
 			{
 				action5 = influenceNode.GetProgManagerInfluence();
 			}
-			if(influenceNode.GetProgArchInfluence().first != null)
+			if(influenceNode.GetProgArchInfluence().last != null)
 			{
-				action6 = influenceNode.GetProgArchInfluence().first;
+				action6 = influenceNode.GetProgArchInfluence().last;
 			}
-			if(influenceNode.GetTestArchInfluence().first != null)
+			if(influenceNode.GetTestArchInfluence().last != null)
 			{
-				action7 = (influenceNode.GetTestArchInfluence()).first;
+				action7 = (influenceNode.GetTestArchInfluence()).last;
 			}
-			if(influenceNode.GetTestAnalystInfluence().first != null)
+			if(influenceNode.GetTestAnalystInfluence().last != null)
 			{
-				action8 = influenceNode.GetTestAnalystInfluence().first;
+				action8 = influenceNode.GetTestAnalystInfluence().last;
 			}
 			showInfluenceWindow = true;
 		}
