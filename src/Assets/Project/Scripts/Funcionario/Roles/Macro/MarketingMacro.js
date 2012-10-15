@@ -41,7 +41,7 @@ class MarketingMacro extends System.ValueType{
 		actionNode.who = func.GetNome();
 		actionNode.task = task;
 		actionNode.date = date;
-		actionNode.role = "Manager";
+		actionNode.role = "Marketing";
 		//actionNode.influence = null;
 		actionNode.description = description;
 	}

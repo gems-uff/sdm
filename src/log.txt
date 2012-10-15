@@ -1,281 +1,104 @@
-EMPLOYEE01
-ACTION	1	John	Evolution Adhoc	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	2	John	Evolution Adhoc	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure
-INFLUENCE_PROG_MANA	1	John	Evolution Adhoc	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	1	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers	1.56
-ACTION	2	John	Evolution Adhoc	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	3	John	Evolution Draw-code	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure
-INFLUENCE_PROG_MANA	2	John	Evolution Adhoc	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	2	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers	1.45
-ACTION	3	John	Evolution Draw-code	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	4	John	Evolution Adhoc	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure
-INFLUENCE_PROG_MANA	3	John	Evolution Draw-code	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	3	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers	1.56
-ACTION	4	John	Evolution Adhoc	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	5	John	Evolution Test-Driven	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure
-INFLUENCE_PROG_MANA	4	John	Evolution Adhoc	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	4	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers	1.46
-ACTION	5	John	Evolution Test-Driven	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	6	John	Evolution Draw-code	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure
-INFLUENCE_PROG_MANA	5	John	Evolution Test-Driven	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	5	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers	1.59
-ACTION	6	John	Evolution Draw-code	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	7	John	Evolution Draw-code	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure
-INFLUENCE_PROG_ARC	6	John	Evolution Draw-code	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	6	Shoon	Balanced Architecture	Architect	Employee was ordered to 
- focus on Balanced 
- and improved the architecture	2.04
-INFLUENCE_PROG_MANA	6	John	Evolution Draw-code	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	6	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers	2.04
-ACTION	7	John	Evolution Draw-code	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	8	John	Evolution Draw-code	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure
-INFLUENCE_PROG_ARC	7	John	Evolution Draw-code	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	7	Shoon	Balanced Architecture	Architect	Employee was ordered to 
- focus on Balanced 
- and improved the architecture	1.81
-INFLUENCE_PROG_MANA	7	John	Evolution Draw-code	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	7	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers	1.81
-ACTION	8	John	Evolution Draw-code	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	9	John	Evolution Adhoc	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure
-INFLUENCE_PROG_MANA	8	John	Evolution Draw-code	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	8	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers	1.4
-ACTION	9	John	Evolution Adhoc	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	10	John	Evolution Adhoc	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure
-INFLUENCE_PROG_MANA	9	John	Evolution Adhoc	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	9	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers	1.55
-ACTION	10	John	Evolution Adhoc	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	11	John	Evolution Adhoc	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure
-INFLUENCE_PROG_MANA	10	John	Evolution Adhoc	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	10	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers	1.56
-
-EMPLOYEE02
-ACTION	1	Gabriel	Balanced Elicitation Reviews	Analyst	Employee was ordered to 
- focus on Balanced 
- and validated with Reviews	2	Gabriel	Balanced Elicitation Reviews	Analyst	Employee was ordered to 
- focus on Balanced 
- and validated with Reviews
-INFLUENCE_ANA_MARK	1	Gabriel	Balanced Elicitation Reviews	Analyst	Employee was ordered to 
- focus on Balanced 
- and validated with Reviews	1	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any	3.05
-ACTION	2	Gabriel	Balanced Elicitation Reviews	Analyst	Employee was ordered to 
- focus on Balanced 
- and validated with Reviews	3	Gabriel	Balanced Especification	Analyst	Employee was ordered to 
- focus on Balanced 
- and because he was above moderate 
- he decided to do discovery
-INFLUENCE_ANA_MARK	2	Gabriel	Balanced Elicitation Reviews	Analyst	Employee was ordered to 
- focus on Balanced 
- and validated with Reviews	2	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any	3.32
-ACTION	3	Gabriel	Balanced Especification	Analyst	Employee was ordered to 
- focus on Balanced 
- and because he was above moderate 
- he decided to do discovery	4	Gabriel	Balanced Elicitation Prototype	Analyst	Employee was ordered to 
- focus on Balanced 
- and validated a Prototype
-INFLUENCE_ANA_MARK	3	Gabriel	Balanced Especification	Analyst	Employee was ordered to 
- focus on Balanced 
- and because he was above moderate 
- he decided to do discovery	3	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any	2.73
-ACTION	4	Gabriel	Balanced Elicitation Prototype	Analyst	Employee was ordered to 
- focus on Balanced 
- and validated a Prototype	5	Gabriel	Balanced Especification	Analyst	Employee was ordered to 
- focus on Balanced 
- and because he was above moderate 
- he decided to do discovery
-INFLUENCE_ANA_ARCH	4	Gabriel	Balanced Elicitation Prototype	Analyst	Employee was ordered to 
- focus on Balanced 
- and validated a Prototype	4	Shoon	Balanced Prototype	Architect	Employee was ordered to 
- focus on Balanced
- and made a prototype	1
-INFLUENCE_ANA_MARK	4	Gabriel	Balanced Elicitation Prototype	Analyst	Employee was ordered to 
- focus on Balanced 
- and validated a Prototype	4	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any	2.78
-ACTION	5	Gabriel	Balanced Especification	Analyst	Employee was ordered to 
- focus on Balanced 
- and because he was above moderate 
- he decided to do discovery	6	Gabriel	Balanced Elicitation Reviews	Analyst	Employee was ordered to 
- focus on Balanced 
- and validated with Reviews
-INFLUENCE_ANA_MARK	5	Gabriel	Balanced Especification	Analyst	Employee was ordered to 
- focus on Balanced 
- and because he was above moderate 
- he decided to do discovery	5	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any	3.22
-ACTION	6	Gabriel	Balanced Elicitation Reviews	Analyst	Employee was ordered to 
- focus on Balanced 
- and validated with Reviews	7	Gabriel	Balanced Especification	Analyst	Employee was ordered to 
- focus on Balanced 
- and because he was above moderate 
- he decided to do discovery
-INFLUENCE_ANA_MARK	6	Gabriel	Balanced Elicitation Reviews	Analyst	Employee was ordered to 
- focus on Balanced 
- and validated with Reviews	6	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any	2.9
-ACTION	7	Gabriel	Balanced Especification	Analyst	Employee was ordered to 
- focus on Balanced 
- and because he was above moderate 
- he decided to do discovery	8	Gabriel	Balanced Elicitation Reviews	Analyst	Employee was ordered to 
- focus on Balanced 
- and validated with Reviews
-INFLUENCE_ANA_MARK	7	Gabriel	Balanced Especification	Analyst	Employee was ordered to 
- focus on Balanced 
- and because he was above moderate 
- he decided to do discovery	7	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any	2.96
-ACTION	8	Gabriel	Balanced Elicitation Reviews	Analyst	Employee was ordered to 
- focus on Balanced 
- and validated with Reviews	9	Gabriel	Balanced Elicitation Reviews	Analyst	Employee was ordered to 
- focus on Balanced 
- and validated with Reviews
-INFLUENCE_ANA_MARK	8	Gabriel	Balanced Elicitation Reviews	Analyst	Employee was ordered to 
- focus on Balanced 
- and validated with Reviews	8	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any	3.39
-ACTION	9	Gabriel	Balanced Elicitation Reviews	Analyst	Employee was ordered to 
- focus on Balanced 
- and validated with Reviews	10	Gabriel	Balanced Elicitation Reviews	Analyst	Employee was ordered to 
- focus on Balanced 
- and validated with Reviews
-INFLUENCE_ANA_MARK	9	Gabriel	Balanced Elicitation Reviews	Analyst	Employee was ordered to 
- focus on Balanced 
- and validated with Reviews	9	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any	2.73
-ACTION	10	Gabriel	Balanced Elicitation Reviews	Analyst	Employee was ordered to 
- focus on Balanced 
- and validated with Reviews	11	Gabriel	Balanced Elicitation Reviews	Analyst	Employee was ordered to 
- focus on Balanced 
- and validated with Reviews
-INFLUENCE_ANA_MARK	10	Gabriel	Balanced Elicitation Reviews	Analyst	Employee was ordered to 
- focus on Balanced 
- and validated with Reviews	10	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any	2.65
-
-EMPLOYEE03
-ACTION	1	Shoon	Balanced Integration	Architect	Employee was ordered to 
- focus on Balanced 
- and make both types of test cases	2	Shoon	Balanced System	Architect	Employee was ordered to 
- focus on Balanced 
- and make both types of test cases
-ACTION	2	Shoon	Balanced System	Architect	Employee was ordered to 
- focus on Balanced 
- and make both types of test cases	3	Shoon	Balanced Integration	Architect	Employee was ordered to 
- focus on Balanced 
- and make both types of test cases
-ACTION	3	Shoon	Balanced Integration	Architect	Employee was ordered to 
- focus on Balanced 
- and make both types of test cases	4	Shoon	Balanced Prototype	Architect	Employee was ordered to 
- focus on Balanced
- and made a prototype
-ACTION	4	Shoon	Balanced Prototype	Architect	Employee was ordered to 
- focus on Balanced
- and made a prototype	5	Shoon	Balanced System	Architect	Employee was ordered to 
- focus on Balanced 
- and make both types of test cases
-ACTION	5	Shoon	Balanced System	Architect	Employee was ordered to 
- focus on Balanced 
- and make both types of test cases	6	Shoon	Balanced Architecture	Architect	Employee was ordered to 
- focus on Balanced 
- and improved the architecture
-ACTION	6	Shoon	Balanced Architecture	Architect	Employee was ordered to 
- focus on Balanced 
- and improved the architecture	7	Shoon	Balanced Architecture	Architect	Employee was ordered to 
- focus on Balanced 
- and improved the architecture
-ACTION	7	Shoon	Balanced Architecture	Architect	Employee was ordered to 
- focus on Balanced 
- and improved the architecture	8	Shoon	Balanced Integration	Architect	Employee was ordered to 
- focus on Balanced 
- and make both types of test cases
-ACTION	8	Shoon	Balanced Integration	Architect	Employee was ordered to 
- focus on Balanced 
- and make both types of test cases	9	Shoon	Balanced Integration	Architect	Employee was ordered to 
- focus on Balanced 
- and make both types of test cases
-ACTION	9	Shoon	Balanced Integration	Architect	Employee was ordered to 
- focus on Balanced 
- and make both types of test cases	10	Shoon	Balanced Integration	Architect	Employee was ordered to 
- focus on Balanced 
- and make both types of test cases
-ACTION	10	Shoon	Balanced Integration	Architect	Employee was ordered to 
- focus on Balanced 
- and make both types of test cases	11	Shoon	Balanced System	Architect	Employee was ordered to 
- focus on Balanced 
- and make both types of test cases
-
-EMPLOYEE04
-ACTION	1	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers	2	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers
-ACTION	2	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers	3	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers
-ACTION	3	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers	4	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers
-ACTION	4	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers	5	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers
-ACTION	5	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers	6	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers
-ACTION	6	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers	7	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers
-ACTION	7	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers	8	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers
-ACTION	8	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers	9	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers
-ACTION	9	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers	10	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers
-ACTION	10	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers	11	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers
-
-EMPLOYEE05
-ACTION	1	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any	2	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any
-ACTION	2	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any	3	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any
-ACTION	3	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any	4	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any
-ACTION	4	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any	5	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any
-ACTION	5	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any	6	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any
-ACTION	6	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any	7	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any
-ACTION	7	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any	8	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any
-ACTION	8	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any	9	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any
-ACTION	9	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any	10	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any
-ACTION	10	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any	11	Lexi	Aid	Manager	Marketing Generated Income and aided Analyst, if any
-
-EMPLOYEE06
-ACTION	9	Mia	Evolution Test-Driven	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	10	Mia	Evolution Adhoc	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure
-INFLUENCE_PROG_MANA	9	Mia	Evolution Test-Driven	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	9	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers	1.55
-ACTION	10	Mia	Evolution Adhoc	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	11	Mia	Evolution Adhoc	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure
-INFLUENCE_PROG_MANA	10	Mia	Evolution Adhoc	Programmer	Employee is not especialized, 
- is a moderate programmer and 
- is not under pressure	10	Telsij	Aid Programmer	Manager	Manager has no automomy and aided Programmers	1.56
+ACTION	1 Lilit Programmer	Evolution Adhoc	2 Lilit Programmer	Evolution Adhoc
+INFLUENCE	1 Abigail Architect	Balanced Architecture	1 Lilit Programmer	Evolution Adhoc	1.71
+INFLUENCE1 Erdan Manager	Aid Programmer	1 Lilit Programmer	Evolution Adhoc	1.71
+ACTION	2 Lilit Programmer	Evolution Adhoc	3 Lilit Programmer	Evolution Draw-code
+INFLUENCE2 Erdan Manager	Aid Programmer	2 Lilit Programmer	Evolution Adhoc	1.36
+ACTION	3 Lilit Programmer	Evolution Draw-code	4 Lilit Programmer	Evolution Adhoc
+INFLUENCE3 Erdan Manager	Aid Programmer	3 Lilit Programmer	Evolution Draw-code	1.24
+ACTION	4 Lilit Programmer	Evolution Adhoc	5 Lilit Programmer	Evolution Draw-code
+INFLUENCE	4 Abigail Architect	Balanced Architecture	4 Lilit Programmer	Evolution Adhoc	1.67
+INFLUENCE4 Erdan Manager	Aid Programmer	4 Lilit Programmer	Evolution Adhoc	1.67
+ACTION	5 Lilit Programmer	Evolution Draw-code	6 Lilit Programmer	Evolution Adhoc
+INFLUENCE5 Erdan Manager	Aid Programmer	5 Lilit Programmer	Evolution Draw-code	1.26
+ACTION	6 Lilit Programmer	Evolution Adhoc	7 Lilit Programmer	Evolution Test-Driven
+INFLUENCE	6 Abigail Architect	Balanced Architecture	6 Lilit Programmer	Evolution Adhoc	1.7
+INFLUENCE6 Erdan Manager	Aid Programmer	6 Lilit Programmer	Evolution Adhoc	1.7
+ACTION	7 Lilit Programmer	Evolution Test-Driven	8 Lilit Programmer	Evolution Draw-code
+INFLUENCE	7 Abigail Architect	Balanced Architecture	7 Lilit Programmer	Evolution Test-Driven	2
+ACTION	8 Lilit Programmer	Evolution Draw-code	9 Lilit Programmer	Evolution Draw-code
+INFLUENCE	8 Abigail Architect	Balanced Architecture	8 Lilit Programmer	Evolution Draw-code	1.93
+ACTION	9 Lilit Programmer	Evolution Draw-code	10 Lilit Programmer	Evolution Draw-code
+INFLUENCE	9 Abigail Architect	Balanced Architecture	9 Lilit Programmer	Evolution Draw-code	2.19
+ACTION	10 Lilit Programmer	Evolution Draw-code	11 Lilit Programmer	Evolution Draw-code
+ACTION	11 Lilit Programmer	Evolution Draw-code	12 Lilit Programmer	Evolution Test-Driven
+ACTION	12 Lilit Programmer	Evolution Test-Driven	13 Lilit Programmer	Evolution Draw-code
+ACTION	13 Lilit Programmer	Evolution Draw-code	14 Lilit Programmer	Evolution Adhoc
+ACTION	1 Mirax Analyst	Balanced Elicitation Reviews	2 Mirax Analyst	Balanced Elicitation Reviews
+ACTION	2 Mirax Analyst	Balanced Elicitation Reviews	3 Mirax Analyst	Balanced Especification
+ACTION	3 Mirax Analyst	Balanced Especification	4 Mirax Analyst	Balanced Elicitation Prototype
+ACTION	4 Mirax Analyst	Balanced Elicitation Prototype	5 Mirax Analyst	Balanced Elicitation Prototype
+INFLUENCE	4 Noa Marketing	Aid	4 Mirax Analyst	Balanced Elicitation Prototype	2.16
+ACTION	5 Mirax Analyst	Balanced Elicitation Prototype	6 Mirax Analyst	Balanced Especification
+INFLUENCE	5 Abigail Architect	Balanced Prototype	5 Mirax Analyst	Balanced Elicitation Prototype	2
+INFLUENCE	5 Noa Marketing	Aid	5 Mirax Analyst	Balanced Elicitation Prototype	2.3
+ACTION	6 Mirax Analyst	Balanced Especification	7 Mirax Analyst	Balanced Elicitation Reviews
+INFLUENCE	6 Noa Marketing	Aid	6 Mirax Analyst	Balanced Especification	2.55
+ACTION	7 Mirax Analyst	Balanced Elicitation Reviews	8 Mirax Analyst	Balanced Elicitation Reviews
+INFLUENCE	7 Noa Marketing	Aid	7 Mirax Analyst	Balanced Elicitation Reviews	2.54
+ACTION	8 Mirax Analyst	Balanced Elicitation Reviews	9 Mirax Analyst	Balanced Especification
+INFLUENCE	8 Noa Marketing	Aid	8 Mirax Analyst	Balanced Elicitation Reviews	2.47
+ACTION	9 Mirax Analyst	Balanced Especification	10 Mirax Analyst	Balanced Elicitation Prototype
+INFLUENCE	9 Noa Marketing	Aid	9 Mirax Analyst	Balanced Especification	2.37
+ACTION	10 Mirax Analyst	Balanced Elicitation Prototype	11 Mirax Analyst	Balanced Especification
+INFLUENCE	10 Abigail Architect	Balanced Prototype	10 Mirax Analyst	Balanced Elicitation Prototype	3
+INFLUENCE	10 Noa Marketing	Aid	10 Mirax Analyst	Balanced Elicitation Prototype	2.42
+ACTION	11 Mirax Analyst	Balanced Especification	12 Mirax Analyst	Balanced Elicitation Prototype
+INFLUENCE	11 Noa Marketing	Aid	11 Mirax Analyst	Balanced Especification	2.34
+ACTION	12 Mirax Analyst	Balanced Elicitation Prototype	13 Mirax Analyst	Balanced Elicitation Reviews
+INFLUENCE	12 Abigail Architect	Balanced Prototype	12 Mirax Analyst	Balanced Elicitation Prototype	4
+INFLUENCE	12 Noa Marketing	Aid	12 Mirax Analyst	Balanced Elicitation Prototype	2.5
+ACTION	13 Mirax Analyst	Balanced Elicitation Reviews	14 Mirax Analyst	Balanced Elicitation Reviews
+INFLUENCE	13 Noa Marketing	Aid	13 Mirax Analyst	Balanced Elicitation Reviews	2.21
+ACTION	1 Abigail Architect	Balanced Architecture	2 Abigail Architect	Balanced System
+ACTION	2 Abigail Architect	Balanced System	3 Abigail Architect	Balanced Prototype
+ACTION	3 Abigail Architect	Balanced Prototype	4 Abigail Architect	Balanced Architecture
+ACTION	4 Abigail Architect	Balanced Architecture	5 Abigail Architect	Balanced Prototype
+ACTION	5 Abigail Architect	Balanced Prototype	6 Abigail Architect	Balanced Architecture
+ACTION	6 Abigail Architect	Balanced Architecture	7 Abigail Architect	Balanced Architecture
+ACTION	7 Abigail Architect	Balanced Architecture	8 Abigail Architect	Balanced Architecture
+INFLUENCE	7 Erdan Manager	Aid Architect	7 Abigail Architect	Balanced Architecture	1.86
+ACTION	8 Abigail Architect	Balanced Architecture	9 Abigail Architect	Balanced Architecture
+INFLUENCE	8 Erdan Manager	Aid Architect	8 Abigail Architect	Balanced Architecture	1.89
+ACTION	9 Abigail Architect	Balanced Architecture	10 Abigail Architect	Balanced Prototype
+INFLUENCE	9 Erdan Manager	Aid Architect	9 Abigail Architect	Balanced Architecture	1.91
+ACTION	10 Abigail Architect	Balanced Prototype	11 Abigail Architect	Balanced Integration
+INFLUENCE	10 Erdan Manager	Aid Architect	10 Abigail Architect	Balanced Prototype	2.04
+ACTION	11 Abigail Architect	Balanced Integration	12 Abigail Architect	Balanced Prototype
+INFLUENCE	11 Erdan Manager	Aid Architect	11 Abigail Architect	Balanced Integration	1.88
+ACTION	12 Abigail Architect	Balanced Prototype	13 Abigail Architect	Balanced System
+INFLUENCE	12 Erdan Manager	Aid Architect	12 Abigail Architect	Balanced Prototype	1.87
+ACTION	13 Abigail Architect	Balanced System	14 Abigail Architect	Balanced Integration
+INFLUENCE	13 Erdan Manager	Aid Architect	13 Abigail Architect	Balanced System	1.9
+ACTION	1 Erdan Manager	Aid Programmer	2 Erdan Manager	Aid Programmer
+ACTION	2 Erdan Manager	Aid Programmer	3 Erdan Manager	Aid Programmer
+ACTION	3 Erdan Manager	Aid Programmer	4 Erdan Manager	Aid Programmer
+ACTION	4 Erdan Manager	Aid Programmer	5 Erdan Manager	Aid Programmer
+ACTION	5 Erdan Manager	Aid Programmer	6 Erdan Manager	Aid Programmer
+ACTION	6 Erdan Manager	Aid Programmer	7 Erdan Manager	Aid Architect
+ACTION	7 Erdan Manager	Aid Architect	8 Erdan Manager	Aid Architect
+ACTION	8 Erdan Manager	Aid Architect	9 Erdan Manager	Aid Architect
+ACTION	9 Erdan Manager	Aid Architect	10 Erdan Manager	Aid Architect
+ACTION	10 Erdan Manager	Aid Architect	11 Erdan Manager	Aid Architect
+ACTION	11 Erdan Manager	Aid Architect	12 Erdan Manager	Aid Architect
+ACTION	12 Erdan Manager	Aid Architect	13 Erdan Manager	Aid Architect
+ACTION	13 Erdan Manager	Aid Architect	14 Erdan Manager	Aid Architect
+ACTION	4 Noa Marketing	Aid	5 Noa Marketing	Aid
+ACTION	5 Noa Marketing	Aid	6 Noa Marketing	Aid
+ACTION	6 Noa Marketing	Aid	7 Noa Marketing	Aid
+ACTION	7 Noa Marketing	Aid	8 Noa Marketing	Aid
+ACTION	8 Noa Marketing	Aid	9 Noa Marketing	Aid
+ACTION	9 Noa Marketing	Aid	10 Noa Marketing	Aid
+ACTION	10 Noa Marketing	Aid	11 Noa Marketing	Aid
+ACTION	11 Noa Marketing	Aid	12 Noa Marketing	Aid
+ACTION	12 Noa Marketing	Aid	13 Noa Marketing	Aid
+ACTION	13 Noa Marketing	Aid	14 Noa Marketing	Aid
+ACTION	7 Tal Programmer	Evolution Draw-code	8 Tal Programmer	Evolution Adhoc
+INFLUENCE	7 Abigail Architect	Balanced Architecture	7 Tal Programmer	Evolution Draw-code	2
+ACTION	8 Tal Programmer	Evolution Adhoc	9 Tal Programmer	Evolution Adhoc
+INFLUENCE	8 Abigail Architect	Balanced Architecture	8 Tal Programmer	Evolution Adhoc	1.93
+ACTION	9 Tal Programmer	Evolution Adhoc	10 Tal Programmer	Evolution Adhoc
+INFLUENCE	9 Abigail Architect	Balanced Architecture	9 Tal Programmer	Evolution Adhoc	2.19
+ACTION	10 Tal Programmer	Evolution Adhoc	11 Tal Programmer	Evolution Draw-code
+ACTION	11 Tal Programmer	Evolution Draw-code	12 Tal Programmer	Evolution Test-Driven
+ACTION	12 Tal Programmer	Evolution Test-Driven	13 Tal Programmer	Evolution Draw-code
+ACTION	13 Tal Programmer	Evolution Draw-code	14 Tal Programmer	Evolution Adhoc

@@ -26,6 +26,7 @@ private var completedText = "";
 private var sincronismoText = "";
 private var modelText = "";
 private var reqlingText = "";
+private var qualityText = "";
 private var valorMensalText = "";
 
 private var equipeObj : GameObject;
@@ -60,10 +61,12 @@ function StatusProjeto()	{
 	modelText = (parseInt(project.GetRequirements()).ToString() + " %");
 	sincronismoText = (parseInt(project.GetSincronismo()).ToString() + " %");	//parseint para converter o float para inteiro
 	reqlingText = project.GetLinguagem ();
+	//qualityText = (project.GetCodeQuality () * 100).ToString() + " %";
+	qualityText = (Mathf.Round(project.GetCodeQuality() * 10000f) / 100).ToString() + " %";
 	valorMensalText = "$ " + (parseInt(project.GetPagamento()).ToString());
 	
 	GUI.BeginGroup(Rect (00,Screen.height - 75,1020,200));
-	GUI.Box (Rect (00,00,90,25), "Money");
+	GUI.Box (Rect (00,00,90,25), "Credits");
 	GUI.Box (Rect (00,25,90,25), "Monthly Inc.");
 	GUI.Box (Rect (90,00,130,25), saldoText);
 	GUI.Box (Rect (90,25,130,25), valorMensalText);
@@ -82,8 +85,10 @@ function StatusProjeto()	{
 	
 	GUI.Box (Rect (620,00,90,25), "# bugs");
 	GUI.Box (Rect (620,25,90,25), "Code Lang.");
+	GUI.Box (Rect (620,50,90,25), "Quality Mod.");
 	GUI.Box (Rect (710,00,90,25), bugsText);
 	GUI.Box (Rect (710,25,90,25), reqlingText);
+	GUI.Box (Rect (710,50,90,25), qualityText);
 
 	GUI.EndGroup ();
 }

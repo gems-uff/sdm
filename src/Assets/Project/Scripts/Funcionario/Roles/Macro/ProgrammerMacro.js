@@ -268,14 +268,15 @@ class ProgrammerMacro extends System.ValueType{
 		if(behavior.GetProgEvolution())
 		{
 			actionNode.task = "Evolution Adhoc";
-			Evolution(actionNode);
+			Evolution(1.5, 1.75);
+			ModifyCodeQuality(- 0.2);
 		}
 		else
 		{
 			if(behavior.GetProgRepair())
 			{
 				actionNode.task = "Repair Adhoc";
-				Repair();
+				Repair(1.5, 1.5, 1.5);
 			}
 		}
 	}
@@ -291,14 +292,14 @@ class ProgrammerMacro extends System.ValueType{
 		if(behavior.GetProgEvolution())
 		{
 			actionNode.task = "Evolution Draw-code";
-			Evolution(actionNode);
+			Evolution(1.0, 1.0);
 		}
 		else
 		{
 			if(behavior.GetProgRepair())
 			{
 				actionNode.task = "Repair Draw-code";
-				Repair();
+				Repair(1.0, 1.0, 1.0);
 			}
 		}
 	}
@@ -314,14 +315,15 @@ class ProgrammerMacro extends System.ValueType{
 		if(behavior.GetProgEvolution())
 		{
 			actionNode.task = "Evolution Test-Driven";
-			Evolution(actionNode);
+			Evolution(0.75, 0.5);
+			ModifyCodeQuality(0.1);
 		}
 		else
 		{
 			if(behavior.GetProgRepair())
 			{
 				actionNode.task = "Repair Test-Driven";
-				Repair();
+				Repair(0.25, 0.5, 0.5);
 			}
 		}
 	}
@@ -331,16 +333,32 @@ class ProgrammerMacro extends System.ValueType{
 	//--------------------------------------------
 	function Refactoring(actionNode : ActionNode, isEsp : boolean, isPressured : boolean, prog : String)
 	{
+		//programador : range from 0 to 350
 		NewAction(actionNode, isEsp, isPressured, prog);
 		actionNode.task = "Refactoring";
+		
+		var randomizer : float = Random.Range (0.8, 1.2);
+		var refact : float = 0.0;
+		//range must be from 1.0 to 1.035
+		refact = 1 + (programador * randomizer * 0.0001);
+		
+		project.ChangeCodeQuality(refact);
+		floatingLines.showFloatText1("", "Refactoring", "blue", "");
+		floatingLines.showFloatText2("+", ((refact - 1) * 100).ToString(), "blue", "% Improved");
 	}
-	
-	
+	function ModifyCodeQuality(mod : float)
+	{
+		//mod range from -1 to 1, where 1 equals to refactoring task and negative number will decrease quality
+		var randomizer : float = Random.Range (0.8, 1.2);
+		var refact : float = 0.0;
+		//range must be from 0.965 to 1.035
+		refact = 1 + (programador * randomizer * 0.0001 * mod);
+		
+		project.ChangeCodeQuality(refact);
+	}
 	//--------------------------------------------
 	//End Decision tree
 	//--------------------------------------------
-	
-	
 	//--------------------------------------------
 	//Set the action
 	//--------------------------------------------
@@ -376,8 +394,10 @@ class ProgrammerMacro extends System.ValueType{
 	//Old functions
 	//--------------------------------------------
 	
-	function Evolution(actionNode : ActionNode)
+	function Evolution(modCode : float, modBug : float)
 	{
+		//modCode : MOdify the number of lines produced
+		//modBug : Modify the number of possible new bugs inserted
 		var random : int;
 		var i : int;
 		var bugCount : int = 0;
@@ -400,11 +420,11 @@ class ProgrammerMacro extends System.ValueType{
 			*/
 			
 			//Apply a small variation
-			codeLines = codeLines * randomizer;
+			codeLines = codeLines * randomizer * modCode;
 			//Cap at model
 			//codeLines = codeLines * (project.GetSincronismo() / 100);
 						
-			maxBugs = (100.0 - func.GetProgramador()) * constant.PROG_BUG_MOD;
+			maxBugs = (100.0 - func.GetProgramador()) * constant.PROG_BUG_MOD * modBug;
 			//Debug.Log("MaxBugs1 : " + maxBugs); 
 			//Number of bugs is influenced by the code quality
 			maxBugs = maxBugs * ( 2 - project.GetCodeQuality());
@@ -433,6 +453,7 @@ class ProgrammerMacro extends System.ValueType{
 			
 			project.SetLinesDone(codeLines);
 			ProgReport(codeLines, 0, report);
+			
 			floatingLines.showFloatText1("", "Evolution", "blue", "");
 			floatingLines.showFloatText2("+", codeLines.ToString(), "blue", " Progress");			
 			//Will be ommited
@@ -441,8 +462,12 @@ class ProgrammerMacro extends System.ValueType{
 	}
 	
 	
-	function Repair()
+	function Repair(modRepair : float, modQuantity : float, modIntroduce : float)
 	{
+		//t : Number of attempts to repair bugs each day
+		//modRepair : Modify the probability to repair a bug for each attempt
+		//modQuantity : Modify the quantity of attempts per day
+		//modIntrodyce : Modify the probability to insert new bug after repairing
 		var random : float;
 		var i : int;
 		var bugUnitary : int = 0;
@@ -452,41 +477,41 @@ class ProgrammerMacro extends System.ValueType{
 		var t : int = 0.0;
 		var repaired : int = 0;
 		
-		t = parseInt(programador * 0.25);
+		t = parseInt(programador * 0.25 * modQuantity);
 		
 		i = 0;
 		//Debug.Log("Repair #Bugs: " + t);
 		while(i < t)
 		{
-			random = Random.Range (0.0, 1.0);
+			random = Random.Range (0.0, 1.0) * modRepair;
 			//Debug.Log("Prog Random = " + random);
 			i++;
 			if (random < project.GetCodeQuality())
 			{ 
 				if(project.GetBugUnitaryFound() > project.GetBugUnitaryRepaired())
 				{
-					project.IncrementBugsRepairedByType(1, 0, 0, 0);
+					project.IncrementBugsRepairedByType(1, 0, 0, 0, modIntroduce);
 					repaired++;
 				}
 				else
 				{
 					if(project.GetBugIntegrationFound() > project.GetBugIntegrationRepaired())
 					{
-						project.IncrementBugsRepairedByType(0, 1, 0, 0);
+						project.IncrementBugsRepairedByType(0, 1, 0, 0, modIntroduce);
 						repaired++;
 					}
 					else
 					{
 						if(project.GetBugSystemFound() > project.GetBugSystemRepaired())
 						{
-							project.IncrementBugsRepairedByType(0, 0, 1, 0);
+							project.IncrementBugsRepairedByType(0, 0, 1, 0, modIntroduce);
 							repaired++;
 						}
 						else
 						{
 							if(project.GetBugAcceptionFound() > project.GetBugAcceptionRepaired())
 							{
-								project.IncrementBugsRepairedByType(0, 0, 0, 1);
+								project.IncrementBugsRepairedByType(0, 0, 0, 1, modIntroduce);
 								repaired++;
 							}
 						}
@@ -498,6 +523,12 @@ class ProgrammerMacro extends System.ValueType{
 		floatingLines.showFloatText1("", "Repair", "blue", "");
 		floatingLines.showFloatText2("+", repaired.ToString(), "blue", " Bugs Repaired");
 		//project.IncrementBugsRepairedByType(bugUnitary, bugIntegration, bugSystem, bugAcception);
+	}
+	
+	function ProgReport(prog : int, bugs : int, report : WeeklyReport)
+	{
+		report.programmerReport_prog = report.programmerReport_prog + prog;
+		report.programmerReport_bug = report.programmerReport_bug + bugs;
 	}
 	
 	//Function that randomizes the types of bugs inserted in the code by a max o t bugs
@@ -549,10 +580,5 @@ class ProgrammerMacro extends System.ValueType{
 		return aux;
 	}
 	*/
-	function ProgReport(prog : int, bugs : int, report : WeeklyReport)
-	{
-		report.programmerReport_prog = report.programmerReport_prog + prog;
-		report.programmerReport_bug = report.programmerReport_bug + bugs;
-	}
 
 }

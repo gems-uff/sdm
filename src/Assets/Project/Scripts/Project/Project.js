@@ -106,6 +106,8 @@ function UpdateElicitation(t : float, prototype : boolean)
 		sincronismo = sincronismo - passedTime;
 		sincronismo = sincronismo + change;
 	}
+	Mathf.Clamp(sincronismo, 0.0, 100.0);
+	/*
 	if (sincronismo > 100.0)
 	{
 		sincronismo = 100.0;
@@ -117,6 +119,7 @@ function UpdateElicitation(t : float, prototype : boolean)
 			sincronismo = 0.0;
 		}
 	}
+	*/
 	CheckRequirements();
 	ResetLastElicitation();
 }
@@ -135,7 +138,9 @@ function GetCodeQuality()
 }
 function ChangeCodeQuality(t : float)
 {
-	codeQuality += t;
+	codeQuality *= t;
+	Mathf.Clamp(codeQuality, 0.1, 1.2);
+	/*
 	if(codeQuality > 1.2)
 	{
 		codeQuality = 1.2;
@@ -147,6 +152,7 @@ function ChangeCodeQuality(t : float)
 			codeQuality = 0.1;
 		}
 	}
+	*/
 }
 function ResetCodeQuality()
 {
@@ -326,13 +332,29 @@ function SetBugsRepairedByType(unitary : int, integration : int, system : int, a
 	bugIntegrationRepaired = integration;
 	bugSystemRepaired = system;
 	bugAcceptionRepaired = acception; 
+	/*
+	Debug.Log("-----------------------");
+	Debug.Log("--- SetBugsRepairedByType ----");
+	Debug.Log("bugUnitaryRepaired: " + bugUnitaryRepaired);
+	Debug.Log("bugIntegrationRepaired: " + bugIntegrationRepaired);
+	Debug.Log("bugSystemRepaired: " + bugSystemRepaired);
+	Debug.Log("bugAcceptionRepaired: " + bugAcceptionRepaired);
+	Debug.Log("-----------------------");
+	*/
+}
+function IncrementBugsRepairedByType(unitary : int, integration : int, system : int, acception : int, chanceMod : float)
+{
+	bugUnitaryRepaired += unitary;
+	bugIntegrationRepaired += integration;
+	bugSystemRepaired += system;
+	bugAcceptionRepaired += acception; 
 	
 	//Everytime a bug is repaired, there is a chance to add another bug
 	var newBugChance : float = 20.0; //20%
 	var random : float;
 	random = Random.Range (0.0, 100.0);
 	//Add bug
-	newBugChance = newBugChance * (2 - codeQuality);
+	newBugChance = newBugChance * chanceMod * (2 - codeQuality);
 	if(random < newBugChance)
 	{
 		random = Random.Range (0, 5);
@@ -359,23 +381,6 @@ function SetBugsRepairedByType(unitary : int, integration : int, system : int, a
 			  break;
 		}
 	}
-	
-	/*
-	Debug.Log("-----------------------");
-	Debug.Log("--- SetBugsRepairedByType ----");
-	Debug.Log("bugUnitaryRepaired: " + bugUnitaryRepaired);
-	Debug.Log("bugIntegrationRepaired: " + bugIntegrationRepaired);
-	Debug.Log("bugSystemRepaired: " + bugSystemRepaired);
-	Debug.Log("bugAcceptionRepaired: " + bugAcceptionRepaired);
-	Debug.Log("-----------------------");
-	*/
-}
-function IncrementBugsRepairedByType(unitary : int, integration : int, system : int, acception : int)
-{
-	bugUnitaryRepaired = bugUnitaryRepaired + unitary;
-	bugIntegrationRepaired = bugIntegrationRepaired + integration;
-	bugSystemRepaired = bugSystemRepaired + system;
-	bugAcceptionRepaired = bugAcceptionRepaired + acception; 
 	/*
 	Debug.Log("-----------------------");
 	Debug.Log("--- IncrementBugsRepairedByType ----");
