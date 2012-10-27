@@ -12,14 +12,14 @@ private var actionNode : ActionNode;
 private var showActionWindow : boolean = false;
 
 private var influenceNode : Influence;
-private var action1 : ActionNode;
-private var action2 : ActionNode;
-private var action3 : ActionNode;
-private var action4 : ActionNode;
-private var action5 : ActionNode;
-private var action6 : ActionNode;
-private var action7 : ActionNode;
-private var action8 : ActionNode;
+private var action1 : InfluenceNode = new InfluenceNode();
+private var action2 : ActionNode = new ActionNode();
+private var action3 : ActionNode = new ActionNode();
+private var action4 : ActionNode = new ActionNode();
+private var action5 : ActionNode = new ActionNode();
+private var action6 : ActionNode = new ActionNode();
+private var action7 : InfluenceNode = new InfluenceNode();
+private var action8 : InfluenceNode = new InfluenceNode();
 
 private var showInfluenceWindow : boolean = false;
 
@@ -215,10 +215,21 @@ function ActionWindowFunction(windowID : int){
 			action6 = null;
 			action7 = null;
 			action8 = null;
+			/*
+			action1 = influenceNode.GetAnalystArchInfluence().GetFirst();
+			action2 = influenceNode.GetAnalystManagerInfluence();
+			action3 = influenceNode.GetAnalystMarketingInfluence();
+			action4 = influenceNode.GetArchManagerInfluence();
+			action5 = influenceNode.GetProgManagerInfluence();
+			action6 = influenceNode.GetProgArchInfluence().last;
+			action7 = (influenceNode.GetTestArchInfluence()).last;
+			action8 = influenceNode.GetTestAnalystInfluence().last;
+			*/
 			
-			if(influenceNode.GetAnalystArchInfluence().last != null)
+			
+			if(influenceNode.GetAnalystArchInfluence().GetFirst() != null)
 			{
-				action1 = influenceNode.GetAnalystArchInfluence().last;
+				action1 = influenceNode.GetAnalystArchInfluence().GetFirst();
 			}
 			if(influenceNode.GetAnalystManagerInfluence() != null)
 			{
@@ -242,12 +253,13 @@ function ActionWindowFunction(windowID : int){
 			}
 			if(influenceNode.GetTestArchInfluence().last != null)
 			{
-				action7 = (influenceNode.GetTestArchInfluence()).last;
+				action7 = (influenceNode.GetTestArchInfluence()).GetFirst();
 			}
 			if(influenceNode.GetTestAnalystInfluence().last != null)
 			{
-				action8 = influenceNode.GetTestAnalystInfluence().last;
+				action8 = influenceNode.GetTestAnalystInfluence().GetFirst();
 			}
+			
 			showInfluenceWindow = true;
 		}
 	}
@@ -297,60 +309,32 @@ function InfluenceWindowFunction(windowID : int){
 	
 	var actionString : String = "None";
 	
-	//Redo, need to insert all other influences
-	/*
-	//Upper Left
-	GUI.Box (Rect (02,000,196,25), "----Influence----");
-	GUI.Box (Rect (02,025,196,25), "Prog Bonus: " + influenceNode.GetBonusProg());
-
-	//Action button
-	if(actionNode.role == "Programmer")
-	{
-		if((influenceNode.GetProgArchInfluence()).first != null)
-		{
-			var action : ActionNode = (influenceNode.GetProgArchInfluence()).first;
-			actionString = action.who;
-			if (GUI.Button (Rect (02,050,196,25), "Action: " + actionString)) 
-			{
-				actionNode  = influenceNode.progArchInfluence.first;
-				showInfluenceWindow = false;
-			}
-		}
-	}
-	else
-		GUI.Box (Rect (02,050,196,25), "Influence: " + actionString);
-		
-	//End influence button	
-	
-	if (GUI.Button (Rect (02,250,396,25), "Cancel")) 
-	{
-		showInfluenceWindow  = false;
-	}
-	*/
 	//Upper Left
 	GUI.Box (Rect (02,000,396,25), "----Influences----");
 	//Analyst
 	GUI.Box (Rect (02,025,196,25), "---Analyst---");
 	GUI.Box (Rect (02,050,196,25), "Analyst Bonus: " + influenceNode.GetBonusAnalyst());
-	GUI.Box (Rect (02,075,196,25), "Prototypes: " + influenceNode.GetPrototype());
+	//GUI.Box (Rect (02,075,196,25), "Prototypes: " + influenceNode.GetPrototype());
 	
-	if(action1.who != "")
+	if(action1.action.who != "")
 	{
-		if (GUI.Button (Rect (02,100,196,25), "Architect Influence: " + action1.who)) 
+		if (GUI.Button (Rect (02,100,196,25), "Architect Influence: " + action1.action.who)) 
 		{
-			actionNode  = action1;
+			actionNode  = action1.action;
 			showInfluenceWindow = false;
 		}
+		/*
 		if(action1.next != null)
 		{
-			if (GUI.Button (Rect (200,100,75,25), "Next")) 
+			if (GUI.Button (Rect (200,100,96,25), "Next")) 
 				action1 = action1.next;
 		}
 		if(action1.previous != null)
 		{
-			if (GUI.Button (Rect (275,100,75,25), "Previous")) 
+			if (GUI.Button (Rect (275,100,96,25), "Previous")) 
 				action1 = action1.previous;
 		}
+		*/
 	}
 	else
 		GUI.Box (Rect (02,100,196,25), "Architect Influence: " + "None");
@@ -363,7 +347,9 @@ function InfluenceWindowFunction(windowID : int){
 			showInfluenceWindow = false;
 		}
 	}
+	
 	else
+	
 		GUI.Box (Rect (02,125,196,25), "Manager Influence: " + "None");
 
 	if(action3.who != "")
@@ -433,13 +419,14 @@ function InfluenceWindowFunction(windowID : int){
 	GUI.Box (Rect (02,400,196,25), "System Bonus: " + influenceNode.GetBonusSystem());
 	GUI.Box (Rect (02,425,196,25), "Acception Bonus: " + influenceNode.GetBonusAcception());
 	
-	if(action7.who != "")
+	if(action7.action.who != "")
 	{
-		if (GUI.Button (Rect (02,450,196,25), "Architect Influence: " + action7.who)) 
+		if (GUI.Button (Rect (02,450,196,25), "Architect Influence: " + action7.action.who)) 
 		{
-			actionNode  = action7;
+			actionNode  = action7.action;
 			showInfluenceWindow = false;
 		}
+		/*
 		if(action7.next != null)
 		{
 			if (GUI.Button (Rect (200,450,75,25), "Next")) 
@@ -450,17 +437,19 @@ function InfluenceWindowFunction(windowID : int){
 			if (GUI.Button (Rect (275,450,75,25), "Previous")) 
 				action7 = action7.previous;
 		}
+		*/
 	}
 	else
 		GUI.Box (Rect (02,450,196,25), "Architect Influence: " + "None");
 		
-	if(action8.who != "")
+	if(action8.action.who != "")
 	{
-		if (GUI.Button (Rect (02,475,196,25), "Analyst Influence: " + action8.who)) 
+		if (GUI.Button (Rect (02,475,196,25), "Analyst Influence: " + action8.action.who)) 
 		{
-			actionNode  = action8;
+			actionNode  = action8.action;
 			showInfluenceWindow = false;
 		}
+		/*
 		if(action8.next != null)
 		{
 			if (GUI.Button (Rect (200,475,75,25), "Next")) 
@@ -471,6 +460,7 @@ function InfluenceWindowFunction(windowID : int){
 			if (GUI.Button (Rect (275,475,75,25), "Previous")) 
 				action6 = action8.previous;
 		}
+		*/
 	}
 	else
 		GUI.Box (Rect (02,475,196,25), "Analyst Influence: " + "None");

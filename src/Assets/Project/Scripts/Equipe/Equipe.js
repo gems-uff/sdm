@@ -19,9 +19,11 @@ private var findBugScore : float = 1.0;
 private var bonusAnalista : float = 1.0;
 private var bonusArquiteto : float = 1.0;
 private var bonusProg : float = 1.0;
+
 private var hasManager : boolean = false;
 private var hasMarketing : boolean = false;
-//private var marBonusAnalista : float = 1.0;
+
+//private var gerHelpAll : float = 1.0;
 
 //For Macro Style
 private var chanceUnitary : float = 1.0;		//Default
@@ -69,7 +71,10 @@ private var staffSecondaryAnaliyst : int;
 private var staffSecondaryTester : int;
 //private var staffMarketing : int;
 
-
+function Awake()
+{
+	influences.Reset();
+}
 //--------------------------------------------------------------
 //Macro Hiring Functions
 //--------------------------------------------------------------

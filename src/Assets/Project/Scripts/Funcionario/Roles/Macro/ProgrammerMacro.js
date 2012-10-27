@@ -39,7 +39,7 @@ class ProgrammerMacro extends System.ValueType{
 		if(equipe.influences.GetBonusProg()!= 1.0)
 		{
 			programador = programador * (1 + equipe.influences.GetBonusProg());
-			actionNode.influence = equipe.influences.GetInfluenceProg();
+			actionNode.influence = equipe.influences.GetInfluence();
 		}
 			
 		DecisionTree(actionNode);
@@ -387,6 +387,8 @@ class ProgrammerMacro extends System.ValueType{
 		
 		actionNode.description = "Employee is " + esp + " especialized, \n is a " + prog + " programmer and \n is " + pressure +" under pressure";
 		
+		actionNode.morale = func.GetMorale();
+		actionNode.stamina = func.GetStamina();
 		//return actionNode;
 	}
 	

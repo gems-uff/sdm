@@ -20,6 +20,7 @@ private var bugs : float = 0.0 ;				//number of bugs in the software
 private var codeLinesDone : int = 0;	//number of lines done by the team
 
 //New types of bug
+//All bugs in the system (found + repaired + unknown)
 private var bugUnitary : int = 0;
 private var bugIntegration : int = 0;
 private var bugSystem : int = 0;
@@ -106,7 +107,10 @@ function UpdateElicitation(t : float, prototype : boolean)
 		sincronismo = sincronismo - passedTime;
 		sincronismo = sincronismo + change;
 	}
-	Mathf.Clamp(sincronismo, 0.0, 100.0);
+	if(prototype)
+		Mathf.Clamp(sincronismo, 0.0, 100.0);
+	else
+		Mathf.Clamp(sincronismo, 0.0, 85.0);
 	/*
 	if (sincronismo > 100.0)
 	{

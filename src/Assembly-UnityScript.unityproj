@@ -50,9 +50,11 @@
      <Compile Include="Assets\Project\Scripts\Behavior\HistoryLog.js" />
      <Compile Include="Assets\Project\Scripts\Camera\MouseLook2.js" />
      <Compile Include="Assets\Project\Scripts\Class\Atributos.js" />
+     <Compile Include="Assets\Project\Scripts\Class\Employee.js" />
      <Compile Include="Assets\Project\Scripts\Class\Especializacoes.js" />
      <Compile Include="Assets\Project\Scripts\Class\LinkedList\ActionList.js" />
      <Compile Include="Assets\Project\Scripts\Class\LinkedList\EmployeeList.js" />
+     <Compile Include="Assets\Project\Scripts\Class\LinkedList\InfluenceList.js" />
      <Compile Include="Assets\Project\Scripts\Class\LinkedList\LinkedList.js" />
      <Compile Include="Assets\Project\Scripts\Class\LinkedList\ProjectList.js" />
      <Compile Include="Assets\Project\Scripts\Class\LinkedList\testList.js" />
@@ -115,6 +117,7 @@
      <Compile Include="Assets\Project\Scripts\Project\AcceptProject.js" />
      <Compile Include="Assets\Project\Scripts\Project\Project.js" />
      <Compile Include="Assets\Project\Scripts\Project\RandomProjectGenerator.js" />
+     <Compile Include="Assets\Project\Scripts\Project\TestCases.js" />
      <Compile Include="Assets\Project\Scripts\Testing\FloatingLines2.js" />
      <Compile Include="Assets\Project\Scripts\Testing\FloatingLinesBelow2.js" />
      <Compile Include="Assets\Project\Scripts\Testing\FlyingText2.js" />

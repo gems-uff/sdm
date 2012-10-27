@@ -1,17 +1,17 @@
-class Atributos extends System.ValueType{
-
-//fields
-public var adaptabilidade : int;
-public var autoDidata : int;
-public var detalhista : int;
-public var negociacao : int;
-public var objetividade : int;
-public var organizacao : int;
-public var paciencia : int;
-public var raciocinioLogico : int;
-public var relacionamentoHumano : int;
-
-//Constructor 
+class Atributos extends System.ValueType
+{
+	//fields
+	public var adaptabilidade : int;
+	public var autoDidata : int;
+	public var detalhista : int;
+	public var negociacao : int;
+	public var objetividade : int;
+	public var organizacao : int;
+	public var paciencia : int;
+	public var raciocinioLogico : int;
+	public var relacionamentoHumano : int;
+	
+	//Constructor 
 
 	public function Atributos(a1 : int, a2 : int, a3 : int, a4 : int, a5 : int, a6 : int, a7 : int, a8 : int, a9 : int)
 	{

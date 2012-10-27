@@ -18,34 +18,44 @@ class ManagerMacro extends System.ValueType{
 	var behavior : BehaviorPlanner;
 	var date : int;
 	
-	var planner : ManagerPlanner;
+	//var planner : ManagerPlanner;
 	
 	var auxAnaArq : float;
 	var auxProg : float;
 					
-	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, constantP : GameConstants, gerenteP : float, auxAnaArqP : float, auxProgP : float, behaviorP : BehaviorPlanner, dateP : int)
+	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, 
+	constantP : GameConstants, gerenteP : float, auxAnaArqP : float, auxProgP : float, behaviorP : BehaviorPlanner, dateP : int)
 	{
-		var randomizer : float = Random.Range (2.0, 2.5);
-		var randomizer2 : float = Random.Range (1.0, 1.5);
+		var randA : float = Random.Range (2.0, 2.5);
+		var randP : float = Random.Range (1.0, 1.5);
 		
 		var actionNode : ActionNode = new ActionNode();
 		
-		func = funcP;
-		project = projectP;
-		report = reportP;
-		floatingLines = floatingLinesP;
-		equipe = equipeP;
-		constant = constantP;
-		gerente = gerenteP;
+		this.func = funcP;
+		this.project = projectP;
+		this.report = reportP;
+		this.floatingLines = floatingLinesP;
+		this.equipe = equipeP;
+		this.constant = constantP;
+		this.gerente = gerenteP;
 		
 		behavior = behaviorP;
 		date = dateP;
 		
-		planner = equipe.GetComponentInChildren(ManagerPlanner);
-		
-		auxAnaArq = parseInt(auxAnaArqP * randomizer);
-		auxProg = parseInt(auxProgP * randomizer2);
-		
+		//Change so a bad manager can actualy produce negative influence
+		if(func.GetGerente() < 40)
+		{
+			//Generate negative influence
+			auxAnaArq = auxAnaArq - 40;
+			auxProg = auxProg - 40;
+		}
+		else
+		{
+			//Generate positive influence
+			auxAnaArq = parseInt(auxAnaArqP * randA);
+			auxProg = parseInt(auxProgP * randP);
+		}
+		//planner = equipe.GetComponentInChildren(ManagerPlanner);
 		//if(behavior.managerAutonomous)
 		//	DecisionTree(actionNode);
 		//else
@@ -215,7 +225,6 @@ class ManagerMacro extends System.ValueType{
 	//--------------------------------------------
 	function AidAnalyst(actionNode : ActionNode, task : String, descr : String)
 	{
-		//equipe.SetBonusAnalista(auxAnaArq);
 		equipe.influences.SetBonusAnalystManager(auxAnaArq, actionNode);
 		floatingLines.showFloatText1("", "Aid Analyst", "blue", "");
 		floatingLines.showFloatText2("+", auxAnaArq.ToString(), "blue", " % Dev.");
@@ -226,7 +235,6 @@ class ManagerMacro extends System.ValueType{
 	
 	function AidProgrammer(actionNode : ActionNode, task : String, descr : String)
 	{
-		//equipe.SetBonusProg(auxProg);
 		equipe.influences.SetBonusProgManager(auxProg, actionNode);
 		floatingLines.showFloatText1("", "Aid Programmer", "blue", "");
 		floatingLines.showFloatText2("+", auxProg.ToString(), "blue", " % Dev.");
@@ -237,7 +245,6 @@ class ManagerMacro extends System.ValueType{
 	
 	function AidArchitect(actionNode : ActionNode, task : String, descr : String)
 	{
-		//equipe.SetBonusArquiteto(auxAnaArq);
 		equipe.influences.SetBonusArchManager(auxAnaArq, actionNode);
 		floatingLines.showFloatText1("", "Aid Architect", "blue", "");
 		floatingLines.showFloatText2("+", auxAnaArq.ToString(), "blue", " % Dev.");
@@ -254,8 +261,9 @@ class ManagerMacro extends System.ValueType{
 		actionNode.task = task;
 		actionNode.date = date;
 		actionNode.role = "Manager";
-		//actionNode.influence = null;
 		actionNode.description = description;
+		actionNode.morale = func.GetMorale();
+		actionNode.stamina = func.GetStamina();
 	}
 	
 	function ManagerReport(design : int, dev : int, report : WeeklyReport)

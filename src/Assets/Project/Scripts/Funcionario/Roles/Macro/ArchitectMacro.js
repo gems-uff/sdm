@@ -38,7 +38,7 @@ class ArchitectMacro extends System.ValueType{
 		if(equipe.influences.GetBonusArch()!= 1.0)
 		{
 			arquiteto = arquiteto * (1 + equipe.influences.GetBonusArch());
-			actionNode.influence = equipe.influences.GetInfluenceArchitect();
+			actionNode.influence = equipe.influences.GetInfluence();
 		}
 		
 		var randomizer : float = Random.Range (0.8, 1.2);
@@ -213,8 +213,9 @@ class ArchitectMacro extends System.ValueType{
 		actionNode.task = task;
 		actionNode.date = date;
 		actionNode.role = "Architect";
-		//actionNode.influence = null;
 		actionNode.description = description;
+		actionNode.morale = func.GetMorale();
+		actionNode.stamina = func.GetStamina();
 	}
 	
 	//--------------------------------------------

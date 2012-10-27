@@ -47,7 +47,7 @@ class ProjectNode
 		this.next = t;
 		t.before = this;
 	}
-	
+	/*
 	function NewNode()
 	{
 		this.project = null;
@@ -64,4 +64,6 @@ class ProjectNode
 		this.next = new ProjectNode();
 		this.before = new ProjectNode();
 	}
+	*/
+	
 }

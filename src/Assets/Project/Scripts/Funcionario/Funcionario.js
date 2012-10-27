@@ -656,6 +656,7 @@ function SetF_teste (t: boolean) {
 //
 function Copy()
 {
+	/*
 	var func : Funcionario;
 	func = Instantiate(this);
 	func.SetNome(nome);
@@ -670,8 +671,26 @@ function Copy()
 	func.SetSalario(salary);
 	func.SetAtributos(atributos);
 	func.SetEspecializacoes(especializacao);
-	
 	return func;
+	*/
+	var employee : Employee;
+	
+	employee.atributos = GetAtributos();
+	employee.especializacao = GetEspecializacao();
+	
+	employee.nome = GetNome();
+	employee.salary = GetSalario();
+	employee.mainRole = GetPapel();
+	employee.secRole = GetPapelSec();
+	employee.mainRoleRate = GetPapelRate();
+	employee.secRoleRate = GetPapelSecRate();
+	employee.job = GetCargo();
+	employee.workingHours = GetWorkingHours();
+	employee.morale = GetMorale();
+	employee.stamina = GetStamina();
+	employee.level = GetLevel();
+	
+	return employee;
 	
 }
 

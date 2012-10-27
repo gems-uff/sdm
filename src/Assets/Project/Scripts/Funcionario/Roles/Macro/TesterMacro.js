@@ -2,6 +2,8 @@
 
 //Find bugs
 //Need to redo Tester. Create leaf nodes and influences link.
+//Make 2 choices: With test cases and without
+//Allow player to choose which type of tests to run ? Or run them all ?
 
 class TesterMacro extends System.ValueType{
 	
@@ -11,7 +13,8 @@ class TesterMacro extends System.ValueType{
 	var chanceIntegration : float;
 	var chanceSystem : float;
 			
-	function Work(func : Funcionario, project : Project, report : WeeklyReport, floatingLines : FloatingLines, equipe : Equipe, constant : GameConstants, tester : float)
+	function Work(func : Funcionario, project : Project, report : WeeklyReport, floatingLines : FloatingLines, equipe : Equipe, 
+	constant : GameConstants, tester : float, date : int)
 	{
 		var bugUnitary : int = 0;
 		var bugIntegration : int = 0;
@@ -22,6 +25,9 @@ class TesterMacro extends System.ValueType{
 		var random : float;
 		var randomizer : float = Random.Range (0.8, 1.2);
 		var findScore : int = 0;
+		
+		var actionNode : ActionNode = new ActionNode();
+		NewAction(actionNode, "Test", "Tester Used Test Cases", func, date);
 		
 		//Chances to find each bug type
 		chance = tester * 0.01;
@@ -81,11 +87,24 @@ class TesterMacro extends System.ValueType{
 		//Report and text
 		TesterReport(i, report);
 		floatingLines.showFloatText1("+", totalBugsFound.ToString(), "blue", " Bugs found");
+		
+		return actionNode;
 	}
 	
 	function TesterReport(bug : int, report : WeeklyReport)
 	{
 		report.testerReport = report.testerReport + bug;
+	}
+	
+	function NewAction(actionNode : ActionNode, task : String, description : String, func : Funcionario, date : int)
+	{
+		actionNode.who = func.GetNome();
+		actionNode.task = task;
+		actionNode.date = date;
+		actionNode.role = "Tester";
+		actionNode.description = description;
+		actionNode.morale = func.GetMorale();
+		actionNode.stamina = func.GetStamina();
 	}
 
 }

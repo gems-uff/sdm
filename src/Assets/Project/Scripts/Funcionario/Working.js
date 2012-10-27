@@ -352,7 +352,8 @@ function GerenteWork(){
 		auxAnaArq = auxAnaArq * (1 + modificador_positivo - penal);
 		auxProg = auxProg * (1 + modificador_positivo - penal_prog);
 
-		action = ManagerMacro.Work(func, project, report, floatingLines, equipe, constant, gerente, auxAnaArq, auxProg, behavior, timer.GetGameTime());
+		action = ManagerMacro.Work(func, project, report, floatingLines, equipe, constant, gerente, auxAnaArq, auxProg, 
+		behavior, timer.GetGameTime());
 		behavior.AddAction(action);
 	}
 }
@@ -442,7 +443,8 @@ function ProgramadorWork(){
 		
 		programador = func.GetProgramador() * (rate * 0.01) * (1 + modificador_positivo - penal_prog) * gameMod;
 
-		action = ProgrammerMacro.Work(func, project, report, floatingLines, equipe, constant, programador, RequisitoLinguagem(), isEspecialized, behavior, timer.GetGameTime());
+		action = ProgrammerMacro.Work(func, project, report, floatingLines, equipe, constant, programador, RequisitoLinguagem(), 
+		isEspecialized, behavior, timer.GetGameTime());
 		behavior.AddAction(action);
 	}
 }
@@ -475,6 +477,9 @@ function TesterWork(){
 	{
 		var mod : float = GameModifiers();
 		var tester : float;
+		
+		var action : ActionNode = new ActionNode();
+		
 		func.WorkingTester();
 		
 		tester = func.GetTester() * (rate * 0.01) * mod;
@@ -488,7 +493,8 @@ function TesterWork(){
 		//Debug.Log("Tester = " + tester);
 		yield WaitForSeconds(delay);
 		
-		TesterMacro.Work(func, project, report, floatingLines, equipe, constant, tester);//wasInfluenced
+		action = TesterMacro.Work(func, project, report, floatingLines, equipe, constant, tester, timer.GetGameTime());//wasInfluenced
+		behavior.AddAction(action);
 	}
 }
 

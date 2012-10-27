@@ -6,7 +6,8 @@
 class MarketingMacro extends System.ValueType{
 	
 						
-	function Work(func : Funcionario, project : Project, report : WeeklyReport, floatingLines : FloatingLines, equipe : Equipe, constant : GameConstants, playerStats : PlayerStats, marketing : float, date : int)
+	function Work(func : Funcionario, project : Project, report : WeeklyReport, floatingLines : FloatingLines, equipe : Equipe, 
+	constant : GameConstants, playerStats : PlayerStats, marketing : float, date : int)
 	{
 		var randomizer : float = Random.Range (5.0, 7.5);
 		var randomizer2 : float = Random.Range (4.0, 6.0);
@@ -44,6 +45,8 @@ class MarketingMacro extends System.ValueType{
 		actionNode.role = "Marketing";
 		//actionNode.influence = null;
 		actionNode.description = description;
+		actionNode.morale = func.GetMorale();
+		actionNode.stamina = func.GetStamina();
 	}
 
 }

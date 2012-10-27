@@ -10,15 +10,15 @@ private var progEvolution : boolean = true;
 //For architects
 private var archVerification : boolean = false;
 private var archEvolution : boolean = false;
-private var archAnalysis : boolean = false;
-private var archRounded : boolean = true;
+private var archAnalysis : boolean = true;
+private var archRounded : boolean = false;
 private var archTestCases : String = "both"; //system, integration, both
 
 //For Analysts
-private var anaElicitation : boolean = false;
+private var anaElicitation : boolean = true;
 private var anaEspecification : boolean = false;
 private var anaQuality : boolean = false;
-private var anaRounded : boolean = true;
+private var anaRounded : boolean = false;
 
 //For Managers
 private var managerAnalysis : boolean = false;
@@ -29,7 +29,7 @@ private var managerBalanced : boolean = false;
 private var managerChangedMode : boolean = false;
 
 private var managerAnalyst : boolean = false;
-private var managerProgrammer : boolean = false;
+private var managerProgrammer : boolean = true;
 private var managerArchitect : boolean = false;
 
 public var managerAutonomous : boolean = false;

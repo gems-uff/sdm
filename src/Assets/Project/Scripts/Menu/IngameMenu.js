@@ -76,6 +76,9 @@ function StatusProjeto()	{
 	GUI.Box (Rect (310,00,130,25), timeText);
 	GUI.Box (Rect (310,25,130,25), deadlineText);
 	
+	GUI.Box (Rect (220,50,90,25), "Prototypes");
+	GUI.Box (Rect (310,50,130,25), project.GetPrototype().ToString());
+	
 	GUI.Box (Rect (440,00,90,25), "Req. Done");
 	GUI.Box (Rect (530,00,90,25), completedText);
 	GUI.Box (Rect (440,25,90,25), "Req. Modeled");
@@ -85,7 +88,7 @@ function StatusProjeto()	{
 	
 	GUI.Box (Rect (620,00,90,25), "# bugs");
 	GUI.Box (Rect (620,25,90,25), "Code Lang.");
-	GUI.Box (Rect (620,50,90,25), "Quality Mod.");
+	GUI.Box (Rect (620,50,90,25), "Quality");
 	GUI.Box (Rect (710,00,90,25), bugsText);
 	GUI.Box (Rect (710,25,90,25), reqlingText);
 	GUI.Box (Rect (710,50,90,25), qualityText);
@@ -206,11 +209,13 @@ function MainMenu(){
 			logWindow.ShowLogWindow();
 			ingameMenuToggle = false ;
 		}
+		/*
 		if (GUI.Button( Rect (Screen.width - 100,310,100,20), "9: Planner") )
 		{
 			//ingameMenuToggle = false ;
 			managerPlanner.ShowPlannerWindow();
 		}
+		*/
 		if (GUI.Button( Rect (Screen.width - 100,330,100,20), "10: Export") )
 		{
 			//ingameMenuToggle = false ;

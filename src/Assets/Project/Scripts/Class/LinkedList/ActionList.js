@@ -1,6 +1,6 @@
 #pragma strict
 
-class ActionList extends ActionNode
+class ActionList
 {
 	public var first : ActionNode;
 	public var last : ActionNode;
@@ -8,7 +8,7 @@ class ActionList extends ActionNode
 	function Add(t : ActionNode)
 	{
 		//if empty
-		if((this.first == null) || (this.first.who == ""))
+		if(this.first == null)
 		{
 			this.first = t;
 			this.last = t;
@@ -21,6 +21,12 @@ class ActionList extends ActionNode
 			this.last = t;
 		}
 	}
+	
+	function ActionList()
+	{
+		this.first = null;
+		this.last = null;
+	}
 }
 
 class ActionNode
@@ -32,6 +38,8 @@ class ActionNode
 	public var influence : Influence;
 	public var pressure : ActionNode;
 	public var description : String;
+	public var morale : int;
+	public var stamina : int;
 	
 	//For the linked List
 	public var next : ActionNode;
@@ -43,18 +51,19 @@ class ActionNode
 		t.previous = this;
 	}
 	
-	function NewNode()
+	function ActionNode()
 	{
 		this.date = 0;
-		this.who = "";
-		this.task = "";
-		this.role = "";
+		this.who = null;
+		this.task = null;
+		this.role = null;
 		this.influence = null;
 		this.pressure = null;
-		this.description = "";
+		this.description = null;
 		
 		this.next = null;
 		this.previous = null;
 	}
+	
 }
 

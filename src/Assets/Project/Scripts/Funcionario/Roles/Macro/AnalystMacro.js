@@ -38,7 +38,7 @@ class AnalystMacro extends System.ValueType{
 		if(equipe.influences.GetBonusAnalyst()!= 1.0)
 		{
 			analista = analista * (1 + equipe.influences.GetBonusAnalyst());
-			actionNode.influence = equipe.influences.GetInfluenceAnalyst();
+			actionNode.influence = equipe.influences.GetInfluence();
 		}
 		
 		val = analista / (project.GetProjectSize() * 0.001);
@@ -104,11 +104,12 @@ class AnalystMacro extends System.ValueType{
 	{
 		if(project.GetPrototype() > 0)
 		{
+			actionNode.influence = equipe.influences.GetInfluenceAnalystPrototype();
 			//Validation with Prototype
 			NewAction(actionNode, task + " Prototype", "Employee was ordered to \n focus on " + descr + " \n and validated a Prototype");
 			project.ConsumePrototype();
 			val = val * 1.5;
-			project.UpdateElicitation(val, false);
+			project.UpdateElicitation(val, true);
 			AnalistReport(parseInt(val), report);
 			floatingLines.showFloatText1("", "Validation", "blue","");
 			floatingLines.showFloatText2("+", val.ToString(), "blue", " Val.");
@@ -138,6 +139,7 @@ class AnalystMacro extends System.ValueType{
 		//Debug.Log("Elicitation");
 		if(func.GetAnalista() > 50)
 		{
+		/*
 			//Above Moderate
 			var chance = Random.Range (0, 100);
 			if((chance < 50) && (project.GetRequirements() > 0))
@@ -154,6 +156,9 @@ class AnalystMacro extends System.ValueType{
 				NewAction(actionNode, task, "Employee was ordered to \n focus on " + descr + " \n and because he was above moderate \n he decided to do discovery");
 				Specifying();
 			}
+			*/
+			NewAction(actionNode, task, "Employee was ordered to \n focus on " + descr + " \n and because he was above moderate \n he decided to do discovery");
+			Specifying();
 		}
 		else
 		{
@@ -208,8 +213,9 @@ class AnalystMacro extends System.ValueType{
 		actionNode.task = task;
 		actionNode.date = date;
 		actionNode.role = "Analyst";
-		//actionNode.influence = null;
 		actionNode.description = description;
+		actionNode.morale = func.GetMorale();
+		actionNode.stamina = func.GetStamina();
 	}
 	
 	function ClientFindBug()

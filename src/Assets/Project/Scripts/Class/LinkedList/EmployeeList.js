@@ -32,7 +32,7 @@ class EmployeeList extends EmployeeNode
 class EmployeeNode
 {
 	//Employee data
-	public var employee : Funcionario;
+	public var employee : Employee;
 	public var actionList : ActionList;
 	
 	//Employee List
@@ -44,7 +44,7 @@ class EmployeeNode
 		this.next = t;
 		t.before = this;
 	}
-	
+	/*
 	function NewNode()
 	{
 		this.employee = new Funcionario();
@@ -52,4 +52,5 @@ class EmployeeNode
 		this.next = new EmployeeNode();
 		this.before = new EmployeeNode();
 	}
+	*/
 }
