@@ -311,6 +311,9 @@ class ProgrammerMacro extends System.ValueType{
 	{
 		NewAction(actionNode, isEsp, isPressured, prog);
 		
+		//Make Unitary Test Cases
+		project.testCases.AddUnitary(parseInt(prog * 0.02));
+		
 		//Decide which task will be done
 		if(behavior.GetProgEvolution())
 		{
@@ -335,6 +338,9 @@ class ProgrammerMacro extends System.ValueType{
 	{
 		//programador : range from 0 to 350
 		NewAction(actionNode, isEsp, isPressured, prog);
+		//Make Unitary Test Cases
+		project.testCases.AddUnitary(parseInt(prog * 0.03));
+		
 		actionNode.task = "Refactoring";
 		
 		var randomizer : float = Random.Range (0.8, 1.2);

@@ -482,11 +482,11 @@ function OnGUI () {
 	{
 		GUI.backgroundColor = Color.yellow;
 		GUI.contentColor = Color.green;
-		windowRect = GUI.Window (0, windowRect, WindowFunction, ("Log") );
+		windowRect = GUI.Window (66, windowRect, WindowFunction, ("Log") );
 		if(showActionWindow)
-			windowRect2 = GUI.Window (1, windowRect2, ActionWindowFunction, ("Action") );
+			windowRect2 = GUI.Window (88, windowRect2, ActionWindowFunction, ("Action") );
 		if(showInfluenceWindow)
-			windowRect3 = GUI.Window (2, windowRect3, InfluenceWindowFunction, ("Influence") );
+			windowRect3 = GUI.Window (77, windowRect3, InfluenceWindowFunction, ("Influence") );
 	}
 }
 

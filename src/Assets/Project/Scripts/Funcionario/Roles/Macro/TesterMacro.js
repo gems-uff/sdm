@@ -27,7 +27,7 @@ class TesterMacro extends System.ValueType{
 		var findScore : int = 0;
 		
 		var actionNode : ActionNode = new ActionNode();
-		NewAction(actionNode, "Test", "Tester Used Test Cases", func, date);
+		
 		
 		//Chances to find each bug type
 		chance = tester * 0.01;
@@ -37,55 +37,74 @@ class TesterMacro extends System.ValueType{
 		chanceAcception = chance * equipe.GetAcceptionBonus();
 		
 		//Number of bugs that the tester can find each day
-		findScore = parseInt(tester * randomizer * constant.TESTER_DURANTE);
+		findScore = parseInt(tester * randomizer * constant.TESTER * 0.1);
 		//Chance to find a bug, to a total of "aux" bugs
-		i = 0;
-		//Debug.Log("Find #Bugs: " + findScore);
-		while(i < findScore)
+		i = 1;
+		Debug.Log("Find #Bugs: " + findScore);
+		//First check if there are any test cases ready
+		if(project.testCases.HasTestCase())
 		{
-			i++;
-			//For Acception bug
-			random = Random.Range (0.0, 2.5);
-			if ((random < chanceAcception)&& project.GetBugAcception() > project.GetBugAcceptionFound())
+			//Consume a test case
+			NewAction(actionNode, "Test: Cases", "Tester used Test Cases", func, date);
+			while(i < findScore && project.testCases.HasTestCase())
 			{
-				project.IncrementBugsFoundByType(0, 0, 0, 1);
+				i += 2;
+				project.testCases.Use();
 				totalBugsFound++;
+				Debug.Log("Found: " + totalBugsFound);
 			}
-			else
+		}
+		else
+		{
+			//We do Adhoc
+			NewAction(actionNode, "Test: Adhoc", "Tester searched in Adhoc-mode", func, date);
+			while(i < findScore)
 			{
-				//For System bug
-				random = Random.Range (0.0, 3.0);
-				if ((random < chanceSystem) && project.GetBugSystem() > project.GetBugSystemFound())
+				i++;
+				//For Acception bug
+				random = Random.Range (0.0, 2.5);
+				if ((random < chanceAcception)&& project.GetBugAcception() > project.GetBugAcceptionFound())
 				{
-					project.IncrementBugsFoundByType(0, 0, 1, 0);
+					project.IncrementBugsFoundByType(0, 0, 0, 1);
 					totalBugsFound++;
 				}
 				else
 				{
-					//For Integration bug
+					//For System bug
 					random = Random.Range (0.0, 3.0);
-					if ((random < chanceIntegration)&& project.GetBugIntegration() > project.GetBugIntegrationFound())
+					if ((random < chanceSystem) && project.GetBugSystem() > project.GetBugSystemFound())
 					{
-						project.IncrementBugsFoundByType(0, 1, 0, 0);
+						project.IncrementBugsFoundByType(0, 0, 1, 0);
 						totalBugsFound++;
 					}
 					else
 					{
-						//For unitary bug
+						//For Integration bug
 						random = Random.Range (0.0, 3.0);
-						if ((random < chanceUnitary)&& project.GetBugUnitary() > project.GetBugUnitaryFound())
+						if ((random < chanceIntegration)&& project.GetBugIntegration() > project.GetBugIntegrationFound())
 						{
-							project.IncrementBugsFoundByType(1, 0, 0, 0);
+							project.IncrementBugsFoundByType(0, 1, 0, 0);
 							totalBugsFound++;
+						}
+						else
+						{
+							//For unitary bug
+							random = Random.Range (0.0, 3.0);
+							if ((random < chanceUnitary)&& project.GetBugUnitary() > project.GetBugUnitaryFound())
+							{
+								project.IncrementBugsFoundByType(1, 0, 0, 0);
+								totalBugsFound++;
+							}
 						}
 					}
 				}
 			}
 		}
+		
 
 		//project.IncrementBugsFoundByType(bugUnitary, bugIntegration, bugSystem, bugAcception);
 		//Report and text
-		TesterReport(i, report);
+		TesterReport(totalBugsFound, report);
 		floatingLines.showFloatText1("+", totalBugsFound.ToString(), "blue", " Bugs found");
 		
 		return actionNode;

@@ -20,7 +20,7 @@ function ShowBugWindow()
 }
 */
 function WindowFunction(windowID : int){
-	timer.PauseGame();
+	//timer.PauseGame();
 	GUI.BeginGroup (Rect (02,20,400,300));
 	//Upper Left
 	GUI.Box (Rect (02,000,196,25), "----Bugs Found----");
@@ -37,12 +37,20 @@ function WindowFunction(windowID : int){
 	GUI.Box (Rect (200,100,196,25), "Acception: " + project.GetBugAcceptionRepaired());
 	GUI.Box (Rect (200,125,196,25), "Total Bugs Repaired: " + project.GetTotalBugsRepaired());
 	//Middle
+	/*
 	GUI.Box (Rect (002,150,396,25), "----Remaining Bugs in the system----");
 	GUI.Box (Rect (002,175,196,25), "Unitary: " + (project.GetBugUnitaryFound() - project.GetBugUnitaryRepaired()));
 	GUI.Box (Rect (002,200,196,25), "Integration: " + (project.GetBugIntegrationFound() - project.GetBugIntegrationRepaired()));
 	GUI.Box (Rect (200,175,196,25), "System: " + (project.GetBugSystemFound() - project.GetBugSystemRepaired()));
 	GUI.Box (Rect (200,200,196,25), "Acception: " + (project.GetBugAcceptionFound() - project.GetBugAcceptionRepaired()));
 	GUI.Box (Rect (002,225,396,25), "Total Bugs left: " + (project.GetTotalBugsFound() - project.GetTotalBugsRepaired()));
+	*/
+	GUI.Box (Rect (002,150,396,25), "----Total Bugs in the system----");
+	GUI.Box (Rect (002,175,196,25), "Unitary: " + (project.GetBugUnitary()));
+	GUI.Box (Rect (002,200,196,25), "Integration: " + (project.GetBugIntegration()));
+	GUI.Box (Rect (200,175,196,25), "System: " + (project.GetBugSystem()));
+	GUI.Box (Rect (200,200,196,25), "Acception: " + (project.GetBugAcception()));
+	GUI.Box (Rect (002,225,396,25), "Total Bugs left: " + (project.GetTotalBugs()));
 	
 	
 	//GUI.Box (Rect (02,250,196,25), "Total Bugs: " + project.GetTotalBugs());

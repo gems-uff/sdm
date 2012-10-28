@@ -195,6 +195,7 @@ class AnalystMacro extends System.ValueType{
 	{
 		equipe.SetAcceptionBonus(analista);
 		equipe.influences.SetBonusTesterAnalyst(analista, actionNode);
+		project.testCases.AddAcception(parseInt(analista * 0.025));
 		floatingLines.showFloatText1("", "Test Cases", "blue","");
 		floatingLines.showFloatText2("+", analista.ToString(), "blue","% Testing");
 		

@@ -15,9 +15,10 @@ public var ANALISTA : float = 1.0;
 public var ARCHITECT : float = 1.0;
 public var GERENTE : float = 1.0;	// +40%
 public var MARKETING : float = 1.0;
+public var TESTER : float = 0.7;
 public var PROG_LINES_DAY_MOD : float = 3.0;
-public var PROG_BUG_MOD : float = 0.1;
-public var TESTER_DURANTE : float = 0.1;
+public var PROG_BUG_MOD : float = 0.02;
+
 
 //Morale
 public var MODIFICATOR : float = 2.5; 

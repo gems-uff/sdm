@@ -1,4 +1,4 @@
-
+public var testCases : TestCases;
 public var constant : GameConstants;
 public var timer : GameTime;
 public var nome : String;
@@ -62,6 +62,7 @@ function ResetProject(){
 	volatility = 1.0;
 	lastValidation = timer.GetGameTime();
 	codeQuality = 0.8;
+	testCases.Clean();
 }
 
 //Prototype functions for analyst and architect

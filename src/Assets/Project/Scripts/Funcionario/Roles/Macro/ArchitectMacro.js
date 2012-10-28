@@ -179,6 +179,7 @@ class ArchitectMacro extends System.ValueType{
 	{
 		//equipe.SetSystemBonus(arquiteto);
 		equipe.influences.SetBonusTesterArchSystem(arquiteto, actionNode);
+		project.testCases.AddSystem(parseInt(arquiteto * 0.025));
 		floatingLines.showFloatText1("", "System Cases", "blue","");
 		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue","% System");
 		ArchitectReport(arquiteto, 0, 0, report);
@@ -189,6 +190,7 @@ class ArchitectMacro extends System.ValueType{
 	{
 		//equipe.SetIntegrationBonus(arquiteto);
 		equipe.influences.SetBonusTesterArchIntegration(arquiteto, actionNode);
+		project.testCases.AddIntegration(parseInt(arquiteto * 0.025));
 		floatingLines.showFloatText1("", "Integr Cases", "blue","");
 		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue","% Integration");
 		ArchitectReport(0, arquiteto, 0, report);

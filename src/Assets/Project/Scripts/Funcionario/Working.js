@@ -288,7 +288,7 @@ function ArquitetoWork(){
 	{
 		var modificador_positivo : float = EspecializacaoFerramenta();
 		var penal : float = MetodologiaEquipe();
-		var arquiteto : float ;
+		var arquiteto : float;
 		var gameMod : float = GameModifiers();
 		
 		var action : ActionNode = new ActionNode();
@@ -476,13 +476,14 @@ function TesterWork(){
 	if(work)
 	{
 		var mod : float = GameModifiers();
+		var mod_tool : float = EspecializacaoFerramenta();
 		var tester : float;
 		
 		var action : ActionNode = new ActionNode();
 		
 		func.WorkingTester();
 		
-		tester = func.GetTester() * (rate * 0.01) * mod;
+		tester = func.GetTester() * (rate * 0.01) * mod * (1 + mod_tool);
 		
 		//Debug.Log("Tester Att = " + func.GetTester());
 		//Debug.Log("Rate = " + (rate * 0.01));

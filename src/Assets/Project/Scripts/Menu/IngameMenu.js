@@ -175,6 +175,7 @@ function MainMenu(){
 			//Application.LoadLevel ("StartMenu");
 			Application.Quit();
 		}
+		/*
 		if (GUI.Button (Rect (Screen.width - 100,170, 100, 20), "2: Save")) {
 			GameSaver.SaveGame();
 			ingameMenuToggle = false;
@@ -183,6 +184,7 @@ function MainMenu(){
 			GameSaver.LoadGame();
 			ingameMenuToggle = false;
 		}
+		*/
 		if (GUI.Button (Rect (Screen.width - 100,210, 100, 20), "4: Help")) {
 			windowController.ShowRoleHelpWindow();
 			ingameMenuToggle = false;
@@ -224,6 +226,11 @@ function MainMenu(){
 		if (GUI.Button( Rect (Screen.width - 100,350,100,20), "11: Resume") )
 		{
 			ingameMenuToggle = false ;
+		}
+		if (GUI.Button( Rect (Screen.width - 100,370,100,20), "12: TestCases") )
+		{
+			//ingameMenuToggle = false ;
+			project.testCases.Window();
 		}
 	}
 }
