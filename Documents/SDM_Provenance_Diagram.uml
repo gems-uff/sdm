@@ -129,7 +129,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="5rZvTWiN10yavQaUYo+DYQAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="P5ZIaWk4pEq/M3YkS9RLLQAA">
 <XPD:ATTR name="FontStyle" type="integer">1</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">agent</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">character</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="ySHZFuJcsUCTpBxp3aQAbAAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -1632,7 +1632,7 @@
 <XPD:REF name="Associations[2]">qCxfXORdKkSkcbJeTWqyCwAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[2]" type="UMLClass" guid="aNsFQhXRlUmkirqOv2crUgAA">
-<XPD:ATTR name="Name" type="string">agent</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">character</XPD:ATTR>
 <XPD:REF name="Namespace">bTCh1i72VEWEZprLadwa7QAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">IWZaRPliC0W2Tmz9SnDH9wAA</XPD:REF>
