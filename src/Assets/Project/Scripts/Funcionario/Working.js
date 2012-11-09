@@ -499,6 +499,17 @@ function TesterWork(){
 	}
 }
 
+function IdleWork()
+{
+	if(func.GetPapel() == stringNames.papelNenhum && func.GetNome() != stringNames.fired)
+	{
+		var action : ActionNode = new ActionNode();
+		action.NewAction("Idle", "Idle", func, timer.GetGameTime(), "idle", 0.0);
+		behavior.AddAction(action);
+	}
+	
+}
+
 function Treinando(){
 	//Quando terminar o treinamento o funcionario ganhará a especializaçao na qual treinou. A duração do treinamento depende do atributo Auto-Didata
 	if ( func.GetPapel() == stringNames.papelTreinando)
@@ -517,6 +528,9 @@ function Treinando(){
 			timer.PauseGame();
 			floatingLines.showFloatText1("", "", "green", " Training Complete");
 		}
+		var action : ActionNode = new ActionNode();
+		action.NewAction("Training", "Training", func, timer.GetGameTime(), "Training", 0.0);
+		behavior.AddAction(action);
 	}
 }
 

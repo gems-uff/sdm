@@ -13,6 +13,7 @@ function ConsumeAcception()
 	tAcception--;
 	project.IncrementBugsFoundByType(0, 0, 0, 1);
 	Debug.Log("Acception");
+	return "Acception";
 }
 
 function ConsumeSystem()
@@ -20,6 +21,7 @@ function ConsumeSystem()
 	tSystem--;
 	project.IncrementBugsFoundByType(0, 0, 1, 0);
 	Debug.Log("System");
+	return "System";
 }
 
 function ConsumeIntegration()
@@ -27,6 +29,7 @@ function ConsumeIntegration()
 	tIntegration--;
 	project.IncrementBugsFoundByType(0, 1, 0, 0);
 	Debug.Log("Integration");
+	return "Integration";
 }
 
 function ConsumeUnitary()
@@ -34,6 +37,7 @@ function ConsumeUnitary()
 	tUnitary--;
 	project.IncrementBugsFoundByType(1, 0, 0, 0);
 	Debug.Log("Unitary");
+	return "Unitary";
 }
 
 function AddAcception(t : int)
@@ -59,18 +63,18 @@ function AddUnitary(t : int)
 function Use()
 {
 	if((tAcception > 0) && (project.GetBugAcception() > project.GetBugAcceptionFound()))
-		ConsumeAcception();
+		return ConsumeAcception();
 	else
 	{
 		if((tSystem > 0) && (project.GetBugSystem() > project.GetBugSystemFound()))
-			ConsumeSystem();
+			return ConsumeSystem();
 		else
 		{
 			if((tIntegration > 0) && project.GetBugIntegration() > project.GetBugIntegrationFound())
-				ConsumeIntegration();
+				return ConsumeIntegration();
 			else
 				if((tUnitary > 0)&& project.GetBugUnitary() > project.GetBugUnitaryFound())
-					ConsumeUnitary();
+					return ConsumeUnitary();
 		}
 	}
 }

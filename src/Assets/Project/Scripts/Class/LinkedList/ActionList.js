@@ -31,15 +31,17 @@ class ActionList
 
 class ActionNode
 {
-	public var date : int;
-	public var who : String;
-	public var task : String;
-	public var role : String;
-	public var influence : Influence;
-	public var pressure : ActionNode;
-	public var description : String;
-	public var morale : int;
-	public var stamina : int;
+	public var date : int;						//Day
+	public var who : String;					//Name
+	public var task : String;					//Task executed from his role
+	public var role : String;					//Role as in Programmer, marketing, etc
+	public var influence : InfluenceValues;		//Influence stats
+	public var pressure : ActionNode;			//If under pressure
+	public var description : String;			//Text saying his decision making progress
+	public var morale : int;					//morale number
+	public var stamina : int;					//stamina number
+	public var cost : float;					//cost paid each day
+	public var work : float;					//how much he progressed/made/contributed: codelines, bugs found, etc
 	
 	//For the linked List
 	public var next : ActionNode;
@@ -60,9 +62,40 @@ class ActionNode
 		this.influence = null;
 		this.pressure = null;
 		this.description = null;
+		this.morale = 0;
+		this.stamina = 0;
+		this.cost = 0;
+		this.work = 0;
 		
 		this.next = null;
 		this.previous = null;
+	}
+	function SetValues(date : int, who : String, task : String, role : String, description : String, morale : int, stamina : int, cost : float, work  :float)
+	{
+		this.date = date;
+		this.who = who;
+		this.task = task;
+		this.role = role;
+		//this.influence = null;
+		//this.pressure = null;
+		this.description = description;
+		this.morale = morale;
+		this.stamina = stamina;
+		this.cost = cost;
+		this.work = work;
+	}
+	
+	function NewAction(task : String, description : String, func : Funcionario, date : int, role : String, work : float)
+	{
+		this.who = func.GetNome();
+		this.task = task;
+		this.date = date;
+		this.role = role;
+		this.description = description;
+		this.morale = func.GetMorale();
+		this.stamina = func.GetStamina();
+		this.cost = func.GetSalario() / 28;
+		this.work = work;
 	}
 	
 }

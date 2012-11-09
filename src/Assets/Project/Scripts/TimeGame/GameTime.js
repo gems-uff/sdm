@@ -115,6 +115,7 @@ function PassTime () {
 	BroadcastMessage("ProgramadorWork");
 	BroadcastMessage("TesterWork");
 	BroadcastMessage("Treinando");
+	BroadcastMessage("IdleWork");
 	
 	BroadcastMessage("ChangeStamina");
 	BroadcastMessage("StaminaActions");

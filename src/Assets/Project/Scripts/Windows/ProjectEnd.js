@@ -1,6 +1,7 @@
 public var gameStyle : GameplayStyle;
 public var jogador : PlayerStats;
 public var project : Project;
+public var equipe : Equipe;
 public var pgjog : Pagamentos;
 public var timer : GameTime;
 public var windowController : WindowController;
@@ -101,6 +102,7 @@ function WindowFunction(windowID : int){
 			jogador.ChangeCompleted();
 			jogador.CompanyIncreaseExp(aux_projectsize, parseInt(project.GetSincronismo()), parseInt(project.GetNumBugs()));
 			project.ResetProject();
+			equipe.influences.StartNew();
 		}
 		
 		
@@ -121,6 +123,7 @@ function WindowFunction(windowID : int){
 		if (GUI.Button (Rect (02,368,296,25), "Close Window")) 
 		{
 			project.ResetProject();
+			equipe.influences.StartNew();
 			windowController.ShowContractWindow();
 			BroadcastMessage("DecreaseMoraleFailProject");
 			BroadcastMessage("SetExperienceDaysModifier", (timer.GetGameTime() - project.GetStartDay()));

@@ -230,7 +230,7 @@ class ManagerMacro extends System.ValueType{
 		floatingLines.showFloatText2("+", auxAnaArq.ToString(), "blue", " % Dev.");
 		ManagerReport(auxAnaArq, 0, report);
 		
-		NewAction(actionNode, task, "Manager " + descr + " and aided Analysts");
+		actionNode.NewAction(task, "Manager " + descr + " and aided Analysts", func, date, "Manager", auxAnaArq);
 	}
 	
 	function AidProgrammer(actionNode : ActionNode, task : String, descr : String)
@@ -240,7 +240,7 @@ class ManagerMacro extends System.ValueType{
 		floatingLines.showFloatText2("+", auxProg.ToString(), "blue", " % Dev.");
 		ManagerReport(0, auxProg, report);
 		
-		NewAction(actionNode, task, "Manager " + descr + " and aided Programmers");
+		actionNode.NewAction(task, "Manager " + descr + " and aided Programmers", func, date, "Manager", auxProg);
 	}
 	
 	function AidArchitect(actionNode : ActionNode, task : String, descr : String)
@@ -250,11 +250,12 @@ class ManagerMacro extends System.ValueType{
 		floatingLines.showFloatText2("+", auxAnaArq.ToString(), "blue", " % Dev.");
 		ManagerReport(auxAnaArq, 0, report);
 		
-		NewAction(actionNode, task, "Manager " + descr + " and aided Architects");
+		actionNode.NewAction(task, "Manager " + descr + " and aided Architects", func, date, "Manager", auxAnaArq);
 	}
 	//--------------------------------------------
 	//Set the action
 	//--------------------------------------------
+	/*
 	function NewAction(actionNode : ActionNode, task : String, description : String)
 	{
 		actionNode.who = func.GetNome();
@@ -265,6 +266,7 @@ class ManagerMacro extends System.ValueType{
 		actionNode.morale = func.GetMorale();
 		actionNode.stamina = func.GetStamina();
 	}
+	*/
 	
 	function ManagerReport(design : int, dev : int, report : WeeklyReport)
 	{

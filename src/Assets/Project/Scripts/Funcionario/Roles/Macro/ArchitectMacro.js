@@ -15,6 +15,7 @@ class ArchitectMacro extends System.ValueType{
 	private var equipe : Equipe;
 	private var constant : GameConstants;
 	private var arquiteto : float;	
+	private var qnt : int;
 	
 	var behavior : BehaviorPlanner;
 	var date : int;
@@ -23,28 +24,28 @@ class ArchitectMacro extends System.ValueType{
 	{
 		var actionNode : ActionNode = new ActionNode();
 		
-		func = funcP;
-		project = projectP;
-		report = reportP;
-		floatingLines = floatingLinesP;
-		equipe = equipeP;
-		constant = constantP;
-		arquiteto = arquitetoP;
+		this.func = funcP;
+		this.project = projectP;
+		this.report = reportP;
+		this.floatingLines = floatingLinesP;
+		this.equipe = equipeP;
+		this.constant = constantP;
+		this.arquiteto = arquitetoP;
 		
-		behavior = behaviorP;
-		date = dateP;
+		this.behavior = behaviorP;
+		this.date = dateP;
 		 
 		
 		if(equipe.influences.GetBonusArch()!= 1.0)
 		{
 			arquiteto = arquiteto * (1 + equipe.influences.GetBonusArch());
-			actionNode.influence = equipe.influences.GetInfluence();
+			actionNode.influence = equipe.influences.GetInfluence("Architect");
 		}
 		
 		var randomizer : float = Random.Range (0.8, 1.2);
 		
 		arquiteto = parseInt(randomizer * arquiteto);
-		
+		qnt = parseInt(arquiteto * 0.025);
 		
 		DecisionTree(actionNode);
 		
@@ -100,7 +101,7 @@ class ArchitectMacro extends System.ValueType{
 		//System
 		if(behavior.GetTestCases() == "system")
 		{
-			NewAction(actionNode, task + " System", "Employee was ordered to \n focus on " + descr + " \n and make System test cases");
+			actionNode.NewAction(task + " System", "Employee was ordered to \n focus on " + descr + " \n and make System test cases", func, date, "Architect", qnt);
 			MakeSystemCases(actionNode);
 		}
 		else
@@ -108,7 +109,7 @@ class ArchitectMacro extends System.ValueType{
 			//Integration
 			if(behavior.GetTestCases() == "integration")
 			{
-				NewAction(actionNode, task + " Integration", "Employee was ordered to \n focus on " + descr + " \n and make Integration test cases");
+				actionNode.NewAction(task + " Integration", "Employee was ordered to \n focus on " + descr + " \n and make Integration test cases", func, date, "Architect", qnt);
 				MakeIntegrationCases(actionNode);
 			}
 			//Both
@@ -116,12 +117,12 @@ class ArchitectMacro extends System.ValueType{
 			{
 				if(chance < 50)
 				{
-					NewAction(actionNode, task + " System", "Employee was ordered to \n focus on " + descr + " \n and make both types of test cases");
+					actionNode.NewAction(task + " System", "Employee was ordered to \n focus on " + descr + " \n and make both types of test cases", func, date, "Architect", qnt);
 					MakeSystemCases(actionNode);
 				}
 				else
 				{
-					NewAction(actionNode, task + " Integration", "Employee was ordered to \n focus on " + descr + " \n and make both types of test cases");
+					actionNode.NewAction(task + " Integration", "Employee was ordered to \n focus on " + descr + " \n and make both types of test cases", func, date, "Architect", qnt);
 					MakeIntegrationCases(actionNode);
 				}
 			}
@@ -131,19 +132,19 @@ class ArchitectMacro extends System.ValueType{
 	{
 		if(chance < 75)
 		{
-			NewAction(actionNode, task + " Architecture", "Employee was ordered to \n focus on " + descr + " \n and improved the architecture");
+			actionNode.NewAction(task + " Architecture", "Employee was ordered to \n focus on " + descr + " \n and improved the architecture", func, date, "Architect", arquiteto);
 			ModularizateCode(actionNode);
 		}
 		else
 		{
-			NewAction(actionNode, task + " Prototype", "Employee was ordered to \n focus on " + descr + "\n and made a prototype");
+			actionNode.NewAction(task + " Prototype", "Employee was ordered to \n focus on " + descr + "\n and made a prototype", func, date, "Architect", 1);
 			MakePrototype(actionNode);
 		}
 	}
 	
 	function Analysis(actionNode : ActionNode)
 	{
-		NewAction(actionNode, "Analysis Prototype", "Employee was ordered to \n do a prototype");
+		actionNode.NewAction("Analysis Prototype", "Employee was ordered to \n do a prototype", func, date, "Architect", 1);
 		MakePrototype(actionNode);
 	}
 	
@@ -178,8 +179,8 @@ class ArchitectMacro extends System.ValueType{
 	function MakeSystemCases(actionNode : ActionNode)
 	{
 		//equipe.SetSystemBonus(arquiteto);
-		equipe.influences.SetBonusTesterArchSystem(arquiteto, actionNode);
-		project.testCases.AddSystem(parseInt(arquiteto * 0.025));
+		equipe.influences.SetBonusTesterArchSystem(arquiteto, actionNode, qnt);
+		project.testCases.AddSystem(qnt);
 		floatingLines.showFloatText1("", "System Cases", "blue","");
 		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue","% System");
 		ArchitectReport(arquiteto, 0, 0, report);
@@ -189,8 +190,8 @@ class ArchitectMacro extends System.ValueType{
 	function MakeIntegrationCases(actionNode : ActionNode)
 	{
 		//equipe.SetIntegrationBonus(arquiteto);
-		equipe.influences.SetBonusTesterArchIntegration(arquiteto, actionNode);
-		project.testCases.AddIntegration(parseInt(arquiteto * 0.025));
+		equipe.influences.SetBonusTesterArchIntegration(arquiteto, actionNode, qnt);
+		project.testCases.AddIntegration(qnt);
 		floatingLines.showFloatText1("", "Integr Cases", "blue","");
 		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue","% Integration");
 		ArchitectReport(0, arquiteto, 0, report);
@@ -209,6 +210,7 @@ class ArchitectMacro extends System.ValueType{
 	//--------------------------------------------
 	//Set the action
 	//--------------------------------------------
+	/*
 	function NewAction(actionNode : ActionNode, task : String, description : String)
 	{
 		actionNode.who = func.GetNome();
@@ -219,6 +221,7 @@ class ArchitectMacro extends System.ValueType{
 		actionNode.morale = func.GetMorale();
 		actionNode.stamina = func.GetStamina();
 	}
+	*/
 	
 	//--------------------------------------------
 	//Report

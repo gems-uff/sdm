@@ -17,7 +17,7 @@ class MarketingMacro extends System.ValueType{
 		marketing = parseInt(aux * randomizer2 * 4);
 		aux = parseInt(aux * randomizer);
 		
-		NewAction(actionNode, "Aid", "Marketing Generated Income and aided Analyst, if any", func, date);
+		actionNode.NewAction("Aid", "Marketing Generated Income and aided Analyst, if any", func, date, "Marketing", aux);
 		
 		equipe.SetBonusAnalista(aux);
 		equipe.influences.SetBonusAnalystMarketing(aux, actionNode);
@@ -36,7 +36,7 @@ class MarketingMacro extends System.ValueType{
 		report.marketingReport_val = report.marketingReport_val + val;
 		report.marketingReport_money = report.marketingReport_money + money;
 	}
-	
+	/*
 	function NewAction(actionNode : ActionNode, task : String, description : String, func : Funcionario, date : int)
 	{
 		actionNode.who = func.GetNome();
@@ -48,5 +48,5 @@ class MarketingMacro extends System.ValueType{
 		actionNode.morale = func.GetMorale();
 		actionNode.stamina = func.GetStamina();
 	}
-
+	*/
 }

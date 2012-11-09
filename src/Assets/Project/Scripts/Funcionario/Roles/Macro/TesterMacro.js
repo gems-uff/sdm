@@ -27,6 +27,7 @@ class TesterMacro extends System.ValueType{
 		var findScore : int = 0;
 		
 		var actionNode : ActionNode = new ActionNode();
+		var typeUsed : String;
 		
 		
 		//Chances to find each bug type
@@ -45,19 +46,25 @@ class TesterMacro extends System.ValueType{
 		if(project.testCases.HasTestCase())
 		{
 			//Consume a test case
-			NewAction(actionNode, "Test: Cases", "Tester used Test Cases", func, date);
+			//NewAction(actionNode, "Test: Cases", "Tester used Test Cases", func, date);
+			actionNode.influence = equipe.influences.GetInfluence("Tester");
 			while(i < findScore && project.testCases.HasTestCase())
 			{
 				i += 2;
-				project.testCases.Use();
+				typeUsed = project.testCases.Use();
+				equipe.influences.ConsumeInfluenceTester(typeUsed, actionNode.influence);
+				
 				totalBugsFound++;
 				Debug.Log("Found: " + totalBugsFound);
 			}
+			
+			actionNode.NewAction("Test: Cases", "Tester used Test Cases", func, date, "Tester", totalBugsFound);
 		}
 		else
 		{
 			//We do Adhoc
-			NewAction(actionNode, "Test: Adhoc", "Tester searched in Adhoc-mode", func, date);
+			//NewAction(actionNode, "Test: Adhoc", "Tester searched in Adhoc-mode", func, date);
+			
 			while(i < findScore)
 			{
 				i++;
@@ -99,9 +106,8 @@ class TesterMacro extends System.ValueType{
 					}
 				}
 			}
+			actionNode.NewAction("Test: Adhoc", "Tester searched in Adhoc-mode", func, date, "Tester", totalBugsFound);
 		}
-		
-
 		//project.IncrementBugsFoundByType(bugUnitary, bugIntegration, bugSystem, bugAcception);
 		//Report and text
 		TesterReport(totalBugsFound, report);
@@ -115,6 +121,7 @@ class TesterMacro extends System.ValueType{
 		report.testerReport = report.testerReport + bug;
 	}
 	
+	/*
 	function NewAction(actionNode : ActionNode, task : String, description : String, func : Funcionario, date : int)
 	{
 		actionNode.who = func.GetNome();
@@ -125,5 +132,6 @@ class TesterMacro extends System.ValueType{
 		actionNode.morale = func.GetMorale();
 		actionNode.stamina = func.GetStamina();
 	}
+	*/
 
 }

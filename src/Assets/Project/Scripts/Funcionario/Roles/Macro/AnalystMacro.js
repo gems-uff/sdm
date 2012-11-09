@@ -38,7 +38,7 @@ class AnalystMacro extends System.ValueType{
 		if(equipe.influences.GetBonusAnalyst()!= 1.0)
 		{
 			analista = analista * (1 + equipe.influences.GetBonusAnalyst());
-			actionNode.influence = equipe.influences.GetInfluence();
+			actionNode.influence = equipe.influences.GetInfluence("Analyst");
 		}
 		
 		val = analista / (project.GetProjectSize() * 0.001);
@@ -104,13 +104,16 @@ class AnalystMacro extends System.ValueType{
 	{
 		if(project.GetPrototype() > 0)
 		{
-			actionNode.influence = equipe.influences.GetInfluenceAnalystPrototype();
+			//actionNode.influence = equipe.influences.GetInfluenceAnalystPrototype();
+			actionNode.influence = equipe.influences.GetInfluence("Prototype");
 			//Validation with Prototype
-			NewAction(actionNode, task + " Prototype", "Employee was ordered to \n focus on " + descr + " \n and validated a Prototype");
 			project.ConsumePrototype();
 			val = val * 1.5;
 			project.UpdateElicitation(val, true);
 			AnalistReport(parseInt(val), report);
+			
+			actionNode.NewAction(task + " Prototype", "Employee was ordered to \n focus on " + descr + " \n and validated a Prototype", func, date, "Analyst", val);
+			
 			floatingLines.showFloatText1("", "Validation", "blue","");
 			floatingLines.showFloatText2("+", val.ToString(), "blue", " Val.");
 		}
@@ -119,7 +122,7 @@ class AnalystMacro extends System.ValueType{
 			//Validation with Req reviews
 			//if(project.GetSincronismo() < 100)	//Se o projeto esta em andamento entao o sincronismo vai mudando lentamente de acordo com o analista
 			//{
-			NewAction(actionNode, task + " Reviews", "Employee was ordered to \n focus on " + descr + " \n and validated with Reviews");
+			
 			if(project.GetSincronismo() == 00)	//Se o projeto esta sendo iniciado, entao o valor de sincronismo inicial varia de acordo com o desempenho do analista
 			{
 				val = val * 5;
@@ -127,6 +130,9 @@ class AnalystMacro extends System.ValueType{
 			//Update project validation rate
 			project.UpdateElicitation(val, false);
 			AnalistReport(parseInt(val), report);
+			
+			actionNode.NewAction(task + " Reviews", "Employee was ordered to \n focus on " + descr + " \n and validated with Reviews", func, date, "Analyst", val);
+			
 			floatingLines.showFloatText1("", "Validation", "blue","");
 			floatingLines.showFloatText2("+", val.ToString(), "blue", " Val.");
 			ClientFindBug();
@@ -157,21 +163,21 @@ class AnalystMacro extends System.ValueType{
 				Specifying();
 			}
 			*/
-			NewAction(actionNode, task, "Employee was ordered to \n focus on " + descr + " \n and because he was above moderate \n he decided to do discovery");
+			actionNode.NewAction(task, "Employee was ordered to \n focus on " + descr + " \n and because he was above moderate \n he decided to do discovery", func, date, "Analyst", val);
 			Specifying();
 		}
 		else
 		{
 			//Debug.Log("Bad");
 			//Bad Analyst
-			NewAction(actionNode, task, "Employee was ordered to \n focus on " + descr + " \n and because he was moderate \n he did discovery");
+			actionNode.NewAction(task, "Employee was ordered to \n focus on " + descr + " \n and because he was moderate \n he did discovery", func, date, "Analyst", val);
 			Specifying();
 		}
 	}
 	
 	function Quality(actionNode : ActionNode, task : String, descr : String)
 	{
-		NewAction(actionNode, task, "Employee was ordered to \n focus on " + descr + " \n and because he was moderate \n he did discovery");
+		actionNode.NewAction(task, "Employee was ordered to \n focus on " + descr + " \n and because he was moderate \n he did discovery", func, date, "Analyst", val);
 		MakeAcceptionCases(actionNode);
 	}
 	
@@ -208,6 +214,7 @@ class AnalystMacro extends System.ValueType{
 	//--------------------------------------------
 	//Set the action
 	//--------------------------------------------
+	/*
 	function NewAction(actionNode : ActionNode, task : String, description : String)
 	{
 		actionNode.who = func.GetNome();
@@ -218,6 +225,7 @@ class AnalystMacro extends System.ValueType{
 		actionNode.morale = func.GetMorale();
 		actionNode.stamina = func.GetStamina();
 	}
+	*/
 	
 	function ClientFindBug()
 	{

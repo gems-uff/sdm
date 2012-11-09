@@ -46,45 +46,48 @@ class InfluenceList
 	function Add(t : ActionNode)
 	{
 		//if empty
-		var node : InfluenceNode = new InfluenceNode();
-		node.action = t;
-		if(this.first == null)
+		if(t != null)
 		{
-			this.first = node;
-			this.last = node;
+			var node : InfluenceNode = new InfluenceNode();
+			node.action = t;
+			if(this.first == null)
+			{
+				this.first = node;
+				this.last = node;
+				/*
+				if(this.first.action.who == "")
+				{
+					this.first = node;
+					this.last = node;
+				}
+				
+				else
+				{
+					this.last.Add(node);
+					this.last = node;
+				}
+				*/
+			}
+			else
+			{
 			/*
-			if(this.first.action.who == "")
-			{
-				this.first = node;
-				this.last = node;
-			}
-			
-			else
-			{
+				//Put it after the last one
 				this.last.Add(node);
+				//Update the last one
 				this.last = node;
-			}
 			*/
-		}
-		else
-		{
-		/*
-			//Put it after the last one
-			this.last.Add(node);
-			//Update the last one
-			this.last = node;
-		*/
-			if(this.first.action.who == "")
-			{
-				this.first = node;
-				this.last = node;
-			}
-			
-			else
-			{
-				this.last.Add(node);
-				this.last = node;
-				//this.mid = this.first.next;
+				if(this.first.action.who == "")
+				{
+					this.first = node;
+					this.last = node;
+				}
+				
+				else
+				{
+					this.last.Add(node);
+					this.last = node;
+					//this.mid = this.first.next;
+				}
 			}
 		}
 	}

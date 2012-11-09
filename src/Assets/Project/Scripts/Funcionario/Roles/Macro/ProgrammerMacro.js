@@ -39,7 +39,7 @@ class ProgrammerMacro extends System.ValueType{
 		if(equipe.influences.GetBonusProg()!= 1.0)
 		{
 			programador = programador * (1 + equipe.influences.GetBonusProg());
-			actionNode.influence = equipe.influences.GetInfluence();
+			actionNode.influence = equipe.influences.GetInfluence("Programmer");
 		}
 			
 		DecisionTree(actionNode);
@@ -262,13 +262,13 @@ class ProgrammerMacro extends System.ValueType{
 	function Adhoc(actionNode : ActionNode, isEsp : boolean, isPressured : boolean, prog : String)
 	{
 		
-		NewAction(actionNode, isEsp, isPressured, prog);
+		//NewAction(actionNode, isEsp, isPressured, prog);
 		
 		//Decide which task will be done
 		if(behavior.GetProgEvolution())
 		{
 			actionNode.task = "Evolution Adhoc";
-			Evolution(1.5, 1.75);
+			Evolution(1.5, 2.75, actionNode, isEsp, isPressured, prog);
 			ModifyCodeQuality(- 0.2);
 		}
 		else
@@ -276,7 +276,7 @@ class ProgrammerMacro extends System.ValueType{
 			if(behavior.GetProgRepair())
 			{
 				actionNode.task = "Repair Adhoc";
-				Repair(1.5, 1.5, 1.5);
+				Repair(1.5, 1.5, 1.5, actionNode, isEsp, isPressured, prog);
 			}
 		}
 	}
@@ -286,20 +286,20 @@ class ProgrammerMacro extends System.ValueType{
 	//--------------------------------------------
 	function DrawCode(actionNode : ActionNode, isEsp : boolean, isPressured : boolean, prog : String)
 	{
-		NewAction(actionNode, isEsp, isPressured, prog);
+		//NewAction(actionNode, isEsp, isPressured, prog);
 		
 		//Decide which task will be done
 		if(behavior.GetProgEvolution())
 		{
 			actionNode.task = "Evolution Draw-code";
-			Evolution(1.0, 1.0);
+			Evolution(1.0, 5.0, actionNode, isEsp, isPressured, prog);
 		}
 		else
 		{
 			if(behavior.GetProgRepair())
 			{
 				actionNode.task = "Repair Draw-code";
-				Repair(1.0, 1.0, 1.0);
+				Repair(1.0, 1.0, 1.0, actionNode, isEsp, isPressured, prog);
 			}
 		}
 	}
@@ -309,16 +309,18 @@ class ProgrammerMacro extends System.ValueType{
 	//--------------------------------------------
 	function TestDriven(actionNode : ActionNode, isEsp : boolean, isPressured : boolean, prog : String)
 	{
-		NewAction(actionNode, isEsp, isPressured, prog);
+		//NewAction(actionNode, isEsp, isPressured, prog);
 		
 		//Make Unitary Test Cases
-		project.testCases.AddUnitary(parseInt(prog * 0.02));
+		var qnt : int = parseInt(programador * 0.02);
+		project.testCases.AddUnitary(qnt);
+		equipe.influences.SetBonusTesterProg(actionNode, qnt);
 		
 		//Decide which task will be done
 		if(behavior.GetProgEvolution())
 		{
 			actionNode.task = "Evolution Test-Driven";
-			Evolution(0.75, 0.5);
+			Evolution(0.75, 1.5, actionNode, isEsp, isPressured, prog);
 			ModifyCodeQuality(0.1);
 		}
 		else
@@ -326,7 +328,7 @@ class ProgrammerMacro extends System.ValueType{
 			if(behavior.GetProgRepair())
 			{
 				actionNode.task = "Repair Test-Driven";
-				Repair(0.25, 0.5, 0.5);
+				Repair(0.25, 0.5, 0.5, actionNode, isEsp, isPressured, prog);
 			}
 		}
 	}
@@ -337,9 +339,13 @@ class ProgrammerMacro extends System.ValueType{
 	function Refactoring(actionNode : ActionNode, isEsp : boolean, isPressured : boolean, prog : String)
 	{
 		//programador : range from 0 to 350
-		NewAction(actionNode, isEsp, isPressured, prog);
+		//NewAction(actionNode, isEsp, isPressured, prog);
 		//Make Unitary Test Cases
-		project.testCases.AddUnitary(parseInt(prog * 0.03));
+		
+		var qnt : int = parseInt(programador * 0.03);
+		project.testCases.AddUnitary(qnt);
+		//project.testCases.AddUnitary(parseInt(prog * 0.03));
+		equipe.influences.SetBonusTesterProg(actionNode, qnt);
 		
 		actionNode.task = "Refactoring";
 		
@@ -349,6 +355,7 @@ class ProgrammerMacro extends System.ValueType{
 		refact = 1 + (programador * randomizer * 0.0001);
 		
 		project.ChangeCodeQuality(refact);
+		NewAction(actionNode, isEsp, isPressured, prog, ((refact - 1) * 100));
 		floatingLines.showFloatText1("", "Refactoring", "blue", "");
 		floatingLines.showFloatText2("+", ((refact - 1) * 100).ToString(), "blue", "% Improved");
 	}
@@ -368,7 +375,7 @@ class ProgrammerMacro extends System.ValueType{
 	//--------------------------------------------
 	//Set the action
 	//--------------------------------------------
-	function NewAction(actionNode : ActionNode, isEsp : boolean, isPressured : boolean, prog : String)
+	function NewAction(actionNode : ActionNode, isEsp : boolean, isPressured : boolean, prog : String, work : float)
 	{
 		//var actionNode : ActionNode = new ActionNode();
 		var esp : String = "";
@@ -381,7 +388,6 @@ class ProgrammerMacro extends System.ValueType{
 		
 		actionNode.who = func.GetNome();
 		actionNode.date = date;
-		//actionNode.who = func.Copy();
 		actionNode.role = "Programmer";
 		
 		if(isPressured)
@@ -395,6 +401,8 @@ class ProgrammerMacro extends System.ValueType{
 		
 		actionNode.morale = func.GetMorale();
 		actionNode.stamina = func.GetStamina();
+		actionNode.cost = func.GetSalario() / 28;
+		actionNode.work = work;
 		//return actionNode;
 	}
 	
@@ -402,7 +410,7 @@ class ProgrammerMacro extends System.ValueType{
 	//Old functions
 	//--------------------------------------------
 	
-	function Evolution(modCode : float, modBug : float)
+	function Evolution(modCode : float, modBug : float, actionNode : ActionNode, isEsp : boolean, isPressured : boolean, prog : String)
 	{
 		//modCode : MOdify the number of lines produced
 		//modBug : Modify the number of possible new bugs inserted
@@ -462,6 +470,9 @@ class ProgrammerMacro extends System.ValueType{
 			project.SetLinesDone(codeLines);
 			ProgReport(codeLines, 0, report);
 			
+			NewAction(actionNode, isEsp, isPressured, prog, codeLines);
+			
+			
 			floatingLines.showFloatText1("", "Evolution", "blue", "");
 			floatingLines.showFloatText2("+", codeLines.ToString(), "blue", " Progress");			
 			//Will be ommited
@@ -470,7 +481,7 @@ class ProgrammerMacro extends System.ValueType{
 	}
 	
 	
-	function Repair(modRepair : float, modQuantity : float, modIntroduce : float)
+	function Repair(modRepair : float, modQuantity : float, modIntroduce : float, actionNode : ActionNode, isEsp : boolean, isPressured : boolean, prog : String)
 	{
 		//t : Number of attempts to repair bugs each day
 		//modRepair : Modify the probability to repair a bug for each attempt
@@ -528,6 +539,9 @@ class ProgrammerMacro extends System.ValueType{
 			}
 		}
 		ProgReport(0, - repaired, report);
+		
+		NewAction(actionNode, isEsp, isPressured, prog, - repaired);
+		
 		floatingLines.showFloatText1("", "Repair", "blue", "");
 		floatingLines.showFloatText2("+", repaired.ToString(), "blue", " Bugs Repaired");
 		//project.IncrementBugsRepairedByType(bugUnitary, bugIntegration, bugSystem, bugAcception);
@@ -538,55 +552,4 @@ class ProgrammerMacro extends System.ValueType{
 		report.programmerReport_prog = report.programmerReport_prog + prog;
 		report.programmerReport_bug = report.programmerReport_bug + bugs;
 	}
-	
-	//Function that randomizes the types of bugs inserted in the code by a max o t bugs
-	/*
-	function RandomizeBugs(t : int)
-	{
-		var i : int = 0;
-		var random : int;
-		codeQuality = 4;
-		var bugUnitary : int = 0;
-		var bugIntegration : int = 0;
-		var bugSystem : int = 0;
-		var bugAcception : int = 0;
-		
-		while(i < t)
-		{
-			random = Random.Range (0, 10);
-			if (random > codeQuality)
-			{
-				i++;
-				random = Random.Range (0, 5);
-				switch(random)
-				{
-				   case 1: 
-					  bugUnitary++;
-				   break;
-			
-				   case 2:
-					  bugIntegration++;
-				   break;
-				   
-				   case 3:
-					  bugSystem++;;
-				   break;
-				   
-				   case 4:
-					  bugAcception++;
-				   break;
-				   
-				   default:
-						bugUnitary++;
-					  break;
-				}
-			}
-		}
-		project.IncrementBugsByType(bugUnitary, bugIntegration, bugSystem, bugAcception);
-		var aux : int;
-		aux = (bugUnitary + bugIntegration + bugSystem + bugAcception);
-		return aux;
-	}
-	*/
-
 }
