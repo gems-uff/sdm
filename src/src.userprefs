@@ -1,9 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Funcionario\Working.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Equipe\Influence.js">
     <Files>
-      <File FileName="Assets\Project\Scripts\Funcionario\Working.js" Line="1" Column="1" />
-      <File FileName="Assets\Project\Scripts\Misc\ExportLogFile.js" Line="37" Column="65" />
+      <File FileName="Assets\Project\Scripts\Misc\ExportLogFile.js" Line="25" Column="31" />
       <File FileName="Assets\Project\Scripts\Equipe\InfluenceValues.js" Line="17" Column="22" />
       <File FileName="Assets\Project\Scripts\Equipe\Influence.js" Line="140" Column="22" />
       <File FileName="Assets\Project\Scripts\Class\LinkedList\ActionList.js" Line="63" Column="41" />

@@ -314,6 +314,7 @@ class ProgrammerMacro extends System.ValueType{
 		//Make Unitary Test Cases
 		var qnt : int = parseInt(programador * 0.02);
 		project.testCases.AddUnitary(qnt);
+		actionNode.artifact = "Unitary Test Cases";
 		equipe.influences.SetBonusTesterProg(actionNode, qnt);
 		
 		//Decide which task will be done
