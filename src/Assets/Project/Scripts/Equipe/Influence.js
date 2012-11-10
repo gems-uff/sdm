@@ -111,12 +111,14 @@ import System;
 		{
 			case "Analyst":
 				inf.num = bonusAnalyst;
+				inf.valid = true;
 				inf.influence.Add(analystManagerInfluence);
 				inf.influence.Add(analystMarketingInfluence);
 			break;
 			case "Prototype":
 				inf.num = bonusAnalyst;
-				inf.artifact = "Prototype";
+				inf.valid = true;
+				//inf.artifact = "Prototype";
 				inf.influence.Add(analystManagerInfluence);
 				inf.influence.Add(analystMarketingInfluence);
 				inf.influence.Add(analystArchInfluence.first.action);
@@ -124,16 +126,19 @@ import System;
 			break;
 			case "Architect":
 				inf.num = bonusArch;
+				inf.valid = true;
 				inf.influence.Add(archManagerInfluence);
 			break;
 			case "Programmer":
 				inf.num = bonusProg;
+				inf.valid = true;
 				AddfromList(inf, progArchInfluence);
 				inf.influence.Add(progManagerInfluence);
 			break;
 			case "Tester":
 				inf.num = 1.0;
-				inf.artifact = "TestCase";
+				inf.valid = true;
+				//inf.artifact = "TestCase";
 				//Test cases influence are added when they are consumed
 			break;
 			

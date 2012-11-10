@@ -41,7 +41,7 @@ class TesterMacro extends System.ValueType{
 		findScore = parseInt(tester * randomizer * constant.TESTER * 0.1);
 		//Chance to find a bug, to a total of "aux" bugs
 		i = 1;
-		Debug.Log("Find #Bugs: " + findScore);
+		//Debug.Log("Find #Bugs: " + findScore);
 		//First check if there are any test cases ready
 		if(project.testCases.HasTestCase())
 		{
@@ -55,10 +55,10 @@ class TesterMacro extends System.ValueType{
 				equipe.influences.ConsumeInfluenceTester(typeUsed, actionNode.influence);
 				
 				totalBugsFound++;
-				Debug.Log("Found: " + totalBugsFound);
+				//Debug.Log("Found: " + totalBugsFound);
 			}
 			
-			actionNode.NewAction("Test: Cases", "Tester used Test Cases", func, date, "Tester", totalBugsFound);
+			actionNode.NewAction("Test: Cases", "Tester used Test Cases", func, date, "Tester", totalBugsFound, "");
 		}
 		else
 		{
@@ -106,7 +106,7 @@ class TesterMacro extends System.ValueType{
 					}
 				}
 			}
-			actionNode.NewAction("Test: Adhoc", "Tester searched in Adhoc-mode", func, date, "Tester", totalBugsFound);
+			actionNode.NewAction("Test: Adhoc", "Tester searched in Adhoc-mode", func, date, "Tester", totalBugsFound, "");
 		}
 		//project.IncrementBugsFoundByType(bugUnitary, bugIntegration, bugSystem, bugAcception);
 		//Report and text

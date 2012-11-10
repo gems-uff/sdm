@@ -12,7 +12,7 @@ function ConsumeAcception()
 {
 	tAcception--;
 	project.IncrementBugsFoundByType(0, 0, 0, 1);
-	Debug.Log("Acception");
+	//Debug.Log("Acception");
 	return "Acception";
 }
 
@@ -20,7 +20,7 @@ function ConsumeSystem()
 {
 	tSystem--;
 	project.IncrementBugsFoundByType(0, 0, 1, 0);
-	Debug.Log("System");
+	//Debug.Log("System");
 	return "System";
 }
 
@@ -28,7 +28,7 @@ function ConsumeIntegration()
 {
 	tIntegration--;
 	project.IncrementBugsFoundByType(0, 1, 0, 0);
-	Debug.Log("Integration");
+	//Debug.Log("Integration");
 	return "Integration";
 }
 
@@ -36,7 +36,7 @@ function ConsumeUnitary()
 {
 	tUnitary--;
 	project.IncrementBugsFoundByType(1, 0, 0, 0);
-	Debug.Log("Unitary");
+	//Debug.Log("Unitary");
 	return "Unitary";
 }
 

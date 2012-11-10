@@ -42,6 +42,7 @@ class ActionNode
 	public var stamina : int;					//stamina number
 	public var cost : float;					//cost paid each day
 	public var work : float;					//how much he progressed/made/contributed: codelines, bugs found, etc
+	public var artifact : String;				//created any artifact ? Which one ? Prototype or test cases
 	
 	//For the linked List
 	public var next : ActionNode;
@@ -59,13 +60,14 @@ class ActionNode
 		this.who = null;
 		this.task = null;
 		this.role = null;
-		this.influence = null;
+		this.influence = new InfluenceValues();
 		this.pressure = null;
 		this.description = null;
 		this.morale = 0;
 		this.stamina = 0;
 		this.cost = 0;
 		this.work = 0;
+		this.artifact = "";
 		
 		this.next = null;
 		this.previous = null;
@@ -85,7 +87,7 @@ class ActionNode
 		this.work = work;
 	}
 	
-	function NewAction(task : String, description : String, func : Funcionario, date : int, role : String, work : float)
+	function NewAction(task : String, description : String, func : Funcionario, date : int, role : String, work : float, artifact : String)
 	{
 		this.who = func.GetNome();
 		this.task = task;
@@ -96,6 +98,7 @@ class ActionNode
 		this.stamina = func.GetStamina();
 		this.cost = func.GetSalario() / 28;
 		this.work = work;
+		this.artifact = artifact;
 	}
 	
 }

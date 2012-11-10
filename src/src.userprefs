@@ -2,13 +2,15 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Funcionario\Working.js">
     <Files>
-      <File FileName="Assets\Project\Scripts\Equipe\InfluenceValues.js" Line="11" Column="39" />
-      <File FileName="Assets\Project\Scripts\Equipe\Influence.js" Line="69" Column="19" />
-      <File FileName="Assets\Project\Scripts\Misc\ExportLogFile.js" Line="7" Column="1" />
-      <File FileName="Assets\Project\Scripts\Class\LinkedList\ActionList.js" Line="44" Column="100" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Working.js" Line="504" Column="86" />
-      <File FileName="Assets\Project\Scripts\Windows\PapelWindow.js" Line="217" Column="48" />
-      <File FileName="Assets\Project\Scripts\TimeGame\GameTime.js" Line="118" Column="31" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Working.js" Line="1" Column="1" />
+      <File FileName="Assets\Project\Scripts\Misc\ExportLogFile.js" Line="37" Column="65" />
+      <File FileName="Assets\Project\Scripts\Equipe\InfluenceValues.js" Line="17" Column="22" />
+      <File FileName="Assets\Project\Scripts\Equipe\Influence.js" Line="140" Column="22" />
+      <File FileName="Assets\Project\Scripts\Class\LinkedList\ActionList.js" Line="63" Column="41" />
+      <File FileName="Assets\Project\Scripts\Class\LinkedList\InfluenceList.js" Line="159" Column="19" />
+      <File FileName="Assets\Project\Scripts\Windows\LogWindow.js" Line="276" Column="37" />
+      <File FileName="Assets\Project\Scripts\Class\LinkedList\EmployeeList.js" Line="35" Column="13" />
+      <File FileName="Assets\Project\Scripts\Class\Employee.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

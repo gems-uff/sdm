@@ -112,7 +112,7 @@ class AnalystMacro extends System.ValueType{
 			project.UpdateElicitation(val, true);
 			AnalistReport(parseInt(val), report);
 			
-			actionNode.NewAction(task + " Prototype", "Employee was ordered to \n focus on " + descr + " \n and validated a Prototype", func, date, "Analyst", val);
+			actionNode.NewAction(task + " Prototype", "Employee was ordered to \n focus on " + descr + " \n and validated a Prototype", func, date, "Analyst", val, "");
 			
 			floatingLines.showFloatText1("", "Validation", "blue","");
 			floatingLines.showFloatText2("+", val.ToString(), "blue", " Val.");
@@ -131,7 +131,7 @@ class AnalystMacro extends System.ValueType{
 			project.UpdateElicitation(val, false);
 			AnalistReport(parseInt(val), report);
 			
-			actionNode.NewAction(task + " Reviews", "Employee was ordered to \n focus on " + descr + " \n and validated with Reviews", func, date, "Analyst", val);
+			actionNode.NewAction(task + " Reviews", "Employee was ordered to \n focus on " + descr + " \n and validated with Reviews", func, date, "Analyst", val, "");
 			
 			floatingLines.showFloatText1("", "Validation", "blue","");
 			floatingLines.showFloatText2("+", val.ToString(), "blue", " Val.");
@@ -163,21 +163,21 @@ class AnalystMacro extends System.ValueType{
 				Specifying();
 			}
 			*/
-			actionNode.NewAction(task, "Employee was ordered to \n focus on " + descr + " \n and because he was above moderate \n he decided to do discovery", func, date, "Analyst", val);
+			actionNode.NewAction(task, "Employee was ordered to \n focus on " + descr + " \n and because he was above moderate \n he decided to do discovery", func, date, "Analyst", val, "");
 			Specifying();
 		}
 		else
 		{
 			//Debug.Log("Bad");
 			//Bad Analyst
-			actionNode.NewAction(task, "Employee was ordered to \n focus on " + descr + " \n and because he was moderate \n he did discovery", func, date, "Analyst", val);
+			actionNode.NewAction(task, "Employee was ordered to \n focus on " + descr + " \n and because he was moderate \n he did discovery", func, date, "Analyst", val, "");
 			Specifying();
 		}
 	}
 	
 	function Quality(actionNode : ActionNode, task : String, descr : String)
 	{
-		actionNode.NewAction(task, "Employee was ordered to \n focus on " + descr + " \n and because he was moderate \n he did discovery", func, date, "Analyst", val);
+		actionNode.NewAction(task, "Employee was ordered to \n focus on " + descr + " \n and because he was moderate \n he did discovery", func, date, "Analyst", val, "Acception Test Cases");
 		MakeAcceptionCases(actionNode);
 	}
 	

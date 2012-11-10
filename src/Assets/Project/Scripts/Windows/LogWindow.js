@@ -262,10 +262,10 @@ function InfluenceWindowFunction(windowID : int){
 	//Upper Left
 	GUI.Box (Rect (02,000,396,25), "----Influences----");
 	GUI.Box (Rect (02,025,196,25), "Value: " + influenceNode.num);
-	GUI.Box (Rect (02,050,196,25), "Artifact: " + influenceNode.artifact);
+	//GUI.Box (Rect (02,050,196,25), "Artifact: " + influenceNode.artifact);
 	if(influence != null)
 	{
-		if (GUI.Button (Rect (02,75,196,25), "Influence: " + influence.action.who)) 
+		if (GUI.Button (Rect (02,50,196,25), "Influence: " + influence.action.who)) 
 		{
 			actionNode  = influence.action;
 			showInfluenceWindow = false;
@@ -273,7 +273,7 @@ function InfluenceWindowFunction(windowID : int){
 		if(influence.next != null)
 		{
 			
-			if (GUI.Button (Rect (02,100,75,25), "Next")) 
+			if (GUI.Button (Rect (02,75,75,40), "Next")) 
 			{
 				influence = influence.next;
 			}
@@ -281,7 +281,7 @@ function InfluenceWindowFunction(windowID : int){
 		if(influence.previous != null)
 		{
 			
-			if (GUI.Button (Rect (77,100,75,25), "Previous")) 
+			if (GUI.Button (Rect (77,75,75,40), "Previous")) 
 			{
 				influence = influence.previous;
 			}

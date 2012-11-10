@@ -40,7 +40,6 @@ class InfluenceNode
 class InfluenceList
 {
 	public var first : InfluenceNode;
-	//public var mid : InfluenceNode;
 	public var last : InfluenceNode;
 	
 	function Add(t : ActionNode)
@@ -150,7 +149,7 @@ class InfluenceList
 		return list;
 	}
 	*/
-	/*
+	
 	function InfluenceList()
 	{
 		this.first = null;
@@ -164,5 +163,5 @@ class InfluenceList
 		else
 			return true;
 	}
-	*/
+	
 }

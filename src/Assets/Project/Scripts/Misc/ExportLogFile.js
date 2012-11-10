@@ -1,135 +1,69 @@
 
 public var hLog : HistoryLog;
 public var projectNode : ProjectNode;
-public var path : String = "log.txt";
+public var path : String = "log.tsv";
 public var f : TextWriter;// = new StreamWriter(path);
 
+function RunList(f : TextWriter, action : ActionNode, employee : Employee)
+{
+	var line : String;
+	
+	line = Agent(employee) + "\t" + Action(action);
+	f.WriteLine("AgAc" + "\t" + line);
+		
+	while(action.next != null)
+	{
+		line = Action(action) + "\t" + Action(action.next);
+		f.WriteLine("AcAc" + "\t" + line);
+		if(action.influence.valid)
+		{
+			var current : InfluenceNode;
+			current = action.influence.influence.first;
+			while(current != null)
+			{
+				//Need to check if there was any artifact used
+				if(current.action.artifact != "")
+				{
+					//Action to artifact
+					line = Action(action) + "\t" + Artifact(current.action, current.action.artifact);
+					f.WriteLine("IAcAr" + "\t" + line + "\t" + action.influence.num);
+					//Artifact to action
+					line = Artifact(current.action, current.action.artifact) + "\t" + Action(current.action);
+					f.WriteLine("IArAc" + "\t" + line + "\t" + action.influence.num);
+				}
+				else
+				{
+					line = Action(action) + "\t" + Action(current.action);
+					f.WriteLine("IAcAc" + "\t" + line + "\t" + action.influence.num);
+				}
+				current = current.next;
+			}
+		}
+		action = action.next;
+	}
+}
 
-function RunList(f : TextWriter, action : ActionNode)
+function Action(action : ActionNode)
 {
 	var id : String;
-	var id2 : String;
-	while(action.next)
-	{
-		id = action.date.ToString() +" "+ action.who.ToString() +" "+ action.role.ToString();
-		id2 = action.next.date.ToString() +" "+ action.next.who.ToString() +" "+ action.next.role.ToString();
-    	//f.WriteLine(id + "\t" + action.date + "\t" + action.who + "\t" + action.task + "\t" + action.role + "\t" + action.description + 
-    	//"\t" + id2 + "\t" + action.next.date + "\t" + action.next.who + "\t" + action.next.task + "\t" + 
-    	//action.next.role + "\t" + action.next.description+ "\t" + "");
-    	f.WriteLine(id + "\t" + action.task  + "\t" + id2 + "\t" + action.next.task + "\t" + "");
+	var line : String;
+	id = action.date.ToString() +" "+ action.who.ToString() +" "+ action.role.ToString();
+	line = id + "\t" + action.date + "\t" + action.who + "\t" + action.task + "\t" + action.role + "\t" + action.morale + "\t" +
+	action.stamina + "\t" + action.cost + "\t" + action.work;// + "\t" + action.description;
     	
-    	if(action.influence != null)
-    	{
-    		switch(action.role)
-			{
-			   case "Analyst": 
-			   		Analyst(action, f, id);
-			   break;
-		
-			   case "Architect":
-			   		Architect(action, f, id);
-			   break;
-			   
-			   case "Manager":				   
-			   break;
-			   
-			   case "Marketing":				   
-			   break;
-			   
-			   case "Programmer":
-			   		Programmer(action, f, id);				   
-			   break;
-			   
-			   case "Tester":				   
-			   break;
-		
-			   default:
-				  break;
-			}
-    	}
-    	action = action.next;
-	}
+    return line;
 }
-//need to invert influence. ID1 then ID2
-function Analyst(action : ActionNode, f : TextWriter, id : String)
+function Artifact(action : ActionNode, type : String)
 {
-	var id2 : String;
-	if(action.influence.analystArchInfluence.last.who != "")
-	{
-		id2 = action.influence.analystArchInfluence.last.date.ToString() +" "+ action.influence.analystArchInfluence.last.who.ToString() +" "+ action.influence.analystArchInfluence.last.role.ToString();
-		/*
-		f.WriteLine(id + "\t" + action.date + "\t" + action.who + "\t" + action.task + "\t" + action.role + "\t" + 
-		action.description + "\t" + id2 + "\t" + action.influence.analystArchInfluence.last.date + "\t" + action.influence.analystArchInfluence.last.who + 
-		"\t" + action.influence.analystArchInfluence.last.task + "\t" + action.influence.analystArchInfluence.last.role + "\t" + 
-		action.influence.analystArchInfluence.last.description + "\t" + action.influence.prototype);
-		*/
-		f.WriteLine(id2 + "\t" + action.influence.analystArchInfluence.last.task + "\t" + id + "\t" + action.task + "\t" + action.influence.prototype);
-	}
-	if(action.influence.analystManagerInfluence.who != "")
-	{
-		id2 = action.influence.analystManagerInfluence.date.ToString() +" "+ action.influence.analystManagerInfluence.who.ToString() +" "+ action.influence.analystManagerInfluence.role.ToString();
-		/*
-		f.WriteLine(id + "\t" + action.date + "\t" + action.who + "\t" + action.task + "\t" + action.role + "\t" + 
-		action.description + "\t" + id2 + "\t" + action.influence.analystManagerInfluence.date + "\t" + action.influence.analystManagerInfluence.who + 
-		"\t" + action.influence.analystManagerInfluence.task + "\t" + action.influence.analystManagerInfluence.role + "\t" + 
-		action.influence.analystManagerInfluence.description + "\t" + action.influence.bonusAnalyst);
-		*/
-		f.WriteLine(id2 + "\t" + action.influence.analystManagerInfluence.task + "\t" + id + "\t" + action.task + "\t" + action.influence.bonusAnalyst);
-	}
-	if(action.influence.analystMarketingInfluence.who != "")
-	{
-		id2 = action.influence.analystMarketingInfluence.date.ToString() +" "+ action.influence.analystMarketingInfluence.who.ToString() +" "+ action.influence.analystMarketingInfluence.role.ToString();
-		/*
-		f.WriteLine(id + "\t" + action.date + "\t" + action.who + "\t" + action.task + "\t" + action.role + "\t" + 
-		action.description + "\t" + id2 + "\t" + action.influence.analystMarketingInfluence.date + "\t" + action.influence.analystMarketingInfluence.who + 
-		"\t" + action.influence.analystMarketingInfluence.task + "\t" + action.influence.analystMarketingInfluence.role + "\t" + 
-		action.influence.analystMarketingInfluence.description + "\t" + action.influence.bonusAnalyst);
-		*/
-		f.WriteLine(id2 + "\t" + action.influence.analystMarketingInfluence.task + "\t" + id + "\t" + action.task + "\t" + action.influence.bonusAnalyst);
-	}
+	var id : String;
+	id = action.date.ToString() +" "+ type; 	
+    return id;
 }
-
-function Architect(action : ActionNode, f : TextWriter, id : String)
+function Agent(employee : Employee)
 {
-	var id2 : String;
-	if(action.influence.archManagerInfluence.who != "")
-	{
-		id2 = action.influence.archManagerInfluence.date.ToString() +" "+ action.influence.archManagerInfluence.who.ToString() +" "+ action.influence.archManagerInfluence.role.ToString();
-		/*
-		f.WriteLine(id + "\t" + action.date + "\t" + action.who + "\t" + action.task + "\t" + action.role + 
-		"\t" + action.description + "\t" + id2 + "\t" + action.influence.archManagerInfluence.date + "\t" + action.influence.archManagerInfluence.who + 
-		"\t" + action.influence.archManagerInfluence.task + "\t" + action.influence.archManagerInfluence.role + "\t" + 
-		action.influence.archManagerInfluence.description + "\t" + action.influence.bonusArch);
-		*/
-		f.WriteLine(id2 + "\t" + action.influence.archManagerInfluence.task + "\t" + id + "\t" + action.task + "\t" + action.influence.bonusArch);
-	}
-}
-
-function Programmer(action : ActionNode, f : TextWriter, id : String)
-{
-	var id2 : String;
-	if(action.influence.progArchInfluence.last.who != "")
-	{
-		id2 = action.influence.progArchInfluence.last.date.ToString() +" "+ action.influence.progArchInfluence.last.who.ToString() +" "+ action.influence.progArchInfluence.last.role.ToString();
-		/*
-		f.WriteLine(id + "\t" + action.date + "\t" + action.who + "\t" + action.task + "\t" + action.role + 
-		"\t" + action.description + "\t" + id2 + "\t" + action.influence.progArchInfluence.last.date + "\t" + action.influence.progArchInfluence.last.who + 
-		"\t" + action.influence.progArchInfluence.last.task + "\t" + action.influence.progArchInfluence.last.role + "\t" + 
-		action.influence.progArchInfluence.last.description + "\t" + action.influence.bonusProg);
-		*/
-		f.WriteLine(id2 + "\t" + action.influence.progArchInfluence.last.task + "\t" + id + "\t" + action.task + "\t" + action.influence.bonusProg);
-	}
-	if(action.influence.progManagerInfluence.who != "")
-	{
-		id2 = action.influence.progManagerInfluence.date.ToString() +" "+ action.influence.progManagerInfluence.who.ToString() +" "+ action.influence.progManagerInfluence.role.ToString();
-		/*
-		f.WriteLine(id + "\t" + action.date + "\t" + action.who + "\t" + action.task + "\t" + action.role + 
-		"\t" + action.description + "\t" + id2 + "\t" + action.influence.progManagerInfluence.date + "\t" + action.influence.progManagerInfluence.who + 
-		"\t" + action.influence.progManagerInfluence.task + "\t" + action.influence.progManagerInfluence.role + "\t" + 
-		action.influence.progManagerInfluence.description + "\t" + action.influence.bonusProg);
-		*/
-		f.WriteLine(id2 + "\t" + action.influence.progManagerInfluence.task + "\t" + id + "\t" + action.task + "\t" + action.influence.bonusProg);
-	}
+	var id : String;
+	id = employee.GetNome();
+    return id;
 }
 
 function exportLog()
@@ -143,7 +77,7 @@ function exportLog()
     {
     	//f.WriteLine("EMPLOYEE01");
     	action = projectNode.slot01.last.actionList.first;
-    	RunList(f, action);
+    	RunList(f, action, projectNode.slot01.last.employee);
     	
     }
     //Employee02
@@ -152,7 +86,7 @@ function exportLog()
     	//f.WriteLine("");
     	//f.WriteLine("EMPLOYEE02");
     	action = projectNode.slot02.last.actionList.first;
-    	RunList(f, action);
+    	RunList(f, action, projectNode.slot02.last.employee);
     	
     }
     //Employee03
@@ -161,7 +95,7 @@ function exportLog()
     	//f.WriteLine("");
     	//f.WriteLine("EMPLOYEE03");
     	action = projectNode.slot03.last.actionList.first;
-    	RunList(f, action);
+    	RunList(f, action, projectNode.slot03.last.employee);
     	
     }
     //Employee04
@@ -170,7 +104,7 @@ function exportLog()
     	//f.WriteLine("");
     	//f.WriteLine("EMPLOYEE04");
     	action = projectNode.slot04.last.actionList.first;
-    	RunList(f, action);
+    	RunList(f, action, projectNode.slot04.last.employee);
     	
     }
     //Employee05
@@ -179,7 +113,7 @@ function exportLog()
     	//f.WriteLine("");
     	//f.WriteLine("EMPLOYEE05");
     	action = projectNode.slot05.last.actionList.first;
-    	RunList(f, action);
+    	RunList(f, action, projectNode.slot05.last.employee);
     	
     }
     //Employee06
@@ -188,7 +122,7 @@ function exportLog()
     	//f.WriteLine("");
     	//f.WriteLine("EMPLOYEE06");
     	action = projectNode.slot06.last.actionList.first;
-    	RunList(f, action);
+    	RunList(f, action, projectNode.slot06.last.employee);
     	
     }
     //Employee07
@@ -197,7 +131,7 @@ function exportLog()
     	//f.WriteLine("");
     	//f.WriteLine("EMPLOYEE07");
     	action = projectNode.slot07.last.actionList.first;
-    	RunList(f, action);
+    	RunList(f, action, projectNode.slot07.last.employee);
     	
     }
     //Employee08
@@ -206,7 +140,7 @@ function exportLog()
     	//f.WriteLine("");
     	//f.WriteLine("EMPLOYEE08");
     	action = projectNode.slot08.last.actionList.first;
-    	RunList(f, action);
+    	RunList(f, action, projectNode.slot08.last.employee);
     	
     }
     //f.WriteLine(spot.SpawnSpotType + "\t" + position.x + "\t" + position.y + "\t" + position.z);
