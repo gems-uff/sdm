@@ -133,7 +133,7 @@ class AnalystMacro extends System.ValueType{
 			project.UpdateElicitation(val, false);
 			AnalistReport(parseInt(val), report);
 			
-			actionNode.NewAction(task + " Reviews", "Employee was ordered to \n focus on " + descr + " \n and validated with Reviews", func, date, "Analyst", val.ToString() + " ", "");
+			actionNode.NewAction(task + " Reviews", "Employee was ordered to \n focus on " + descr + " \n and validated with Reviews", func, date, "Analyst", val.ToString() + " Val", "");
 			
 			floatingLines.showFloatText1("", "Validation", "blue","");
 			floatingLines.showFloatText2("+", val.ToString(), "blue", " Val.");

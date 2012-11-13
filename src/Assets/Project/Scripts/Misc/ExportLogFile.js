@@ -19,6 +19,13 @@ function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 		line = Agent(employee) + "\t" + Action(action.next);
 		f.WriteLine("AgAc" + "\t" + line);
 		
+		if(action.artifact != "")
+		{
+			//Action to artifact
+			line = Action(action) + "\t" + Artifact(action, action.artifact);
+			f.WriteLine("IAcAr" + "\t" + line + "\t" + "0");
+		}
+		
 		if(action.influence.valid)
 		{
 			var current : InfluenceNode;
@@ -50,6 +57,9 @@ function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 		}
 		action = action.next;
 	}
+	//Added to link the last actionNode to the employee
+	line = Action(action) + "\t" + Agent(employee);
+	f.WriteLine("AcAg" + "\t" + line);
 }
 
 function Action(action : ActionNode)
@@ -62,6 +72,8 @@ function Action(action : ActionNode)
     	
     return line;
 }
+
+//Can change to only action since type is action.artifact
 function Artifact(action : ActionNode, type : String)
 {
 	var id : String;
