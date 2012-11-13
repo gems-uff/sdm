@@ -146,11 +146,13 @@ function Dialog_Funcionario (){
 		//Vazio
 		GUI.Box (Rect (600,125, 130, 25), "");
 		//Se arquiteto
+		/*
 		if(func.GetPapel() == stringNames.papelArquiteto && menuPrototype.GetIsLocked() == false)
 			if (GUI.Button (Rect (600,125, 130, 25), "Prototype")) {
 					windowController.ShowProtWindow(func);
 					CloseDialog();
 			}
+			*/
 		//Se gerente
 		if(func.GetPapel() == stringNames.papelGerente)
 			if (GUI.Button (Rect (600,125, 130, 25), "Hire")) 

@@ -102,6 +102,7 @@ function PassTime () {
     gameTime += incrementBy;
     equipe.ResetBonus();
 	
+	BroadcastMessage("NewProjectStatNode");
 	BroadcastMessage("PagarFuncionario");
 	BroadcastMessage("PagarJogadorMensal");
 	

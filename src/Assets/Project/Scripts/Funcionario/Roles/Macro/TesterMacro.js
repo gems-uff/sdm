@@ -12,10 +12,14 @@ class TesterMacro extends System.ValueType{
 	var chanceAcception : float;
 	var chanceIntegration : float;
 	var chanceSystem : float;
+	
+	var behavior : BehaviorPlanner;
 			
 	function Work(func : Funcionario, project : Project, report : WeeklyReport, floatingLines : FloatingLines, equipe : Equipe, 
-	constant : GameConstants, tester : float, date : int)
+	constant : GameConstants, tester : float, date : int, behaviorP : BehaviorPlanner)
 	{
+		behavior = behaviorP;
+		
 		var bugUnitary : int = 0;
 		var bugIntegration : int = 0;
 		var bugSystem : int = 0;
@@ -58,7 +62,7 @@ class TesterMacro extends System.ValueType{
 				//Debug.Log("Found: " + totalBugsFound);
 			}
 			
-			actionNode.NewAction("Test: Cases", "Tester used Test Cases", func, date, "Tester", totalBugsFound, "");
+			actionNode.NewAction("Test: Cases", "Tester used Test Cases", func, date, "Tester", totalBugsFound.ToString() + " Bugs Found", "");
 		}
 		else
 		{
@@ -106,8 +110,9 @@ class TesterMacro extends System.ValueType{
 					}
 				}
 			}
-			actionNode.NewAction("Test: Adhoc", "Tester searched in Adhoc-mode", func, date, "Tester", totalBugsFound, "");
+			actionNode.NewAction("Test: Adhoc", "Tester searched in Adhoc-mode", func, date, "Tester", totalBugsFound.ToString() + " Bugs Found", "");
 		}
+		//actionNode.projectStat = behavior.Log.GetProjectStat();
 		//project.IncrementBugsFoundByType(bugUnitary, bugIntegration, bugSystem, bugAcception);
 		//Report and text
 		TesterReport(totalBugsFound, report);

@@ -494,7 +494,7 @@ function TesterWork(){
 		//Debug.Log("Tester = " + tester);
 		yield WaitForSeconds(delay);
 		
-		action = TesterMacro.Work(func, project, report, floatingLines, equipe, constant, tester, timer.GetGameTime());//wasInfluenced
+		action = TesterMacro.Work(func, project, report, floatingLines, equipe, constant, tester, timer.GetGameTime(), behavior);//wasInfluenced
 		behavior.AddAction(action);
 	}
 }
@@ -504,7 +504,7 @@ function IdleWork()
 	if(func.GetPapel() == stringNames.papelNenhum && func.GetNome() != stringNames.fired)
 	{
 		var action : ActionNode = new ActionNode();
-		action.NewAction("Idle", "Idle", func, timer.GetGameTime(), "idle", 0.0, "");
+		action.NewAction("Idle", "Idle", func, timer.GetGameTime(), "idle", "idle", "");
 		behavior.AddAction(action);
 	}
 	
@@ -529,7 +529,7 @@ function Treinando(){
 			floatingLines.showFloatText1("", "", "green", " Training Complete");
 		}
 		var action : ActionNode = new ActionNode();
-		action.NewAction("Training", "Training", func, timer.GetGameTime(), "Training", 0.0, "");
+		action.NewAction("Training", "Training", func, timer.GetGameTime(), "Training", treino.GetAprendendo(), "");
 		behavior.AddAction(action);
 	}
 }

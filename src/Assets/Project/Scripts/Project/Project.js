@@ -609,6 +609,30 @@ function SetProjectQuality(){
 				projectQuality = "Highest priority";
 }
 
+function GetStats()
+{
+	var stats : ProjectStats = new ProjectStats();
+	stats.name = this.name;
+	stats.description = this.description;
+	stats.deadline = this.deadline;
+	stats.linguagemProgramacao = this.linguagemProgramacao;
+	stats.pagamento = this.pagamento;
+	stats.projectSize = this.projectSize;
+	stats.projectQuality = this.projectQuality;
+	stats.codeQuality = parseInt(this.codeQuality * 100) * 0.01;
+	stats.percentageDone = this.GetFractionDone();
+	stats.bugUnitaryFound = this.bugUnitaryFound;
+	stats.bugIntegrationFound = this.bugIntegrationFound;
+	stats.bugSystemFound = this.bugSystemFound;
+	stats.bugAcceptionFound = this.bugAcceptionFound;
+	stats.bugUnitaryRepaired = this.bugUnitaryRepaired;
+	stats.bugIntegrationRepaired = this.bugIntegrationRepaired;
+	stats.bugSystemRepaired = this.bugSystemRepaired;
+	stats.bugAcceptionRepaired = this.bugAcceptionRepaired;
+	stats.date = timer.GetGameTime();
+	
+	return stats;
+}
 //--------------------------------------------Awake-----------------------------------------------------------
 function Awake(){
 	//SetProjectSizeString();

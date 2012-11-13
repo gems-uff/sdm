@@ -17,7 +17,7 @@ class MarketingMacro extends System.ValueType{
 		marketing = parseInt(aux * randomizer2 * 4);
 		aux = parseInt(aux * randomizer);
 		
-		actionNode.NewAction("Aid", "Marketing Generated Income and aided Analyst, if any", func, date, "Marketing", aux, "");
+		actionNode.NewAction("Aid", "Marketing Generated Income and aided Analyst, if any", func, date, "Marketing", aux.ToString() + "% Aid", "");
 		
 		equipe.SetBonusAnalista(aux);
 		equipe.influences.SetBonusAnalystMarketing(aux, actionNode);
@@ -26,7 +26,7 @@ class MarketingMacro extends System.ValueType{
 		playerStats.ChangeSaldo(marketing);
 		MarketingReport(aux, marketing, report);
 		floatingLines.showFloatText1("+", aux.ToString(), "blue", "% Val.");
-		floatingLines.showFloatText2("+", marketing.ToString(), "", " Money");
+		floatingLines.showFloatText2("+", marketing.ToString(), "", " Credits");
 		
 		return actionNode;
 	}

@@ -13,8 +13,12 @@ function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 		
 	while(action.next != null)
 	{
-		line = Action(action) + "\t" + Action(action.next);
-		f.WriteLine("AcAc" + "\t" + line);
+		//line = Action(action) + "\t" + Action(action.next);
+		line = Action(action) + "\t" + Agent(employee);
+		f.WriteLine("AcAg" + "\t" + line);
+		line = Agent(employee) + "\t" + Action(action.next);
+		f.WriteLine("AgAc" + "\t" + line);
+		
 		if(action.influence.valid)
 		{
 			var current : InfluenceNode;
@@ -26,10 +30,10 @@ function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 				{
 					//Action to artifact
 					line = Action(action) + "\t" + Artifact(current.action, current.action.artifact);
-					f.WriteLine("IAcAr" + "\t" + line + "\t" + action.influence.num);
+					f.WriteLine("IAcAr" + "\t" + line + "\t" + "0");
 					//Artifact to action
 					line = Artifact(current.action, current.action.artifact) + "\t" + Action(current.action);
-					f.WriteLine("IArAc" + "\t" + line + "\t" + action.influence.num);
+					f.WriteLine("IArAc" + "\t" + line + "\t" + "0");
 				}
 				else
 				{
@@ -38,6 +42,11 @@ function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 				}
 				current = current.next;
 			}
+		}
+		if(action.projectStat != null)
+		{
+			line = Action(action) + "\t" + Project(action.projectStat);
+			f.WriteLine("AcP" + "\t" + line + "\t" + action.work);
 		}
 		action = action.next;
 	}
@@ -63,14 +72,43 @@ function Agent(employee : Employee)
 {
 	var id : String;
 	id = employee.GetNome();
-    return id;
+	line = id + "\t" + employee.nome + "\t" + employee.salary + "\t" + employee.job + "\t" + employee.level + "\t" +
+	employee.atributos.adaptabilidade + "\t" + employee.atributos.autoDidata + "\t" + employee.atributos.detalhista + "\t" + 
+	employee.atributos.negociacao + "\t" + employee.atributos.objetividade + "\t" + employee.atributos.organizacao + "\t" +
+	employee.atributos.paciencia + "\t" + employee.atributos.raciocinioLogico + "\t" + employee.atributos.relacionamentoHumano;// + "\t" + action.description;
+    	
+    return line;
+    
+    //return id;
+}
+function Project(stat : ProjectStats)
+{
+	var id : String;
+	id = stat.date.ToString() +" "+ stat.name;
+	var line : String;
+	line = id + "\t" + stat.name + "\t" + stat.date + "\t" + stat.deadline + "\t" + stat.linguagemProgramacao + "\t" + stat.pagamento + "\t" + 
+	stat.projectSize + "\t" + stat.projectQuality + "\t" + stat.codeQuality + "\t" + stat.percentageDone + "\t" + stat.bugUnitaryFound+ "\t" +
+	stat.bugIntegrationFound + "\t" + stat.bugSystemFound + "\t" + stat.bugAcceptionFound + "\t" + stat.bugUnitaryRepaired+ "\t" +
+	stat.bugIntegrationRepaired + "\t" + stat.bugSystemRepaired + "\t" + stat.bugAcceptionRepaired;// + "\t" + stat.description;
+		
+    return line;
 }
 
+function RunProjectNodes(f : TextWriter, node : ProjectStats)
+{
+	while(node.next != null)
+	{
+		line = Project(node) + "\t" + Project(node.next);
+		f.WriteLine("PP" + "\t" + line);
+		node = node.next;
+	}
+}
 function exportLog()
 {
     var action : ActionNode;
     f = new StreamWriter(path);
     projectNode = hLog.GetProjectList().last;
+    RunProjectNodes(f, projectNode.project.first);
     
     //Employee01
     if(projectNode.slot01.last.employee.GetNome() != "Vacant")

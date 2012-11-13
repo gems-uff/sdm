@@ -18,7 +18,8 @@ class AnalystMacro extends System.ValueType{
 	var behavior : BehaviorPlanner;
 	var date : int;	
 				
-	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, constantP : GameConstants, analistaP : float, behaviorP : BehaviorPlanner, dateP : int)
+	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, 
+	constantP : GameConstants, analistaP : float, behaviorP : BehaviorPlanner, dateP : int)
 	{
 		var actionNode : ActionNode = new ActionNode();
 		
@@ -102,6 +103,7 @@ class AnalystMacro extends System.ValueType{
 	//--------------------------------------------
 	function Elicitation(actionNode : ActionNode, task : String, descr : String)
 	{
+		actionNode.projectStat = behavior.Log.GetProjectStat();
 		if(project.GetPrototype() > 0)
 		{
 			//actionNode.influence = equipe.influences.GetInfluenceAnalystPrototype();
@@ -112,7 +114,7 @@ class AnalystMacro extends System.ValueType{
 			project.UpdateElicitation(val, true);
 			AnalistReport(parseInt(val), report);
 			
-			actionNode.NewAction(task + " Prototype", "Employee was ordered to \n focus on " + descr + " \n and validated a Prototype", func, date, "Analyst", val, "");
+			actionNode.NewAction(task + " Prototype", "Employee was ordered to \n focus on " + descr + " \n and validated a Prototype", func, date, "Analyst", val.ToString() + " Val", "");
 			
 			floatingLines.showFloatText1("", "Validation", "blue","");
 			floatingLines.showFloatText2("+", val.ToString(), "blue", " Val.");
@@ -131,7 +133,7 @@ class AnalystMacro extends System.ValueType{
 			project.UpdateElicitation(val, false);
 			AnalistReport(parseInt(val), report);
 			
-			actionNode.NewAction(task + " Reviews", "Employee was ordered to \n focus on " + descr + " \n and validated with Reviews", func, date, "Analyst", val, "");
+			actionNode.NewAction(task + " Reviews", "Employee was ordered to \n focus on " + descr + " \n and validated with Reviews", func, date, "Analyst", val.ToString() + " ", "");
 			
 			floatingLines.showFloatText1("", "Validation", "blue","");
 			floatingLines.showFloatText2("+", val.ToString(), "blue", " Val.");
@@ -143,6 +145,7 @@ class AnalystMacro extends System.ValueType{
 	function Especification(actionNode : ActionNode, task : String, descr : String)
 	{
 		//Debug.Log("Elicitation");
+		actionNode.projectStat = behavior.Log.GetProjectStat();
 		if(func.GetAnalista() > 50)
 		{
 		/*
@@ -163,21 +166,21 @@ class AnalystMacro extends System.ValueType{
 				Specifying();
 			}
 			*/
-			actionNode.NewAction(task, "Employee was ordered to \n focus on " + descr + " \n and because he was above moderate \n he decided to do discovery", func, date, "Analyst", val, "");
+			actionNode.NewAction(task, "Employee was ordered to \n focus on " + descr + " \n and because he was above moderate \n he decided to do discovery", func, date, "Analyst", val.ToString() + " Discovery", "");
 			Specifying();
 		}
 		else
 		{
 			//Debug.Log("Bad");
 			//Bad Analyst
-			actionNode.NewAction(task, "Employee was ordered to \n focus on " + descr + " \n and because he was moderate \n he did discovery", func, date, "Analyst", val, "");
+			actionNode.NewAction(task, "Employee was ordered to \n focus on " + descr + " \n and because he was moderate \n he did discovery", func, date, "Analyst", val.ToString() + " Discovery", "");
 			Specifying();
 		}
 	}
 	
 	function Quality(actionNode : ActionNode, task : String, descr : String)
 	{
-		actionNode.NewAction(task, "Employee was ordered to \n focus on " + descr + " \n and because he was moderate \n he did discovery", func, date, "Analyst", val, "Acception Test Cases");
+		actionNode.NewAction(task, "Employee was ordered to \n focus on " + descr + " \n and because he was moderate \n he did discovery", func, date, "Analyst", val.ToString() + " ATC", "Acception Test Cases");
 		MakeAcceptionCases(actionNode);
 	}
 	
@@ -201,7 +204,7 @@ class AnalystMacro extends System.ValueType{
 	{
 		equipe.SetAcceptionBonus(analista);
 		equipe.influences.SetBonusTesterAnalyst(analista, actionNode);
-		project.testCases.AddAcception(parseInt(analista * 0.025));
+		project.testCases.AddAcception(parseInt(analista * 0.01));
 		floatingLines.showFloatText1("", "Test Cases", "blue","");
 		floatingLines.showFloatText2("+", analista.ToString(), "blue","% Testing");
 		

@@ -47,7 +47,7 @@ class ProgrammerMacro extends System.ValueType{
 		//Evolution();
 		//Work on the code in order to remove bugs
 		//Repair();
-		
+		actionNode.projectStat = behavior.Log.GetProjectStat();
 		return actionNode;
 	}
 	
@@ -357,7 +357,7 @@ class ProgrammerMacro extends System.ValueType{
 		refact = 1 + (programador * randomizer * 0.0001);
 		
 		project.ChangeCodeQuality(refact);
-		NewAction(actionNode, isEsp, isPressured, prog, ((refact - 1) * 100));
+		NewAction(actionNode, isEsp, isPressured, prog, ((refact - 1) * 100).ToString() + " Refactor");
 		floatingLines.showFloatText1("", "Refactoring", "blue", "");
 		floatingLines.showFloatText2("+", ((refact - 1) * 100).ToString(), "blue", "% Improved");
 	}
@@ -377,7 +377,7 @@ class ProgrammerMacro extends System.ValueType{
 	//--------------------------------------------
 	//Set the action
 	//--------------------------------------------
-	function NewAction(actionNode : ActionNode, isEsp : boolean, isPressured : boolean, prog : String, work : float)
+	function NewAction(actionNode : ActionNode, isEsp : boolean, isPressured : boolean, prog : String, work : String)
 	{
 		//var actionNode : ActionNode = new ActionNode();
 		var esp : String = "";
@@ -472,7 +472,7 @@ class ProgrammerMacro extends System.ValueType{
 			project.SetLinesDone(codeLines);
 			ProgReport(codeLines, 0, report);
 			
-			NewAction(actionNode, isEsp, isPressured, prog, codeLines);
+			NewAction(actionNode, isEsp, isPressured, prog, codeLines.ToString() + " Progress");
 			
 			
 			floatingLines.showFloatText1("", "Evolution", "blue", "");
@@ -542,7 +542,7 @@ class ProgrammerMacro extends System.ValueType{
 		}
 		ProgReport(0, - repaired, report);
 		
-		NewAction(actionNode, isEsp, isPressured, prog, - repaired);
+		NewAction(actionNode, isEsp, isPressured, prog, (- repaired).ToString() + " Repaired");
 		
 		floatingLines.showFloatText1("", "Repair", "blue", "");
 		floatingLines.showFloatText2("+", repaired.ToString(), "blue", " Bugs Repaired");

@@ -13,16 +13,7 @@ private var showActionWindow : boolean = false;
 
 private var influenceNode : InfluenceValues;
 private var influence : InfluenceNode;
-/*
-private var action1 : InfluenceNode = new InfluenceNode();
-private var action2 : ActionNode = new ActionNode();
-private var action3 : ActionNode = new ActionNode();
-private var action4 : ActionNode = new ActionNode();
-private var action5 : ActionNode = new ActionNode();
-private var action6 : ActionNode = new ActionNode();
-private var action7 : InfluenceNode = new InfluenceNode();
-private var action8 : InfluenceNode = new InfluenceNode();
-*/
+
 private var showInfluenceWindow : boolean = false;
 
 
@@ -39,16 +30,16 @@ function WindowFunction(windowID : int){
 	GUI.BeginGroup (Rect (02,20,400,400));
 	//Upper Left
 	var projectNode : ProjectNode = pList.last;
-	var project : Project = projectNode.project;
+	var project : ProjectStats = projectNode.project.first;
 	GUI.Box (Rect (02,000,196,25), "----Project----");
-	GUI.Box (Rect (02,025,196,25), "Name: " + project.GetNome());
-	GUI.Box (Rect (02,050,196,25), "Start Day: " + project.GetStartDay());
-	
+	GUI.Box (Rect (02,025,196,25), "Name: " + project.name);
+	GUI.Box (Rect (02,050,196,25), "Deadline: " + project.deadline);
+	/*
 	if (GUI.Button (Rect (200,025,196,50), "Project Info")) 
 	{
 		projectWindow.SetShowWindow(project, true);
 	}
-	
+	*/
 	GUI.Box (Rect (02,075,196,25), "----Employee----");
 	GUI.Box (Rect (02,100,196,25), "Slot01: " + projectNode.slot01.last.employee.GetNome());
 	GUI.Box (Rect (02,125,196,25), "Slot02: " + projectNode.slot02.last.employee.GetNome());

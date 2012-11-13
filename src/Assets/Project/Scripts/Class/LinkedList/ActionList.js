@@ -41,8 +41,9 @@ class ActionNode
 	public var morale : int;					//morale number
 	public var stamina : int;					//stamina number
 	public var cost : float;					//cost paid each day
-	public var work : float;					//how much he progressed/made/contributed: codelines, bugs found, etc
+	public var work : String;					//how much he progressed/made/contributed: codelines, bugs found, etc
 	public var artifact : String;				//created any artifact ? Which one ? Prototype or test cases
+	public var projectStat : ProjectStats;
 	
 	//For the linked List
 	public var next : ActionNode;
@@ -66,13 +67,15 @@ class ActionNode
 		this.morale = 0;
 		this.stamina = 0;
 		this.cost = 0;
-		this.work = 0;
+		this.work = "";
 		this.artifact = "";
+		this.projectStat = null;
 		
 		this.next = null;
 		this.previous = null;
 	}
-	function SetValues(date : int, who : String, task : String, role : String, description : String, morale : int, stamina : int, cost : float, work  :float)
+	function SetValues(date : int, who : String, task : String, role : String, description : String, morale : int, stamina : int, 
+	cost : float, work  : String)
 	{
 		this.date = date;
 		this.who = who;
@@ -87,7 +90,7 @@ class ActionNode
 		this.work = work;
 	}
 	
-	function NewAction(task : String, description : String, func : Funcionario, date : int, role : String, work : float, artifact : String)
+	function NewAction(task : String, description : String, func : Funcionario, date : int, role : String, work : String, artifact : String)
 	{
 		this.who = func.GetNome();
 		this.task = task;
@@ -97,6 +100,19 @@ class ActionNode
 		this.morale = func.GetMorale();
 		this.stamina = func.GetStamina();
 		this.cost = func.GetSalario() / 28;
+		this.work = work;
+		this.artifact = artifact;
+	}
+	function NewAction(task : String, description : String, who : String, morale : int, stamina : int, cost : float, date : int, role : String, work : String, artifact : String)
+	{
+		this.who = who;
+		this.task = task;
+		this.date = date;
+		this.role = role;
+		this.description = description;
+		this.morale = morale;
+		this.stamina = stamina;
+		this.cost = cost / 28;
 		this.work = work;
 		this.artifact = artifact;
 	}

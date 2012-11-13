@@ -26,7 +26,8 @@ class ProjectList extends ProjectNode
 class ProjectNode
 {
 	//Project data
-	public var project : Project;
+	public var project : ProjectStatsList;
+	//public var pList : ProjectStatsList;
 
 	//Staff list
 	public var slot01 : EmployeeList;
@@ -46,24 +47,5 @@ class ProjectNode
 	{
 		this.next = t;
 		t.before = this;
-	}
-	/*
-	function NewNode()
-	{
-		this.project = null;
-		
-		this.slot01 = new EmployeeList();
-		this.slot02 = new EmployeeList();
-		this.slot03 = new EmployeeList();
-		this.slot04 = new EmployeeList();
-		this.slot05 = new EmployeeList();
-		this.slot06 = new EmployeeList();
-		this.slot07 = new EmployeeList();
-		this.slot08 = new EmployeeList();
-		
-		this.next = new ProjectNode();
-		this.before = new ProjectNode();
-	}
-	*/
-	
+	}	
 }

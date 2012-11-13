@@ -71,7 +71,9 @@ function NewProjectNode()
 	var projectNode : ProjectNode = new ProjectNode();
 	
 	//Take the current instance of the project
-	projectNode.project = Instantiate(project);
+	//projectNode.project = Instantiate(project);
+	projectNode.project = new ProjectStatsList();
+	projectNode.project.Add(project.GetStats());
 	
 	//Create the lists for all slots
 	projectNode.slot01 = new EmployeeList();
@@ -97,6 +99,14 @@ function NewProjectNode()
 		
 }
 
+function NewProjectStatNode()
+{
+	projectList.last.project.Add(project.GetStats());
+}
+function GetProjectStat()
+{
+	return projectList.last.project.last;
+}
 //Creates a new Employee Node
 function NewEmployeeNode(emp : Funcionario, slot : EmployeeList)
 {
@@ -111,12 +121,19 @@ function NewEmployeeNode(emp : Funcionario, slot : EmployeeList)
 function NewFiredAction(slot : EmployeeList)
 {
 	var newAction : ActionNode = new ActionNode();
+	newAction.who = slot.last.employee.nome;
 	newAction.date = time.GetGameTime();
 	newAction.task = "fired";
 	newAction.role = "fired";
 	newAction.description = "fired";
+	newAction.work = "fired";
 	newAction.influence = null;
 	
+	//newAction.morale = "0.0";
+	//newAction.stamina = "0.0";
+	//newAction.cost = "0.0";
+	//newAction.artifact = "";
+		
 	slot.last.actionList.Add(newAction);
 }
 function Awake () 

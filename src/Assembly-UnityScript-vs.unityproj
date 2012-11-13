@@ -58,6 +58,7 @@
      <Compile Include="Assets\Project\Scripts\Class\LinkedList\LinkedList.js" />
      <Compile Include="Assets\Project\Scripts\Class\LinkedList\ProjectList.js" />
      <Compile Include="Assets\Project\Scripts\Class\LinkedList\testList.js" />
+     <Compile Include="Assets\Project\Scripts\Class\ProjectStats.js" />
      <Compile Include="Assets\Project\Scripts\Class\ProjectsDescriptions.js" />
      <Compile Include="Assets\Project\Scripts\Class\RandomNameGenerator.js" />
      <Compile Include="Assets\Project\Scripts\Class\SaveFuncionario.js" />

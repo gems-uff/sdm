@@ -1,197 +1,343 @@
-AgAc	Raith	1 Raith Programmer	1	Raith	Evolution Test-Driven	Programmer	100	100	245	135
-AcAc	1 Raith Programmer	1	Raith	Evolution Test-Driven	Programmer	100	100	245	135	2 Raith Programmer	2	Raith	Evolution Test-Driven	Programmer	100	100	245	147
-IAcAc	1 Raith Programmer	1	Raith	Evolution Test-Driven	Programmer	100	100	245	135	1 Barnab Manager	1	Barnab	Aid Programmer	Manager	100	100	214	39	1.39
-AcAc	2 Raith Programmer	2	Raith	Evolution Test-Driven	Programmer	100	100	245	147	3 Raith Programmer	3	Raith	Evolution Adhoc	Programmer	100	100	245	335
-IAcAc	2 Raith Programmer	2	Raith	Evolution Test-Driven	Programmer	100	100	245	147	2 Barnab Manager	2	Barnab	Aid Programmer	Manager	100	100	214	45	1.45
-AcAc	3 Raith Programmer	3	Raith	Evolution Adhoc	Programmer	100	100	245	335	4 Raith Programmer	4	Raith	Evolution Test-Driven	Programmer	100	100	245	134
-IAcAc	3 Raith Programmer	3	Raith	Evolution Adhoc	Programmer	100	100	245	335	3 Barnab Manager	3	Barnab	Aid Programmer	Manager	100	100	214	42	1.42
-AcAc	4 Raith Programmer	4	Raith	Evolution Test-Driven	Programmer	100	100	245	134	5 Raith Programmer	5	Raith	Evolution Test-Driven	Programmer	100	100	245	185
-IAcAc	4 Raith Programmer	4	Raith	Evolution Test-Driven	Programmer	100	100	245	134	4 Barnab Manager	4	Barnab	Aid Programmer	Manager	100	100	214	51	1.51
-AcAc	5 Raith Programmer	5	Raith	Evolution Test-Driven	Programmer	100	100	245	185	6 Raith Programmer	6	Raith	Evolution Test-Driven	Programmer	100	100	245	173
-IAcAc	5 Raith Programmer	5	Raith	Evolution Test-Driven	Programmer	100	100	245	185	5 Barnab Manager	5	Barnab	Aid Programmer	Manager	100	100	214	44	1.44
-AcAc	6 Raith Programmer	6	Raith	Evolution Test-Driven	Programmer	100	100	245	173	7 Raith Programmer	7	Raith	Evolution Adhoc	Programmer	100	100	245	348
-IAcAc	6 Raith Programmer	6	Raith	Evolution Test-Driven	Programmer	100	100	245	173	6 Barnab Manager	6	Barnab	Aid Programmer	Manager	100	100	214	40	1.4
-AcAc	7 Raith Programmer	7	Raith	Evolution Adhoc	Programmer	100	100	245	348	8 Raith Programmer	8	Raith	Evolution Draw-code	Programmer	100	100	245	236
-IAcAc	7 Raith Programmer	7	Raith	Evolution Adhoc	Programmer	100	100	245	348	7 Barnab Manager	7	Barnab	Aid Programmer	Manager	100	100	214	41	1.41
-AcAc	8 Raith Programmer	8	Raith	Evolution Draw-code	Programmer	100	100	245	236	9 Raith Programmer	9	Raith	Evolution Adhoc	Programmer	100	100	245	285
-IAcAc	8 Raith Programmer	8	Raith	Evolution Draw-code	Programmer	100	100	245	236	8 Barnab Manager	8	Barnab	Aid Programmer	Manager	100	100	214	47	1.47
-AcAc	9 Raith Programmer	9	Raith	Evolution Adhoc	Programmer	100	100	245	285	10 Raith Programmer	10	Raith	Evolution Test-Driven	Programmer	100	100	245	130
-IAcAc	9 Raith Programmer	9	Raith	Evolution Adhoc	Programmer	100	100	245	285	9 Barnab Manager	9	Barnab	Aid Programmer	Manager	100	100	214	43	1.43
-AcAc	10 Raith Programmer	10	Raith	Evolution Test-Driven	Programmer	100	100	245	130	11 Raith Programmer	11	Raith	Evolution Adhoc	Programmer	100	100	245	271
-IAcAc	10 Raith Programmer	10	Raith	Evolution Test-Driven	Programmer	100	100	245	130	10 Barnab Manager	10	Barnab	Aid Programmer	Manager	100	100	214	37	1.37
-AcAc	11 Raith Programmer	11	Raith	Evolution Adhoc	Programmer	100	100	245	271	12 Raith Programmer	12	Raith	Evolution Test-Driven	Programmer	100	100	245	180
-IAcAc	11 Raith Programmer	11	Raith	Evolution Adhoc	Programmer	100	100	245	271	11 Barnab Manager	11	Barnab	Aid Programmer	Manager	100	100	214	38	1.38
-AcAc	12 Raith Programmer	12	Raith	Evolution Test-Driven	Programmer	100	100	245	180	13 Raith Programmer	13	Raith	Evolution Draw-code	Programmer	100	100	245	255
-IAcAc	12 Raith Programmer	12	Raith	Evolution Test-Driven	Programmer	100	100	245	180	12 Barnab Manager	12	Barnab	Aid Programmer	Manager	100	100	214	49	1.49
-AgAc	Noah	1 Noah Architect	1	Noah	Analysis Prototype	Architect	100	100	202	1
-AcAc	1 Noah Architect	1	Noah	Analysis Prototype	Architect	100	100	202	1	2 Noah Architect	2	Noah	Analysis Prototype	Architect	100	100	202	1
-AcAc	2 Noah Architect	2	Noah	Analysis Prototype	Architect	100	100	202	1	3 Noah Architect	3	Noah	Analysis Prototype	Architect	100	100	202	1
-AcAc	3 Noah Architect	3	Noah	Analysis Prototype	Architect	100	100	202	1	4 Noah Architect	4	Noah	Analysis Prototype	Architect	100	100	202	1
-AcAc	4 Noah Architect	4	Noah	Analysis Prototype	Architect	100	100	202	1	5 Noah Architect	5	Noah	Analysis Prototype	Architect	100	100	202	1
-AcAc	5 Noah Architect	5	Noah	Analysis Prototype	Architect	100	100	202	1	6 Noah Architect	6	Noah	Analysis Prototype	Architect	100	100	202	1
-AcAc	6 Noah Architect	6	Noah	Analysis Prototype	Architect	100	100	202	1	7 Noah Architect	7	Noah	Analysis Prototype	Architect	100	100	202	1
-AcAc	7 Noah Architect	7	Noah	Analysis Prototype	Architect	100	100	202	1	8 Noah Architect	8	Noah	Analysis Prototype	Architect	100	100	202	1
-AcAc	8 Noah Architect	8	Noah	Analysis Prototype	Architect	100	100	202	1	9 Noah Architect	9	Noah	Analysis Prototype	Architect	100	100	202	1
-AcAc	9 Noah Architect	9	Noah	Analysis Prototype	Architect	100	100	202	1	10 Noah Architect	10	Noah	Analysis Prototype	Architect	100	100	202	1
-AcAc	10 Noah Architect	10	Noah	Analysis Prototype	Architect	100	100	202	1	11 Noah Architect	11	Noah	Analysis Prototype	Architect	100	100	202	1
-AcAc	11 Noah Architect	11	Noah	Analysis Prototype	Architect	100	100	202	1	12 Noah Architect	12	Noah	Analysis Prototype	Architect	100	100	202	1
-AcAc	12 Noah Architect	12	Noah	Analysis Prototype	Architect	100	100	202	1	13 Noah Architect	13	Noah	Analysis Prototype	Architect	100	100	202	1
-AgAc	Daniel	1 Daniel Analyst	1	Daniel	Elicitation Prototype	Analyst	100	100	257	70.125
-AcAc	1 Daniel Analyst	1	Daniel	Elicitation Prototype	Analyst	100	100	257	70.125	2 Daniel Analyst	2	Daniel	Elicitation Prototype	Analyst	100	100	257	72.195
-IAcAc	1 Daniel Analyst	1	Daniel	Elicitation Prototype	Analyst	100	100	257	70.125	1 Lara Marketing	1	Lara	Aid	Marketing	100	100	71	122	2.22
-IAcAr	1 Daniel Analyst	1	Daniel	Elicitation Prototype	Analyst	100	100	257	70.125	1 Prototype	2.22
-IArAc	1 Prototype	1 Noah Architect	1	Noah	Analysis Prototype	Architect	100	100	202	1	2.22
-AcAc	2 Daniel Analyst	2	Daniel	Elicitation Prototype	Analyst	100	100	257	72.195	3 Daniel Analyst	3	Daniel	Elicitation Prototype	Analyst	100	100	257	60.735
-IAcAc	2 Daniel Analyst	2	Daniel	Elicitation Prototype	Analyst	100	100	257	72.195	2 Lara Marketing	2	Lara	Aid	Marketing	100	100	71	121	2.21
-IAcAr	2 Daniel Analyst	2	Daniel	Elicitation Prototype	Analyst	100	100	257	72.195	2 Prototype	2.21
-IArAc	2 Prototype	2 Noah Architect	2	Noah	Analysis Prototype	Architect	100	100	202	1	2.21
-AcAc	3 Daniel Analyst	3	Daniel	Elicitation Prototype	Analyst	100	100	257	60.735	4 Daniel Analyst	4	Daniel	Elicitation Prototype	Analyst	100	100	257	72.705
-IAcAc	3 Daniel Analyst	3	Daniel	Elicitation Prototype	Analyst	100	100	257	60.735	3 Lara Marketing	3	Lara	Aid	Marketing	100	100	71	148	2.48
-IAcAr	3 Daniel Analyst	3	Daniel	Elicitation Prototype	Analyst	100	100	257	60.735	3 Prototype	2.48
-IArAc	3 Prototype	3 Noah Architect	3	Noah	Analysis Prototype	Architect	100	100	202	1	2.48
-AcAc	4 Daniel Analyst	4	Daniel	Elicitation Prototype	Analyst	100	100	257	72.705	5 Daniel Analyst	5	Daniel	Elicitation Prototype	Analyst	100	100	257	91.26
-IAcAc	4 Daniel Analyst	4	Daniel	Elicitation Prototype	Analyst	100	100	257	72.705	4 Lara Marketing	4	Lara	Aid	Marketing	100	100	71	149	2.49
-IAcAr	4 Daniel Analyst	4	Daniel	Elicitation Prototype	Analyst	100	100	257	72.705	4 Prototype	2.49
-IArAc	4 Prototype	4 Noah Architect	4	Noah	Analysis Prototype	Architect	100	100	202	1	2.49
-AcAc	5 Daniel Analyst	5	Daniel	Elicitation Prototype	Analyst	100	100	257	91.26	6 Daniel Analyst	6	Daniel	Elicitation Prototype	Analyst	100	100	257	72.345
-IAcAc	5 Daniel Analyst	5	Daniel	Elicitation Prototype	Analyst	100	100	257	91.26	5 Lara Marketing	5	Lara	Aid	Marketing	100	100	71	130	2.3
-IAcAr	5 Daniel Analyst	5	Daniel	Elicitation Prototype	Analyst	100	100	257	91.26	5 Prototype	2.3
-IArAc	5 Prototype	5 Noah Architect	5	Noah	Analysis Prototype	Architect	100	100	202	1	2.3
-AcAc	6 Daniel Analyst	6	Daniel	Elicitation Prototype	Analyst	100	100	257	72.345	7 Daniel Analyst	7	Daniel	Elicitation Prototype	Analyst	100	100	257	56.22
-IAcAc	6 Daniel Analyst	6	Daniel	Elicitation Prototype	Analyst	100	100	257	72.345	6 Lara Marketing	6	Lara	Aid	Marketing	100	100	71	155	2.55
-IAcAr	6 Daniel Analyst	6	Daniel	Elicitation Prototype	Analyst	100	100	257	72.345	6 Prototype	2.55
-IArAc	6 Prototype	6 Noah Architect	6	Noah	Analysis Prototype	Architect	100	100	202	1	2.55
-AcAc	7 Daniel Analyst	7	Daniel	Elicitation Prototype	Analyst	100	100	257	56.22	8 Daniel Analyst	8	Daniel	Elicitation Prototype	Analyst	100	100	257	81.18
-IAcAc	7 Daniel Analyst	7	Daniel	Elicitation Prototype	Analyst	100	100	257	56.22	7 Lara Marketing	7	Lara	Aid	Marketing	100	100	71	152	2.52
-IAcAr	7 Daniel Analyst	7	Daniel	Elicitation Prototype	Analyst	100	100	257	56.22	7 Prototype	2.52
-IArAc	7 Prototype	7 Noah Architect	7	Noah	Analysis Prototype	Architect	100	100	202	1	2.52
-AcAc	8 Daniel Analyst	8	Daniel	Elicitation Prototype	Analyst	100	100	257	81.18	9 Daniel Analyst	9	Daniel	Elicitation Prototype	Analyst	100	100	257	69.765
-IAcAc	8 Daniel Analyst	8	Daniel	Elicitation Prototype	Analyst	100	100	257	81.18	8 Lara Marketing	8	Lara	Aid	Marketing	100	100	71	160	2.6
-IAcAr	8 Daniel Analyst	8	Daniel	Elicitation Prototype	Analyst	100	100	257	81.18	8 Prototype	2.6
-IArAc	8 Prototype	8 Noah Architect	8	Noah	Analysis Prototype	Architect	100	100	202	1	2.6
-AcAc	9 Daniel Analyst	9	Daniel	Elicitation Prototype	Analyst	100	100	257	69.765	10 Daniel Analyst	10	Daniel	Elicitation Prototype	Analyst	100	100	257	83.19
-IAcAc	9 Daniel Analyst	9	Daniel	Elicitation Prototype	Analyst	100	100	257	69.765	9 Lara Marketing	9	Lara	Aid	Marketing	100	100	71	147	2.47
-IAcAr	9 Daniel Analyst	9	Daniel	Elicitation Prototype	Analyst	100	100	257	69.765	9 Prototype	2.47
-IArAc	9 Prototype	9 Noah Architect	9	Noah	Analysis Prototype	Architect	100	100	202	1	2.47
-AcAc	10 Daniel Analyst	10	Daniel	Elicitation Prototype	Analyst	100	100	257	83.19	11 Daniel Analyst	11	Daniel	Elicitation Prototype	Analyst	100	100	257	51.045
-IAcAc	10 Daniel Analyst	10	Daniel	Elicitation Prototype	Analyst	100	100	257	83.19	10 Lara Marketing	10	Lara	Aid	Marketing	100	100	71	123	2.23
-IAcAr	10 Daniel Analyst	10	Daniel	Elicitation Prototype	Analyst	100	100	257	83.19	10 Prototype	2.23
-IArAc	10 Prototype	10 Noah Architect	10	Noah	Analysis Prototype	Architect	100	100	202	1	2.23
-AcAc	11 Daniel Analyst	11	Daniel	Elicitation Prototype	Analyst	100	100	257	51.045	12 Daniel Analyst	12	Daniel	Elicitation Prototype	Analyst	100	100	257	64.08
-IAcAc	11 Daniel Analyst	11	Daniel	Elicitation Prototype	Analyst	100	100	257	51.045	11 Lara Marketing	11	Lara	Aid	Marketing	100	100	71	124	2.24
-IAcAr	11 Daniel Analyst	11	Daniel	Elicitation Prototype	Analyst	100	100	257	51.045	11 Prototype	2.24
-IArAc	11 Prototype	11 Noah Architect	11	Noah	Analysis Prototype	Architect	100	100	202	1	2.24
-AcAc	12 Daniel Analyst	12	Daniel	Elicitation Prototype	Analyst	100	100	257	64.08	13 Daniel Analyst	13	Daniel	Elicitation Prototype	Analyst	100	100	257	64.215
-IAcAc	12 Daniel Analyst	12	Daniel	Elicitation Prototype	Analyst	100	100	257	64.08	12 Lara Marketing	12	Lara	Aid	Marketing	100	100	71	152	2.52
-IAcAr	12 Daniel Analyst	12	Daniel	Elicitation Prototype	Analyst	100	100	257	64.08	12 Prototype	2.52
-IArAc	12 Prototype	12 Noah Architect	12	Noah	Analysis Prototype	Architect	100	100	202	1	2.52
-AgAc	Barnab	1 Barnab Manager	1	Barnab	Aid Programmer	Manager	100	100	214	39
-AcAc	1 Barnab Manager	1	Barnab	Aid Programmer	Manager	100	100	214	39	2 Barnab Manager	2	Barnab	Aid Programmer	Manager	100	100	214	45
-AcAc	2 Barnab Manager	2	Barnab	Aid Programmer	Manager	100	100	214	45	3 Barnab Manager	3	Barnab	Aid Programmer	Manager	100	100	214	42
-AcAc	3 Barnab Manager	3	Barnab	Aid Programmer	Manager	100	100	214	42	4 Barnab Manager	4	Barnab	Aid Programmer	Manager	100	100	214	51
-AcAc	4 Barnab Manager	4	Barnab	Aid Programmer	Manager	100	100	214	51	5 Barnab Manager	5	Barnab	Aid Programmer	Manager	100	100	214	44
-AcAc	5 Barnab Manager	5	Barnab	Aid Programmer	Manager	100	100	214	44	6 Barnab Manager	6	Barnab	Aid Programmer	Manager	100	100	214	40
-AcAc	6 Barnab Manager	6	Barnab	Aid Programmer	Manager	100	100	214	40	7 Barnab Manager	7	Barnab	Aid Programmer	Manager	100	100	214	41
-AcAc	7 Barnab Manager	7	Barnab	Aid Programmer	Manager	100	100	214	41	8 Barnab Manager	8	Barnab	Aid Programmer	Manager	100	100	214	47
-AcAc	8 Barnab Manager	8	Barnab	Aid Programmer	Manager	100	100	214	47	9 Barnab Manager	9	Barnab	Aid Programmer	Manager	100	100	214	43
-AcAc	9 Barnab Manager	9	Barnab	Aid Programmer	Manager	100	100	214	43	10 Barnab Manager	10	Barnab	Aid Programmer	Manager	100	100	214	37
-AcAc	10 Barnab Manager	10	Barnab	Aid Programmer	Manager	100	100	214	37	11 Barnab Manager	11	Barnab	Aid Programmer	Manager	100	100	214	38
-AcAc	11 Barnab Manager	11	Barnab	Aid Programmer	Manager	100	100	214	38	12 Barnab Manager	12	Barnab	Aid Programmer	Manager	100	100	214	49
-AcAc	12 Barnab Manager	12	Barnab	Aid Programmer	Manager	100	100	214	49	13 Barnab Manager	13	Barnab	Aid Programmer	Manager	100	100	214	46
-AgAc	Lara	1 Lara Marketing	1	Lara	Aid	Marketing	100	100	71	122
-AcAc	1 Lara Marketing	1	Lara	Aid	Marketing	100	100	71	122	2 Lara Marketing	2	Lara	Aid	Marketing	100	100	71	121
-AcAc	2 Lara Marketing	2	Lara	Aid	Marketing	100	100	71	121	3 Lara Marketing	3	Lara	Aid	Marketing	100	100	71	148
-AcAc	3 Lara Marketing	3	Lara	Aid	Marketing	100	100	71	148	4 Lara Marketing	4	Lara	Aid	Marketing	100	100	71	149
-AcAc	4 Lara Marketing	4	Lara	Aid	Marketing	100	100	71	149	5 Lara Marketing	5	Lara	Aid	Marketing	100	100	71	130
-AcAc	5 Lara Marketing	5	Lara	Aid	Marketing	100	100	71	130	6 Lara Marketing	6	Lara	Aid	Marketing	100	100	71	155
-AcAc	6 Lara Marketing	6	Lara	Aid	Marketing	100	100	71	155	7 Lara Marketing	7	Lara	Aid	Marketing	100	100	71	152
-AcAc	7 Lara Marketing	7	Lara	Aid	Marketing	100	100	71	152	8 Lara Marketing	8	Lara	Aid	Marketing	100	100	71	160
-AcAc	8 Lara Marketing	8	Lara	Aid	Marketing	100	100	71	160	9 Lara Marketing	9	Lara	Aid	Marketing	100	100	71	147
-AcAc	9 Lara Marketing	9	Lara	Aid	Marketing	100	100	71	147	10 Lara Marketing	10	Lara	Aid	Marketing	100	100	71	123
-AcAc	10 Lara Marketing	10	Lara	Aid	Marketing	100	100	71	123	11 Lara Marketing	11	Lara	Aid	Marketing	100	100	71	124
-AcAc	11 Lara Marketing	11	Lara	Aid	Marketing	100	100	71	124	12 Lara Marketing	12	Lara	Aid	Marketing	100	100	71	152
-AcAc	12 Lara Marketing	12	Lara	Aid	Marketing	100	100	71	152	13 Lara Marketing	13	Lara	Aid	Marketing	100	100	71	171
-AgAc	Salek	1 Salek Programmer	1	Salek	Evolution Adhoc	Programmer	100	100	71	288
-AcAc	1 Salek Programmer	1	Salek	Evolution Adhoc	Programmer	100	100	71	288	2 Salek Programmer	2	Salek	Evolution Draw-code	Programmer	100	100	71	189
-IAcAc	1 Salek Programmer	1	Salek	Evolution Adhoc	Programmer	100	100	71	288	1 Barnab Manager	1	Barnab	Aid Programmer	Manager	100	100	214	39	1.39
-AcAc	2 Salek Programmer	2	Salek	Evolution Draw-code	Programmer	100	100	71	189	2 Salek Analyst	2	Salek	Balanced Elicitation Reviews	Analyst	100	100	71	20.51
-IAcAc	2 Salek Programmer	2	Salek	Evolution Draw-code	Programmer	100	100	71	189	2 Barnab Manager	2	Barnab	Aid Programmer	Manager	100	100	214	45	1.45
-AcAc	2 Salek Analyst	2	Salek	Balanced Elicitation Reviews	Analyst	100	100	71	20.51	3 Salek Programmer	3	Salek	Evolution Draw-code	Programmer	100	100	71	241
-IAcAc	2 Salek Analyst	2	Salek	Balanced Elicitation Reviews	Analyst	100	100	71	20.51	2 Lara Marketing	2	Lara	Aid	Marketing	100	100	71	121	2.21
-AcAc	3 Salek Programmer	3	Salek	Evolution Draw-code	Programmer	100	100	71	241	3 Salek Analyst	3	Salek	Balanced Elicitation Reviews	Analyst	100	100	71	16.62
-IAcAc	3 Salek Programmer	3	Salek	Evolution Draw-code	Programmer	100	100	71	241	3 Barnab Manager	3	Barnab	Aid Programmer	Manager	100	100	214	42	1.42
-AcAc	3 Salek Analyst	3	Salek	Balanced Elicitation Reviews	Analyst	100	100	71	16.62	4 Salek Programmer	4	Salek	Evolution Draw-code	Programmer	100	100	71	265
-IAcAc	3 Salek Analyst	3	Salek	Balanced Elicitation Reviews	Analyst	100	100	71	16.62	3 Lara Marketing	3	Lara	Aid	Marketing	100	100	71	148	2.48
-AcAc	4 Salek Programmer	4	Salek	Evolution Draw-code	Programmer	100	100	71	265	4 Salek Analyst	4	Salek	Balanced Elicitation Reviews	Analyst	100	100	71	21.91
-IAcAc	4 Salek Programmer	4	Salek	Evolution Draw-code	Programmer	100	100	71	265	4 Barnab Manager	4	Barnab	Aid Programmer	Manager	100	100	214	51	1.51
-AcAc	4 Salek Analyst	4	Salek	Balanced Elicitation Reviews	Analyst	100	100	71	21.91	5 Salek Programmer	5	Salek	Evolution Draw-code	Programmer	100	100	71	273
-IAcAc	4 Salek Analyst	4	Salek	Balanced Elicitation Reviews	Analyst	100	100	71	21.91	4 Lara Marketing	4	Lara	Aid	Marketing	100	100	71	149	2.49
-AcAc	5 Salek Programmer	5	Salek	Evolution Draw-code	Programmer	100	100	71	273	5 Salek Analyst	5	Salek	Balanced Elicitation Reviews	Analyst	100	100	71	21.36
-IAcAc	5 Salek Programmer	5	Salek	Evolution Draw-code	Programmer	100	100	71	273	5 Barnab Manager	5	Barnab	Aid Programmer	Manager	100	100	214	44	1.44
-AcAc	5 Salek Analyst	5	Salek	Balanced Elicitation Reviews	Analyst	100	100	71	21.36	5 Salek Analyst	5	Salek	Balanced Elicitation Reviews	Analyst	100	100	71	15.95
-IAcAc	5 Salek Analyst	5	Salek	Balanced Elicitation Reviews	Analyst	100	100	71	21.36	5 Lara Marketing	5	Lara	Aid	Marketing	100	100	71	130	2.3
-AcAc	5 Salek Analyst	5	Salek	Balanced Elicitation Reviews	Analyst	100	100	71	15.95	6 Salek Programmer	6	Salek	Evolution Adhoc	Programmer	100	100	71	304
-IAcAc	5 Salek Analyst	5	Salek	Balanced Elicitation Reviews	Analyst	100	100	71	15.95	5 Lara Marketing	5	Lara	Aid	Marketing	100	100	71	130	2.3
-AcAc	6 Salek Programmer	6	Salek	Evolution Adhoc	Programmer	100	100	71	304	7 Salek Programmer	7	Salek	Evolution Adhoc	Programmer	100	100	71	361
-IAcAc	6 Salek Programmer	6	Salek	Evolution Adhoc	Programmer	100	100	71	304	6 Barnab Manager	6	Barnab	Aid Programmer	Manager	100	100	214	40	1.4
-AcAc	7 Salek Programmer	7	Salek	Evolution Adhoc	Programmer	100	100	71	361	7 Salek Analyst	7	Salek	Balanced Elicitation Reviews	Analyst	100	100	71	17.29
-IAcAc	7 Salek Programmer	7	Salek	Evolution Adhoc	Programmer	100	100	71	361	7 Barnab Manager	7	Barnab	Aid Programmer	Manager	100	100	214	41	1.41
-AcAc	7 Salek Analyst	7	Salek	Balanced Elicitation Reviews	Analyst	100	100	71	17.29	8 Salek Programmer	8	Salek	Evolution Adhoc	Programmer	100	100	71	405
-IAcAc	7 Salek Analyst	7	Salek	Balanced Elicitation Reviews	Analyst	100	100	71	17.29	7 Lara Marketing	7	Lara	Aid	Marketing	100	100	71	152	2.52
-AcAc	8 Salek Programmer	8	Salek	Evolution Adhoc	Programmer	100	100	71	405	8 Salek Analyst	8	Salek	Balanced Especification	Analyst	100	100	71	30.7
-IAcAc	8 Salek Programmer	8	Salek	Evolution Adhoc	Programmer	100	100	71	405	8 Barnab Manager	8	Barnab	Aid Programmer	Manager	100	100	214	47	1.47
-AcAc	8 Salek Analyst	8	Salek	Balanced Especification	Analyst	100	100	71	30.7	9 Salek Programmer	9	Salek	Evolution Adhoc	Programmer	100	100	71	368
-IAcAc	8 Salek Analyst	8	Salek	Balanced Especification	Analyst	100	100	71	30.7	8 Lara Marketing	8	Lara	Aid	Marketing	100	100	71	160	2.6
-AcAc	9 Salek Programmer	9	Salek	Evolution Adhoc	Programmer	100	100	71	368	9 Salek Analyst	9	Salek	Balanced Especification	Analyst	100	100	71	31.2
-IAcAc	9 Salek Programmer	9	Salek	Evolution Adhoc	Programmer	100	100	71	368	9 Barnab Manager	9	Barnab	Aid Programmer	Manager	100	100	214	43	1.43
-AcAc	9 Salek Analyst	9	Salek	Balanced Especification	Analyst	100	100	71	31.2	10 Salek Programmer	10	Salek	Evolution Adhoc	Programmer	100	100	71	279
-IAcAc	9 Salek Analyst	9	Salek	Balanced Especification	Analyst	100	100	71	31.2	9 Lara Marketing	9	Lara	Aid	Marketing	100	100	71	147	2.47
-AcAc	10 Salek Programmer	10	Salek	Evolution Adhoc	Programmer	100	100	71	279	10 Salek Analyst	10	Salek	Balanced Elicitation Reviews	Analyst	100	100	71	25.93
-IAcAc	10 Salek Programmer	10	Salek	Evolution Adhoc	Programmer	100	100	71	279	10 Barnab Manager	10	Barnab	Aid Programmer	Manager	100	100	214	37	1.37
-AcAc	10 Salek Analyst	10	Salek	Balanced Elicitation Reviews	Analyst	100	100	71	25.93	11 Salek Programmer	11	Salek	Evolution Test-Driven	Programmer	100	100	71	158
-IAcAc	10 Salek Analyst	10	Salek	Balanced Elicitation Reviews	Analyst	100	100	71	25.93	10 Lara Marketing	10	Lara	Aid	Marketing	100	100	71	123	2.23
-AcAc	11 Salek Programmer	11	Salek	Evolution Test-Driven	Programmer	100	100	71	158	11 Salek Analyst	11	Salek	Balanced Especification	Analyst	100	100	71	26.56
-IAcAc	11 Salek Programmer	11	Salek	Evolution Test-Driven	Programmer	100	100	71	158	11 Barnab Manager	11	Barnab	Aid Programmer	Manager	100	100	214	38	1.38
-AcAc	11 Salek Analyst	11	Salek	Balanced Especification	Analyst	100	100	71	26.56	12 Salek Programmer	12	Salek	Evolution Adhoc	Programmer	100	100	71	392
-IAcAc	11 Salek Analyst	11	Salek	Balanced Especification	Analyst	100	100	71	26.56	11 Lara Marketing	11	Lara	Aid	Marketing	100	100	71	124	2.24
-AcAc	12 Salek Programmer	12	Salek	Evolution Adhoc	Programmer	100	100	71	392	12 Salek Analyst	12	Salek	Balanced Especification	Analyst	100	100	71	24.85
-IAcAc	12 Salek Programmer	12	Salek	Evolution Adhoc	Programmer	100	100	71	392	12 Barnab Manager	12	Barnab	Aid Programmer	Manager	100	100	214	49	1.49
-AcAc	12 Salek Analyst	12	Salek	Balanced Especification	Analyst	100	100	71	24.85	13 Salek Programmer	13	Salek	Evolution Test-Driven	Programmer	100	100	71	165
-IAcAc	12 Salek Analyst	12	Salek	Balanced Especification	Analyst	100	100	71	24.85	12 Lara Marketing	12	Lara	Aid	Marketing	100	100	71	152	2.52
-AcAc	13 Salek Programmer	13	Salek	Evolution Test-Driven	Programmer	100	100	71	165	13 Salek Analyst	13	Salek	Balanced Especification	Analyst	100	100	71	19.48
-IAcAc	13 Salek Programmer	13	Salek	Evolution Test-Driven	Programmer	100	100	71	165	13 Barnab Manager	13	Barnab	Aid Programmer	Manager	100	100	214	46	1.46
-AgAc	Konrad	1 Konrad Training	1	Konrad	Training	Training	100	100	71	0
-AcAc	1 Konrad Training	1	Konrad	Training	Training	100	100	71	0	2 Konrad Training	2	Konrad	Training	Training	100	100	71	0
-AcAc	2 Konrad Training	2	Konrad	Training	Training	100	100	71	0	3 Konrad Training	3	Konrad	Training	Training	100	100	71	0
-AcAc	3 Konrad Training	3	Konrad	Training	Training	100	100	71	0	4 Konrad Training	4	Konrad	Training	Training	100	100	71	0
-AcAc	4 Konrad Training	4	Konrad	Training	Training	100	100	71	0	5 Konrad Training	5	Konrad	Training	Training	100	100	71	0
-AcAc	5 Konrad Training	5	Konrad	Training	Training	100	100	71	0	6 Konrad Training	6	Konrad	Training	Training	100	100	71	0
-AcAc	6 Konrad Training	6	Konrad	Training	Training	100	100	71	0	7 Konrad Training	7	Konrad	Training	Training	100	100	71	0
-AcAc	7 Konrad Training	7	Konrad	Training	Training	100	100	71	0	8 Konrad Training	8	Konrad	Training	Training	100	100	71	0
-AcAc	8 Konrad Training	8	Konrad	Training	Training	100	100	71	0	9 Konrad Training	9	Konrad	Training	Training	100	100	71	0
-AcAc	9 Konrad Training	9	Konrad	Training	Training	100	100	71	0	10 Konrad Training	10	Konrad	Training	Training	100	100	71	0
-AcAc	10 Konrad Training	10	Konrad	Training	Training	100	100	71	0	11 Konrad Training	11	Konrad	Training	Training	100	100	71	0
-AcAc	11 Konrad Training	11	Konrad	Training	Training	100	100	71	0	12 Konrad Training	12	Konrad	Training	Training	100	100	71	0
-AcAc	12 Konrad Training	12	Konrad	Training	Training	100	100	71	0	12 Konrad idle	12	Konrad	Idle	idle	100	100	71	0
-AcAc	12 Konrad idle	12	Konrad	Idle	idle	100	100	71	0	13 Konrad idle	13	Konrad	Idle	idle	100	100	71	0
-AgAc	Pedro	1 Pedro idle	1	Pedro	Idle	idle	100	100	71	0
-AcAc	1 Pedro idle	1	Pedro	Idle	idle	100	100	71	0	2 Pedro idle	2	Pedro	Idle	idle	100	100	71	0
-AcAc	2 Pedro idle	2	Pedro	Idle	idle	100	100	71	0	3 Pedro idle	3	Pedro	Idle	idle	100	100	71	0
-AcAc	3 Pedro idle	3	Pedro	Idle	idle	100	100	71	0	4 Pedro idle	4	Pedro	Idle	idle	100	100	71	0
-AcAc	4 Pedro idle	4	Pedro	Idle	idle	100	100	71	0	5 Pedro idle	5	Pedro	Idle	idle	100	100	71	0
-AcAc	5 Pedro idle	5	Pedro	Idle	idle	100	100	71	0	6 Pedro Tester	6	Pedro	Test: Cases	Tester	100	100	71	2
-AcAc	6 Pedro Tester	6	Pedro	Test: Cases	Tester	100	100	71	2	7 Pedro Tester	7	Pedro	Test: Cases	Tester	100	100	71	2
-IAcAc	6 Pedro Tester	6	Pedro	Test: Cases	Tester	100	100	71	2	1 Raith Programmer	1	Raith	Evolution Test-Driven	Programmer	100	100	245	135	1
-IAcAc	6 Pedro Tester	6	Pedro	Test: Cases	Tester	100	100	71	2	2 Raith Programmer	2	Raith	Evolution Test-Driven	Programmer	100	100	245	147	1
-AcAc	7 Pedro Tester	7	Pedro	Test: Cases	Tester	100	100	71	2	8 Pedro Tester	8	Pedro	Test: Cases	Tester	100	100	71	1
-IAcAc	7 Pedro Tester	7	Pedro	Test: Cases	Tester	100	100	71	2	4 Raith Programmer	4	Raith	Evolution Test-Driven	Programmer	100	100	245	134	1
-IAcAc	7 Pedro Tester	7	Pedro	Test: Cases	Tester	100	100	71	2	5 Raith Programmer	5	Raith	Evolution Test-Driven	Programmer	100	100	245	185	1
-AcAc	8 Pedro Tester	8	Pedro	Test: Cases	Tester	100	100	71	1	9 Pedro Tester	9	Pedro	Test: Adhoc	Tester	100	100	71	2
-IAcAc	8 Pedro Tester	8	Pedro	Test: Cases	Tester	100	100	71	1	6 Raith Programmer	6	Raith	Evolution Test-Driven	Programmer	100	100	245	173	1
-AcAc	9 Pedro Tester	9	Pedro	Test: Adhoc	Tester	100	100	71	2	10 Pedro Tester	10	Pedro	Test: Cases	Tester	100	100	71	1
-AcAc	10 Pedro Tester	10	Pedro	Test: Cases	Tester	100	100	71	1	11 Pedro Tester	11	Pedro	Test: Cases	Tester	100	100	71	1
-IAcAc	10 Pedro Tester	10	Pedro	Test: Cases	Tester	100	100	71	1	10 Raith Programmer	10	Raith	Evolution Test-Driven	Programmer	100	100	245	130	1
-AcAc	11 Pedro Tester	11	Pedro	Test: Cases	Tester	100	100	71	1	12 Pedro Tester	12	Pedro	Test: Cases	Tester	100	100	71	1
-IAcAc	11 Pedro Tester	11	Pedro	Test: Cases	Tester	100	100	71	1	11 Salek Programmer	11	Salek	Evolution Test-Driven	Programmer	100	100	71	158	1
-AcAc	12 Pedro Tester	12	Pedro	Test: Cases	Tester	100	100	71	1	13 Pedro Tester	13	Pedro	Test: Cases	Tester	100	100	71	1
-IAcAc	12 Pedro Tester	12	Pedro	Test: Cases	Tester	100	100	71	1	12 Raith Programmer	12	Raith	Evolution Test-Driven	Programmer	100	100	245	180	1
+PP	0 Project	Project	0	560	java	24250		Not a priority	0.8	0	0	0	0	0	0	0	0	0	1 Project	Project	1	560	java	24250		Not a priority	0.8	0	0	0	0	0	0	0	0	0
+PP	1 Project	Project	1	560	java	24250		Not a priority	0.8	0	0	0	0	0	0	0	0	0	2 Project	Project	2	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0
+PP	2 Project	Project	2	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	3 Project	Project	3	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0
+PP	3 Project	Project	3	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	4 Project	Project	4	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0
+PP	4 Project	Project	4	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	5 Project	Project	5	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0
+PP	5 Project	Project	5	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	6 Project	Project	6	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0
+PP	6 Project	Project	6	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	7 Project	Project	7	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0
+PP	7 Project	Project	7	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	8 Project	Project	8	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0
+PP	8 Project	Project	8	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	9 Project	Project	9	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0
+PP	9 Project	Project	9	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	10 Project	Project	10	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0
+PP	10 Project	Project	10	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	11 Project	Project	11	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0
+PP	11 Project	Project	11	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	12 Project	Project	12	560	java	24250		Not a priority	0.79	0	1	2	0	0	0	0	0	0
+PP	12 Project	Project	12	560	java	24250		Not a priority	0.79	0	1	2	0	0	0	0	0	0	13 Project	Project	13	560	java	24250		Not a priority	0.79	0	3	3	0	0	0	0	0	0
+PP	13 Project	Project	13	560	java	24250		Not a priority	0.79	0	3	3	0	0	0	0	0	0	14 Project	Project	14	560	java	24250		Not a priority	0.79	0	3	4	0	1	0	0	0	0
+PP	14 Project	Project	14	560	java	24250		Not a priority	0.79	0	3	4	0	1	0	0	0	0	15 Project	Project	15	560	java	24250		Not a priority	0.79	0	5	4	0	1	0	0	0	0
+PP	15 Project	Project	15	560	java	24250		Not a priority	0.79	0	5	4	0	1	0	0	0	0	16 Project	Project	16	560	java	24250		Not a priority	0.79	0	5	5	0	3	0	0	0	0
+PP	16 Project	Project	16	560	java	24250		Not a priority	0.79	0	5	5	0	3	0	0	0	0	17 Project	Project	17	560	java	24250		Not a priority	0.79	0	6	5	0	5	0	0	0	0
+AgAc	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80	1 Lysire Programmer	1	Lysire	Evolution Adhoc	Programmer	100	100	238	379 Progress
+AcAg	1 Lysire Programmer	1	Lysire	Evolution Adhoc	Programmer	100	100	238	379 Progress	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80
+AgAc	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80	2 Lysire Programmer	2	Lysire	Evolution Adhoc	Programmer	100	100	238	291 Progress
+IAcAc	1 Lysire Programmer	1	Lysire	Evolution Adhoc	Programmer	100	100	238	379 Progress	1 Taselda Manager	1	Taselda	Aid Programmer	Manager	100	100	263	41% Aid	1.41
+AcP	1 Lysire Programmer	1	Lysire	Evolution Adhoc	Programmer	100	100	238	379 Progress	1 Project	Project	1	560	java	24250		Not a priority	0.8	0	0	0	0	0	0	0	0	0	379 Progress
+AcAg	2 Lysire Programmer	2	Lysire	Evolution Adhoc	Programmer	100	100	238	291 Progress	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80
+AgAc	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80	3 Lysire Programmer	3	Lysire	Evolution Test-Driven	Programmer	100	100	238	184 Progress
+IAcAc	2 Lysire Programmer	2	Lysire	Evolution Adhoc	Programmer	100	100	238	291 Progress	2 Taselda Manager	2	Taselda	Aid Programmer	Manager	100	100	263	36% Aid	1.36
+AcP	2 Lysire Programmer	2	Lysire	Evolution Adhoc	Programmer	100	100	238	291 Progress	2 Project	Project	2	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	291 Progress
+AcAg	3 Lysire Programmer	3	Lysire	Evolution Test-Driven	Programmer	100	100	238	184 Progress	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80
+AgAc	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80	4 Lysire Programmer	4	Lysire	Evolution Draw-code	Programmer	100	100	238	246 Progress
+IAcAc	3 Lysire Programmer	3	Lysire	Evolution Test-Driven	Programmer	100	100	238	184 Progress	3 Taselda Manager	3	Taselda	Aid Programmer	Manager	100	100	263	38% Aid	1.38
+AcP	3 Lysire Programmer	3	Lysire	Evolution Test-Driven	Programmer	100	100	238	184 Progress	3 Project	Project	3	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	184 Progress
+AcAg	4 Lysire Programmer	4	Lysire	Evolution Draw-code	Programmer	100	100	238	246 Progress	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80
+AgAc	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80	5 Lysire Programmer	5	Lysire	Evolution Draw-code	Programmer	100	100	238	169 Progress
+IAcAc	4 Lysire Programmer	4	Lysire	Evolution Draw-code	Programmer	100	100	238	246 Progress	4 Dane Architect	4	Dane	Balanced Architecture	Architect	100	100	254	44 Aid	1.84
+IAcAc	4 Lysire Programmer	4	Lysire	Evolution Draw-code	Programmer	100	100	238	246 Progress	4 Taselda Manager	4	Taselda	Aid Programmer	Manager	100	100	263	40% Aid	1.84
+AcP	4 Lysire Programmer	4	Lysire	Evolution Draw-code	Programmer	100	100	238	246 Progress	4 Project	Project	4	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	246 Progress
+AcAg	5 Lysire Programmer	5	Lysire	Evolution Draw-code	Programmer	100	100	238	169 Progress	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80
+AgAc	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80	6 Lysire Programmer	6	Lysire	Evolution Draw-code	Programmer	100	100	238	201 Progress
+IAcAc	5 Lysire Programmer	5	Lysire	Evolution Draw-code	Programmer	100	100	238	169 Progress	5 Taselda Manager	5	Taselda	Aid Programmer	Manager	100	100	263	28% Aid	1.28
+AcP	5 Lysire Programmer	5	Lysire	Evolution Draw-code	Programmer	100	100	238	169 Progress	5 Project	Project	5	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	169 Progress
+AcAg	6 Lysire Programmer	6	Lysire	Evolution Draw-code	Programmer	100	100	238	201 Progress	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80
+AgAc	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80	7 Lysire Programmer	7	Lysire	Evolution Draw-code	Programmer	100	100	238	223 Progress
+IAcAc	6 Lysire Programmer	6	Lysire	Evolution Draw-code	Programmer	100	100	238	201 Progress	6 Taselda Manager	6	Taselda	Aid Programmer	Manager	100	100	263	37% Aid	1.37
+AcP	6 Lysire Programmer	6	Lysire	Evolution Draw-code	Programmer	100	100	238	201 Progress	6 Project	Project	6	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	201 Progress
+AcAg	7 Lysire Programmer	7	Lysire	Evolution Draw-code	Programmer	100	100	238	223 Progress	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80
+AgAc	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80	8 Lysire Programmer	8	Lysire	Evolution Test-Driven	Programmer	100	100	238	133 Progress
+IAcAc	7 Lysire Programmer	7	Lysire	Evolution Draw-code	Programmer	100	100	238	223 Progress	7 Taselda Manager	7	Taselda	Aid Programmer	Manager	100	100	263	32% Aid	1.32
+AcP	7 Lysire Programmer	7	Lysire	Evolution Draw-code	Programmer	100	100	238	223 Progress	7 Project	Project	7	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	223 Progress
+AcAg	8 Lysire Programmer	8	Lysire	Evolution Test-Driven	Programmer	100	100	238	133 Progress	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80
+AgAc	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80	9 Lysire Programmer	9	Lysire	Evolution Test-Driven	Programmer	100	100	238	213 Progress
+IAcAc	8 Lysire Programmer	8	Lysire	Evolution Test-Driven	Programmer	100	100	238	133 Progress	8 Taselda Manager	8	Taselda	Aid Programmer	Manager	100	100	263	28% Aid	1.28
+AcP	8 Lysire Programmer	8	Lysire	Evolution Test-Driven	Programmer	100	100	238	133 Progress	8 Project	Project	8	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	133 Progress
+AcAg	9 Lysire Programmer	9	Lysire	Evolution Test-Driven	Programmer	100	100	238	213 Progress	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80
+AgAc	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80	10 Lysire Programmer	10	Lysire	Evolution Adhoc	Programmer	100	100	238	326 Progress
+IAcAc	9 Lysire Programmer	9	Lysire	Evolution Test-Driven	Programmer	100	100	238	213 Progress	9 Dane Architect	9	Dane	Balanced Architecture	Architect	100	100	254	42 Aid	1.82
+IAcAc	9 Lysire Programmer	9	Lysire	Evolution Test-Driven	Programmer	100	100	238	213 Progress	9 Taselda Manager	9	Taselda	Aid Programmer	Manager	100	100	263	40% Aid	1.82
+AcP	9 Lysire Programmer	9	Lysire	Evolution Test-Driven	Programmer	100	100	238	213 Progress	9 Project	Project	9	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	213 Progress
+AcAg	10 Lysire Programmer	10	Lysire	Evolution Adhoc	Programmer	100	100	238	326 Progress	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80
+AgAc	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80	11 Lysire Programmer	11	Lysire	Evolution Adhoc	Programmer	100	100	238	273 Progress
+IAcAc	10 Lysire Programmer	10	Lysire	Evolution Adhoc	Programmer	100	100	238	326 Progress	10 Taselda Manager	10	Taselda	Aid Programmer	Manager	100	100	263	41% Aid	1.41
+AcP	10 Lysire Programmer	10	Lysire	Evolution Adhoc	Programmer	100	100	238	326 Progress	10 Project	Project	10	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	326 Progress
+AcAg	11 Lysire Programmer	11	Lysire	Evolution Adhoc	Programmer	100	100	238	273 Progress	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80
+AgAc	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80	12 Lysire Programmer	12	Lysire	Evolution Draw-code	Programmer	100	100	238	165 Progress
+IAcAc	11 Lysire Programmer	11	Lysire	Evolution Adhoc	Programmer	100	100	238	273 Progress	11 Taselda Manager	11	Taselda	Aid Programmer	Manager	100	100	263	28% Aid	1.28
+AcP	11 Lysire Programmer	11	Lysire	Evolution Adhoc	Programmer	100	100	238	273 Progress	11 Project	Project	11	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	273 Progress
+AcAg	12 Lysire Programmer	12	Lysire	Evolution Draw-code	Programmer	100	100	238	165 Progress	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80
+AgAc	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80	13 Lysire Programmer	13	Lysire	Evolution Draw-code	Programmer	100	100	238	212 Progress
+IAcAc	12 Lysire Programmer	12	Lysire	Evolution Draw-code	Programmer	100	100	238	165 Progress	12 Taselda Manager	12	Taselda	Aid Programmer	Manager	100	100	263	29% Aid	1.29
+AcP	12 Lysire Programmer	12	Lysire	Evolution Draw-code	Programmer	100	100	238	165 Progress	12 Project	Project	12	560	java	24250		Not a priority	0.79	0	1	2	0	0	0	0	0	0	165 Progress
+AcAg	13 Lysire Programmer	13	Lysire	Evolution Draw-code	Programmer	100	100	238	212 Progress	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80
+AgAc	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80	14 Lysire Programmer	14	Lysire	Evolution Test-Driven	Programmer	100	100	238	218 Progress
+IAcAc	13 Lysire Programmer	13	Lysire	Evolution Draw-code	Programmer	100	100	238	212 Progress	13 Taselda Manager	13	Taselda	Aid Programmer	Manager	100	100	263	34% Aid	1.34
+AcP	13 Lysire Programmer	13	Lysire	Evolution Draw-code	Programmer	100	100	238	212 Progress	13 Project	Project	13	560	java	24250		Not a priority	0.79	0	3	3	0	0	0	0	0	0	212 Progress
+AcAg	14 Lysire Programmer	14	Lysire	Evolution Test-Driven	Programmer	100	100	238	218 Progress	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80
+AgAc	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80	15 Lysire Programmer	15	Lysire	Evolution Draw-code	Programmer	100	100	238	241 Progress
+IAcAc	14 Lysire Programmer	14	Lysire	Evolution Test-Driven	Programmer	100	100	238	218 Progress	14 Dane Architect	14	Dane	Balanced Architecture	Architect	100	100	254	48 Aid	1.76
+IAcAc	14 Lysire Programmer	14	Lysire	Evolution Test-Driven	Programmer	100	100	238	218 Progress	14 Taselda Manager	14	Taselda	Aid Programmer	Manager	100	100	263	28% Aid	1.76
+AcP	14 Lysire Programmer	14	Lysire	Evolution Test-Driven	Programmer	100	100	238	218 Progress	14 Project	Project	14	560	java	24250		Not a priority	0.79	0	3	4	0	1	0	0	0	0	218 Progress
+AcAg	15 Lysire Programmer	15	Lysire	Evolution Draw-code	Programmer	100	100	238	241 Progress	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80
+AgAc	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80	16 Lysire Programmer	16	Lysire	Evolution Adhoc	Programmer	100	100	238	317 Progress
+IAcAc	15 Lysire Programmer	15	Lysire	Evolution Draw-code	Programmer	100	100	238	241 Progress	15 Taselda Manager	15	Taselda	Aid Programmer	Manager	100	100	263	33% Aid	1.33
+AcP	15 Lysire Programmer	15	Lysire	Evolution Draw-code	Programmer	100	100	238	241 Progress	15 Project	Project	15	560	java	24250		Not a priority	0.79	0	5	4	0	1	0	0	0	0	241 Progress
+AcAg	16 Lysire Programmer	16	Lysire	Evolution Adhoc	Programmer	100	100	238	317 Progress	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80
+AgAc	Lysire	Lysire	6750	Junior	1	49	81	56	64	65	75	95	78	80	17 Lysire Programmer	17	Lysire	Evolution Adhoc	Programmer	100	100	238	259 Progress
+IAcAc	16 Lysire Programmer	16	Lysire	Evolution Adhoc	Programmer	100	100	238	317 Progress	16 Taselda Manager	16	Taselda	Aid Programmer	Manager	100	100	263	36% Aid	1.36
+AcP	16 Lysire Programmer	16	Lysire	Evolution Adhoc	Programmer	100	100	238	317 Progress	16 Project	Project	16	560	java	24250		Not a priority	0.79	0	5	5	0	3	0	0	0	0	317 Progress
+AgAc	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51	1 Gabriel Analyst	1	Gabriel	Elicitation Prototype	Analyst	100	100	228	51.705 Val
+AcAg	1 Gabriel Analyst	1	Gabriel	Elicitation Prototype	Analyst	100	100	228	51.705 Val	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51
+AgAc	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51	2 Gabriel Analyst	2	Gabriel	Elicitation Reviews	Analyst	100	100	228	62.49 
+IAcAc	1 Gabriel Analyst	1	Gabriel	Elicitation Prototype	Analyst	100	100	228	51.705 Val	1 Han Marketing	1	Han	Aid	Marketing	100	100	71	189% Aid	2.89
+IAcAr	1 Gabriel Analyst	1	Gabriel	Elicitation Prototype	Analyst	100	100	228	51.705 Val	1 Prototype	0
+IArAc	1 Prototype	1 Dane Architect	1	Dane	Balanced Prototype	Architect	100	100	254	1 Prototype	0
+AcP	1 Gabriel Analyst	1	Gabriel	Elicitation Prototype	Analyst	100	100	228	51.705 Val	1 Project	Project	1	560	java	24250		Not a priority	0.8	0	0	0	0	0	0	0	0	0	51.705 Val
+AcAg	2 Gabriel Analyst	2	Gabriel	Elicitation Reviews	Analyst	100	100	228	62.49 	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51
+AgAc	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51	3 Gabriel Analyst	3	Gabriel	Elicitation Reviews	Analyst	100	100	228	47.03 
+IAcAc	2 Gabriel Analyst	2	Gabriel	Elicitation Reviews	Analyst	100	100	228	62.49 	2 Han Marketing	2	Han	Aid	Marketing	100	100	71	177% Aid	2.77
+AcP	2 Gabriel Analyst	2	Gabriel	Elicitation Reviews	Analyst	100	100	228	62.49 	2 Project	Project	2	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	62.49 
+AcAg	3 Gabriel Analyst	3	Gabriel	Elicitation Reviews	Analyst	100	100	228	47.03 	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51
+AgAc	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51	4 Gabriel Analyst	4	Gabriel	Elicitation Reviews	Analyst	100	100	228	33.92 
+IAcAc	3 Gabriel Analyst	3	Gabriel	Elicitation Reviews	Analyst	100	100	228	47.03 	3 Han Marketing	3	Han	Aid	Marketing	100	100	71	217% Aid	3.17
+AcP	3 Gabriel Analyst	3	Gabriel	Elicitation Reviews	Analyst	100	100	228	47.03 	3 Project	Project	3	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	47.03 
+AcAg	4 Gabriel Analyst	4	Gabriel	Elicitation Reviews	Analyst	100	100	228	33.92 	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51
+AgAc	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51	5 Gabriel Analyst	5	Gabriel	Elicitation Reviews	Analyst	100	100	228	34.43 
+IAcAc	4 Gabriel Analyst	4	Gabriel	Elicitation Reviews	Analyst	100	100	228	33.92 	4 Han Marketing	4	Han	Aid	Marketing	100	100	71	228% Aid	3.28
+AcP	4 Gabriel Analyst	4	Gabriel	Elicitation Reviews	Analyst	100	100	228	33.92 	4 Project	Project	4	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	33.92 
+AcAg	5 Gabriel Analyst	5	Gabriel	Elicitation Reviews	Analyst	100	100	228	34.43 	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51
+AgAc	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51	5 Gabriel Architect	5	Gabriel	Analysis Prototype	Architect	100	100	228	1 Prototype
+IAcAc	5 Gabriel Analyst	5	Gabriel	Elicitation Reviews	Analyst	100	100	228	34.43 	5 Han Marketing	5	Han	Aid	Marketing	100	100	71	220% Aid	3.2
+AcP	5 Gabriel Analyst	5	Gabriel	Elicitation Reviews	Analyst	100	100	228	34.43 	5 Project	Project	5	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	34.43 
+AcAg	5 Gabriel Architect	5	Gabriel	Analysis Prototype	Architect	100	100	228	1 Prototype	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51
+AgAc	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51	6 Gabriel Analyst	6	Gabriel	Elicitation Prototype	Analyst	100	100	228	51.57 Val
+AcAg	6 Gabriel Analyst	6	Gabriel	Elicitation Prototype	Analyst	100	100	228	51.57 Val	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51
+AgAc	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51	6 Gabriel Architect	6	Gabriel	Analysis Prototype	Architect	100	100	228	1 Prototype
+IAcAc	6 Gabriel Analyst	6	Gabriel	Elicitation Prototype	Analyst	100	100	228	51.57 Val	6 Han Marketing	6	Han	Aid	Marketing	100	100	71	214% Aid	3.14
+IAcAr	6 Gabriel Analyst	6	Gabriel	Elicitation Prototype	Analyst	100	100	228	51.57 Val	5 Prototype	0
+IArAc	5 Prototype	5 Gabriel Architect	5	Gabriel	Analysis Prototype	Architect	100	100	228	1 Prototype	0
+AcP	6 Gabriel Analyst	6	Gabriel	Elicitation Prototype	Analyst	100	100	228	51.57 Val	6 Project	Project	6	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	51.57 Val
+AcAg	6 Gabriel Architect	6	Gabriel	Analysis Prototype	Architect	100	100	228	1 Prototype	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51
+AgAc	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51	7 Gabriel Analyst	7	Gabriel	Elicitation Prototype	Analyst	100	100	228	32.85 Val
+AcAg	7 Gabriel Analyst	7	Gabriel	Elicitation Prototype	Analyst	100	100	228	32.85 Val	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51
+AgAc	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51	7 Gabriel Architect	7	Gabriel	Analysis Prototype	Architect	100	100	228	1 Prototype
+IAcAc	7 Gabriel Analyst	7	Gabriel	Elicitation Prototype	Analyst	100	100	228	32.85 Val	7 Han Marketing	7	Han	Aid	Marketing	100	100	71	177% Aid	2.77
+IAcAr	7 Gabriel Analyst	7	Gabriel	Elicitation Prototype	Analyst	100	100	228	32.85 Val	6 Prototype	0
+IArAc	6 Prototype	6 Gabriel Architect	6	Gabriel	Analysis Prototype	Architect	100	100	228	1 Prototype	0
+AcP	7 Gabriel Analyst	7	Gabriel	Elicitation Prototype	Analyst	100	100	228	32.85 Val	7 Project	Project	7	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	32.85 Val
+AcAg	7 Gabriel Architect	7	Gabriel	Analysis Prototype	Architect	100	100	228	1 Prototype	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51
+AgAc	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51	8 Gabriel Analyst	8	Gabriel	Elicitation Prototype	Analyst	100	100	228	32.175 Val
+AcAg	8 Gabriel Analyst	8	Gabriel	Elicitation Prototype	Analyst	100	100	228	32.175 Val	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51
+AgAc	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51	8 Gabriel Architect	8	Gabriel	Analysis Prototype	Architect	100	100	228	1 Prototype
+IAcAc	8 Gabriel Analyst	8	Gabriel	Elicitation Prototype	Analyst	100	100	228	32.175 Val	8 Han Marketing	8	Han	Aid	Marketing	100	100	71	170% Aid	2.7
+IAcAr	8 Gabriel Analyst	8	Gabriel	Elicitation Prototype	Analyst	100	100	228	32.175 Val	7 Prototype	0
+IArAc	7 Prototype	7 Dane Architect	7	Dane	Balanced Prototype	Architect	100	100	254	1 Prototype	0
+AcP	8 Gabriel Analyst	8	Gabriel	Elicitation Prototype	Analyst	100	100	228	32.175 Val	8 Project	Project	8	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	32.175 Val
+AcAg	8 Gabriel Architect	8	Gabriel	Analysis Prototype	Architect	100	100	228	1 Prototype	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51
+AgAc	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51	8 Gabriel Architect	8	Gabriel	Analysis Prototype	Architect	100	100	228	1 Prototype
+AcAg	8 Gabriel Architect	8	Gabriel	Analysis Prototype	Architect	100	100	228	1 Prototype	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51
+AgAc	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51	9 Gabriel Analyst	9	Gabriel	Elicitation Prototype	Analyst	100	100	228	83.49 Val
+AcAg	9 Gabriel Analyst	9	Gabriel	Elicitation Prototype	Analyst	100	100	228	83.49 Val	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51
+AgAc	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51	10 Gabriel Analyst	10	Gabriel	Elicitation Prototype	Analyst	100	100	228	63.03 Val
+IAcAc	9 Gabriel Analyst	9	Gabriel	Elicitation Prototype	Analyst	100	100	228	83.49 Val	9 Han Marketing	9	Han	Aid	Marketing	100	100	71	198% Aid	2.98
+IAcAr	9 Gabriel Analyst	9	Gabriel	Elicitation Prototype	Analyst	100	100	228	83.49 Val	7 Prototype	0
+IArAc	7 Prototype	7 Gabriel Architect	7	Gabriel	Analysis Prototype	Architect	100	100	228	1 Prototype	0
+AcP	9 Gabriel Analyst	9	Gabriel	Elicitation Prototype	Analyst	100	100	228	83.49 Val	9 Project	Project	9	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	83.49 Val
+AcAg	10 Gabriel Analyst	10	Gabriel	Elicitation Prototype	Analyst	100	100	228	63.03 Val	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51
+AgAc	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51	11 Gabriel Analyst	11	Gabriel	Elicitation Prototype	Analyst	100	100	228	80.77499 Val
+IAcAc	10 Gabriel Analyst	10	Gabriel	Elicitation Prototype	Analyst	100	100	228	63.03 Val	10 Han Marketing	10	Han	Aid	Marketing	100	100	71	171% Aid	2.71
+IAcAr	10 Gabriel Analyst	10	Gabriel	Elicitation Prototype	Analyst	100	100	228	63.03 Val	8 Prototype	0
+IArAc	8 Prototype	8 Dane Architect	8	Dane	Balanced Prototype	Architect	100	100	254	1 Prototype	0
+AcP	10 Gabriel Analyst	10	Gabriel	Elicitation Prototype	Analyst	100	100	228	63.03 Val	10 Project	Project	10	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	63.03 Val
+AcAg	11 Gabriel Analyst	11	Gabriel	Elicitation Prototype	Analyst	100	100	228	80.77499 Val	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51
+AgAc	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51	12 Gabriel Analyst	12	Gabriel	Elicitation Prototype	Analyst	100	100	228	101.655 Val
+IAcAc	11 Gabriel Analyst	11	Gabriel	Elicitation Prototype	Analyst	100	100	228	80.77499 Val	11 Han Marketing	11	Han	Aid	Marketing	100	100	71	164% Aid	2.64
+IAcAr	11 Gabriel Analyst	11	Gabriel	Elicitation Prototype	Analyst	100	100	228	80.77499 Val	8 Prototype	0
+IArAc	8 Prototype	8 Gabriel Architect	8	Gabriel	Analysis Prototype	Architect	100	100	228	1 Prototype	0
+AcP	11 Gabriel Analyst	11	Gabriel	Elicitation Prototype	Analyst	100	100	228	80.77499 Val	11 Project	Project	11	560	java	24250		Not a priority	0.79	0	0	0	0	0	0	0	0	0	80.77499 Val
+AcAg	12 Gabriel Analyst	12	Gabriel	Elicitation Prototype	Analyst	100	100	228	101.655 Val	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51
+AgAc	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51	13 Gabriel Analyst	13	Gabriel	Elicitation Reviews	Analyst	100	100	228	32.55 
+IAcAc	12 Gabriel Analyst	12	Gabriel	Elicitation Prototype	Analyst	100	100	228	101.655 Val	12 Han Marketing	12	Han	Aid	Marketing	100	100	71	207% Aid	3.07
+IAcAr	12 Gabriel Analyst	12	Gabriel	Elicitation Prototype	Analyst	100	100	228	101.655 Val	8 Prototype	0
+IArAc	8 Prototype	8 Gabriel Architect	8	Gabriel	Analysis Prototype	Architect	100	100	228	1 Prototype	0
+AcP	12 Gabriel Analyst	12	Gabriel	Elicitation Prototype	Analyst	100	100	228	101.655 Val	12 Project	Project	12	560	java	24250		Not a priority	0.79	0	1	2	0	0	0	0	0	0	101.655 Val
+AcAg	13 Gabriel Analyst	13	Gabriel	Elicitation Reviews	Analyst	100	100	228	32.55 	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51
+AgAc	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51	14 Gabriel Analyst	14	Gabriel	Elicitation Reviews	Analyst	100	100	228	38.01 
+IAcAc	13 Gabriel Analyst	13	Gabriel	Elicitation Reviews	Analyst	100	100	228	32.55 	13 Han Marketing	13	Han	Aid	Marketing	100	100	71	163% Aid	2.63
+AcP	13 Gabriel Analyst	13	Gabriel	Elicitation Reviews	Analyst	100	100	228	32.55 	13 Project	Project	13	560	java	24250		Not a priority	0.79	0	3	3	0	0	0	0	0	0	32.55 
+AcAg	14 Gabriel Analyst	14	Gabriel	Elicitation Reviews	Analyst	100	100	228	38.01 	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51
+AgAc	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51	15 Gabriel Analyst	15	Gabriel	Elicitation Reviews	Analyst	100	100	228	56.04 
+IAcAc	14 Gabriel Analyst	14	Gabriel	Elicitation Reviews	Analyst	100	100	228	38.01 	14 Han Marketing	14	Han	Aid	Marketing	100	100	71	207% Aid	3.07
+AcP	14 Gabriel Analyst	14	Gabriel	Elicitation Reviews	Analyst	100	100	228	38.01 	14 Project	Project	14	560	java	24250		Not a priority	0.79	0	3	4	0	1	0	0	0	0	38.01 
+AcAg	15 Gabriel Analyst	15	Gabriel	Elicitation Reviews	Analyst	100	100	228	56.04 	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51
+AgAc	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51	16 Gabriel Analyst	16	Gabriel	Elicitation Reviews	Analyst	100	100	228	51.71 
+IAcAc	15 Gabriel Analyst	15	Gabriel	Elicitation Reviews	Analyst	100	100	228	56.04 	15 Han Marketing	15	Han	Aid	Marketing	100	100	71	191% Aid	2.91
+AcP	15 Gabriel Analyst	15	Gabriel	Elicitation Reviews	Analyst	100	100	228	56.04 	15 Project	Project	15	560	java	24250		Not a priority	0.79	0	5	4	0	1	0	0	0	0	56.04 
+AcAg	16 Gabriel Analyst	16	Gabriel	Elicitation Reviews	Analyst	100	100	228	51.71 	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51
+AgAc	Gabriel	Gabriel	6640	Junior	1	61	90	51	45	70	82	54	79	51	17 Gabriel Analyst	17	Gabriel	Elicitation Reviews	Analyst	100	100	228	44.29 
+IAcAc	16 Gabriel Analyst	16	Gabriel	Elicitation Reviews	Analyst	100	100	228	51.71 	16 Han Marketing	16	Han	Aid	Marketing	100	100	71	205% Aid	3.05
+AcP	16 Gabriel Analyst	16	Gabriel	Elicitation Reviews	Analyst	100	100	228	51.71 	16 Project	Project	16	560	java	24250		Not a priority	0.79	0	5	5	0	3	0	0	0	0	51.71 
+AgAc	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48	1 Dane Architect	1	Dane	Balanced Prototype	Architect	100	100	254	1 Prototype
+AcAg	1 Dane Architect	1	Dane	Balanced Prototype	Architect	100	100	254	1 Prototype	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48
+AgAc	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48	2 Dane Architect	2	Dane	Balanced Integration	Architect	100	100	254	0 ITC
+AcAg	2 Dane Architect	2	Dane	Balanced Integration	Architect	100	100	254	0 ITC	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48
+AgAc	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48	3 Dane Architect	3	Dane	Balanced Integration	Architect	100	100	254	1 ITC
+AcAg	3 Dane Architect	3	Dane	Balanced Integration	Architect	100	100	254	1 ITC	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48
+AgAc	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48	4 Dane Architect	4	Dane	Balanced Architecture	Architect	100	100	254	44 Aid
+AcAg	4 Dane Architect	4	Dane	Balanced Architecture	Architect	100	100	254	44 Aid	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48
+AgAc	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48	5 Dane Architect	5	Dane	Balanced Integration	Architect	100	100	254	0 ITC
+AcAg	5 Dane Architect	5	Dane	Balanced Integration	Architect	100	100	254	0 ITC	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48
+AgAc	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48	6 Dane Architect	6	Dane	Balanced Integration	Architect	100	100	254	1 ITC
+AcAg	6 Dane Architect	6	Dane	Balanced Integration	Architect	100	100	254	1 ITC	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48
+AgAc	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48	7 Dane Architect	7	Dane	Balanced Prototype	Architect	100	100	254	1 Prototype
+AcAg	7 Dane Architect	7	Dane	Balanced Prototype	Architect	100	100	254	1 Prototype	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48
+AgAc	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48	8 Dane Architect	8	Dane	Balanced Prototype	Architect	100	100	254	1 Prototype
+AcAg	8 Dane Architect	8	Dane	Balanced Prototype	Architect	100	100	254	1 Prototype	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48
+AgAc	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48	9 Dane Architect	9	Dane	Balanced Architecture	Architect	100	100	254	42 Aid
+AcAg	9 Dane Architect	9	Dane	Balanced Architecture	Architect	100	100	254	42 Aid	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48
+AgAc	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48	10 Dane Architect	10	Dane	Balanced Integration	Architect	100	100	254	1 ITC
+AcAg	10 Dane Architect	10	Dane	Balanced Integration	Architect	100	100	254	1 ITC	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48
+AgAc	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48	11 Dane Architect	11	Dane	Balanced System	Architect	100	100	254	1 STC
+AcAg	11 Dane Architect	11	Dane	Balanced System	Architect	100	100	254	1 STC	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48
+AgAc	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48	12 Dane Architect	12	Dane	Balanced Integration	Architect	100	100	254	1 ITC
+AcAg	12 Dane Architect	12	Dane	Balanced Integration	Architect	100	100	254	1 ITC	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48
+AgAc	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48	13 Dane Architect	13	Dane	Balanced Integration	Architect	100	100	254	1 ITC
+AcAg	13 Dane Architect	13	Dane	Balanced Integration	Architect	100	100	254	1 ITC	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48
+AgAc	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48	14 Dane Architect	14	Dane	Balanced Architecture	Architect	100	100	254	48 Aid
+AcAg	14 Dane Architect	14	Dane	Balanced Architecture	Architect	100	100	254	48 Aid	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48
+AgAc	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48	15 Dane Architect	15	Dane	Balanced Integration	Architect	100	100	254	1 ITC
+AcAg	15 Dane Architect	15	Dane	Balanced Integration	Architect	100	100	254	1 ITC	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48
+AgAc	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48	16 Dane Architect	16	Dane	Balanced System	Architect	100	100	254	1 STC
+AcAg	16 Dane Architect	16	Dane	Balanced System	Architect	100	100	254	1 STC	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48
+AgAc	Dane	Dane	7050	Junior	1	57	73	77	88	83	71	62	77	48	17 Dane Architect	17	Dane	Balanced System	Architect	100	100	254	1 STC
+AgAc	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53	1 Taselda Manager	1	Taselda	Aid Programmer	Manager	100	100	263	41% Aid
+AcAg	1 Taselda Manager	1	Taselda	Aid Programmer	Manager	100	100	263	41% Aid	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53
+AgAc	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53	2 Taselda Manager	2	Taselda	Aid Programmer	Manager	100	100	263	36% Aid
+AcAg	2 Taselda Manager	2	Taselda	Aid Programmer	Manager	100	100	263	36% Aid	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53
+AgAc	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53	3 Taselda Manager	3	Taselda	Aid Programmer	Manager	100	100	263	38% Aid
+AcAg	3 Taselda Manager	3	Taselda	Aid Programmer	Manager	100	100	263	38% Aid	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53
+AgAc	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53	4 Taselda Manager	4	Taselda	Aid Programmer	Manager	100	100	263	40% Aid
+AcAg	4 Taselda Manager	4	Taselda	Aid Programmer	Manager	100	100	263	40% Aid	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53
+AgAc	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53	5 Taselda Manager	5	Taselda	Aid Programmer	Manager	100	100	263	28% Aid
+AcAg	5 Taselda Manager	5	Taselda	Aid Programmer	Manager	100	100	263	28% Aid	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53
+AgAc	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53	6 Taselda Manager	6	Taselda	Aid Programmer	Manager	100	100	263	37% Aid
+AcAg	6 Taselda Manager	6	Taselda	Aid Programmer	Manager	100	100	263	37% Aid	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53
+AgAc	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53	7 Taselda Manager	7	Taselda	Aid Programmer	Manager	100	100	263	32% Aid
+AcAg	7 Taselda Manager	7	Taselda	Aid Programmer	Manager	100	100	263	32% Aid	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53
+AgAc	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53	8 Taselda Manager	8	Taselda	Aid Programmer	Manager	100	100	263	28% Aid
+AcAg	8 Taselda Manager	8	Taselda	Aid Programmer	Manager	100	100	263	28% Aid	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53
+AgAc	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53	9 Taselda Manager	9	Taselda	Aid Programmer	Manager	100	100	263	40% Aid
+AcAg	9 Taselda Manager	9	Taselda	Aid Programmer	Manager	100	100	263	40% Aid	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53
+AgAc	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53	10 Taselda Manager	10	Taselda	Aid Programmer	Manager	100	100	263	41% Aid
+AcAg	10 Taselda Manager	10	Taselda	Aid Programmer	Manager	100	100	263	41% Aid	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53
+AgAc	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53	11 Taselda Manager	11	Taselda	Aid Programmer	Manager	100	100	263	28% Aid
+AcAg	11 Taselda Manager	11	Taselda	Aid Programmer	Manager	100	100	263	28% Aid	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53
+AgAc	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53	12 Taselda Manager	12	Taselda	Aid Programmer	Manager	100	100	263	29% Aid
+AcAg	12 Taselda Manager	12	Taselda	Aid Programmer	Manager	100	100	263	29% Aid	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53
+AgAc	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53	13 Taselda Manager	13	Taselda	Aid Programmer	Manager	100	100	263	34% Aid
+AcAg	13 Taselda Manager	13	Taselda	Aid Programmer	Manager	100	100	263	34% Aid	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53
+AgAc	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53	14 Taselda Manager	14	Taselda	Aid Programmer	Manager	100	100	263	28% Aid
+AcAg	14 Taselda Manager	14	Taselda	Aid Programmer	Manager	100	100	263	28% Aid	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53
+AgAc	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53	15 Taselda Manager	15	Taselda	Aid Programmer	Manager	100	100	263	33% Aid
+AcAg	15 Taselda Manager	15	Taselda	Aid Programmer	Manager	100	100	263	33% Aid	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53
+AgAc	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53	16 Taselda Manager	16	Taselda	Aid Programmer	Manager	100	100	263	36% Aid
+AcAg	16 Taselda Manager	16	Taselda	Aid Programmer	Manager	100	100	263	36% Aid	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53
+AgAc	Taselda	Taselda	7320	Junior	1	71	82	46	75	93	76	76	82	53	17 Taselda Manager	17	Taselda	Aid Programmer	Manager	100	100	263	36% Aid
+AgAc	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54	1 Han Marketing	1	Han	Aid	Marketing	100	100	71	189% Aid
+AcAg	1 Han Marketing	1	Han	Aid	Marketing	100	100	71	189% Aid	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54
+AgAc	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54	2 Han Marketing	2	Han	Aid	Marketing	100	100	71	177% Aid
+AcAg	2 Han Marketing	2	Han	Aid	Marketing	100	100	71	177% Aid	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54
+AgAc	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54	3 Han Marketing	3	Han	Aid	Marketing	100	100	71	217% Aid
+AcAg	3 Han Marketing	3	Han	Aid	Marketing	100	100	71	217% Aid	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54
+AgAc	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54	4 Han Marketing	4	Han	Aid	Marketing	100	100	71	228% Aid
+AcAg	4 Han Marketing	4	Han	Aid	Marketing	100	100	71	228% Aid	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54
+AgAc	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54	5 Han Marketing	5	Han	Aid	Marketing	100	100	71	220% Aid
+AcAg	5 Han Marketing	5	Han	Aid	Marketing	100	100	71	220% Aid	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54
+AgAc	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54	6 Han Marketing	6	Han	Aid	Marketing	100	100	71	214% Aid
+AcAg	6 Han Marketing	6	Han	Aid	Marketing	100	100	71	214% Aid	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54
+AgAc	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54	7 Han Marketing	7	Han	Aid	Marketing	100	100	71	177% Aid
+AcAg	7 Han Marketing	7	Han	Aid	Marketing	100	100	71	177% Aid	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54
+AgAc	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54	8 Han Marketing	8	Han	Aid	Marketing	100	100	71	170% Aid
+AcAg	8 Han Marketing	8	Han	Aid	Marketing	100	100	71	170% Aid	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54
+AgAc	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54	9 Han Marketing	9	Han	Aid	Marketing	100	100	71	198% Aid
+AcAg	9 Han Marketing	9	Han	Aid	Marketing	100	100	71	198% Aid	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54
+AgAc	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54	10 Han Marketing	10	Han	Aid	Marketing	100	100	71	171% Aid
+AcAg	10 Han Marketing	10	Han	Aid	Marketing	100	100	71	171% Aid	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54
+AgAc	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54	11 Han Marketing	11	Han	Aid	Marketing	100	100	71	164% Aid
+AcAg	11 Han Marketing	11	Han	Aid	Marketing	100	100	71	164% Aid	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54
+AgAc	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54	12 Han Marketing	12	Han	Aid	Marketing	100	100	71	207% Aid
+AcAg	12 Han Marketing	12	Han	Aid	Marketing	100	100	71	207% Aid	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54
+AgAc	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54	13 Han Marketing	13	Han	Aid	Marketing	100	100	71	163% Aid
+AcAg	13 Han Marketing	13	Han	Aid	Marketing	100	100	71	163% Aid	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54
+AgAc	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54	14 Han Marketing	14	Han	Aid	Marketing	100	100	71	207% Aid
+AcAg	14 Han Marketing	14	Han	Aid	Marketing	100	100	71	207% Aid	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54
+AgAc	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54	15 Han Marketing	15	Han	Aid	Marketing	100	100	71	191% Aid
+AcAg	15 Han Marketing	15	Han	Aid	Marketing	100	100	71	191% Aid	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54
+AgAc	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54	16 Han Marketing	16	Han	Aid	Marketing	100	100	71	205% Aid
+AcAg	16 Han Marketing	16	Han	Aid	Marketing	100	100	71	205% Aid	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54
+AgAc	Han	Han	0	Junior	1	18	62	48	53	76	60	99	53	54	17 Han Marketing	17	Han	Aid	Marketing	100	100	71	218% Aid
+AgAc	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64	1 Daniel Training	1	Daniel	Training	Training	100	100	71	depuration
+AcAg	1 Daniel Training	1	Daniel	Training	Training	100	100	71	depuration	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64
+AgAc	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64	2 Daniel Training	2	Daniel	Training	Training	100	100	71	depuration
+AcAg	2 Daniel Training	2	Daniel	Training	Training	100	100	71	depuration	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64
+AgAc	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64	3 Daniel Training	3	Daniel	Training	Training	100	100	71	depuration
+AcAg	3 Daniel Training	3	Daniel	Training	Training	100	100	71	depuration	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64
+AgAc	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64	4 Daniel Training	4	Daniel	Training	Training	100	100	71	depuration
+AcAg	4 Daniel Training	4	Daniel	Training	Training	100	100	71	depuration	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64
+AgAc	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64	5 Daniel Training	5	Daniel	Training	Training	100	100	71	depuration
+AcAg	5 Daniel Training	5	Daniel	Training	Training	100	100	71	depuration	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64
+AgAc	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64	6 Daniel Training	6	Daniel	Training	Training	100	100	71	depuration
+AcAg	6 Daniel Training	6	Daniel	Training	Training	100	100	71	depuration	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64
+AgAc	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64	7 Daniel Training	7	Daniel	Training	Training	100	100	71	depuration
+AcAg	7 Daniel Training	7	Daniel	Training	Training	100	100	71	depuration	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64
+AgAc	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64	8 Daniel Training	8	Daniel	Training	Training	100	100	71	depuration
+AcAg	8 Daniel Training	8	Daniel	Training	Training	100	100	71	depuration	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64
+AgAc	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64	9 Daniel Training	9	Daniel	Training	Training	100	100	71	depuration
+AcAg	9 Daniel Training	9	Daniel	Training	Training	100	100	71	depuration	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64
+AgAc	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64	9 Daniel idle	9	Daniel	Idle	idle	100	100	71	idle
+AcAg	9 Daniel idle	9	Daniel	Idle	idle	100	100	71	idle	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64
+AgAc	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64	10 Daniel idle	10	Daniel	Idle	idle	100	100	71	idle
+AcAg	10 Daniel idle	10	Daniel	Idle	idle	100	100	71	idle	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64
+AgAc	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64	10 Daniel Promotion	10	Daniel	Promotion	Promotion	100	100	71	Promoted to Mid-Level
+AcAg	10 Daniel Promotion	10	Daniel	Promotion	Promotion	100	100	71	Promoted to Mid-Level	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64
+AgAc	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64	11 Daniel Tester	11	Daniel	Test: Cases	Tester	100	100	71	2 Bugs Found
+AcAg	11 Daniel Tester	11	Daniel	Test: Cases	Tester	100	100	71	2 Bugs Found	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64
+AgAc	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64	12 Daniel Tester	12	Daniel	Test: Cases	Tester	100	100	71	2 Bugs Found
+IAcAr	11 Daniel Tester	11	Daniel	Test: Cases	Tester	100	100	71	2 Bugs Found	3 Integration Test Cases	0
+IArAc	3 Integration Test Cases	3 Dane Architect	3	Dane	Balanced Integration	Architect	100	100	254	1 ITC	0
+IAcAr	11 Daniel Tester	11	Daniel	Test: Cases	Tester	100	100	71	2 Bugs Found	6 Integration Test Cases	0
+IArAc	6 Integration Test Cases	6 Dane Architect	6	Dane	Balanced Integration	Architect	100	100	254	1 ITC	0
+AcAg	12 Daniel Tester	12	Daniel	Test: Cases	Tester	100	100	71	2 Bugs Found	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64
+AgAc	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64	13 Daniel Tester	13	Daniel	Test: Cases	Tester	100	100	71	1 Bugs Found
+IAcAr	12 Daniel Tester	12	Daniel	Test: Cases	Tester	100	100	71	2 Bugs Found	10 Integration Test Cases	0
+IArAc	10 Integration Test Cases	10 Dane Architect	10	Dane	Balanced Integration	Architect	100	100	254	1 ITC	0
+IAcAr	12 Daniel Tester	12	Daniel	Test: Cases	Tester	100	100	71	2 Bugs Found	8 Unitary Test Cases	0
+IArAc	8 Unitary Test Cases	8 Lysire Programmer	8	Lysire	Evolution Test-Driven	Programmer	100	100	238	133 Progress	0
+AcAg	13 Daniel Tester	13	Daniel	Test: Cases	Tester	100	100	71	1 Bugs Found	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64
+AgAc	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64	14 Daniel Tester	14	Daniel	Test: Cases	Tester	100	100	71	1 Bugs Found
+IAcAr	13 Daniel Tester	13	Daniel	Test: Cases	Tester	100	100	71	1 Bugs Found	12 Integration Test Cases	0
+IArAc	12 Integration Test Cases	12 Dane Architect	12	Dane	Balanced Integration	Architect	100	100	254	1 ITC	0
+AcAg	14 Daniel Tester	14	Daniel	Test: Cases	Tester	100	100	71	1 Bugs Found	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64
+AgAc	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64	15 Daniel Tester	15	Daniel	Test: Cases	Tester	100	100	71	1 Bugs Found
+IAcAr	14 Daniel Tester	14	Daniel	Test: Cases	Tester	100	100	71	1 Bugs Found	14 Unitary Test Cases	0
+IArAc	14 Unitary Test Cases	14 Lysire Programmer	14	Lysire	Evolution Test-Driven	Programmer	100	100	238	218 Progress	0
+AcAg	15 Daniel Tester	15	Daniel	Test: Cases	Tester	100	100	71	1 Bugs Found	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64
+AgAc	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64	16 Daniel Tester	16	Daniel	Test: Adhoc	Tester	100	100	71	3 Bugs Found
+IAcAr	15 Daniel Tester	15	Daniel	Test: Cases	Tester	100	100	71	1 Bugs Found	13 Integration Test Cases	0
+IArAc	13 Integration Test Cases	13 Dane Architect	13	Dane	Balanced Integration	Architect	100	100	254	1 ITC	0
+AcAg	16 Daniel Tester	16	Daniel	Test: Adhoc	Tester	100	100	71	3 Bugs Found	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64
+AgAc	Daniel	Daniel	0	Junior	1	84	64	47	85	46	46	42	69	64	16 Daniel fired	16	Daniel	fired	fired	0	0	0	fired
+AgAc	Rade	Rade	0	Junior	1	48	36	65	32	50	44	41	84	57	11 Rade Tester	11	Rade	Test: Cases	Tester	100	100	71	1 Bugs Found
+AcAg	11 Rade Tester	11	Rade	Test: Cases	Tester	100	100	71	1 Bugs Found	Rade	Rade	0	Junior	1	48	36	65	32	50	44	41	84	57
+AgAc	Rade	Rade	0	Junior	1	48	36	65	32	50	44	41	84	57	12 Rade Tester	12	Rade	Test: Cases	Tester	100	100	71	1 Bugs Found
+IAcAr	11 Rade Tester	11	Rade	Test: Cases	Tester	100	100	71	1 Bugs Found	3 Unitary Test Cases	0
+IArAc	3 Unitary Test Cases	3 Lysire Programmer	3	Lysire	Evolution Test-Driven	Programmer	100	100	238	184 Progress	0
+AcAg	12 Rade Tester	12	Rade	Test: Cases	Tester	100	100	71	1 Bugs Found	Rade	Rade	0	Junior	1	48	36	65	32	50	44	41	84	57
+AgAc	Rade	Rade	0	Junior	1	48	36	65	32	50	44	41	84	57	13 Rade Tester	13	Rade	Test: Adhoc	Tester	100	100	71	1 Bugs Found
+IAcAr	12 Rade Tester	12	Rade	Test: Cases	Tester	100	100	71	1 Bugs Found	9 Unitary Test Cases	0
+IArAc	9 Unitary Test Cases	9 Lysire Programmer	9	Lysire	Evolution Test-Driven	Programmer	100	100	238	213 Progress	0
+AcAg	13 Rade Tester	13	Rade	Test: Adhoc	Tester	100	100	71	1 Bugs Found	Rade	Rade	0	Junior	1	48	36	65	32	50	44	41	84	57
+AgAc	Rade	Rade	0	Junior	1	48	36	65	32	50	44	41	84	57	14 Rade Tester	14	Rade	Test: Adhoc	Tester	100	100	71	1 Bugs Found
+AcAg	14 Rade Tester	14	Rade	Test: Adhoc	Tester	100	100	71	1 Bugs Found	Rade	Rade	0	Junior	1	48	36	65	32	50	44	41	84	57
+AgAc	Rade	Rade	0	Junior	1	48	36	65	32	50	44	41	84	57	15 Rade Tester	15	Rade	Test: Adhoc	Tester	100	100	71	2 Bugs Found
+AcAg	15 Rade Tester	15	Rade	Test: Adhoc	Tester	100	100	71	2 Bugs Found	Rade	Rade	0	Junior	1	48	36	65	32	50	44	41	84	57
+AgAc	Rade	Rade	0	Junior	1	48	36	65	32	50	44	41	84	57	16 Rade Tester	16	Rade	Test: Adhoc	Tester	100	100	71	0 Bugs Found
+AcAg	16 Rade Tester	16	Rade	Test: Adhoc	Tester	100	100	71	0 Bugs Found	Rade	Rade	0	Junior	1	48	36	65	32	50	44	41	84	57
+AgAc	Rade	Rade	0	Junior	1	48	36	65	32	50	44	41	84	57	17 Rade Tester	17	Rade	Test: Adhoc	Tester	100	100	71	2 Bugs Found

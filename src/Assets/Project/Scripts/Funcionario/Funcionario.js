@@ -1,5 +1,6 @@
 
 public var stringNames : StringNames;
+public var behavior : BehaviorPlanner;
 
 private var atributos : Atributos = new Atributos();
 private var especializacao : Especializacoes = new Especializacoes();
@@ -362,6 +363,7 @@ function SetRates(t : int)
 function GetCargo() {
 	return job;
 }
+
 function SetCargo(t: String) {
 	job = t;
 }
