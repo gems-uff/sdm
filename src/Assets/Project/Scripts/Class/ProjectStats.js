@@ -7,8 +7,8 @@ class ProjectStats
 	public var deadline : int;  				//in days
 	public var linguagemProgramacao : String;	//Linguagem: Escolher apenas uma linguagem
 	public var pagamento : int;					//How much each month
-	public var projectSize : String;			//Description size: Simple, Regular, Complex, Insane
-	public var projectQuality : String;			//Description Quality: Not, default, high, highest
+	public var requirements : float;			//Description size: Simple, Regular, Complex, Insane
+	public var sincronismo : float;			//Description Quality: Not, default, high, highest
 	public var codeQuality : float;				//Current Code Quality
 	public var percentageDone : float; 			//GetFractionDone()
 	//Bugs Found

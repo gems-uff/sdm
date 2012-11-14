@@ -106,12 +106,11 @@ function UpdateElicitation(t : float, prototype : boolean)
 	if (!completed)
 	{
 		sincronismo = sincronismo - passedTime;
-		sincronismo = sincronismo + change;
+		if((sincronismo < 85.0) || (prototype))
+			sincronismo = sincronismo + change;
 	}
-	if(prototype)
-		Mathf.Clamp(sincronismo, 0.0, 100.0);
-	else
-		Mathf.Clamp(sincronismo, 0.0, 85.0);
+	sincronismo = Mathf.Clamp(sincronismo, 0.0, 100.0);
+	
 	/*
 	if (sincronismo > 100.0)
 	{
@@ -617,8 +616,8 @@ function GetStats()
 	stats.deadline = this.deadline;
 	stats.linguagemProgramacao = this.linguagemProgramacao;
 	stats.pagamento = this.pagamento;
-	stats.projectSize = this.projectSize;
-	stats.projectQuality = this.projectQuality;
+	stats.requirements = this.GetRequirements();
+	stats.sincronismo = this.GetSincronismo();
 	stats.codeQuality = parseInt(this.codeQuality * 100) * 0.01;
 	stats.percentageDone = this.GetFractionDone();
 	stats.bugUnitaryFound = this.bugUnitaryFound;

@@ -1,13 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Funcionario\Roles\Macro\AnalystMacro.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Funcionario\Funcionario.js">
     <Files>
-      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\ArchitectMacro.js" Line="112" Column="46" />
-      <File FileName="Assets\Project\Scripts\Misc\ExportLogFile.js" Line="102" Column="73" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\AnalystMacro.js" Line="136" Column="172" />
-      <File FileName="Assets\Project\Scripts\Class\LinkedList\ActionList.js" Line="45" Column="21" />
-      <File FileName="Assets\Project\Scripts\Menu\IngameMenu.js" Line="61" Column="47" />
-      <File FileName="Assets\Project\Scripts\Project\Project.js" Line="188" Column="25" />
+      <File FileName="Assets\Project\Scripts\Misc\ExportLogFile.js" Line="91" Column="10" />
+      <File FileName="Assets\Project\Scripts\Class\LinkedList\ActionList.js" Line="64" Column="3" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Funcionario.js" Line="1026" Column="26" />
+      <File FileName="Assets\Project\Scripts\Project\Project.js" Line="112" Column="53" />
+      <File FileName="Assets\Project\Scripts\Windows\HireWindow.js" Line="167" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

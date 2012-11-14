@@ -158,11 +158,13 @@ function Dialog_Funcionario (){
 			if (GUI.Button (Rect (600,125, 130, 25), "Hire")) 
 			{
 				//Need to change this for player to hire or allow the manager to hire
-				if(playStyle.IsMacro() == false)
-					windowController.ShowHireWindow();
+				//if(playStyle.IsMacro() == false)
+				if(func.behavior.managerAutonomous == false)
+				
+					windowController.ShowHireWindow(func);
 				else
 					//menuHire.SetShowWindowMHiring();
-					windowController.ShowManagerHireWindow();
+					windowController.ShowManagerHireWindow(func);
 				CloseDialog();
 			}
 		//se Marketing

@@ -1,7 +1,7 @@
 class Employee extends System.ValueType
 {
 	public var atributos : Atributos;
-	public var especializacao : Especializacoes;
+	public var especializacao : String;
 	
 	public var nome : String;
 	public var salary : int;
@@ -24,7 +24,7 @@ class Employee extends System.ValueType
 	function GetEspecializacao(){
 		return especializacao;
 	}
-	function SetEspecializacoes(t : Especializacoes){
+	function SetEspecializacoes(t : String){
 		especializacao = t;
 	}
 	function GetNome() {

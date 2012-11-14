@@ -87,7 +87,8 @@ function Agent(employee : Employee)
 	line = id + "\t" + employee.nome + "\t" + employee.salary + "\t" + employee.job + "\t" + employee.level + "\t" +
 	employee.atributos.adaptabilidade + "\t" + employee.atributos.autoDidata + "\t" + employee.atributos.detalhista + "\t" + 
 	employee.atributos.negociacao + "\t" + employee.atributos.objetividade + "\t" + employee.atributos.organizacao + "\t" +
-	employee.atributos.paciencia + "\t" + employee.atributos.raciocinioLogico + "\t" + employee.atributos.relacionamentoHumano;// + "\t" + action.description;
+	employee.atributos.paciencia + "\t" + employee.atributos.raciocinioLogico + "\t" + employee.atributos.relacionamentoHumano + "\t" + 
+	employee.especializacao;
     	
     return line;
     
@@ -99,7 +100,7 @@ function Project(stat : ProjectStats)
 	id = stat.date.ToString() +" "+ stat.name;
 	var line : String;
 	line = id + "\t" + stat.name + "\t" + stat.date + "\t" + stat.deadline + "\t" + stat.linguagemProgramacao + "\t" + stat.pagamento + "\t" + 
-	stat.projectSize + "\t" + stat.projectQuality + "\t" + stat.codeQuality + "\t" + stat.percentageDone + "\t" + stat.bugUnitaryFound+ "\t" +
+	stat.requirements + "\t" + stat.sincronismo + "\t" + stat.codeQuality + "\t" + stat.percentageDone + "\t" + stat.bugUnitaryFound+ "\t" +
 	stat.bugIntegrationFound + "\t" + stat.bugSystemFound + "\t" + stat.bugAcceptionFound + "\t" + stat.bugUnitaryRepaired+ "\t" +
 	stat.bugIntegrationRepaired + "\t" + stat.bugSystemRepaired + "\t" + stat.bugAcceptionRepaired;// + "\t" + stat.description;
 		

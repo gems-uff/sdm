@@ -4,7 +4,7 @@ public var log : HistoryLog;
 public var projectWindow : ProjectWindow;
 private var windowRect : Rect = Rect (200,125,400,400);
 private var windowRect2 : Rect = Rect (600,125,400,325);
-private var windowRect3 : Rect = Rect (600,450,400,600);
+private var windowRect3 : Rect = Rect (300,450,400,600);
 private var showWindow : boolean = false;
 
 private var pList : ProjectList;
@@ -193,7 +193,7 @@ function ActionWindowFunction(windowID : int){
 	GUI.Box (Rect (02,125,196,25), "Pressure: " + "none");
 	
 	//Influence button
-	if(actionNode.influence != null)
+	if(actionNode.influence.valid == true)
 	{
 		influenceString = "Influenced";
 		

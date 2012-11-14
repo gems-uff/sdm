@@ -111,9 +111,10 @@ function DisableEspWindow()
 //-------------------------------------------------------------------------
 //Hire Window
 //-------------------------------------------------------------------------
-function ShowHireWindow()
+function ShowHireWindow(func : Funcionario)
 {
 	showHireWindow = true;
+	hireWindow.setManager(func);
 	Activate();
 }
 function DisableHireWindow()
@@ -122,9 +123,10 @@ function DisableHireWindow()
 	Deactivate();
 }
 
-function ShowManagerHireWindow()
+function ShowManagerHireWindow(func : Funcionario)
 {
 	showWindowManagerHiring = true;
+	hireWindow.setManager(func);
 	Activate();
 }
 function DisableManagerHireWindow()

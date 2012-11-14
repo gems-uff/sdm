@@ -542,7 +542,7 @@ class ProgrammerMacro extends System.ValueType{
 		}
 		ProgReport(0, - repaired, report);
 		
-		NewAction(actionNode, isEsp, isPressured, prog, (- repaired).ToString() + " Repaired");
+		NewAction(actionNode, isEsp, isPressured, prog, (repaired).ToString() + " Repaired");
 		
 		floatingLines.showFloatText1("", "Repair", "blue", "");
 		floatingLines.showFloatText2("+", repaired.ToString(), "blue", " Bugs Repaired");

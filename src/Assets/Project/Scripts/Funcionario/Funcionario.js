@@ -678,7 +678,7 @@ function Copy()
 	var employee : Employee;
 	
 	employee.atributos = GetAtributos();
-	employee.especializacao = GetEspecializacao();
+	employee.especializacao = GetStringSpecializations();
 	
 	employee.nome = GetNome();
 	employee.salary = GetSalario();
@@ -920,6 +920,68 @@ function SetEspecializacao (t: int){
 	   default:
 		break;
 	}
+}
+
+function GetStringSpecializations()
+{
+	var esp : String = "";
+	if ( especializacao.assembly == true )
+	{
+		esp += stringNames.showEsp01 + "  ";
+	}
+	if ( especializacao.csharp == true )
+	{
+		esp += stringNames.showEsp02 + "  ";
+	}
+	if ( especializacao.java == true )
+	{
+		esp += stringNames.showEsp03 + "  ";
+	}
+	if ( especializacao.perl == true )
+	{
+		esp += stringNames.showEsp04 + "  ";
+	}
+	if ( especializacao.ruby == true )
+	{
+		esp += stringNames.showEsp05 + "  ";
+	}
+	if ( especializacao.metodoAgil == true )
+	{
+		esp += stringNames.showEsp06 + "  ";
+	}
+	if ( especializacao.metodoClassico == true )
+	{
+		esp += stringNames.showEsp07 + "  ";
+	}
+	if ( especializacao.analiseDeProgramas == true )
+	{
+		esp += stringNames.showEsp08 + "  ";
+	}
+	if ( especializacao.controleDeVersao == true )
+	{
+		esp += stringNames.showEsp09 + "  ";
+	}
+	if ( especializacao.depuracao == true )
+	{
+		esp += stringNames.showEsp10 + "  ";
+	}
+	if ( especializacao.gerenciaDeProjetos == true )
+	{
+		esp += stringNames.showEsp11 + "  ";
+	}
+	if ( especializacao.metricas == true )
+	{
+		esp += stringNames.showEsp12 + "  ";
+	}
+	if ( especializacao.planejamento == true )
+	{
+		esp += stringNames.showEsp13 + "  ";
+	}
+	if ( especializacao.teste == true )
+	{
+		esp += stringNames.showEsp14 + "  ";
+	}
+	return esp;
 }
 
 //--------------------------------------------SetEspecializacoes-----------------------------------------------------------

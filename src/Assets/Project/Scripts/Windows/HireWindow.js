@@ -52,6 +52,8 @@ private var showInsuficientMoneyWindow : boolean = false;
 //private var windowRect : Rect = Rect (300,125,300,412);
 private var windowRect2 : Rect = Rect (400,125,300,200);
 
+private var manager : Funcionario;
+
 function GetShowWindow(){
 	return showWindow;
 }
@@ -151,10 +153,19 @@ function HireEmployee(){
 		thisCandidate = newEmployee08;
 	}
 	if ( jogador.GetSaldo() >= (thisCandidate.GetSalario() + contratacao))
+	{
 		hireFuncionario.ContratarFuncionario(thisCandidate, inPlaceOf);
+		HireAction();
+	}
 	else
 		//showInsuficientMoneyWindow = true;
 		windowController.ShowInsufficientHireWindow();
+}
+function HireAction()
+{
+	var action : ActionNode = new ActionNode();
+	action.NewAction("Hired Employee", "Hired a new employee", manager, timer.GetGameTime(), "Hired", "Hired", "");
+	manager.behavior.AddAction(action);
 }
 
 function ShowInsuficientMoneyWindow()
@@ -415,6 +426,11 @@ slot01 = GUI.Toggle (Rect (198, 040, 80, 30), slot01, employee01.GetNome());
 //--------------------------------------------------------------
 //Manager Hiring Functions
 //--------------------------------------------------------------
+
+function setManager(manager : Funcionario)
+{
+	this.manager = manager;
+}
 function ManagerHiring(role : String)
 {
 	var first : int;
@@ -597,7 +613,7 @@ function ManagerHiring(role : String)
 		}
 		//roll to decide which from the 3 the manager will hire
 		var aux : int;
-		aux = staff[7].GetGerente();
+		aux = manager.GetGerente();
 		var rolled : int = Random.Range (01, 100);
 		
 		if(rolled > aux)
@@ -605,7 +621,7 @@ function ManagerHiring(role : String)
 			hireFuncionario.ContratarFuncionario(func[third], staff[slot]);
 		}
 		else
-		{//seocnd
+		{//second
 			if(rolled > aux * 0.4)
 			{
 				hireFuncionario.ContratarFuncionario(func[second], staff[slot]);
@@ -617,6 +633,7 @@ function ManagerHiring(role : String)
 		}
 		staff[slot].SetPapel(role);
 	}//end-else
+	HireAction();
 }
 
 function WindowManagerHiring(windowID : int){

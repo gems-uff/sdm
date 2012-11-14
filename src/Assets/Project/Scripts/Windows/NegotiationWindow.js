@@ -49,6 +49,12 @@ function ResetItems(){
 	tradeSet = false;
 	tradeOffSet = false;
 }
+function Action(text : String)
+{
+	var action : ActionNode = new ActionNode();
+	action.NewAction("Negotiation", text, func, timer.GetGameTime(), "Negotiation", "Negotiation", "");
+	func.behavior.AddAction(action);
+}
 function ApplyChanges(){
 	var marketing : float = func.GetMarketing();
 	var marketing_more : float;
@@ -60,12 +66,15 @@ function ApplyChanges(){
 	marketing_less = 1 - marketing;
 	func.EarnExperienceNegotiation(parseInt(marketing * 100));
 	
+	var description : String = "Asked for more ";
+	
 	if(scopeBool == true)
 	{
 		trade = project.GetProjectSize();
 		trade = trade * marketing_less;
 		trade = parseInt(trade);
 		project.SetProjectSize(trade);
+		description += "scope";
 	}
 	if(timeBool == true)
 	{
@@ -74,6 +83,7 @@ function ApplyChanges(){
 		trade = parseInt(trade);
 		trade = trade + project.GetStartDay();
 		project.SetDeadline(trade);
+		description += "time";
 	}
 	if(moneyBool == true)
 	{
@@ -81,6 +91,7 @@ function ApplyChanges(){
 		trade = trade * marketing_more;
 		trade = parseInt(trade);
 		project.SetPagamento(trade);
+		description += "credits";
 	}
 	if(qualityBool == true)
 	{
@@ -88,6 +99,7 @@ function ApplyChanges(){
 		trade = trade * marketing_less;
 		trade = parseInt(trade);
 		project.SetBugValue(trade);
+		description += "quality";
 	}
 	//Tradeoff
 	if(moreScope == true)
@@ -96,6 +108,7 @@ function ApplyChanges(){
 		tradeOff = tradeOff * marketing_more;
 		tradeOff = parseInt(tradeOff);
 		project.SetProjectSize(tradeOff);
+		description += " in exchange of more scope";
 	}
 	if(lessTime == true)
 	{
@@ -104,6 +117,7 @@ function ApplyChanges(){
 		tradeOff = parseInt(tradeOff);
 		tradeOff = tradeOff + project.GetStartDay();
 		project.SetDeadline(tradeOff);
+		description += " in exchange of less time";
 	}
 	if(lessMoney == true)
 	{
@@ -111,6 +125,7 @@ function ApplyChanges(){
 		tradeOff = tradeOff * marketing_less;
 		tradeOff = parseInt(tradeOff);
 		project.SetPagamento(tradeOff);
+		description += " in exchange of less credits";
 	}
 	if(moreQuality == true)
 	{
@@ -118,7 +133,9 @@ function ApplyChanges(){
 		trade = trade * marketing_more;
 		trade = parseInt(trade);
 		project.SetBugValue(trade);
+		description += " in exchange of more quality";
 	}
+	Action(description);
 }
 
 function WindowFunction(windowID : int){

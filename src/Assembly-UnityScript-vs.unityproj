@@ -125,7 +125,6 @@
      <Compile Include="Assets\Project\Scripts\Testing\FlyingText2.js" />
      <Compile Include="Assets\Project\Scripts\Testing\TextGenerator.js" />
      <Compile Include="Assets\Project\Scripts\TimeGame\GameTime.js" />
-     <Compile Include="Assets\Project\Scripts\Windows\ActionWindow.js" />
      <Compile Include="Assets\Project\Scripts\Windows\BugsWindow.js" />
      <Compile Include="Assets\Project\Scripts\Windows\ContractWindow.js" />
      <Compile Include="Assets\Project\Scripts\Windows\EspWindow.js" />
