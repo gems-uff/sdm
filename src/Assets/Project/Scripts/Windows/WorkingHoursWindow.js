@@ -25,7 +25,7 @@ function ChangeWorkHours (funcionario : Funcionario){
 	
 	behavior = func.GetComponentInChildren(BehaviorPlanner);
 	
-	hSliderValue = func.GetWorkingHours() / 5;
+	hSliderValue = func.GetWorkingHours();
 	if(funcionario.GetNome() != stringNames.fired)
 		showWindow = true;
 }
@@ -37,9 +37,21 @@ function WindowFunction(windowID : int){
 	GUI.Box (Rect (02,18,296,25), func.GetNome());
 	hSliderValue = GUI.HorizontalSlider (Rect (022, 75, 246, 25), hSliderValue, 0.0, 16.0);
 	aux = parseInt(hSliderValue);
-	aux = aux * 5;
-	GUI.Box (Rect (02,043,296, 25), "Weekly: " + aux);
+	GUI.Box (Rect (02,043,296, 25), "Daily: " + aux);
 	func.SetWorkingHours(aux);
+	var saturday : boolean = behavior.GetSaturday();
+	var sunday : boolean = behavior.GetSunday();
+	
+	saturday = GUI.Toggle (Rect (300, 25, 100, 25), saturday, "Saturday");
+	if(saturday)
+		behavior.SetSaturday(true);
+	else
+		behavior.SetSaturday(false);
+	sunday = GUI.Toggle (Rect (300, 50, 100, 25), sunday, "Sunday");	
+	if(sunday)
+		behavior.SetSunday(true);
+	else
+		behavior.SetSunday(false);
 	
 	//Behavior
 	//Programmer

@@ -39,93 +39,9 @@ private var TesterMicro : TesterMicro;
 private var TesterMacro : TesterMacro;
 
 
-//private var actionNode : ActionNode;
-
 private var action : ActionNode = new ActionNode();
 public var wasInfluenced : boolean = false;
-/*
-function GetAction()
-{
-	return actionNode;
-}
-*/
 
-//Report
-function GetReport(){	
-	return report;
-}
-
-function SetReport(t : WeeklyReport){
-	report = t;
-}
-
-function WeeklyReport()
-{
-	//Exibo o historico
-	
-	//Mudo a semana
-	func.report.previous3AnalistReport = 					func.report.previous2AnalistReport;
-	func.report.previous3ArchitectReport_bugSystem = 		func.report.previous2ArchitectReport_bugSystem;
-	func.report.previous3ArchitectReport_bugIntegration = 		func.report.previous2ArchitectReport_bugIntegration;
-	func.report.previous3ArchitectReport_archt = 		func.report.previous2ArchitectReport_archt;
-	func.report.previous3ManagerReport_design = 		func.report.previous2ManagerReport_design;
-	func.report.previous3ManagerReport_dev = 			func.report.previous2ManagerReport_dev;
-	func.report.previous3MarketingReport_val = 			func.report.previous2MarketingReport_val;
-	func.report.previous3MarketingReport_money = 	func.report.previous2MarketingReport_money;
-	func.report.previous3ProgrammerReport_prog = 	func.report.previous2ProgrammerReport_prog;
-	func.report.previous3ProgrammerReport_bug = 		func.report.previous2ProgrammerReport_bug;
-	func.report.previous3TesterReport = 					func.report.previous2TesterReport;
-	
-	func.report.previous2AnalistReport = 					func.report.previousAnalistReport;
-	func.report.previous2ArchitectReport_bugSystem = 		func.report.previousArchitectReport_bugSystem;
-	func.report.previous2ArchitectReport_bugIntegration = 		func.report.previousArchitectReport_bugIntegration;
-	func.report.previous2ArchitectReport_archt = 		func.report.previousArchitectReport_archt;
-	func.report.previous2ManagerReport_design = 		func.report.previousManagerReport_design;
-	func.report.previous2ManagerReport_dev = 			func.report.previousManagerReport_dev;
-	func.report.previous2MarketingReport_val = 			func.report.previousMarketingReport_val;
-	func.report.previous2MarketingReport_money = 	func.report.previousMarketingReport_money;
-	func.report.previous2ProgrammerReport_prog = 	func.report.previousProgrammerReport_prog;
-	func.report.previous2ProgrammerReport_bug = 		func.report.previousProgrammerReport_bug;
-	func.report.previous2TesterReport = 					func.report.previousTesterReport;
-	
-	func.report.previousAnalistReport = 					func.report.analistReport;
-	func.report.previousArchitectReport_bugSystem = 			func.report.architectReport_bugSystem;
-	func.report.previousArchitectReport_bugIntegration = 			func.report.architectReport_bugIntegration;
-	func.report.previousArchitectReport_archt = 		func.report.architectReport_archt;
-	func.report.previousManagerReport_design = 		func.report.managerReport_design;
-	func.report.previousManagerReport_dev = 			func.report.managerReport_dev;
-	func.report.previousMarketingReport_val = 			func.report.marketingReport_val;
-	func.report.previousMarketingReport_money = 		func.report.marketingReport_money;
-	func.report.previousProgrammerReport_prog = 		func.report.programmerReport_prog;
-	func.report.previousProgrammerReport_bug = 		func.report.programmerReport_bug;
-	func.report.previousTesterReport = 					func.report.testerReport;
-	
-	func.report.analistReport = 								report.analistReport;
-	func.report.architectReport_bugSystem = 						report.architectReport_bugSystem / 7;
-	func.report.architectReport_bugIntegration = 						report.architectReport_bugIntegration / 7;
-	func.report.architectReport_archt = 					report.architectReport_archt /7;
-	func.report.managerReport_dev = 						report.managerReport_dev / 7;
-	func.report.managerReport_design = 					report.managerReport_design / 7;
-	func.report.marketingReport_val = 						report.marketingReport_val / 7;
-	func.report.marketingReport_money = 				report.marketingReport_money;
-	func.report.programmerReport_prog = 					report.programmerReport_prog;
-	func.report.programmerReport_bug = 					report.programmerReport_bug;
-	func.report.testerReport = 								report.testerReport;
-	//Reinicio para a proxima semana
-	
-	
-	report.analistReport = 0;
-	report.architectReport_bugSystem = 0;
-	report.architectReport_bugIntegration = 0;
-	report.architectReport_archt = 0;
-	report.managerReport_design = 0;
-	report.managerReport_dev = 0;
-	report.marketingReport_val = 0;
-	report.marketingReport_money = 0;
-	report.programmerReport_prog = 0;
-	report.programmerReport_bug = 0;
-	report.testerReport = 0;
-}
 //--------------------------------------------Get-----------------------------------------------------------
 function GetWorkingHoursModifier() {
 	return workingHoursModifier;
@@ -148,7 +64,6 @@ function WorkHours(){
 	if(func.GetNome() != stringNames.fired)
 	{
 		aux = func.GetWorkingHours();
-		aux = aux / 5;
 		workingHoursModifier = aux * 12.5;
 		workingHoursModifier = workingHoursModifier / 100;
 		newSalary = func.GetSalarioDefault();
@@ -216,6 +131,70 @@ function AjusteWork(){
 }
 //--------------------------------------------Work-----------------------------------------------------------
 
+function WorkDaily(t: String)
+{
+	//Mon to Fri
+	if((timer.GetGameTime() % 7 != 5) && (timer.GetGameTime() % 7 != 6))
+	{
+		Work(t);
+	}
+	else
+	{
+		//Satuday
+		if( (timer.GetGameTime() % 7 == 5) && behavior.GetSaturday())
+		{
+			Work(t);
+		}
+		else
+		{
+			//Sunday
+			if((timer.GetGameTime() % 7 == 6) && behavior.GetSunday())
+			{
+				Work(t);
+			}
+		}
+	}
+}
+function Work(t: String)
+{
+	switch(t)
+	{
+	   case "Analyst": 
+		  AnalistaWork();
+	   break;
+
+	   case "Architect":
+		  ArquitetoWork();
+	   break;
+	   
+	   case "Manager":
+		  GerenteWork();
+	   break;
+	   
+	   case "Marketing":
+		  MarketingWork();
+	   break;
+	   
+	   case "Programmer":
+			ProgramadorWork();
+	   break;
+	   
+	   case "Tester":
+			TesterWork();
+	   break;
+	   
+	   case "Training":
+			Treinando();
+	   break;
+	   
+	   case "Idle":
+			IdleWork();
+	   break;
+	   
+	   default:
+		  break;
+	}
+}
 function AnalistaWork(){
 	var rate : int;
 	var work : boolean = false;
@@ -706,6 +685,86 @@ function Body(){
 	else
 		func.GetComponentInChildren(MeshRenderer).enabled = true;
 		//body.enabled = true;
+}
+
+
+//=================================================================
+//Report
+//=================================================================
+function GetReport(){	
+	return report;
+}
+
+function SetReport(t : WeeklyReport){
+	report = t;
+}
+
+function WeeklyReport()
+{
+	//Exibo o historico
+	
+	//Mudo a semana
+	func.report.previous3AnalistReport = 					func.report.previous2AnalistReport;
+	func.report.previous3ArchitectReport_bugSystem = 		func.report.previous2ArchitectReport_bugSystem;
+	func.report.previous3ArchitectReport_bugIntegration = 		func.report.previous2ArchitectReport_bugIntegration;
+	func.report.previous3ArchitectReport_archt = 		func.report.previous2ArchitectReport_archt;
+	func.report.previous3ManagerReport_design = 		func.report.previous2ManagerReport_design;
+	func.report.previous3ManagerReport_dev = 			func.report.previous2ManagerReport_dev;
+	func.report.previous3MarketingReport_val = 			func.report.previous2MarketingReport_val;
+	func.report.previous3MarketingReport_money = 	func.report.previous2MarketingReport_money;
+	func.report.previous3ProgrammerReport_prog = 	func.report.previous2ProgrammerReport_prog;
+	func.report.previous3ProgrammerReport_bug = 		func.report.previous2ProgrammerReport_bug;
+	func.report.previous3TesterReport = 					func.report.previous2TesterReport;
+	
+	func.report.previous2AnalistReport = 					func.report.previousAnalistReport;
+	func.report.previous2ArchitectReport_bugSystem = 		func.report.previousArchitectReport_bugSystem;
+	func.report.previous2ArchitectReport_bugIntegration = 		func.report.previousArchitectReport_bugIntegration;
+	func.report.previous2ArchitectReport_archt = 		func.report.previousArchitectReport_archt;
+	func.report.previous2ManagerReport_design = 		func.report.previousManagerReport_design;
+	func.report.previous2ManagerReport_dev = 			func.report.previousManagerReport_dev;
+	func.report.previous2MarketingReport_val = 			func.report.previousMarketingReport_val;
+	func.report.previous2MarketingReport_money = 	func.report.previousMarketingReport_money;
+	func.report.previous2ProgrammerReport_prog = 	func.report.previousProgrammerReport_prog;
+	func.report.previous2ProgrammerReport_bug = 		func.report.previousProgrammerReport_bug;
+	func.report.previous2TesterReport = 					func.report.previousTesterReport;
+	
+	func.report.previousAnalistReport = 					func.report.analistReport;
+	func.report.previousArchitectReport_bugSystem = 			func.report.architectReport_bugSystem;
+	func.report.previousArchitectReport_bugIntegration = 			func.report.architectReport_bugIntegration;
+	func.report.previousArchitectReport_archt = 		func.report.architectReport_archt;
+	func.report.previousManagerReport_design = 		func.report.managerReport_design;
+	func.report.previousManagerReport_dev = 			func.report.managerReport_dev;
+	func.report.previousMarketingReport_val = 			func.report.marketingReport_val;
+	func.report.previousMarketingReport_money = 		func.report.marketingReport_money;
+	func.report.previousProgrammerReport_prog = 		func.report.programmerReport_prog;
+	func.report.previousProgrammerReport_bug = 		func.report.programmerReport_bug;
+	func.report.previousTesterReport = 					func.report.testerReport;
+	
+	func.report.analistReport = 								report.analistReport;
+	func.report.architectReport_bugSystem = 						report.architectReport_bugSystem / 7;
+	func.report.architectReport_bugIntegration = 						report.architectReport_bugIntegration / 7;
+	func.report.architectReport_archt = 					report.architectReport_archt /7;
+	func.report.managerReport_dev = 						report.managerReport_dev / 7;
+	func.report.managerReport_design = 					report.managerReport_design / 7;
+	func.report.marketingReport_val = 						report.marketingReport_val / 7;
+	func.report.marketingReport_money = 				report.marketingReport_money;
+	func.report.programmerReport_prog = 					report.programmerReport_prog;
+	func.report.programmerReport_bug = 					report.programmerReport_bug;
+	func.report.testerReport = 								report.testerReport;
+	//Reinicio para a proxima semana
+	
+	
+	report.analistReport = 0;
+	report.architectReport_bugSystem = 0;
+	report.architectReport_bugIntegration = 0;
+	report.architectReport_archt = 0;
+	report.managerReport_design = 0;
+	report.managerReport_dev = 0;
+	report.marketingReport_val = 0;
+	report.marketingReport_money = 0;
+	report.programmerReport_prog = 0;
+	report.programmerReport_bug = 0;
+	report.testerReport = 0;
 }
 
 function FixedUpdate(){

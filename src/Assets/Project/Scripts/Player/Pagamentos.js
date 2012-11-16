@@ -50,6 +50,41 @@ function VerificaSaldo(func : Funcionario, morale : MoraleControl){
 	var salario : int;
 	saldo = jogador.GetSaldo();
 	salario = func.GetSalario() / DIAS_PAGAMENTO;
+	//Mon to Fri
+	if((timer.GetGameTime() % 7 != 5) && (timer.GetGameTime() % 7 != 6))
+	{
+		PayEmployee(salario, saldo, morale);
+	}
+	else
+	{
+		//Satuday
+		if( (timer.GetGameTime() % 7 == 5) && func.behavior.GetSaturday())
+		{
+			PayEmployee(salario * 1.25, saldo, morale);
+		}
+		else
+		{
+			//Sunday
+			if((timer.GetGameTime() % 7 == 6) && func.behavior.GetSunday())
+			{
+				PayEmployee(salario * 1.25, saldo, morale);
+			}
+		}
+	}
+	/*
+	if (saldo < salario)
+	{
+		morale.DecreaseMoralePayment();
+		pagouTodos = false;
+	}
+	else
+	{
+		jogador.ChangeSaldo(- salario);
+	}
+	*/
+}
+function PayEmployee(salario : int, saldo : int, morale : MoraleControl)
+{
 	if (saldo < salario)
 	{
 		morale.DecreaseMoralePayment();

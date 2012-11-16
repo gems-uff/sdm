@@ -21,7 +21,7 @@ private var secRole : String;
 private var mainRoleRate : int;
 private var secRoleRate : int;
 private var job : String;		//Junior, plain, senior
-private var workingHours : int = 40;
+private var workingHours : int = 8;
 private var morale : int = 100;
 private var stamina : int = 100;
 
@@ -797,7 +797,7 @@ function RandomFuncionarioStarter () {
 		this.SetPapelRate(100);
 		this.SetPapelSecRate(0);
 		this.SetMorale(100);
-		this.SetWorkingHours(40);
+		this.SetWorkingHours(8);
 		this.SetSalarioDefault(this.NewSalary());
 		this.SetSalario(this.NewSalary());
 	}

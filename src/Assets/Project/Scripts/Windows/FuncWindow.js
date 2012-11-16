@@ -185,7 +185,7 @@ function WindowFunction (windowID : int)	{
 	GUI.Box (Rect (02,138,198,20), (" Sec Role Rate: "+ papelSecRate),fichaGuiStyle);
 	
 	GUI.Box (Rect (02,158,198,20), (" Grade: "+ cargo),fichaGuiStyle);
-	GUI.Box (Rect (02,178,198,20), (" Weekly Hours: "+ workHours),fichaGuiStyle);
+	GUI.Box (Rect (02,178,198,20), (" Daily Hours: "+ workHours),fichaGuiStyle);
 	//GUI.Box (Rect (02,138,198,20), (" Monthly Salary: $"+ salario),fichaGuiStyle);
 	GUI.Box (Rect (02,198,198,20), (" Salary/Day: $"+ salarioDay),fichaGuiStyle);
 	GUI.Box (Rect (02,218,198,20), (" Level: " +level),fichaGuiStyle);

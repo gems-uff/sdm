@@ -108,7 +108,7 @@ function PassTime () {
 	
 	BroadcastMessage("IncrementDays");
 	BroadcastMessage("WorkHours");
-	
+	/*
 	BroadcastMessage("GerenteWork");
 	BroadcastMessage("MarketingWork");
 	BroadcastMessage("ArquitetoWork");
@@ -117,6 +117,15 @@ function PassTime () {
 	BroadcastMessage("TesterWork");
 	BroadcastMessage("Treinando");
 	BroadcastMessage("IdleWork");
+	*/
+	BroadcastMessage("WorkDaily", "Manager");
+	BroadcastMessage("WorkDaily", "Marketing");
+	BroadcastMessage("WorkDaily", "Architect");
+	BroadcastMessage("WorkDaily", "Analyst");
+	BroadcastMessage("WorkDaily", "Programmer");
+	BroadcastMessage("WorkDaily", "Tester");
+	BroadcastMessage("WorkDaily", "Training");
+	BroadcastMessage("WorkDaily", "Idle");
 	
 	BroadcastMessage("ChangeStamina");
 	BroadcastMessage("StaminaActions");

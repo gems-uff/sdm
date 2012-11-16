@@ -33,7 +33,7 @@ function ContratarFuncionario(contratado : Funcionario, Func_Slot : Funcionario)
 				*/
 			Func_Slot.SetMorale(100);
 			Func_Slot.SetAtributos(func.GetAtributos());
-			Func_Slot.SetWorkingHours(40);
+			Func_Slot.SetWorkingHours(8);
 			Func_Slot.SetEspecializacoes(func.GetEspecializacao());
 			Func_Slot.SetNome(func.GetNome());
 			Func_Slot.ResetLevel();

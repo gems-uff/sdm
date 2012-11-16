@@ -20,25 +20,45 @@ function ChangeStamina(){
 	if((func.GetNome() != stringNames.fired) && (func.GetPapel() != stringNames.papelTreinando))
 	{
 		stamina = func.GetStamina();
-		changeFactor = work.GetWorkingHoursModifier();
-		if (changeFactor == 1)		//Se esta trabalhando o numero de horas default (40 horas)
-			staminaMod = 0;
+		//ranges from 0 to 16, whereas 8 is default
+		changeFactor = parseInt(work.GetWorkingHoursModifier() * 8);
+		//If not sat nor sun
+		if((timer.GetGameTime() % 7 != 5) && (timer.GetGameTime() % 7 != 6))
+		{
+			//if working 8 hours/day
+			if (changeFactor == 8)		
+				staminaMod = 0;
+			else
+				staminaMod = ComputeChange(8 - changeFactor);
+		}
 		else
-			if (changeFactor < 1 )		//Se estiver trabalhando um numero de horas inferior ao default, entao ele recupera estamina (recupera 20% a mais do que ele perderia se fosse o inverso)
+		{
+			//Saturday
+			if( (timer.GetGameTime() % 7 == 5) && func.behavior.GetSaturday() && changeFactor !=0)
 			{
-				staminaMod = (2 - changeFactor) * constant.RECOVERYBONUS;	//Cresce estamina
-				staminaMod = parseInt(staminaMod * constant.MODIFICATOR);
-				if (stamina < 100)
-					staminaDisplay.showFloatText3("+", staminaMod.ToString(), "green", "  Stamina");
+				staminaMod = ComputeChange(- Mathf.Max(changeFactor * 0.5 * 1.25, 2));
 			}
 			else
 			{
-				staminaMod = (- changeFactor) * constant.RECOVERYBONUS;		//Decresce estamina
-				staminaMod = parseInt(staminaMod * constant.MODIFICATOR);	
-				if (stamina > 0)
-					staminaDisplay.showFloatText4("", staminaMod.ToString(), "red", "  Stamina");
+				if(timer.GetGameTime() % 7 == 5)
+				{
+					staminaMod = ComputeChange(8);
+				}
 			}
-		stamina = stamina + staminaMod;
+			//Sunday
+			if((timer.GetGameTime() % 7 == 6) && func.behavior.GetSunday() && changeFactor !=0)
+			{
+				staminaMod = ComputeChange(- Mathf.Max(changeFactor * 0.5 * 1.25, 2));
+			}
+			else
+			{
+				if(timer.GetGameTime() % 7 == 6)
+				{
+					staminaMod = ComputeChange(8);
+				}
+			}
+		}
+		stamina += staminaMod;
 		if (stamina > 100)
 			stamina = 100;
 		else
@@ -47,6 +67,26 @@ function ChangeStamina(){
 		func.SetStamina(stamina);
 		staminaBar.Stamina_Bar();
 	}
+}
+
+function ComputeChange(num : float)
+{
+	var change : float;
+
+	if(num >= 0)
+	{
+		change = parseInt(num * constant.RECOVERYBONUS);
+		if (stamina < 100 && change != 0)
+			staminaDisplay.showFloatText3("+", change.ToString(), "green", "  Stamina");
+	}
+	else
+	{
+		change = parseInt(num * constant.RECOVERYPENALY);
+		if (stamina > 0 && change != 0)
+			staminaDisplay.showFloatText4("", change.ToString(), "red", "  Stamina");
+	}
+	
+	return change;
 }
 
 function MoraleActions()
@@ -61,6 +101,15 @@ function MoraleActions()
 	}
 }
 
+function Vacation()
+{
+	func.SetWorkingHours(0);
+	func.behavior.SetSaturday(false);
+	func.behavior.SetSunday(false);
+	func.SetMorale(CheckMorale(func.GetMorale() + 4));
+	moraleDisplay.showFloatText3("+", "4", "green", "  Morale");
+}
+
 function StaminaActions()
 {
 	stamina = func.GetStamina();
@@ -72,7 +121,12 @@ function StaminaActions()
 			dialog.SetDialogControl();
 		}
 		else
+		{
 			dialog.SetDialogBadDialog(true);
+			//Decrease morale while tired
+			func.SetMorale(CheckMorale(func.GetMorale() - 4));
+			moraleDisplay.showFloatText3("", "-4", "red", "  Morale");
+		}
 	}
 }
 
@@ -176,82 +230,6 @@ function CheckMorale(moraleCheck : int)
 	return moraleCheck;
 }
 
-/*
-function ChangeMorale(){
-	var changeFactor : float;
-	var moraleMod : float;
-	if((func.GetNome() != stringNames.fired) && (func.GetPapel() != stringNames.papelTreinando))
-	{
-		morale = func.GetMorale();
-		changeFactor = work.GetWorkingHoursModifier();
-		if (changeFactor == 1)		//Se esta trabalhando o numero de horas default (40 horas)
-			moraleMod = 0;
-		else
-			if (changeFactor < 1 )		//Se estiver trabalhando um numero de horas inferior ao default, entao ele recupera moral (recupera 20% a mais do que ele perderia se fosse o inverso)
-				moraleMod = (2 - changeFactor) * constant.RECOVERYBONUS;	//Cresce moral
-			else
-				moraleMod = (- changeFactor) * constant.RECOVERYBONUS;		//Decresce moral
-				
-		moraleMod = parseInt(moraleMod * constant.MODIFICATOR);							//multiplica o modificador por 2.5, dando no maximo +- 6
-		morale = morale + moraleMod;
-		moraleModifier = moraleMod;
-		
-		if (morale > 100)
-			morale = 100;
-		else
-			if (morale < 0)
-				morale = 0;
-		func.SetMorale(morale);
-		showMorale = true;
-	}
-}
-*/
-
-/*
-function MoraleActions(){
-	morale = func.GetMorale();
-	var chance : int = Random.Range (0, 150);
-	if(func.GetNome() != stringNames.fired)
-	{
-		if (morale > constant.TIREDMORALE)
-			dialog.SetDialogControl();
-		else
-		{
-			dialog.SetDialogBadDialog();
-			if (morale < constant.BADMORALE)
-				if (chance < constant.DEMITCHANCE)
-				{
-					dialog.SetDialogQuitEnable();
-				}
-		}
-	}
-}
-*/
-
-/*
-function ShowMorale()
-{
-	if(showMorale)
-	{
-		moraleModifier = moraleModifier - moralePayment;
-		if (moraleModifier > 0 && morale < 100)
-		{
-			//Ganha Moral
-			floatingLinesBelow.showFloatText("+", moraleModifier.ToString(), "green", "  Morale");
-		}
-		else
-		{
-			if (moraleModifier < 0 && morale > 0)
-			{
-				//Perde moral
-				floatingLinesBelow.showFloatText("", moraleModifier.ToString(), "red", "  Morale");
-			}
-		}
-		showMorale = false;
-	}
-	moralePayment = 0;
-}
-*/
 //--------------------------------------------Awake-----------------------------------------------------------
 function Update(){
 	//ShowMorale();

@@ -1,4 +1,6 @@
 #pragma strict
+private var saturday : boolean = false;
+private var sunday : boolean = false;
 
 private var isPressured : boolean = false;
 private var pAction : ActionNode;
@@ -32,14 +34,29 @@ private var managerAnalyst : boolean = false;
 private var managerProgrammer : boolean = true;
 private var managerArchitect : boolean = false;
 
-public var managerAutonomous : boolean = false;
+public var managerAutonomous : boolean = true;
 public var managerDecideFocus : boolean = false;
 //For everyone
 private var employeeList : EmployeeList;
 private var func : Funcionario;
 public var Log : HistoryLog;
 
-
+function GetSaturday()
+{
+	return saturday;
+}
+function SetSaturday(t : boolean)
+{
+	saturday = t;
+}
+function GetSunday()
+{
+	return sunday;
+}
+function SetSunday(t : boolean)
+{
+	sunday = t;
+}
 //-------------------------------------------------------------------------------------------------------
 //Functions for Programmer
 //-------------------------------------------------------------------------------------------------------
