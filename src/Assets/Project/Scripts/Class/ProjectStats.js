@@ -11,6 +11,7 @@ class ProjectStats
 	public var sincronismo : float;			//Description Quality: Not, default, high, highest
 	public var codeQuality : float;				//Current Code Quality
 	public var percentageDone : float; 			//GetFractionDone()
+	public var credits : int;
 	//Bugs Found
 	public var bugUnitaryFound : int;
 	public var bugIntegrationFound : int;
@@ -32,6 +33,28 @@ class ProjectStats
 	{
 		this.next = t;
 		t.previous = this;
+	}
+	
+	function UpdateNode(node : ProjectStats)
+	{
+		this.name = node.name;
+		this.description = node.description;
+		this.deadline = node.deadline;
+		this.linguagemProgramacao = node.linguagemProgramacao;
+		this.pagamento = node.pagamento;
+		this.requirements = node.requirements;
+		this.sincronismo = node.sincronismo;
+		this.codeQuality = node.codeQuality;
+		this.percentageDone = node.percentageDone;
+		this.credits = node.credits;
+		this.bugUnitaryFound = node.bugUnitaryFound;
+		this.bugIntegrationFound = node.bugIntegrationFound;
+		this.bugSystemFound = node.bugSystemFound;
+		this.bugAcceptionFound = node.bugAcceptionFound;
+		this.bugUnitaryRepaired = node.bugUnitaryRepaired;
+		this.bugIntegrationRepaired = node.bugIntegrationRepaired;
+		this.bugSystemRepaired = node.bugSystemRepaired;
+		this.bugAcceptionRepaired = node.bugAcceptionRepaired;
 	}
 
 }

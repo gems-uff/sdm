@@ -62,7 +62,7 @@ function StatusProjeto()	{
 	sincronismoText = (parseInt(project.GetSincronismo()).ToString() + " %");	//parseint para converter o float para inteiro
 	reqlingText = project.GetLinguagem ();
 	//qualityText = (project.GetCodeQuality () * 100).ToString() + " %";
-	qualityText = (Mathf.Round(project.GetCodeQuality() * 10000f) / 100).ToString() + " %";
+	qualityText = (Mathf.Round(project.GetCodeQuality() * 100f) * 0.01).ToString() + " %";
 	valorMensalText = "$ " + (parseInt(project.GetPagamento()).ToString());
 	
 	GUI.BeginGroup(Rect (00,Screen.height - 75,1020,200));

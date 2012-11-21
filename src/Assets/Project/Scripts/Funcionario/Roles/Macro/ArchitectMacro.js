@@ -20,7 +20,8 @@ class ArchitectMacro extends System.ValueType{
 	var behavior : BehaviorPlanner;
 	var date : int;
 				
-	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, constantP : GameConstants, arquitetoP : float, behaviorP : BehaviorPlanner, dateP : int)
+	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, 
+	constantP : GameConstants, arquitetoP : float, behaviorP : BehaviorPlanner, dateP : int)
 	{
 		var actionNode : ActionNode = new ActionNode();
 		
@@ -31,22 +32,23 @@ class ArchitectMacro extends System.ValueType{
 		this.equipe = equipeP;
 		this.constant = constantP;
 		this.arquiteto = arquitetoP;
-		
 		this.behavior = behaviorP;
 		this.date = dateP;
 		 
-		
 		if(equipe.influences.GetBonusArch()!= 1.0)
 		{
 			arquiteto = arquiteto * (1 + equipe.influences.GetBonusArch());
 			actionNode.influence = equipe.influences.GetInfluence("Architect");
 		}
-		
 		var randomizer : float = Random.Range (0.8, 1.2);
 		
-		arquiteto = parseInt(randomizer * arquiteto);
-		qnt = parseInt(arquiteto * 0.025);
+		//Generate negative influence
+		if(func.GetArquiteto() < 40)
+			arquiteto = parseInt((arquiteto - 40) * randomizer);
+		else
+			arquiteto = parseInt(randomizer * arquiteto);
 		
+		qnt = parseInt(arquiteto * 0.025);
 		DecisionTree(actionNode);
 		
 		//MakePrototype();
@@ -98,10 +100,14 @@ class ArchitectMacro extends System.ValueType{
 	//--------------------------------------------
 	function Verification(actionNode : ActionNode, testCase : String, chance : int, task : String, descr : String)
 	{
+		var d1 : String;
+		var d2 : String;
 		//System
 		if(behavior.GetTestCases() == "system")
 		{
-			actionNode.NewAction(task + " System", "Employee was ordered to \n focus on " + descr + " \n and make System test cases", func, date, "Architect", qnt.ToString() + " STC", "System Test Cases");
+			d1 = "Employee was ordered to focus on " + descr + " \n and make System test cases";
+			d2 = "Employee was ordered to focus on " + descr + " <br> and make System test cases";
+			actionNode.NewAction(task + "_System", d1, d2, func, date, "Architect", qnt.ToString() + " STC", "System Test Cases");
 			MakeSystemCases(actionNode);
 		}
 		else
@@ -109,7 +115,9 @@ class ArchitectMacro extends System.ValueType{
 			//Integration
 			if(behavior.GetTestCases() == "integration")
 			{
-				actionNode.NewAction(task + " Integration", "Employee was ordered to \n focus on " + descr + " \n and make Integration test cases", func, date, "Architect", qnt.ToString() + " ITC", "Integration Test Cases");
+				d1 = "Employee was ordered to focus on " + descr + " \n and make Integration test cases";
+				d2 = "Employee was ordered to focus on " + descr + " <br> and make Integration test cases";
+				actionNode.NewAction(task + "_Integration", d1, d2, func, date, "Architect", qnt.ToString() + " ITC", "Integration Test Cases");
 				MakeIntegrationCases(actionNode);
 			}
 			//Both
@@ -117,36 +125,47 @@ class ArchitectMacro extends System.ValueType{
 			{
 				if(chance < 50)
 				{
-					actionNode.NewAction(task + " System", "Employee was ordered to \n focus on " + descr + " \n and make both types of test cases", func, date, "Architect", qnt .ToString() + " STC", "System Test Cases");
+					d1 = "Employee was ordered to focus on " + descr + " \n and make both types of test cases";
+					d2 = "Employee was ordered to focus on " + descr + " <br> and make both types of test cases";
+					actionNode.NewAction(task + "_System", d1, d2, func, date, "Architect", qnt .ToString() + " STC", "System Test Cases");
 					MakeSystemCases(actionNode);
 				}
 				else
 				{
-					actionNode.NewAction(task + " Integration", "Employee was ordered to \n focus on " + descr + " \n and make both types of test cases", func, date, "Architect", qnt.ToString() + " ITC", "Integration Test Cases");
+					d1 = "Employee was ordered to focus on " + descr + " \n and make both types of test cases";
+					d2 = "Employee was ordered to focus on " + descr + " <br> and make both types of test cases";
+					actionNode.NewAction(task + "_Integration", d1, d2, func, date, "Architect", qnt.ToString() + " ITC", "Integration Test Cases");
 					MakeIntegrationCases(actionNode);
 				}
 			}
 		}
 	}
+	
 	function Evolution(actionNode : ActionNode, testCase : String, chance : int, task : String, descr : String)
 	{
+		var d1 : String;
+		var d2 : String;
 		if(chance < 75)
 		{
-			actionNode.NewAction(task + " Architecture", "Employee was ordered to \n focus on " + descr + 
-			" \n and improved the architecture", func, date, "Architect", arquiteto.ToString() + " Aid", "");
+			d1 = "Employee was ordered to focus on " + descr + " \n and improved the architecture";
+			d2 = "Employee was ordered to focus on " + descr + " <br> and improved the architecture";
+			actionNode.NewAction(task + "_Architecture", d1, d2, func, date, "Architect", arquiteto.ToString() + " Aid", "");
 			ModularizateCode(actionNode);
 		}
 		else
 		{
-			actionNode.NewAction(task + " Prototype", "Employee was ordered to \n focus on " + descr + "\n and made a prototype", 
-			func, date, "Architect", "1 Prototype" , "Prototype");
+			d1 = "Employee was ordered to focus on " + descr + "\n and made a prototype";
+			d2 = "Employee was ordered to focus on " + descr + "<br> and made a prototype";
+			actionNode.NewAction(task + "_Prototype", d1, d2, func, date, "Architect", "1 Prototype" , "Prototype");
 			MakePrototype(actionNode);
 		}
 	}
 	
 	function Analysis(actionNode : ActionNode)
 	{
-		actionNode.NewAction("Analysis Prototype", "Employee was ordered to \n do a prototype", func, date, "Architect", "1 Prototype", "Prototype");
+		var d1 : String = "Employee was ordered to do a prototype";
+		var d2 : String = "Employee was ordered to do a prototype";
+		actionNode.NewAction("Analysis", d1, d2, func, date, "Architect", "1 Prototype", "Prototype");
 		MakePrototype(actionNode);
 	}
 	
@@ -208,22 +227,6 @@ class ArchitectMacro extends System.ValueType{
 		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue", " % Archit.");
 		ArchitectReport(0, 0, arquiteto, report);
 	}
-	
-	//--------------------------------------------
-	//Set the action
-	//--------------------------------------------
-	/*
-	function NewAction(actionNode : ActionNode, task : String, description : String)
-	{
-		actionNode.who = func.GetNome();
-		actionNode.task = task;
-		actionNode.date = date;
-		actionNode.role = "Architect";
-		actionNode.description = description;
-		actionNode.morale = func.GetMorale();
-		actionNode.stamina = func.GetStamina();
-	}
-	*/
 	
 	//--------------------------------------------
 	//Report

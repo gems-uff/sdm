@@ -33,6 +33,8 @@ class TesterMacro extends System.ValueType{
 		var actionNode : ActionNode = new ActionNode();
 		var typeUsed : String;
 		
+		var d1 : String;
+		var d2 : String;
 		
 		//Chances to find each bug type
 		chance = tester * 0.01;
@@ -61,8 +63,9 @@ class TesterMacro extends System.ValueType{
 				totalBugsFound++;
 				//Debug.Log("Found: " + totalBugsFound);
 			}
-			
-			actionNode.NewAction("Test: Cases", "Tester used Test Cases", func, date, "Tester", totalBugsFound.ToString() + " Bugs Found", "");
+			d1 = "Tester used Test Cases";
+			d2 = "Tester used Test Cases";
+			actionNode.NewAction("Test:Cases", d1, d2, func, date, "Tester", totalBugsFound.ToString() + " Bugs Found", "");
 		}
 		else
 		{
@@ -110,7 +113,11 @@ class TesterMacro extends System.ValueType{
 					}
 				}
 			}
-			actionNode.NewAction("Test: Adhoc", "Tester searched in Adhoc-mode", func, date, "Tester", totalBugsFound.ToString() + " Bugs Found", "");
+			d1 = "Tester searched in Adhoc-mode";
+			d2 = "Tester searched in Adhoc-mode";
+			actionNode.NewAction("Test:Adhoc", d1, d2, func, date, "Tester", totalBugsFound.ToString() + " Bugs Found", "");
+			if(totalBugsFound > 0)
+				actionNode.projectStat = behavior.Log.GetProjectStat();
 		}
 		//actionNode.projectStat = behavior.Log.GetProjectStat();
 		//project.IncrementBugsFoundByType(bugUnitary, bugIntegration, bugSystem, bugAcception);

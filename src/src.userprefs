@@ -1,15 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Funcionario\Working.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Windows\HireWindow.js">
     <Files>
-      <File FileName="Assets\Project\Scripts\Misc\ExportLogFile.js" Line="91" Column="10" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Funcionario.js" Line="388" Column="27" />
-      <File FileName="Assets\Project\Scripts\Behavior\BehaviorPlanner.js" Line="36" Column="1" />
-      <File FileName="Assets\Project\Scripts\Misc\GameConstants.js" Line="25" Column="25" />
-      <File FileName="Assets\Project\Scripts\Funcionario\MoraleControl.js" Line="110" Column="62" />
-      <File FileName="Assets\Project\Scripts\Dialog\Dialog.js" Line="196" Column="4" />
-      <File FileName="Assets\Project\Scripts\Windows\WorkingHoursWindow.js" Line="41" Column="22" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Working.js" Line="76" Column="34" />
+      <File FileName="Assets\Project\Scripts\Misc\ExportLogFile.js" Line="50" Column="3" />
+      <File FileName="Assets\Project\Scripts\Funcionario\HireFuncionario.js" Line="22" Column="53" />
+      <File FileName="Assets\Project\Scripts\Windows\HireWindow.js" Line="167" Column="60" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

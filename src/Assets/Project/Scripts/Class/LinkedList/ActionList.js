@@ -37,13 +37,15 @@ class ActionNode
 	public var role : String;					//Role as in Programmer, marketing, etc
 	public var influence : InfluenceValues;		//Influence stats
 	public var pressure : ActionNode;			//If under pressure
-	public var description : String;			//Text saying his decision making progress
+	public var description : String;			//Text saying his decision making progress for ingame window
+	public var d2 : String;		//Text saying his decision making progress for export log
 	public var morale : int;					//morale number
 	public var stamina : int;					//stamina number
 	public var cost : float;					//cost paid each day
 	public var work : String;					//how much he progressed/made/contributed: codelines, bugs found, etc
 	public var artifact : String;				//created any artifact ? Which one ? Prototype or test cases
 	public var projectStat : ProjectStats;
+	public var work_2 : String;
 	
 	//For the linked List
 	public var next : ActionNode;
@@ -64,6 +66,7 @@ class ActionNode
 		this.influence = new InfluenceValues();
 		this.pressure = null;
 		this.description = null;
+		this.d2 = null;
 		this.morale = 0;
 		this.stamina = 0;
 		this.cost = 0;
@@ -74,36 +77,57 @@ class ActionNode
 		this.next = null;
 		this.previous = null;
 	}
-	function SetValues(date : int, who : String, task : String, role : String, description : String, morale : int, stamina : int, 
-	cost : float, work  : String)
-	{
-		this.date = date;
-		this.who = who;
-		this.task = task;
-		this.role = role;
-		//this.influence = null;
-		//this.pressure = null;
-		this.description = description;
-		this.morale = morale;
-		this.stamina = stamina;
-		this.cost = cost;
-		this.work = work;
-	}
-	
-	function NewAction(task : String, description : String, func : Funcionario, date : int, role : String, work : String, artifact : String)
+
+	function NewAction(task : String, description : String, d2 : String, func : Funcionario, date : int, role : String, work : String, artifact : String)
 	{
 		this.who = func.GetNome();
 		this.task = task;
 		this.date = date;
 		this.role = role;
 		this.description = description;
+		this.d2 = d2;
 		this.morale = func.GetMorale();
 		this.stamina = func.GetStamina();
 		this.cost = func.GetSalario() / 28;
 		this.work = work;
+		this.work_2 = work + "/" + "0";
 		this.artifact = artifact;
 	}
-	function NewAction(task : String, description : String, who : String, morale : int, stamina : int, cost : float, date : int, role : String, work : String, artifact : String)
+	//cost
+	function NewAction(task : String, description : String, d2 : String, func : Funcionario, cost : int, date : int, role : String, work : String, artifact : String)
+	{
+		this.who = func.GetNome();
+		this.task = task;
+		this.date = date;
+		this.role = role;
+		this.description = description;
+		this.d2 = d2;
+		this.morale = func.GetMorale();
+		this.stamina = func.GetStamina();
+		this.cost = cost;
+		this.work = work;
+		this.work_2 = work + "/" + "0";
+		this.artifact = artifact;
+	}
+	
+	//set work_2
+	function NewAction(task : String, description : String, d2 : String, func : Funcionario, date : int, role : String, work : String, work_21 : String, work_22 : String, artifact : String)
+	{
+		this.who = func.GetNome();
+		this.task = task;
+		this.date = date;
+		this.role = role;
+		this.description = description;
+		this.d2 = d2;
+		this.morale = func.GetMorale();
+		this.stamina = func.GetStamina();
+		this.cost = func.GetSalario() / 28;
+		this.work = work;
+		this.work_2 = work_21 + "/" +work_22;
+		this.artifact = artifact;
+	}
+	
+	function NewAction(task : String, description : String, d2 : String, who : String, morale : int, stamina : int, cost : float, date : int, role : String, work : String, artifact : String)
 	{
 		this.who = who;
 		this.task = task;
@@ -114,8 +138,26 @@ class ActionNode
 		this.stamina = stamina;
 		this.cost = cost / 28;
 		this.work = work;
+		this.work_2 = work + "/" + "0";
 		this.artifact = artifact;
 	}
+	/*
+	//set work_2
+	function NewAction(task : String, description : String, who : String, morale : int, stamina : int, cost : float, date : int, role : String, work : String, work2 : String, artifact : String)
+	{
+		this.who = who;
+		this.task = task;
+		this.date = date;
+		this.role = role;
+		this.description = description;
+		this.morale = morale;
+		this.stamina = stamina;
+		this.cost = cost / 28;
+		this.work = work;
+		this.work_2 = work_2;
+		this.artifact = artifact;
+	}
+	*/
 	
 }
 

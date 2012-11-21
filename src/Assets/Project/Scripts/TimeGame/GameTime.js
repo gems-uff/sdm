@@ -101,8 +101,7 @@ function GetTimeDaysString() :String{
 function PassTime () {
     gameTime += incrementBy;
     equipe.ResetBonus();
-	
-	BroadcastMessage("NewProjectStatNode");
+    
 	BroadcastMessage("PagarFuncionario");
 	BroadcastMessage("PagarJogadorMensal");
 	
@@ -118,6 +117,8 @@ function PassTime () {
 	BroadcastMessage("Treinando");
 	BroadcastMessage("IdleWork");
 	*/
+	BroadcastMessage("NewProjectStatNode");
+	
 	BroadcastMessage("WorkDaily", "Manager");
 	BroadcastMessage("WorkDaily", "Marketing");
 	BroadcastMessage("WorkDaily", "Architect");
@@ -126,6 +127,8 @@ function PassTime () {
 	BroadcastMessage("WorkDaily", "Tester");
 	BroadcastMessage("WorkDaily", "Training");
 	BroadcastMessage("WorkDaily", "Idle");
+	
+	BroadcastMessage("UpdateProjectStatNode");
 	
 	BroadcastMessage("ChangeStamina");
 	BroadcastMessage("StaminaActions");

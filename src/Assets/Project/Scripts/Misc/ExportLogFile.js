@@ -7,23 +7,17 @@ public var f : TextWriter;// = new StreamWriter(path);
 function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 {
 	var line : String;
-	
-	line = Agent(employee) + "\t" + Action(action);
-	f.WriteLine("AgAc" + "\t" + line);
 		
-	while(action.next != null)
+	while(action != null)
 	{
-		//line = Action(action) + "\t" + Action(action.next);
-		line = Action(action) + "\t" + Agent(employee);
-		f.WriteLine("AcAg" + "\t" + line);
-		line = Agent(employee) + "\t" + Action(action.next);
+		line = Agent(employee) + "\t" + Action(action);
 		f.WriteLine("AgAc" + "\t" + line);
 		
 		if(action.artifact != "")
 		{
-			//Action to artifact
-			line = Action(action) + "\t" + Artifact(action, action.artifact);
-			f.WriteLine("IAcAr" + "\t" + line + "\t" + "0");
+			//Artifact to action
+			line = Artifact(action, action.artifact) + "\t" + Action(action);
+			f.WriteLine("IArAc" + "\t" + line + "\t" + "0");
 		}
 		
 		if(action.influence.valid)
@@ -38,13 +32,10 @@ function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 					//Action to artifact
 					line = Action(action) + "\t" + Artifact(current.action, current.action.artifact);
 					f.WriteLine("IAcAr" + "\t" + line + "\t" + "0");
-					//Artifact to action
-					line = Artifact(current.action, current.action.artifact) + "\t" + Action(current.action);
-					f.WriteLine("IArAc" + "\t" + line + "\t" + "0");
 				}
 				else
 				{
-					line = Action(action) + "\t" + Action(current.action);
+					line = Action(current.action) + "\t" + Action(action);
 					f.WriteLine("IAcAc" + "\t" + line + "\t" + action.influence.num);
 				}
 				current = current.next;
@@ -53,13 +44,10 @@ function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 		if(action.projectStat != null)
 		{
 			line = Action(action) + "\t" + Project(action.projectStat);
-			f.WriteLine("AcP" + "\t" + line + "\t" + action.work);
+			f.WriteLine("AcP" + "\t" + line + "\t" + action.work_2);
 		}
 		action = action.next;
 	}
-	//Added to link the last actionNode to the employee
-	line = Action(action) + "\t" + Agent(employee);
-	f.WriteLine("AcAg" + "\t" + line);
 }
 
 function Action(action : ActionNode)
@@ -68,7 +56,7 @@ function Action(action : ActionNode)
 	var line : String;
 	id = action.date.ToString() +" "+ action.who.ToString() +" "+ action.role.ToString();
 	line = id + "\t" + action.date + "\t" + action.who + "\t" + action.task + "\t" + action.role + "\t" + action.morale + "\t" +
-	action.stamina + "\t" + action.cost + "\t" + action.work;// + "\t" + action.description;
+	action.stamina + "\t" + action.cost + "\t" + action.work + "\t" + action.d2;
     	
     return line;
 }
@@ -100,9 +88,9 @@ function Project(stat : ProjectStats)
 	id = stat.date.ToString() +" "+ stat.name;
 	var line : String;
 	line = id + "\t" + stat.name + "\t" + stat.date + "\t" + stat.deadline + "\t" + stat.linguagemProgramacao + "\t" + stat.pagamento + "\t" + 
-	stat.requirements + "\t" + stat.sincronismo + "\t" + stat.codeQuality + "\t" + stat.percentageDone + "\t" + stat.bugUnitaryFound+ "\t" +
+	stat.requirements + "\t" + stat.sincronismo + "\t" + (stat.codeQuality * 100) + "\t" + stat.percentageDone + "\t" + stat.bugUnitaryFound+ "\t" +
 	stat.bugIntegrationFound + "\t" + stat.bugSystemFound + "\t" + stat.bugAcceptionFound + "\t" + stat.bugUnitaryRepaired+ "\t" +
-	stat.bugIntegrationRepaired + "\t" + stat.bugSystemRepaired + "\t" + stat.bugAcceptionRepaired;// + "\t" + stat.description;
+	stat.bugIntegrationRepaired + "\t" + stat.bugSystemRepaired + "\t" + stat.bugAcceptionRepaired + "\t" + stat.credits;
 		
     return line;
 }
@@ -116,6 +104,21 @@ function RunProjectNodes(f : TextWriter, node : ProjectStats)
 		node = node.next;
 	}
 }
+
+function RunEmployeeList(node : EmployeeNode)
+{
+	while(node != null)
+	{
+		if(node.employee.GetNome() != "Vacant")
+		{
+			action = node.actionList.first;
+			RunList(f, action, node.employee);
+			
+		}
+		node = node.next;
+	}
+}
+
 function exportLog()
 {
     var action : ActionNode;
@@ -123,10 +126,18 @@ function exportLog()
     projectNode = hLog.GetProjectList().last;
     RunProjectNodes(f, projectNode.project.first);
     
+    RunEmployeeList(projectNode.slot01.first);
+    RunEmployeeList(projectNode.slot02.first);
+    RunEmployeeList(projectNode.slot03.first);
+    RunEmployeeList(projectNode.slot04.first);
+    RunEmployeeList(projectNode.slot05.first);
+    RunEmployeeList(projectNode.slot06.first);
+    RunEmployeeList(projectNode.slot07.first);
+    RunEmployeeList(projectNode.slot08.first);
+    /*
     //Employee01
     if(projectNode.slot01.last.employee.GetNome() != "Vacant")
     {
-    	//f.WriteLine("EMPLOYEE01");
     	action = projectNode.slot01.last.actionList.first;
     	RunList(f, action, projectNode.slot01.last.employee);
     	
@@ -134,8 +145,6 @@ function exportLog()
     //Employee02
     if(projectNode.slot02.last.employee.GetNome() != "Vacant")
     {
-    	//f.WriteLine("");
-    	//f.WriteLine("EMPLOYEE02");
     	action = projectNode.slot02.last.actionList.first;
     	RunList(f, action, projectNode.slot02.last.employee);
     	
@@ -143,8 +152,6 @@ function exportLog()
     //Employee03
     if(projectNode.slot03.last.employee.GetNome() != "Vacant")
     {
-    	//f.WriteLine("");
-    	//f.WriteLine("EMPLOYEE03");
     	action = projectNode.slot03.last.actionList.first;
     	RunList(f, action, projectNode.slot03.last.employee);
     	
@@ -152,8 +159,6 @@ function exportLog()
     //Employee04
     if(projectNode.slot04.last.employee.GetNome() != "Vacant")
     {
-    	//f.WriteLine("");
-    	//f.WriteLine("EMPLOYEE04");
     	action = projectNode.slot04.last.actionList.first;
     	RunList(f, action, projectNode.slot04.last.employee);
     	
@@ -161,8 +166,6 @@ function exportLog()
     //Employee05
     if(projectNode.slot05.last.employee.GetNome() != "Vacant")
     {
-    	//f.WriteLine("");
-    	//f.WriteLine("EMPLOYEE05");
     	action = projectNode.slot05.last.actionList.first;
     	RunList(f, action, projectNode.slot05.last.employee);
     	
@@ -170,8 +173,6 @@ function exportLog()
     //Employee06
     if(projectNode.slot06.last.employee.GetNome() != "Vacant")
     {
-    	//f.WriteLine("");
-    	//f.WriteLine("EMPLOYEE06");
     	action = projectNode.slot06.last.actionList.first;
     	RunList(f, action, projectNode.slot06.last.employee);
     	
@@ -179,8 +180,6 @@ function exportLog()
     //Employee07
     if(projectNode.slot07.last.employee.GetNome() != "Vacant")
     {
-    	//f.WriteLine("");
-    	//f.WriteLine("EMPLOYEE07");
     	action = projectNode.slot07.last.actionList.first;
     	RunList(f, action, projectNode.slot07.last.employee);
     	
@@ -188,12 +187,10 @@ function exportLog()
     //Employee08
     if(projectNode.slot08.last.employee.GetNome() != "Vacant")
     {
-    	//f.WriteLine("");
-    	//f.WriteLine("EMPLOYEE08");
     	action = projectNode.slot08.last.actionList.first;
     	RunList(f, action, projectNode.slot08.last.employee);
     	
     }
-    //f.WriteLine(spot.SpawnSpotType + "\t" + position.x + "\t" + position.y + "\t" + position.z);
+	*/
     f.Close();
  }

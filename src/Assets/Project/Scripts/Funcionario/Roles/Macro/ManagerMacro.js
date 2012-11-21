@@ -46,8 +46,8 @@ class ManagerMacro extends System.ValueType{
 		if(func.GetGerente() < 40)
 		{
 			//Generate negative influence
-			auxAnaArq = auxAnaArq - 40;
-			auxProg = auxProg - 40;
+			auxAnaArq = parseInt((auxAnaArqP - 40) * randA);
+			auxProg = parseInt((auxProgP - 40) * randP);
 		}
 		else
 		{
@@ -210,13 +210,13 @@ class ManagerMacro extends System.ValueType{
 	function DecideAid(actionNode : ActionNode)
 	{
 		if(behavior.GetManagerAnalyst())
-			AidAnalyst(actionNode, "Aid Analyst", "has no automomy");
+			AidAnalyst(actionNode, "Aid_Analyst", "has no automomy");
 		else
 		{
 			if(behavior.GetManagerArchitect())
-				AidArchitect(actionNode, "Aid Architect", "has no automomy");
+				AidArchitect(actionNode, "Aid_Architect", "has no automomy");
 			else
-				AidProgrammer(actionNode, "Aid Programmer", "has no automomy");
+				AidProgrammer(actionNode, "Aid_Programmer", "has no automomy");
 		}
 	}
 	
@@ -225,32 +225,38 @@ class ManagerMacro extends System.ValueType{
 	//--------------------------------------------
 	function AidAnalyst(actionNode : ActionNode, task : String, descr : String)
 	{
+		var d1 : String = "Manager " + descr + " and aided Analysts";
+		var d2 : String = "Manager " + descr + " and aided Analysts";
 		equipe.influences.SetBonusAnalystManager(auxAnaArq, actionNode);
 		floatingLines.showFloatText1("", "Aid Analyst", "blue", "");
 		floatingLines.showFloatText2("+", auxAnaArq.ToString(), "blue", " % Dev.");
 		ManagerReport(auxAnaArq, 0, report);
 		
-		actionNode.NewAction(task, "Manager " + descr + " and aided Analysts", func, date, "Manager", auxAnaArq.ToString() + "% Aid", "");
+		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxAnaArq.ToString() + "% Aid", "");
 	}
 	
 	function AidProgrammer(actionNode : ActionNode, task : String, descr : String)
 	{
+		var d1 : String = "Manager " + descr + " and aided Programmers";
+		var d2 : String = "Manager " + descr + " and aided Programmers";
 		equipe.influences.SetBonusProgManager(auxProg, actionNode);
 		floatingLines.showFloatText1("", "Aid Programmer", "blue", "");
 		floatingLines.showFloatText2("+", auxProg.ToString(), "blue", " % Dev.");
 		ManagerReport(0, auxProg, report);
 		
-		actionNode.NewAction(task, "Manager " + descr + " and aided Programmers", func, date, "Manager", auxProg.ToString() + "% Aid", "");
+		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxProg.ToString() + "% Aid", "");
 	}
 	
 	function AidArchitect(actionNode : ActionNode, task : String, descr : String)
 	{
+		var d1 : String = "Manager " + descr + " and aided Architects";
+		var d2 : String = "Manager " + descr + " and aided Architects";
 		equipe.influences.SetBonusArchManager(auxAnaArq, actionNode);
 		floatingLines.showFloatText1("", "Aid Architect", "blue", "");
 		floatingLines.showFloatText2("+", auxAnaArq.ToString(), "blue", " % Dev.");
 		ManagerReport(auxAnaArq, 0, report);
 		
-		actionNode.NewAction(task, "Manager " + descr + " and aided Architects", func, date, "Manager", auxAnaArq.ToString() + "% Aid", "");
+		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxAnaArq.ToString() + "% Aid", "");
 	}
 	//--------------------------------------------
 	//Set the action

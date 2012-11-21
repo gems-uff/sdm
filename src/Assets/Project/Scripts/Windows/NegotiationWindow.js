@@ -52,7 +52,7 @@ function ResetItems(){
 function Action(text : String)
 {
 	var action : ActionNode = new ActionNode();
-	action.NewAction("Negotiation", text, func, timer.GetGameTime(), "Negotiation", "Negotiation", "");
+	action.NewAction("Negotiation", text, text, func, timer.GetGameTime(), "Negotiation", "Negotiation", "");
 	func.behavior.AddAction(action);
 }
 function ApplyChanges(){

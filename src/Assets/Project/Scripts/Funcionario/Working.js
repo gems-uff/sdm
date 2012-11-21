@@ -374,7 +374,7 @@ function MarketingWork(){
 		
 		marketing = func.GetMarketing() * (rate * 0.01) * (1 - penal) * mod * constant.MARKETING;	
 		
-		action = MarketingMacro.Work(func, project, report, floatingLines, equipe, constant, playerStats, marketing, timer.GetGameTime());
+		action = MarketingMacro.Work(func, project, report, floatingLines, equipe, constant, playerStats, marketing, timer.GetGameTime(), behavior);
 		behavior.AddAction(action);
 	}
 		
@@ -483,7 +483,7 @@ function IdleWork()
 	if(func.GetPapel() == stringNames.papelNenhum && func.GetNome() != stringNames.fired)
 	{
 		var action : ActionNode = new ActionNode();
-		action.NewAction("Idle", "Idle", func, timer.GetGameTime(), "idle", "idle", "");
+		action.NewAction("Idle", "Idle", "Idle", func, timer.GetGameTime(), "idle", "idle", "");
 		behavior.AddAction(action);
 	}
 	
@@ -508,7 +508,7 @@ function Treinando(){
 			floatingLines.showFloatText1("", "", "green", " Training Complete");
 		}
 		var action : ActionNode = new ActionNode();
-		action.NewAction("Training", "Training", func, timer.GetGameTime(), "Training", treino.GetAprendendo(), "");
+		action.NewAction("Training", "Training", "Training", func, timer.GetGameTime(), "Training", treino.GetAprendendo(), "");
 		behavior.AddAction(action);
 	}
 }

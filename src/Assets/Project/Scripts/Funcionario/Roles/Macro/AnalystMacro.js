@@ -103,6 +103,8 @@ class AnalystMacro extends System.ValueType{
 	//--------------------------------------------
 	function Elicitation(actionNode : ActionNode, task : String, descr : String)
 	{
+		var d1 : String;
+		var d2 : String;
 		actionNode.projectStat = behavior.Log.GetProjectStat();
 		if(project.GetPrototype() > 0)
 		{
@@ -114,7 +116,9 @@ class AnalystMacro extends System.ValueType{
 			project.UpdateElicitation(val, true);
 			AnalistReport(parseInt(val), report);
 			
-			actionNode.NewAction(task + " Prototype", "Employee was ordered to \n focus on " + descr + " \n and validated a Prototype", func, date, "Analyst", val.ToString() + " Val", "");
+			d1 = "Employee was ordered to focus on \n" + descr + "\n and validated a Prototype";
+			d2 = "Employee was ordered to focus on " + descr + "<br> and validated a Prototype";
+			actionNode.NewAction(task + "_Prototype", d1, d2, func, date, "Analyst", val.ToString() + " Val", "");
 			
 			floatingLines.showFloatText1("", "Validation", "blue","");
 			floatingLines.showFloatText2("+", val.ToString(), "blue", " Val.");
@@ -133,7 +137,9 @@ class AnalystMacro extends System.ValueType{
 			project.UpdateElicitation(val, false);
 			AnalistReport(parseInt(val), report);
 			
-			actionNode.NewAction(task + " Reviews", "Employee was ordered to \n focus on " + descr + " \n and validated with Reviews", func, date, "Analyst", val.ToString() + " Val", "");
+			d1 = "Employee was ordered to focus on \n" + descr + "\n and validated with Reviews";
+			d2 = "Employee was ordered to focus on " + descr + "<br> and validated with Reviews";
+			actionNode.NewAction(task + "_Reviews", d1, d2, func, date, "Analyst", val.ToString() + " Val", "");
 			
 			floatingLines.showFloatText1("", "Validation", "blue","");
 			floatingLines.showFloatText2("+", val.ToString(), "blue", " Val.");
@@ -144,7 +150,8 @@ class AnalystMacro extends System.ValueType{
 	
 	function Especification(actionNode : ActionNode, task : String, descr : String)
 	{
-		//Debug.Log("Elicitation");
+		var d1 : String;
+		var d2 : String;
 		actionNode.projectStat = behavior.Log.GetProjectStat();
 		if(func.GetAnalista() > 50)
 		{
@@ -166,21 +173,25 @@ class AnalystMacro extends System.ValueType{
 				Specifying();
 			}
 			*/
-			actionNode.NewAction(task, "Employee was ordered to \n focus on " + descr + " \n and because he was above moderate \n he decided to do discovery", func, date, "Analyst", val.ToString() + " Discovery", "");
+			d1 = "Employee was ordered to focus on " + descr + "\n and because he was above moderate he decided to do discovery";
+			d2 = "Employee was ordered to focus on " + descr + "<br> and because he was above moderate he decided to do discovery";
+			actionNode.NewAction(task, d1, d2, func, date, "Analyst", val.ToString() + " Discovery", "");
 			Specifying();
 		}
 		else
 		{
-			//Debug.Log("Bad");
-			//Bad Analyst
-			actionNode.NewAction(task, "Employee was ordered to \n focus on " + descr + " \n and because he was moderate \n he did discovery", func, date, "Analyst", val.ToString() + " Discovery", "");
+			d1= "Employee was ordered to focus on " + descr + "\n and because he was moderate he did discovery"; 
+			d2 = "Employee was ordered to focus on " + descr + "<br> and because he was moderate he did discovery";
+			actionNode.NewAction(task, d1, d2, func, date, "Analyst", val.ToString() + " Discovery", "");
 			Specifying();
 		}
 	}
 	
 	function Quality(actionNode : ActionNode, task : String, descr : String)
 	{
-		actionNode.NewAction(task, "Employee was ordered to \n focus on " + descr + " \n and because he was moderate \n he did discovery", func, date, "Analyst", val.ToString() + " ATC", "Acception Test Cases");
+		var d1 : String = "Employee was ordered to focus on " + descr + "\n and because he was moderate he did discovery";
+		var d2 : String = "Employee was ordered to focus on " + descr + "<br> and because he was moderate he did discovery";
+		actionNode.NewAction(task, d1, d2, func, date, "Analyst", val.ToString() + " ATC", "Acception Test Cases");
 		MakeAcceptionCases(actionNode);
 	}
 	
@@ -212,24 +223,7 @@ class AnalystMacro extends System.ValueType{
 	
 	//--------------------------------------------
 	//Auxiliary Functions
-	//--------------------------------------------
-	
-	//--------------------------------------------
-	//Set the action
-	//--------------------------------------------
-	/*
-	function NewAction(actionNode : ActionNode, task : String, description : String)
-	{
-		actionNode.who = func.GetNome();
-		actionNode.task = task;
-		actionNode.date = date;
-		actionNode.role = "Analyst";
-		actionNode.description = description;
-		actionNode.morale = func.GetMorale();
-		actionNode.stamina = func.GetStamina();
-	}
-	*/
-	
+	//--------------------------------------------	
 	function ClientFindBug()
 	{
 		var random : int = Random.Range (0, 100);

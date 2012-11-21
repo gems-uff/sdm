@@ -6,27 +6,39 @@
 class MarketingMacro extends System.ValueType{
 	
 						
+	var behavior : BehaviorPlanner;
+	
 	function Work(func : Funcionario, project : Project, report : WeeklyReport, floatingLines : FloatingLines, equipe : Equipe, 
-	constant : GameConstants, playerStats : PlayerStats, marketing : float, date : int)
+	constant : GameConstants, playerStats : PlayerStats, marketing : float, date : int, behaviorP : BehaviorPlanner)
 	{
-		var randomizer : float = Random.Range (5.0, 7.5);
-		var randomizer2 : float = Random.Range (4.0, 6.0);
-		var aux : float = marketing * 0.5;
+		var randomizer_aid : float = Random.Range (2.0, 2.5);
+		var randomizer_creds : float = Random.Range (3.0, 5.0);
+		var aid : float = marketing;
+		var credits : int = marketing;
 		var actionNode : ActionNode = new ActionNode();
 		
-		marketing = parseInt(aux * randomizer2 * 4);
-		aux = parseInt(aux * randomizer);
+		this.behavior = behaviorP;
+		//Generate negative influence
+		if(func.GetMarketing() < 40)
+			aid = parseInt((aid - 40) * randomizer_aid);
+		else
+			aid = parseInt(aid * randomizer_aid);
 		
-		actionNode.NewAction("Aid", "Marketing Generated Income and aided Analyst, if any", func, date, "Marketing", aux.ToString() + "% Aid", "");
+		credits = parseInt(credits * randomizer_creds * 2);
 		
-		equipe.SetBonusAnalista(aux);
-		equipe.influences.SetBonusAnalystMarketing(aux, actionNode);
-		//equipe.SetBonusAnalystMarketing(aux, actionNode);
+		var d1 : String = "Marketing Generated Income and aided Analyst, if any";
+		var d2 : String = "Marketing Generated Income and aided Analyst, if any";
+		actionNode.NewAction("Aid", d1, d2, func, date, "Marketing", aid.ToString() + "% Aid", credits.ToString() + " Credits", "0", "");
 		
-		playerStats.ChangeSaldo(marketing);
-		MarketingReport(aux, marketing, report);
-		floatingLines.showFloatText1("+", aux.ToString(), "blue", "% Val.");
-		floatingLines.showFloatText2("+", marketing.ToString(), "", " Credits");
+		equipe.SetBonusAnalista(aid);
+		equipe.influences.SetBonusAnalystMarketing(aid, actionNode);
+		//equipe.SetBonusAnalystMarketing(aid, actionNode);
+		
+		playerStats.ChangeSaldo(credits);
+		actionNode.projectStat = behavior.Log.GetProjectStat();
+		MarketingReport(aid, marketing, report);
+		floatingLines.showFloatText1("+", aid.ToString(), "blue", "% Val.");
+		floatingLines.showFloatText2("+", credits.ToString(), "", " Credits");
 		
 		return actionNode;
 	}

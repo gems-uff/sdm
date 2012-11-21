@@ -1,5 +1,5 @@
 #pragma strict
-
+public var player : PlayerStats;
 public var project : Project;
 public var employee01 : Funcionario;
 public var employee02 : Funcionario;
@@ -101,7 +101,15 @@ function NewProjectNode()
 
 function NewProjectStatNode()
 {
-	projectList.last.project.Add(project.GetStats());
+	var stats : ProjectStats = new ProjectStats();
+	stats = project.GetStats();
+	stats.credits = player.GetSaldo();
+	projectList.last.project.Add(stats);
+}
+function UpdateProjectStatNode()
+{
+	projectList.last.project.last.UpdateNode(project.GetStats());
+	projectList.last.project.last.credits = player.GetSaldo();
 }
 function GetProjectStat()
 {

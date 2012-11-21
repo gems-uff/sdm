@@ -15,7 +15,7 @@ private var projectSize : String = "";
 private var projectQuality : String = "";
 private var sincronismo : float = 0.0;		//sincronismo
 private var completed : boolean = false;
-private var bugs : float = 0.0 ;				//number of bugs in the software
+private var bugs : int = 0 ;				//number of bugs in the software
 
 private var codeLinesDone : int = 0;	//number of lines done by the team
 
@@ -44,7 +44,7 @@ private var bugAcceptionRepaired : int = 0;
 private var volatility : float = 1.0;
 private var lastValidation : int = 0.0;
 //Qualidade do codigo, o que interfere na remoção/inserção de bugs
-private var codeQuality : float = 0.8; //from 0.1 to 1.2
+private var codeQuality : float = 80; //from 0.1 to 1.2
 //Project requirements. The hightest valor equals Validation (Sincronismo)
 private var requirements : float = 0.0;
 
@@ -61,7 +61,7 @@ function ResetProject(){
 	requirements = 0.0;
 	volatility = 1.0;
 	lastValidation = timer.GetGameTime();
-	codeQuality = 0.8;
+	codeQuality = 80;
 	testCases.Clean();
 }
 
@@ -111,19 +111,6 @@ function UpdateElicitation(t : float, prototype : boolean)
 	}
 	sincronismo = Mathf.Clamp(sincronismo, 0.0, 100.0);
 	
-	/*
-	if (sincronismo > 100.0)
-	{
-		sincronismo = 100.0;
-	}
-	else
-	{
-		if(sincronismo < 0.0)
-		{
-			sincronismo = 0.0;
-		}
-	}
-	*/
 	CheckRequirements();
 	ResetLastElicitation();
 }
@@ -142,25 +129,19 @@ function GetCodeQuality()
 }
 function ChangeCodeQuality(t : float)
 {
-	codeQuality *= t;
-	Mathf.Clamp(codeQuality, 0.1, 1.2);
-	/*
-	if(codeQuality > 1.2)
-	{
-		codeQuality = 1.2;
-	}
-	else
-	{
-		if(codeQuality < 0.1)
-		{
-			codeQuality = 0.1;
-		}
-	}
-	*/
+	var temp : float = codeQuality;
+	var dif : float;
+	this.codeQuality *= t;
+	this.codeQuality = Mathf.Clamp(this.codeQuality, 10, 120);
+	
+	this.codeQuality = (Mathf.Floor(this.codeQuality * 1000)) * 0.001;
+	dif = Mathf.Round((this.codeQuality - temp) * 1000) * 0.001;
+	
+	return dif;
 }
 function ResetCodeQuality()
 {
-	codeQuality = 0.8;
+	codeQuality = 80;
 }
 function SetCodeQuality(t : float)
 {
@@ -228,7 +209,7 @@ function RandomizeBugs(t : int)
 	{
 		random = Random.Range (0, 30);
 		i++;
-		if (random < (2 - codeQuality)  * 10)
+		if (random < (2 - codeQuality * 0.01)  * 10)
 		{
 			random = Random.Range (0, 5);
 			switch(random)
@@ -358,7 +339,7 @@ function IncrementBugsRepairedByType(unitary : int, integration : int, system : 
 	var random : float;
 	random = Random.Range (0.0, 100.0);
 	//Add bug
-	newBugChance = newBugChance * chanceMod * (2 - codeQuality);
+	newBugChance = newBugChance * chanceMod * (2 - codeQuality * 0.01);
 	if(random < newBugChance)
 	{
 		random = Random.Range (0, 5);
@@ -497,7 +478,7 @@ function SetStartDay (t : int) {
 function GetNumBugs () {
 	return bugs;
 }
-function SetNumBugs (t: float) {
+function SetNumBugs (t: int) {
 	if (!completed)
 		bugs = bugs + t;
 	if(bugs < 0 )
@@ -520,9 +501,11 @@ function SetLinesDone (t: int) {
 		codeLinesDone = codeLinesDone + t;
 		if(GetFractionDone() > GetRequirements())
 		{
-			codeLinesDone = GetRequirements() * 0.01 * maxCodeLines;
+			codeLinesDone = GetRequirements() * 0.01 * maxCodeLines;	
 		}
+		return codeLinesDone;
 	}
+	return 0;
 }
 function GetIscomplete () {
 	return completed;
