@@ -36,7 +36,7 @@ function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 				else
 				{
 					line = Action(current.action) + "\t" + Action(action);
-					f.WriteLine("IAcAc" + "\t" + line + "\t" + action.influence.num);
+					f.WriteLine("IAcAc" + "\t" + line + "\t" + current.action.work);//.influence.num);
 				}
 				current = current.next;
 			}
