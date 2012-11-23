@@ -166,7 +166,7 @@ function HireAction(thisCandidate : Funcionario)
 	var action : ActionNode = new ActionNode();
 	var cost : int = thisCandidate.GetSalario() + contratacao;
 	//var log : BehaviorPlanner = func = GetComponentInChildren(Funcionario);
-	action.NewAction("Hired Employee", "Hired a new employee", "Hired a new employee", manager, cost, timer, "Hired", "", "");
+	action.NewAction("Hired_Employee", "Hired a new employee", "Hired a new employee", manager, cost, timer, "Hired", "", "");
 	action.projectStat = manager.behavior.Log.GetProjectStat();
 	manager.behavior.AddAction(action);
 }

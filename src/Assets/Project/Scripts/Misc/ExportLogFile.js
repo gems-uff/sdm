@@ -17,7 +17,7 @@ function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 		{
 			//Artifact to action
 			line = Artifact(action, action.artifact) + "\t" + Action(action);
-			f.WriteLine("IArAc" + "\t" + line + "\t" + "0");
+			f.WriteLine("IArAc" + "\t" + line + "\t" + "");
 		}
 		
 		if(action.influence.valid)
@@ -31,7 +31,7 @@ function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 				{
 					//Action to artifact
 					line = Action(action) + "\t" + Artifact(current.action, current.action.artifact);
-					f.WriteLine("IAcAr" + "\t" + line + "\t" + "0");
+					f.WriteLine("IAcAr" + "\t" + line + "\t" + "");
 				}
 				else
 				{
@@ -69,7 +69,7 @@ function Action(action : ActionNode)
 	var line : String;
 	id = action.date.ToString() +" "+ action.who.ToString() +" "+ action.role.ToString();
 	line = id + "\t" + action.date + "\t" + action.who + "\t" + action.task + "\t" + action.role + "\t" + action.morale + "\t" +
-	action.stamina + "\t" + action.cost + "\t" + action.work + "\t" + action.d2;
+	action.stamina + "\t" + action.hours + "\t" + action.cost + "\t" + action.work + "\t" + action.d2;
     	
     return line;
 }
@@ -112,10 +112,10 @@ function RunProjectNodes(f : TextWriter, node : ProjectStats)
 {
 	while(node.next != null)
 	{
-		var income : String = " ";
+		var income : String = "0";
 		if(node.next.income != 0)
-			income = node.next.income +"";
-		line = Project(node) + "\t" + Project(node.next) + "\t" + income + "credits";
+			income = node.next.income + " credits";
+		line = Project(node) + "\t" + Project(node.next) + "\t" + income;
 		f.WriteLine("PP" + "\t" + line);
 		node = node.next;
 	}
