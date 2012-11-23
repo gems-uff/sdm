@@ -43,8 +43,21 @@ function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 		}
 		if(action.projectStat != null)
 		{
-			line = Action(action) + "\t" + Project(action.projectStat);
-			f.WriteLine("AcP" + "\t" + line + "\t" + action.work_2);
+			//Cost
+			line = Action(action) + "\t" + Project(action.projectStat) + "\t" + (-action.cost) + " credits";
+			f.WriteLine("AcP" + "\t" + line);
+			//Work_2
+			if(action.work_2 != "")
+			{
+				line = Action(action) + "\t" + Project(action.projectStat) + "\t" + action.work_2;
+				f.WriteLine("AcP" + "\t" + line);
+			}
+			//Work_3
+			if(action.work_3 != "")
+			{
+				line = Action(action) + "\t" + Project(action.projectStat) + "\t" + action.work_3;
+				f.WriteLine("AcP" + "\t" + line);
+			}
 		}
 		action = action.next;
 	}
@@ -99,7 +112,10 @@ function RunProjectNodes(f : TextWriter, node : ProjectStats)
 {
 	while(node.next != null)
 	{
-		line = Project(node) + "\t" + Project(node.next);
+		var income : String = " ";
+		if(node.next.income != 0)
+			income = node.next.income +"";
+		line = Project(node) + "\t" + Project(node.next) + "\t" + income + "credits";
 		f.WriteLine("PP" + "\t" + line);
 		node = node.next;
 	}

@@ -2,11 +2,10 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Misc\ExportLogFile.js">
     <Files>
-      <File FileName="Assets\Project\Scripts\Misc\ExportLogFile.js" Line="39" Column="63" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\ArchitectMacro.js" Line="215" Column="39" />
-      <File FileName="Assets\Project\Scripts\Class\LinkedList\ActionList.js" Line="1" Column="1" />
-      <File FileName="Assets\Project\Scripts\Equipe\InfluenceValues.js" Line="1" Column="1" />
-      <File FileName="Assets\Project\Scripts\Equipe\Influence.js" Line="113" Column="27" />
+      <File FileName="Assets\Project\Scripts\Misc\ExportLogFile.js" Line="104" Column="108" />
+      <File FileName="Assets\Project\Scripts\Class\LinkedList\ActionList.js" Line="119" Column="25" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\ProgrammerMacro.js" Line="424" Column="53" />
+      <File FileName="Assets\Project\Scripts\Project\Project.js" Line="139" Column="42" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

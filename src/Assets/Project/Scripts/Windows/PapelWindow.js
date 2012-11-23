@@ -64,7 +64,7 @@ function ExecutaJanelaPapelSec(t : String){
 function ExecutaJanelaCargo(t : String){
 	func.SetCargo(t);
 	var action : ActionNode = new ActionNode();
-	action.NewAction("Promotion", "Promotion", "Promotion", func, timer.GetGameTime(), "Promotion", "Promoted to "+ t, "");
+	action.NewAction("Promotion", "Promotion", "Promotion", func, timer, "Promotion", "Promoted to "+ t, "");
 	func.behavior.AddAction(action);
 	morale = func.GetComponentInChildren(MoraleControl);
 	morale.IncreaseMoralePromotion();

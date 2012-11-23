@@ -23,7 +23,8 @@ class ProjectStats
 	public var bugSystemRepaired : int;
 	public var bugAcceptionRepaired : int;
 	
-	public var date : int;
+	public var date : String;
+	public var income : int;
 	
 	//For the linked List
 	public var next : ProjectStats;
@@ -55,6 +56,11 @@ class ProjectStats
 		this.bugIntegrationRepaired = node.bugIntegrationRepaired;
 		this.bugSystemRepaired = node.bugSystemRepaired;
 		this.bugAcceptionRepaired = node.bugAcceptionRepaired;
+	}
+	
+	function UpdateIncome()
+	{
+		this.income = this.pagamento;
 	}
 
 }

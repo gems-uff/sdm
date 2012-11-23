@@ -16,10 +16,10 @@ class AnalystMacro extends System.ValueType{
 	private var val : float;
 	
 	var behavior : BehaviorPlanner;
-	var date : int;	
+	var date : GameTime;	
 				
 	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, 
-	constantP : GameConstants, analistaP : float, behaviorP : BehaviorPlanner, dateP : int)
+	constantP : GameConstants, analistaP : float, behaviorP : BehaviorPlanner, dateP : GameTime)
 	{
 		var actionNode : ActionNode = new ActionNode();
 		
@@ -53,6 +53,7 @@ class AnalystMacro extends System.ValueType{
 		//Validation();
 		//Elicitation();
 		//MakeAcceptionCases();
+		actionNode.projectStat = behavior.Log.GetProjectStat();
 		return actionNode;
 	}
 	
@@ -105,7 +106,7 @@ class AnalystMacro extends System.ValueType{
 	{
 		var d1 : String;
 		var d2 : String;
-		actionNode.projectStat = behavior.Log.GetProjectStat();
+		//actionNode.projectStat = behavior.Log.GetProjectStat();
 		if(project.GetPrototype() > 0)
 		{
 			//actionNode.influence = equipe.influences.GetInfluenceAnalystPrototype();
@@ -152,7 +153,7 @@ class AnalystMacro extends System.ValueType{
 	{
 		var d1 : String;
 		var d2 : String;
-		actionNode.projectStat = behavior.Log.GetProjectStat();
+		//actionNode.projectStat = behavior.Log.GetProjectStat();
 		if(func.GetAnalista() > 50)
 		{
 		/*

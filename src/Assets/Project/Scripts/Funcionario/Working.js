@@ -235,7 +235,7 @@ function AnalistaWork(){
 		analista = func.GetAnalista();
 		analista = analista * (rate * 0.01) * mod * constant.ANALISTA * (1 + modificador_positivo - penal); //* equipe.GetBonusAnalista()
 
-		action = AnalistaMacro.Work(func, project, report, floatingLines, equipe, constant, analista, behavior, timer.GetGameTime());
+		action = AnalistaMacro.Work(func, project, report, floatingLines, equipe, constant, analista, behavior, timer);
 		behavior.AddAction(action);
 	}
 }
@@ -277,7 +277,7 @@ function ArquitetoWork(){
 		
 		arquiteto = func.GetArquiteto() * (rate * 0.01) * gameMod * constant.ARCHITECT * (1 + modificador_positivo - penal);// * equipe.GetBonusArquiteto();	
 
-		action = ArchitectMacro.Work(func, project, report, floatingLines, equipe, constant, arquiteto, behavior, timer.GetGameTime());
+		action = ArchitectMacro.Work(func, project, report, floatingLines, equipe, constant, arquiteto, behavior, timer);
 		behavior.AddAction(action);
 	}
 }
@@ -332,7 +332,7 @@ function GerenteWork(){
 		auxProg = auxProg * (1 + modificador_positivo - penal_prog);
 
 		action = ManagerMacro.Work(func, project, report, floatingLines, equipe, constant, gerente, auxAnaArq, auxProg, 
-		behavior, timer.GetGameTime());
+		behavior, timer);
 		behavior.AddAction(action);
 	}
 }
@@ -374,7 +374,7 @@ function MarketingWork(){
 		
 		marketing = func.GetMarketing() * (rate * 0.01) * (1 - penal) * mod * constant.MARKETING;	
 		
-		action = MarketingMacro.Work(func, project, report, floatingLines, equipe, constant, playerStats, marketing, timer.GetGameTime(), behavior);
+		action = MarketingMacro.Work(func, project, report, floatingLines, equipe, constant, playerStats, marketing, timer, behavior);
 		behavior.AddAction(action);
 	}
 		
@@ -423,7 +423,7 @@ function ProgramadorWork(){
 		programador = func.GetProgramador() * (rate * 0.01) * (1 + modificador_positivo - penal_prog) * gameMod;
 
 		action = ProgrammerMacro.Work(func, project, report, floatingLines, equipe, constant, programador, RequisitoLinguagem(), 
-		isEspecialized, behavior, timer.GetGameTime());
+		isEspecialized, behavior, timer);
 		behavior.AddAction(action);
 	}
 }
@@ -473,7 +473,8 @@ function TesterWork(){
 		//Debug.Log("Tester = " + tester);
 		yield WaitForSeconds(delay);
 		
-		action = TesterMacro.Work(func, project, report, floatingLines, equipe, constant, tester, timer.GetGameTime(), behavior);//wasInfluenced
+		action = TesterMacro.Work(func, project, report, floatingLines, equipe, constant, tester, timer, behavior);//wasInfluenced
+		action.projectStat = behavior.Log.GetProjectStat();
 		behavior.AddAction(action);
 	}
 }
@@ -483,7 +484,8 @@ function IdleWork()
 	if(func.GetPapel() == stringNames.papelNenhum && func.GetNome() != stringNames.fired)
 	{
 		var action : ActionNode = new ActionNode();
-		action.NewAction("Idle", "Idle", "Idle", func, timer.GetGameTime(), "idle", "idle", "");
+		action.NewAction("Idle", "Idle", "Idle", func, timer, "idle", "", "");
+		action.projectStat = behavior.Log.GetProjectStat();
 		behavior.AddAction(action);
 	}
 	
@@ -508,7 +510,7 @@ function Treinando(){
 			floatingLines.showFloatText1("", "", "green", " Training Complete");
 		}
 		var action : ActionNode = new ActionNode();
-		action.NewAction("Training", "Training", "Training", func, timer.GetGameTime(), "Training", treino.GetAprendendo(), "");
+		action.NewAction("Training", "Training", "Training", func, timer, treino.GetAprendendo(), "", "");
 		behavior.AddAction(action);
 	}
 }

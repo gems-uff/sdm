@@ -9,7 +9,7 @@ class MarketingMacro extends System.ValueType{
 	var behavior : BehaviorPlanner;
 	
 	function Work(func : Funcionario, project : Project, report : WeeklyReport, floatingLines : FloatingLines, equipe : Equipe, 
-	constant : GameConstants, playerStats : PlayerStats, marketing : float, date : int, behaviorP : BehaviorPlanner)
+	constant : GameConstants, playerStats : PlayerStats, marketing : float, date : GameTime, behaviorP : BehaviorPlanner)
 	{
 		var randomizer_aid : float = Random.Range (2.0, 2.5);
 		var randomizer_creds : float = Random.Range (3.0, 5.0);
@@ -28,7 +28,7 @@ class MarketingMacro extends System.ValueType{
 		
 		var d1 : String = "Marketing Generated Income and aided Analyst, if any";
 		var d2 : String = "Marketing Generated Income and aided Analyst, if any";
-		actionNode.NewAction("Aid", d1, d2, func, date, "Marketing", aid.ToString() + "% Aid", credits.ToString() + " Credits", "0", "");
+		actionNode.NewAction("Aid", d1, d2, func, date, "Marketing", aid.ToString() + " % Aid", credits.ToString() + " Credits", "");
 		
 		equipe.SetBonusAnalista(aid);
 		equipe.influences.SetBonusAnalystMarketing(aid, actionNode);
@@ -48,17 +48,4 @@ class MarketingMacro extends System.ValueType{
 		report.marketingReport_val = report.marketingReport_val + val;
 		report.marketingReport_money = report.marketingReport_money + money;
 	}
-	/*
-	function NewAction(actionNode : ActionNode, task : String, description : String, func : Funcionario, date : int)
-	{
-		actionNode.who = func.GetNome();
-		actionNode.task = task;
-		actionNode.date = date;
-		actionNode.role = "Marketing";
-		//actionNode.influence = null;
-		actionNode.description = description;
-		actionNode.morale = func.GetMorale();
-		actionNode.stamina = func.GetStamina();
-	}
-	*/
 }

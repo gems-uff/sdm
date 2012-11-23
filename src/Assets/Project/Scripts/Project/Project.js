@@ -136,6 +136,7 @@ function ChangeCodeQuality(t : float)
 	
 	this.codeQuality = (Mathf.Floor(this.codeQuality * 1000)) * 0.001;
 	dif = Mathf.Round((this.codeQuality - temp) * 1000) * 0.001;
+	dif = (Mathf.Floor(dif * 1000)) * 0.001;
 	
 	return dif;
 }
@@ -611,7 +612,7 @@ function GetStats()
 	stats.bugIntegrationRepaired = this.bugIntegrationRepaired;
 	stats.bugSystemRepaired = this.bugSystemRepaired;
 	stats.bugAcceptionRepaired = this.bugAcceptionRepaired;
-	stats.date = timer.GetGameTime();
+	stats.date = timer.GetGameTime() + ":" + timer.GetTimeDayString();
 	
 	return stats;
 }

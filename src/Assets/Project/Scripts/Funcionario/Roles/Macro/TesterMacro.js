@@ -16,7 +16,7 @@ class TesterMacro extends System.ValueType{
 	var behavior : BehaviorPlanner;
 			
 	function Work(func : Funcionario, project : Project, report : WeeklyReport, floatingLines : FloatingLines, equipe : Equipe, 
-	constant : GameConstants, tester : float, date : int, behaviorP : BehaviorPlanner)
+	constant : GameConstants, tester : float, date : GameTime, behaviorP : BehaviorPlanner)
 	{
 		behavior = behaviorP;
 		

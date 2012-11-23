@@ -17,9 +17,11 @@ class ProgrammerMacro extends System.ValueType{
 	
 	var isEspecialized : int;
 	var behavior : BehaviorPlanner;
-	var date : int;
+	var date : GameTime;
 						
-	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, constantP : GameConstants, programadorP : float, RequisitoLinguagemP : boolean, isEspecializedP : int, behaviorP : BehaviorPlanner, dateP : int)
+	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, 
+	constantP : GameConstants, programadorP : float, RequisitoLinguagemP : boolean, isEspecializedP : int, behaviorP : BehaviorPlanner, 
+	dateP : GameTime)
 	{
 		var actionNode : ActionNode = new ActionNode();
 		
@@ -47,6 +49,7 @@ class ProgrammerMacro extends System.ValueType{
 		//Evolution();
 		//Work on the code in order to remove bugs
 		//Repair();
+		actionNode.projectStat = behavior.Log.GetProjectStat();
 		return actionNode;
 	}
 	
@@ -352,7 +355,7 @@ class ProgrammerMacro extends System.ValueType{
 		if(refact != 0)
 			progress = true;
 			
-		NewAction(actionNode, isEsp, isPressured, prog, refact.ToString() + " Quality", "0", "Refactoring", progress);
+		NewAction(actionNode, isEsp, isPressured, prog, refact.ToString() + " Quality", "", "Refactoring", progress);
 		floatingLines.showFloatText1("", "Refactoring", "blue", "");
 		floatingLines.showFloatText2("+", refact.ToString(), "blue", "% Improved");
 	}
@@ -418,6 +421,7 @@ class ProgrammerMacro extends System.ValueType{
 			if(codeLines > 0)
 			{
 				refact = ModifyCodeQuality(qualityMod);
+				//refact = (Mathf.Floor(refact * 1000)) * 0.001;
 				progress = true;
 				//Cant add bug if you cant code
 				if ((project.GetSincronismo() > 0 ) && (func.GetWorkingHours() > 0 ))
@@ -509,7 +513,7 @@ class ProgrammerMacro extends System.ValueType{
 		if(repaired > 0)
 			progress = true;
 			
-		NewAction(actionNode, isEsp, isPressured, prog, repaired.ToString() + " Repaired", "0", task, progress);
+		NewAction(actionNode, isEsp, isPressured, prog, repaired.ToString() + " Repaired", "", task, progress);
 		
 		floatingLines.showFloatText1("", "Repair", "blue", "");
 		floatingLines.showFloatText2("+", repaired.ToString(), "blue", " Bugs Repaired");
@@ -544,8 +548,10 @@ class ProgrammerMacro extends System.ValueType{
 		*/
 		var d1 : String = "Employee is " + esp + " especialized, is a " + prog + " programmer and \n is " + pressure +" under pressure";
 		var d2 : String = "Employee is " + esp + " especialized, is a " + prog + " programmer and <br> is " + pressure +" under pressure";
-		actionNode.NewAction(task, d1, d2, func, date, "Programmer", work, work, work_2, "");
+		//actionNode.NewAction(task, d1, d2, func, date, "Programmer", work, work, work_2, "");
 		if(progress)
-			actionNode.projectStat = behavior.Log.GetProjectStat();
+			actionNode.NewAction(task, d1, d2, func, date, "Programmer", work, work, work_2, "");
+		else
+			actionNode.NewAction(task, d1, d2, func, date, "Programmer", work, "0 Change", "");
 	}
 }

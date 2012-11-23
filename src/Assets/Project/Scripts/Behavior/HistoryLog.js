@@ -111,6 +111,10 @@ function UpdateProjectStatNode()
 	projectList.last.project.last.UpdateNode(project.GetStats());
 	projectList.last.project.last.credits = player.GetSaldo();
 }
+function UpdateProjectIncome()
+{
+	projectList.last.project.last.UpdateIncome();
+}
 function GetProjectStat()
 {
 	return projectList.last.project.last;
@@ -129,19 +133,16 @@ function NewEmployeeNode(emp : Funcionario, slot : EmployeeList)
 function NewFiredAction(slot : EmployeeList)
 {
 	var newAction : ActionNode = new ActionNode();
+	newAction.NewAction("Fired", "Fired", "Fired", slot.last.employee, time, "Fired", "", "");
+	/*
 	newAction.who = slot.last.employee.nome;
-	newAction.date = time.GetGameTime();
+	newAction.date = time.GetGameTime() + "/" + time.GetTimeDaysString();
 	newAction.task = "fired";
 	newAction.role = "fired";
 	newAction.description = "fired";
 	newAction.work = "fired";
 	newAction.influence = null;
-	
-	//newAction.morale = "0.0";
-	//newAction.stamina = "0.0";
-	//newAction.cost = "0.0";
-	//newAction.artifact = "";
-		
+	*/
 	slot.last.actionList.Add(newAction);
 }
 function Awake () 

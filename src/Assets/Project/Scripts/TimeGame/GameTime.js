@@ -96,6 +96,42 @@ function GetTimeDaysString() :String{
 	}
     return ("Wk: " + semana.ToString("000") + " Day: " + day);
 }
+function GetTimeDayString() :String
+{
+	var dia : int = (gameTime % 7) +1;
+    var day : String;
+    switch(dia)
+	{
+	   case 1: 
+		  day = "Mon";
+	   break;
+
+	   case 2:
+		  day = "Tue";
+	   break;
+	   
+	   case 3:
+		  day = "Wed";
+	   break;
+	   
+	   case 4:
+		  day = "Thu";
+	   break;
+	   
+	   case 5:
+			day = "Fri";
+	   break;
+	   
+	   case 6:
+			day = "Sat";
+	   break;
+	   
+	   case 7:
+			day = "Sun";
+	   break;
+	}
+    return (day);
+}
 //--------------------------------------------PassTime-----------------------------------------------------------
 
 function PassTime () {
@@ -103,7 +139,7 @@ function PassTime () {
     equipe.ResetBonus();
     
 	BroadcastMessage("PagarFuncionario");
-	BroadcastMessage("PagarJogadorMensal");
+	//BroadcastMessage("PagarJogadorMensal");
 	
 	BroadcastMessage("IncrementDays");
 	BroadcastMessage("WorkHours");
@@ -146,6 +182,11 @@ function PassTime () {
 	if ((gameTime % 28) == 0)
 	{
 		BroadcastMessage("NewEmployees");
+	}
+	if((gameTime % 28) == 1) //&& gameTime > 2
+	{
+		BroadcastMessage("PagarJogadorMensal");
+		BroadcastMessage("UpdateProjectIncome");
 	}
 	
 	//Testing

@@ -18,10 +18,10 @@ class ArchitectMacro extends System.ValueType{
 	private var qnt : int;
 	
 	var behavior : BehaviorPlanner;
-	var date : int;
+	var date : GameTime;
 				
 	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, 
-	constantP : GameConstants, arquitetoP : float, behaviorP : BehaviorPlanner, dateP : int)
+	constantP : GameConstants, arquitetoP : float, behaviorP : BehaviorPlanner, dateP : GameTime)
 	{
 		var actionNode : ActionNode = new ActionNode();
 		
@@ -55,7 +55,7 @@ class ArchitectMacro extends System.ValueType{
 		//MakeSystemCases();
 		//MakeIntegrationCases();
 		//ModularizateCode();
-		
+		actionNode.projectStat = behavior.Log.GetProjectStat();
 		return actionNode;
 	}
 	
@@ -149,7 +149,7 @@ class ArchitectMacro extends System.ValueType{
 		{
 			d1 = "Employee was ordered to focus on " + descr + " \n and improved the architecture";
 			d2 = "Employee was ordered to focus on " + descr + " <br> and improved the architecture";
-			actionNode.NewAction(task + "_Architecture", d1, d2, func, date, "Architect", arquiteto.ToString() + " Aid", "");
+			actionNode.NewAction(task + "_Architecture", d1, d2, func, date, "Architect", arquiteto.ToString() + " % Aid", "");
 			ModularizateCode(actionNode);
 		}
 		else
@@ -203,7 +203,7 @@ class ArchitectMacro extends System.ValueType{
 		equipe.influences.SetBonusTesterArchSystem(arquiteto, actionNode, qnt);
 		project.testCases.AddSystem(qnt);
 		floatingLines.showFloatText1("", "System Cases", "blue","");
-		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue","% System");
+		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue"," % System");
 		ArchitectReport(arquiteto, 0, 0, report);
 	}
 	
@@ -214,7 +214,7 @@ class ArchitectMacro extends System.ValueType{
 		equipe.influences.SetBonusTesterArchIntegration(arquiteto, actionNode, qnt);
 		project.testCases.AddIntegration(qnt);
 		floatingLines.showFloatText1("", "Integr Cases", "blue","");
-		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue","% Integration");
+		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue"," % Integration");
 		ArchitectReport(0, arquiteto, 0, report);
 	}
 	

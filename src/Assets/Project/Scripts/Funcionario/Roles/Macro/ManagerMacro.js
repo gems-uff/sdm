@@ -16,7 +16,7 @@ class ManagerMacro extends System.ValueType{
 	var gerente : float;
 	
 	var behavior : BehaviorPlanner;
-	var date : int;
+	var date : GameTime;
 	
 	//var planner : ManagerPlanner;
 	
@@ -24,7 +24,7 @@ class ManagerMacro extends System.ValueType{
 	var auxProg : float;
 					
 	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, 
-	constantP : GameConstants, gerenteP : float, auxAnaArqP : float, auxProgP : float, behaviorP : BehaviorPlanner, dateP : int)
+	constantP : GameConstants, gerenteP : float, auxAnaArqP : float, auxProgP : float, behaviorP : BehaviorPlanner, dateP : GameTime)
 	{
 		var randA : float = Random.Range (2.0, 2.5);
 		var randP : float = Random.Range (1.0, 1.5);
@@ -60,7 +60,7 @@ class ManagerMacro extends System.ValueType{
 		//	DecisionTree(actionNode);
 		//else
 		DecideAid(actionNode);
-		
+		actionNode.projectStat = behavior.Log.GetProjectStat();
 		return actionNode;
 	}
 	/*
@@ -232,7 +232,7 @@ class ManagerMacro extends System.ValueType{
 		floatingLines.showFloatText2("+", auxAnaArq.ToString(), "blue", " % Dev.");
 		ManagerReport(auxAnaArq, 0, report);
 		
-		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxAnaArq.ToString() + "% Aid", "");
+		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxAnaArq.ToString() + " % Aid", "");
 	}
 	
 	function AidProgrammer(actionNode : ActionNode, task : String, descr : String)
@@ -244,7 +244,7 @@ class ManagerMacro extends System.ValueType{
 		floatingLines.showFloatText2("+", auxProg.ToString(), "blue", " % Dev.");
 		ManagerReport(0, auxProg, report);
 		
-		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxProg.ToString() + "% Aid", "");
+		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxProg.ToString() + " % Aid", "");
 	}
 	
 	function AidArchitect(actionNode : ActionNode, task : String, descr : String)
@@ -256,7 +256,7 @@ class ManagerMacro extends System.ValueType{
 		floatingLines.showFloatText2("+", auxAnaArq.ToString(), "blue", " % Dev.");
 		ManagerReport(auxAnaArq, 0, report);
 		
-		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxAnaArq.ToString() + "% Aid", "");
+		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxAnaArq.ToString() + " % Aid", "");
 	}
 	//--------------------------------------------
 	//Set the action
