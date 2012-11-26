@@ -1,12 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Class\LinkedList\ActionList.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Behavior\HistoryLog.js">
     <Files>
-      <File FileName="Assets\Project\Scripts\Windows\HireWindow.js" Line="169" Column="26" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\ProgrammerMacro.js" Line="439" Column="5" />
-      <File FileName="Assets\Project\Scripts\Misc\ExportLogFile.js" Line="72" Column="38" />
+      <File FileName="Assets\Project\Scripts\TimeGame\GameTime.js" Line="166" Column="2" />
+      <File FileName="Assets\Project\Scripts\Misc\ExportLogFile.js" Line="151" Column="47" />
       <File FileName="Assets\Project\Scripts\Class\LinkedList\ActionList.js" Line="176" Column="3" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Funcionario.js" Line="382" Column="25" />
+      <File FileName="Assets\Project\Scripts\Behavior\HistoryLog.js" Line="110" Column="2" />
+      <File FileName="Assets\Project\Scripts\Project\Project.js" Line="595" Column="18" />
+      <File FileName="Assets\Project\Scripts\Class\ProjectStats.js" Line="1" Column="1" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Working.js" Line="227" Column="31" />
+      <File FileName="Assets\Project\Scripts\Menu\IngameMenu.js" Line="107" Column="24" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

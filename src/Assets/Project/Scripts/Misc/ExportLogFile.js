@@ -92,8 +92,6 @@ function Agent(employee : Employee)
 	employee.especializacao;
     	
     return line;
-    
-    //return id;
 }
 function Project(stat : ProjectStats)
 {
@@ -101,7 +99,7 @@ function Project(stat : ProjectStats)
 	id = stat.date.ToString() +" "+ stat.name;
 	var line : String;
 	line = id + "\t" + stat.name + "\t" + stat.date + "\t" + stat.deadline + "\t" + stat.linguagemProgramacao + "\t" + stat.pagamento + "\t" + 
-	stat.requirements + "\t" + stat.sincronismo + "\t" + (stat.codeQuality * 100) + "\t" + stat.percentageDone + "\t" + stat.bugUnitaryFound+ "\t" +
+	stat.requirements + "\t" + stat.sincronismo + "\t" + stat.codeQuality + "\t" + stat.percentageDone + "\t" + stat.bugUnitaryFound+ "\t" +
 	stat.bugIntegrationFound + "\t" + stat.bugSystemFound + "\t" + stat.bugAcceptionFound + "\t" + stat.bugUnitaryRepaired+ "\t" +
 	stat.bugIntegrationRepaired + "\t" + stat.bugSystemRepaired + "\t" + stat.bugAcceptionRepaired + "\t" + stat.credits;
 		
@@ -113,10 +111,15 @@ function RunProjectNodes(f : TextWriter, node : ProjectStats)
 	while(node.next != null)
 	{
 		var income : String = "0";
-		if(node.next.income != 0)
-			income = node.next.income + " credits";
 		line = Project(node) + "\t" + Project(node.next) + "\t" + income;
 		f.WriteLine("PP" + "\t" + line);
+		//If had any income, create a new edge with its value
+		if(node.next.income != 0)
+		{
+			income = node.next.income + " Credits";
+			line = Project(node) + "\t" + Project(node.next) + "\t" + income;
+			f.WriteLine("PP" + "\t" + line);
+		}
 		node = node.next;
 	}
 }

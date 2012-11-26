@@ -1,9 +1,9 @@
 
-public var TIMESLOW : float = 8.0;
-public var TIMENORMAL : float = 6.0;
-public var TIMEFAST : float = 4.0;
-public var TIMEVERYFAST : float = 2.0;
-public var TIMEHYPERFAST : float = 1.7;
+public var TIMESLOW : float = 10.0;
+public var TIMENORMAL : float = 7.0;
+public var TIMEFAST : float = 5.0;
+public var TIMEVERYFAST : float = 3.0;
+public var TIMEHYPERFAST : float = 2.5;
 
 private var moraleAction : MoraleControl;
 
@@ -204,36 +204,36 @@ function PassTime () {
 
 function PauseGame(){
 	repeatTime = 0;
-	timeSpeed = 0;
+	//timeSpeed = 0;
 	CancelInvoke();
 }
 function SpeedSlow(){
 	repeatTime = TIMESLOW;
-	timeSpeed = 0.5;
+	//timeSpeed = 0.5;
 	CancelInvoke();
 	InvokeRepeating("PassTime", incrementTime, TIMESLOW);
 }
 function SpeedNormal(){
 	repeatTime = TIMENORMAL;
-	timeSpeed = 1.0;
+	//timeSpeed = 1.0;
 	CancelInvoke();
 	InvokeRepeating("PassTime", incrementTime, TIMENORMAL);
 }
 function SpeedFast(){
 	repeatTime = TIMEFAST;
-	timeSpeed = 2.0;
+	//timeSpeed = 2.0;
 	CancelInvoke();
 	InvokeRepeating("PassTime", incrementTime, TIMEFAST);
 }
 function SpeedVeryFast(){
 	repeatTime = TIMEVERYFAST;
-	timeSpeed = 4.0;
+	//timeSpeed = 4.0;
 	CancelInvoke();
 	InvokeRepeating("PassTime", incrementTime, TIMEVERYFAST);
 }
 function SpeedHyperFast(){
 	repeatTime = TIMEHYPERFAST;
-	timeSpeed = 8.0;
+	//timeSpeed = 8.0;
 	CancelInvoke();
 	InvokeRepeating("PassTime", incrementTime, TIMEHYPERFAST);
 }

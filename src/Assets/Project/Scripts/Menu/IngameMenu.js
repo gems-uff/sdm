@@ -110,7 +110,7 @@ function GameSpeed()	{
 		GUI.Label (Rect (00, 00, 50, 50), "Pause", myStyle);
 	}
 	//If it is on Macro game style, then the player can not pass the time while no manager is assigned
-	if((playStyle.IsMacro() == true)&& equipe.GetHasManager() == false)
+	if(equipe.GetHasManager() == false)//(playStyle.IsMacro() == true)&& equipe.GetHasManager() == false)
 	{
 		GUI.Box (Rect (50, 00, 50, 50), "");
 		GUI.Label (Rect (50, 00, 50, 50), "Play", myStyle);

@@ -108,6 +108,7 @@ function NewProjectStatNode()
 }
 function UpdateProjectStatNode()
 {
+	yield WaitForSeconds(0.5);
 	projectList.last.project.last.UpdateNode(project.GetStats());
 	projectList.last.project.last.credits = player.GetSaldo();
 }
