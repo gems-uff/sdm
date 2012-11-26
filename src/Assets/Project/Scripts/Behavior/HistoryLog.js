@@ -74,6 +74,7 @@ function NewProjectNode()
 	//projectNode.project = Instantiate(project);
 	projectNode.project = new ProjectStatsList();
 	projectNode.project.Add(project.GetStats());
+	projectNode.project.first.credits = player.GetSaldo();
 	
 	//Create the lists for all slots
 	projectNode.slot01 = new EmployeeList();
