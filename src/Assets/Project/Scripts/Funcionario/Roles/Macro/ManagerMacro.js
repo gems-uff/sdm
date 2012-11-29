@@ -232,7 +232,7 @@ class ManagerMacro extends System.ValueType{
 		floatingLines.showFloatText2("+", auxAnaArq.ToString(), "blue", " % Dev.");
 		ManagerReport(auxAnaArq, 0, report);
 		
-		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxAnaArq.ToString() + " % Aid", "");
+		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxAnaArq.ToString() + " % Aid");
 	}
 	
 	function AidProgrammer(actionNode : ActionNode, task : String, descr : String)
@@ -244,7 +244,7 @@ class ManagerMacro extends System.ValueType{
 		floatingLines.showFloatText2("+", auxProg.ToString(), "blue", " % Dev.");
 		ManagerReport(0, auxProg, report);
 		
-		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxProg.ToString() + " % Aid", "");
+		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxProg.ToString() + " % Aid");
 	}
 	
 	function AidArchitect(actionNode : ActionNode, task : String, descr : String)
@@ -256,7 +256,7 @@ class ManagerMacro extends System.ValueType{
 		floatingLines.showFloatText2("+", auxAnaArq.ToString(), "blue", " % Dev.");
 		ManagerReport(auxAnaArq, 0, report);
 		
-		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxAnaArq.ToString() + " % Aid", "");
+		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxAnaArq.ToString() + " % Aid");
 	}
 	//--------------------------------------------
 	//Set the action

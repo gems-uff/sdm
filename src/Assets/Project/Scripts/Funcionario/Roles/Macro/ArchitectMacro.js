@@ -107,7 +107,10 @@ class ArchitectMacro extends System.ValueType{
 		{
 			d1 = "Employee was ordered to focus on " + descr + " \n and make System test cases";
 			d2 = "Employee was ordered to focus on " + descr + " <br> and make System test cases";
-			actionNode.NewAction(task + "_System", d1, d2, func, date, "Architect", qnt.ToString() + " STC", "System Test Cases");
+			if(qnt > 0)
+				actionNode.NewAction(task + "_System", d1, d2, func, date, "Architect", qnt.ToString() + " STC", "System Test Cases");
+			else
+				actionNode.NewAction(task + "_System", d1, d2, func, date, "Architect", qnt.ToString() + " STC");
 			MakeSystemCases(actionNode);
 		}
 		else
@@ -117,7 +120,10 @@ class ArchitectMacro extends System.ValueType{
 			{
 				d1 = "Employee was ordered to focus on " + descr + " \n and make Integration test cases";
 				d2 = "Employee was ordered to focus on " + descr + " <br> and make Integration test cases";
-				actionNode.NewAction(task + "_Integration", d1, d2, func, date, "Architect", qnt.ToString() + " ITC", "Integration Test Cases");
+				if(qnt > 0)
+					actionNode.NewAction(task + "_Integration", d1, d2, func, date, "Architect", qnt.ToString() + " ITC", "Integration Test Cases");
+				else
+					actionNode.NewAction(task + "_Integration", d1, d2, func, date, "Architect", qnt.ToString() + " ITC");
 				MakeIntegrationCases(actionNode);
 			}
 			//Both
@@ -127,14 +133,20 @@ class ArchitectMacro extends System.ValueType{
 				{
 					d1 = "Employee was ordered to focus on " + descr + " \n and make both types of test cases";
 					d2 = "Employee was ordered to focus on " + descr + " <br> and make both types of test cases";
-					actionNode.NewAction(task + "_System", d1, d2, func, date, "Architect", qnt .ToString() + " STC", "System Test Cases");
+					if(qnt > 0)
+						actionNode.NewAction(task + "_System", d1, d2, func, date, "Architect", qnt .ToString() + " STC", "System Test Cases");
+					else
+						actionNode.NewAction(task + "_System", d1, d2, func, date, "Architect", qnt .ToString() + " STC");
 					MakeSystemCases(actionNode);
 				}
 				else
 				{
 					d1 = "Employee was ordered to focus on " + descr + " \n and make both types of test cases";
 					d2 = "Employee was ordered to focus on " + descr + " <br> and make both types of test cases";
-					actionNode.NewAction(task + "_Integration", d1, d2, func, date, "Architect", qnt.ToString() + " ITC", "Integration Test Cases");
+					if(qnt > 0)
+						actionNode.NewAction(task + "_Integration", d1, d2, func, date, "Architect", qnt.ToString() + " ITC", "Integration Test Cases");
+					else
+						actionNode.NewAction(task + "_Integration", d1, d2, func, date, "Architect", qnt.ToString() + " ITC");
 					MakeIntegrationCases(actionNode);
 				}
 			}
@@ -149,7 +161,7 @@ class ArchitectMacro extends System.ValueType{
 		{
 			d1 = "Employee was ordered to focus on " + descr + " \n and improved the architecture";
 			d2 = "Employee was ordered to focus on " + descr + " <br> and improved the architecture";
-			actionNode.NewAction(task + "_Architecture", d1, d2, func, date, "Architect", arquiteto.ToString() + " % Aid", "");
+			actionNode.NewAction(task + "_Architecture", d1, d2, func, date, "Architect", arquiteto.ToString() + " % Aid");
 			ModularizateCode(actionNode);
 		}
 		else
@@ -200,8 +212,11 @@ class ArchitectMacro extends System.ValueType{
 	function MakeSystemCases(actionNode : ActionNode)
 	{
 		//equipe.SetSystemBonus(arquiteto);
-		equipe.influences.SetBonusTesterArchSystem(arquiteto, actionNode, qnt);
-		project.testCases.AddSystem(qnt);
+		if(qnt > 0)
+		{
+			equipe.influences.SetBonusTesterArchSystem(arquiteto, actionNode, qnt);
+			project.testCases.AddSystem(qnt);
+		}
 		floatingLines.showFloatText1("", "System Cases", "blue","");
 		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue"," % System");
 		ArchitectReport(arquiteto, 0, 0, report);
@@ -211,8 +226,11 @@ class ArchitectMacro extends System.ValueType{
 	function MakeIntegrationCases(actionNode : ActionNode)
 	{
 		//equipe.SetIntegrationBonus(arquiteto);
-		equipe.influences.SetBonusTesterArchIntegration(arquiteto, actionNode, qnt);
-		project.testCases.AddIntegration(qnt);
+		if(qnt > 0)
+		{
+			equipe.influences.SetBonusTesterArchIntegration(arquiteto, actionNode, qnt);
+			project.testCases.AddIntegration(qnt);
+		}
 		floatingLines.showFloatText1("", "Integr Cases", "blue","");
 		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue"," % Integration");
 		ArchitectReport(0, arquiteto, 0, report);

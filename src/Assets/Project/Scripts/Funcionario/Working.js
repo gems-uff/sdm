@@ -133,6 +133,7 @@ function AjusteWork(){
 
 function WorkDaily(t: String)
 {
+	Treinando();
 	//Mon to Fri
 	if((timer.GetGameTime() % 7 != 5) && (timer.GetGameTime() % 7 != 6))
 	{
@@ -183,9 +184,9 @@ function Work(t: String)
 			TesterWork();
 	   break;
 	   
-	   case "Training":
-			Treinando();
-	   break;
+	  // case "Training":
+		//	Treinando();
+	   //break;
 	   
 	   case "Idle":
 			IdleWork();

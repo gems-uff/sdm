@@ -58,6 +58,12 @@ function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 				line = Action(action) + "\t" + Project(action.projectStat) + "\t" + action.work_3;
 				f.WriteLine("AcP" + "\t" + line);
 			}
+			//Work_4
+			if(action.work_4 != "")
+			{
+				line = Action(action) + "\t" + Project(action.projectStat) + "\t" + action.work_4;
+				f.WriteLine("AcP" + "\t" + line);
+			}
 		}
 		action = action.next;
 	}
@@ -117,8 +123,8 @@ function RunProjectNodes(f : TextWriter, node : ProjectStats)
 		if(node.next.income != 0)
 		{
 			income = node.next.income + " Credits";
-			line = Project(node) + "\t" + Project(node.next) + "\t" + income;
-			f.WriteLine("PP" + "\t" + line);
+			line = "Client" + "\t" + Project(node.next) + "\t" + income;
+			f.WriteLine("CP" + "\t" + line);
 		}
 		node = node.next;
 	}

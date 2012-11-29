@@ -138,6 +138,8 @@ function PassTime () {
     gameTime += incrementBy;
     equipe.ResetBonus();
     
+    //BroadcastMessage("UpdateProjectStatNodeNoDelay");
+    
 	BroadcastMessage("PagarFuncionario");
 	//BroadcastMessage("PagarJogadorMensal");
 	
@@ -217,24 +219,28 @@ function SpeedNormal(){
 	repeatTime = TIMENORMAL;
 	//timeSpeed = 1.0;
 	CancelInvoke();
+	BroadcastMessage("UpdateProjectStatNodeNoDelay");
 	InvokeRepeating("PassTime", incrementTime, TIMENORMAL);
 }
 function SpeedFast(){
 	repeatTime = TIMEFAST;
 	//timeSpeed = 2.0;
 	CancelInvoke();
+	BroadcastMessage("UpdateProjectStatNodeNoDelay");
 	InvokeRepeating("PassTime", incrementTime, TIMEFAST);
 }
 function SpeedVeryFast(){
 	repeatTime = TIMEVERYFAST;
 	//timeSpeed = 4.0;
 	CancelInvoke();
+	BroadcastMessage("UpdateProjectStatNodeNoDelay");
 	InvokeRepeating("PassTime", incrementTime, TIMEVERYFAST);
 }
 function SpeedHyperFast(){
 	repeatTime = TIMEHYPERFAST;
 	//timeSpeed = 8.0;
 	CancelInvoke();
+	BroadcastMessage("UpdateProjectStatNodeNoDelay");
 	InvokeRepeating("PassTime", incrementTime, TIMEHYPERFAST);
 }
 

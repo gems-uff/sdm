@@ -310,6 +310,7 @@ class ProgrammerMacro extends System.ValueType{
 		var qnt : int = parseInt(programador * 0.02);
 		project.testCases.AddUnitary(qnt);
 		actionNode.artifact = "Unitary Test Cases";
+		actionNode.work_4 = qnt + " UTC";
 		equipe.influences.SetBonusTesterProg(actionNode, qnt);
 		
 		//Decide which task will be done
@@ -339,17 +340,11 @@ class ProgrammerMacro extends System.ValueType{
 		var qnt : int = parseInt(programador * 0.03);
 		project.testCases.AddUnitary(qnt);
 		actionNode.artifact = "Unitary Test Cases";
-		//project.testCases.AddUnitary(parseInt(prog * 0.03));
+		actionNode.work_4 = qnt + " UTC";
 		equipe.influences.SetBonusTesterProg(actionNode, qnt);
 		
-		//actionNode.task = "Refactoring";
-		
-		//var randomizer : float = Random.Range (0.8, 1.2);
 		var refact : float = 0.0;
 		var progress : boolean = false;
-		//range must be from 1.0 to 1.035
-		//refact = 1 + (programador * randomizer * 0.0001);
-		//project.ChangeCodeQuality(refact);
 		
 		refact = ModifyCodeQuality(1);
 		if(refact != 0)
@@ -395,23 +390,6 @@ class ProgrammerMacro extends System.ValueType{
 			//Apply a small variation
 			codeLines = codeLines * randomizer * modCode;
 			//Cap at model
-			//codeLines = codeLines * (project.GetSincronismo() / 100);
-			/*			
-			maxBugs = (100.0 - func.GetProgramador()) * constant.PROG_BUG_MOD * modBug;
-			//Number of bugs is influenced by the code quality
-			maxBugs = maxBugs * ( 2 - project.GetCodeQuality());
-			maxBugs = parseInt(maxBugs);
-			if (project.GetSincronismo() == 0 )
-					maxBugs = 0;
-			else
-			{
-				if (func.GetWorkingHours() > 0 )
-					maxBugs = maxBugs + 1;
-				else
-					maxBugs = 0;
-			}
-			*/
-			//Debug.Log("GetCodeQuality : " + project.GetCodeQuality());
 			codeLines = codeLines * constant.PROG_LINES_DAY_MOD;
 			codeLines = parseInt(codeLines);			
 			codeLines = project.SetLinesDone(codeLines);
@@ -550,8 +528,8 @@ class ProgrammerMacro extends System.ValueType{
 		var d2 : String = "Employee is " + esp + " especialized, is a " + prog + " programmer and <br> is " + pressure +" under pressure";
 		//actionNode.NewAction(task, d1, d2, func, date, "Programmer", work, work, work_2, "");
 		if(progress)
-			actionNode.NewAction(task, d1, d2, func, date, "Programmer", work, work, work_2, "");
+			actionNode.NewAction(task, d1, d2, func, date, "Programmer", work, work, work_2, actionNode.work_4, actionNode.artifact);
 		else
-			actionNode.NewAction(task, d1, d2, func, date, "Programmer", work, "0 Change", "");
+			actionNode.NewAction(task, d1, d2, func, date, "Programmer", work, "0 Change", actionNode.artifact);
 	}
 }

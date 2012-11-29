@@ -113,6 +113,11 @@ function UpdateProjectStatNode()
 	projectList.last.project.last.UpdateNode(project.GetStats());
 	projectList.last.project.last.credits = player.GetSaldo();
 }
+function UpdateProjectStatNodeNoDelay()
+{
+	projectList.last.project.last.UpdateNode(project.GetStats());
+	projectList.last.project.last.credits = player.GetSaldo();
+}
 function UpdateProjectIncome()
 {
 	projectList.last.project.last.UpdateIncome();

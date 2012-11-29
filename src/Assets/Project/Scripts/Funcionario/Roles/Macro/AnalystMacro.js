@@ -190,10 +190,15 @@ class AnalystMacro extends System.ValueType{
 	
 	function Quality(actionNode : ActionNode, task : String, descr : String)
 	{
-		var d1 : String = "Employee was ordered to focus on " + descr + "\n and because he was moderate he did discovery";
-		var d2 : String = "Employee was ordered to focus on " + descr + "<br> and because he was moderate he did discovery";
-		actionNode.NewAction(task, d1, d2, func, date, "Analyst", val.ToString() + " ATC", "Acception Test Cases");
-		MakeAcceptionCases(actionNode);
+		var randomizer : float = Random.Range (0.8, 1.2);
+		var qnt : int = parseInt(analista * randomizer * 0.025);
+		var d1 : String = "Employee was ordered to focus on " + descr + "\n and made Acception Test Cases";
+		var d2 : String = "Employee was ordered to focus on " + descr + "<br> and made Acception Test Cases";
+		if(qnt > 0)
+			actionNode.NewAction(task, d1, d2, func, date, "Analyst", qnt.ToString() + " ATC", "Acception Test Cases");
+		else
+			actionNode.NewAction(task, d1, d2, func, date, "Analyst", qnt.ToString() + " ATC");
+		MakeAcceptionCases(actionNode, qnt);
 	}
 	
 	//--------------------------------------------
@@ -212,10 +217,13 @@ class AnalystMacro extends System.ValueType{
 		Specifying();
 	}
 	
-	function MakeAcceptionCases(actionNode : ActionNode)
+	function MakeAcceptionCases(actionNode : ActionNode, qnt : int)
 	{
-		equipe.SetAcceptionBonus(analista);
-		equipe.influences.SetBonusTesterAnalyst(analista, actionNode);
+		if(qnt > 0)
+		{
+			equipe.SetAcceptionBonus(analista);
+			equipe.influences.SetBonusTesterAnalyst(analista, actionNode);
+		}
 		project.testCases.AddAcception(parseInt(analista * 0.01));
 		floatingLines.showFloatText1("", "Test Cases", "blue","");
 		floatingLines.showFloatText2("+", analista.ToString(), "blue","% Testing");
