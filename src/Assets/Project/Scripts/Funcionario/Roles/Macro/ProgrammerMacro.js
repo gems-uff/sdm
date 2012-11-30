@@ -507,7 +507,8 @@ class ProgrammerMacro extends System.ValueType{
 	//--------------------------------------------
 	//Set the action
 	//--------------------------------------------
-	function NewAction(actionNode : ActionNode, isEsp : boolean, isPressured : boolean, prog : String, work : String, work_2 : String, task : String, progress : boolean)
+	function NewAction(actionNode : ActionNode, isEsp : boolean, isPressured : boolean, prog : String, work : String, work_2 : String, 
+	task : String, progress : boolean)
 	{
 		var esp : String = "";
 		var pressure : String = "";
