@@ -499,12 +499,15 @@ function GetLinesDone () {
 function SetLinesDone (t: int) {
 	if (!completed)
 	{
-		codeLinesDone = codeLinesDone + t;
-		if(GetFractionDone() > GetRequirements())
+		if(GetFractionDone() < GetRequirements())
 		{
-			codeLinesDone = GetRequirements() * 0.01 * maxCodeLines;	
+			codeLinesDone = codeLinesDone + t;
+			if(GetFractionDone() > GetRequirements())
+			{
+				codeLinesDone = GetRequirements() * 0.01 * maxCodeLines;	
+			}
+			return t;
 		}
-		return codeLinesDone;
 	}
 	return 0;
 }

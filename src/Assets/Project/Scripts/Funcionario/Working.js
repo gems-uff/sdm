@@ -21,7 +21,7 @@ private var func : Funcionario;
 private var treino : Treinamento;
 
 private var report : WeeklyReport;
-private var delayTime : float = 1.5;
+private var delayTime : float = 0;
 public var funcWindow : FuncWindow;
 
 //Different work for each type of the game (Micro/Macro)
@@ -51,7 +51,7 @@ function GetWorkingHoursModifier() {
 function GameModifiers(){
 	var cargo_mod : float;
 	cargo_mod = AjusteWork();
-	var aux = cargo_mod * workingHoursModifier * stamina * morale;
+	var aux = cargo_mod * workingHoursModifier * ((stamina + morale) * 0.5);
 	return aux;
 }
 

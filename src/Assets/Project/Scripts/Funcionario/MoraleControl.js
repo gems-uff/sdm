@@ -106,7 +106,7 @@ function Vacation()
 	func.SetWorkingHours(0);
 	func.behavior.SetSaturday(false);
 	func.behavior.SetSunday(false);
-	func.SetMorale(CheckMorale(func.GetMorale() + 4));
+	func.SetMorale(CheckMorale(func.GetMorale() + constant.MORALE_MOD));
 	moraleDisplay.showFloatText3("+", "4", "green", "  Morale");
 }
 
@@ -124,7 +124,7 @@ function StaminaActions()
 		{
 			dialog.SetDialogBadDialog(true);
 			//Decrease morale while tired
-			func.SetMorale(CheckMorale(func.GetMorale() - 4));
+			func.SetMorale(CheckMorale(func.GetMorale() - constant.MORALE_MOD));
 			moraleDisplay.showFloatText3("", "-4", "red", "  Morale");
 		}
 	}

@@ -123,7 +123,7 @@ function RunProjectNodes(f : TextWriter, node : ProjectStats)
 		if(node.next.income != 0)
 		{
 			income = node.next.income + " Credits";
-			line = "Client" + "\t" + Project(node.next) + "\t" + income;
+			line = "Client" + "\t" + Project(node) + "\t" + income;
 			f.WriteLine("CP" + "\t" + line);
 		}
 		node = node.next;

@@ -420,7 +420,7 @@ class ProgrammerMacro extends System.ValueType{
 			NewAction(actionNode, isEsp, isPressured, prog, codeLines.ToString() + " Progress", refact.ToString() + " Quality", task, progress);
 			
 			floatingLines.showFloatText1("", "Evolution", "blue", "");
-			floatingLines.showFloatText2("+", codeLines.ToString(), "blue", " Progress");			
+			floatingLines.showFloatText2("+", codeLines.ToString(), "blue", " Progress");		
 			//Will be ommited
 			floatingLines.showFloatText3("+", bugCount.ToString(), "red", " Bugs");
 		}
