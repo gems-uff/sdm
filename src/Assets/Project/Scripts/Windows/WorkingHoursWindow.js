@@ -4,7 +4,7 @@ private var func : Funcionario;
 private var behavior : BehaviorPlanner;
 public var timer : GameTime;
 public var playStyle : GameplayStyle;
-private var windowRect : Rect = Rect (400,125,460,520);
+private var windowRect : Rect = Rect (400,125,420,480);
 private var hSliderValue : float = 8.0;
 private var showWindow : boolean = false;
 
@@ -181,7 +181,7 @@ function WindowFunction(windowID : int){
 		anaRounded = false;
 		behavior.ActivateAnaElicitation();
 	}
-	anaEspecification = GUI.Toggle (Rect (10, 375, 100, 25), anaEspecification, "Especification");
+	anaEspecification = GUI.Toggle (Rect (10, 375, 100, 25), anaEspecification, "Specification");
 	if(anaEspecification)
 	{
 		anaElicitation = false;
@@ -211,7 +211,7 @@ function WindowFunction(windowID : int){
 	GUI.Box (Rect (212,100,210,25), "Manager tasks");
 	
 	//Autonomy
-	GUI.Box (Rect (212,125,100,25), "Autonomy");
+	GUI.Box (Rect (212,125,100,25), "Hiring");
 	manAutonomous = GUI.Toggle (Rect (220, 150, 100, 25), manAutonomous, "Autonomy");
 	if(manAutonomous)
 	{
@@ -223,7 +223,7 @@ function WindowFunction(windowID : int){
 		behavior.managerAutonomous = false;
 		behavior.managerDecideFocus = false;
 	}
-	manDecideFocus = GUI.Toggle (Rect (220, 175, 100, 25), manDecideFocus, "Decide Mode");
+	manDecideFocus = GUI.Toggle (Rect (220, 175, 100, 25), manDecideFocus, "Manual");
 	if(manDecideFocus)
 	{
 		behavior.managerAutonomous = true;
@@ -233,6 +233,7 @@ function WindowFunction(windowID : int){
 	{
 		behavior.managerDecideFocus = false;
 	}
+	/*
 	//Modes
 	GUI.Box (Rect (220, 200, 100, 25), "Priority");
 	manAnalysis = GUI.Toggle (Rect (220, 225, 100, 25), manAnalysis, "Analysis");
@@ -267,23 +268,24 @@ function WindowFunction(windowID : int){
 		manQuality = false;
 		behavior.ActivateBalanced();
 	}
+	*/
 	//Aids
-	GUI.Box (Rect (320, 125, 100, 25), "Aid");
-	manAnalyst = GUI.Toggle (Rect (320, 150, 100, 25), manAnalyst, "Aid Analysts");	
+	GUI.Box (Rect (315, 125, 100, 25), "Aid");
+	manAnalyst = GUI.Toggle (Rect (315, 150, 100, 25), manAnalyst, "Aid Analysts");	
 	if(manAnalyst)
 	{
 		manArchitect = false;
 		manProgrammer = false;
 		behavior.ActivateAnalystAid();
 	}
-	manArchitect = GUI.Toggle (Rect (320, 175, 100, 25), manArchitect, "Aid Architects");	
+	manArchitect = GUI.Toggle (Rect (315, 175, 100, 25), manArchitect, "Aid Architects");	
 	if(manArchitect)
 	{
 		manAnalyst = false;
 		manProgrammer = false;
 		behavior.ActivateArchitectAid();
 	}
-	manProgrammer = GUI.Toggle (Rect (320, 200, 100, 25), manProgrammer, "Aid Programmers");	
+	manProgrammer = GUI.Toggle (Rect (315, 200, 100, 25), manProgrammer, "Aid Programmers");	
 	if(manProgrammer)
 	{
 		manAnalyst = false;
@@ -292,7 +294,7 @@ function WindowFunction(windowID : int){
 	}
 	
 	//Close button
-	if (GUI.Button (Rect (02,493,296,25), "Close")) {
+	if (GUI.Button (Rect (02,450,296,25), "Close")) {
 		showWindow  = false;
 		
 	}

@@ -1,7 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Funcionario\Roles\Macro\ProgrammerMacro.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Windows\WorkingHoursWindow.js">
     <Files>
+      <File FileName="Assets\Project\Scripts\Windows\WorkingHoursWindow.js" Line="288" Column="39" />
       <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\ProgrammerMacro.js" Line="494" Column="83" />
       <File FileName="Assets\Project\Scripts\Misc\ExportLogFile.js" Line="126" Column="41" />
       <File FileName="Assets\Project\Scripts\Funcionario\Working.js" Line="424" Column="107" />
