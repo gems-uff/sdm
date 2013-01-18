@@ -16,12 +16,13 @@ class ArchitectMacro extends System.ValueType{
 	private var constant : GameConstants;
 	private var arquiteto : float;	
 	private var qnt : int;
+	private var delay : float;
 	
 	var behavior : BehaviorPlanner;
 	var date : GameTime;
 				
 	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, 
-	constantP : GameConstants, arquitetoP : float, behaviorP : BehaviorPlanner, dateP : GameTime)
+	constantP : GameConstants, arquitetoP : float, behaviorP : BehaviorPlanner, dateP : GameTime, delay : float)
 	{
 		var actionNode : ActionNode = new ActionNode();
 		
@@ -34,6 +35,7 @@ class ArchitectMacro extends System.ValueType{
 		this.arquiteto = arquitetoP;
 		this.behavior = behaviorP;
 		this.date = dateP;
+		this.delay = delay;
 		 
 		if(equipe.influences.GetBonusArch()!= 1.0)
 		{
@@ -203,7 +205,7 @@ class ArchitectMacro extends System.ValueType{
 	{
 		//equipe.SetBonusAnalystArchitect(1.0, actionNode);
 		equipe.influences.SetBonusAnalystArchitect(1.0, actionNode);
-		floatingLines.showFloatText1("", "Prototype", "blue","");
+		floatingLines.showFloatText1("", "Prototype", "blue","", delay);
 		project.AddPrototype();
 		ArchitectReport(0, 0, 0, report);
 	}
@@ -217,8 +219,8 @@ class ArchitectMacro extends System.ValueType{
 			equipe.influences.SetBonusTesterArchSystem(arquiteto, actionNode, qnt);
 			project.testCases.AddSystem(qnt);
 		}
-		floatingLines.showFloatText1("", "System Cases", "blue","");
-		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue"," % System");
+		floatingLines.showFloatText1("", "System Cases", "blue","", delay);
+		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue"," % System", delay);
 		ArchitectReport(arquiteto, 0, 0, report);
 	}
 	
@@ -231,8 +233,8 @@ class ArchitectMacro extends System.ValueType{
 			equipe.influences.SetBonusTesterArchIntegration(arquiteto, actionNode, qnt);
 			project.testCases.AddIntegration(qnt);
 		}
-		floatingLines.showFloatText1("", "Integr Cases", "blue","");
-		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue"," % Integration");
+		floatingLines.showFloatText1("", "Integr Cases", "blue","", delay);
+		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue"," % Integration", delay);
 		ArchitectReport(0, arquiteto, 0, report);
 	}
 	
@@ -241,8 +243,8 @@ class ArchitectMacro extends System.ValueType{
 	{
 		//equipe.SetBonusProg(arquiteto);
 		equipe.influences.SetBonusProgArch(arquiteto, actionNode);
-		floatingLines.showFloatText1("", "Modularization", "blue","");
-		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue", " % Archit.");
+		floatingLines.showFloatText1("", "Modularization", "blue","", delay);
+		floatingLines.showFloatText2("+", arquiteto.ToString(), "blue", " % Archit.", delay);
 		ArchitectReport(0, 0, arquiteto, report);
 	}
 	

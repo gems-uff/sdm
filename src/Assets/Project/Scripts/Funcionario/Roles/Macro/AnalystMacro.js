@@ -14,12 +14,13 @@ class AnalystMacro extends System.ValueType{
 	private var constant : GameConstants;
 	private var analista : float;
 	private var val : float;
+	private var delay : float;
 	
 	var behavior : BehaviorPlanner;
 	var date : GameTime;	
 				
 	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, 
-	constantP : GameConstants, analistaP : float, behaviorP : BehaviorPlanner, dateP : GameTime)
+	constantP : GameConstants, analistaP : float, behaviorP : BehaviorPlanner, dateP : GameTime, delay : float)
 	{
 		var actionNode : ActionNode = new ActionNode();
 		
@@ -33,6 +34,7 @@ class AnalystMacro extends System.ValueType{
 		
 		behavior = behaviorP;
 		date = dateP;
+		this.delay = delay;
 		
 		var randomizer : float = Random.Range (0.5, 1.0);
 
@@ -121,8 +123,8 @@ class AnalystMacro extends System.ValueType{
 			d2 = "Employee was ordered to focus on " + descr + "<br> and validated a Prototype";
 			actionNode.NewAction(task + "_Prototype", d1, d2, func, date, "Analyst", val.ToString() + " Val", "");
 			
-			floatingLines.showFloatText1("", "Validation", "blue","");
-			floatingLines.showFloatText2("+", val.ToString(), "blue", " Val.");
+			floatingLines.showFloatText1("", "Validation", "blue","", delay);
+			floatingLines.showFloatText2("+", val.ToString(), "blue", " Val.", delay);
 		}
 		else
 		{
@@ -142,8 +144,8 @@ class AnalystMacro extends System.ValueType{
 			d2 = "Employee was ordered to focus on " + descr + "<br> and validated with Reviews";
 			actionNode.NewAction(task + "_Reviews", d1, d2, func, date, "Analyst", val.ToString() + " Val", "");
 			
-			floatingLines.showFloatText1("", "Validation", "blue","");
-			floatingLines.showFloatText2("+", val.ToString(), "blue", " Val.");
+			floatingLines.showFloatText1("", "Validation", "blue","", delay);
+			floatingLines.showFloatText2("+", val.ToString(), "blue", " Val.", delay);
 			ClientFindBug();
 			//}
 		}
@@ -209,8 +211,8 @@ class AnalystMacro extends System.ValueType{
 		//update project model rate
 		project.ChangeRequirements(val);
 		//AnalistReport(parseInt(analista), report);
-		floatingLines.showFloatText1("", "Discovery", "blue","");
-		floatingLines.showFloatText2("+", analista.ToString(), "blue", " Model");
+		floatingLines.showFloatText1("", "Discovery", "blue","", delay);
+		floatingLines.showFloatText2("+", analista.ToString(), "blue", " Model", delay);
 	}
 	function Documentation()
 	{
@@ -225,8 +227,8 @@ class AnalystMacro extends System.ValueType{
 			equipe.influences.SetBonusTesterAnalyst(analista, actionNode);
 		}
 		project.testCases.AddAcception(parseInt(analista * 0.01));
-		floatingLines.showFloatText1("", "Test Cases", "blue","");
-		floatingLines.showFloatText2("+", analista.ToString(), "blue","% Testing");
+		floatingLines.showFloatText1("", "Test Cases", "blue","", delay);
+		floatingLines.showFloatText2("+", analista.ToString(), "blue","% Testing", delay);
 		
 	}
 	
@@ -248,7 +250,7 @@ class AnalystMacro extends System.ValueType{
 					//Found a bug that the staff didnt report
 					project.RandomizeBugs(1);
 					//project.IncrementBugsFoundByType(0, 0, 0, 1);
-					floatingLines.showFloatText2("", "Found a ", "blue","Bug");
+					floatingLines.showFloatText2("", "Found a ", "blue","Bug", delay);
 				}
 			}
 		}

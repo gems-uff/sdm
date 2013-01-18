@@ -16,7 +16,7 @@ class TesterMacro extends System.ValueType{
 	var behavior : BehaviorPlanner;
 			
 	function Work(func : Funcionario, project : Project, report : WeeklyReport, floatingLines : FloatingLines, equipe : Equipe, 
-	constant : GameConstants, tester : float, date : GameTime, behaviorP : BehaviorPlanner)
+	constant : GameConstants, tester : float, date : GameTime, behaviorP : BehaviorPlanner, delay : float)
 	{
 		behavior = behaviorP;
 		
@@ -123,7 +123,7 @@ class TesterMacro extends System.ValueType{
 		//project.IncrementBugsFoundByType(bugUnitary, bugIntegration, bugSystem, bugAcception);
 		//Report and text
 		TesterReport(totalBugsFound, report);
-		floatingLines.showFloatText1("+", totalBugsFound.ToString(), "blue", " Bugs found");
+		floatingLines.showFloatText1("+", totalBugsFound.ToString(), "blue", " Bugs found", delay);
 		
 		return actionNode;
 	}

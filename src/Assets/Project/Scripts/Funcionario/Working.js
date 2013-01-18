@@ -9,7 +9,6 @@ public var playerStats : PlayerStats;
 public var playStyle : GameplayStyle;
 public var constant : GameConstants;
 public var floatingLines : FloatingLines;
-
 public var behavior : BehaviorPlanner;
 //public var floatingLinesBelow : FloatingLines;
 
@@ -21,7 +20,7 @@ private var func : Funcionario;
 private var treino : Treinamento;
 
 private var report : WeeklyReport;
-private var delayTime : float = 0;
+private var delayTime : float = 0.2;
 public var funcWindow : FuncWindow;
 
 //Different work for each type of the game (Micro/Macro)
@@ -199,7 +198,7 @@ function Work(t: String)
 function AnalistaWork(){
 	var rate : int;
 	var work : boolean = false;
-	var delay : float = 0.0;
+	var delay : float = 0;
 	if(func.GetPapel() == stringNames.papelAnalista)
 	{
 		rate = func.GetPapelRate();
@@ -236,7 +235,7 @@ function AnalistaWork(){
 		analista = func.GetAnalista();
 		analista = analista * (rate * 0.01) * mod * constant.ANALISTA * (1 + modificador_positivo - penal); //* equipe.GetBonusAnalista()
 
-		action = AnalistaMacro.Work(func, project, report, floatingLines, equipe, constant, analista, behavior, timer);
+		action = AnalistaMacro.Work(func, project, report, floatingLines, equipe, constant, analista, behavior, timer, delay);
 		behavior.AddAction(action);
 	}
 }
@@ -273,12 +272,11 @@ function ArquitetoWork(){
 		
 		var action : ActionNode = new ActionNode();
 
-		yield WaitForSeconds(delay);
 		func.WorkingArquiteto();
 		
 		arquiteto = func.GetArquiteto() * (rate * 0.01) * gameMod * constant.ARCHITECT * (1 + modificador_positivo - penal);// * equipe.GetBonusArquiteto();	
 
-		action = ArchitectMacro.Work(func, project, report, floatingLines, equipe, constant, arquiteto, behavior, timer);
+		action = ArchitectMacro.Work(func, project, report, floatingLines, equipe, constant, arquiteto, behavior, timer, delay);
 		behavior.AddAction(action);
 	}
 }
@@ -321,7 +319,6 @@ function GerenteWork(){
 		
 		var action : ActionNode = new ActionNode();
 		
-		yield WaitForSeconds(delay);
 		func.WorkingGerente();
 		
 		gerente = func.GetGerente() * (rate * 0.01) * constant.GERENTE * mod;
@@ -333,7 +330,7 @@ function GerenteWork(){
 		auxProg = auxProg * (1 + modificador_positivo - penal_prog);
 
 		action = ManagerMacro.Work(func, project, report, floatingLines, equipe, constant, gerente, auxAnaArq, auxProg, 
-		behavior, timer);
+		behavior, timer, delay);
 		behavior.AddAction(action);
 	}
 }
@@ -370,12 +367,11 @@ function MarketingWork(){
 		
 		var action : ActionNode = new ActionNode();
 		
-		yield WaitForSeconds(delay);
 		func.WorkingMarketing();
 		
 		marketing = func.GetMarketing() * (rate * 0.01) * (1 - penal) * mod * constant.MARKETING;	
 		
-		action = MarketingMacro.Work(func, project, report, floatingLines, equipe, constant, playerStats, marketing, timer, behavior);
+		action = MarketingMacro.Work(func, project, report, floatingLines, equipe, constant, playerStats, marketing, timer, behavior, delay);
 		behavior.AddAction(action);
 	}
 		
@@ -415,7 +411,6 @@ function ProgramadorWork(){
 		var isEspecialized : int = LinguagemProgEquipe();
 		var penal_prog : float = penal + (isEspecialized * constant.PENALIDADE);
 		
-		yield WaitForSeconds(delay);
 		
 		var action : ActionNode = new ActionNode();
 		
@@ -424,7 +419,7 @@ function ProgramadorWork(){
 		programador = func.GetProgramador() * (rate * 0.01) * (1 + modificador_positivo - penal_prog) * gameMod;
 
 		action = ProgrammerMacro.Work(func, project, report, floatingLines, equipe, constant, programador, RequisitoLinguagem(), 
-		isEspecialized, behavior, timer);
+		isEspecialized, behavior, timer, delay);
 		behavior.AddAction(action);
 	}
 }
@@ -472,9 +467,8 @@ function TesterWork(){
 		//Debug.Log("Mods = " + ((1 + modificador_positivo - penal_prog)));
 		//Debug.Log("Mod = " + mod);
 		//Debug.Log("Tester = " + tester);
-		yield WaitForSeconds(delay);
 		
-		action = TesterMacro.Work(func, project, report, floatingLines, equipe, constant, tester, timer, behavior);//wasInfluenced
+		action = TesterMacro.Work(func, project, report, floatingLines, equipe, constant, tester, timer, behavior, delay);//wasInfluenced
 		action.projectStat = behavior.Log.GetProjectStat();
 		behavior.AddAction(action);
 	}

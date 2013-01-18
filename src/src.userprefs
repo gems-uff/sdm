@@ -1,13 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Funcionario\Roles\Macro\ProgrammerMacro.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Funcionario\Working.js">
     <Files>
-      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\ProgrammerMacro.js" Line="450" Column="70" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\AnalystMacro.js" Line="1" Column="1" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\ArchitectMacro.js" Line="1" Column="1" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\ManagerMacro.js" Line="1" Column="1" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\MarketingMacro.js" Line="1" Column="1" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\TesterMacro.js" Line="1" Column="1" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\AnalystMacro.js" Line="253" Column="70" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\ProgrammerMacro.js" Line="356" Column="68" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\ArchitectMacro.js" Line="38" Column="3" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\ManagerMacro.js" Line="20" Column="18" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\MarketingMacro.js" Line="41" Column="78" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\TesterMacro.js" Line="126" Column="92" />
+      <File FileName="Assets\Project\Scripts\FloatingNumbers\FloatingLines.js" Line="42" Column="4" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Working.js" Line="23" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

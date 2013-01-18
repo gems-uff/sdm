@@ -17,6 +17,7 @@ class ManagerMacro extends System.ValueType{
 	
 	var behavior : BehaviorPlanner;
 	var date : GameTime;
+	var delay : float;
 	
 	//var planner : ManagerPlanner;
 	
@@ -24,7 +25,7 @@ class ManagerMacro extends System.ValueType{
 	var auxProg : float;
 					
 	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, 
-	constantP : GameConstants, gerenteP : float, auxAnaArqP : float, auxProgP : float, behaviorP : BehaviorPlanner, dateP : GameTime)
+	constantP : GameConstants, gerenteP : float, auxAnaArqP : float, auxProgP : float, behaviorP : BehaviorPlanner, dateP : GameTime, delay : float)
 	{
 		var randA : float = Random.Range (2.0, 2.5);
 		var randP : float = Random.Range (1.0, 1.5);
@@ -38,6 +39,7 @@ class ManagerMacro extends System.ValueType{
 		this.equipe = equipeP;
 		this.constant = constantP;
 		this.gerente = gerenteP;
+		this.delay = delay;
 		
 		behavior = behaviorP;
 		date = dateP;
@@ -228,8 +230,8 @@ class ManagerMacro extends System.ValueType{
 		var d1 : String = "Manager " + descr + " and aided Analysts";
 		var d2 : String = "Manager " + descr + " and aided Analysts";
 		equipe.influences.SetBonusAnalystManager(auxAnaArq, actionNode);
-		floatingLines.showFloatText1("", "Aid Analyst", "blue", "");
-		floatingLines.showFloatText2("+", auxAnaArq.ToString(), "blue", " % Dev.");
+		floatingLines.showFloatText1("", "Aid Analyst", "blue", "", delay);
+		floatingLines.showFloatText2("+", auxAnaArq.ToString(), "blue", " % Dev.", delay);
 		ManagerReport(auxAnaArq, 0, report);
 		
 		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxAnaArq.ToString() + " % Aid");
@@ -240,8 +242,8 @@ class ManagerMacro extends System.ValueType{
 		var d1 : String = "Manager " + descr + " and aided Programmers";
 		var d2 : String = "Manager " + descr + " and aided Programmers";
 		equipe.influences.SetBonusProgManager(auxProg, actionNode);
-		floatingLines.showFloatText1("", "Aid Programmer", "blue", "");
-		floatingLines.showFloatText2("+", auxProg.ToString(), "blue", " % Dev.");
+		floatingLines.showFloatText1("", "Aid Programmer", "blue", "", delay);
+		floatingLines.showFloatText2("+", auxProg.ToString(), "blue", " % Dev.", delay);
 		ManagerReport(0, auxProg, report);
 		
 		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxProg.ToString() + " % Aid");
@@ -252,8 +254,8 @@ class ManagerMacro extends System.ValueType{
 		var d1 : String = "Manager " + descr + " and aided Architects";
 		var d2 : String = "Manager " + descr + " and aided Architects";
 		equipe.influences.SetBonusArchManager(auxAnaArq, actionNode);
-		floatingLines.showFloatText1("", "Aid Architect", "blue", "");
-		floatingLines.showFloatText2("+", auxAnaArq.ToString(), "blue", " % Dev.");
+		floatingLines.showFloatText1("", "Aid Architect", "blue", "", delay);
+		floatingLines.showFloatText2("+", auxAnaArq.ToString(), "blue", " % Dev.", delay);
 		ManagerReport(auxAnaArq, 0, report);
 		
 		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxAnaArq.ToString() + " % Aid");

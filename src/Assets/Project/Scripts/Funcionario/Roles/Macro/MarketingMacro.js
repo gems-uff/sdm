@@ -9,7 +9,7 @@ class MarketingMacro extends System.ValueType{
 	var behavior : BehaviorPlanner;
 	
 	function Work(func : Funcionario, project : Project, report : WeeklyReport, floatingLines : FloatingLines, equipe : Equipe, 
-	constant : GameConstants, playerStats : PlayerStats, marketing : float, date : GameTime, behaviorP : BehaviorPlanner)
+	constant : GameConstants, playerStats : PlayerStats, marketing : float, date : GameTime, behaviorP : BehaviorPlanner, delay : float)
 	{
 		var randomizer_aid : float = Random.Range (2.0, 2.5);
 		var randomizer_creds : float = Random.Range (3.0, 5.0);
@@ -37,8 +37,8 @@ class MarketingMacro extends System.ValueType{
 		playerStats.ChangeSaldo(credits);
 		actionNode.projectStat = behavior.Log.GetProjectStat();
 		MarketingReport(aid, marketing, report);
-		floatingLines.showFloatText1("+", aid.ToString(), "blue", "% Val.");
-		floatingLines.showFloatText2("+", credits.ToString(), "", " Credits");
+		floatingLines.showFloatText1("+", aid.ToString(), "blue", "% Val.", delay);
+		floatingLines.showFloatText2("+", credits.ToString(), "", " Credits", delay);
 		
 		return actionNode;
 	}

@@ -18,10 +18,11 @@ class ProgrammerMacro extends System.ValueType{
 	var isEspecialized : int;
 	var behavior : BehaviorPlanner;
 	var date : GameTime;
+	var delay : float;
 						
 	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, 
 	constantP : GameConstants, programadorP : float, RequisitoLinguagemP : boolean, isEspecializedP : int, behaviorP : BehaviorPlanner, 
-	dateP : GameTime)
+	dateP : GameTime, delay : float)
 	{
 		var actionNode : ActionNode = new ActionNode();
 		
@@ -37,6 +38,7 @@ class ProgrammerMacro extends System.ValueType{
 		isEspecialized = isEspecializedP;
 		behavior = behaviorP;
 		date = dateP;
+		this.delay = delay;
 		
 		if(equipe.influences.GetBonusProg()!= 1.0)
 		{
@@ -351,8 +353,8 @@ class ProgrammerMacro extends System.ValueType{
 			progress = true;
 			
 		NewAction(actionNode, isEsp, isPressured, prog, refact.ToString() + " Quality", "", "Refactoring", progress);
-		floatingLines.showFloatText1("", "Refactoring", "blue", "");
-		floatingLines.showFloatText2("+", refact.ToString(), "blue", "% Improved");
+		floatingLines.showFloatText1("", "Refactoring", "blue", "", delay);
+		floatingLines.showFloatText2("+", refact.ToString(), "blue", "% Improved", delay);
 	}
 	function ModifyCodeQuality(mod : float)
 	{
@@ -419,10 +421,10 @@ class ProgrammerMacro extends System.ValueType{
 			ProgReport(codeLines, 0, report);
 			NewAction(actionNode, isEsp, isPressured, prog, codeLines.ToString() + " Progress", refact.ToString() + " Quality", task, progress);
 			
-			floatingLines.showFloatText1("", "Evolution", "blue", "");
-			floatingLines.showFloatText2("+", codeLines.ToString(), "blue", " Progress");		
+			floatingLines.showFloatText1("", "Evolution", "blue", "", delay);
+			floatingLines.showFloatText2("+", codeLines.ToString(), "blue", " Progress", delay);		
 			//Will be ommited
-			floatingLines.showFloatText3("+", bugCount.ToString(), "red", " Bugs");
+			floatingLines.showFloatText3("+", bugCount.ToString(), "red", " Bugs", delay);
 		}
 		else
 		{
@@ -497,8 +499,8 @@ class ProgrammerMacro extends System.ValueType{
 			
 		NewAction(actionNode, isEsp, isPressured, prog, repaired.ToString() + " Repaired", "", task, progress);
 		
-		floatingLines.showFloatText1("", "Repair", "blue", "");
-		floatingLines.showFloatText2("+", repaired.ToString(), "blue", " Bugs Repaired");
+		floatingLines.showFloatText1("", "Repair", "blue", "", delay);
+		floatingLines.showFloatText2("+", repaired.ToString(), "blue", " Bugs Repaired", delay);
 		//project.IncrementBugsRepairedByType(bugUnitary, bugIntegration, bugSystem, bugAcception);
 	}
 	
