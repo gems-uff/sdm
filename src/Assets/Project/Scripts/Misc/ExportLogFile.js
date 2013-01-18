@@ -44,7 +44,7 @@ function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 		if(action.projectStat != null)
 		{
 			//Cost
-			line = Action(action) + "\t" + Project(action.projectStat) + "\t" + (-action.cost) + " credits";
+			line = Action(action) + "\t" + Project(action.projectStat) + "\t" + (-action.cost) + " Credits";
 			f.WriteLine("AcP" + "\t" + line);
 			//Work_2
 			if(action.work_2 != "")

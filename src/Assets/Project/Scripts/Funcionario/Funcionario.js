@@ -2,10 +2,12 @@
 public var stringNames : StringNames;
 public var behavior : BehaviorPlanner;
 
-private var atributos : Atributos = new Atributos();
-private var especializacao : Especializacoes = new Especializacoes();
+
+public var atributos : Atributos = new Atributos();
+public var especializacao : Especializacoes = new Especializacoes();
 public var floatingLevel : FloatingLevel;
 public var startEmpty : boolean = false;
+public var isRandom : boolean = true;
 //Atributos de cada Papel
 private var analista : float = 0;
 private var arquiteto : float = 0;
@@ -771,8 +773,12 @@ function RandomFuncionarioStarter () {
 	{
 		var newNome : RandomNameGenerator = new RandomNameGenerator();
 		
-		SetAtributosStarter();
-		SetEspecializacoes();
+		if(isRandom)
+		{
+			SetAtributosStarter();
+			SetEspecializacoes();
+		}
+		
 		this.SetNome(newNome.RandomName());
 		this.SetCargo(stringNames.jobJunior);
 		this.SetPapel(stringNames.papelNenhum);

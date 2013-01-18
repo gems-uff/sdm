@@ -424,6 +424,10 @@ class ProgrammerMacro extends System.ValueType{
 			//Will be ommited
 			floatingLines.showFloatText3("+", bugCount.ToString(), "red", " Bugs");
 		}
+		else
+		{
+			NewAction(actionNode, isEsp, isPressured, prog, "Idle", "Idle", task, progress);
+		}
 	}
 	
 	
@@ -443,7 +447,7 @@ class ProgrammerMacro extends System.ValueType{
 		var t : int = 0.0;
 		var repaired : int = 0;
 		
-		t = parseInt(programador * 0.25 * modQuantity);
+		t = parseInt(programador * 0.05 * modQuantity); //from 0.25 to 0.05
 		
 		i = 0;
 		//Debug.Log("Repair #Bugs: " + t);
