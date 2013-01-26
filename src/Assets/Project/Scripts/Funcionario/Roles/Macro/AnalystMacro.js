@@ -36,8 +36,9 @@ class AnalystMacro extends System.ValueType{
 		date = dateP;
 		this.delay = delay;
 		
-		var randomizer : float = Random.Range (0.5, 1.0);
-
+		var randomizer : float = Random.Range (0.7, 1.2);
+		analista = analista * constant.ANALYST;
+		
 		if(equipe.influences.GetBonusAnalyst()!= 1.0)
 		{
 			analista = analista * (1 + equipe.influences.GetBonusAnalyst());
@@ -134,18 +135,19 @@ class AnalystMacro extends System.ValueType{
 			
 			if(project.GetSincronismo() == 00)	//Se o projeto esta sendo iniciado, entao o valor de sincronismo inicial varia de acordo com o desempenho do analista
 			{
-				val = val * 5;
+				val = val * constant.ANALYST_BEGINNING;
 			}
 			//Update project validation rate
-			project.UpdateElicitation(val, false);
-			AnalistReport(parseInt(val), report);
+			val = project.UpdateElicitation(val, false);
+			val = parseInt(val);
+			AnalistReport(val, report);
 			
 			d1 = "Employee was ordered to focus on \n" + descr + "\n and validated with Reviews";
 			d2 = "Employee was ordered to focus on " + descr + "<br> and validated with Reviews";
-			actionNode.NewAction(task + "_Reviews", d1, d2, func, date, "Analyst", val.ToString() + " Val", "");
+			actionNode.NewAction(task + "_Reviews", d1, d2, func, date, "Analyst", val.ToString() + "% Val", "");
 			
 			floatingLines.showFloatText1("", "Validation", "blue","", delay);
-			floatingLines.showFloatText2("+", val.ToString(), "blue", " Val.", delay);
+			floatingLines.showFloatText2("+", val.ToString(), "blue", "% Val.", delay);
 			ClientFindBug();
 			//}
 		}
@@ -209,10 +211,11 @@ class AnalystMacro extends System.ValueType{
 	function Specifying()
 	{
 		//update project model rate
-		project.ChangeRequirements(val);
+		val = project.ChangeRequirements(val);
+		val = parseInt(val);
 		//AnalistReport(parseInt(analista), report);
 		floatingLines.showFloatText1("", "Discovery", "blue","", delay);
-		floatingLines.showFloatText2("+", analista.ToString(), "blue", " Model", delay);
+		floatingLines.showFloatText2("+", val.ToString(), "blue", "% Model", delay);
 	}
 	function Documentation()
 	{

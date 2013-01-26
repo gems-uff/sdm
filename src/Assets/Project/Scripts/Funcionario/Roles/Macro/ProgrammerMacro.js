@@ -32,7 +32,7 @@ class ProgrammerMacro extends System.ValueType{
 		floatingLines = floatingLinesP;
 		equipe = equipeP;
 		constant = constantP;
-		programador = programadorP;
+		programador = programadorP * constant.PROGRAMMER;
 		RequisitoLinguagem = RequisitoLinguagemP;
 		
 		isEspecialized = isEspecializedP;
@@ -449,7 +449,7 @@ class ProgrammerMacro extends System.ValueType{
 		var t : int = 0.0;
 		var repaired : int = 0;
 		
-		t = parseInt(programador * 0.05 * modQuantity); //from 0.25 to 0.05
+		t = parseInt(programador * 0.05 * modQuantity * constant.PROGRAMMER_REPAIR); //from 0.25 to 0.05
 		
 		i = 0;
 		//Debug.Log("Repair #Bugs: " + t);

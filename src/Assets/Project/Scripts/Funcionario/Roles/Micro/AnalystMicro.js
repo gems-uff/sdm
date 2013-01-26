@@ -6,7 +6,7 @@ class AnalystMicro extends System.ValueType{
 		var randomizer : float = Random.Range (0.5, 1.0);
 		if(project.GetSincronismo() == 00)	//Se o projeto esta sendo iniciado, entao o valor de sincronismo inicial varia de acordo com o desempenho do analista
 		{
-			analista = analista * constant.ANALISTA_INICIO * randomizer;
+			analista = analista * constant.ANALYST_BEGINNING * randomizer;
 			analista = Mathf.Round(analista * 100f) / 100f;
 			project.SetSincronismo(analista);
 			AnalistReport(parseInt(analista), report);

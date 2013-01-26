@@ -29,13 +29,20 @@ msgWelcome = "Welcome to S.D.M. \n(Software Development Manager) \n" +
 "To access the game menu press ESC key\n" + 
 "That said, good luck with your software.";
 
+//Analyst: Tasks: Elicitation, Specification, Quality, Balanced
+//Architect: Verification, Evolution, Analysis, Balanced
+//Manager: Aid
+//Marketing: Aid and income
+//Programmer: Repair, Evolution
+//Tester: Search
+
 msg02 = "Quick Guide\n\n" + 
-"Analyst: Validade the software's class diagram with the client \n\n" +
-"Architect: Makes a test plan and improve the software's model. Also can make prototypes \n\n"+
-"Manager: Aid the analyst, architect, tester and programmer in their jobs. Also responsible for hiring \n\n" +
+"Analyst: Validade the software's class diagram with the client \n Tasks: Elicitation, Specification, Quality\n" +
+"Architect: Makes a test plan and improve the software's model. Also can make prototypes \n Tasks: Verification, Evolution, Analysis\n"+
+"Manager: Aid the analyst, architect, and programmer in their jobs. Also responsible for hiring \n\n" +
 "Marketing: Aid the analyst during validation and generate some income each day. Also is responsibe for negotiations with the client \n\n" +
-"Programmer: Generate code lines for the software and inadvertly put bugs \n\n"+
-"Tester: Remove the bugs in the software with the aid of the architect's plans \n\n" +
+"Programmer: Generate code lines for the software and inadvertly put bugs \n Tasks: Evolution and Repair\n"+
+"Tester: Find bugs in the software with the aid of test cases developed by various roles \n\n" +
 "\n" +
 "";
 function WindowFunction(windowID : int){

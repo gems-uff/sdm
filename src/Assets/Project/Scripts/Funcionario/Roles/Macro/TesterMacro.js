@@ -37,6 +37,7 @@ class TesterMacro extends System.ValueType{
 		var d2 : String;
 		
 		//Chances to find each bug type
+		tester = tester * constant.TESTER;
 		chance = tester * 0.01;
 		chanceUnitary = chance * 1.0;
 		chanceIntegration = chance * equipe.GetIntegrationBonus();

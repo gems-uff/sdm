@@ -113,31 +113,31 @@ function GameSpeed()	{
 	if(equipe.GetHasManager() == false)//(playStyle.IsMacro() == true)&& equipe.GetHasManager() == false)
 	{
 		GUI.Box (Rect (50, 00, 50, 50), "");
-		GUI.Label (Rect (50, 00, 50, 50), "Play", myStyle);
-		GUI.Box (Rect (100,00, 70, 25), "Fast");
-		GUI.Box (Rect (100,25, 70, 25), "Fastest");
+		GUI.Label (Rect (50, 00, 50, 50), "Next \n Day", myStyle);
+		GUI.Box (Rect (100,00, 80, 25), "Continuous");
+		GUI.Box (Rect (100,25, 80, 25), "Fast");
 	}
 	else
 	{
 		if(timer.GetRepeatTime() != timer.GetTimeN())
-			if (GUI.Button (Rect (50, 00, 50, 50), "Play"))
+			if (GUI.Button (Rect (50, 00, 50, 50), "Next \n Day"))
 				timer.SpeedNormal();
 		if(timer.GetRepeatTime() == timer.GetTimeN())
 		{
 			GUI.Box (Rect (50, 00, 50, 50), "");
-			GUI.Label (Rect (50, 00, 50, 50), "Play", myStyle);
+			GUI.Label (Rect (50, 00, 50, 50), "Next \n Day", myStyle);
 		}
 		if(timer.GetRepeatTime() != timer.GetTimeF())
-			if (GUI.Button (Rect (100,00, 70, 25), "Fast"))
+			if (GUI.Button (Rect (100,00, 80, 25), "Continuous"))
 				timer.SpeedFast();
 		if(timer.GetRepeatTime() == timer.GetTimeF())
-			GUI.Box (Rect (100,00, 70, 25), "Fast");
+			GUI.Box (Rect (100,00, 80, 25), "Continuous");
 		
 		if(timer.GetRepeatTime() != timer.GetTimeVF())
-			if (GUI.Button (Rect (100,25, 70, 25), "Fastest"))
+			if (GUI.Button (Rect (100,25, 80, 25), "Fast"))
 				timer.SpeedVeryFast();
 		if(timer.GetRepeatTime() == timer.GetTimeVF())
-			GUI.Box (Rect (100,25, 70, 25), "Fastest");
+			GUI.Box (Rect (100,25, 80, 25), "Fast");
 	}
 	
 	GUI.EndGroup ();

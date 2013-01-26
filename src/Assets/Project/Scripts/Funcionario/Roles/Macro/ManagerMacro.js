@@ -44,6 +44,8 @@ class ManagerMacro extends System.ValueType{
 		behavior = behaviorP;
 		date = dateP;
 		
+		auxAnaArqP = auxAnaArqP * constant.MANAGER;
+		auxProgP = auxProgP * constant.MANAGER;
 		//Change so a bad manager can actualy produce negative influence
 		if(func.GetGerente() < 40)
 		{
@@ -57,6 +59,8 @@ class ManagerMacro extends System.ValueType{
 			auxAnaArq = parseInt(auxAnaArqP * randA);
 			auxProg = parseInt(auxProgP * randP);
 		}
+		
+		
 		//planner = equipe.GetComponentInChildren(ManagerPlanner);
 		//if(behavior.managerAutonomous)
 		//	DecisionTree(actionNode);

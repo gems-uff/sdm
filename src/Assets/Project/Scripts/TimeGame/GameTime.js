@@ -1,9 +1,9 @@
 
-public var TIMESLOW : float = 10.0;
-public var TIMENORMAL : float = 7.0;
-public var TIMEFAST : float = 5.0;
-public var TIMEVERYFAST : float = 3.0;
-public var TIMEHYPERFAST : float = 2.5;
+//public var TIMESLOW : float = 10.0;
+public var TIMENORMAL : float = 4.0;
+public var TIMEFAST : float = 3.0; //5
+public var TIMEVERYFAST : float = 2.0;//3
+//public var TIMEHYPERFAST : float = 2.5;
 
 private var moraleAction : MoraleControl;
 
@@ -32,10 +32,11 @@ function GetRepeatTime(){
 function GetTimeSpeed(){
 	return timeSpeed;
 }
-
+/*
 function GetTimeS(){
 	return TIMESLOW;
 }
+*/
 function GetTimeN(){
 	return TIMENORMAL;
 }
@@ -45,10 +46,11 @@ function GetTimeF(){
 function GetTimeVF(){
 	return TIMEVERYFAST;
 }
+/*
 function GetTimeHF(){
 	return TIMEHYPERFAST;
 }
-
+*/
 function GetTime () {	//Retorna o tempo no formato semana/dia
 	var gametime : String = GetTimeString(gameTime);
 	return gametime;
@@ -157,6 +159,8 @@ function PassTime () {
 	*/
 	BroadcastMessage("NewProjectStatNode");
 	
+	BroadcastMessage("ReduceSincronism");
+	
 	BroadcastMessage("WorkDaily", "Manager");
 	BroadcastMessage("WorkDaily", "Marketing");
 	BroadcastMessage("WorkDaily", "Architect");
@@ -209,18 +213,22 @@ function PauseGame(){
 	//timeSpeed = 0;
 	CancelInvoke();
 }
+/*
 function SpeedSlow(){
 	repeatTime = TIMESLOW;
 	//timeSpeed = 0.5;
 	CancelInvoke();
 	InvokeRepeating("PassTime", incrementTime, TIMESLOW);
 }
+*/
 function SpeedNormal(){
-	repeatTime = TIMENORMAL;
+	//repeatTime = TIMENORMAL;
+	repeatTime = 0;
 	//timeSpeed = 1.0;
 	CancelInvoke();
 	BroadcastMessage("UpdateProjectStatNodeNoDelay");
-	InvokeRepeating("PassTime", incrementTime, TIMENORMAL);
+	PassTime();
+	//InvokeRepeating("PassTime", incrementTime, TIMENORMAL);
 }
 function SpeedFast(){
 	repeatTime = TIMEFAST;
@@ -236,6 +244,7 @@ function SpeedVeryFast(){
 	BroadcastMessage("UpdateProjectStatNodeNoDelay");
 	InvokeRepeating("PassTime", incrementTime, TIMEVERYFAST);
 }
+/*
 function SpeedHyperFast(){
 	repeatTime = TIMEHYPERFAST;
 	//timeSpeed = 8.0;
@@ -243,7 +252,7 @@ function SpeedHyperFast(){
 	BroadcastMessage("UpdateProjectStatNodeNoDelay");
 	InvokeRepeating("PassTime", incrementTime, TIMEHYPERFAST);
 }
-
+*/
 function FixedUpdate()
 {
 	if(project.GetIscomplete())

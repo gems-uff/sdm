@@ -36,7 +36,9 @@ class ArchitectMacro extends System.ValueType{
 		this.behavior = behaviorP;
 		this.date = dateP;
 		this.delay = delay;
-		 
+		
+		arquiteto = arquiteto * constant.ARCHITECT;
+		
 		if(equipe.influences.GetBonusArch()!= 1.0)
 		{
 			arquiteto = arquiteto * (1 + equipe.influences.GetBonusArch());

@@ -13,7 +13,7 @@ public var bugValue : int = 1000;
 private var startDay : int = 1;
 private var projectSize : String = "";
 private var projectQuality : String = "";
-private var sincronismo : float = 0.0;		//sincronismo
+private var sincronismo : float = 0.0;		//client's sincronismo
 private var completed : boolean = false;
 private var bugs : int = 0 ;				//number of bugs in the software
 
@@ -98,14 +98,15 @@ function ResetLastElicitation()
 
 function UpdateElicitation(t : float, prototype : boolean)
 {
+	//Update sincronismo
 	var change : float;
-	var passedTime : int;
-	change = t / (GetProjectSize() * 0.005);
-	passedTime = timer.GetGameTime() - lastValidation;
-	passedTime = volatility * passedTime / (GetProjectSize() * 0.005);
+	//var passedTime : int;
+	change = t / SincMod();
+	//passedTime = timer.GetGameTime() - lastValidation;
+	//passedTime = volatility * passedTime / SincMod();
 	if (!completed)
 	{
-		sincronismo = sincronismo - passedTime;
+		//sincronismo = sincronismo - passedTime;
 		if((sincronismo < 85.0) || (prototype))
 			sincronismo = sincronismo + change;
 	}
@@ -113,6 +114,24 @@ function UpdateElicitation(t : float, prototype : boolean)
 	
 	CheckRequirements();
 	ResetLastElicitation();
+	
+	return change;
+}
+
+function ReduceSincronism()
+{
+	//passedTime = timer.GetGameTime() - lastValidation;
+	passedTime = volatility / SincMod();
+	if (!completed)
+	{
+		sincronismo = sincronismo - passedTime;
+		sincronismo = Mathf.Clamp(sincronismo, 0.0, 100.0);
+	}
+}
+
+function SincMod()
+{
+	return (GetProjectSize() * 0.005);
 }
 
 function GetElicitation()
@@ -158,8 +177,11 @@ function GetRequirements()
 }
 function ChangeRequirements(t : float)
 {
-	requirements += t;
+	var change : float = t / SincMod();
+	//var old : float = GetRequirements() + change;
+	requirements = GetRequirements() + change;
 	CheckRequirements();
+	return change;
 	
 }
 function ResetRequirements()
@@ -172,8 +194,10 @@ function SetRequirements(t : float)
 }
 
 //Requirements cant be highter than validation nor lower than 0.0
+
 function CheckRequirements()
 {
+	/*
 	if(requirements > sincronismo)
 	{
 		requirements = sincronismo;
@@ -185,7 +209,10 @@ function CheckRequirements()
 			requirements = 0.0;
 		}
 	}
+	*/
+	requirements = Mathf.Clamp(requirements, 0.0, sincronismo);
 }
+
 //---------------------------------------------------------------------------------------------------------------
 //--------------------------------------------Bugs Types-----------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------
