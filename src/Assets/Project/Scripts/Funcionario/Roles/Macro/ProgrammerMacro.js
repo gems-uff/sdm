@@ -32,7 +32,7 @@ class ProgrammerMacro extends System.ValueType{
 		floatingLines = floatingLinesP;
 		equipe = equipeP;
 		constant = constantP;
-		programador = programadorP * constant.PROGRAMMER;
+		programador = programadorP;
 		RequisitoLinguagem = RequisitoLinguagemP;
 		
 		isEspecialized = isEspecializedP;

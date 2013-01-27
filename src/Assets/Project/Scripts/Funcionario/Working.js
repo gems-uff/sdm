@@ -233,7 +233,7 @@ function AnalistaWork(){
 		func.WorkingAnalista();
 		
 		analista = func.GetAnalista();
-		analista = analista * (rate * 0.01) * mod * constant.ANALISTA * (1 + modificador_positivo - penal); //* equipe.GetBonusAnalista()
+		analista = analista * (rate * 0.01) * mod * constant.ANALYST * (1 + modificador_positivo - penal); //* equipe.GetBonusAnalista()
 
 		action = AnalistaMacro.Work(func, project, report, floatingLines, equipe, constant, analista, behavior, timer, delay);
 		behavior.AddAction(action);
@@ -321,7 +321,7 @@ function GerenteWork(){
 		
 		func.WorkingGerente();
 		
-		gerente = func.GetGerente() * (rate * 0.01) * constant.GERENTE * mod;
+		gerente = func.GetGerente() * (rate * 0.01) * constant.MANAGER * mod;
 
 		auxAnaArq = gerente;
 		auxProg = gerente;
@@ -416,7 +416,7 @@ function ProgramadorWork(){
 		
 		func.WorkingProgramador();
 		
-		programador = func.GetProgramador() * (rate * 0.01) * (1 + modificador_positivo - penal_prog) * gameMod;
+		programador = func.GetProgramador() * (rate * 0.01) * (1 + modificador_positivo - penal_prog) * gameMod * constant.PROGRAMMER;
 
 		action = ProgrammerMacro.Work(func, project, report, floatingLines, equipe, constant, programador, RequisitoLinguagem(), 
 		isEspecialized, behavior, timer, delay);

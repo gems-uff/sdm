@@ -43,9 +43,7 @@ class ManagerMacro extends System.ValueType{
 		
 		behavior = behaviorP;
 		date = dateP;
-		
-		auxAnaArqP = auxAnaArqP * constant.MANAGER;
-		auxProgP = auxProgP * constant.MANAGER;
+
 		//Change so a bad manager can actualy produce negative influence
 		if(func.GetGerente() < 40)
 		{

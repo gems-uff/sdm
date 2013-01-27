@@ -13,7 +13,7 @@ class MarketingMacro extends System.ValueType{
 	{
 		var randomizer_aid : float = Random.Range (2.0, 2.5);
 		var randomizer_creds : float = Random.Range (3.0, 5.0);
-		var aid : float = marketing * constant.MARKETING;
+		var aid : float = marketing;
 		var credits : int = marketing;
 		var actionNode : ActionNode = new ActionNode();
 		

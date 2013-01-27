@@ -159,8 +159,6 @@ function PassTime () {
 	*/
 	BroadcastMessage("NewProjectStatNode");
 	
-	BroadcastMessage("ReduceSincronism");
-	
 	BroadcastMessage("WorkDaily", "Manager");
 	BroadcastMessage("WorkDaily", "Marketing");
 	BroadcastMessage("WorkDaily", "Architect");
@@ -181,6 +179,7 @@ function PassTime () {
 	if((gameTime % 7) == 0)
 	{
 		menuPrototype.Unlock();
+		BroadcastMessage("ReduceSincronism");
 		BroadcastMessage("WeeklyReport");
 		BroadcastMessage("ResetStaffReport");
 		BroadcastMessage("StaffReport");

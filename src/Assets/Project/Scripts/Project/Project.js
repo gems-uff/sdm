@@ -121,7 +121,7 @@ function UpdateElicitation(t : float, prototype : boolean)
 function ReduceSincronism()
 {
 	//passedTime = timer.GetGameTime() - lastValidation;
-	passedTime = volatility / SincMod();
+	passedTime = volatility * 5 / SincMod();
 	if (!completed)
 	{
 		sincronismo = sincronismo - passedTime;

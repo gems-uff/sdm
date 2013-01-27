@@ -37,7 +37,6 @@ class AnalystMacro extends System.ValueType{
 		this.delay = delay;
 		
 		var randomizer : float = Random.Range (0.7, 1.2);
-		analista = analista * constant.ANALYST;
 		
 		if(equipe.influences.GetBonusAnalyst()!= 1.0)
 		{
@@ -90,11 +89,11 @@ class AnalystMacro extends System.ValueType{
 					chance = Random.Range (0, 100);
 					if((chance < 50) && project.GetRequirements() < project.GetElicitation())
 						//Especification Path
-						Especification(actionNode, "Balanced Especification", "Balanced");
+						Especification(actionNode, "Balanced_Especification", "Balanced");
 					else
 					{
 						//Elicitation path
-						Elicitation(actionNode, "Balanced Elicitation", "Balanced");
+						Elicitation(actionNode, "Balanced_Elicitation", "Balanced");
 					}
 				}
 			}
@@ -125,7 +124,7 @@ class AnalystMacro extends System.ValueType{
 			actionNode.NewAction(task + "_Prototype", d1, d2, func, date, "Analyst", val.ToString() + " Val", "");
 			
 			floatingLines.showFloatText1("", "Validation", "blue","", delay);
-			floatingLines.showFloatText2("+", val.ToString(), "blue", " Val.", delay);
+			floatingLines.showFloatText2("+", val.ToString(), "blue", " % Val.", delay);
 		}
 		else
 		{
@@ -147,7 +146,7 @@ class AnalystMacro extends System.ValueType{
 			actionNode.NewAction(task + "_Reviews", d1, d2, func, date, "Analyst", val.ToString() + "% Val", "");
 			
 			floatingLines.showFloatText1("", "Validation", "blue","", delay);
-			floatingLines.showFloatText2("+", val.ToString(), "blue", "% Val.", delay);
+			floatingLines.showFloatText2("+", val.ToString(), "blue", " % Val.", delay);
 			ClientFindBug();
 			//}
 		}
@@ -215,7 +214,7 @@ class AnalystMacro extends System.ValueType{
 		val = parseInt(val);
 		//AnalistReport(parseInt(analista), report);
 		floatingLines.showFloatText1("", "Discovery", "blue","", delay);
-		floatingLines.showFloatText2("+", val.ToString(), "blue", "% Model", delay);
+		floatingLines.showFloatText2("+", val.ToString(), "blue", " % Model", delay);
 	}
 	function Documentation()
 	{
@@ -231,7 +230,7 @@ class AnalystMacro extends System.ValueType{
 		}
 		project.testCases.AddAcception(parseInt(analista * 0.01));
 		floatingLines.showFloatText1("", "Test Cases", "blue","", delay);
-		floatingLines.showFloatText2("+", analista.ToString(), "blue","% Testing", delay);
+		floatingLines.showFloatText2("+", analista.ToString(), "blue"," % Testing", delay);
 		
 	}
 	

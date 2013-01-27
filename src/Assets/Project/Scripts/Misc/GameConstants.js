@@ -21,7 +21,6 @@ public var PROGRAMMER_REPAIR : float = 1.0;
 public var PROG_LINES_DAY_MOD : float = 3.0;
 public var PROG_BUG_MOD : float = 0.02;
 
-
 //Morale
 public var RECOVERYPENALY : float = 1.0; 
 public var RECOVERYBONUS : float = 1.25;
@@ -31,9 +30,6 @@ public var DEMITCHANCE : float = 1.0;
 public var MORALE_MOD : int = 6.0;
 
 //Project
-//public var SIMPLE : int = 525;		//Max 35 atributo "Programador" por programador por dia (3 programadores)
-//public var REGULAR : int = 900;	//Max 60
-//ublic var COMPLEX : int = 1200;	//Max 80
 public var SIMPLE : int = 1500;		//50 * 3
 public var REGULAR : int = 2100;	//70 * 3
 public var COMPLEX : int = 4000;	//100 * 4
