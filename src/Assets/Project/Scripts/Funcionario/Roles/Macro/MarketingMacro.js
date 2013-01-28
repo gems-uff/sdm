@@ -28,6 +28,14 @@ class MarketingMacro extends System.ValueType{
 		
 		var d1 : String = "Marketing Generated Income and aided Analyst, if any";
 		var d2 : String = "Marketing Generated Income and aided Analyst, if any";
+		var sign : String = "+";
+		var color : String = "blue";
+		if(aid < 0)
+		{
+			sign = "";
+			color = "red";
+		}
+		
 		actionNode.NewAction("Aid", d1, d2, func, date, "Marketing", aid.ToString() + " % Aid", credits.ToString() + " Credits", "");
 		
 		equipe.SetBonusAnalista(aid);
@@ -37,7 +45,7 @@ class MarketingMacro extends System.ValueType{
 		playerStats.ChangeSaldo(credits);
 		actionNode.projectStat = behavior.Log.GetProjectStat();
 		MarketingReport(aid, marketing, report);
-		floatingLines.showFloatText1("+", aid.ToString(), "blue", "% Val.", delay);
+		floatingLines.showFloatText1(sign, aid.ToString(), color, "% Val.", delay);
 		floatingLines.showFloatText2("+", credits.ToString(), "", " Credits", delay);
 		
 		return actionNode;

@@ -638,9 +638,12 @@ function ManagerHiring(role : String)
 				//hireFuncionario.ContratarFuncionario(func[first], staff[slot]);
 			}
 		}
-		HireAction(hired);
-		hireFuncionario.ContratarFuncionario(func[first], staff[slot]);
-		staff[slot].SetPapel(role);
+		
+		if(hireFuncionario.ContratarFuncionario(func[first], staff[slot]))
+		{
+			HireAction(hired);
+			staff[slot].SetPapel(role);
+		}
 	}//end-else
 	
 }

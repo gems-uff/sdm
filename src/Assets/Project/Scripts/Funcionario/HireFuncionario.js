@@ -58,6 +58,9 @@ function ContratarFuncionario(contratado : Funcionario, Func_Slot : Funcionario)
 				log.NewFiredAction(slot);
 			}
 			log.NewEmployeeNode(Func_Slot, slot);
+			return true;
 		}
 	}
+	else
+		return false;
 }

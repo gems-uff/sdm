@@ -188,7 +188,7 @@ function PassTime () {
 	{
 		BroadcastMessage("NewEmployees");
 	}
-	if((gameTime % 28) == 1) //&& gameTime > 2
+	if(((gameTime % 28) == 1) && (gameTime > 2))
 	{
 		BroadcastMessage("PagarJogadorMensal");
 		BroadcastMessage("UpdateProjectIncome");

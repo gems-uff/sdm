@@ -9,6 +9,7 @@ public var staminaDisplay : FloatingLines;
 public var staminaBar : StaminaBar;
 public var moraleBar : MoraleBar;
 
+private var equipe : Equipe;
 private var func : Funcionario;
 private var work : Working;
 private var morale : int;
@@ -97,7 +98,17 @@ function MoraleActions()
 	{
 		if (morale < constant.BADMORALE)
 			if (chance < constant.DEMITCHANCE)
+			{
 				dialog.SetDialogQuitEnable();
+				if(func.GetPapel() == stringNames.papelGerente)
+				{
+					equipe.SetHasManager(false);
+				}
+				if(func.GetPapel() == stringNames.papelMarketing)
+				{
+					equipe.SetHasMarketing(false);
+				}
+			}
 	}
 }
 
@@ -238,7 +249,10 @@ function OnGUI (){
 }
 
 function Awake () {
+	var equipeObj : GameObject;
+	equipeObj = GameObject.Find("Equipe");
 	func = GetComponentInChildren(Funcionario);
 	work = GetComponentInChildren(Working);
+	equipe = equipeObj.GetComponentInChildren(Equipe);
 	dialog = GetComponentInChildren(Dialog);
 }

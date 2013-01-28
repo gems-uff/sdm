@@ -24,17 +24,11 @@ private var delayTime : float = 0.2;
 public var funcWindow : FuncWindow;
 
 //Different work for each type of the game (Micro/Macro)
-private var AnalistaMicro : AnalystMicro;
 private var AnalistaMacro : AnalystMacro;
-private var ArchitectMicro : ArchitectMicro;
 private var ArchitectMacro : ArchitectMacro;
-private var ManagerMicro : ManagerMicro;
 private var ManagerMacro : ManagerMacro;
-private var MarketingMicro : MarketingMicro;
 private var MarketingMacro : MarketingMacro;	
-private var ProgrammerMicro : ProgrammerMicro;
 private var ProgrammerMacro : ProgrammerMacro;
-private var TesterMicro : TesterMicro;
 private var TesterMacro : TesterMacro;
 
 
@@ -132,7 +126,10 @@ function AjusteWork(){
 
 function WorkDaily(t: String)
 {
-	Treinando();
+	if(t == "Training")
+	{
+		Treinando();
+	}
 	//Mon to Fri
 	if((timer.GetGameTime() % 7 != 5) && (timer.GetGameTime() % 7 != 6))
 	{

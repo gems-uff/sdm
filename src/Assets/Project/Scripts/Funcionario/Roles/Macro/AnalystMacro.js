@@ -143,7 +143,7 @@ class AnalystMacro extends System.ValueType{
 			
 			d1 = "Employee was ordered to focus on \n" + descr + "\n and validated with Reviews";
 			d2 = "Employee was ordered to focus on " + descr + "<br> and validated with Reviews";
-			actionNode.NewAction(task + "_Reviews", d1, d2, func, date, "Analyst", val.ToString() + "% Val", "");
+			actionNode.NewAction(task + "_Reviews", d1, d2, func, date, "Analyst", val.ToString() + " % Val", "");
 			
 			floatingLines.showFloatText1("", "Validation", "blue","", delay);
 			floatingLines.showFloatText2("+", val.ToString(), "blue", " % Val.", delay);
@@ -230,7 +230,7 @@ class AnalystMacro extends System.ValueType{
 		}
 		project.testCases.AddAcception(parseInt(analista * 0.01));
 		floatingLines.showFloatText1("", "Test Cases", "blue","", delay);
-		floatingLines.showFloatText2("+", analista.ToString(), "blue"," % Testing", delay);
+		floatingLines.showFloatText2("+", qnt.ToString(), "blue"," Testing Case", delay);
 		
 	}
 	

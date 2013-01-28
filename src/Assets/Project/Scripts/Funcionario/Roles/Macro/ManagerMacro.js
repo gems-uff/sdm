@@ -231,9 +231,16 @@ class ManagerMacro extends System.ValueType{
 	{
 		var d1 : String = "Manager " + descr + " and aided Analysts";
 		var d2 : String = "Manager " + descr + " and aided Analysts";
+		var sign : String = "+";
+		var color : String = "blue";
+		if(auxAnaArq < 0)
+		{
+			sign = "";
+			color = "red";
+		}
 		equipe.influences.SetBonusAnalystManager(auxAnaArq, actionNode);
 		floatingLines.showFloatText1("", "Aid Analyst", "blue", "", delay);
-		floatingLines.showFloatText2("+", auxAnaArq.ToString(), "blue", " % Dev.", delay);
+		floatingLines.showFloatText2(sign, auxAnaArq.ToString(), color, " % Dev.", delay);
 		ManagerReport(auxAnaArq, 0, report);
 		
 		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxAnaArq.ToString() + " % Aid");
@@ -243,9 +250,16 @@ class ManagerMacro extends System.ValueType{
 	{
 		var d1 : String = "Manager " + descr + " and aided Programmers";
 		var d2 : String = "Manager " + descr + " and aided Programmers";
+		var sign : String = "+";
+		var color : String = "blue";
+		if(auxProg < 0)
+		{
+			sign = "";
+			color = "red";
+		}
 		equipe.influences.SetBonusProgManager(auxProg, actionNode);
 		floatingLines.showFloatText1("", "Aid Programmer", "blue", "", delay);
-		floatingLines.showFloatText2("+", auxProg.ToString(), "blue", " % Dev.", delay);
+		floatingLines.showFloatText2(sign, auxProg.ToString(), color, " % Dev.", delay);
 		ManagerReport(0, auxProg, report);
 		
 		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxProg.ToString() + " % Aid");
@@ -255,9 +269,16 @@ class ManagerMacro extends System.ValueType{
 	{
 		var d1 : String = "Manager " + descr + " and aided Architects";
 		var d2 : String = "Manager " + descr + " and aided Architects";
+		var sign : String = "+";
+		var color : String = "blue";
+		if(auxAnaArq < 0)
+		{
+			sign = "";
+			color = "red";
+		}
 		equipe.influences.SetBonusArchManager(auxAnaArq, actionNode);
 		floatingLines.showFloatText1("", "Aid Architect", "blue", "", delay);
-		floatingLines.showFloatText2("+", auxAnaArq.ToString(), "blue", " % Dev.", delay);
+		floatingLines.showFloatText2(sign, auxAnaArq.ToString(), color, " % Dev.", delay);
 		ManagerReport(auxAnaArq, 0, report);
 		
 		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxAnaArq.ToString() + " % Aid");
