@@ -1,7 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Funcionario\Working.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Funcionario\MoraleControl.js">
     <Files>
+      <File FileName="Assets\Project\Scripts\Funcionario\MoraleControl.js" Line="120" Column="67" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\ManagerMacro.js" Line="1" Column="1" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\AnalystMacro.js" Line="217" Column="64" />
       <File FileName="Assets\Project\Scripts\Misc\ExportLogFile.js" Line="14" Column="20" />
       <File FileName="Assets\Project\Scripts\Equipe\Equipe.js" Line="302" Column="18" />
       <File FileName="Assets\Project\Scripts\TimeGame\GameTime.js" Line="168" Column="44" />
