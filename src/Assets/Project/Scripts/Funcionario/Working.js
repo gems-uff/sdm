@@ -502,7 +502,7 @@ function Treinando(){
 			floatingLines.showFloatText1("", "", "green", " Training Complete");
 		}
 		var action : ActionNode = new ActionNode();
-		action.NewAction("Training", "Training", "Training", func, timer, treino.GetAprendendo(), "", "");
+		action.NewAction(treino.GetAprendendo(), "Training", "Training", func, timer, "Training", "", "");
 		behavior.AddAction(action);
 	}
 }

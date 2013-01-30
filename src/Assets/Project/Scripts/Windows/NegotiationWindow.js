@@ -49,10 +49,10 @@ function ResetItems(){
 	tradeSet = false;
 	tradeOffSet = false;
 }
-function Action(text : String)
+function Action(text : String, work_1 : String, work_2 : String)
 {
 	var action : ActionNode = new ActionNode();
-	action.NewAction("Negotiation", text, text, func, timer, "Negotiation", "", "");
+	action.NewAction("Negotiation", text, text, func, timer, "Marketing", "Negotiating", work_1, work_2, "");
 	action.projectStat = func.behavior.Log.GetProjectStat();
 	func.behavior.AddAction(action);
 }
@@ -69,7 +69,9 @@ function ApplyChanges(){
 	marketing_less = 1 - marketing;
 	func.EarnExperienceNegotiation(parseInt(marketing * 100));
 	
-	var description : String = "Asked for more ";
+	var description : String = "Asked for ";
+	var gain : String = "";
+	var inExchange : String = "";
 	
 	if(scopeBool == true)
 	{
@@ -77,7 +79,8 @@ function ApplyChanges(){
 		trade = trade * marketing_less;
 		trade = parseInt(trade);
 		project.SetProjectSize(trade);
-		description += "scope";
+		description += "lower scope";
+		gain = "- %" +  (1 - marketing_less) + " Scope";
 		//bonus = "+" + marketing_less + "scope";
 	}
 	if(timeBool == true)
@@ -87,7 +90,8 @@ function ApplyChanges(){
 		trade = parseInt(trade);
 		trade = trade + project.GetStartDay();
 		project.SetDeadline(trade);
-		description += "time";
+		description += "more time";
+		gain = "+ %" +  (marketing_more) + " Time";
 		//bonus = "+" + trade + "time";
 	}
 	if(moneyBool == true)
@@ -96,7 +100,8 @@ function ApplyChanges(){
 		trade = trade * marketing_more;
 		trade = parseInt(trade);
 		project.SetPagamento(trade);
-		description += "credits";
+		description += "more credits";
+		gain = "+ %" +  (marketing_more) + " Credits";
 		//bonus = "+" + trade + "credits";
 	}
 	if(qualityBool == true)
@@ -105,7 +110,8 @@ function ApplyChanges(){
 		trade = trade * marketing_less;
 		trade = parseInt(trade);
 		project.SetBugValue(trade);
-		description += "quality";
+		description += "less quality";
+		gain = "- %" +  (1 - marketing_less) + " Quality";
 		//bonus = "+" + trade + "quality";
 	}
 	//Tradeoff
@@ -116,6 +122,7 @@ function ApplyChanges(){
 		tradeOff = parseInt(tradeOff);
 		project.SetProjectSize(tradeOff);
 		description += " in exchange of more scope";
+		inExchange = "+ %" +  (marketing_more) + " Scope";
 		//penalty = "+" + tradeOff + "scope";
 	}
 	if(lessTime == true)
@@ -126,6 +133,7 @@ function ApplyChanges(){
 		tradeOff = tradeOff + project.GetStartDay();
 		project.SetDeadline(tradeOff);
 		description += " in exchange of less time";
+		inExchange = "- %" +  (1 - marketing_less) + " Time";
 		//penalty = "-" + tradeOff + "time";
 	}
 	if(lessMoney == true)
@@ -135,6 +143,7 @@ function ApplyChanges(){
 		tradeOff = parseInt(tradeOff);
 		project.SetPagamento(tradeOff);
 		description += " in exchange of less credits";
+		inExchange = "- %" +  (1 - marketing_less) + " Credits";
 		//penalty = "-" + tradeOff + "credits";
 	}
 	if(moreQuality == true)
@@ -144,9 +153,10 @@ function ApplyChanges(){
 		trade = parseInt(trade);
 		project.SetBugValue(trade);
 		description += " in exchange of more quality";
+		inExchange = "+ %" +  (marketing_more) + " Quality";
 		//penalty = "-" + tradeOff + "credits";
 	}
-	Action(description);
+	Action(description, gain, inExchange);
 }
 
 function WindowFunction(windowID : int){
