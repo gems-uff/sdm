@@ -23,6 +23,8 @@ class ProjectStats
 	public var bugSystemRepaired : int;
 	public var bugAcceptionRepaired : int;
 	
+	public var totalBugs : int;
+	
 	public var date : String;
 	public var income : int;
 	
@@ -56,6 +58,7 @@ class ProjectStats
 		this.bugIntegrationRepaired = node.bugIntegrationRepaired;
 		this.bugSystemRepaired = node.bugSystemRepaired;
 		this.bugAcceptionRepaired = node.bugAcceptionRepaired;
+		this.totalBugs = node.totalBugs;
 	}
 	
 	function UpdateIncome()

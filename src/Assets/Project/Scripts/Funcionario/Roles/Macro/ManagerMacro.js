@@ -18,6 +18,7 @@ class ManagerMacro extends System.ValueType{
 	var behavior : BehaviorPlanner;
 	var date : GameTime;
 	var delay : float;
+	var rate : int;
 	
 	//var planner : ManagerPlanner;
 	
@@ -25,10 +26,11 @@ class ManagerMacro extends System.ValueType{
 	var auxProg : float;
 					
 	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, 
-	constantP : GameConstants, gerenteP : float, auxAnaArqP : float, auxProgP : float, behaviorP : BehaviorPlanner, dateP : GameTime, delay : float)
+	constantP : GameConstants, gerenteP : float, auxAnaArqP : float, auxProgP : float, behaviorP : BehaviorPlanner, dateP : GameTime, delay : float,
+	rate : int)
 	{
-		var randA : float = Random.Range (2.0, 2.5);
-		var randP : float = Random.Range (1.0, 1.5);
+		
+		//var randP : float = Random.Range (0.5, 2.0);
 		
 		var actionNode : ActionNode = new ActionNode();
 		
@@ -40,22 +42,27 @@ class ManagerMacro extends System.ValueType{
 		this.constant = constantP;
 		this.gerente = gerenteP;
 		this.delay = delay;
+		this.rate = rate;
 		
 		behavior = behaviorP;
 		date = dateP;
 
+		var chance : float = Random.Range (0.0, 100);
+		var randMod : float = Random.Range (-1.5, 0.5);
+		var randMod_2 : float = Random.Range (0.5, 2.0);
+		
 		//Change so a bad manager can actualy produce negative influence
-		if(func.GetGerente() < 40)
+		if(func.GetGerente() < chance)
 		{
 			//Generate negative influence
-			auxAnaArq = parseInt((auxAnaArqP - 40) * randA);
-			auxProg = parseInt((auxProgP - 40) * randP);
+			auxAnaArq = parseInt(auxAnaArqP * randMod);
+			auxProg = parseInt(auxProgP * randMod);
 		}
 		else
 		{
 			//Generate positive influence
-			auxAnaArq = parseInt(auxAnaArqP * randA);
-			auxProg = parseInt(auxProgP * randP);
+			auxAnaArq = parseInt(auxAnaArqP * randMod_2);
+			auxProg = parseInt(auxProgP * randMod_2);
 		}
 		
 		
@@ -240,10 +247,10 @@ class ManagerMacro extends System.ValueType{
 		}
 		equipe.influences.SetBonusAnalystManager(auxAnaArq, actionNode);
 		floatingLines.showFloatText1("", "Aid Analyst", "blue", "", delay);
-		floatingLines.showFloatText2(sign, auxAnaArq.ToString(), color, " % Dev.", delay);
+		floatingLines.showFloatText2(sign, auxAnaArq.ToString(), color, " % Analyst.", delay);
 		ManagerReport(auxAnaArq, 0, report);
 		
-		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxAnaArq.ToString() + " % Aid");
+		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxAnaArq.ToString() + " % Aid", rate);
 	}
 	
 	function AidProgrammer(actionNode : ActionNode, task : String, descr : String)
@@ -259,10 +266,10 @@ class ManagerMacro extends System.ValueType{
 		}
 		equipe.influences.SetBonusProgManager(auxProg, actionNode);
 		floatingLines.showFloatText1("", "Aid Programmer", "blue", "", delay);
-		floatingLines.showFloatText2(sign, auxProg.ToString(), color, " % Dev.", delay);
+		floatingLines.showFloatText2(sign, auxProg.ToString(), color, " % Prog.", delay);
 		ManagerReport(0, auxProg, report);
 		
-		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxProg.ToString() + " % Aid");
+		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxProg.ToString() + " % Aid", rate);
 	}
 	
 	function AidArchitect(actionNode : ActionNode, task : String, descr : String)
@@ -278,10 +285,10 @@ class ManagerMacro extends System.ValueType{
 		}
 		equipe.influences.SetBonusArchManager(auxAnaArq, actionNode);
 		floatingLines.showFloatText1("", "Aid Architect", "blue", "", delay);
-		floatingLines.showFloatText2(sign, auxAnaArq.ToString(), color, " % Dev.", delay);
+		floatingLines.showFloatText2(sign, auxAnaArq.ToString(), color, " % Arch.", delay);
 		ManagerReport(auxAnaArq, 0, report);
 		
-		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxAnaArq.ToString() + " % Aid");
+		actionNode.NewAction(task, d1, d2, func, date, "Manager", auxAnaArq.ToString() + " % Aid", rate);
 	}
 	//--------------------------------------------
 	//Set the action

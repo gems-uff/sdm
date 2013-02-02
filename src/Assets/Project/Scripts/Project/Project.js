@@ -365,10 +365,15 @@ function IncrementBugsRepairedByType(unitary : int, integration : int, system : 
 	//Everytime a bug is repaired, there is a chance to add another bug
 	var newBugChance : float = 20.0; //20%
 	var random : float;
+	var newBug : int = 0;
 	random = Random.Range (0.0, 100.0);
 	//Add bug
 	newBugChance = newBugChance * chanceMod * (2 - codeQuality * 0.01);
 	if(random < newBugChance)
+	{
+		newBug = 1;
+	}
+	if(newBug == 1)
 	{
 		random = Random.Range (0, 5);
 		switch(random)
@@ -394,6 +399,7 @@ function IncrementBugsRepairedByType(unitary : int, integration : int, system : 
 			  break;
 		}
 	}
+	return newBug;
 	/*
 	Debug.Log("-----------------------");
 	Debug.Log("--- IncrementBugsRepairedByType ----");
@@ -643,6 +649,7 @@ function GetStats()
 	stats.bugSystemRepaired = this.bugSystemRepaired;
 	stats.bugAcceptionRepaired = this.bugAcceptionRepaired;
 	stats.date = timer.GetGameTime() + ":" + timer.GetTimeDayString();
+	stats.totalBugs = this.GetTotalBugs();
 	
 	return stats;
 }

@@ -16,7 +16,7 @@ class TesterMacro extends System.ValueType{
 	var behavior : BehaviorPlanner;
 			
 	function Work(func : Funcionario, project : Project, report : WeeklyReport, floatingLines : FloatingLines, equipe : Equipe, 
-	constant : GameConstants, tester : float, date : GameTime, behaviorP : BehaviorPlanner, delay : float)
+	constant : GameConstants, tester : float, date : GameTime, behaviorP : BehaviorPlanner, delay : float, rate : int)
 	{
 		behavior = behaviorP;
 		
@@ -24,10 +24,10 @@ class TesterMacro extends System.ValueType{
 		var bugIntegration : int = 0;
 		var bugSystem : int = 0;
 		var bugAcception : int = 0;
-		var i : int = 0;
+		var i : float = 0;
 		var totalBugsFound : int = 0;
 		var random : float;
-		var randomizer : float = Random.Range (0.8, 1.2);
+		var randomizer : float = Random.Range (0.5, 1.5);
 		var findScore : int = 0;
 		
 		var actionNode : ActionNode = new ActionNode();
@@ -56,7 +56,7 @@ class TesterMacro extends System.ValueType{
 			actionNode.influence = equipe.influences.GetInfluence("Tester");
 			while(i < findScore && project.testCases.HasTestCase())
 			{
-				i += 2;
+				i += 1.5;
 				typeUsed = project.testCases.Use();
 				equipe.influences.ConsumeInfluenceTester(typeUsed, actionNode.influence);
 				
@@ -65,7 +65,7 @@ class TesterMacro extends System.ValueType{
 			}
 			d1 = "Tester used Test Cases";
 			d2 = "Tester used Test Cases";
-			actionNode.NewAction("Test:Cases", d1, d2, func, date, "Tester", totalBugsFound.ToString() + " Bugs Found", "");
+			actionNode.NewAction("Test:Cases", d1, d2, func, date, "Tester", totalBugsFound.ToString() + " Bug Found", "", rate);
 		}
 		else
 		{
@@ -115,7 +115,7 @@ class TesterMacro extends System.ValueType{
 			}
 			d1 = "Tester searched in Adhoc-mode";
 			d2 = "Tester searched in Adhoc-mode";
-			actionNode.NewAction("Test:Adhoc", d1, d2, func, date, "Tester", totalBugsFound.ToString() + " Bugs Found", "");
+			actionNode.NewAction("Test:Adhoc", d1, d2, func, date, "Tester", totalBugsFound.ToString() + " Bug Found", "", rate);
 			if(totalBugsFound > 0)
 				actionNode.projectStat = behavior.Log.GetProjectStat();
 		}
@@ -132,18 +132,4 @@ class TesterMacro extends System.ValueType{
 	{
 		report.testerReport = report.testerReport + bug;
 	}
-	
-	/*
-	function NewAction(actionNode : ActionNode, task : String, description : String, func : Funcionario, date : int)
-	{
-		actionNode.who = func.GetNome();
-		actionNode.task = task;
-		actionNode.date = date;
-		actionNode.role = "Tester";
-		actionNode.description = description;
-		actionNode.morale = func.GetMorale();
-		actionNode.stamina = func.GetStamina();
-	}
-	*/
-
 }

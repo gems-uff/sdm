@@ -19,10 +19,11 @@ class ProgrammerMacro extends System.ValueType{
 	var behavior : BehaviorPlanner;
 	var date : GameTime;
 	var delay : float;
+	var rate : int;
 						
 	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, 
 	constantP : GameConstants, programadorP : float, RequisitoLinguagemP : boolean, isEspecializedP : int, behaviorP : BehaviorPlanner, 
-	dateP : GameTime, delay : float)
+	dateP : GameTime, delay : float, rate : int)
 	{
 		var actionNode : ActionNode = new ActionNode();
 		
@@ -39,6 +40,7 @@ class ProgrammerMacro extends System.ValueType{
 		behavior = behaviorP;
 		date = dateP;
 		this.delay = delay;
+		this.rate = rate;
 		
 		if(equipe.influences.GetBonusProg()!= 1.0)
 		{
@@ -269,7 +271,7 @@ class ProgrammerMacro extends System.ValueType{
 		if(behavior.GetProgEvolution())
 		{
 			//actionNode.task = "Evolution Adhoc";
-			Evolution(1.5, 2.75, actionNode, isEsp, isPressured, prog, -0.2, "Evolution_Adhoc");
+			Evolution(1.5, 4.0, actionNode, isEsp, isPressured, prog, -0.2, "Evolution_Adhoc");
 			//ModifyCodeQuality(- 0.2);
 		}
 		else
@@ -277,7 +279,7 @@ class ProgrammerMacro extends System.ValueType{
 			if(behavior.GetProgRepair())
 			{
 				//actionNode.task = "Repair Adhoc";
-				Repair(1.5, 1.5, 1.5, actionNode, isEsp, isPressured, prog, "Repair_Adhoc");
+				Repair(1.0, 2.0, 1.5, actionNode, isEsp, isPressured, prog, "Repair_Adhoc");
 			}
 		}
 	}
@@ -291,14 +293,14 @@ class ProgrammerMacro extends System.ValueType{
 		if(behavior.GetProgEvolution())
 		{
 			//actionNode.task = "Evolution Draw-code";
-			Evolution(1.0, 5.0, actionNode, isEsp, isPressured, prog, 0, "Evolution_Draw-code");
+			Evolution(1.0, 2.0, actionNode, isEsp, isPressured, prog, 0, "Evolution_Draw-code");
 		}
 		else
 		{
 			if(behavior.GetProgRepair())
 			{
 				//actionNode.task = "Repair Draw-code";
-				Repair(1.0, 1.0, 1.0, actionNode, isEsp, isPressured, prog, "Repair_Draw-code");
+				Repair(1.5, 1.0, 0.75, actionNode, isEsp, isPressured, prog, "Repair_Draw-code");
 			}
 		}
 	}
@@ -319,7 +321,7 @@ class ProgrammerMacro extends System.ValueType{
 		if(behavior.GetProgEvolution())
 		{
 			//actionNode.task = "Evolution Test-Driven";
-			Evolution(0.75, 1.5, actionNode, isEsp, isPressured, prog, 0.1, "Evolution_Test-Driven");
+			Evolution(0.75, 1.0, actionNode, isEsp, isPressured, prog, 0.1, "Evolution_Test-Driven");
 			//ModifyCodeQuality(0.1);
 		}
 		else
@@ -327,7 +329,7 @@ class ProgrammerMacro extends System.ValueType{
 			if(behavior.GetProgRepair())
 			{
 				//actionNode.task = "Repair Test-Driven";
-				Repair(0.25, 0.5, 0.5, actionNode, isEsp, isPressured, prog, "Repair_Test-Driven");
+				Repair(3.0, 0.5, 0.25, actionNode, isEsp, isPressured, prog, "Repair_Test-Driven");
 			}
 		}
 	}
@@ -352,14 +354,14 @@ class ProgrammerMacro extends System.ValueType{
 		if(refact != 0)
 			progress = true;
 			
-		NewAction(actionNode, isEsp, isPressured, prog, refact.ToString() + " Quality", "", "Refactoring", progress);
+		NewAction(actionNode, isEsp, isPressured, prog, refact.ToString() + " Quality", "", "", "Refactoring", progress);
 		floatingLines.showFloatText1("", "Refactoring", "blue", "", delay);
 		floatingLines.showFloatText2("+", refact.ToString(), "blue", "% Improved", delay);
 	}
 	function ModifyCodeQuality(mod : float)
 	{
 		//mod range from -1 to 1, where 1 equals to refactoring task and negative number will decrease quality
-		var randomizer : float = Random.Range (0.8, 1.2);
+		var randomizer : float = Random.Range (0.5, 1.5);
 		var refact : float = 0.0;
 		//range must be from 0.965 to 1.035
 		refact = 1 + (programador * randomizer * 0.0001 * mod);
@@ -384,7 +386,7 @@ class ProgrammerMacro extends System.ValueType{
 		var bugCount : int = 0;
 		var maxBugs : float = 0;
 		var codeLines : float = 0.0;
-		var randomizer : float = Random.Range (0.8, 1.2);
+		var randomizer : float = Random.Range (0.5, 1.5);
 		
 		codeLines = programador;
 		if (RequisitoLinguagem == true && project.GetFractionDone() < 100)
@@ -419,16 +421,17 @@ class ProgrammerMacro extends System.ValueType{
 			}
 			
 			ProgReport(codeLines, 0, report);
-			NewAction(actionNode, isEsp, isPressured, prog, codeLines.ToString() + " Progress", refact.ToString() + " Quality", task, progress);
+			NewAction(actionNode, isEsp, isPressured, prog, codeLines.ToString() + " Progress", refact.ToString() + " Quality", 
+			bugCount.ToString() + " New Bug", task, progress);
 			
 			floatingLines.showFloatText1("", "Evolution", "blue", "", delay);
 			floatingLines.showFloatText2("+", codeLines.ToString(), "blue", " Progress", delay);		
 			//Will be ommited
-			floatingLines.showFloatText3("+", bugCount.ToString(), "red", " Bugs", delay);
+			//floatingLines.showFloatText3("+", bugCount.ToString(), "red", " Bugs", delay);
 		}
 		else
 		{
-			NewAction(actionNode, isEsp, isPressured, prog, "Idle", "Idle", task, progress);
+			NewAction(actionNode, isEsp, isPressured, prog, "Idle", "Idle", "", task, progress);
 		}
 	}
 	
@@ -439,7 +442,7 @@ class ProgrammerMacro extends System.ValueType{
 		//t : Number of attempts to repair bugs each day
 		//modRepair : Modify the probability to repair a bug for each attempt
 		//modQuantity : Modify the quantity of attempts per day
-		//modIntrodyce : Modify the probability to insert new bug after repairing
+		//modIntroduce : Modify the probability to insert new bug after repairing
 		var random : float;
 		var i : int;
 		var bugUnitary : int = 0;
@@ -448,6 +451,7 @@ class ProgrammerMacro extends System.ValueType{
 		var bugAcception : int = 0;
 		var t : int = 0.0;
 		var repaired : int = 0;
+		var newBugs : int = 0;
 		
 		t = parseInt(programador * 0.05 * modQuantity * constant.PROGRAMMER_REPAIR); //from 0.25 to 0.05
 		
@@ -455,35 +459,35 @@ class ProgrammerMacro extends System.ValueType{
 		//Debug.Log("Repair #Bugs: " + t);
 		while(i < t)
 		{
-			random = Random.Range (0.0, 1.0) * modRepair;
+			random = Random.Range (0.0, 1.0);
 			//Debug.Log("Prog Random = " + random);
 			i++;
-			if (random < project.GetCodeQuality())
+			if (random < (project.GetCodeQuality() * modRepair))
 			{ 
 				if(project.GetBugUnitaryFound() > project.GetBugUnitaryRepaired())
 				{
-					project.IncrementBugsRepairedByType(1, 0, 0, 0, modIntroduce);
+					newBugs += project.IncrementBugsRepairedByType(1, 0, 0, 0, modIntroduce);
 					repaired++;
 				}
 				else
 				{
 					if(project.GetBugIntegrationFound() > project.GetBugIntegrationRepaired())
 					{
-						project.IncrementBugsRepairedByType(0, 1, 0, 0, modIntroduce);
+						newBugs += project.IncrementBugsRepairedByType(0, 1, 0, 0, modIntroduce);
 						repaired++;
 					}
 					else
 					{
 						if(project.GetBugSystemFound() > project.GetBugSystemRepaired())
 						{
-							project.IncrementBugsRepairedByType(0, 0, 1, 0, modIntroduce);
+							newBugs += project.IncrementBugsRepairedByType(0, 0, 1, 0, modIntroduce);
 							repaired++;
 						}
 						else
 						{
 							if(project.GetBugAcceptionFound() > project.GetBugAcceptionRepaired())
 							{
-								project.IncrementBugsRepairedByType(0, 0, 0, 1, modIntroduce);
+								newBugs += project.IncrementBugsRepairedByType(0, 0, 0, 1, modIntroduce);
 								repaired++;
 							}
 						}
@@ -496,8 +500,10 @@ class ProgrammerMacro extends System.ValueType{
 		var progress : boolean = false;
 		if(repaired > 0)
 			progress = true;
-			
-		NewAction(actionNode, isEsp, isPressured, prog, repaired.ToString() + " Repaired", "", task, progress);
+		if(newBugs > 0)	
+			NewAction(actionNode, isEsp, isPressured, prog, repaired.ToString() + " Repaired", "", newBugs.ToString() + " New Bug",task, progress);
+		else
+			NewAction(actionNode, isEsp, isPressured, prog, repaired.ToString() + " Repaired", "", "",task, progress);
 		
 		floatingLines.showFloatText1("", "Repair", "blue", "", delay);
 		floatingLines.showFloatText2("+", repaired.ToString(), "blue", " Bugs Repaired", delay);
@@ -513,7 +519,7 @@ class ProgrammerMacro extends System.ValueType{
 	//--------------------------------------------
 	//Set the action
 	//--------------------------------------------
-	function NewAction(actionNode : ActionNode, isEsp : boolean, isPressured : boolean, prog : String, work : String, work_2 : String, 
+	function NewAction(actionNode : ActionNode, isEsp : boolean, isPressured : boolean, prog : String, work : String, work_2 : String, work_5 : String, 
 	task : String, progress : boolean)
 	{
 		var esp : String = "";
@@ -535,8 +541,8 @@ class ProgrammerMacro extends System.ValueType{
 		var d2 : String = "Employee is " + esp + " especialized, is a " + prog + " programmer and <br> is " + pressure +" under pressure";
 		//actionNode.NewAction(task, d1, d2, func, date, "Programmer", work, work, work_2, "");
 		if(progress)
-			actionNode.NewAction(task, d1, d2, func, date, "Programmer", work, work, work_2, actionNode.work_4, actionNode.artifact);
+			actionNode.NewAction(task, d1, d2, func, date, "Programmer", work, work, work_2, actionNode.work_4, work_5, actionNode.artifact, rate);
 		else
-			actionNode.NewAction(task, d1, d2, func, date, "Programmer", work, "0 Change", actionNode.artifact);
+			actionNode.NewAction(task, d1, d2, func, date, "Programmer", work, "0 Change", actionNode.artifact, rate);
 	}
 }

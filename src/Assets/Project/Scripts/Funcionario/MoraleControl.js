@@ -127,7 +127,7 @@ function StaminaActions()
 	var chance : int = Random.Range (0, 150);
 	if(func.GetNome() != stringNames.fired)
 	{
-		if (stamina > constant.TIREDMORALE)
+		if (stamina > constant.TIRED_STAMINA)
 		{
 			dialog.SetDialogControl();
 		}

@@ -140,7 +140,7 @@ function NewEmployeeNode(emp : Funcionario, slot : EmployeeList)
 function NewFiredAction(slot : EmployeeList)
 {
 	var newAction : ActionNode = new ActionNode();
-	newAction.NewAction("Fired", "Fired", "Fired", slot.last.employee, time, "Fired", "", "");
+	newAction.NewAction("Fired", "Fired", "Fired", slot.last.employee, time, "Fired", "", "", 100);
 	/*
 	newAction.who = slot.last.employee.nome;
 	newAction.date = time.GetGameTime() + "/" + time.GetTimeDaysString();

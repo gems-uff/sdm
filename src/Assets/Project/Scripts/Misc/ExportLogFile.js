@@ -64,6 +64,12 @@ function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 				line = Action(action) + "\t" + Project(action.projectStat) + "\t" + action.work_4;
 				f.WriteLine("AcP" + "\t" + line);
 			}
+			//Work_5
+			if(action.work_5 != "")
+			{
+				line = Action(action) + "\t" + Project(action.projectStat) + "\t" + action.work_5;
+				f.WriteLine("AcP" + "\t" + line);
+			}
 		}
 		action = action.next;
 	}
@@ -75,7 +81,7 @@ function Action(action : ActionNode)
 	var line : String;
 	id = action.date.ToString() +" "+ action.who.ToString() +" "+ action.role.ToString();
 	line = id + "\t" + action.date + "\t" + action.who + "\t" + action.task + "\t" + action.role + "\t" + action.morale + "\t" +
-	action.stamina + "\t" + action.hours + "\t" + action.cost + "\t" + action.work + "\t" + action.d2;
+	action.stamina + "\t" + action.hours + "\t" + action.cost + "\t" + action.work + "\t" + action.d2;// + "\t" + action.rate;
     	
     return line;
 }
@@ -107,7 +113,7 @@ function Project(stat : ProjectStats)
 	line = id + "\t" + stat.name + "\t" + stat.date + "\t" + stat.deadline + "\t" + stat.linguagemProgramacao + "\t" + stat.pagamento + "\t" + 
 	stat.requirements + "\t" + stat.sincronismo + "\t" + stat.codeQuality + "\t" + stat.percentageDone + "\t" + stat.bugUnitaryFound+ "\t" +
 	stat.bugIntegrationFound + "\t" + stat.bugSystemFound + "\t" + stat.bugAcceptionFound + "\t" + stat.bugUnitaryRepaired+ "\t" +
-	stat.bugIntegrationRepaired + "\t" + stat.bugSystemRepaired + "\t" + stat.bugAcceptionRepaired + "\t" + stat.credits;
+	stat.bugIntegrationRepaired + "\t" + stat.bugSystemRepaired + "\t" + stat.bugAcceptionRepaired + "\t" + stat.credits;// + "\t" + stat.totalBugs;
 		
     return line;
 }

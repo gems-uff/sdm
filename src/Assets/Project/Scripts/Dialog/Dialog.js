@@ -63,7 +63,7 @@ function Update(){
 		
 		if(func.GetNome() != stringNames.fired)
 		{
-			if(func.GetStamina() < constant.TIREDMORALE)
+			if(func.GetStamina() < constant.TIRED_STAMINA)
 			{
 				if (dialogEnableBadDialog == true && dialogControl == false)
 				{

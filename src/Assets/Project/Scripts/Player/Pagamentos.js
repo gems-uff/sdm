@@ -98,6 +98,8 @@ function PayEmployee(salario : int, saldo : int, morale : MoraleControl)
 //--------------------------------------------PagamentoDoProjeto-----------------------------------------------------------
 
 function ProjetoPagarMensal(){
+	jogador.ChangeSaldo(project.GetPagamento());
+	/*
 	var neededMonths : int = 0;
 	var monthPercent : float = 0.0;
 	var auxTime : int = 0;
@@ -106,9 +108,10 @@ function ProjetoPagarMensal(){
 	neededMonths = (project.GetDeadline() / 28);							//Qnts meses pro projeto
 	monthPercent = 100 / neededMonths; 									//Qnts % por meses
 	auxTime = timer.GetGameTime() - project.GetStartDay();			//Quanto tempo desde que o projeto iniciou
-	auxTime = auxTime / 28;														//Quantos meses se passaram desde que iniciou
+	auxTime = parseInt(auxTime / 28);														//Quantos meses se passaram desde que iniciou
 	expected = monthPercent * auxTime;										//% concluido esperado
-	if (expected <= (10 + project.GetFractionDone()))
+	
+	if (expected <= (20 + project.GetFractionDone()))
 	{
 		jogador.ChangeSaldo(project.GetPagamento());
 	}
@@ -116,6 +119,7 @@ function ProjetoPagarMensal(){
 	{
 		dialog.ActiveShowWindow();
 	}
+	*/
 }
 
 function PagarJogadorConclusao(){

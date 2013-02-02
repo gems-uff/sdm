@@ -15,28 +15,30 @@ class AnalystMacro extends System.ValueType{
 	private var analista : float;
 	private var val : float;
 	private var delay : float;
+	private var rate : int;
 	
 	var behavior : BehaviorPlanner;
 	var date : GameTime;	
 				
 	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, 
-	constantP : GameConstants, analistaP : float, behaviorP : BehaviorPlanner, dateP : GameTime, delay : float)
+	constantP : GameConstants, analistaP : float, behaviorP : BehaviorPlanner, dateP : GameTime, delay : float, rate : int)
 	{
 		var actionNode : ActionNode = new ActionNode();
 		
-		func = funcP;
-		project = projectP;
-		report = reportP;
-		floatingLines = floatingLinesP;
-		equipe = equipeP;
-		constant = constantP;
-		analista = analistaP;
+		this.func = funcP;
+		this.project = projectP;
+		this.report = reportP;
+		this.floatingLines = floatingLinesP;
+		this.equipe = equipeP;
+		this.constant = constantP;
+		this.analista = analistaP;
 		
-		behavior = behaviorP;
-		date = dateP;
+		this.behavior = behaviorP;
+		this.date = dateP;
 		this.delay = delay;
+		this.rate = rate;
 		
-		var randomizer : float = Random.Range (0.7, 1.2);
+		var randomizer : float = Random.Range (0.5, 1.5);
 		
 		if(equipe.influences.GetBonusAnalyst()!= 1.0)
 		{
@@ -44,11 +46,11 @@ class AnalystMacro extends System.ValueType{
 			actionNode.influence = equipe.influences.GetInfluence("Analyst");
 		}
 		
-		val = analista / (project.GetProjectSize() * 0.001);
-		val = val * randomizer;
+		val = analista * 1000 / (project.GetProjectSize());
+		val = val * randomizer * constant.ANALYST_VAL;
 		val = Mathf.Round(val * 100f) / 100f;
 		
-		randomizer = Random.Range (0.8, 1.2);
+		randomizer = Random.Range (0.5, 1.5);
 		analista = parseInt(randomizer * analista);
 		
 		DecisionTree(actionNode);
@@ -115,13 +117,13 @@ class AnalystMacro extends System.ValueType{
 			actionNode.influence = equipe.influences.GetInfluence("Prototype");
 			//Validation with Prototype
 			project.ConsumePrototype();
-			val = val * 1.5;
+			val = val * 2.0;
 			project.UpdateElicitation(val, true);
 			AnalistReport(parseInt(val), report);
 			
 			d1 = "Employee was ordered to focus on \n" + descr + "\n and validated a Prototype";
 			d2 = "Employee was ordered to focus on " + descr + "<br> and validated a Prototype";
-			actionNode.NewAction(task + "_Prototype", d1, d2, func, date, "Analyst", val.ToString() + " Val", "");
+			actionNode.NewAction(task + "_Prototype", d1, d2, func, date, "Analyst", val.ToString() + " Val", "", rate);
 			
 			floatingLines.showFloatText1("", "Validation", "blue","", delay);
 			floatingLines.showFloatText2("+", val.ToString(), "blue", " Val", delay);
@@ -137,13 +139,13 @@ class AnalystMacro extends System.ValueType{
 				val = val * constant.ANALYST_BEGINNING;
 			}
 			//Update project validation rate
-			val = project.UpdateElicitation(val, false);
 			val = parseInt(val);
+			val = project.UpdateElicitation(val, false);
 			AnalistReport(val, report);
 			
 			d1 = "Employee was ordered to focus on \n" + descr + "\n and validated with Reviews";
 			d2 = "Employee was ordered to focus on " + descr + "<br> and validated with Reviews";
-			actionNode.NewAction(task + "_Reviews", d1, d2, func, date, "Analyst", val.ToString() + " Val", "");
+			actionNode.NewAction(task + "_Reviews", d1, d2, func, date, "Analyst", val.ToString() + " Val", "", rate);
 			
 			floatingLines.showFloatText1("", "Validation", "blue","", delay);
 			floatingLines.showFloatText2("+", val.ToString(), "blue", " Val", delay);
@@ -179,28 +181,28 @@ class AnalystMacro extends System.ValueType{
 			*/
 			d1 = "Employee was ordered to focus on " + descr + "\n and because he was above moderate he decided to do discovery";
 			d2 = "Employee was ordered to focus on " + descr + "<br> and because he was above moderate he decided to do discovery";
-			actionNode.NewAction(task, d1, d2, func, date, "Analyst", val.ToString() + " Discovery", "");
+			actionNode.NewAction(task, d1, d2, func, date, "Analyst", val.ToString() + " Discovery", "", rate);
 			Specifying();
 		}
 		else
 		{
 			d1= "Employee was ordered to focus on " + descr + "\n and because he was moderate he did discovery"; 
 			d2 = "Employee was ordered to focus on " + descr + "<br> and because he was moderate he did discovery";
-			actionNode.NewAction(task, d1, d2, func, date, "Analyst", val.ToString() + " Discovery", "");
+			actionNode.NewAction(task, d1, d2, func, date, "Analyst", val.ToString() + " Discovery", "", rate);
 			Specifying();
 		}
 	}
 	
 	function Quality(actionNode : ActionNode, task : String, descr : String)
 	{
-		var randomizer : float = Random.Range (0.8, 1.2);
+		var randomizer : float = Random.Range (0.0, 1.5);
 		var qnt : int = parseInt(analista * randomizer * 0.025);
 		var d1 : String = "Employee was ordered to focus on " + descr + "\n and made Acception Test Cases";
 		var d2 : String = "Employee was ordered to focus on " + descr + "<br> and made Acception Test Cases";
 		if(qnt > 0)
-			actionNode.NewAction(task, d1, d2, func, date, "Analyst", qnt.ToString() + " ATC", "Acception Test Cases");
+			actionNode.NewAction(task, d1, d2, func, date, "Analyst", qnt.ToString() + " ATC", "Acception Test Cases", rate);
 		else
-			actionNode.NewAction(task, d1, d2, func, date, "Analyst", qnt.ToString() + " ATC");
+			actionNode.NewAction(task, d1, d2, func, date, "Analyst", qnt.ToString() + " ATC", rate);
 		MakeAcceptionCases(actionNode, qnt);
 	}
 	
@@ -210,8 +212,8 @@ class AnalystMacro extends System.ValueType{
 	function Specifying()
 	{
 		//update project model rate
-		val = project.ChangeRequirements(val);
 		val = parseInt(val);
+		val = project.ChangeRequirements(val);
 		//AnalistReport(parseInt(analista), report);
 		floatingLines.showFloatText1("", "Discovery", "blue","", delay);
 		floatingLines.showFloatText2("+", val.ToString(), "blue", " % Model", delay);
