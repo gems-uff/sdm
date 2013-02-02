@@ -174,7 +174,7 @@ class ArchitectMacro extends System.ValueType{
 		{
 			d1 = "Employee was ordered to focus on " + descr + "\n and made a prototype";
 			d2 = "Employee was ordered to focus on " + descr + "<br> and made a prototype";
-			actionNode.NewAction(task + "_Prototype", d1, d2, func, date, "Architect", "" , "Prototype", rate); //Removed "1 Prototype"
+			actionNode.NewAction(task + "_Prototype", d1, d2, func, date, "Architect", "Prototyping" , "", "Prototype", rate); //Removed "1 Prototype"
 			MakePrototype(actionNode);
 		}
 	}
@@ -183,7 +183,7 @@ class ArchitectMacro extends System.ValueType{
 	{
 		var d1 : String = "Employee was ordered to do a prototype";
 		var d2 : String = "Employee was ordered to do a prototype";
-		actionNode.NewAction("Analysis", d1, d2, func, date, "Architect", "", "Prototype", rate); //Removed "1 Prototype"
+		actionNode.NewAction("Analysis", d1, d2, func, date, "Architect", "Prototyping", "", "Prototype", rate); //Removed "1 Prototype"
 		MakePrototype(actionNode);
 	}
 	

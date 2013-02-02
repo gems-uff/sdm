@@ -111,6 +111,7 @@ function UpdateElicitation(t : float, prototype : boolean)
 			sincronismo = sincronismo + change;
 	}
 	sincronismo = Mathf.Clamp(sincronismo, 0.0, 100.0);
+	sincronismo = Mathf.Round(sincronismo * 1000f) / 1000f;
 	
 	CheckRequirements();
 	ResetLastElicitation();
@@ -126,6 +127,7 @@ function ReduceSincronism()
 	{
 		sincronismo = sincronismo - passedTime;
 		sincronismo = Mathf.Clamp(sincronismo, 0.0, 100.0);
+		sincronismo = Mathf.Round(sincronismo * 1000f) / 1000f;
 	}
 }
 
@@ -211,6 +213,7 @@ function CheckRequirements()
 	}
 	*/
 	requirements = Mathf.Clamp(requirements, 0.0, sincronismo);
+	requirements = Mathf.Round(requirements * 1000f) / 1000f;
 }
 
 //---------------------------------------------------------------------------------------------------------------

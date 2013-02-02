@@ -81,7 +81,7 @@ function Action(action : ActionNode)
 	var line : String;
 	id = action.date.ToString() +" "+ action.who.ToString() +" "+ action.role.ToString();
 	line = id + "\t" + action.date + "\t" + action.who + "\t" + action.task + "\t" + action.role + "\t" + action.morale + "\t" +
-	action.stamina + "\t" + action.hours + "\t" + action.cost + "\t" + action.work + "\t" + action.d2;// + "\t" + action.rate;
+	action.stamina + "\t" + action.hours + "\t" + action.cost + "\t" + action.work + "\t" + action.rate + "\t" + action.d2;
     	
     return line;
 }
@@ -113,7 +113,7 @@ function Project(stat : ProjectStats)
 	line = id + "\t" + stat.name + "\t" + stat.date + "\t" + stat.deadline + "\t" + stat.linguagemProgramacao + "\t" + stat.pagamento + "\t" + 
 	stat.requirements + "\t" + stat.sincronismo + "\t" + stat.codeQuality + "\t" + stat.percentageDone + "\t" + stat.bugUnitaryFound+ "\t" +
 	stat.bugIntegrationFound + "\t" + stat.bugSystemFound + "\t" + stat.bugAcceptionFound + "\t" + stat.bugUnitaryRepaired+ "\t" +
-	stat.bugIntegrationRepaired + "\t" + stat.bugSystemRepaired + "\t" + stat.bugAcceptionRepaired + "\t" + stat.credits;// + "\t" + stat.totalBugs;
+	stat.bugIntegrationRepaired + "\t" + stat.bugSystemRepaired + "\t" + stat.bugAcceptionRepaired + "\t" + stat.credits + "\t" + stat.totalBugs;
 		
     return line;
 }

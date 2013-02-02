@@ -102,7 +102,7 @@ class ActionNode
 		this.morale = func.GetMorale();
 		this.stamina = func.GetStamina();
 		this.hours = func.GetWorkingHours();
-		this.cost = rate * 0.01 * func.GetSalario() / 28;
+		this.cost = parseInt(rate * 0.01 * func.GetSalario() / 28);
 		this.work = work;
 		this.work_2 = work;
 		this.artifact = artifact;
@@ -121,7 +121,7 @@ class ActionNode
 		this.morale = func.GetMorale();
 		this.stamina = func.GetStamina();
 		this.hours = func.GetWorkingHours();
-		this.cost = rate * 0.01 * func.GetSalario() / 28;
+		this.cost = parseInt(rate * 0.01 * func.GetSalario() / 28);
 		this.work = work;
 		this.work_2 = work;
 		this.artifact = artifact;
@@ -139,7 +139,7 @@ class ActionNode
 		this.morale = func.GetMorale();
 		this.stamina = func.GetStamina();
 		this.hours = func.GetWorkingHours();
-		this.cost = rate * 0.01 * func.GetSalario() / 28;
+		this.cost = parseInt(rate * 0.01 * func.GetSalario() / 28);
 		this.work = work;
 		this.work_2 = "";
 		this.artifact = "";
@@ -177,7 +177,7 @@ class ActionNode
 		this.morale = func.GetMorale();
 		this.stamina = func.GetStamina();
 		this.hours = func.GetWorkingHours();
-		this.cost = rate * 0.01 * func.GetSalario() / 28;
+		this.cost = parseInt(rate * 0.01 * func.GetSalario() / 28);
 		this.work = work;
 		this.work_2 = work_2;
 		this.artifact = artifact;
@@ -215,7 +215,7 @@ class ActionNode
 		this.morale = func.GetMorale();
 		this.stamina = func.GetStamina();
 		this.hours = func.GetWorkingHours();
-		this.cost = rate * 0.01 * func.GetSalario() / 28;
+		this.cost = parseInt(rate * 0.01 * func.GetSalario() / 28);
 		this.work = work;
 		this.work_2 = work_2;
 		this.work_3 = work_3;
@@ -234,7 +234,7 @@ class ActionNode
 		this.morale = func.GetMorale();
 		this.stamina = func.GetStamina();
 		this.hours = func.GetWorkingHours();
-		this.cost = rate * 0.01 * func.GetSalario() / 28;
+		this.cost = parseInt(rate * 0.01 * func.GetSalario() / 28);
 		this.work = work;
 		this.work_2 = work_2;
 		this.work_3 = work_3;
