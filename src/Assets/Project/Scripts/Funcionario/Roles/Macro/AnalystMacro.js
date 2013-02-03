@@ -1,7 +1,7 @@
 #pragma strict
 
-//Elicitcation: Validation
-//Especification: Discovery (Update Validation) and Documentation
+//Elicitcation: Discovery of new requirements with the client
+//Specification: Validation of the requirements with the client and modelling for programmers
 //Quality: Aid Tester (Acception)
 
 class AnalystMacro extends System.ValueType{
@@ -48,7 +48,8 @@ class AnalystMacro extends System.ValueType{
 		
 		val = analista * 1000 / (project.GetProjectSize());
 		val = val * randomizer * constant.ANALYST_VAL;
-		val = Mathf.Round(val * 100f) / 100f;
+		//val = Mathf.Round(val * 100f) / 100f;
+		val = parseInt(val);
 		
 		randomizer = Random.Range (0.5, 1.5);
 		analista = parseInt(randomizer * analista);
@@ -77,8 +78,8 @@ class AnalystMacro extends System.ValueType{
 		{
 			if(behavior.GetAnaEspecification())
 			{
-				//Especification
-				Especification(actionNode, "Especification", "Especification");
+				//Specification
+				Specification(actionNode, "Specification", "Specification");
 			}
 			else
 			{
@@ -88,10 +89,10 @@ class AnalystMacro extends System.ValueType{
 				else
 				{
 					//Rounded
-					chance = Random.Range (0, 100);
-					if((chance < 50) && project.GetRequirements() < project.GetElicitation())
-						//Especification Path
-						Especification(actionNode, "Balanced_Especification", "Balanced");
+					//chance = Random.Range (0, 100);
+					if(project.GetRequirements() < project.GetElicitation())
+						//Specification Path
+						Specification(actionNode, "Balanced_Specification", "Balanced");
 					else
 					{
 						//Elicitation path
@@ -118,15 +119,16 @@ class AnalystMacro extends System.ValueType{
 			//Validation with Prototype
 			project.ConsumePrototype();
 			val = val * 2.0;
+			val = parseInt(val);
 			project.UpdateElicitation(val, true);
 			AnalistReport(parseInt(val), report);
 			
 			d1 = "Employee was ordered to focus on \n" + descr + "\n and validated a Prototype";
 			d2 = "Employee was ordered to focus on " + descr + "<br> and validated a Prototype";
-			actionNode.NewAction(task + "_Prototype", d1, d2, func, date, "Analyst", val.ToString() + " Val", "", rate);
+			actionNode.NewAction(task + "_Prototype", d1, d2, func, date, "Analyst", val.ToString() + " Discovery", "", rate);
 			
-			floatingLines.showFloatText1("", "Validation", "blue","", delay);
-			floatingLines.showFloatText2("+", val.ToString(), "blue", " Val", delay);
+			floatingLines.showFloatText1("", "Elicitation", "blue","", delay);
+			floatingLines.showFloatText2("+", val.ToString(), "blue", " Discovery", delay);
 		}
 		else
 		{
@@ -145,16 +147,16 @@ class AnalystMacro extends System.ValueType{
 			
 			d1 = "Employee was ordered to focus on \n" + descr + "\n and validated with Reviews";
 			d2 = "Employee was ordered to focus on " + descr + "<br> and validated with Reviews";
-			actionNode.NewAction(task + "_Reviews", d1, d2, func, date, "Analyst", val.ToString() + " Val", "", rate);
+			actionNode.NewAction(task + "_Reviews", d1, d2, func, date, "Analyst", val.ToString() + " Discovery", "", rate);
 			
-			floatingLines.showFloatText1("", "Validation", "blue","", delay);
-			floatingLines.showFloatText2("+", val.ToString(), "blue", " Val", delay);
+			floatingLines.showFloatText1("", "Elicitation", "blue","", delay);
+			floatingLines.showFloatText2("+", val.ToString(), "blue", " Discovery", delay);
 			ClientFindBug();
 			//}
 		}
 	}
 	
-	function Especification(actionNode : ActionNode, task : String, descr : String)
+	function Specification(actionNode : ActionNode, task : String, descr : String)
 	{
 		var d1 : String;
 		var d2 : String;
@@ -181,14 +183,14 @@ class AnalystMacro extends System.ValueType{
 			*/
 			d1 = "Employee was ordered to focus on " + descr + "\n and because he was above moderate he decided to do discovery";
 			d2 = "Employee was ordered to focus on " + descr + "<br> and because he was above moderate he decided to do discovery";
-			actionNode.NewAction(task, d1, d2, func, date, "Analyst", val.ToString() + " Discovery", "", rate);
+			actionNode.NewAction(task, d1, d2, func, date, "Analyst", val.ToString() + " Validation", "", rate);
 			Specifying();
 		}
 		else
 		{
 			d1= "Employee was ordered to focus on " + descr + "\n and because he was moderate he did discovery"; 
 			d2 = "Employee was ordered to focus on " + descr + "<br> and because he was moderate he did discovery";
-			actionNode.NewAction(task, d1, d2, func, date, "Analyst", val.ToString() + " Discovery", "", rate);
+			actionNode.NewAction(task, d1, d2, func, date, "Analyst", val.ToString() + " Validation", "", rate);
 			Specifying();
 		}
 	}
@@ -212,17 +214,18 @@ class AnalystMacro extends System.ValueType{
 	function Specifying()
 	{
 		//update project model rate
-		val = parseInt(val);
 		val = project.ChangeRequirements(val);
+		val = parseInt(val);
 		//AnalistReport(parseInt(analista), report);
-		floatingLines.showFloatText1("", "Discovery", "blue","", delay);
-		floatingLines.showFloatText2("+", val.ToString(), "blue", " % Model", delay);
+		floatingLines.showFloatText1("", "Specifying", "blue","", delay);
+		floatingLines.showFloatText2("+", val.ToString(), "blue", " % Validation", delay);
 	}
+	/*
 	function Documentation()
 	{
 		Specifying();
 	}
-	
+	*/
 	function MakeAcceptionCases(actionNode : ActionNode, qnt : int)
 	{
 		if(qnt > 0)
@@ -230,7 +233,7 @@ class AnalystMacro extends System.ValueType{
 			equipe.SetAcceptionBonus(analista);
 			equipe.influences.SetBonusTesterAnalyst(analista, actionNode);
 		}
-		project.testCases.AddAcception(parseInt(analista * 0.01));
+		project.testCases.AddAcception(parseInt(analista * 0.05));
 		floatingLines.showFloatText1("", "Test Cases", "blue","", delay);
 		floatingLines.showFloatText2("+", qnt.ToString(), "blue"," Testing Case", delay);
 		

@@ -48,13 +48,13 @@ class ArchitectMacro extends System.ValueType{
 		var randomizer_2 : float = Random.Range (0.5, 1.5);
 		
 		//Generate negative influence
-		var chance : float = Random.Range (0.0, 100);
+		var chance : float = Random.Range (0.0, 110);
 		if(func.GetArquiteto() < chance)
 			arquiteto = parseInt(arquiteto * randomizer);
 		else
 			arquiteto = parseInt(randomizer_2 * arquiteto);
 		
-		qnt = parseInt(arquiteto * 0.025);
+		qnt = parseInt(arquiteto * 0.05);
 		DecisionTree(actionNode);
 		
 		//MakePrototype();

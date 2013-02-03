@@ -193,8 +193,8 @@ function IncreaseMoralePromotion()
 	if(func.GetNome() != stringNames.fired)
 	{
 		morale = func.GetMorale();
-		moraleChange = 5 * constant.MORALE_MOD;
-		morale = morale + moraleChange;		//Recupera 30
+		moraleChange = constant.MORALE_MOD;
+		morale = morale + moraleChange;
 		morale = CheckMorale(morale);
 		func.SetMorale(morale);
 		moraleBar.Morale_Bar();

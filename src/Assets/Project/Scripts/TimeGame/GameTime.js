@@ -142,7 +142,7 @@ function PassTime () {
     
     //BroadcastMessage("UpdateProjectStatNodeNoDelay");
     
-	BroadcastMessage("PagarFuncionario");
+	
 	//BroadcastMessage("PagarJogadorMensal");
 	
 	BroadcastMessage("IncrementDays");
@@ -175,6 +175,8 @@ function PassTime () {
 	BroadcastMessage("MoraleActions");
 	BroadcastMessage("LevelUp");
 	BroadcastMessage("CompanyLevelUp");
+	
+	BroadcastMessage("PagarFuncionario");
 	
 	if((gameTime % 7) == 0)
 	{

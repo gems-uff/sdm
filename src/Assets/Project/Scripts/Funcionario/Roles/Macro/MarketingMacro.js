@@ -20,7 +20,7 @@ class MarketingMacro extends System.ValueType{
 		
 		this.behavior = behaviorP;
 		//Generate negative influence
-		var chance : float = Random.Range (0.0, 100);
+		var chance : float = Random.Range (0.0, 110);
 		if(func.GetMarketing() < chance)
 			aid = parseInt(aid * randomizer_aid);
 		else

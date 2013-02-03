@@ -30,8 +30,8 @@ private var managerBalanced : boolean = false;
 
 private var managerChangedMode : boolean = false;
 
-private var managerAnalyst : boolean = false;
-private var managerProgrammer : boolean = true;
+private var managerAnalyst : boolean = true;
+private var managerProgrammer : boolean = false;
 private var managerArchitect : boolean = false;
 
 public var managerAutonomous : boolean = true;
@@ -294,6 +294,12 @@ function AddAction(newAction : ActionNode)
 {
 	UpdateSlot();
 	employeeList.last.actionList.Add(newAction);
+}
+
+function UpdateCredits()
+{
+	UpdateSlot();
+	employeeList.last.actionList.last.cost = 0;
 }
 
 //-------------------------------------------------------------------------------------------------------

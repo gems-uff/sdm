@@ -44,7 +44,14 @@ function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 		if(action.projectStat != null)
 		{
 			//Cost
-			line = Action(action) + "\t" + Project(action.projectStat) + "\t" + (-action.cost) + " Credits";
+			if(action.cost != 0)
+			{
+				line = Action(action) + "\t" + Project(action.projectStat) + "\t" + (-action.cost) + " Credits";	
+			}
+			else
+			{
+				line = Action(action) + "\t" + Project(action.projectStat) + "\t" + (-action.cost) + " Credits: Not enough Credits";
+			}
 			f.WriteLine("AcP" + "\t" + line);
 			//Work_2
 			if(action.work_2 != "")
@@ -165,63 +172,6 @@ function exportLog()
     RunEmployeeList(projectNode.slot06.first);
     RunEmployeeList(projectNode.slot07.first);
     RunEmployeeList(projectNode.slot08.first);
-    /*
-    //Employee01
-    if(projectNode.slot01.last.employee.GetNome() != "Vacant")
-    {
-    	action = projectNode.slot01.last.actionList.first;
-    	RunList(f, action, projectNode.slot01.last.employee);
-    	
-    }
-    //Employee02
-    if(projectNode.slot02.last.employee.GetNome() != "Vacant")
-    {
-    	action = projectNode.slot02.last.actionList.first;
-    	RunList(f, action, projectNode.slot02.last.employee);
-    	
-    }
-    //Employee03
-    if(projectNode.slot03.last.employee.GetNome() != "Vacant")
-    {
-    	action = projectNode.slot03.last.actionList.first;
-    	RunList(f, action, projectNode.slot03.last.employee);
-    	
-    }
-    //Employee04
-    if(projectNode.slot04.last.employee.GetNome() != "Vacant")
-    {
-    	action = projectNode.slot04.last.actionList.first;
-    	RunList(f, action, projectNode.slot04.last.employee);
-    	
-    }
-    //Employee05
-    if(projectNode.slot05.last.employee.GetNome() != "Vacant")
-    {
-    	action = projectNode.slot05.last.actionList.first;
-    	RunList(f, action, projectNode.slot05.last.employee);
-    	
-    }
-    //Employee06
-    if(projectNode.slot06.last.employee.GetNome() != "Vacant")
-    {
-    	action = projectNode.slot06.last.actionList.first;
-    	RunList(f, action, projectNode.slot06.last.employee);
-    	
-    }
-    //Employee07
-    if(projectNode.slot07.last.employee.GetNome() != "Vacant")
-    {
-    	action = projectNode.slot07.last.actionList.first;
-    	RunList(f, action, projectNode.slot07.last.employee);
-    	
-    }
-    //Employee08
-    if(projectNode.slot08.last.employee.GetNome() != "Vacant")
-    {
-    	action = projectNode.slot08.last.actionList.first;
-    	RunList(f, action, projectNode.slot08.last.employee);
-    	
-    }
-	*/
+ 
     f.Close();
  }

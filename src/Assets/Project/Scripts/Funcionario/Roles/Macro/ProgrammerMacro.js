@@ -271,7 +271,7 @@ class ProgrammerMacro extends System.ValueType{
 		if(behavior.GetProgEvolution())
 		{
 			//actionNode.task = "Evolution Adhoc";
-			Evolution(1.5, 4.0, actionNode, isEsp, isPressured, prog, -0.2, "Evolution_Adhoc");
+			Evolution(2.0, 6.0, actionNode, isEsp, isPressured, prog, -0.6, "Evolution_Adhoc");
 			//ModifyCodeQuality(- 0.2);
 		}
 		else

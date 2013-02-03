@@ -47,7 +47,7 @@ class ManagerMacro extends System.ValueType{
 		behavior = behaviorP;
 		date = dateP;
 
-		var chance : float = Random.Range (0.0, 100);
+		var chance : float = Random.Range (0.0, 110);
 		var randMod : float = Random.Range (-1.5, 0.5);
 		var randMod_2 : float = Random.Range (0.5, 2.0);
 		

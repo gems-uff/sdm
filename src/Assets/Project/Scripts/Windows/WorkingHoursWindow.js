@@ -308,8 +308,8 @@ function TeamWorkHoursBar()
 	GUI.Box (Rect (00,00,110,20), "Staff's Hours");
 	hSliderValue2 = GUI.HorizontalSlider (Rect (00, 20, 110, 15), hSliderValue2, 0.0, 16.0);
 	barValue = parseInt(hSliderValue2);
-	barValue = barValue * 5;
-	GUI.Box (Rect (00,35,110, 25), "Weekly: " + barValue);
+	//barValue = barValue * 5;
+	GUI.Box (Rect (00,35,110, 25), "Daily: " + barValue);
 	if (GUI.Button (Rect (00,60,110,20), "Set")) {
 		func1.SetWorkingHours(barValue);
 		func2.SetWorkingHours(barValue);
@@ -328,8 +328,7 @@ function Awake () {
 }
 
 function OnGUI () {
-	if(playStyle.IsMacro() == false)
-		TeamWorkHoursBar();
+	TeamWorkHoursBar();
 	if (showWindow)
 		windowRect = GUI.Window (6, windowRect, WindowFunction, "Task Configuration");
 }
