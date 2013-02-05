@@ -165,6 +165,7 @@ function HireAction(thisCandidate : Funcionario)
 {
 	var action : ActionNode = new ActionNode();
 	var cost : int = thisCandidate.GetSalario() + contratacao;
+
 	//var log : BehaviorPlanner = func = GetComponentInChildren(Funcionario);
 	action.NewAction("Hired_Employee: " + thisCandidate.GetNome(), "Hired new employee: " + thisCandidate.GetNome(), "Hired new employee: " + thisCandidate.GetNome(), manager, cost, timer, "Hired: " + thisCandidate.GetNome(), "", "");
 	action.projectStat = manager.behavior.Log.GetProjectStat();
@@ -639,9 +640,10 @@ function ManagerHiring(role : String)
 			}
 		}
 		
-		if(hireFuncionario.ContratarFuncionario(func[first], staff[slot]))
+		if(hireFuncionario.CanHire(hired))
 		{
 			HireAction(hired);
+			hireFuncionario.ContratarFuncionario(hired, staff[slot]);
 			staff[slot].SetPapel(role);
 		}
 	}//end-else

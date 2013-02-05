@@ -32,6 +32,7 @@ function ContratarFuncionario(contratado : Funcionario, Func_Slot : Funcionario)
 				Func_Slot.SetPapel(stringNames.papelMarketing);
 				*/
 			Func_Slot.SetMorale(100);
+			Func_Slot.SetStamina(100);
 			Func_Slot.SetAtributos(func.GetAtributos());
 			Func_Slot.SetWorkingHours(8);
 			Func_Slot.SetEspecializacoes(func.GetEspecializacao());
@@ -58,9 +59,22 @@ function ContratarFuncionario(contratado : Funcionario, Func_Slot : Funcionario)
 				log.NewFiredAction(slot);
 			}
 			log.NewEmployeeNode(Func_Slot, slot);
+			//return true;
+		}
+		//else return false;
+	}
+	//else
+		//return false;
+}
+
+function CanHire(contratado : Funcionario)
+{
+	if(contratado.GetNome() != stringNames.vazio)
+	{
+		if(playerStats.GetSaldo() > (contratado.GetSalario() + HIRE_PRICE))
+		{
 			return true;
 		}
 	}
-	else
-		return false;
+	return false;
 }

@@ -31,6 +31,10 @@ private var dialogControl : boolean = false;
 private var showBadDialog : boolean = false;
 private var showQuitDialog : boolean = false;
 
+private var windowRect_tired : Rect = Rect (150,Screen.height - 265,735,175);
+private var windowRect_quit : Rect = Rect (150,Screen.height - 265,735,175);
+private var windowRect_dialog : Rect = Rect (150,Screen.height - 265,735,175);
+
 function SetDialogQuitEnable(){
 	dialogQuitEnable = true;
 }
@@ -59,7 +63,10 @@ function Update(){
 	if(!dialogLock.GetLock())
 	{
 		if (Input.GetKeyDown("space") && insideCollider == true)
+		{
 			dialogEnable = true;
+			//windowRect_dialog = GUI.Window (50, windowRect_dialog, Dialog_Funcionario, "Tired Dialog");
+		}
 		
 		if(func.GetNome() != stringNames.fired)
 		{
@@ -68,6 +75,7 @@ function Update(){
 				if (dialogEnableBadDialog == true && dialogControl == false)
 				{
 					showBadDialog = true;
+					//windowRect_tired = GUI.Window (51, windowRect_tired, BadMoraleDialog, "Tired Dialog");
 					dialogLock.SetLock(true);
 				}
 			}
@@ -79,6 +87,7 @@ function Update(){
 			if (dialogQuitEnable == true)
 			{
 				showQuitDialog = true;
+				//windowRect_quit = GUI.Window (52, windowRect_quit, QuitDialog, "Quit Dialog");
 				dialogLock.SetLock(true);
 			}
 		}
@@ -108,8 +117,8 @@ function OnTriggerExit( collider1 : Collider )
 
 //--------------------------------------------Dialog_Funcionario-----------------------------------------------------------
 
-function Dialog_Funcionario (){
-	GUI.BeginGroup(Rect (150,Screen.height - 265,1000,1000));
+function Dialog_Funcionario (windowID : int){
+	GUI.BeginGroup(Rect (02,00,800,200));
 	if (dialogEnable == true)
 	{
 		dialogLock.SetLock(true);
@@ -179,12 +188,13 @@ function Dialog_Funcionario (){
 		}
 	}
 	GUI.EndGroup ();
+	GUI.DragWindow();
 }
 
 //--------------------------------------------Awake-----------------------------------------------------------
 
-function BadMoraleDialog(){
-	GUI.BeginGroup(Rect (150,Screen.height - 265,1000,1000));
+function BadMoraleDialog(windowID : int){
+	GUI.BeginGroup(Rect (02,00,800,200));
 	if (showBadDialog == true && dialogControl == false)
 	{
 		timer.PauseGame();
@@ -208,9 +218,10 @@ function BadMoraleDialog(){
 		}
 	}
 	GUI.EndGroup ();
+	GUI.DragWindow();
 }
-function QuitDialog(){
-	GUI.BeginGroup(Rect (150,Screen.height - 265,1000,1000));
+function QuitDialog(windowID : int){
+	GUI.BeginGroup(Rect (02,00,800,200));
 	if (showQuitDialog == true)
 	{
 		timer.PauseGame();
@@ -233,6 +244,7 @@ function QuitDialog(){
 		}
 	}
 	GUI.EndGroup ();
+	GUI.DragWindow();
 }
 
 function Awake() 
@@ -247,9 +259,15 @@ function Awake()
 //--------------------------------------------OnGUI-----------------------------------------------------------
 
 function OnGUI (){
-	Dialog_Funcionario();
-	BadMoraleDialog();
-	QuitDialog();
+	//Dialog_Funcionario();
+	//BadMoraleDialog();
+	//QuitDialog();
+	if(dialogEnable)
+		windowRect_dialog = GUI.Window (50, windowRect_dialog, Dialog_Funcionario, "Dialog");
+	else if(showBadDialog)
+		windowRect_tired = GUI.Window (51, windowRect_tired, BadMoraleDialog, "Tired Dialog");
+	else if(showQuitDialog)
+		windowRect_quit = GUI.Window (52, windowRect_quit, QuitDialog, "Quit Dialog");
 }
 
 

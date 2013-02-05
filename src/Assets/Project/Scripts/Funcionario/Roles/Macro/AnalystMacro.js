@@ -89,8 +89,10 @@ class AnalystMacro extends System.ValueType{
 				else
 				{
 					//Rounded
-					//chance = Random.Range (0, 100);
-					if(project.GetRequirements() < project.GetElicitation())
+					chance = Random.Range (0, 100);
+					if((chance < 30) || (project.GetRequirements() == 100))
+						Quality(actionNode, "Balanced_Quality", "Balanced");
+					else if(project.GetRequirements() < project.GetElicitation())
 						//Specification Path
 						Specification(actionNode, "Balanced_Specification", "Balanced");
 					else
@@ -112,46 +114,56 @@ class AnalystMacro extends System.ValueType{
 		var d1 : String;
 		var d2 : String;
 		//actionNode.projectStat = behavior.Log.GetProjectStat();
-		if(project.GetPrototype() > 0)
+		if((project.GetPrototype() > 0) && (project.GetSincronismo() != 0))
 		{
-			//actionNode.influence = equipe.influences.GetInfluenceAnalystPrototype();
 			actionNode.influence = equipe.influences.GetInfluence("Prototype");
 			//Validation with Prototype
 			project.ConsumePrototype();
 			val = val * 2.0;
 			val = parseInt(val);
-			project.UpdateElicitation(val, true);
+			val = project.UpdateElicitation(val, true);
 			AnalistReport(parseInt(val), report);
 			
 			d1 = "Employee was ordered to focus on \n" + descr + "\n and validated a Prototype";
 			d2 = "Employee was ordered to focus on " + descr + "<br> and validated a Prototype";
-			actionNode.NewAction(task + "_Prototype", d1, d2, func, date, "Analyst", val.ToString() + " Discovery", "", rate);
-			
+			if(val == 0)
+				actionNode.NewAction(task + "_Prototype", d1, d2, func, date, "Analyst", val.ToString() + " Discovery Change", "", rate);
+			else
+				actionNode.NewAction(task + "_Prototype", d1, d2, func, date, "Analyst", val.ToString() + " Discovery", "", rate);
+				
 			floatingLines.showFloatText1("", "Elicitation", "blue","", delay);
 			floatingLines.showFloatText2("+", val.ToString(), "blue", " Discovery", delay);
 		}
 		else
 		{
-			//Validation with Req reviews
-			//if(project.GetSincronismo() < 100)	//Se o projeto esta em andamento entao o sincronismo vai mudando lentamente de acordo com o analista
-			//{
-			
 			if(project.GetSincronismo() == 00)	//Se o projeto esta sendo iniciado, entao o valor de sincronismo inicial varia de acordo com o desempenho do analista
 			{
 				val = val * constant.ANALYST_BEGINNING;
 			}
+			//Validation with Req reviews
+			//if(project.GetSincronismo() < 100)	//Se o projeto esta em andamento entao o sincronismo vai mudando lentamente de acordo com o analista
+			//{
 			//Update project validation rate
 			val = parseInt(val);
 			val = project.UpdateElicitation(val, false);
 			AnalistReport(val, report);
+			var newBug : int = 0;
+			newBug = ClientFindBug();
 			
 			d1 = "Employee was ordered to focus on \n" + descr + "\n and validated with Reviews";
 			d2 = "Employee was ordered to focus on " + descr + "<br> and validated with Reviews";
-			actionNode.NewAction(task + "_Reviews", d1, d2, func, date, "Analyst", val.ToString() + " Discovery", "", rate);
+			if(newBug == 0)
+			{
+				actionNode.NewAction(task + "_Reviews", d1, d2, func, date, "Analyst", val.ToString() + " Discovery", newBug + " New Bug", "", rate);
+			}
+			else
+			{
+				actionNode.NewAction(task + "_Reviews", d1, d2, func, date, "Analyst", val.ToString() + " Discovery", "", rate);
+			}
 			
 			floatingLines.showFloatText1("", "Elicitation", "blue","", delay);
 			floatingLines.showFloatText2("+", val.ToString(), "blue", " Discovery", delay);
-			ClientFindBug();
+			
 			//}
 		}
 	}
@@ -231,7 +243,7 @@ class AnalystMacro extends System.ValueType{
 		if(qnt > 0)
 		{
 			equipe.SetAcceptionBonus(analista);
-			equipe.influences.SetBonusTesterAnalyst(analista, actionNode);
+			equipe.influences.SetBonusTesterAnalyst(analista, actionNode, qnt);
 		}
 		project.testCases.AddAcception(parseInt(analista * 0.05));
 		floatingLines.showFloatText1("", "Test Cases", "blue","", delay);
@@ -258,16 +270,11 @@ class AnalystMacro extends System.ValueType{
 					project.RandomizeBugs(1);
 					//project.IncrementBugsFoundByType(0, 0, 0, 1);
 					floatingLines.showFloatText2("", "Found a ", "blue","Bug", delay);
+					return 1;
 				}
 			}
 		}
-		/*
-		if ((random < 20)&& project.GetBugAcception() > project.GetBugAcceptionFound())
-		{
-			project.IncrementBugsFoundByType(0, 0, 0, 1);
-			floatingLines.showFloatText2("+", analista.ToString(), "blue","Bug");
-		}
-		*/
+		return 0;
 	}
 	
 	function AnalistReport(t : int, report : WeeklyReport)

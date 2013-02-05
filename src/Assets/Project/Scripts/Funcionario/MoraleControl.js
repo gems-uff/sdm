@@ -37,25 +37,25 @@ function ChangeStamina(){
 			//Saturday
 			if( (timer.GetGameTime() % 7 == 5) && func.behavior.GetSaturday() && changeFactor !=0)
 			{
-				staminaMod = ComputeChange(- Mathf.Max(changeFactor * 0.5 * 1.25, 2));
+				staminaMod = ComputeChange(- Mathf.Max(changeFactor * 0.7, 2));
 			}
 			else
 			{
 				if(timer.GetGameTime() % 7 == 5)
 				{
-					staminaMod = ComputeChange(8);
+					staminaMod = ComputeChange(5);
 				}
 			}
 			//Sunday
 			if((timer.GetGameTime() % 7 == 6) && func.behavior.GetSunday() && changeFactor !=0)
 			{
-				staminaMod = ComputeChange(- Mathf.Max(changeFactor * 0.5 * 1.25, 2));
+				staminaMod = ComputeChange(- Mathf.Max(changeFactor * 0.7, 2));
 			}
 			else
 			{
 				if(timer.GetGameTime() % 7 == 6)
 				{
-					staminaMod = ComputeChange(8);
+					staminaMod = ComputeChange(5);
 				}
 			}
 		}
@@ -136,7 +136,7 @@ function StaminaActions()
 			dialog.SetDialogBadDialog(true);
 			//Decrease morale while tired
 			func.SetMorale(CheckMorale(func.GetMorale() - constant.MORALE_MOD));
-			moraleDisplay.showFloatText3("", "-4", "red", "  Morale");
+			moraleDisplay.showFloatText3("", "-" + constant.MORALE_MOD, "red", "  Morale");
 		}
 	}
 }

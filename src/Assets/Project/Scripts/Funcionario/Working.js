@@ -81,15 +81,15 @@ function AjusteSalario(){
 	var mod : float = 1.0;
 	switch(func.GetCargo())
 	{
-	   case stringNames.jobJunior: 	//caso analista
+	   case stringNames.jobJunior: 	//caso junior
 			mod = constant.JUNIOR_SALARY;
 	   break;
 
-	   case stringNames.jobPleno:	//caso arquiteto
+	   case stringNames.jobPleno:	//caso pleno
 			mod = constant.PLENO_SALARY;
 	   break;
 	   
-	   case stringNames.jobSenior:	//caso gerente
+	   case stringNames.jobSenior:	//caso senior
 			mod = constant.SENIOR_SALARY;
 	   break;
 

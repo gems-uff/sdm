@@ -5,7 +5,7 @@
 //menuNegotiation = menuObj.GetComponent(NegotiationWindow);
 //menuNegotiation.SetShowWindow(func);
 
-public var MARKETING_FACTOR : int = 4; //O max que o marketing pode alterar eh em 25% (100 / 4)
+private var MARKETING_FACTOR : float = 0.0025; //O max que o marketing pode alterar eh em 25% (100 / 4)
 public var project : Project;
 public var timer : GameTime;
 public var windowController : WindowController;
@@ -57,13 +57,13 @@ function Action(text : String, work_1 : String, work_2 : String)
 	func.behavior.AddAction(action);
 }
 function ApplyChanges(){
-	var marketing : float = func.GetMarketing();
+	var marketing : float = func.GetMarketing() * func.GetJob();
 	var marketing_more : float;
 	var marketing_less : float;
 	var trade : float;
 	var tradeOff : float;
 
-	marketing = (marketing / MARKETING_FACTOR / 100);
+	marketing = (marketing * MARKETING_FACTOR);
 	marketing_more = 1 + marketing;
 	marketing_less = 1 - marketing;
 	func.EarnExperienceNegotiation(parseInt(marketing * 100));
@@ -170,7 +170,7 @@ function WindowFunction(windowID : int){
 		qualityBool = false;
 		tradeSet = true;
 	}
-	moneyBool = GUI.Toggle (Rect (02, 073, 98, 30), moneyBool, "+ Money");
+	moneyBool = GUI.Toggle (Rect (02, 073, 98, 30), moneyBool, "+ Credits");
 	if(moneyBool == true)
 	{
 		timeBool = false;
@@ -205,7 +205,7 @@ function WindowFunction(windowID : int){
 		moreQuality = false;
 		tradeOffSet = true;
 	}
-	lessMoney = GUI.Toggle (Rect (02, 158, 98, 30), lessMoney, "- Money");
+	lessMoney = GUI.Toggle (Rect (02, 158, 98, 30), lessMoney, "- Credits");
 	if(lessMoney == true)
 	{
 		lessTime = false;

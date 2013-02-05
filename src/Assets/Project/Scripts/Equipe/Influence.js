@@ -233,11 +233,14 @@ import System;
 	//Tester
 	//----------------------------------------------------------------
 	
-	function SetBonusTesterAnalyst(t: float, action : ActionNode)
+	function SetBonusTesterAnalyst(t: float, action : ActionNode, qnt : int)
 	{
 		this.bonusTestAcception = bonusTestAcception + (t * 0.01);
 		this.bonusTestAcception = System.Math.Round(bonusTestAcception, 3);
-		this.testAnalystInfluence.Add(CopyAction(action));
+		for(var i : int = 0; i < qnt; i++)
+		{
+			this.testAnalystInfluence.Add(CopyAction(action));
+		}
 	}
 	function SetBonusTesterArchIntegration(t: float, action : ActionNode, qnt : int)
 	{

@@ -102,13 +102,15 @@ function UpdateElicitation(t : float, prototype : boolean)
 	var change : float;
 	//var passedTime : int;
 	change = t / SincMod();
-	//passedTime = timer.GetGameTime() - lastValidation;
-	//passedTime = volatility * passedTime / SincMod();
+	//Limit to 50% max at the same time
+	change = Mathf.Min(change, 45);
+
 	if (!completed)
 	{
-		//sincronismo = sincronismo - passedTime;
 		if((sincronismo < 85.0) || (prototype))
 			sincronismo = sincronismo + change;
+		else
+			change = 0;
 	}
 	sincronismo = Mathf.Clamp(sincronismo, 0.0, 100.0);
 	sincronismo = Mathf.Round(sincronismo * 1000f) / 1000f;
@@ -121,7 +123,6 @@ function UpdateElicitation(t : float, prototype : boolean)
 
 function ReduceSincronism()
 {
-	//passedTime = timer.GetGameTime() - lastValidation;
 	passedTime = volatility * 5 / SincMod();
 	if (!completed)
 	{
@@ -180,7 +181,6 @@ function GetRequirements()
 function ChangeRequirements(t : float)
 {
 	var change : float = t / SincMod();
-	//var old : float = GetRequirements() + change;
 	requirements = GetRequirements() + change;
 	CheckRequirements();
 	return change;
@@ -199,19 +199,6 @@ function SetRequirements(t : float)
 
 function CheckRequirements()
 {
-	/*
-	if(requirements > sincronismo)
-	{
-		requirements = sincronismo;
-	}
-	else
-	{
-		if(requirements < 0.0)
-		{
-			requirements = 0.0;
-		}
-	}
-	*/
 	requirements = Mathf.Clamp(requirements, 0.0, sincronismo);
 	requirements = Mathf.Round(requirements * 1000f) / 1000f;
 }
@@ -279,16 +266,6 @@ function SetBugsByType(unitary : int, integration : int, system : int, acception
 	bugIntegration = integration;
 	bugSystem = system;
 	bugAcception = acception; 
-	/*
-	Debug.Log("-----------------------");
-	Debug.Log("--- SetBugsByType ----");
-	Debug.Log("bugUnitary: " + bugUnitary);
-	Debug.Log("bugIntegration: " + bugIntegration);
-	Debug.Log("bugSystem: " + bugSystem);
-	Debug.Log("bugAcception: " + bugAcception);
-	Debug.Log("Bugs in software: " + GetTotalBugs());
-	Debug.Log("-----------------------");
-	*/
 }
 function IncrementBugsByType(unitary : int, integration : int, system : int, acception : int)
 {
@@ -296,16 +273,6 @@ function IncrementBugsByType(unitary : int, integration : int, system : int, acc
 	bugIntegration += integration;
 	bugSystem += system;
 	bugAcception += acception; 
-	/*
-	Debug.Log("-----------------------");
-	Debug.Log("--- IncrementBugsByType ----");
-	Debug.Log("bugUnitary: " + bugUnitary);
-	Debug.Log("bugIntegration: " + bugIntegration);
-	Debug.Log("bugSystem: " + bugSystem);
-	Debug.Log("bugAcception: " + bugAcception);
-	Debug.Log("Bugs in software: " + GetTotalBugs());
-	Debug.Log("-----------------------");
-	*/
 }
 
 function SetBugsFoundByType(unitary : int, integration : int, system : int, acception : int)
@@ -314,33 +281,13 @@ function SetBugsFoundByType(unitary : int, integration : int, system : int, acce
 	bugIntegrationFound = integration;
 	bugSystemFound = system;
 	bugAcceptionFound = acception; 
-	/*
-	Debug.Log("-----------------------");
-	Debug.Log("--- SetBugsFoundByType ----");
-	Debug.Log("bugUnitaryFound: " + bugUnitaryFound);
-	Debug.Log("bugIntegrationFound: " + bugIntegrationFound);
-	Debug.Log("bugSystemFound: " + bugSystemFound);
-	Debug.Log("bugAcceptionFound: " + bugAcceptionFound);
-	Debug.Log("Bugs Found in software: " + GetTotalBugsFound());
-	Debug.Log("-----------------------");
-	*/
 }
 function IncrementBugsFoundByType(unitary : int, integration : int, system : int, acception : int)
 {
 	bugUnitaryFound += unitary;
 	bugIntegrationFound += integration;
 	bugSystemFound += system;
-	bugAcceptionFound += acception; 
-	/*
-	Debug.Log("-----------------------");
-	Debug.Log("--- IncrementBugsFoundByType ----");
-	Debug.Log("bugUnitaryFound: " + bugUnitaryFound);
-	Debug.Log("bugIntegrationFound: " + bugIntegrationFound);
-	Debug.Log("bugSystemFound: " + bugSystemFound);
-	Debug.Log("bugAcceptionFound: " + bugAcceptionFound);
-	Debug.Log("Bugs Found in software: " + GetTotalBugsFound());
-	Debug.Log("-----------------------");
-	*/
+	bugAcceptionFound += acception;
 }
 function SetBugsRepairedByType(unitary : int, integration : int, system : int, acception : int)
 {
@@ -348,15 +295,6 @@ function SetBugsRepairedByType(unitary : int, integration : int, system : int, a
 	bugIntegrationRepaired = integration;
 	bugSystemRepaired = system;
 	bugAcceptionRepaired = acception; 
-	/*
-	Debug.Log("-----------------------");
-	Debug.Log("--- SetBugsRepairedByType ----");
-	Debug.Log("bugUnitaryRepaired: " + bugUnitaryRepaired);
-	Debug.Log("bugIntegrationRepaired: " + bugIntegrationRepaired);
-	Debug.Log("bugSystemRepaired: " + bugSystemRepaired);
-	Debug.Log("bugAcceptionRepaired: " + bugAcceptionRepaired);
-	Debug.Log("-----------------------");
-	*/
 }
 function IncrementBugsRepairedByType(unitary : int, integration : int, system : int, acception : int, chanceMod : float)
 {
@@ -403,23 +341,16 @@ function IncrementBugsRepairedByType(unitary : int, integration : int, system : 
 		}
 	}
 	return newBug;
-	/*
-	Debug.Log("-----------------------");
-	Debug.Log("--- IncrementBugsRepairedByType ----");
-	Debug.Log("bugUnitaryRepaired: " + bugUnitaryRepaired);
-	Debug.Log("bugIntegrationRepaired: " + bugIntegrationRepaired);
-	Debug.Log("bugSystemRepaired: " + bugSystemRepaired);
-	Debug.Log("bugAcceptionRepaired: " + bugAcceptionRepaired);
-	Debug.Log("Bugs Found in software: " + GetTotalBugsRepaired());
-	Debug.Log("-----------------------");
-	*/
 }
 
 function GetTotalBugs()
 {
-	var aux : int;
-	aux = (bugUnitary + bugIntegration + bugAcception + bugSystem);
-	return aux;
+	return (bugUnitary + bugIntegration + bugAcception + bugSystem);
+}
+function GetTotalBugsString()
+{
+	var bugs : String = (bugUnitary + " " + bugIntegration + " " +  bugSystem + " " +  bugAcception);
+	return bugs;
 }
 function GetTotalBugsFound()
 {
@@ -652,7 +583,7 @@ function GetStats()
 	stats.bugSystemRepaired = this.bugSystemRepaired;
 	stats.bugAcceptionRepaired = this.bugAcceptionRepaired;
 	stats.date = timer.GetGameTime() + ":" + timer.GetTimeDayString();
-	stats.totalBugs = this.GetTotalBugs();
+	stats.totalBugs = this.GetTotalBugs() + ": " + this.GetTotalBugsString();
 	
 	return stats;
 }

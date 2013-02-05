@@ -453,7 +453,7 @@ class ProgrammerMacro extends System.ValueType{
 		var repaired : int = 0;
 		var newBugs : int = 0;
 		
-		t = parseInt(programador * 0.05 * modQuantity * constant.PROGRAMMER_REPAIR); //from 0.25 to 0.05
+		t = parseInt(programador * 0.08 * modQuantity * constant.PROGRAMMER_REPAIR); //from 0.25 to 0.05
 		
 		i = 0;
 		//Debug.Log("Repair #Bugs: " + t);
@@ -506,7 +506,7 @@ class ProgrammerMacro extends System.ValueType{
 			NewAction(actionNode, isEsp, isPressured, prog, repaired.ToString() + " Repaired", "", "",task, progress);
 		
 		floatingLines.showFloatText1("", "Repair", "blue", "", delay);
-		floatingLines.showFloatText2("+", repaired.ToString(), "blue", " Bugs Repaired", delay);
+		floatingLines.showFloatText2("+", repaired.ToString(), "blue", " Bug Repaired", delay);
 		//project.IncrementBugsRepairedByType(bugUnitary, bugIntegration, bugSystem, bugAcception);
 	}
 	

@@ -23,7 +23,7 @@ class ProjectStats
 	public var bugSystemRepaired : int;
 	public var bugAcceptionRepaired : int;
 	
-	public var totalBugs : int;
+	public var totalBugs : String;
 	
 	public var date : String;
 	public var income : int;

@@ -1,7 +1,7 @@
 
 public var stringNames : StringNames;
 public var behavior : BehaviorPlanner;
-
+public var constants : GameConstants;
 
 public var atributos : Atributos = new Atributos();
 public var especializacao : Especializacoes = new Especializacoes();
@@ -366,6 +366,21 @@ function GetCargo() {
 	return job;
 }
 
+function GetJob()
+{
+	if(job == stringNames.jobJunior)
+	{
+		return constants.JUNIOR_MODIFICATOR;
+	}
+	else if (job == stringNames.jobPleno)
+	{
+		return constants.PLENO_MODIFICATOR;
+	}
+	else
+	{
+		return constants.SENIOR_MODIFICATOR;
+	}
+}
 function SetCargo(t: String) {
 	job = t;
 }

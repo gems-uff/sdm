@@ -67,14 +67,7 @@ function WindowFunction(windowID : int){
 	if(project.GetFractionDone() >= 100)							//Tela que projeto foi concluido a tempo
 	{
 		var auxBugs : int;
-		if(gameStyle.IsMacro())
-		{
-			auxBugs = parseInt(project.GetTotalBugsNotFixed());
-		}
-		else
-		{
-			auxBugs = parseInt(project.GetNumBugs());
-		}
+		auxBugs = parseInt(project.GetTotalBugsNotFixed());
 		timer.PauseGame();
 		GUI.Box (Rect (02,018,296,350), 
 		"\n We conclude the requested project and we've delivered to the customer \n\n" +
@@ -90,7 +83,7 @@ function WindowFunction(windowID : int){
 		"\n Validation Adjustment: " + pgjog.GetValidadionAdjustment() +
 		"\n Penalty for Bugs: " + pgjog.GetBugPenalty(auxBugs) +
 		"\n Final payment: " + pgjog.CalculaPagamentoFinal() + 
-		"\n Earned Company Experience: " + (aux_projectsize * parseInt(project.GetSincronismo()) - 10 * auxBugs), customGuiStyle);
+		"\n Earned Company Experience: " + (aux_projectsize * parseInt(project.GetSincronismo()) - 5 * auxBugs), customGuiStyle);
 		if (GUI.Button (Rect (02,368,296,25), "Close Window")) 
 		{
 			pgjog.PagarJogadorConclusao();
