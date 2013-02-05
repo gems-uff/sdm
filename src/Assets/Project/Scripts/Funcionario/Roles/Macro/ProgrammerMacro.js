@@ -354,7 +354,7 @@ class ProgrammerMacro extends System.ValueType{
 		if(refact != 0)
 			progress = true;
 			
-		NewAction(actionNode, isEsp, isPressured, prog, refact.ToString() + " Quality", "", "", "Refactoring", progress);
+		NewAction(actionNode, isEsp, isPressured, prog, refact.ToString() + " Quality", "", "", "Refactoring", progress, "Refactoring");
 		floatingLines.showFloatText1("", "Refactoring", "blue", "", delay);
 		floatingLines.showFloatText2("+", refact.ToString(), "blue", "% Improved", delay);
 	}
@@ -422,7 +422,7 @@ class ProgrammerMacro extends System.ValueType{
 			
 			ProgReport(codeLines, 0, report);
 			NewAction(actionNode, isEsp, isPressured, prog, codeLines.ToString() + " Progress", refact.ToString() + " Quality", 
-			bugCount.ToString() + " New Bug", task, progress);
+			bugCount.ToString() + " New Bug", task, progress, "Progress");
 			
 			floatingLines.showFloatText1("", "Evolution", "blue", "", delay);
 			floatingLines.showFloatText2("+", codeLines.ToString(), "blue", " Progress", delay);		
@@ -431,7 +431,7 @@ class ProgrammerMacro extends System.ValueType{
 		}
 		else
 		{
-			NewAction(actionNode, isEsp, isPressured, prog, "Idle", "Idle", "", task, progress);
+			NewAction(actionNode, isEsp, isPressured, prog, "Idle", "Idle", "", task, progress, "Progress");
 		}
 	}
 	
@@ -501,9 +501,9 @@ class ProgrammerMacro extends System.ValueType{
 		if(repaired > 0)
 			progress = true;
 		if(newBugs > 0)	
-			NewAction(actionNode, isEsp, isPressured, prog, repaired.ToString() + " Repaired", "", newBugs.ToString() + " New Bug",task, progress);
+			NewAction(actionNode, isEsp, isPressured, prog, repaired.ToString() + " Repaired", "", newBugs.ToString() + " New Bug",task, progress, "Repair");
 		else
-			NewAction(actionNode, isEsp, isPressured, prog, repaired.ToString() + " Repaired", "", "",task, progress);
+			NewAction(actionNode, isEsp, isPressured, prog, repaired.ToString() + " Repaired", "", "",task, progress, "Repair");
 		
 		floatingLines.showFloatText1("", "Repair", "blue", "", delay);
 		floatingLines.showFloatText2("+", repaired.ToString(), "blue", " Bug Repaired", delay);
@@ -520,7 +520,7 @@ class ProgrammerMacro extends System.ValueType{
 	//Set the action
 	//--------------------------------------------
 	function NewAction(actionNode : ActionNode, isEsp : boolean, isPressured : boolean, prog : String, work : String, work_2 : String, work_5 : String, 
-	task : String, progress : boolean)
+	task : String, progress : boolean, type : String)
 	{
 		var esp : String = "";
 		var pressure : String = "";
@@ -543,6 +543,6 @@ class ProgrammerMacro extends System.ValueType{
 		if(progress)
 			actionNode.NewAction(task, d1, d2, func, date, "Programmer", work, work, work_2, actionNode.work_4, work_5, actionNode.artifact, rate);
 		else
-			actionNode.NewAction(task, d1, d2, func, date, "Programmer", work, "0 Change", actionNode.artifact, rate);
+			actionNode.NewAction(task, d1, d2, func, date, "Programmer", work, "0 " + type + " Change", actionNode.artifact, rate);
 	}
 }

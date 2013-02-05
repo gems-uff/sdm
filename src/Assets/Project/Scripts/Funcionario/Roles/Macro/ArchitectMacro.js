@@ -167,7 +167,7 @@ class ArchitectMacro extends System.ValueType{
 		{
 			d1 = "Employee was ordered to focus on " + descr + " \n and improved the architecture";
 			d2 = "Employee was ordered to focus on " + descr + " <br> and improved the architecture";
-			actionNode.NewAction(task + "_Architecture", d1, d2, func, date, "Architect", arquiteto.ToString() + " % Aid", rate);
+			actionNode.NewAction(task + "_Architecture", d1, d2, func, date, "Architect", arquiteto.ToString() + " % Aid Programmer", rate);
 			ModularizateCode(actionNode);
 		}
 		else

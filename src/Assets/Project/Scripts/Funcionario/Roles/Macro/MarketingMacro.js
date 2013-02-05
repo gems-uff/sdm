@@ -38,7 +38,7 @@ class MarketingMacro extends System.ValueType{
 			color = "red";
 		}
 		
-		actionNode.NewAction("Aid", d1, d2, func, date, "Marketing", aid.ToString() + " % Aid", credits.ToString() + " Credits", "", rate);
+		actionNode.NewAction("Aid", d1, d2, func, date, "Marketing", aid.ToString() + " % Aid Analyst", credits.ToString() + " Credits", "", rate);
 		
 		equipe.SetBonusAnalista(aid);
 		equipe.influences.SetBonusAnalystMarketing(aid, actionNode);

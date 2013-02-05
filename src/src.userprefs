@@ -1,14 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Funcionario\Roles\Macro\AnalystMacro.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Funcionario\Roles\Macro\MarketingMacro.js">
     <Files>
-      <File FileName="Assets\Project\Scripts\TimeGame\GameTime.js" Line="228" Column="27" />
-      <File FileName="Assets\Project\Scripts\Project\Project.js" Line="352" Column="75" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\AnalystMacro.js" Line="277" Column="12" />
-      <File FileName="Assets\Project\Scripts\Misc\ExportLogFile.js" Line="53" Column="119" />
-      <File FileName="Assets\Project\Scripts\Windows\ProjectEnd.js" Line="77" Column="51" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\ProgrammerMacro.js" Line="509" Column="22" />
-      <File FileName="Assets\Project\Scripts\Class\ProjectStats.js" Line="25" Column="2" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\ManagerMacro.js" Line="253" Column="99" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\AnalystMacro.js" Line="157" Column="138" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\MarketingMacro.js" Line="41" Column="96" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\ArchitectMacro.js" Line="170" Column="112" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

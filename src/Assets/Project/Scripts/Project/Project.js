@@ -485,7 +485,7 @@ function SetIscomplete (t: boolean) {
 	completed = t;
 }
 function GetDeadLine () {						//Retorna o Deadline no formato Data/Hora
-	var deadline = timer.GetTimeString(deadline);
+	var deadline = timer.GetTimeDaysString(deadline);
 	return deadline;
 }
 function GetFractionDone () {					//Retorna a percentagem ja concluida do software

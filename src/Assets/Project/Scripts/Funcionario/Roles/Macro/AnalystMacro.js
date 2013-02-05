@@ -154,7 +154,7 @@ class AnalystMacro extends System.ValueType{
 			d2 = "Employee was ordered to focus on " + descr + "<br> and validated with Reviews";
 			if(newBug == 0)
 			{
-				actionNode.NewAction(task + "_Reviews", d1, d2, func, date, "Analyst", val.ToString() + " Discovery", newBug + " New Bug", "", rate);
+				actionNode.NewAction(task + "_Reviews", d1, d2, func, date, "Analyst", val.ToString() + " Discovery", val.ToString() + " Discovery", newBug + " New Bug", "", rate);
 			}
 			else
 			{

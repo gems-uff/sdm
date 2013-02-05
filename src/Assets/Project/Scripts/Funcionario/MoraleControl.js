@@ -136,7 +136,7 @@ function StaminaActions()
 			dialog.SetDialogBadDialog(true);
 			//Decrease morale while tired
 			func.SetMorale(CheckMorale(func.GetMorale() - constant.MORALE_MOD));
-			moraleDisplay.showFloatText3("", "-" + constant.MORALE_MOD, "red", "  Morale");
+			moraleDisplay.showFloatText3("", "-" + constant.MORALE_MOD, "red", "  Morale", 0.5);
 		}
 	}
 }
@@ -153,7 +153,7 @@ function DecreaseMoralePayment()
 		func.SetMorale(morale);
 		moraleBar.Morale_Bar();
 		if (morale > 0)
-			moraleDisplay.showFloatText3("", moraleChange.ToString(), "red", "  Morale");
+			moraleDisplay.showFloatText3("", moraleChange.ToString(), "red", "  Morale", 0.5);
 	}
 }
 
@@ -168,7 +168,7 @@ function DecreaseMoraleFailProject()
 		morale = CheckMorale(morale);
 		func.SetMorale(morale);
 		moraleBar.Morale_Bar();
-		moraleDisplay.showFloatText3("", moraleChange.ToString(), "red", "  Morale");
+		moraleDisplay.showFloatText3("", moraleChange.ToString(), "red", "  Morale", 0.5);
 	}
 }
 
@@ -183,7 +183,7 @@ function IncreaseMoraleFinishedProject(mod : float)
 		morale = CheckMorale(morale);
 		func.SetMorale(morale);
 		moraleBar.Morale_Bar();
-		moraleDisplay.showFloatText3("+", moraleChange.ToString(), "green", "  Morale");
+		moraleDisplay.showFloatText3("+", moraleChange.ToString(), "green", "  Morale", 0.5);
 	}
 }
 
@@ -198,7 +198,7 @@ function IncreaseMoralePromotion()
 		morale = CheckMorale(morale);
 		func.SetMorale(morale);
 		moraleBar.Morale_Bar();
-		moraleDisplay.showFloatText3("+", moraleChange.ToString(), "green", "  Morale");
+		moraleDisplay.showFloatText3("+", moraleChange.ToString(), "green", "  Morale", 0.5);
 	}
 }
 
@@ -213,7 +213,7 @@ function IncreaseMoraleDificulty(change : int)
 		morale = CheckMorale(morale);
 		func.SetMorale(morale);
 		moraleBar.Morale_Bar();
-		moraleDisplay.showFloatText3("+", moraleChange.ToString(), "green", "  Morale");
+		moraleDisplay.showFloatText3("+", moraleChange.ToString(), "green", "  Morale", 0.5);
 	}
 }
 
@@ -228,7 +228,7 @@ function IncreaseMoraleMonthly()
 		morale = CheckMorale(morale);
 		func.SetMorale(morale);
 		moraleBar.Morale_Bar();
-		moraleDisplay.showFloatText3("+", moraleChange.ToString(), "green", "  Morale");
+		moraleDisplay.showFloatText3("+", moraleChange.ToString(), "green", "  Morale", 0.5);
 	}
 }
 function CheckMorale(moraleCheck : int)

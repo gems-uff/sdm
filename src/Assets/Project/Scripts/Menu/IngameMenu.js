@@ -49,14 +49,7 @@ function StatusProjeto()	{
 	//timeText = timer.GetTime().ToString();
 	timeText = timer.GetTimeDaysString();
 	deadlineText = project.GetDeadLine().ToString();
-	if(playStyle.IsMacro() == false)
-	{
-		bugsText = parseInt(project.GetNumBugs()).ToString();							//parseint para converter o float para inteiro
-	}
-	else
-	{
-		bugsText = parseInt(project.GetTotalBugsFound() - project.GetTotalBugsRepaired()).ToString();
-	}
+	bugsText = parseInt(project.GetTotalBugsFound() - project.GetTotalBugsRepaired()).ToString();
 	completedText = (project.GetFractionDone().ToString() + " %");
 	modelText = (parseInt(project.GetRequirements()).ToString() + " %");
 	sincronismoText = (parseInt(project.GetSincronismo()).ToString() + " %");	//parseint para converter o float para inteiro
