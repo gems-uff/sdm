@@ -56,7 +56,7 @@ function ContratarFuncionario(contratado : Funcionario, Func_Slot : Funcionario)
 			slot = log.GetSlot(Func_Slot);
 			if(name != stringNames.fired)
 			{
-				log.NewFiredAction(slot);
+				log.NewFiredAction(slot, Func_Slot);
 			}
 			log.NewEmployeeNode(Func_Slot, slot);
 			//return true;

@@ -133,10 +133,14 @@ function StaminaActions()
 		}
 		else
 		{
-			dialog.SetDialogBadDialog(true);
-			//Decrease morale while tired
-			func.SetMorale(CheckMorale(func.GetMorale() - constant.MORALE_MOD));
-			moraleDisplay.showFloatText3("", "-" + constant.MORALE_MOD, "red", "  Morale", 0.5);
+			//If sat or sunday working
+			if(((timer.GetGameTime() % 7 == 5) && func.behavior.GetSaturday()) || ((timer.GetGameTime() % 7 == 6) && func.behavior.GetSunday()) || (timer.GetGameTime() % 7 < 5))
+			{
+				dialog.SetDialogBadDialog(true);
+				//Decrease morale while tired
+				func.SetMorale(CheckMorale(func.GetMorale() - constant.MORALE_MOD));
+				moraleDisplay.showFloatText3("", "-" + constant.MORALE_MOD, "red", "  Morale", 0.5);
+			}
 		}
 	}
 }

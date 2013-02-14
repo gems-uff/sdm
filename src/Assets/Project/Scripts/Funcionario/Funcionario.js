@@ -713,7 +713,7 @@ function FireEmployee (event : boolean) {
 		//fire action
 		var slot : EmployeeList;
 		slot = log.GetSlot(this);
-		log.NewFiredAction(slot);
+		log.NewFiredAction(slot, this);
 	}
 	EmptyEmployee();
 	this.SetNome(stringNames.fired);
@@ -723,6 +723,7 @@ function FireEmployee (event : boolean) {
 	this.SetPapelRate(100);
 	this.SetPapelSecRate(0);
 	this.SetMorale(100);
+	this.SetStamina(100);
 	this.SetWorkingHours(0);
 	this.SetSalarioDefault(0);
 	this.SetSalario(0);
@@ -773,6 +774,7 @@ function ClearEmployee () {
 	this.SetPapelRate(100);
 	this.SetPapelSecRate(0);
 	this.SetMorale(100);
+	this.SetStamina(100);
 	this.SetWorkingHours(0);
 	this.SetSalarioDefault(0);
 	this.SetSalario(0);

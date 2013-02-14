@@ -88,6 +88,7 @@ class ActionNode
 		this.next = null;
 		this.previous = null;
 	}
+	/*
 	//Employee
 	function NewAction(task : String, description : String, d2 : String, func : Employee, date : GameTime, role : String, work : String, 
 	artifact : String, rate : int)
@@ -107,6 +108,7 @@ class ActionNode
 		this.work_2 = work;
 		this.artifact = artifact;
 	}
+	*/
 	//func
 	function NewAction(task : String, description : String, d2 : String, func : Funcionario, date : GameTime, role : String, work : String, 
 	artifact : String, rate : int)
