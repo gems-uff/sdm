@@ -15,6 +15,14 @@ private var work : Working;
 private var morale : int;
 private var stamina : int;
 
+function MoraleControlActions()
+{
+	yield WaitForSeconds(0.5);
+	ChangeStamina();
+	StaminaActions();
+	MoraleActions();
+	
+}
 function ChangeStamina(){
 	var changeFactor : float;
 	var staminaMod : float;

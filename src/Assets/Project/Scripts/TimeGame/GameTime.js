@@ -214,9 +214,10 @@ function PassTime () {
 	
 	BroadcastMessage("UpdateProjectStatNode");
 	
-	BroadcastMessage("ChangeStamina");
-	BroadcastMessage("StaminaActions");
-	BroadcastMessage("MoraleActions");
+	BroadcastMessage("MoraleControlActions");
+	//BroadcastMessage("ChangeStamina");
+	//BroadcastMessage("StaminaActions");
+	//BroadcastMessage("MoraleActions");
 	BroadcastMessage("LevelUp");
 	BroadcastMessage("CompanyLevelUp");
 	

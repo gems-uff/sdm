@@ -78,6 +78,21 @@ function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 				f.WriteLine("AcP" + "\t" + line);
 			}
 		}
+		if(action.previous != null)
+		{
+			if((action.morale - action.previous.morale) != 0)
+			{
+				//Edge with morale dif between actions
+				line = Action(action.previous) + "\t" + Action(action) + "\t" + (action.morale - action.previous.morale) + " Morale";
+				f.WriteLine("AcAc" + "\t" + line);
+			}
+			if((action.stamina - action.previous.stamina) != 0)
+			{
+				//Edge with stamina dif between actions
+				line = Action(action.previous) + "\t" + Action(action) + "\t" + (action.stamina - action.previous.stamina) + " Stamina";
+				f.WriteLine("AcAc" + "\t" + line);
+			}
+		}
 		action = action.next;
 	}
 }
