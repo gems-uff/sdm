@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.4.21)  21 APR 2013 20:11
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.4.21)  24 APR 2013 14:36
 entering extended mode
 **example.tex
 
@@ -391,27 +391,22 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip56
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\cite\cite.sty"
-LaTeX Info: Redefining \cite on input line 302.
-LaTeX Info: Redefining \nocite on input line 373.
-Package: cite 2010/09/10  v 5.3
-)
 (D:\SVN\sdm\trunk\Documents\Papers\Sibgrapi3013\specularFading_LaTeX\example.au
 x)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 122.
-LaTeX Font Info:    ... okay on input line 122.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 122.
-LaTeX Font Info:    ... okay on input line 122.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 122.
-LaTeX Font Info:    ... okay on input line 122.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 122.
-LaTeX Font Info:    ... okay on input line 122.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 122.
-LaTeX Font Info:    ... okay on input line 122.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 122.
-LaTeX Font Info:    ... okay on input line 122.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 122.
-LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
 \c@lstlisting=\count130
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
@@ -431,7 +426,7 @@ Package caption Info: End \AtBeginDocument code.
 \everyMPtoPDFconversion=\toks29
 )
 \AtBeginShipoutBox=\box32
-Package hyperref Info: Link coloring OFF on input line 122.
+Package hyperref Info: Link coloring OFF on input line 121.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -440,9 +435,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count137
 )
-LaTeX Info: Redefining \ref on input line 122.
-LaTeX Info: Redefining \pageref on input line 122.
-LaTeX Info: Redefining \nameref on input line 122.
+LaTeX Info: Redefining \ref on input line 121.
+LaTeX Info: Redefining \pageref on input line 121.
+LaTeX Info: Redefining \nameref on input line 121.
 
 (D:\SVN\sdm\trunk\Documents\Papers\Sibgrapi3013\specularFading_LaTeX\example.ou
 t)
@@ -461,12 +456,12 @@ Missing character: There is no “ in font ptmr7t!
  <figs/Teaser.png, id=35, 1108.8928pt x 267.24844pt>
 File: figs/Teaser.png Graphic file (type png)
  <use figs/Teaser.png>
-Package pdftex.def Info: figs/Teaser.png used on input line 164.
+Package pdftex.def Info: figs/Teaser.png used on input line 163.
 (pdftex.def)             Requested size: 510.84283pt x 123.11519pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 164.
+(Font)              <7> on input line 163.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 164.
+(Font)              <5> on input line 163.
 Missing character: There is no Ã in font ptmr7t!
 Missing character: There is no § in font ptmr7t!
 Missing character: There is no Ã in font ptmr7t!
@@ -489,23 +484,23 @@ Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
 
-<figs/Lean1.png, id=82, 510.40688pt x 255.20343pt>
+<figs/Lean1.png, id=84, 510.40688pt x 255.20343pt>
 File: figs/Lean1.png Graphic file (type png)
  <use figs/Lean1.png>
-Package pdftex.def Info: figs/Lean1.png used on input line 245.
+Package pdftex.def Info: figs/Lean1.png used on input line 237.
 (pdftex.def)             Requested size: 252.84283pt x 126.4215pt.
 
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 245--246
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 237--238
 [][] 
  []
 
-<figs/Lean2.png, id=85, 510.40688pt x 255.20343pt>
+<figs/Lean2.png, id=87, 510.40688pt x 255.20343pt>
 File: figs/Lean2.png Graphic file (type png)
  <use figs/Lean2.png>
-Package pdftex.def Info: figs/Lean2.png used on input line 251.
+Package pdftex.def Info: figs/Lean2.png used on input line 243.
 (pdftex.def)             Requested size: 252.84283pt x 126.4215pt.
 
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 251--252
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 243--244
 [][] 
  []
 
@@ -514,187 +509,161 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [2 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/Le
 an1.png>]
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no ˆ in font ptmr7t!
-Missing character: There is no ‘ in font ptmr7t!
- <figs/Lean21.png, id=133, 770.12718pt x 385.44pt>
-File: figs/Lean21.png Graphic file (type png)
-
-<use figs/Lean21.png>
-Package pdftex.def Info: figs/Lean21.png used on input line 306.
-(pdftex.def)             Requested size: 252.84283pt x 126.54276pt.
-
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 306--307
-[][] 
- []
-
-<figs/Lean22.png, id=144, 770.12718pt x 385.44pt>
-File: figs/Lean22.png Graphic file (type png)
- <use figs/Lean22.png>
-Package pdftex.def Info: figs/Lean22.png used on input line 312.
-(pdftex.def)             Requested size: 252.84283pt x 126.54276pt.
-
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 312--313
-[][] 
- []
-
-<figs/BLS1.png, id=153, 283.81032pt x 374.90062pt>
-File: figs/BLS1.png Graphic file (type png)
- <use figs/BLS1.png>
-Package pdftex.def Info: figs/BLS1.png used on input line 321.
-(pdftex.def)             Requested size: 252.84283pt x 334.00374pt.
-
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 321--322
-[][] 
- []
-
-[3 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/Le
-an2.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/f
-igs/Lean21.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_
-LaTeX/figs/Lean22.png>] <figs/BLS2.png, id=179, 455.45157pt x 298.86656pt>
-File: figs/BLS2.png Graphic file (type png)
-
-<use figs/BLS2.png>
-Package pdftex.def Info: figs/BLS2.png used on input line 327.
-(pdftex.def)             Requested size: 252.84283pt x 165.91849pt.
-
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 327--328
-[][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<figs/BLS3.png, id=180, 508.90125pt x 277.035pt>
-File: figs/BLS3.png Graphic file (type png)
- <use figs/BLS3.png>
-Package pdftex.def Info: figs/BLS3.png used on input line 333.
-(pdftex.def)             Requested size: 252.84283pt x 137.64212pt.
-
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 333--334
-[][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<figs/BLS4.png, id=181, 513.41812pt x 297.36093pt>
-File: figs/BLS4.png Graphic file (type png)
- <use figs/BLS4.png>
-Package pdftex.def Info: figs/BLS4.png used on input line 339.
-(pdftex.def)             Requested size: 252.84283pt x 146.44318pt.
-
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 339--340
-[][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<figs/BLS5.png, id=182, 638.385pt x 361.35pt>
-File: figs/BLS5.png Graphic file (type png)
- <use figs/BLS5.png>
-Package pdftex.def Info: figs/BLS5.png used on input line 345.
-(pdftex.def)             Requested size: 252.84283pt x 143.1204pt.
-
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 345--346
-[][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<figs/BLS6.png, id=183, 646.66594pt x 650.43pt>
-File: figs/BLS6.png Graphic file (type png)
- <use figs/BLS6.png>
-Package pdftex.def Info: figs/BLS6.png used on input line 351.
-(pdftex.def)             Requested size: 252.84283pt x 254.31178pt.
-
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 351--352
-[][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<figs/BLS7.png, id=184, 646.66594pt x 650.43pt>
-File: figs/BLS7.png Graphic file (type png)
- <use figs/BLS7.png>
-Package pdftex.def Info: figs/BLS7.png used on input line 357.
-(pdftex.def)             Requested size: 252.84283pt x 254.31178pt.
-
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 357--358
-[][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<figs/LS1.png, id=185, 496.10344pt x 414.04688pt>
-File: figs/LS1.png Graphic file (type png)
- <use figs/LS1.png>
-Package pdftex.def Info: figs/LS1.png used on input line 363.
-(pdftex.def)             Requested size: 252.84283pt x 211.02211pt.
-
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 363--364
-[][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<figs/LS2.png, id=186, 493.0922pt x 674.52pt>
-File: figs/LS2.png Graphic file (type png)
- <use figs/LS2.png>
-Package pdftex.def Info: figs/LS2.png used on input line 369.
-(pdftex.def)             Requested size: 252.84283pt x 345.87386pt.
-
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 369--370
-[][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no ˆ in font ptmr7t!
-Missing character: There is no ‘ in font ptmr7t!
-("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
+Missing character: There is no â in font cmr10!
+Missing character: There is no ˆ in font cmr10!
+Missing character: There is no ‘ in font cmr10!
+Missing character: There is no â in font cmr10!
+Missing character: There is no ˆ in font cmr10!
+Missing character: There is no ‘ in font cmr10!
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
 File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
-)
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 387.
+) [3 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/
+Lean2.png>]
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 310.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 387.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 310.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 387.
+(Font)              <8> on input line 310.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 387.
- [4 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/B
-LS1.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/f
-igs/BLS2.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_La
-TeX/figs/BLS3.png>]
-LaTeX Font Info:    Try loading font information for OML+ptm on input line 401.
+(Font)              <6> on input line 310.
+LaTeX Font Info:    Try loading font information for OML+ptm on input line 324.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omlptm.fd"
 File: omlptm.fd 
 )
 LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <8> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 401.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 324.
+
+<figs/Lean21.png, id=166, 770.12718pt x 385.44pt>
+File: figs/Lean21.png Graphic file (type png)
+ <use figs/Lean21.png>
+Package pdftex.def Info: figs/Lean21.png used on input line 347.
+(pdftex.def)             Requested size: 252.84283pt x 126.54276pt.
+
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 347--348
+[][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<figs/Lean22.png, id=172, 770.12718pt x 385.44pt>
+File: figs/Lean22.png Graphic file (type png)
+ <use figs/Lean22.png>
+Package pdftex.def Info: figs/Lean22.png used on input line 353.
+(pdftex.def)             Requested size: 252.84283pt x 126.54276pt.
+
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 353--354
+[][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<figs/BLS1.png, id=177, 283.81032pt x 374.90062pt>
+File: figs/BLS1.png Graphic file (type png)
+ <use figs/BLS1.png>
+Package pdftex.def Info: figs/BLS1.png used on input line 362.
+(pdftex.def)             Requested size: 252.84283pt x 334.00374pt.
+
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 362--363
+[][] 
+ []
+
+<figs/BLS2.png, id=178, 455.45157pt x 298.86656pt>
+File: figs/BLS2.png Graphic file (type png)
+ <use figs/BLS2.png>
+Package pdftex.def Info: figs/BLS2.png used on input line 368.
+(pdftex.def)             Requested size: 252.84283pt x 165.91849pt.
+
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 368--369
+[][] 
+ []
+
+<figs/BLS3.png, id=179, 508.90125pt x 277.035pt>
+File: figs/BLS3.png Graphic file (type png)
+ <use figs/BLS3.png>
+Package pdftex.def Info: figs/BLS3.png used on input line 374.
+(pdftex.def)             Requested size: 252.84283pt x 137.64212pt.
+
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 374--375
+[][] 
+ []
+
+<figs/BLS4.png, id=180, 513.41812pt x 297.36093pt>
+File: figs/BLS4.png Graphic file (type png)
+ <use figs/BLS4.png>
+Package pdftex.def Info: figs/BLS4.png used on input line 380.
+(pdftex.def)             Requested size: 252.84283pt x 146.44318pt.
+
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 380--381
+[][] 
+ []
+
+<figs/BLS5.png, id=181, 638.385pt x 361.35pt>
+File: figs/BLS5.png Graphic file (type png)
+ <use figs/BLS5.png>
+Package pdftex.def Info: figs/BLS5.png used on input line 386.
+(pdftex.def)             Requested size: 252.84283pt x 143.1204pt.
+
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 386--387
+[][] 
+ []
+
+<figs/BLS6.png, id=182, 646.66594pt x 650.43pt>
+File: figs/BLS6.png Graphic file (type png)
+ <use figs/BLS6.png>
+Package pdftex.def Info: figs/BLS6.png used on input line 392.
+(pdftex.def)             Requested size: 252.84283pt x 254.31178pt.
+
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 392--393
+[][] 
+ []
+
+<figs/BLS7.png, id=183, 646.66594pt x 650.43pt>
+File: figs/BLS7.png Graphic file (type png)
+ <use figs/BLS7.png>
+Package pdftex.def Info: figs/BLS7.png used on input line 398.
+(pdftex.def)             Requested size: 252.84283pt x 254.31178pt.
+
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 398--399
+[][] 
+ []
+
+<figs/LS1.png, id=184, 496.10344pt x 414.04688pt>
+File: figs/LS1.png Graphic file (type png)
+ <use figs/LS1.png>
+Package pdftex.def Info: figs/LS1.png used on input line 404.
+(pdftex.def)             Requested size: 252.84283pt x 211.02211pt.
+
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 404--405
+[][] 
+ []
+
+<figs/LS2.png, id=185, 493.0922pt x 674.52pt>
+File: figs/LS2.png Graphic file (type png)
+ <use figs/LS2.png>
+Package pdftex.def Info: figs/LS2.png used on input line 410.
+(pdftex.def)             Requested size: 252.84283pt x 345.87386pt.
+
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 410--411
+[][] 
+ []
+
 
 (D:\SVN\sdm\trunk\Documents\Papers\Sibgrapi3013\specularFading_LaTeX\example.bb
-l [5 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/
-BLS4.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/
-figs/BLS5.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_L
-aTeX/figs/BLS6.png>])
+l [4 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/
+Lean21.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTe
+X/figs/Lean22.png>])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -706,29 +675,37 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 461.
-[6 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/BL
-S7.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/fi
-gs/LS1.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTe
-X/figs/LS2.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 461.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 458.
+[5 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/BL
+S1.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/fi
+gs/BLS2.png>] [6 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading
+_LaTeX/figs/BLS3.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularF
+ading_LaTeX/figs/BLS4.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/spec
+ularFading_LaTeX/figs/BLS5.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013
+/specularFading_LaTeX/figs/BLS6.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrap
+i3013/specularFading_LaTeX/figs/BLS7.png>] [7
+
+ <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/LS1.
+png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/
+LS2.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 458.
 
 (D:\SVN\sdm\trunk\Documents\Papers\Sibgrapi3013\specularFading_LaTeX\example.au
 x)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 461.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 461.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 458.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 458.
 Package rerunfilecheck Info: File `example.out' has not changed.
-(rerunfilecheck)             Checksum: 3C458054AA2CD70B8C67185D653E291E;420.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 461.
+(rerunfilecheck)             Checksum: F26352C3C9470D2DDC244EE8E2DA5DA5;420.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 458.
  ) 
 Here is how much of TeX's memory you used:
- 8819 strings out of 493921
- 133896 string characters out of 3147270
- 333166 words of memory out of 3000000
- 11936 multiletter control sequences out of 15000+200000
+ 8740 strings out of 493921
+ 132893 string characters out of 3147270
+ 390976 words of memory out of 3000000
+ 11856 multiletter control sequences out of 15000+200000
  35995 words of font info for 69 fonts, out of 3000000 for 9000
  844 hyphenation exceptions out of 8191
- 43i,8n,49p,1020b,1758s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 43i,11n,49p,1020b,1752s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
 s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX
  2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fon
@@ -744,9 +721,9 @@ type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw
 /times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pf
 b><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Fil
 es/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on example.pdf (6 pages, 8649111 bytes).
+Output written on example.pdf (7 pages, 8577321 bytes).
 PDF statistics:
- 326 PDF objects out of 1000 (max. 8388607)
- 79 named destinations out of 1000 (max. 500000)
+ 328 PDF objects out of 1000 (max. 8388607)
+ 83 named destinations out of 1000 (max. 500000)
  135 words of extra memory for PDF output out of 10000 (max. 10000000)
 
