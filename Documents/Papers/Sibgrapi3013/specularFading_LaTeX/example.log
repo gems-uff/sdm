@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.4.21)  24 APR 2013 14:36
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.4.21)  24 APR 2013 15:22
 entering extended mode
 **example.tex
 
@@ -520,8 +520,7 @@ File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
 File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
-) [3 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/
-Lean2.png>]
+)
 LaTeX Font Info:    Try loading font information for OMS+ptm on input line 310.
 
 
@@ -534,6 +533,8 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 310.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 310.
+ [3 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/L
+ean2.png>]
 LaTeX Font Info:    Try loading font information for OML+ptm on input line 324.
 
 
@@ -542,6 +543,9 @@ File: omlptm.fd
 )
 LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <8> not available
 (Font)              Font shape `OML/cmm/m/it' tried instead on input line 324.
+
+
+LaTeX Warning: Reference `fig:LS2' on page 4 undefined on input line 344.
 
 <figs/Lean21.png, id=166, 770.12718pt x 385.44pt>
 File: figs/Lean21.png Graphic file (type png)
@@ -554,9 +558,12 @@ Overfull \hbox (0.84283pt too wide) in paragraph at lines 347--348
  []
 
 
+LaTeX Warning: Reference `fig:LS2' on page 4 undefined on input line 348.
+
+
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<figs/Lean22.png, id=172, 770.12718pt x 385.44pt>
+<figs/Lean22.png, id=171, 770.12718pt x 385.44pt>
 File: figs/Lean22.png Graphic file (type png)
  <use figs/Lean22.png>
 Package pdftex.def Info: figs/Lean22.png used on input line 353.
@@ -569,27 +576,33 @@ Overfull \hbox (0.84283pt too wide) in paragraph at lines 353--354
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<figs/BLS1.png, id=177, 283.81032pt x 374.90062pt>
-File: figs/BLS1.png Graphic file (type png)
- <use figs/BLS1.png>
-Package pdftex.def Info: figs/BLS1.png used on input line 362.
-(pdftex.def)             Requested size: 252.84283pt x 334.00374pt.
+<figs/BLS2.png, id=176, 455.45157pt x 298.86656pt>
+File: figs/BLS2.png Graphic file (type png)
+ <use figs/BLS2.png>
+Package pdftex.def Info: figs/BLS2.png used on input line 359.
+(pdftex.def)             Requested size: 252.84283pt x 165.91849pt.
 
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 362--363
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 359--360
 [][] 
  []
 
-<figs/BLS2.png, id=178, 455.45157pt x 298.86656pt>
-File: figs/BLS2.png Graphic file (type png)
- <use figs/BLS2.png>
-Package pdftex.def Info: figs/BLS2.png used on input line 368.
-(pdftex.def)             Requested size: 252.84283pt x 165.91849pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<figs/BLS1.png, id=177, 283.81032pt x 374.90062pt>
+File: figs/BLS1.png Graphic file (type png)
+ <use figs/BLS1.png>
+Package pdftex.def Info: figs/BLS1.png used on input line 368.
+(pdftex.def)             Requested size: 252.84283pt x 334.00374pt.
 
 Overfull \hbox (0.84283pt too wide) in paragraph at lines 368--369
 [][] 
  []
 
-<figs/BLS3.png, id=179, 508.90125pt x 277.035pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<figs/BLS3.png, id=178, 508.90125pt x 277.035pt>
 File: figs/BLS3.png Graphic file (type png)
  <use figs/BLS3.png>
 Package pdftex.def Info: figs/BLS3.png used on input line 374.
@@ -599,7 +612,10 @@ Overfull \hbox (0.84283pt too wide) in paragraph at lines 374--375
 [][] 
  []
 
-<figs/BLS4.png, id=180, 513.41812pt x 297.36093pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<figs/BLS4.png, id=179, 513.41812pt x 297.36093pt>
 File: figs/BLS4.png Graphic file (type png)
  <use figs/BLS4.png>
 Package pdftex.def Info: figs/BLS4.png used on input line 380.
@@ -609,61 +625,66 @@ Overfull \hbox (0.84283pt too wide) in paragraph at lines 380--381
 [][] 
  []
 
-<figs/BLS5.png, id=181, 638.385pt x 361.35pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[4 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/Le
+an21.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/
+figs/Lean22.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading
+_LaTeX/figs/BLS2.png>]
+(D:\SVN\sdm\trunk\Documents\Papers\Sibgrapi3013\specularFading_LaTeX\example.bb
+l) <figs/BLS5.png, id=231, 638.385pt x 361.35pt>
 File: figs/BLS5.png Graphic file (type png)
  <use figs/BLS5.png>
-Package pdftex.def Info: figs/BLS5.png used on input line 386.
+Package pdftex.def Info: figs/BLS5.png used on input line 428.
 (pdftex.def)             Requested size: 252.84283pt x 143.1204pt.
 
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 386--387
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 428--429
 [][] 
  []
 
-<figs/BLS6.png, id=182, 646.66594pt x 650.43pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<figs/BLS6.png, id=232, 646.66594pt x 650.43pt>
 File: figs/BLS6.png Graphic file (type png)
  <use figs/BLS6.png>
-Package pdftex.def Info: figs/BLS6.png used on input line 392.
+Package pdftex.def Info: figs/BLS6.png used on input line 434.
 (pdftex.def)             Requested size: 252.84283pt x 254.31178pt.
 
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 392--393
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 434--435
 [][] 
  []
 
-<figs/BLS7.png, id=183, 646.66594pt x 650.43pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<figs/BLS7.png, id=233, 646.66594pt x 650.43pt>
 File: figs/BLS7.png Graphic file (type png)
  <use figs/BLS7.png>
-Package pdftex.def Info: figs/BLS7.png used on input line 398.
+Package pdftex.def Info: figs/BLS7.png used on input line 440.
 (pdftex.def)             Requested size: 252.84283pt x 254.31178pt.
 
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 398--399
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 440--441
 [][] 
  []
 
-<figs/LS1.png, id=184, 496.10344pt x 414.04688pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<figs/LS1.png, id=234, 496.10344pt x 414.04688pt>
 File: figs/LS1.png Graphic file (type png)
  <use figs/LS1.png>
-Package pdftex.def Info: figs/LS1.png used on input line 404.
+Package pdftex.def Info: figs/LS1.png used on input line 446.
 (pdftex.def)             Requested size: 252.84283pt x 211.02211pt.
 
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 404--405
-[][] 
- []
-
-<figs/LS2.png, id=185, 493.0922pt x 674.52pt>
-File: figs/LS2.png Graphic file (type png)
- <use figs/LS2.png>
-Package pdftex.def Info: figs/LS2.png used on input line 410.
-(pdftex.def)             Requested size: 252.84283pt x 345.87386pt.
-
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 410--411
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 446--447
 [][] 
  []
 
 
-(D:\SVN\sdm\trunk\Documents\Papers\Sibgrapi3013\specularFading_LaTeX\example.bb
-l [4 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/
-Lean21.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTe
-X/figs/Lean22.png>])
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -678,16 +699,12 @@ Before submitting the final camera ready copy, remember to:
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 458.
 [5 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/BL
 S1.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/fi
-gs/BLS2.png>] [6 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading
-_LaTeX/figs/BLS3.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularF
-ading_LaTeX/figs/BLS4.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/spec
-ularFading_LaTeX/figs/BLS5.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013
-/specularFading_LaTeX/figs/BLS6.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrap
-i3013/specularFading_LaTeX/figs/BLS7.png>] [7
-
- <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/LS1.
-png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/
-LS2.png>]
+gs/BLS3.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaT
+eX/figs/BLS4.png>] [6 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularF
+ading_LaTeX/figs/BLS5.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/spec
+ularFading_LaTeX/figs/BLS6.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013
+/specularFading_LaTeX/figs/BLS7.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrap
+i3013/specularFading_LaTeX/figs/LS1.png>]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 458.
 
 (D:\SVN\sdm\trunk\Documents\Papers\Sibgrapi3013\specularFading_LaTeX\example.au
@@ -696,16 +713,20 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 458.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 458.
 Package rerunfilecheck Info: File `example.out' has not changed.
 (rerunfilecheck)             Checksum: F26352C3C9470D2DDC244EE8E2DA5DA5;420.
+
+
+LaTeX Warning: There were undefined references.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 458.
  ) 
 Here is how much of TeX's memory you used:
- 8740 strings out of 493921
- 132893 string characters out of 3147270
- 390976 words of memory out of 3000000
- 11856 multiletter control sequences out of 15000+200000
- 35995 words of font info for 69 fonts, out of 3000000 for 9000
+ 8734 strings out of 493921
+ 132810 string characters out of 3147270
+ 380310 words of memory out of 3000000
+ 11852 multiletter control sequences out of 15000+200000
+ 37102 words of font info for 70 fonts, out of 3000000 for 9000
  844 hyphenation exceptions out of 8191
- 43i,11n,49p,1020b,1752s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 43i,11n,49p,1020b,1754s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
 s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX
  2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fon
@@ -721,9 +742,9 @@ type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw
 /times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pf
 b><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Fil
 es/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on example.pdf (7 pages, 8577321 bytes).
+Output written on example.pdf (6 pages, 7560744 bytes).
 PDF statistics:
- 328 PDF objects out of 1000 (max. 8388607)
- 83 named destinations out of 1000 (max. 500000)
- 135 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 317 PDF objects out of 1000 (max. 8388607)
+ 81 named destinations out of 1000 (max. 500000)
+ 130 words of extra memory for PDF output out of 10000 (max. 10000000)
 

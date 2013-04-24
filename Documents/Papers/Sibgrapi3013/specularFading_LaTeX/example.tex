@@ -221,16 +221,16 @@ The LEAN mapping is a modification of Ward’s shading model~\cite{Ward:1992:MMA
 The use of LEAN mapping with existing Blinn-Phong-based shaders requires the equivalence of the Blinn-Phong model with the symmetric Ward model using a Beckmann distribution. Given a normal vector,~(\ref{eq:n}), retrieved from the normal map and represented in tangent space:
 \begin{equation}
 	\label{eq:n}
-	N = (b_{x}, b_{y}, b_{z})
+	N = (\vec{b}_{x}, \vec{b}_{y}, \vec{b}_{z})
 \end{equation}
 the LEAN map textures are computed as:
 \begin{align}
 	\label{eq:b}
 	B &= (\tilde{b}_{x}, \tilde{b}_{y}) = \left(\frac{\vec{b}_{x}}{\vec{b}_{z}}, \frac{\vec{b}_{y}}{\vec{b}_{z}}\right) \text{, and}\\
 	\label{eq:m}
-	M &= ({b'_{x}}^{2}, {b'_{y}}^{2}, b'_{x}b'_{y})
+	M &= ({\tilde{b}_{x}}^{2}, {\tilde{b}_{y}}^{2}, \tilde{b}_{x}\tilde{b}_{y})
 \end{align}
-where b is the Bump's Normal. The textures sampling the five values described in~(\ref{eq:b}) and~(\ref{eq:m}) gives an anti-aliased, filtered blend of the bumps and specular shading for any view. Refer to~\cite{Olano:2010:LM:1730804.1730834} for details. To store five values in textures, it is required the usage of two texture units, which enables the possibility to store eight values. The remaining three values can be used to store the conventional normal map in order to save computation and improve the quality of the diffuse filtering, instead of reconstructing it. Figs. \ref{fig:Lean1} and \ref{fig:Lean2} illustrates the RGBA from both generated LEAN textures. As observed in~\cite{Kilgard00apractical}, storing the normal map allows the usage of diffuse filtering with a non-normalized normal resulting from texture filtering.
+where $\vec{b}$ is the Bump's Normal. The textures sampling the five values described in~(\ref{eq:b}) and~(\ref{eq:m}) gives an anti-aliased, filtered blend of the bumps and specular shading for any view. Refer to~\cite{Olano:2010:LM:1730804.1730834} for details. To store five values in textures, it is required the usage of two texture units, which enables the possibility to store eight values. The remaining three values can be used to store the conventional normal map in order to save computation and improve the quality of the diffuse filtering, instead of reconstructing it. Figs. \ref{fig:Lean1} and \ref{fig:Lean2} illustrates the RGBA from both generated LEAN textures. As observed in~\cite{Kilgard00apractical}, storing the normal map allows the usage of diffuse filtering with a non-normalized normal resulting from texture filtering.
 
 %==========================================
 \begin{figure}[here]
@@ -256,7 +256,7 @@ Given the LEAN textures values, $B$ and $M$ from~(\ref{eq:b}) and~(\ref{eq:m}), 
 
 \begin{equation}
 	\label{eq:lean_spec}
-	\dfrac{1}{2\Pi\sqrt{|\Sigma|}}e^{-0.5(h_{n} - b'_{n})^{T} \Sigma^{-1}(h_{n} - b'_{n})}
+	\dfrac{1}{2\Pi\sqrt{|\Sigma|}}e^{-0.5(h_{n} - \tilde{b}_{n})^{T} \Sigma^{-1}(h_{n} - \tilde{b}_{n})}
 \end{equation}
 %==========================================
 
@@ -296,45 +296,45 @@ The power of two present in~(\ref{eq:sf})is optional and was used for the sole p
 \section{Implementation}
 \label{sec:implementation}
 
-Tests were made in order to compare the new model with the traditional LEAN technique. The tests were performed on a GeForce GTX550Ti, installed in a Windows 7 64-bit machine. The recorded frames per second (fps) were ranging from 1000 to 1600 for both methods. The frame rate varied, with the camera range and the object in the scene. The difference was about only 10 fps between the two techniques. The geometric model used on the tests (\figref{LS2}) is comprised of 256 triangles and 200 vertices. With the teapot model containing 79600 triangles and 44366 vertices (\figref{LS1}), the frame rates varied from 570 to 790 fps, with a difference of approximately 5 fps between techniques.
+Tests were made in order to compare the new model with the traditional LEAN technique. The tests were performed on a GeForce GTX550Ti, installed in a Windows 7 64-bit machine. The recorded frames per second (fps) were ranging from 1000 to 1600 for both methods for a square model of 256 triangles and 200 vertices. The frame rate varied with the camera distance from the object in the scene. The difference was in performance was barely noticiable between the two techniques. Another geometric model used on the tests was a torus (\figref{BLS3}), which is comprised of 2944 triangles and 1884 vertices. The difference in performance was also barely noticiable. Even with the teapot model containing 79600 triangles and 44366 vertices (\figref{LS1}), the frame rates varied from 570 to 790 fps depending on the range, and with a difference of approximately 5 fps between techniques.
 
 In our implementation we adapted the equation in the original LEAN shader. Our GLSL shader is presented in listing~\ref{GLSLCode}. For the LEAN stage, we generated lean maps textures (Figs.\ref{fig:Lean1} and \ref{fig:Lean2}, \ref{fig:Lean21} and \ref{fig:Lean22}) as described in~\cite{Olano:2010:LM:1730804.1730834}, and unpack $N$ (line 5), $B$, $M$ terms from the texture (lines 11 and 12). We then converted $M$ to $∑$ (line 14) and computed the LEAN specular term (lines 15 to 19). Then we compute the intensity of the diffuse light (line 21) and the diffuse component (line 22). After this process, we compute the specular fading $sf$ (lines 24 to 27), the fresnel component (line 29) and the final specular component (line 30). Lastly, the final color using the diffuse and specular components with the light color (line 32).
 
 %==========================================
 \lstset{basicstyle=\footnotesize,xleftmargin=20pt,numbers=left, breaklines=true, language=C, caption=GLSL pseudo code for specular fading applied in LEAN shader in tangent space., label=GLSLCode}
 \begin{lstlisting}
-	vec3 fvLightDirection = normalize(LightDirection);
-	vec3 fvViewDirection = normalize(ViewDirection);
-	vec3 Half = normalize(fvViewDirection + fvLightDirection);
-	vec4 t1 = texture2D(Lean1, gl_TexCoord[0].st);
-	vec3 Normal = vec3(t1.xyz) * 2.0 - 1.0;
-	 // Equivalence for the Blinn-Phong is 1 / s, where s is the specular expoent.
-	 // This is done here to remove the dependancy on the lean map creation.
-	float equivalence = 1.0 / MaterialShininess;
-	// Unpack B and M
-	vec4 t2 = texture2D(Lean2, gl_TexCoord[0].st);
-	vec2 B = (t2.xy * 2.0 - 1.0);
-	vec3 M = vec3(t2.zw + equivalence, t1.w * 2.0 - 1.0);
-	// Convert M to E
-	vec3 E = M - vec3(B * B, B.x * B.y);
-	float Det = E.x * E.y - E.z * E.z;
-	// Compute LEAN Specular term
-	vec2 h = Half.xy / Half.z - B;
-	float e = (h.x * h.x * E.y + h.y * h.y * E.x - 2.0 * h.x * h.y * E.z);
-	float LEAN_spec = (Det <= 0.0) ? 0.0 : exp(-0.5 * e / Det) / sqrt(Det);
-	// Normal dot LightDirection
-	float NdotL = clamp (dot (Normal, fvLightDirection , 0.0, 1.0);
-	fvTotalDiffuse = fvMaterialDiffuse * NdotL;
-	// Spec Fading Computation
-	float sf = 1.0 + (pow(ViewDirection.z * Fade, 2.0) );
-	sf = clamp(sf, 1.0, P_max);
-	// Add specFading to Specular component
-	fvTotalSpecular = fvMaterialSpecular * pow(NdotL, sf) * LEAN_spec;
-	// Compute Fresnel
-	float fFresnel = clamp(FresnelBias + (FresnelScale * pow(1.0 - dot(Normal, fvViewDirection), 5.0)), 0.0, 1.0);
-	fvTotalSpecular *= fFresnel;
-	// Final Color
-	color = (fvTotalDiffuse + fvTotalSpecular).xyz * LightColor.xyz;
+vec3 fvLightDirection = normalize(LightDirection);
+vec3 fvViewDirection = normalize(ViewDirection);
+vec3 Half = normalize(fvViewDirection + fvLightDirection);
+vec4 t1 = texture2D(Lean1, gl_TexCoord[0].st);
+vec3 Normal = vec3(t1.xyz) * 2.0 - 1.0;
+// Equivalence for the Blinn-Phong is 1 / s, where s is the specular expoent.
+// This is done here to remove the dependancy on the lean map creation.
+float equivalence = 1.0 / MaterialShininess;
+// Unpack B and M
+vec4 t2 = texture2D(Lean2, gl_TexCoord[0].st);
+vec2 B = (t2.xy * 2.0 - 1.0);
+vec3 M = vec3(t2.zw + equivalence, t1.w * 2.0 - 1.0);
+// Convert M to E
+vec3 E = M - vec3(B * B, B.x * B.y);
+float Det = E.x * E.y - E.z * E.z;
+// Compute LEAN Specular term
+vec2 h = Half.xy / Half.z - B;
+float e = (h.x * h.x * E.y + h.y * h.y * E.x - 2.0 * h.x * h.y * E.z);
+float LEAN_spec = (Det <= 0.0) ? 0.0 : exp(-0.5 * e / Det) / sqrt(Det);
+// Normal dot LightDirection
+float NdotL = clamp (dot (Normal, fvLightDirection , 0.0, 1.0);
+fvTotalDiffuse = fvMaterialDiffuse * NdotL;
+// Spec Fading Computation
+float sf = 1.0 + (pow(ViewDirection.z * Fade, 2.0) );
+sf = clamp(sf, 1.0, P_max);
+// Add specFading to Specular component
+fvTotalSpecular = fvMaterialSpecular * pow(NdotL, sf) * LEAN_spec;
+// Compute Fresnel
+float fFresnel = clamp(FresnelBias + (FresnelScale * pow(1.0 - dot(Normal, fvViewDirection), 5.0)), 0.0, 1.0);
+fvTotalSpecular *= fFresnel;
+// Final Color
+color = (fvTotalDiffuse + fvTotalSpecular).xyz * LightColor.xyz;
 \end{lstlisting}
 %==========================================
 
@@ -354,63 +354,34 @@ While comparing LEAN map with our proposed model, it is possible to notice the d
 	\caption{Second LEAN texture generated for Figs.\ref{fig:BLS4}, \ref{fig:BLS5}, \ref{fig:BLS6} and \ref{fig:BLS7}}
 	\label{fig:Lean22}
 \end{figure}
+
+\begin{figure}[!h]
+	\includegraphics[width=0.49\textwidth]{figs/BLS2.png}
+	\caption{Comparison between Bump Mapping (left column), LEAN mapping (center), and Specular Fading (right column) using a sphere model. Notice the difference in the specular highlights. At close range, it is very similar to LEAN's, but as the distance increases, the highlight diminishes while keeping the aspect of bump surface.}
+	\label{fig:BLS1}
+\end{figure}
 %==========================================
 %fog
 This also corrects the specular highlight from fog algorithms, which only changes the alpha component making it transparent over distance. Notice that this method only attenuate the specular highlight, so it can be used in conjunction with distance fog without problems, allowing the fog algorithm to fade the object while changing the specular.
 %==========================================
-\begin{figure}[H]
+\begin{figure}[h]
 	\includegraphics[width=0.49\textwidth]{figs/BLS1.png}
-	\caption{Comparison among Bump Mapping (left column), LEAN mapping (center), and Specular Fading (right column) using a ninja head model. Notice the difference of the specular highlights as the distance increases.}
-	\label{fig:BLS1}
-\end{figure}
-
-\begin{figure}[H]
-	\includegraphics[width=0.49\textwidth]{figs/BLS2.png}
-	\caption{Another comparison between Bump Mapping (left column), LEAN mapping (center), and Specular Fading (right column) using a sphere model. Notice the difference in the specular highlights. At close range, it is very similar to LEAN's, but as the distance increases, the highlight diminishes while keeping the aspect of bump surface.}
+	\caption{Another comparsison between approaches but using a ninja head model. Notice the difference of the specular highlights as the distance increases.}
 	\label{fig:BLS2}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\includegraphics[width=0.49\textwidth]{figs/BLS3.png}
-	\caption{Another comparsison between Bump Mapping (left column), LEAN mapping (center), and Specular Fading (right column). This time using a torus model.}
+	\caption{Another comparsison between approaches, with a torus model.}
 	\label{fig:BLS3}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\includegraphics[width=0.49\textwidth]{figs/BLS4.png}
-	\caption{Another comparison among Bump Mapping (left column), LEAN mapping (center), and Specular Fading (right column) using a torus model. This time the model and specular lights are in different colors. Notice the difference of specular highlights as the distance increases.}
+	\caption{Another comparison between approaches. Still using the torus model but with different colors and bumps.}
 	\label{fig:BLS4}
 \end{figure}
 
-\begin{figure}[H]
-	\includegraphics[width=0.49\textwidth]{figs/BLS5.png}
-	\caption{Another comparison among Bump Mapping (left column), LEAN mapping (center), and Specular Fading (right column). The model used is a teapot with blue shading and light. While Bump mapping makes the teapot surface look more smoth as distance increases, LEAN keeps the bump aspect while also preserving the specular highlights. The specular fading preserves the bump surface while also diminishes the highlights.}
-	\label{fig:BLS5}
-\end{figure}
-
-\begin{figure}[H]
-	\includegraphics[width=0.49\textwidth]{figs/BLS6.png}
-	\caption{Another comparison among Bump Mapping (left column), LEAN mapping (center), and Specular Fading (right column). This time with a terrain model at different distances. Notice the difference of specular highlights as the distance increases.}
-	\label{fig:BLS6}
-\end{figure}
-
-\begin{figure}[H]
-	\includegraphics[width=0.49\textwidth]{figs/BLS7.png}
-	\caption{The same terrain model but in a different angle.}
-	\label{fig:BLS7}
-\end{figure}
-
-\begin{figure}[H]
-	\includegraphics[width=0.49\textwidth]{figs/LS1.png}
-	\caption{Comparison between LEAN and our proposed improvement using a teapot model. In the left is the traditional LEAN technique and in the right the proposed improvement. As shown in the figure, at close range they are identical, however the farther the camera is from the object, less specular highlight.}
-	\label{fig:LS1}
-\end{figure}
-
-\begin{figure}[H]
-	\includegraphics[width=0.49\textwidth]{figs/LS2.png}
-	\caption{Another comparison between LEAN and our proposed improvement using a square model. In the left is the traditional LEAN technique and in the right is LEAN with specular fading.}
-	\label{fig:LS2}
-\end{figure}
 %==========================================
 %==========================================
 \section{Conclusion}
@@ -426,7 +397,7 @@ A performance comparison was made between conventional LEAN mapping and the prop
 % use section* for acknowledgement
 \section*{Acknowledgment}
 %
-The authors would like to thank NVIDIA, CNPq, FAPERJ, and CAPES for the financial support
+The authors would like to thank NVIDIA, CNPq, FAPERJ, and CAPES for the financial support.
 \fi
 
 
@@ -453,6 +424,35 @@ The authors would like to thank NVIDIA, CNPq, FAPERJ, and CAPES for the financia
 %\end{thebibliography}
 
 
+\begin{figure}[h]
+	\includegraphics[width=0.49\textwidth]{figs/BLS5.png}
+	\caption{Another comparison. The model used is a teapot with blue shading and light. While Bump mapping makes the teapot surface look more smoth as distance increases, LEAN keeps the bump aspect while also preserving the specular highlights. The specular fading preserves the bump surface while also diminishes the highlights.}
+	\label{fig:BLS5}
+\end{figure}
+
+\begin{figure}[h]
+	\includegraphics[width=0.49\textwidth]{figs/BLS6.png}
+	\caption{Another comparison between Bump Mapping (left column), LEAN mapping (center), and Specular Fading (right column). This time with a terrain model at different distances.}
+	\label{fig:BLS6}
+\end{figure}
+
+\begin{figure}[h]
+	\includegraphics[width=0.49\textwidth]{figs/BLS7.png}
+	\caption{The same terrain model but in a different angle.}
+	\label{fig:BLS7}
+\end{figure}
+
+\begin{figure}[h]
+	\includegraphics[width=0.49\textwidth]{figs/LS1.png}
+	\caption{Comparison between LEAN and our proposed improvement using a teapot model. In the left is the traditional LEAN technique and in the right the proposed improvement. As shown in the figure, at close range they are identical, however the farther the camera is from the object, less specular highlight.}
+	\label{fig:LS1}
+\end{figure}
+
+%\begin{figure}[h]
+%	\includegraphics[width=0.49\textwidth]{figs/LS2.png}
+%	\caption{Another comparison between LEAN and our proposed improvement using a square model. In the left is the t %raditional LEAN technique and in the right is LEAN with specular fading.}
+%	\label{fig:LS2}
+%\end{figure}
 
 
 \end{document}
