@@ -25,9 +25,8 @@
 \BIBentryALTinterwordspacing
 J.~F. Blinn, ``Simulation of wrinkled surfaces,'' in \emph{Proceedings of the
   5th annual conference on Computer graphics and interactive techniques}, ser.
-  SIGGRAPH '78.\hskip 1em plus 0.5em minus 0.4em\relax New York, NY, USA: ACM,
-  1978, pp. 286--292. [Online]. Available:
-  \url{http://doi.acm.org/10.1145/800248.507101}
+  SIGGRAPH '78.\hskip 1em plus 0.5em minus 0.4em\relax ACM, 1978, pp. 286--292.
+  [Online]. Available: \url{http://doi.acm.org/10.1145/800248.507101}
 \BIBentrySTDinterwordspacing
 
 \bibitem{Kilgard00apractical}
@@ -39,8 +38,8 @@ M.~J. Kilgard, ``A practical and robust bump-mapping technique for today's
 B.~Cabral, N.~Max, and R.~Springmeyer, ``Bidirectional reflection functions
   from surface bump maps,'' in \emph{Proceedings of the 14th annual conference
   on Computer graphics and interactive techniques}, ser. SIGGRAPH '87.\hskip
-  1em plus 0.5em minus 0.4em\relax New York, NY, USA: ACM, 1987, pp. 273--281.
-  [Online]. Available: \url{http://doi.acm.org/10.1145/37401.37434}
+  1em plus 0.5em minus 0.4em\relax ACM, 1987, pp. 273--281. [Online].
+  Available: \url{http://doi.acm.org/10.1145/37401.37434}
 \BIBentrySTDinterwordspacing
 
 \bibitem{Becker:1993:STB:166117.166141}
@@ -48,8 +47,8 @@ B.~Cabral, N.~Max, and R.~Springmeyer, ``Bidirectional reflection functions
 B.~G. Becker and N.~L. Max, ``Smooth transitions between bump rendering
   algorithms,'' in \emph{Proceedings of the 20th annual conference on Computer
   graphics and interactive techniques}, ser. SIGGRAPH '93.\hskip 1em plus 0.5em
-  minus 0.4em\relax New York, NY, USA: ACM, 1993, pp. 183--190. [Online].
-  Available: \url{http://doi.acm.org/10.1145/166117.166141}
+  minus 0.4em\relax ACM, 1993, pp. 183--190. [Online]. Available:
+  \url{http://doi.acm.org/10.1145/166117.166141}
 \BIBentrySTDinterwordspacing
 
 \bibitem{Westin:1992:PRF:133994.134075}
@@ -57,8 +56,8 @@ B.~G. Becker and N.~L. Max, ``Smooth transitions between bump rendering
 S.~H. Westin, J.~R. Arvo, and K.~E. Torrance, ``Predicting reflectance
   functions from complex surfaces,'' in \emph{Proceedings of the 19th annual
   conference on Computer graphics and interactive techniques}, ser. SIGGRAPH
-  '92.\hskip 1em plus 0.5em minus 0.4em\relax New York, NY, USA: ACM, 1992, pp.
-  255--264. [Online]. Available: \url{http://doi.acm.org/10.1145/133994.134075}
+  '92.\hskip 1em plus 0.5em minus 0.4em\relax ACM, 1992, pp. 255--264.
+  [Online]. Available: \url{http://doi.acm.org/10.1145/133994.134075}
 \BIBentrySTDinterwordspacing
 
 \bibitem{Olano:2010:LM:1730804.1730834}
@@ -74,7 +73,7 @@ M.~Olano and D.~Baker, ``Lean mapping,'' in \emph{Proceedings of the 2010 ACM
 J.~F. Blinn, ``Models of light reflection for computer synthesized pictures,''
   in \emph{Proceedings of the 4th annual conference on Computer graphics and
   interactive techniques}, ser. SIGGRAPH '77.\hskip 1em plus 0.5em minus
-  0.4em\relax New York, NY, USA: ACM, 1977, pp. 192--198. [Online]. Available:
+  0.4em\relax ACM, 1977, pp. 192--198. [Online]. Available:
   \url{http://doi.acm.org/10.1145/563858.563893}
 \BIBentrySTDinterwordspacing
 
@@ -90,7 +89,7 @@ R.~L. Cook and K.~E. Torrance, ``A reflectance model for computer graphics,''
 G.~J. Ward, ``Measuring and modeling anisotropic reflection,'' in
   \emph{Proceedings of the 19th annual conference on Computer graphics and
   interactive techniques}, ser. SIGGRAPH '92.\hskip 1em plus 0.5em minus
-  0.4em\relax New York, NY, USA: ACM, 1992, pp. 265--272. [Online]. Available:
+  0.4em\relax ACM, 1992, pp. 265--272. [Online]. Available:
   \url{http://doi.acm.org/10.1145/133994.134078}
 \BIBentrySTDinterwordspacing
 
@@ -99,9 +98,8 @@ G.~J. Ward, ``Measuring and modeling anisotropic reflection,'' in
 M.~Ashikmin, S.~Premo\v{z}e, and P.~Shirley, ``A microfacet-based brdf
   generator,'' in \emph{Proceedings of the 27th annual conference on Computer
   graphics and interactive techniques}, ser. SIGGRAPH '00.\hskip 1em plus 0.5em
-  minus 0.4em\relax New York, NY, USA: ACM Press/Addison-Wesley Publishing Co.,
-  2000, pp. 65--74. [Online]. Available:
-  \url{http://dx.doi.org/10.1145/344779.344814}
+  minus 0.4em\relax ACM Press/Addison-Wesley Publishing Co., 2000, pp. 65--74.
+  [Online]. Available: \url{http://dx.doi.org/10.1145/344779.344814}
 \BIBentrySTDinterwordspacing
 
 \bibitem{Cohen:1998:AS:280814.280832}
@@ -109,8 +107,16 @@ M.~Ashikmin, S.~Premo\v{z}e, and P.~Shirley, ``A microfacet-based brdf
 J.~Cohen, M.~Olano, and D.~Manocha, ``Appearance-preserving simplification,''
   in \emph{Proceedings of the 25th annual conference on Computer graphics and
   interactive techniques}, ser. SIGGRAPH '98.\hskip 1em plus 0.5em minus
-  0.4em\relax New York, NY, USA: ACM, 1998, pp. 115--122. [Online]. Available:
+  0.4em\relax ACM, 1998, pp. 115--122. [Online]. Available:
   \url{http://doi.acm.org/10.1145/280814.280832}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Williams:1983:PP:800059.801126}
+\BIBentryALTinterwordspacing
+L.~Williams, ``Pyramidal parametrics,'' in \emph{Proceedings of the 10th annual
+  conference on Computer graphics and interactive techniques}, ser. SIGGRAPH
+  '83.\hskip 1em plus 0.5em minus 0.4em\relax ACM, 1983, pp. 1--11. [Online].
+  Available: \url{http://doi.acm.org/10.1145/800059.801126}
 \BIBentrySTDinterwordspacing
 
 \end{thebibliography}

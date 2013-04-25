@@ -153,7 +153,9 @@
 %-------------------------------------------------------------------------
 % Special Sibgrapi teaser
 \teaser{%
-  \oneimage{Bump mapping with traditional Blinn-Phong shading (left), LEAN mapping (center), and our model (right) applied on teapots at different distances from the observer (top and bottom). In contrast to other approaches, our technique is capable to reproduces the natural fading of the specular component over distance without loss of contrast (left) or without the introduction of additional energy (center).}{.99}{Teaser.png}
+	\includegraphics[width=0.99\textwidth]{figs/Teaser.png}
+	\caption{Bump mapping with traditional Blinn-Phong shading (left), LEAN mapping (center), and our model (right) applied on teapots at different distances from the observer (top and bottom). In contrast to other approaches, our technique is capable to reproduce the natural fading of the specular component over distance without loss of contrast (left) or without the introduction of additional energy (center).}
+	\label{fig:Teaser}
 }
 %-------------------------------------------------------------------------
 
@@ -163,7 +165,7 @@
 
 
 \begin{abstract}
-Blinn-Phong shading model is commonly used in real time graphics. When combined with Phong shading and normal mapping, this model allows a rich visual experience. However, when the observer is far from the surface, the bumped regions may become blurred and disappear, thus making the surface duller than it is. The Linear Efficient Antialiased Normal (LEAN) mapping was developed to correct this issue. However, in that approach the specular highlight intensity of small bumps is unaffected by distance, leading to brighter specular highlights than one would expect. We present and extension of LEAN mapping where the excess of energy in the specular highlight is corrected by the introducing a fading term during the computation of the specular component of the illumination model. We show that our simple but effective approach is capable to produce plausible visual effects to be used by real time graphics applications such as games and virtual reality.
+Blinn-Phong shading model is commonly used in real time graphics. When combined with Phong shading and normal mapping, this model allows a rich visual experience. However, when the observer is far from the surface, the bumped regions may become blurred and disappear, thus making the surface duller than it is. The Linear Efficient Antialiased Normal (LEAN) mapping was developed to correct this issue. However, in that approach the specular highlight intensity of small bumps is unaffected by distance, leading to brighter specular highlights than one would expect. We present an extension of LEAN mapping where the excess of energy in the specular highlight is corrected by introducing a fading term during the computation of the specular component of the illumination model. We show that our simple but effective approach is capable to produce plausible visual effects to be used by real time graphics applications such as games and virtual reality.
 
 % DO NOT USE SPECIAL CHARACTERS, SYMBOLS, OR MATH IN YOUR TITLE OR ABSTRACT.
 %
@@ -187,7 +189,7 @@ bump mapping; normal mapping; LEAN mapping; specular ilumination;
 %==========================================
 \section{Introduction}
 %
-To create the illusion of details in surfaces, artists usually create and apply bump maps in rendering. In many cases, these maps contain random bumps to better simulate rough surface materials at close range. The surface of these perceived roughnesses should be the same when displayed at different distances to the viewer. However, due to filtering issues regarding non-regular and near-stochastic patterns combined to inappropriate shading models, the shading of mapped bumps are often inconsistent across different levels of detail and distance. It is because the shading model at the coarsest level of detail does not correspond to the mapped bumps at finer level of detail.
+To create the illusion of details in surfaces, artists usually create and apply bump maps in rendering. In many cases, these maps contain random bumps to better simulate rough surface materials at close range. The surface of these perceived roughnesses should be the same when displayed at different distances to the viewer. However, due to filtering issues regarding non-regular and near-stochastic patterns combined to inappropriate shading models, the shading of mapped bumps are often inconsistent across different levels of detail and distance. It is because the shading model at the coarsest level of detail does not correspond to the mapped bumps at a finer level of detail.
 
 Bump mapping was originally introduced by Blinn~\cite{Blinn:1978:SWS:800248.507101}. He demonstrated how to simulate wrinkled surfaces by only perturbing the normal vector without changing the underlying surface itself. The perturbed normal replaces the original normal vector of the surface while lighting is computed. For about thirty years, the bump mapping has been an effective method for adding apparent detail to a surface. Programmable GPUs made this technique available for real time rendering, being a common feature in almost any 3D game.
 
@@ -199,14 +201,14 @@ Unfortunately, bump mapping has serious drawbacks with filtering and antialiasin
 %
 This paper describes an improvement of the LEAN mapping. By introducing a fading component in the computations we show that it is possible to reduce the specular highlight according to the distance of the object. For this aim, we use the original LEAN mapping in order to avoid the blurring of the bump surface and propose a modification to make the necessary change in the specular highlight, preventing the inclusion of additional energy on the shiny effect.
 
-The remaining of the paper is organized as follows: Section~\ref{sec:related_work} presents some ground basement of previews works in the area, as well as an overview of the proposed method. Section~\ref{sec:specular_fading} presents our modified method. Section~\ref{sec:results} and Section~\ref{sec:implementation} discusses results and implementation details. Section~\ref{sec:conclusion} concludes the paper with some observations and directions for future exploration.
+The remaining of the paper is organized as follows: Section~\ref{sec:related_work} presents some ground basement of previews works in the area, as well as an overview of the proposed method. Section~\ref{sec:specular_fading} presents our modified method. Section~\ref{sec:implementation} and Section~\ref{sec:results} discusses implementation details and obtained results. Section~\ref{sec:conclusion} concludes the paper with some observations and directions for future exploration.
 %==========================================
 \section{Related Work}
 \label{sec:related_work}
 %
 There are many approaches that model how light reflects at an opaque surface. One of the first well established models was proposed by Blinn~\cite{Blinn:1977:MLR:563858.563893}, which used a simple shading equation based on microfacets to represent micro details as a bidirectional reflectance distribution function (BRDF). Cook and Torrance~\cite{Cook:1982:RMC:357290.357293} have presented a microfacet-based BRDF model which also added shadowing and a Fresnel term to make the representation of metallic and plastic materials more realistic. In contrast to previous work, Ward~\cite{Ward:1992:MMA:133994.134078} has developed a BRDF modeling anisotropic Gaussian distribution of microfacet, and Ashikhmin et al.~\cite{Ashikmin:2000:MBG:344779.344814}  have developed a way of generating reflection models with arbitrary normal distributions.
 
-While micro details of opaque materials can be represented by BRDFs, small bumps on the underlying surface need a more descriptive representation. Blinn~\cite{Blinn:1978:SWS:800248.507101} was the first to to use a height field mapped to the surface to model small (not micro) details on objects represented by coarse triangular meshes. From the height information mapped to a given point on the surface and the normal vector on that point (computed from the original mesh), he demonstrated how to perturb and replace the original normal in order to simulate wrinkles on the surface. Cohen et al.~\cite{Cohen:1998:AS:280814.280832} extended Blinn’s ideas and has used textures to store normal vectors and map them directly to the surfaces, avoiding the computation of perturbed normal from a height map. This technique is called Normal Mapping.
+While micro details of opaque materials can be represented by BRDFs, small bumps on the underlying surface need a more descriptive representation. Blinn~\cite{Blinn:1978:SWS:800248.507101} was the first to to use a height field mapped to the surface to model small (not micro) details on objects represented by coarse triangular meshes. From the height information mapped to a given point on the surface and the normal vector on that point (computed from the original mesh), he demonstrated how to perturb and replace the original normal in order to simulate wrinkles on the surface. Cohen et al.~\cite{Cohen:1998:AS:280814.280832} extended Blinn's ideas and has used textures to store normal vectors and map them directly to the surfaces, avoiding the computation of perturbed normal from a height map. This technique is called Normal Mapping.
 
 Normal Mapping has been combined with BRDFs in games and other real-time graphics applications. However, the filtering process implemented by graphics hardware makes the normal vectors fetched from normal maps not suitable for rendering shiny surfaces at different distances from the observer with existing BRDF models. When viewed from distance, the sampled surface normals will be filtered and the result of changing the normal to an average value makes the bumps no longer visible, which causes the impression of a duller surface. This problem was addressed and partially solved by the LEAN mapping~\cite{Olano:2010:LM:1730804.1730834} technique, in which this work was based on.
 
@@ -216,7 +218,7 @@ Normal Mapping has been combined with BRDFs in games and other real-time graphic
 %
 The LEAN mapping~\cite{Olano:2010:LM:1730804.1730834} is a simple model that is compatible with existing filtering for diffuse bumps. It has a low pre-computation and run-time cost while also being compatible with existing BRDFs such as the Blinn-Phong model proposed by Blinn~\cite{Blinn:1977:MLR:563858.563893}.
 
-The LEAN mapping is a modification of Ward’s shading model~\cite{Ward:1992:MMA:133994.134078}. In contrast to conventional filtering, the technique requires one additional MIP [15] texture lookup per shading evaluation and also manages to capture antialiasing of the highlight shape and the transition of anisotropic bumps into an anisotropic highlight. In render time, the technique uses an existing height or normal map to generate two auxiliary LEAN map textures on GPU~\cite{Olano:2010:LM:1730804.1730834}.
+The LEAN mapping is a modification of Ward's shading model~\cite{Ward:1992:MMA:133994.134078}. In contrast to conventional filtering, the technique requires one additional MIP~\cite{Williams:1983:PP:800059.801126} texture lookup per shading evaluation and also manages to capture antialiasing of the highlight shape and the transition of anisotropic bumps into an anisotropic highlight. In render time, the technique uses an existing height or normal map to generate two auxiliary LEAN map textures on GPU~\cite{Olano:2010:LM:1730804.1730834}.
 
 The use of LEAN mapping with existing Blinn-Phong-based shaders requires the equivalence of the Blinn-Phong model with the symmetric Ward model using a Beckmann distribution. Given a normal vector,~(\ref{eq:n}), retrieved from the normal map and represented in tangent space:
 \begin{equation}
@@ -233,15 +235,15 @@ the LEAN map textures are computed as:
 where $\vec{b}$ is the Bump's Normal. The textures sampling the five values described in~(\ref{eq:b}) and~(\ref{eq:m}) gives an anti-aliased, filtered blend of the bumps and specular shading for any view. Refer to~\cite{Olano:2010:LM:1730804.1730834} for details. To store five values in textures, it is required the usage of two texture units, which enables the possibility to store eight values. The remaining three values can be used to store the conventional normal map in order to save computation and improve the quality of the diffuse filtering, instead of reconstructing it. Figs. \ref{fig:Lean1} and \ref{fig:Lean2} illustrates the RGBA from both generated LEAN textures. As observed in~\cite{Kilgard00apractical}, storing the normal map allows the usage of diffuse filtering with a non-normalized normal resulting from texture filtering.
 
 %==========================================
-\begin{figure}[here]
+\begin{figure}[h]
 	\includegraphics[width=0.49\textwidth]{figs/Lean1.png}
-	\caption{First texture generated by LEAN. The first three color channels of the texture (R, G, and B) store the normal map, and the last one (A) stores M.z (defined by~(\ref{eq:m})).}
+	\caption{First texture generated by LEAN. The first three color channels of the texture (R, G, and B) store the normal map, and the last one (A) stores M.z (defined by~(\ref{eq:m})). Used in Figs.\ref{fig:Teaser}, \ref{fig:sphere}, \ref{fig:ninja}, \ref{fig:torus1} and \ref{fig:LS1}}
 	\label{fig:Lean1}
 \end{figure}
 
-\begin{figure}[here]
+\begin{figure}[h]
 	\includegraphics[width=0.49\textwidth]{figs/Lean2.png}
-	\caption{Second texture generated by LEAN. The first two color channels (R and G) are used to store B (computed using~(\ref{eq:b})) while the last two channels (BA) store M.x and M.y (computed using~(\ref{eq:m})).}
+	\caption{Second texture generated by LEAN. The first two color channels (R and G) are used to store B (computed using~(\ref{eq:b})) while the last two channels (BA) store M.x and M.y (computed using~(\ref{eq:m})). Used in Figs.\ref{fig:Teaser}, \ref{fig:sphere}, \ref{fig:ninja}, \ref{fig:torus1} and \ref{fig:LS1}}
 	\label{fig:Lean2}
 \end{figure}
 %==========================================
@@ -258,8 +260,6 @@ Given the LEAN textures values, $B$ and $M$ from~(\ref{eq:b}) and~(\ref{eq:m}), 
 	\label{eq:lean_spec}
 	\dfrac{1}{2\Pi\sqrt{|\Sigma|}}e^{-0.5(h_{n} - \tilde{b}_{n})^{T} \Sigma^{-1}(h_{n} - \tilde{b}_{n})}
 \end{equation}
-%==========================================
-
 where $h$ is the half way vector between the vector from the surface toward the viewer and the vector from surface toward the light.
 
 To use LEAN mapping with Blinn-Phong model, it is necessary to add the $1 / s$ term in the final shading when constructing the covariance $∑$, adding it in the $M.x$ and $M.y$ terms~\cite{Olano:2010:LM:1730804.1730834}. Doing so will result in introducing the Blinn-Phong specularity effect in the texture.
@@ -269,7 +269,7 @@ To use LEAN mapping with Blinn-Phong model, it is necessary to add the $1 / s$ t
 \section{Proposed Specular Fading Approach}
 \label{sec:specular_fading}
 %
-The Ward model assumes perfectly reflective microfacets. This feature is inherited by the LEAN mapping technique, leading to specular shininess even on huge distances from the observer. The central contribution of our work is to deal with this problem by introducing a fading term on the computation of the specular component of LEAN mapping approach. Our specular fading term varies according to the camera distance from the object. Both the minimum and maximum highlight specular intensity is configurable, and viewed on close range the result is identical to LEAN. This new configurable empirical specular fading term is added in a shader as a power of the dot product between Normal and Light vectors.
+The Ward model assumes perfectly reflective microfacets. This feature is inherited by the LEAN mapping technique, leading to specular shininess even on huge distances from the observer. The central contribution of our work is to deal with this problem by introducing a fading term on the computation of the specular component of LEAN mapping approach. Our specular fading term varies according to the camera distance from the object. Both the minimum and maximum highlight specular intensity is configurable. When viewed on close range, the result is identical to LEAN. This new configurable empirical specular fading term is added in a shader as a power of the dot product between Normal and Light vectors.
 
 This new term allows the specular control over distance, which is made during the shading process without significant computational overhead. It acts as an attenuator component based on the distance, reducing the specular highlight. In addition, our distance-based term actually reduces the shiny appearance without interfering with the alpha component or other light model components.
 
@@ -280,13 +280,13 @@ The specular fading control $sf$ is computed as:
 	sf = clamp(1 + (V_{z} * Fade)^{2}, 1, P_max)
 \end{equation}
 %==========================================
-where $V$ is the normalized view vector, $Fade$ is a positive, and greater than zero, parameter used to configure the fading rate, which is also used to adjust to the world scale. The $Fade$ parameter determines the specular energy loss rate by distance ($V_{z}$). $P\_{max}$ is the maximum specular fade desired by the user and is used in conjunction with $clamp$ to control maximum specular loss. This is done so because even if $Fade$ is carefully chosen and controlled in order to avoid illumination glitches, the distance is not. And since specular energy is lost with distance, $clamp$ is used to force $sf$ minimum an maximum values to avoid cases of gaining energy.
+where $V$ is the normalized view vector, $Fade$ is a positive, and greater than zero, parameter used to configure the fading rate, which is also used to adjust to the world scale. The $Fade$ parameter determines the specular energy loss rate by distance ($V_{z}$). $P\_{max}$ is the maximum specular fade desired by the user and is used in conjunction with $clamp$ to control maximum specular loss. This is done so because even if $Fade$ is carefully chosen and controlled in order to avoid illumination glitches, the distance is not. And since specular energy is lost with distance, $clamp$ is used to force $sf$ minimum and maximum values to avoid cases of gaining energy. The $sf$ term must always be greater than one to avoid introducing energy.
 
-The power of two present in~(\ref{eq:sf})is optional and was used for the sole purpose of increasing the energy loss rate in order to increase visibility in the illutrations presented throughout this paper. Doing so allowed to notice the changes made in the specular highlights while also maintaing the illustrations at a suitable size. This specular fading term, $sf$, is then applied in the intensity of the diffuse light ($NdotL$), as shown by~(\ref{eq:t_spec}), where $Ks$ is the material specular component, $sf$ the specular fading computed by~(\ref{eq:sf}), and $LEAN_spec$ is the LEAN specular term calculated from~(\ref{eq:lean_spec}).
+The power of two present in~(\ref{eq:sf}) is optional and was used for the sole purpose of increasing the energy loss rate in order to increase visibility in the illutrations presented throughout this paper. Doing so allowed to notice the changes made in the specular highlights while also maintaing the illustrations at a suitable size. This specular fading term, $sf$, is then applied in the intensity of the diffuse light ($NdotL$), as shown by~(\ref{eq:t_spec}), where $Ks$ is the material specular component, $sf$ the specular fading computed by~(\ref{eq:sf}), and $LEAN_{spec}$ is the LEAN specular term calculated from~(\ref{eq:lean_spec}).Because $sf$ is always positive and greater than one, and the intensity of the diffuse light is between zero and one, as $sf$ increases, due to the distance since $Fade$ is constant, the intensity will decrease.
 %==========================================
 \begin{equation}
 	\label{eq:t_spec}
-	TotalSpecular = Ks * NdotL^{sf} * LEAN_spec
+	TotalSpecular = Ks * NdotL^{sf} * LEAN_{spec}
 \end{equation}
 %==========================================
 
@@ -296,9 +296,9 @@ The power of two present in~(\ref{eq:sf})is optional and was used for the sole p
 \section{Implementation}
 \label{sec:implementation}
 
-Tests were made in order to compare the new model with the traditional LEAN technique. The tests were performed on a GeForce GTX550Ti, installed in a Windows 7 64-bit machine. The recorded frames per second (fps) were ranging from 1000 to 1600 for both methods for a square model of 256 triangles and 200 vertices. The frame rate varied with the camera distance from the object in the scene. The difference was in performance was barely noticiable between the two techniques. Another geometric model used on the tests was a torus (\figref{BLS3}), which is comprised of 2944 triangles and 1884 vertices. The difference in performance was also barely noticiable. Even with the teapot model containing 79600 triangles and 44366 vertices (\figref{LS1}), the frame rates varied from 570 to 790 fps depending on the range, and with a difference of approximately 5 fps between techniques.
+Tests were made in order to compare the new model with the traditional LEAN technique. The tests were performed on a GeForce GTX550Ti, installed in a Windows 7 64-bit machine. The recorded frames per second (fps) were ranging from 1000 to 1600, depending on the distance, for both methods for a square model of 256 triangles and 200 vertices. The difference in performance was barely noticiable between the two techniques. Another geometric model used on the tests was a torus (\figref{torus1}), which is comprised of 2944 triangles and 1884 vertices, however the difference in performance was also barely noticiable. Even with the teapot model containing 79600 triangles and 44366 vertices (\figref{LS1}), the frame rates varied from 570 to 790 fps, depending on the distance, with a difference of approximately 5 fps between techniques.
 
-In our implementation we adapted the equation in the original LEAN shader. Our GLSL shader is presented in listing~\ref{GLSLCode}. For the LEAN stage, we generated lean maps textures (Figs.\ref{fig:Lean1} and \ref{fig:Lean2}, \ref{fig:Lean21} and \ref{fig:Lean22}) as described in~\cite{Olano:2010:LM:1730804.1730834}, and unpack $N$ (line 5), $B$, $M$ terms from the texture (lines 11 and 12). We then converted $M$ to $∑$ (line 14) and computed the LEAN specular term (lines 15 to 19). Then we compute the intensity of the diffuse light (line 21) and the diffuse component (line 22). After this process, we compute the specular fading $sf$ (lines 24 to 27), the fresnel component (line 29) and the final specular component (line 30). Lastly, the final color using the diffuse and specular components with the light color (line 32).
+In our implementation we adapted the equation in the original LEAN shader. Our GLSL shader is presented in listing~\ref{GLSLCode}. For the LEAN stage, we generated lean maps textures (Figs.\ref{fig:Lean1} and \ref{fig:Lean2}, \ref{fig:Lean21} and \ref{fig:Lean22}) as described in~\cite{Olano:2010:LM:1730804.1730834}, and unpacked $N$ (line 5), $B$, $M$ terms from the textures (lines 11 and 12). We then converted $M$ to $∑$ (line 14) and computed the LEAN specular term (lines 15 to 19). Then we compute the intensity of the diffuse light (line 21) and the diffuse component (line 22). After this process, we compute the specular fading $sf$ (lines 24 to 27), the fresnel component (line 29) and the final specular component (line 30). Lastly, the final color using the diffuse and specular components with the light color (line 32).
 
 %==========================================
 \lstset{basicstyle=\footnotesize,xleftmargin=20pt,numbers=left, breaklines=true, language=C, caption=GLSL pseudo code for specular fading applied in LEAN shader in tangent space., label=GLSLCode}
@@ -341,45 +341,45 @@ color = (fvTotalDiffuse + fvTotalSpecular).xyz * LightColor.xyz;
 \section{Result display}
 \label{sec:results}
 %
-While comparing LEAN map with our proposed model, it is possible to notice the difference on specular highlight when the distance between the camera and the object changes. The generated LEAN maps from Figs.\ref{fig:Lean1} and \ref{fig:Lean2}, \ref{fig:Lean21} and \ref{fig:Lean22} were used to generate Figs. \ref{fig:BLS1}, \ref{fig:BLS2}, \ref{fig:BLS3}, \ref{fig:BLS4}, \ref{fig:BLS5}, \ref{fig:BLS6} and \ref{fig:BLS7} to illustrate the usage of specular fading, LEAN and bump mapping. Figs.\ref{fig:LS1} and \ref{fig:LS2}, which also used Figs.\ref{fig:Lean1} and \ref{fig:Lean2}, show the difference between normal LEAN technique and LEAN with specular fading. As shown by these figures when using specular fading, the farther the object is from the camera, the lower the specular highlight is. This happens because of the attenuator component based on the distance.
+While comparing LEAN map with our proposed model, it is possible to notice the difference on specular highlight when the distance between the camera and the object changes. The generated LEAN maps from Figs.\ref{fig:Lean1} and \ref{fig:Lean2}, \ref{fig:Lean21} and \ref{fig:Lean22} were used to generate Figs. \ref{fig:sphere}, \ref{fig:ninja}, \ref{fig:torus1}, \ref{fig:torus2}, \ref{fig:teapot1}, \ref{fig:terrain1} and \ref{fig:terrain2} to illustrate the usage of specular fading, LEAN and bump mapping. Fig.\ref{fig:LS1}, which also used Figs.\ref{fig:Lean1} and \ref{fig:Lean2}, also show the difference between normal LEAN technique and LEAN with specular fading, but starting at a closer range. As shown by these figures when using specular fading, the farther the object is from the camera, the lower the specular highlight is. This happens because of the attenuator component based on the distance.
 %==========================================
 \begin{figure}[here]
 	\includegraphics[width=0.49\textwidth]{figs/Lean21.png}
-	\caption{First LEAN texture generated for Figs.\ref{fig:BLS1}, \ref{fig:BLS2}, \ref{fig:BLS3}, \ref{fig:LS1} and \ref{fig:LS2}}
+	\caption{First LEAN texture generated for Figs.\ref{fig:torus2}, \ref{fig:teapot1}, \ref{fig:terrain1} and \ref{fig:terrain2}}
 	\label{fig:Lean21}
 \end{figure}
 
 \begin{figure}[here]
 	\includegraphics[width=0.49\textwidth]{figs/Lean22.png}
-	\caption{Second LEAN texture generated for Figs.\ref{fig:BLS4}, \ref{fig:BLS5}, \ref{fig:BLS6} and \ref{fig:BLS7}}
+	\caption{Second LEAN texture generated for Figs.\ref{fig:torus2}, \ref{fig:teapot1}, \ref{fig:terrain1} and \ref{fig:terrain2}}
 	\label{fig:Lean22}
 \end{figure}
 
 \begin{figure}[!h]
-	\includegraphics[width=0.49\textwidth]{figs/BLS2.png}
-	\caption{Comparison between Bump Mapping (left column), LEAN mapping (center), and Specular Fading (right column) using a sphere model. Notice the difference in the specular highlights. At close range, it is very similar to LEAN's, but as the distance increases, the highlight diminishes while keeping the aspect of bump surface.}
-	\label{fig:BLS1}
+	\includegraphics[width=0.49\textwidth]{figs/sphere.png}
+	\caption{Comparison between Bump Mapping (left column), LEAN mapping (center), and Specular Fading (right column) using a sphere model. Notice the difference in the specular highlights. At close range, it is very similar to LEAN's, but as the distance increases, the highlight diminishes while keeping the bump aspect of the surface.}
+	\label{fig:sphere}
 \end{figure}
 %==========================================
 %fog
-This also corrects the specular highlight from fog algorithms, which only changes the alpha component making it transparent over distance. Notice that this method only attenuate the specular highlight, so it can be used in conjunction with distance fog without problems, allowing the fog algorithm to fade the object while changing the specular.
+This specular fading also corrects the specular highlight from fog algorithms, which only changes the alpha component making it transparent over distance. Notice that this method only attenuate the specular highlight, so it can be used in conjunction with distance fog without problems, allowing the fog algorithm to fade the object while changing the specular.
 %==========================================
 \begin{figure}[h]
-	\includegraphics[width=0.49\textwidth]{figs/BLS1.png}
+	\includegraphics[width=0.49\textwidth]{figs/ninja.png}
 	\caption{Another comparsison between approaches but using a ninja head model. Notice the difference of the specular highlights as the distance increases.}
-	\label{fig:BLS2}
+	\label{fig:ninja}
 \end{figure}
 
 \begin{figure}[h]
-	\includegraphics[width=0.49\textwidth]{figs/BLS3.png}
-	\caption{Another comparsison between approaches, with a torus model.}
-	\label{fig:BLS3}
+	\includegraphics[width=0.49\textwidth]{figs/torus1.png}
+	\caption{Another comparsison between approaches, with a torus model and a different specular light color.}
+	\label{fig:torus1}
 \end{figure}
 
 \begin{figure}[h]
-	\includegraphics[width=0.49\textwidth]{figs/BLS4.png}
+	\includegraphics[width=0.49\textwidth]{figs/torus2.png}
 	\caption{Another comparison between approaches. Still using the torus model but with different colors and bumps.}
-	\label{fig:BLS4}
+	\label{fig:torus2}
 \end{figure}
 
 %==========================================
@@ -425,21 +425,21 @@ The authors would like to thank NVIDIA, CNPq, FAPERJ, and CAPES for the financia
 
 
 \begin{figure}[h]
-	\includegraphics[width=0.49\textwidth]{figs/BLS5.png}
-	\caption{Another comparison. The model used is a teapot with blue shading and light. While Bump mapping makes the teapot surface look more smoth as distance increases, LEAN keeps the bump aspect while also preserving the specular highlights. The specular fading preserves the bump surface while also diminishes the highlights.}
-	\label{fig:BLS5}
+	\includegraphics[width=0.49\textwidth]{figs/teapot1.png}
+	\caption{Another comparison. The model used is a teapot with blue shading and light. While Bump mapping makes the teapot surface lose contrast, and LEAN preserves the highlight, the specular fading preserves the bumped surface while diminishing the highlight.}
+	\label{fig:teapot1}
 \end{figure}
 
 \begin{figure}[h]
-	\includegraphics[width=0.49\textwidth]{figs/BLS6.png}
-	\caption{Another comparison between Bump Mapping (left column), LEAN mapping (center), and Specular Fading (right column). This time with a terrain model at different distances.}
-	\label{fig:BLS6}
+	\includegraphics[width=0.49\textwidth]{figs/terrain1.png}
+	\caption{Another comparison between approaches. This time with a terrain model.}
+	\label{fig:terrain1}
 \end{figure}
 
 \begin{figure}[h]
-	\includegraphics[width=0.49\textwidth]{figs/BLS7.png}
+	\includegraphics[width=0.49\textwidth]{figs/terrain2.png}
 	\caption{The same terrain model but in a different angle.}
-	\label{fig:BLS7}
+	\label{fig:terrain2}
 \end{figure}
 
 \begin{figure}[h]

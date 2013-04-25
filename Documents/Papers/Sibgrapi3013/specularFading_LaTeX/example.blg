@@ -2,11 +2,10 @@ This is BibTeX, Version 0.99dThe top-level auxiliary file: example.aux
 The style file: IEEEtran.bst
 Database file #1: bib_extra/IEEEabrv.bib
 Database file #2: example.bib
-Repeated entry---line 223 of file example.bib
+Repeated entry---line 215 of file example.bib
  : @book{Kilgard00apractical
  :                          ,
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "12"
 -- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
