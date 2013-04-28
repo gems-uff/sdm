@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.4.21)  25 APR 2013 17:03
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.4.21)  28 APR 2013 18:26
 entering extended mode
 **example.tex
 
@@ -444,233 +444,189 @@ t)
 (D:\SVN\sdm\trunk\Documents\Papers\Sibgrapi3013\specularFading_LaTeX\example.ou
 t)
 \@outlinefile=\write3
-Missing character: There is no Ã in font ptmr7t!
-Missing character: There is no § in font ptmr7t!
-Missing character: There is no Ã in font ptmr7t!
-Missing character: There is no £ in font ptmr7t!
-Missing character: There is no Ã in font ptmr7t!
-Missing character: There is no ³ in font ptmr7t!
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no “ in font ptmr7t!
  <figs/Teaser.png, id=35, 1276.77pt x 401.24907pt>
 File: figs/Teaser.png Graphic file (type png)
  <use figs/Teaser.png>
-Package pdftex.def Info: figs/Teaser.png used on input line 165.
+Package pdftex.def Info: figs/Teaser.png used on input line 163.
 (pdftex.def)             Requested size: 510.84283pt x 160.53963pt.
-Missing character: There is no Ã in font ptmr7t!
-Missing character: There is no § in font ptmr7t!
-Missing character: There is no Ã in font ptmr7t!
-Missing character: There is no £ in font ptmr7t!
-Missing character: There is no Ã in font ptmr7t!
-Missing character: There is no ³ in font ptmr7t!
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no “ in font ptmr7t!
 
 [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
  <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/Teas
 er.png>]
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 224.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 224.
-
-<figs/Lean1.png, id=81, 510.40688pt x 255.20343pt>
+<figs/Lean1.png, id=68, 510.40688pt x 255.20343pt>
 File: figs/Lean1.png Graphic file (type png)
  <use figs/Lean1.png>
-Package pdftex.def Info: figs/Lean1.png used on input line 239.
+Package pdftex.def Info: figs/Lean1.png used on input line 209.
 (pdftex.def)             Requested size: 252.84283pt x 126.4215pt.
 
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 239--240
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 209--210
 [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<figs/Lean2.png, id=95, 510.40688pt x 255.20343pt>
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 210.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 210.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 210.
+<figs/Lean2.png, id=82, 510.40688pt x 255.20343pt>
 File: figs/Lean2.png Graphic file (type png)
  <use figs/Lean2.png>
-Package pdftex.def Info: figs/Lean2.png used on input line 245.
+Package pdftex.def Info: figs/Lean2.png used on input line 215.
 (pdftex.def)             Requested size: 252.84283pt x 126.4215pt.
 
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 245--246
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 215--216
 [][] 
  []
 
+<figs/sphere.png, id=97, 788.9475pt x 572.1375pt>
+File: figs/sphere.png Graphic file (type png)
+ <use figs/sphere.png>
+Package pdftex.def Info: figs/sphere.png used on input line 222.
+(pdftex.def)             Requested size: 252.84283pt x 183.35837pt.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 222--223
+[][] 
+ []
 
-[2]
-Missing character: There is no â in font cmr10!
-Missing character: There is no ˆ in font cmr10!
-Missing character: There is no ‘ in font cmr10!
-Missing character: There is no â in font cmr10!
-Missing character: There is no ˆ in font cmr10!
-Missing character: There is no ‘ in font cmr10!
- [3 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/L
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 235.
+
+Underfull \vbox (badness 2529) has occurred while \output is active []
+
+ [2 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/L
 ean1.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/
-figs/Lean2.png>]
+figs/Lean2.png>] <figs/ninja.png, id=147, 283.81032pt x 374.90062pt>
+File: figs/ninja.png Graphic file (type png)
+ <use figs/ninja.png>
+Package pdftex.def Info: figs/ninja.png used on input line 269.
+(pdftex.def)             Requested size: 252.84283pt x 334.00374pt.
+
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 269--270
+[][] 
+ []
+
+[3 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/sp
+here.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/
+figs/ninja.png>] <figs/Lean21.png, id=162, 770.12718pt x 385.44pt>
+File: figs/Lean21.png Graphic file (type png)
+
+<use figs/Lean21.png>
+Package pdftex.def Info: figs/Lean21.png used on input line 284.
+(pdftex.def)             Requested size: 252.84283pt x 126.54276pt.
+
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 284--285
+[][] 
+ []
+
+<figs/Lean22.png, id=167, 770.12718pt x 385.44pt>
+File: figs/Lean22.png Graphic file (type png)
+ <use figs/Lean22.png>
+Package pdftex.def Info: figs/Lean22.png used on input line 290.
+(pdftex.def)             Requested size: 252.84283pt x 126.54276pt.
+
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 290--291
+[][] 
+ []
+
+<figs/teapot1.png, id=175, 810.02625pt x 487.8225pt>
+File: figs/teapot1.png Graphic file (type png)
+ <use figs/teapot1.png>
+Package pdftex.def Info: figs/teapot1.png used on input line 315.
+(pdftex.def)             Requested size: 252.84283pt x 152.2655pt.
+
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 315--316
+[][] 
+ []
+
+[4 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/Le
+an21.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/
+figs/Lean22.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading
+_LaTeX/figs/teapot1.png>]
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
 File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
 )
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 310.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 338.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 310.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 310.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 310.
-LaTeX Font Info:    Try loading font information for OML+ptm on input line 324.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 338.
+LaTeX Font Info:    Try loading font information for OML+ptm on input line 352.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omlptm.fd"
 File: omlptm.fd 
 )
 LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <8> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 324.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 352.
 
-<figs/Lean21.png, id=185, 770.12718pt x 385.44pt>
-File: figs/Lean21.png Graphic file (type png)
- <use figs/Lean21.png>
-Package pdftex.def Info: figs/Lean21.png used on input line 347.
-(pdftex.def)             Requested size: 252.84283pt x 126.54276pt.
-
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 347--348
-[][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<figs/Lean22.png, id=190, 770.12718pt x 385.44pt>
-File: figs/Lean22.png Graphic file (type png)
- <use figs/Lean22.png>
-Package pdftex.def Info: figs/Lean22.png used on input line 353.
-(pdftex.def)             Requested size: 252.84283pt x 126.54276pt.
-
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 353--354
-[][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<figs/sphere.png, id=195, 788.9475pt x 572.1375pt>
-File: figs/sphere.png Graphic file (type png)
- <use figs/sphere.png>
-Package pdftex.def Info: figs/sphere.png used on input line 359.
-(pdftex.def)             Requested size: 252.84283pt x 183.35837pt.
-
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 359--360
-[][] 
- []
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<figs/ninja.png, id=196, 283.81032pt x 374.90062pt>
-File: figs/ninja.png Graphic file (type png)
- <use figs/ninja.png>
-Package pdftex.def Info: figs/ninja.png used on input line 368.
-(pdftex.def)             Requested size: 252.84283pt x 334.00374pt.
-
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 368--369
-[][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<figs/torus1.png, id=197, 508.90125pt x 277.035pt>
+<figs/torus1.png, id=213, 508.90125pt x 277.035pt>
 File: figs/torus1.png Graphic file (type png)
  <use figs/torus1.png>
-Package pdftex.def Info: figs/torus1.png used on input line 374.
+Package pdftex.def Info: figs/torus1.png used on input line 382.
 (pdftex.def)             Requested size: 252.84283pt x 137.64212pt.
 
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 374--375
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 382--383
 [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<figs/torus2.png, id=198, 796.47563pt x 564.60938pt>
+<figs/torus2.png, id=214, 796.47563pt x 564.60938pt>
 File: figs/torus2.png Graphic file (type png)
  <use figs/torus2.png>
-Package pdftex.def Info: figs/torus2.png used on input line 380.
+Package pdftex.def Info: figs/torus2.png used on input line 388.
 (pdftex.def)             Requested size: 252.84283pt x 179.23132pt.
 
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 380--381
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 388--389
 [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \vbox (badness 3679) has occurred while \output is active []
-
- [4 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/L
-ean21.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX
-/figs/Lean22.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFadin
-g_LaTeX/figs/sphere.png>]
-(D:\SVN\sdm\trunk\Documents\Papers\Sibgrapi3013\specularFading_LaTeX\example.bb
-l [5 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/
-ninja.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX
-/figs/torus1.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFadin
-g_LaTeX/figs/torus2.png>])
-<figs/teapot1.png, id=260, 810.02625pt x 487.8225pt>
-File: figs/teapot1.png Graphic file (type png)
- <use figs/teapot1.png>
-Package pdftex.def Info: figs/teapot1.png used on input line 428.
-(pdftex.def)             Requested size: 252.84283pt x 152.2655pt.
-
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 428--429
-[][] 
- []
-
-<figs/terrain1.png, id=261, 646.66594pt x 542.77782pt>
+[5 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/to
+rus1.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/
+figs/torus2.png>] <figs/terrain1.png, id=255, 646.66594pt x 542.77782pt>
 File: figs/terrain1.png Graphic file (type png)
- <use figs/terrain1.png>
-Package pdftex.def Info: figs/terrain1.png used on input line 434.
+
+<use figs/terrain1.png>
+Package pdftex.def Info: figs/terrain1.png used on input line 403.
 (pdftex.def)             Requested size: 252.84283pt x 212.22083pt.
 
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 434--435
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 403--404
 [][] 
  []
 
-<figs/terrain2.png, id=262, 646.66594pt x 650.43pt>
-File: figs/terrain2.png Graphic file (type png)
- <use figs/terrain2.png>
-Package pdftex.def Info: figs/terrain2.png used on input line 440.
-(pdftex.def)             Requested size: 252.84283pt x 254.31178pt.
-
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 440--441
-[][] 
- []
-
-<figs/LS1.png, id=263, 496.10344pt x 414.04688pt>
+<figs/LS1.png, id=256, 496.10344pt x 414.04688pt>
 File: figs/LS1.png Graphic file (type png)
  <use figs/LS1.png>
-Package pdftex.def Info: figs/LS1.png used on input line 446.
+Package pdftex.def Info: figs/LS1.png used on input line 409.
 (pdftex.def)             Requested size: 252.84283pt x 211.02211pt.
 
-Overfull \hbox (0.84283pt too wide) in paragraph at lines 446--447
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 409--410
 [][] 
  []
 
+<figs/terrain2.png, id=257, 646.66594pt x 650.43pt>
+File: figs/terrain2.png Graphic file (type png)
+ <use figs/terrain2.png>
+Package pdftex.def Info: figs/terrain2.png used on input line 415.
+(pdftex.def)             Requested size: 252.84283pt x 254.31178pt.
+
+Overfull \hbox (0.84283pt too wide) in paragraph at lines 415--416
+[][] 
+ []
+
+
+(D:\SVN\sdm\trunk\Documents\Papers\Sibgrapi3013\specularFading_LaTeX\example.bb
+l [6 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/
+terrain1.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_La
+TeX/figs/LS1.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFadin
+g_LaTeX/figs/terrain2.png>])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -682,48 +638,47 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 458.
-[6 <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX/figs/te
-apot1.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFading_LaTeX
-/figs/terrain1.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/specularFad
-ing_LaTeX/figs/terrain2.png> <D:/SVN/sdm/trunk/Documents/Papers/Sibgrapi3013/sp
-ecularFading_LaTeX/figs/LS1.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 458.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 433.
+[7
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 433.
 
 (D:\SVN\sdm\trunk\Documents\Papers\Sibgrapi3013\specularFading_LaTeX\example.au
 x)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 458.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 458.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 433.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 433.
 Package rerunfilecheck Info: File `example.out' has not changed.
-(rerunfilecheck)             Checksum: F26352C3C9470D2DDC244EE8E2DA5DA5;420.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 458.
+(rerunfilecheck)             Checksum: 63FC4B76E669F39B6E3DF516AC853D5A;427.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 433.
  ) 
 Here is how much of TeX's memory you used:
  8734 strings out of 493921
- 132966 string characters out of 3147270
- 389537 words of memory out of 3000000
+ 132968 string characters out of 3147270
+ 389861 words of memory out of 3000000
  11852 multiletter control sequences out of 15000+200000
- 35995 words of font info for 69 fonts, out of 3000000 for 9000
+ 37073 words of font info for 70 fonts, out of 3000000 for 9000
  844 hyphenation exceptions out of 8191
- 43i,11n,49p,1020b,1239s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 43i,11n,49p,1061b,1239s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
 s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX
  2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fon
 ts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb
-><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Progr
-am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw
-/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pf
-b><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Fil
-es/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on example.pdf (6 pages, 9018280 bytes).
+public/amsfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
+/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pf
+b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Prog
+ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/ut
+mb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Pro
+gram Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX
+ 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on example.pdf (7 pages, 9075422 bytes).
 PDF statistics:
- 341 PDF objects out of 1000 (max. 8388607)
- 82 named destinations out of 1000 (max. 500000)
+ 357 PDF objects out of 1000 (max. 8388607)
+ 81 named destinations out of 1000 (max. 500000)
  130 words of extra memory for PDF output out of 10000 (max. 10000000)
 
