@@ -159,7 +159,8 @@ function DecreaseMoralePayment()
 	if(func.GetNome() != stringNames.fired)
 	{
 		morale = func.GetMorale();
-		moraleChange = -(constant.MORALE_MOD / 3);
+		//moraleChange = -(constant.MORALE_MOD / 3);
+		moraleChange = -(constant.MORALE_MOD);
 		morale = morale + moraleChange;		//Perde 2 de moral
 		morale = CheckMorale(morale);
 		func.SetMorale(morale);

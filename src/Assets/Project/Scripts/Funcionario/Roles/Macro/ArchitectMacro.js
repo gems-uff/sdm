@@ -45,7 +45,7 @@ class ArchitectMacro extends System.ValueType{
 			actionNode.influence = equipe.influences.GetInfluence("Architect");
 		}
 		var randomizer : float = Random.Range (-1.5, 0.5);
-		var randomizer_2 : float = Random.Range (0.5, 1.5);
+		var randomizer_2 : float = Random.Range (0.75, 1.25);
 		
 		//Generate negative influence
 		var chance : float = Random.Range (0.0, 110);
@@ -114,7 +114,7 @@ class ArchitectMacro extends System.ValueType{
 			d1 = "Employee was ordered to focus on " + descr + " \n and make System test cases";
 			d2 = "Employee was ordered to focus on " + descr + " <br> and make System test cases";
 			if(qnt > 0)
-				actionNode.NewAction(task + "_System", d1, d2, func, date, "Architect", qnt.ToString() + " STC", "System Test Cases", rate);
+				actionNode.NewActionArtifact(task + "_System", d1, d2, func, date, "Architect", qnt.ToString() + " STC", "System Test Cases", rate);
 			else
 				actionNode.NewAction(task + "_System", d1, d2, func, date, "Architect", qnt.ToString() + " STC", rate);
 			MakeSystemCases(actionNode);
@@ -127,7 +127,7 @@ class ArchitectMacro extends System.ValueType{
 				d1 = "Employee was ordered to focus on " + descr + " \n and make Integration test cases";
 				d2 = "Employee was ordered to focus on " + descr + " <br> and make Integration test cases";
 				if(qnt > 0)
-					actionNode.NewAction(task + "_Integration", d1, d2, func, date, "Architect", qnt.ToString() + " ITC", "Integration Test Cases", rate);
+					actionNode.NewActionArtifact(task + "_Integration", d1, d2, func, date, "Architect", qnt.ToString() + " ITC", "Integration Test Cases", rate);
 				else
 					actionNode.NewAction(task + "_Integration", d1, d2, func, date, "Architect", qnt.ToString() + " ITC", rate);
 				MakeIntegrationCases(actionNode);
@@ -140,7 +140,7 @@ class ArchitectMacro extends System.ValueType{
 					d1 = "Employee was ordered to focus on " + descr + " \n and make both types of test cases";
 					d2 = "Employee was ordered to focus on " + descr + " <br> and make both types of test cases";
 					if(qnt > 0)
-						actionNode.NewAction(task + "_System", d1, d2, func, date, "Architect", qnt .ToString() + " STC", "System Test Cases", rate);
+						actionNode.NewActionArtifact(task + "_System", d1, d2, func, date, "Architect", qnt .ToString() + " STC", "System Test Cases", rate);
 					else
 						actionNode.NewAction(task + "_System", d1, d2, func, date, "Architect", qnt .ToString() + " STC", rate);
 					MakeSystemCases(actionNode);
@@ -150,7 +150,7 @@ class ArchitectMacro extends System.ValueType{
 					d1 = "Employee was ordered to focus on " + descr + " \n and make both types of test cases";
 					d2 = "Employee was ordered to focus on " + descr + " <br> and make both types of test cases";
 					if(qnt > 0)
-						actionNode.NewAction(task + "_Integration", d1, d2, func, date, "Architect", qnt.ToString() + " ITC", "Integration Test Cases", rate);
+						actionNode.NewActionArtifact(task + "_Integration", d1, d2, func, date, "Architect", qnt.ToString() + " ITC", "Integration Test Cases", rate);
 					else
 						actionNode.NewAction(task + "_Integration", d1, d2, func, date, "Architect", qnt.ToString() + " ITC", rate);
 					MakeIntegrationCases(actionNode);

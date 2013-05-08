@@ -38,7 +38,7 @@ class AnalystMacro extends System.ValueType{
 		this.delay = delay;
 		this.rate = rate;
 		
-		var randomizer : float = Random.Range (0.5, 1.5);
+		var randomizer : float = Random.Range (0.75, 1.25);
 		
 		if(equipe.influences.GetBonusAnalyst()!= 1.0)
 		{
@@ -127,9 +127,9 @@ class AnalystMacro extends System.ValueType{
 			d1 = "Employee was ordered to focus on \n" + descr + "\n and validated a Prototype";
 			d2 = "Employee was ordered to focus on " + descr + "<br> and validated a Prototype";
 			if(val == 0)
-				actionNode.NewAction(task + "_Prototype", d1, d2, func, date, "Analyst", val.ToString() + " Discovery Change", "", rate);
+				actionNode.NewActionArtifact(task + "_Prototype", d1, d2, func, date, "Analyst", val.ToString() + " Discovery Change", "", rate);
 			else
-				actionNode.NewAction(task + "_Prototype", d1, d2, func, date, "Analyst", val.ToString() + " Discovery", "", rate);
+				actionNode.NewActionArtifact(task + "_Prototype", d1, d2, func, date, "Analyst", val.ToString() + " Discovery", "", rate);
 				
 			floatingLines.showFloatText1("", "Elicitation", "blue","", delay);
 			floatingLines.showFloatText2("+", val.ToString(), "blue", " Discovery", delay);
@@ -158,7 +158,7 @@ class AnalystMacro extends System.ValueType{
 			}
 			else
 			{
-				actionNode.NewAction(task + "_Reviews", d1, d2, func, date, "Analyst", val.ToString() + " Discovery", "", rate);
+				actionNode.NewActionArtifact(task + "_Reviews", d1, d2, func, date, "Analyst", val.ToString() + " Discovery", "", rate);
 			}
 			
 			floatingLines.showFloatText1("", "Elicitation", "blue","", delay);
@@ -195,14 +195,14 @@ class AnalystMacro extends System.ValueType{
 			*/
 			d1 = "Employee was ordered to focus on " + descr + "\n and because he was above moderate he decided to do discovery";
 			d2 = "Employee was ordered to focus on " + descr + "<br> and because he was above moderate he decided to do discovery";
-			actionNode.NewAction(task, d1, d2, func, date, "Analyst", val.ToString() + " Validation", "", rate);
+			actionNode.NewActionArtifact(task, d1, d2, func, date, "Analyst", val.ToString() + " Validation", "", rate);
 			Specifying();
 		}
 		else
 		{
 			d1= "Employee was ordered to focus on " + descr + "\n and because he was moderate he did discovery"; 
 			d2 = "Employee was ordered to focus on " + descr + "<br> and because he was moderate he did discovery";
-			actionNode.NewAction(task, d1, d2, func, date, "Analyst", val.ToString() + " Validation", "", rate);
+			actionNode.NewActionArtifact(task, d1, d2, func, date, "Analyst", val.ToString() + " Validation", "", rate);
 			Specifying();
 		}
 	}
@@ -214,7 +214,7 @@ class AnalystMacro extends System.ValueType{
 		var d1 : String = "Employee was ordered to focus on " + descr + "\n and made Acception Test Cases";
 		var d2 : String = "Employee was ordered to focus on " + descr + "<br> and made Acception Test Cases";
 		if(qnt > 0)
-			actionNode.NewAction(task, d1, d2, func, date, "Analyst", qnt.ToString() + " ATC", "Acception Test Cases", rate);
+			actionNode.NewActionArtifact(task, d1, d2, func, date, "Analyst", qnt.ToString() + " ATC", "Acception Test Cases", rate);
 		else
 			actionNode.NewAction(task, d1, d2, func, date, "Analyst", qnt.ToString() + " ATC", rate);
 		MakeAcceptionCases(actionNode, qnt);

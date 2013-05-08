@@ -16,6 +16,9 @@ function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 		if(action.artifact != "")
 		{
 			//Artifact to action
+			var inf : String = " ";
+			if(current.action.artifact == "Prototype")
+				inf = "1 Prototype";
 			line = Artifact(action, action.artifact) + "\t" + Action(action);
 			f.WriteLine("IArAc" + "\t" + line + "\t" + "");
 		}
@@ -30,8 +33,11 @@ function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 				if(current.action.artifact != "")
 				{
 					//Action to artifact
+					var inf2 : String = " ";
+					if(current.action.artifact == "Prototype")
+						inf2 = "-1 Prototype";
 					line = Action(action) + "\t" + Artifact(current.action, current.action.artifact);
-					f.WriteLine("IAcAr" + "\t" + line + "\t" + "");
+					f.WriteLine("IAcAr" + "\t" + line + "\t" + inf);
 				}
 				else
 				{
@@ -83,14 +89,17 @@ function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 			if((action.morale - action.previous.morale) != 0)
 			{
 				//Edge with morale dif between actions
-				line = Action(action.previous) + "\t" + Action(action) + "\t" + (action.morale - action.previous.morale) + " Morale";
-				f.WriteLine("AcAc" + "\t" + line);
+				//line = Action(action.previous) + "\t" + Action(action) + "\t" + (action.morale - action.previous.morale) + " Morale";
+				line = Action(action) + "\t" + Agent(employee) + "\t" + (action.morale - action.previous.morale) + " Morale";
+				
+				f.WriteLine("AcAg" + "\t" + line);
 			}
 			if((action.stamina - action.previous.stamina) != 0)
 			{
 				//Edge with stamina dif between actions
-				line = Action(action.previous) + "\t" + Action(action) + "\t" + (action.stamina - action.previous.stamina) + " Stamina";
-				f.WriteLine("AcAc" + "\t" + line);
+				//line = Action(action.previous) + "\t" + Action(action) + "\t" + (action.stamina - action.previous.stamina) + " Stamina";
+				line = Action(action) + "\t" + Agent(employee) + "\t" + (action.stamina - action.previous.stamina) + " Stamina";
+				f.WriteLine("AcAg" + "\t" + line);
 			}
 		}
 		action = action.next;

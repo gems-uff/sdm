@@ -476,7 +476,7 @@ function IdleWork()
 	if(func.GetPapel() == stringNames.papelNenhum && func.GetNome() != stringNames.fired)
 	{
 		var action : ActionNode = new ActionNode();
-		action.NewAction("Idle", "Idle", "Idle", func, timer, "idle", "", "", 100);
+		action.NewActionArtifact("Idle", "Idle", "Idle", func, timer, "idle", "", "", 100);
 		action.projectStat = behavior.Log.GetProjectStat();
 		behavior.AddAction(action);
 	}
@@ -502,7 +502,7 @@ function Treinando(){
 			floatingLines.showFloatText1("", "", "green", " Training Complete");
 		}
 		var action : ActionNode = new ActionNode();
-		action.NewAction(treino.GetAprendendo(), "Training", "Training", func, timer, "Training", "", "", 100);
+		action.NewActionArtifact(treino.GetAprendendo(), "Training", "Training", func, timer, "Training", "", "", 100);
 		behavior.AddAction(action);
 	}
 }

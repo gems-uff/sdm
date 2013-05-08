@@ -110,7 +110,7 @@ class ActionNode
 	}
 	*/
 	//func
-	function NewAction(task : String, description : String, d2 : String, func : Funcionario, date : GameTime, role : String, work : String, 
+	function NewActionArtifact(task : String, description : String, d2 : String, func : Funcionario, date : GameTime, role : String, work : String, 
 	artifact : String, rate : int)
 	{
 		this.who = func.GetNome();

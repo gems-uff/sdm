@@ -79,7 +79,7 @@ function ApplyChanges(){
 		trade = parseInt(trade);
 		project.SetProjectSize(trade);
 		description += "lower scope";
-		gain = ((marketing * 100) * -1) + " Scope";
+		gain = ((marketing * 100) * -1) + " Scope Negotiation";
 	}
 	if(timeBool == true)
 	{
@@ -89,7 +89,7 @@ function ApplyChanges(){
 		trade = trade + project.GetStartDay();
 		project.SetDeadline(trade);
 		description += "more time";
-		gain = (marketing * 100) + " % Time";
+		gain = (marketing * 100) + " % Time Negotiation";
 	}
 	if(moneyBool == true)
 	{
@@ -98,7 +98,7 @@ function ApplyChanges(){
 		trade = parseInt(trade);
 		project.SetPagamento(trade);
 		description += "more credits";
-		gain = (marketing * 100) + " % Income";
+		gain = (marketing * 100) + " % Income Negotiation";
 	}
 	if(qualityBool == true)
 	{
@@ -107,7 +107,7 @@ function ApplyChanges(){
 		trade = parseInt(trade);
 		project.SetBugValue(trade);
 		description += "less quality";
-		gain = ((marketing * 100) * -1) + " % Quality";
+		gain = ((marketing * 100) * -1) + " % Quality Negotiation";
 	}
 	//Tradeoff
 	if(moreScope == true)
@@ -117,7 +117,7 @@ function ApplyChanges(){
 		tradeOff = parseInt(tradeOff);
 		project.SetProjectSize(tradeOff);
 		description += " in exchange of more scope";
-		inExchange = (marketing * 100) + " % Scope";
+		inExchange = (marketing * 100) + " % Scope Negotiation";
 	}
 	if(lessTime == true)
 	{
@@ -127,7 +127,7 @@ function ApplyChanges(){
 		tradeOff = tradeOff + project.GetStartDay();
 		project.SetDeadline(tradeOff);
 		description += " in exchange of less time";
-		inExchange = ((marketing * 100) * -1) + " % Time";
+		inExchange = ((marketing * 100) * -1) + " % Time Negotiation";
 	}
 	if(lessMoney == true)
 	{
@@ -136,7 +136,7 @@ function ApplyChanges(){
 		tradeOff = parseInt(tradeOff);
 		project.SetPagamento(tradeOff);
 		description += " in exchange of less credits";
-		inExchange =((marketing * 100) * -1) + " % Credits";
+		inExchange =((marketing * 100) * -1) + " % Income Negotiation";
 	}
 	if(moreQuality == true)
 	{
@@ -145,7 +145,7 @@ function ApplyChanges(){
 		trade = parseInt(trade);
 		project.SetBugValue(trade);
 		description += " in exchange of more quality";
-		inExchange = (marketing * 100) + " % Quality";
+		inExchange = (marketing * 100) + " % Quality Negotiation";
 	}
 	Action(description, gain, inExchange);
 }

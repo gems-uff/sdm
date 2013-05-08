@@ -386,7 +386,7 @@ class ProgrammerMacro extends System.ValueType{
 		var bugCount : int = 0;
 		var maxBugs : float = 0;
 		var codeLines : float = 0.0;
-		var randomizer : float = Random.Range (0.5, 1.5);
+		var randomizer : float = Random.Range (0.75, 1.25);
 		
 		codeLines = programador;
 		if (RequisitoLinguagem == true && project.GetFractionDone() < 100)
