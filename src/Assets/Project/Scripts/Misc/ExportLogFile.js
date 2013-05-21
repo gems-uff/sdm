@@ -17,10 +17,10 @@ function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 		{
 			//Artifact to action
 			var inf : String = " ";
-			if(current.action.artifact == "Prototype")
+			if(action.artifact == "Prototype")
 				inf = "1 Prototype";
 			line = Artifact(action, action.artifact) + "\t" + Action(action);
-			f.WriteLine("IArAc" + "\t" + line + "\t" + "");
+			f.WriteLine("IArAc" + "\t" + line + "\t" + inf);
 		}
 		
 		if(action.influence.valid)
@@ -37,7 +37,7 @@ function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 					if(current.action.artifact == "Prototype")
 						inf2 = "-1 Prototype";
 					line = Action(action) + "\t" + Artifact(current.action, current.action.artifact);
-					f.WriteLine("IAcAr" + "\t" + line + "\t" + inf);
+					f.WriteLine("IAcAr" + "\t" + line + "\t" + inf2);
 				}
 				else
 				{
