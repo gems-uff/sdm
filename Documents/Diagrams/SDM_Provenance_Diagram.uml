@@ -65,7 +65,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="5rZvTWiN10yavQaUYo+DYQAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="P5ZIaWk4pEq/M3YkS9RLLQAA">
 <XPD:ATTR name="FontStyle" type="integer">1</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">character</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">Character</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="ySHZFuJcsUCTpBxp3aQAbAAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -97,7 +97,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="IpkKn4IoFEGiVO9ydqzj8wAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="JS6oflsKfU+jAdhbmHsKAgAA">
 <XPD:ATTR name="FontStyle" type="integer">1</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">object</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">Object</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="+wi0ROCSP0GOvzSbwLRnIwAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -161,7 +161,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="WONXT9NvAEKL3k9pgH7HTgAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="/naHg7TixU6LRnGB/W2E/gAA">
 <XPD:ATTR name="FontStyle" type="integer">1</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">event</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">Event</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="QJ0l48CGUECCE7ZqJi3aPAAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -193,7 +193,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="gWIakiKgpEmZOhYKAmiyIAAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="+IIWXL1qtEOnt+QVWAVGXQAA">
 <XPD:ATTR name="FontStyle" type="integer">1</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">action</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">Action</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="eRnOPBvRv02l/y57ePQ4GwAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -1306,7 +1306,7 @@
 <XPD:REF name="Associations[2]">qCxfXORdKkSkcbJeTWqyCwAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[2]" type="UMLClass" guid="aNsFQhXRlUmkirqOv2crUgAA">
-<XPD:ATTR name="Name" type="string">character</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">Character</XPD:ATTR>
 <XPD:REF name="Namespace">bTCh1i72VEWEZprLadwa7QAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">IWZaRPliC0W2Tmz9SnDH9wAA</XPD:REF>
@@ -1341,7 +1341,7 @@
 </XPD:OBJ>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[3]" type="UMLClass" guid="0nRNE9tmcUemSWsjByBAhAAA">
-<XPD:ATTR name="Name" type="string">object</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">Object</XPD:ATTR>
 <XPD:REF name="Namespace">bTCh1i72VEWEZprLadwa7QAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">OUWACqYXBkuPUFDEvQGG7wAA</XPD:REF>
@@ -1388,7 +1388,7 @@
 <XPD:REF name="Specializations[0]">L4+uAdKyfU6jeMuqDSAYuAAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[5]" type="UMLClass" guid="F2sOZihG/U2030Qi/0qA/wAA">
-<XPD:ATTR name="Name" type="string">event</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">Event</XPD:ATTR>
 <XPD:REF name="Namespace">bTCh1i72VEWEZprLadwa7QAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">gbsg1Yj/J0m+AEFM13JjBwAA</XPD:REF>
@@ -1421,7 +1421,7 @@
 </XPD:OBJ>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[6]" type="UMLClass" guid="8K39wTyM8kiRad3Zs0cYpQAA">
-<XPD:ATTR name="Name" type="string">action</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">Action</XPD:ATTR>
 <XPD:REF name="Namespace">bTCh1i72VEWEZprLadwa7QAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">wzw6mVUF206A7r4/oHJ3UgAA</XPD:REF>
