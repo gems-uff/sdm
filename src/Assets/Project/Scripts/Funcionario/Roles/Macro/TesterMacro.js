@@ -65,7 +65,7 @@ class TesterMacro extends System.ValueType{
 			}
 			d1 = "Tester used Test Cases";
 			d2 = "Tester used Test Cases";
-			actionNode.NewActionArtifact("Test:Cases", d1, d2, func, date, "Tester", totalBugsFound.ToString() + " Bug Found", "", rate);
+			actionNode.NewActionArtifact("Test Cases", d1, d2, func, date, "Tester", totalBugsFound.ToString() + " Bug Found", "", rate);
 		}
 		else
 		{

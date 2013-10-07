@@ -38,6 +38,7 @@ function ContratarFuncionario(contratado : Funcionario, Func_Slot : Funcionario)
 			Func_Slot.SetEspecializacoes(func.GetEspecializacao());
 			Func_Slot.SetNome(func.GetNome());
 			Func_Slot.SetSalarioDefault(func.GetSalarioDefault());
+			Func_Slot.SetSalario(func.GetSalarioDefault());
 			Func_Slot.ResetLevel();
 			playerStats.ChangeSaldo(- contratado.GetSalario() - HIRE_PRICE);
 			//aux = func.GetComponentInChildren(NewFuncionario);

@@ -541,8 +541,8 @@ class ProgrammerMacro extends System.ValueType{
 		var d2 : String = "Employee is " + esp + " especialized, is a " + prog + " programmer and <br> is " + pressure +" under pressure";
 		//actionNode.NewAction(task, d1, d2, func, date, "Programmer", work, work, work_2, "");
 		if(progress)
-			actionNode.NewAction(task, d1, d2, func, date, "Programmer", work, work, work_2, actionNode.work_4, work_5, actionNode.artifact, rate);
+			actionNode.NewActionW4(task, d1, d2, func, date, "Programmer", work, work, work_2, actionNode.work_4, work_5, actionNode.artifact, rate);
 		else
-			actionNode.NewAction(task, d1, d2, func, date, "Programmer", work, "0 " + type + " Change", actionNode.artifact, rate);
+			actionNode.NewActionW2(task, d1, d2, func, date, "Programmer", work, "0 " + type + " Change", actionNode.artifact, rate);
 	}
 }

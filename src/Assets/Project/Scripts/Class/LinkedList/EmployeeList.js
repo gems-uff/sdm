@@ -32,6 +32,7 @@ class EmployeeList extends EmployeeNode
 class EmployeeNode
 {
 	//Employee data
+	public var ID : String;
 	public var employee : Employee;
 	public var actionList : ActionList;
 	

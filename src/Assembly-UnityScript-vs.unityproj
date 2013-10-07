@@ -53,12 +53,13 @@
      <Compile Include="Assets\Project\Scripts\Class\Employee.js" />
      <Compile Include="Assets\Project\Scripts\Class\Especializacoes.js" />
      <Compile Include="Assets\Project\Scripts\Class\LinkedList\ActionList.js" />
+     <Compile Include="Assets\Project\Scripts\Class\LinkedList\ArtifactList.js" />
      <Compile Include="Assets\Project\Scripts\Class\LinkedList\EmployeeList.js" />
      <Compile Include="Assets\Project\Scripts\Class\LinkedList\InfluenceList.js" />
      <Compile Include="Assets\Project\Scripts\Class\LinkedList\LinkedList.js" />
      <Compile Include="Assets\Project\Scripts\Class\LinkedList\ProjectList.js" />
+     <Compile Include="Assets\Project\Scripts\Class\LinkedList\ProjectStats.js" />
      <Compile Include="Assets\Project\Scripts\Class\LinkedList\testList.js" />
-     <Compile Include="Assets\Project\Scripts\Class\ProjectStats.js" />
      <Compile Include="Assets\Project\Scripts\Class\ProjectsDescriptions.js" />
      <Compile Include="Assets\Project\Scripts\Class\RandomNameGenerator.js" />
      <Compile Include="Assets\Project\Scripts\Class\SaveFuncionario.js" />

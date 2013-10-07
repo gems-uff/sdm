@@ -2,6 +2,8 @@
 
 class ProjectStats
 {
+	public var ID : String;
+	public var projID : String;
 	public var name : String;					//Project Name
 	public var description : String;			//Project Text info
 	public var deadline : int;  				//in days

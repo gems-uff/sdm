@@ -116,7 +116,7 @@ class ArchitectMacro extends System.ValueType{
 			if(qnt > 0)
 				actionNode.NewActionArtifact(task + "_System", d1, d2, func, date, "Architect", qnt.ToString() + " STC", "System Test Cases", rate);
 			else
-				actionNode.NewAction(task + "_System", d1, d2, func, date, "Architect", qnt.ToString() + " STC", rate);
+				actionNode.NewActionNoArtifact(task + "_System", d1, d2, func, date, "Architect", qnt.ToString() + " STC", rate);
 			MakeSystemCases(actionNode);
 		}
 		else
@@ -129,7 +129,7 @@ class ArchitectMacro extends System.ValueType{
 				if(qnt > 0)
 					actionNode.NewActionArtifact(task + "_Integration", d1, d2, func, date, "Architect", qnt.ToString() + " ITC", "Integration Test Cases", rate);
 				else
-					actionNode.NewAction(task + "_Integration", d1, d2, func, date, "Architect", qnt.ToString() + " ITC", rate);
+					actionNode.NewActionNoArtifact(task + "_Integration", d1, d2, func, date, "Architect", qnt.ToString() + " ITC", rate);
 				MakeIntegrationCases(actionNode);
 			}
 			//Both
@@ -140,9 +140,9 @@ class ArchitectMacro extends System.ValueType{
 					d1 = "Employee was ordered to focus on " + descr + " \n and make both types of test cases";
 					d2 = "Employee was ordered to focus on " + descr + " <br> and make both types of test cases";
 					if(qnt > 0)
-						actionNode.NewActionArtifact(task + "_System", d1, d2, func, date, "Architect", qnt .ToString() + " STC", "System Test Cases", rate);
+						actionNode.NewActionArtifact(task + "_System", d1, d2, func, date, "Architect", qnt.ToString() + " STC", "System Test Cases", rate);
 					else
-						actionNode.NewAction(task + "_System", d1, d2, func, date, "Architect", qnt .ToString() + " STC", rate);
+						actionNode.NewActionNoArtifact(task + "_System", d1, d2, func, date, "Architect", qnt.ToString() + " STC", rate);
 					MakeSystemCases(actionNode);
 				}
 				else
@@ -152,7 +152,7 @@ class ArchitectMacro extends System.ValueType{
 					if(qnt > 0)
 						actionNode.NewActionArtifact(task + "_Integration", d1, d2, func, date, "Architect", qnt.ToString() + " ITC", "Integration Test Cases", rate);
 					else
-						actionNode.NewAction(task + "_Integration", d1, d2, func, date, "Architect", qnt.ToString() + " ITC", rate);
+						actionNode.NewActionNoArtifact(task + "_Integration", d1, d2, func, date, "Architect", qnt.ToString() + " ITC", rate);
 					MakeIntegrationCases(actionNode);
 				}
 			}
@@ -167,14 +167,14 @@ class ArchitectMacro extends System.ValueType{
 		{
 			d1 = "Employee was ordered to focus on " + descr + " \n and improved the architecture";
 			d2 = "Employee was ordered to focus on " + descr + " <br> and improved the architecture";
-			actionNode.NewAction(task + "_Architecture", d1, d2, func, date, "Architect", arquiteto.ToString() + " % Aid Programmer", rate);
+			actionNode.NewActionNoArtifact(task + "_Architecture", d1, d2, func, date, "Architect", arquiteto.ToString() + " % Aid Programmer", rate);
 			ModularizateCode(actionNode);
 		}
 		else
 		{
 			d1 = "Employee was ordered to focus on " + descr + "\n and made a prototype";
 			d2 = "Employee was ordered to focus on " + descr + "<br> and made a prototype";
-			actionNode.NewAction(task + "_Prototype", d1, d2, func, date, "Architect", "Prototyping" , "", "Prototype", rate); //Removed "1 Prototype"
+			actionNode.NewActionArtifact(task + "_Prototype", d1, d2, func, date, "Architect", "Prototyping", "Prototype", rate); //Removed "1 Prototype"
 			MakePrototype(actionNode);
 		}
 	}
@@ -183,7 +183,7 @@ class ArchitectMacro extends System.ValueType{
 	{
 		var d1 : String = "Employee was ordered to do a prototype";
 		var d2 : String = "Employee was ordered to do a prototype";
-		actionNode.NewAction("Analysis", d1, d2, func, date, "Architect", "Prototyping", "", "Prototype", rate); //Removed "1 Prototype"
+		actionNode.NewActionArtifact("Analysis", d1, d2, func, date, "Architect", "Prototyping", "Prototype", rate); //Removed "1 Prototype"
 		MakePrototype(actionNode);
 	}
 	

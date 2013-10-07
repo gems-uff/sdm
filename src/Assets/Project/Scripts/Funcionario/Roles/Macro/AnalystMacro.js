@@ -154,11 +154,11 @@ class AnalystMacro extends System.ValueType{
 			d2 = "Employee was ordered to focus on " + descr + "<br> and validated with Reviews";
 			if(newBug == 0)
 			{
-				actionNode.NewAction(task + "_Reviews", d1, d2, func, date, "Analyst", val.ToString() + " Discovery", val.ToString() + " Discovery", newBug + " New Bug", "", rate);
+				actionNode.NewActionNoArtifact(task + "_Reviews", d1, d2, func, date, "Analyst", val.ToString() + " Discovery", rate);
 			}
 			else
 			{
-				actionNode.NewActionArtifact(task + "_Reviews", d1, d2, func, date, "Analyst", val.ToString() + " Discovery", "", rate);
+				actionNode.NewActionW3(task + "_Reviews", d1, d2, func, date, "Analyst", val.ToString() + " Discovery", val.ToString() + " Discovery", newBug + " New Bug", rate);
 			}
 			
 			floatingLines.showFloatText1("", "Elicitation", "blue","", delay);
@@ -216,7 +216,7 @@ class AnalystMacro extends System.ValueType{
 		if(qnt > 0)
 			actionNode.NewActionArtifact(task, d1, d2, func, date, "Analyst", qnt.ToString() + " ATC", "Acception Test Cases", rate);
 		else
-			actionNode.NewAction(task, d1, d2, func, date, "Analyst", qnt.ToString() + " ATC", rate);
+			actionNode.NewActionNoArtifact(task, d1, d2, func, date, "Analyst", qnt.ToString() + " ATC", rate);
 		MakeAcceptionCases(actionNode, qnt);
 	}
 	

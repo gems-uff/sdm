@@ -52,7 +52,7 @@ function ResetItems(){
 function Action(text : String, work_1 : String, work_2 : String)
 {
 	var action : ActionNode = new ActionNode();
-	action.NewAction("Negotiation", text, text, func, 0, timer, "Marketing:Negotiation", "Negotiating", work_1, work_2, "");
+	action.NewActionNegotiation("Negotiation", text, text, func, 0, timer, "Marketing:Negotiation", "Negotiating", work_1, work_2);
 	action.projectStat = func.behavior.Log.GetProjectStat();
 	func.behavior.AddAction(action);
 }

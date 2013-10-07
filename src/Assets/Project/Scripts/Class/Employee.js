@@ -1,5 +1,7 @@
 class Employee extends System.ValueType
 {
+
+	public var ID : String;
 	public var atributos : Atributos;
 	public var especializacao : String;
 	
@@ -15,6 +17,12 @@ class Employee extends System.ValueType
 	public var stamina : int;
 	public var level : int;
 
+	function GetID(){
+		return ID;
+	}
+	function SetID(t : String){
+		ID = t;
+	}
 	function GetAtributos(){
 		return atributos;
 	}
