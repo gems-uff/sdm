@@ -398,6 +398,7 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 				line = "edge" + edgeID + ", " + action.ID + ", " + action.projectStat.ID + ", " + "0 Credits: Not enough Credits";	
 			}
 			edges.WriteLine(line);
+			edgeID++;
 			
 			//Work_2
 			if(action.work_2 != "")
