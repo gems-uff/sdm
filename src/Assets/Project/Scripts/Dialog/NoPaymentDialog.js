@@ -13,7 +13,7 @@ function NoPayment()
 	if(showWindow)
 	{
 		timer.PauseGame();
-		GUI.Box (Rect (00,25,600,50), "Boss, our client didn't pay us this month because we are too behind the schedule.");
+		GUI.Box (Rect (00,25,600,50), "Boss, our client didn't pay us this month because we are behind schedule.");
 		if (GUI.Button (Rect (600,25, 130, 50), "End")) 
 		{
 			showWindow = false;

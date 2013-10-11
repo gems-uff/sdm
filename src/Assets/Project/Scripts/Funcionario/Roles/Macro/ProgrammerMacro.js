@@ -34,6 +34,7 @@ class ProgrammerMacro extends System.ValueType{
 		equipe = equipeP;
 		constant = constantP;
 		programador = programadorP;
+		Debug.Log(programador);
 		RequisitoLinguagem = RequisitoLinguagemP;
 		
 		isEspecialized = isEspecializedP;
@@ -46,6 +47,7 @@ class ProgrammerMacro extends System.ValueType{
 		{
 			programador = programador * (1 + equipe.influences.GetBonusProg());
 			actionNode.influence = equipe.influences.GetInfluence("Programmer");
+			Debug.Log(programador);
 		}
 			
 		DecisionTree(actionNode);
@@ -387,16 +389,21 @@ class ProgrammerMacro extends System.ValueType{
 		var maxBugs : float = 0;
 		var codeLines : float = 0.0;
 		var randomizer : float = Random.Range (0.75, 1.25);
-		
+		Debug.Log(programador);
 		codeLines = programador;
 		if (RequisitoLinguagem == true && project.GetFractionDone() < 100)
 		{			
 			//Apply a small variation
+			Debug.Log(codeLines);
 			codeLines = codeLines * randomizer * modCode;
 			//Cap at model
+			Debug.Log(codeLines);
 			codeLines = codeLines * constant.PROG_LINES_DAY_MOD;
-			codeLines = parseInt(codeLines);			
+			Debug.Log(codeLines);
+			codeLines = parseInt(codeLines);		
+			Debug.Log(codeLines);	
 			codeLines = project.SetLinesDone(codeLines);
+			Debug.Log(codeLines);
 			
 			var refact : float = 0;
 			var progress : boolean = false;

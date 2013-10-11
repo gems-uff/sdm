@@ -14,6 +14,7 @@ class ProjectStats
 	public var codeQuality : float;				//Current Code Quality
 	public var percentageDone : float; 			//GetFractionDone()
 	public var credits : int;
+	public var status : String;
 	//Bugs Found
 	public var bugUnitaryFound : int;
 	public var bugIntegrationFound : int;
@@ -61,6 +62,7 @@ class ProjectStats
 		this.bugSystemRepaired = node.bugSystemRepaired;
 		this.bugAcceptionRepaired = node.bugAcceptionRepaired;
 		this.totalBugs = node.totalBugs;
+		this.status = node.status;
 	}
 	
 	function UpdateIncome()

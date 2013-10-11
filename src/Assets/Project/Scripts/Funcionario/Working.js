@@ -466,7 +466,7 @@ function TesterWork(){
 		//Debug.Log("Tester = " + tester);
 		
 		action = TesterMacro.Work(func, project, report, floatingLines, equipe, constant, tester, timer, behavior, delay, rate);//wasInfluenced
-		action.projectStat = behavior.Log.GetProjectStat();
+		//action.projectStat = behavior.Log.GetProjectStat();
 		behavior.AddAction(action);
 	}
 }
@@ -477,7 +477,7 @@ function IdleWork()
 	{
 		var action : ActionNode = new ActionNode();
 		action.NewActionArtifact("Idle", "Idle", "Idle", func, timer, "idle", "", "", 100);
-		action.projectStat = behavior.Log.GetProjectStat();
+		//action.projectStat = behavior.Log.GetProjectStat();
 		behavior.AddAction(action);
 	}
 	

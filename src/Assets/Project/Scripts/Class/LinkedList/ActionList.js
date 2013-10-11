@@ -37,6 +37,7 @@ class ActionNode
 	public var date : String;						//Day
 	public var who : String;					//Name
 	public var task : String;					//Task executed from his role
+	public var taskType : String;
 	public var role : String;					//Role as in Programmer, marketing, etc
 	public var rate : int;					//Role as in Programmer, marketing, etc
 	public var influence : InfluenceValues;		//Influence stats
@@ -70,6 +71,7 @@ class ActionNode
 		this.date = "";
 		this.who = null;
 		this.task = null;
+		this.taskType = null;
 		this.role = null;
 		this.rate = 100;
 		this.influence = new InfluenceValues();
@@ -113,6 +115,19 @@ class ActionNode
 	}
 	*/
 	//Func, cost for NEGOTIATION
+	
+	function GetTaskType(task : String)
+	{
+		var fullTask = task.Split("_"[0]);
+		if(fullTask[0] == "Balanced" || fullTask[0] == "Aid" || fullTask[0] == "Hired")
+		{
+			return (fullTask[0] + "_" + fullTask[1]);
+		}
+		else
+		{
+			return (fullTask[0]);
+		}
+	}
 	function NewActionNegotiation(task : String, description : String, d2 : String, func : Funcionario, cost : int, date : GameTime, role : String, 
 	work : String, work_2 : String, work_3 : String)
 	{
@@ -130,6 +145,9 @@ class ActionNode
 		this.work_2 = work_2;
 		this.work_3 = work_3;
 		this.artifact = "";
+		this.taskType = GetTaskType(task);
+		
+		
 	}
 	//Func, cost for HIRE
 	function NewActionHire(task : String, description : String, d2 : String, func : Funcionario, cost : int, date : GameTime, role : String)
@@ -147,6 +165,7 @@ class ActionNode
 		this.work = "";
 		this.work_2 = "";
 		this.artifact = "";
+		this.taskType = GetTaskType(task);
 	}
 	//func with Artifact
 	function NewActionArtifact(task : String, description : String, d2 : String, func : Funcionario, date : GameTime, role : String, work : String, 
@@ -166,6 +185,7 @@ class ActionNode
 		this.work = work;
 		this.work_2 = work;
 		this.artifact = artifact;
+		this.taskType = GetTaskType(task);
 	}
 	//func no artifact
 	function NewActionNoArtifact(task : String, description : String, d2 : String, func : Funcionario, date : GameTime, role : String, work : String, rate : int)
@@ -184,6 +204,7 @@ class ActionNode
 		this.work = work;
 		this.work_2 = "";
 		this.artifact = "";
+		this.taskType = GetTaskType(task);
 	}
 	//func, set work_2
 	function NewActionW2(task : String, description : String, d2 : String, func : Funcionario, date : GameTime, role : String, work : String, 
@@ -203,6 +224,7 @@ class ActionNode
 		this.work = work;
 		this.work_2 = work_2;
 		this.artifact = artifact;
+		this.taskType = GetTaskType(task);
 	}
 	
 	//func, set work_2 and 3
@@ -224,6 +246,7 @@ class ActionNode
 		this.work_2 = work_2;
 		this.work_3 = work_3;
 		this.artifact = "";
+		this.taskType = GetTaskType(task);
 	}
 	//func, set work_2 and 3 and 4 and 5
 	function NewActionW4(task : String, description : String, d2 : String, func : Funcionario, date : GameTime, role : String, work : String, 
@@ -245,6 +268,7 @@ class ActionNode
 		this.work_4 = work_4;
 		this.work_5 = work_5;
 		this.artifact = artifact;
+		this.taskType = GetTaskType(task);
 	}
 }
 

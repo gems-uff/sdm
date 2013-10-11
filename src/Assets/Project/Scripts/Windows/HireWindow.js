@@ -154,20 +154,20 @@ function HireEmployee(){
 	}
 	if ( jogador.GetSaldo() >= (thisCandidate.GetSalario() + contratacao))
 	{
-		HireAction(thisCandidate);
+		HireAction(thisCandidate, "PlayerChoice");
 		hireFuncionario.ContratarFuncionario(thisCandidate, inPlaceOf);
 	}
 	else
 		//showInsuficientMoneyWindow = true;
 		windowController.ShowInsufficientHireWindow();
 }
-function HireAction(thisCandidate : Funcionario)
+function HireAction(thisCandidate : Funcionario, role : String)
 {
 	var action : ActionNode = new ActionNode();
 	var cost : int = thisCandidate.GetSalario() + contratacao;
 
 	//var log : BehaviorPlanner = func = GetComponentInChildren(Funcionario);
-	action.NewActionHire("Hired_Employee: " + thisCandidate.GetNome(), "Hired new employee: " + thisCandidate.GetNome(), "Hired new employee: " + thisCandidate.GetNome(), manager, cost, timer, "Hired: " + thisCandidate.GetNome());
+	action.NewActionHire("Hired_Employee: " + role, "Hired new employee: " + thisCandidate.GetNome(), "Hired new employee: " + thisCandidate.GetNome(), manager, cost, timer, "Hired: " + thisCandidate.GetNome());
 	action.projectStat = manager.behavior.Log.GetProjectStat();
 	manager.behavior.AddAction(action);
 }
@@ -642,7 +642,7 @@ function ManagerHiring(role : String)
 		
 		if(hireFuncionario.CanHire(hired))
 		{
-			HireAction(hired);
+			HireAction(hired, role);
 			hireFuncionario.ContratarFuncionario(hired, staff[slot]);
 			staff[slot].SetPapel(role);
 		}

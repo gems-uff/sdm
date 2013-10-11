@@ -105,7 +105,18 @@ function PayEmployee(salario : int, saldo : int, morale : MoraleControl)
 //--------------------------------------------PagamentoDoProjeto-----------------------------------------------------------
 
 function ProjetoPagarMensal(){
-	jogador.ChangeSaldo(project.GetPagamento());
+	if(project.GetStatus == "Normal")
+	{
+		jogador.ChangeSaldo(project.GetPagamento());
+	}
+	else if (project.GetStatus == "Ahead")
+	{
+		jogador.ChangeSaldo(project.GetPagamento());
+	}
+	else //if (project.GetStatus == "Overdue")
+	{
+		dialog.ActiveShowWindow();
+	}
 	/*
 	var neededMonths : int = 0;
 	var monthPercent : float = 0.0;

@@ -65,7 +65,7 @@ class TesterMacro extends System.ValueType{
 			}
 			d1 = "Tester used Test Cases";
 			d2 = "Tester used Test Cases";
-			actionNode.NewActionArtifact("Test Cases", d1, d2, func, date, "Tester", totalBugsFound.ToString() + " Bug Found", "", rate);
+			actionNode.NewActionArtifact("Test_Cases", d1, d2, func, date, "Tester", totalBugsFound.ToString() + " Bug Found", "", rate);
 		}
 		else
 		{
@@ -115,7 +115,7 @@ class TesterMacro extends System.ValueType{
 			}
 			d1 = "Tester searched in Adhoc-mode";
 			d2 = "Tester searched in Adhoc-mode";
-			actionNode.NewActionArtifact("Test:Adhoc", d1, d2, func, date, "Tester", totalBugsFound.ToString() + " Bug Found", "", rate);
+			actionNode.NewActionArtifact("Test_Adhoc", d1, d2, func, date, "Tester", totalBugsFound.ToString() + " Bug Found", "", rate);
 			if(totalBugsFound > 0)
 				actionNode.projectStat = behavior.Log.GetProjectStat();
 		}

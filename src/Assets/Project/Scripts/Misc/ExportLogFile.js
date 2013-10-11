@@ -9,6 +9,7 @@ private var employee_path : String = folder + "employee.csv";
 private var action_path : String = folder + "action.csv";
 private var artifact_path : String = folder + "artifact.csv";
 private var edges_path : String = folder + "edges.csv";
+private var pActions_path : String = folder + "playerActions.csv";
 public var f : TextWriter;// = new StreamWriter(path);
 public var proj : TextWriter;
 public var state : TextWriter;
@@ -16,6 +17,7 @@ public var emp : TextWriter;
 public var act : TextWriter;
 public var art : TextWriter;
 public var edges : TextWriter;
+public var pActions : TextWriter;
 
 public var projID : int = 0;
 public var stateID : int = 0;
@@ -23,8 +25,10 @@ public var empID : int = 0;
 public var actID : int = 0;
 public var artID : int = 0;
 public var edgeID : int = 0;
+public var pActionID : int = 0;
 
 private var artifactList : ArtifactList = new ArtifactList();
+private var playerActions = new Array();
 
 function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 {
@@ -295,8 +299,26 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 	    MakeEmployeeTable(emp, act, edges, proj, projectNode.slot06.first);
 	    MakeEmployeeTable(emp, act, edges, proj, projectNode.slot07.first);
 	    MakeEmployeeTable(emp, act, edges, proj, projectNode.slot08.first);
+	    MakePlayerActionTable();
 	}
 	
+	function MakePlayerActionTable()
+	{
+		pActions = new StreamWriter(pActions_path);
+		pActions.WriteLine("PlayerActionID, EmpID, Date, Order, Code, Req, Sinc, DevStatus");
+		playerActions.sort(function(a, b) 
+		{
+    		var textA = a.date;
+    		var textB = b.date;
+    		return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+		});
+		for (i=0;i<playerActions.length;i++)
+		{
+			pActions.WriteLine(playerActions[i].GetAction());
+		}
+		
+		pActions.Close();
+	}
 	function MakeArtifactTable(art : TextWriter)
 	{
 		var node : ArtifactNode = new ArtifactNode();
@@ -346,14 +368,68 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 	
 	function MakeActionTable(act : TextWriter, edges : TextWriter, action : ActionNode, employee : Employee)
 	{
+		var code : String;
+		var req : String;
+		var val : String;
 		while(action != null)
 		{
 			act.WriteLine(employee.GetID() + ", " + Action(action, ", "));
 			MakeEdgeTable(edges, action, employee);
+			//Get PlayerAction
+			
+			code = Status(action.projectStat.percentageDone);
+			req = Status(action.projectStat.requirements);
+			val = Status(action.projectStat.sincronismo);
+			if(action.previous == null)
+			{
+				playerActions.push(new PlayerAction("pAction" + pActionID, employee.ID, action.date, action.taskType, code, req, val, action.projectStat.status));
+				pActionID++;
+			}
+			else if(action.next != null)
+			{
+				if(action.next.taskType != action.taskType)
+				{
+					playerActions.push(new PlayerAction("pAction" + pActionID, employee.ID, action.date, action.next.taskType, code, req, val, action.projectStat.status));
+					pActionID++;
+				}
+				if(action.next.hours != action.hours)
+				{
+					if(action.next.hours > action.hours)
+					{
+						playerActions.push(new PlayerAction("pAction" + pActionID, employee.ID, action.date, "+Hours", code, req, val, action.projectStat.status));
+						pActionID++;
+					}
+					else
+					{
+						playerActions.push(new PlayerAction("pAction" + pActionID, employee.ID, action.date, "-Hours", code, req, val, action.projectStat.status));
+						pActionID++;
+					}
+				}
+				if(action.next.rate != action.rate)
+				{
+					playerActions.push(new PlayerAction("pAction" + pActionID, employee.ID, action.date, "Changed rate to " + action.rate, code, req, val, action.projectStat.status));
+					pActionID++;
+				}			
+			}
 			action = action.next;
 		}
 	}
 	
+	function Status(status : float)
+	{
+		if(status < 33)
+		{
+			return "Beginning";
+		}
+		else if(status < 66)
+		{
+			return "Middle";
+		}
+		else
+		{
+			return "Ending";
+		}
+	}
 	function MakeEdgeTable(edges : TextWriter, action : ActionNode, employee : Employee)
 	{
 		edges.WriteLine("edge" + edgeID + ", " + employee.GetID() + ", " + action.ID + ", " + "default");

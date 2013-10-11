@@ -1,17 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Misc\ExportLogFile.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Funcionario\Roles\Macro\ProgrammerMacro.js">
     <Files>
-      <File FileName="Assets\Project\Scripts\Misc\ExportLogFile.js" Line="401" Column="13" />
-      <File FileName="Assets\Project\Scripts\Funcionario\NewFuncionario.js" Line="1" Column="1" />
-      <File FileName="Assets\Project\Scripts\Class\LinkedList\ActionList.js" Line="34" Column="25" />
-      <File FileName="Assets\Project\Scripts\Class\LinkedList\ProjectStats.js" Line="1" Column="1" />
-      <File FileName="Assets\Project\Scripts\Class\LinkedList\ProjectList.js" Line="1" Column="1" />
-      <File FileName="Assets\Project\Scripts\Class\LinkedList\ArtifactList.js" Line="61" Column="17" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Working.js" Line="226" Column="43" />
-      <File FileName="Assets\Project\Scripts\Funcionario\HireFuncionario.js" Line="41" Column="24" />
-      <File FileName="Assets\Project\Scripts\Behavior\HistoryLog.js" Line="134" Column="34" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Funcionario.js" Line="393" Column="20" />
+      <File FileName="Assets\Project\Scripts\Misc\ExportLogFile.js" Line="392" Column="102" />
+      <File FileName="Assets\Project\Scripts\Class\LinkedList\ActionList.js" Line="123" Column="4" />
+      <File FileName="Assets\Project\Scripts\Class\PlayerActions.js" Line="31" Column="18" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\ProgrammerMacro.js" Line="406" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

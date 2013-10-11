@@ -141,15 +141,6 @@ function NewFiredAction(slot : EmployeeList, func : Funcionario)
 {
 	var newAction : ActionNode = new ActionNode();
 	newAction.NewActionArtifact("Fired", "Fired", "Fired", func, time, "Fired", "", "", 100);
-	/*
-	newAction.who = slot.last.employee.nome;
-	newAction.date = time.GetGameTime() + "/" + time.GetTimeDaysString();
-	newAction.task = "fired";
-	newAction.role = "fired";
-	newAction.description = "fired";
-	newAction.work = "fired";
-	newAction.influence = null;
-	*/
 	slot.last.actionList.Add(newAction);
 }
 function Awake () 

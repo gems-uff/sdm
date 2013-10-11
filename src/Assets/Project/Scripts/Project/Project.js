@@ -562,6 +562,33 @@ function SetProjectQuality(){
 				projectQuality = "Highest priority";
 }
 
+function GetStatus()
+{
+	var neededMonths : int = 0;
+	var monthPercent : float = 0.0;
+	var auxTime : int = 0;
+	var expected : float = 0.0;
+	var relief : float;
+	
+	neededMonths = (this.GetDeadline() / 28);							//Qnts meses pro projeto
+	monthPercent = 100 / neededMonths; 									//Qnts % por meses
+	auxTime = timer.GetGameTime() - this.GetStartDay();			//Quanto tempo desde que o projeto iniciou
+	auxTime = parseInt(auxTime / 28);														//Quantos meses se passaram desde que iniciou
+	expected = monthPercent * auxTime;										//% concluido esperado
+	relief = monthPercent * 0.5;
+	if ((relief + this.GetFractionDone()) >= expected + monthPercent)
+	{
+		return "Ahead";
+	}
+	else if ((relief + this.GetFractionDone()) >= expected)
+	{
+		return "Normal";
+	}
+	else
+	{
+		return "Overdue";
+	}
+}
 function GetStats()
 {
 	var stats : ProjectStats = new ProjectStats();
@@ -584,6 +611,7 @@ function GetStats()
 	stats.bugAcceptionRepaired = this.bugAcceptionRepaired;
 	stats.date = timer.GetGameTime() + ":" + timer.GetTimeDayString();
 	stats.totalBugs = this.GetTotalBugs() + ": " + this.GetTotalBugsString();
+	stats.status = this.GetStatus();
 	
 	return stats;
 }

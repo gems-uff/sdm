@@ -292,6 +292,7 @@ function UpdateSlot()
 
 function AddAction(newAction : ActionNode)
 {
+	newAction.projectStat = this.Log.GetProjectStat();
 	UpdateSlot();
 	employeeList.last.actionList.Add(newAction);
 }
