@@ -1,11 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Funcionario\Roles\Macro\ProgrammerMacro.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Misc\ExportLogFile.js">
     <Files>
-      <File FileName="Assets\Project\Scripts\Misc\ExportLogFile.js" Line="392" Column="102" />
-      <File FileName="Assets\Project\Scripts\Class\LinkedList\ActionList.js" Line="123" Column="4" />
-      <File FileName="Assets\Project\Scripts\Class\PlayerActions.js" Line="31" Column="18" />
-      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\ProgrammerMacro.js" Line="406" Column="1" />
+      <File FileName="Assets\Project\Scripts\Misc\ExportLogFile.js" Line="84" Column="23" />
+      <File FileName="Assets\Project\Scripts\Class\LinkedList\ActionList.js" Line="255" Column="20" />
+      <File FileName="Assets\Project\Scripts\Funcionario\Roles\Macro\ArchitectMacro.js" Line="246" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

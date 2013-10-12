@@ -114,27 +114,39 @@ class ActionNode
 		this.artifact = artifact;
 	}
 	*/
-	//Func, cost for NEGOTIATION
 	
 	function GetTaskType(task : String)
 	{
 		var fullTask = task.Split("_"[0]);
-		if(fullTask[0] == "Balanced" || fullTask[0] == "Aid" || fullTask[0] == "Hired")
+		if(fullTask[0] == "Balanced")
+		{
+			return (role +  "_" + "Balanced");
+		}
+		else if(fullTask[0] == "Aid")
+		{
+			return (role +  "_" + fullTask[0] + "_" + fullTask[1]);
+		}
+		else if(fullTask[0] == "Hired")
+		{
+			return (role  + "_" + task);
+		}
+		else if(fullTask[0] == "Fired")
 		{
 			return (fullTask[0] + "_" + fullTask[1]);
 		}
 		else
 		{
-			return (fullTask[0]);
+			return (role +  "_" + fullTask[0]);
 		}
 	}
-	function NewActionNegotiation(task : String, description : String, d2 : String, func : Funcionario, cost : int, date : GameTime, role : String, 
+	//Func, cost for NEGOTIATION
+	function NewActionNegotiation(task : String, description : String, d2 : String, func : Funcionario, cost : int, date : GameTime, 
 	work : String, work_2 : String, work_3 : String)
 	{
 		this.who = func.GetNome();
 		this.task = task;
 		this.date = date.GetGameTime() + ":" + date.GetTimeDayString();
-		this.role = role;
+		this.role = "Marketing";
 		this.description = description;
 		this.d2 = d2;
 		this.morale = func.GetMorale();
@@ -150,18 +162,55 @@ class ActionNode
 		
 	}
 	//Func, cost for HIRE
-	function NewActionHire(task : String, description : String, d2 : String, func : Funcionario, cost : int, date : GameTime, role : String)
+	function NewActionHire(task : String, description : String, d2 : String, func : Funcionario, cost : int, date : GameTime)
 	{
 		this.who = func.GetNome();
 		this.task = task;
 		this.date = date.GetGameTime() + ":" + date.GetTimeDayString();
-		this.role = role;
+		this.role = "Manager";
 		this.description = description;
 		this.d2 = d2;
 		this.morale = func.GetMorale();
 		this.stamina = func.GetStamina();
 		this.hours = func.GetWorkingHours();
 		this.cost = cost;
+		this.work = "";
+		this.work_2 = "";
+		this.artifact = "";
+		this.taskType = GetTaskType(task);
+	}
+	//Fire
+	function NewActionFire(task : String, description : String, d2 : String, func : Funcionario, date : GameTime)
+	{
+		this.who = func.GetNome();
+		this.task = task;
+		this.date = date.GetGameTime() + ":" + date.GetTimeDayString();
+		this.role = "";
+		this.description = description;
+		this.d2 = d2;
+		this.morale = func.GetMorale();
+		this.stamina = func.GetStamina();
+		this.hours = func.GetWorkingHours();
+		this.cost = 0;
+		this.work = "";
+		this.work_2 = "";
+		this.artifact = "";
+		this.taskType = GetTaskType(task);
+	}
+	//Promotion
+	function NewActionPromotion(func : Funcionario, date : GameTime, description : String)
+	{
+		this.who = func.GetNome();
+		this.task = "Promotion";
+		this.date = date.GetGameTime() + ":" + date.GetTimeDayString();
+		this.role = func.GetPapel();
+		this.rate = 100;
+		this.description = description;
+		this.d2 = description;
+		this.morale = func.GetMorale();
+		this.stamina = func.GetStamina();
+		this.hours = func.GetWorkingHours();
+		this.cost = parseInt(rate * 0.01 * func.GetSalario() / 28);
 		this.work = "";
 		this.work_2 = "";
 		this.artifact = "";
@@ -182,8 +231,10 @@ class ActionNode
 		this.stamina = func.GetStamina();
 		this.hours = func.GetWorkingHours();
 		this.cost = parseInt(rate * 0.01 * func.GetSalario() / 28);
-		this.work = work;
-		this.work_2 = work;
+		//this.work = work;
+		//this.work_2 = work;
+		this.work = "";
+		this.work_2 = "";
 		this.artifact = artifact;
 		this.taskType = GetTaskType(task);
 	}

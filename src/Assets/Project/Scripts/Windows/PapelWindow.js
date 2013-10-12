@@ -64,8 +64,8 @@ function ExecutaJanelaPapelSec(t : String){
 function ExecutaJanelaCargo(t : String){
 	func.SetCargo(t);
 	var action : ActionNode = new ActionNode();
-	action.NewActionArtifact("Promotion", "Promotion", "Promotion", func, timer, "Promotion", "Promoted to "+ t, "", 100);
-	func.behavior.AddAction(action);
+	action.NewActionPromotion(func, timer, "Promoted to "+ t);
+	func.behavior.AddAction(action, false, true);
 	morale = func.GetComponentInChildren(MoraleControl);
 	morale.IncreaseMoralePromotion();
 	//janelaPapel  = false;
@@ -94,7 +94,7 @@ function WindowFire(windowID : int){
 		*/
 		//Fire employee
 		//fire.FireFuncionario(func);
-		func.FireEmployee(true);
+		func.FireEmployee(true, false);
 	}
 	if (GUI.Button (Rect (02,25,296,25), "Cancel")) 
 	{

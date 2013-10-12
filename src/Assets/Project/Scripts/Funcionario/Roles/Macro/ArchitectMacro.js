@@ -172,19 +172,46 @@ class ArchitectMacro extends System.ValueType{
 		}
 		else
 		{
-			d1 = "Employee was ordered to focus on " + descr + "\n and made a prototype";
-			d2 = "Employee was ordered to focus on " + descr + "<br> and made a prototype";
-			actionNode.NewActionArtifact(task + "_Prototype", d1, d2, func, date, "Architect", "Prototyping", "Prototype", rate); //Removed "1 Prototype"
-			MakePrototype(actionNode);
+			var randomizer : float = Random.Range (0, 100); 
+			if(arquiteto > randomizer)
+			{
+				d1 = "Employee was ordered to focus on " + descr + "\n and made a prototype";
+				d2 = "Employee was ordered to focus on " + descr + "<br> and made a prototype";
+				actionNode.NewActionArtifact(task + "_Prototype", d1, d2, func, date, "Architect", "1 Prototype Created", "Prototype", rate);
+				MakePrototype(actionNode);
+			}
+			else
+			{
+				d1 = "Employee was ordered to focus on " + descr + "\n and did not finish the prototype";
+				d2 = "Employee was ordered to focus on " + descr + "<br> and did not finish the prototype";
+				actionNode.NewActionNoArtifact(task + "_Prototype", d1, d2, func, date, "Architect", "0 Prototype", rate);
+				FailPrototype(actionNode);
+			}
+			//MakePrototype(actionNode);
 		}
 	}
 	
 	function Analysis(actionNode : ActionNode)
 	{
-		var d1 : String = "Employee was ordered to do a prototype";
-		var d2 : String = "Employee was ordered to do a prototype";
-		actionNode.NewActionArtifact("Analysis", d1, d2, func, date, "Architect", "Prototyping", "Prototype", rate); //Removed "1 Prototype"
-		MakePrototype(actionNode);
+		//var d1 : String = "Employee was ordered to do a prototype";
+		//var d2 : String = "Employee was ordered to do a prototype";
+		//actionNode.NewActionArtifact("Analysis", d1, d2, func, date, "Architect", "1 Prototype", "Prototype", rate);
+		var randomizer : float = Random.Range (0, 100); 
+		if(arquiteto > randomizer)
+		{
+			var d1 : String = "Employee was ordered to do a prototype";
+			var d2 : String = "Employee was ordered to do a prototype";
+			actionNode.NewActionArtifact("Analysis", d1, d2, func, date, "Architect", "1 Prototype Created", "Prototype", rate);
+			MakePrototype(actionNode);
+		}
+		else
+		{
+			d1 = "Employee was ordered to do a prototype" + "\n and did not finish the prototype";
+			d2 = "Employee was ordered to do a prototype" + "<br> and did not finish the prototype";
+			actionNode.NewActionNoArtifact("Analysis", d1, d2, func, date, "Architect", "0 Prototype", rate);
+			FailPrototype(actionNode);
+		}
+		//MakePrototype(actionNode);
 	}
 	
 	function Rounded(actionNode : ActionNode, testCase : String, chance : int)
@@ -213,7 +240,13 @@ class ArchitectMacro extends System.ValueType{
 		project.AddPrototype();
 		ArchitectReport(0, 0, 0, report);
 	}
-	
+	function FailPrototype(actionNode : ActionNode)
+	{
+		//equipe.SetBonusAnalystArchitect(1.0, actionNode);
+		//equipe.influences.SetBonusAnalystArchitect(1.0, actionNode);
+		floatingLines.showFloatText1("", "No Prototype", "blue","", delay);
+		ArchitectReport(0, 0, 0, report);
+	}
 	//Make test cases for system bugs
 	function MakeSystemCases(actionNode : ActionNode)
 	{

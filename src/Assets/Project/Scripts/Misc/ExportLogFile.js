@@ -10,6 +10,7 @@ private var action_path : String = folder + "action.csv";
 private var artifact_path : String = folder + "artifact.csv";
 private var edges_path : String = folder + "edges.csv";
 private var pActions_path : String = folder + "playerActions.csv";
+private var pDailyActions_path : String = folder + "playerDailyActions.csv";
 public var f : TextWriter;// = new StreamWriter(path);
 public var proj : TextWriter;
 public var state : TextWriter;
@@ -63,9 +64,10 @@ function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 			//==================================
 			
 			var inf : String = " ";
-			inf = "1 Prototype";
-			line = Artifact(action, action.artifact) + "\t" + Action(action, "\t");
-			f.WriteLine("IArAc" + "\t" + line + "\t" + inf);
+			inf = "1 Prototype Created";
+			//line = Artifact(action, action.artifact) + "\t" + Action(action, "\t");
+			line = Action(action, "\t") + "\t" + Artifact(action, action.artifact);
+			f.WriteLine("IAcAr" + "\t" + line + "\t" + inf);
 		}
 		
 		if(action.influence.valid)
@@ -230,6 +232,10 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 			empID++;
 			action = node.actionList.first;
 			RunList(f, action, node.employee);
+			action = node.secActionList.first;
+			RunList(f, action, node.employee);
+			action = node.espActionList.first;
+			RunList(f, action, node.employee);
 			
 		}
 		node = node.next;
@@ -283,9 +289,9 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 		"SystemBugRepaired, AcceptionBugRepaired, Credits, TotalBugs");
 		
 		emp.WriteLine("EmpID, Name, Salary, Job, Level, Adaptability, Autodidact, Meticulous, Negotiation, Objectivity, Organization, "+
-		"Patience, LogicalReasoning, HumanRelations, Specializations");
+		"Patience, LogicalReasoning, HumanRelations, Specializations, Profile");
 		
-		act.WriteLine("EmpID, ActionID, Date, Emp Name, Task, Role, Morale, Stamina, Hours, Cost, Work, Rate, Work2");
+		act.WriteLine("EmpID, ActionID, Date, Emp Name, Task, Role, Morale, Stamina, Hours, Cost, Work, Rate, Description");
 		
 		art.WriteLine("ArtifactID, Date, Type");
 		
@@ -305,19 +311,62 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 	function MakePlayerActionTable()
 	{
 		pActions = new StreamWriter(pActions_path);
-		pActions.WriteLine("PlayerActionID, EmpID, Date, Order, Code, Req, Sinc, DevStatus");
+		pDailyActions = new StreamWriter(pDailyActions_path);
+		pActions.WriteLine("PlayerActionID, EmpID, Date, Order, Code, Req, Sinc, DevStatus, FinancialStatus");
+		pDailyActions.WriteLine("Actions");
+		//Sort by date
 		playerActions.sort(function(a, b) 
 		{
     		var textA = a.date;
     		var textB = b.date;
     		return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
 		});
-		for (i=0;i<playerActions.length;i++)
+		//Write in file
+		for (var x = 0;x < playerActions.length; x++)
 		{
-			pActions.WriteLine(playerActions[i].GetAction());
+			pActions.WriteLine(playerActions[x].GetAction());
 		}
 		
+		//Daily actions grouped together
+		var line : String = "";
+		var i : int = 0;
+		line = playerActions[0].order;
+		for (i = 1; i < playerActions.length; i++)
+		{
+			if(playerActions[i].date == playerActions[i-1].date)
+			{
+				line += " " + playerActions[i].order;
+			}
+			else
+			{
+				//Put in alphabetical order
+				var fullLine = new Array();
+				fullLine = line.Split(" "[0]);
+				fullLine.Sort();
+				//Remake the line String in alphabetical order
+				line = fullLine[0];
+				if(fullLine.length > 2)
+				{
+					for (var j = 1; j < (fullLine.length); j++)
+					{
+						line += " " + fullLine[j];
+					}
+				}
+				//Add contextual information at the end of the line
+				line += " (" + playerActions[i-1].codeStatus + " " + playerActions[i-1].reqStatus + " " + playerActions[i-1].valStatus + 
+				" " + playerActions[i-1].delayed + " " + playerActions[i-1].finances + ")";
+				//Write in the file
+				pDailyActions.WriteLine(line);
+				//Restart line
+				line = playerActions[i].order;
+			}
+		}
+		line += " (" + playerActions[i-1].codeStatus + " " + playerActions[i-1].reqStatus + " " + playerActions[i-1].valStatus + 
+				" " + playerActions[i-1].delayed + " " + playerActions[i-1].finances + ")";
+		pDailyActions.WriteLine(line);
+				
 		pActions.Close();
+		pDailyActions.Close();
 	}
 	function MakeArtifactTable(art : TextWriter)
 	{
@@ -356,10 +405,14 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 		{
 			if(node.employee.GetNome() != "Vacant")
 			{
-				emp.WriteLine(Agent(node.employee, ", "));
+				emp.WriteLine(Agent(node.employee, ", ") + ", " + node.employee.profile);
 				proj.WriteLine("proj1" + ", " + node.employee.ID);
 			
 				action = node.actionList.first;
+				MakeActionTable(act, edges, action, node.employee);
+				action = node.secActionList.first;
+				MakeActionTable(act, edges, action, node.employee);
+				action = node.espActionList.first;
 				MakeActionTable(act, edges, action, node.employee);
 			}
 			node = node.next;
@@ -371,6 +424,7 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 		var code : String;
 		var req : String;
 		var val : String;
+		var financial : String;
 		while(action != null)
 		{
 			act.WriteLine(employee.GetID() + ", " + Action(action, ", "));
@@ -380,36 +434,45 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 			code = Status(action.projectStat.percentageDone);
 			req = Status(action.projectStat.requirements);
 			val = Status(action.projectStat.sincronismo);
-			if(action.previous == null)
+			financial = FinancialStatus(action.projectStat.expenses, action.projectStat.credits);
+			if(action.task != "Resign")
 			{
-				playerActions.push(new PlayerAction("pAction" + pActionID, employee.ID, action.date, action.taskType, code, req, val, action.projectStat.status));
-				pActionID++;
-			}
-			else if(action.next != null)
-			{
-				if(action.next.taskType != action.taskType)
+				if(action.previous == null)
 				{
-					playerActions.push(new PlayerAction("pAction" + pActionID, employee.ID, action.date, action.next.taskType, code, req, val, action.projectStat.status));
+					playerActions.push(new PlayerAction("pAction" + pActionID, employee.ID, action.date, action.taskType, code, req, val, action.projectStat.status, financial));
 					pActionID++;
 				}
-				if(action.next.hours != action.hours)
+				else
 				{
-					if(action.next.hours > action.hours)
+					var prev : ActionNode = action.previous;
+					if(prev.taskType != action.taskType)
 					{
-						playerActions.push(new PlayerAction("pAction" + pActionID, employee.ID, action.date, "+Hours", code, req, val, action.projectStat.status));
+						playerActions.push(new PlayerAction("pAction" + pActionID, employee.ID, prev.date, action.taskType, code, req, val, prev.projectStat.status, financial));
 						pActionID++;
 					}
-					else
+					//------
+					if(prev.hours < action.hours)
 					{
-						playerActions.push(new PlayerAction("pAction" + pActionID, employee.ID, action.date, "-Hours", code, req, val, action.projectStat.status));
+						playerActions.push(new PlayerAction("pAction" + pActionID, employee.ID, prev.date, "More_Hours_" + prev.role, code, req, val, prev.projectStat.status, financial));
 						pActionID++;
 					}
+					else if(prev.hours > action.hours)
+					{
+						playerActions.push(new PlayerAction("pAction" + pActionID, employee.ID, prev.date, "Less_Hours_" + prev.role, code, req, val, prev.projectStat.status, financial));
+						pActionID++;
+					}
+					//-----
+					if(prev.rate < action.rate)
+					{
+						playerActions.push(new PlayerAction("pAction" + pActionID, employee.ID, prev.date, "More_Rate_" + prev.role, code, req, val, prev.projectStat.status, financial));
+						pActionID++;
+					}	
+					else if	(prev.rate > action.rate)
+					{
+						playerActions.push(new PlayerAction("pAction" + pActionID, employee.ID, prev.date, "Less_Rate_" + prev.role, code, req, val, prev.projectStat.status, financial));
+						pActionID++;
+					}	
 				}
-				if(action.next.rate != action.rate)
-				{
-					playerActions.push(new PlayerAction("pAction" + pActionID, employee.ID, action.date, "Changed rate to " + action.rate, code, req, val, action.projectStat.status));
-					pActionID++;
-				}			
 			}
 			action = action.next;
 		}
@@ -430,6 +493,21 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 			return "Ending";
 		}
 	}
+	function FinancialStatus(expenses : float, current : float)
+	{
+		if(current > expenses * 2)
+		{
+			return "Wealth";
+		}
+		else if(expenses > current)
+		{
+			return "Crunch";
+		}
+		else
+		{
+			return "Tight";
+		}
+	}
 	function MakeEdgeTable(edges : TextWriter, action : ActionNode, employee : Employee)
 	{
 		edges.WriteLine("edge" + edgeID + ", " + employee.GetID() + ", " + action.ID + ", " + "default");
@@ -437,7 +515,8 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 		if(action.artifact == "Prototype")
 		{
 			//Artifact to action
-			edges.WriteLine("edge" + edgeID + ", " + action.artID + ", " + action.ID + ", " + "1 Prototype");
+			//edges.WriteLine("edge" + edgeID + ", " + action.artID + ", " + action.ID + ", " + "1 Prototype");
+			edges.WriteLine("edge" + edgeID + ", " + action.ID + ", " + action.artID + ", " + "1 Prototype Created");
 			edgeID++;
 		}
 		if(action.influence.valid)

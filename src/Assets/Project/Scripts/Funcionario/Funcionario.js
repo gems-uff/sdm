@@ -670,6 +670,23 @@ function SetF_teste (t: boolean) {
 	especializacao.teste = t;
 }
 
+function GetProfile()
+{
+	if((analista >= arquiteto) && (analista >= gerente) && (analista >= marketing) && (analista >= programador) && (analista >= tester))
+		return "Analyst";
+	else if((arquiteto >= analista) && (arquiteto >= gerente) && (arquiteto >= marketing) && (arquiteto >= programador) && (arquiteto >= tester))
+		return "Architect";
+	else if((gerente >= analista) && (gerente >= arquiteto) && (gerente >= marketing) && (gerente >= programador) && (gerente >= tester))
+		return "Manager";
+	else if((marketing >= analista) && (marketing >= gerente) && (marketing >= arquiteto) && (marketing >= programador) && (marketing >= tester))
+		return "Marketing";
+	else if((programador >= analista) && (programador >= gerente) && (programador >= marketing) && (programador >= arquiteto) && (programador >= tester))
+		return "Programmer";
+	else if((tester >= analista) && (tester >= gerente) && (tester >= marketing) && (tester >= programador) && (tester >= arquiteto))
+		return "Tester";
+	else
+		Debug.Log("NO IDEA");
+}
 //
 //Creates a copy of this employee
 //
@@ -677,20 +694,21 @@ function Copy()
 {
 	var employee : Employee;
 	
-	employee.atributos = GetAtributos();
-	employee.especializacao = GetStringSpecializations();
+	employee.atributos = this.GetAtributos();
+	employee.especializacao = this.GetStringSpecializations();
 	
-	employee.nome = GetNome();
-	employee.salary = GetSalario();
-	employee.mainRole = GetPapel();
-	employee.secRole = GetPapelSec();
-	employee.mainRoleRate = GetPapelRate();
-	employee.secRoleRate = GetPapelSecRate();
-	employee.job = GetCargo();
-	employee.workingHours = GetWorkingHours();
-	employee.morale = GetMorale();
-	employee.stamina = GetStamina();
-	employee.level = GetLevel();
+	employee.nome = this.GetNome();
+	employee.salary = this.GetSalario();
+	employee.mainRole = this.GetPapel();
+	employee.secRole = this.GetPapelSec();
+	employee.mainRoleRate = this.GetPapelRate();
+	employee.secRoleRate = this.GetPapelSecRate();
+	employee.job = this.GetCargo();
+	employee.workingHours = this.GetWorkingHours();
+	employee.morale = this.GetMorale();
+	employee.stamina = this.GetStamina();
+	employee.level = this.GetLevel();
+	employee.profile = this.GetProfile();
 	
 	return employee;
 	
@@ -705,7 +723,7 @@ public var staminaBar : StaminaBar;
 public var moraleBar : MoraleBar;
 public var body : MeshRenderer;
 
-function FireEmployee (event : boolean) {
+function FireEmployee (event : boolean, resign : boolean) {
 	var body : GameObject;
 	
 	if(event)
@@ -713,7 +731,7 @@ function FireEmployee (event : boolean) {
 		//fire action
 		var slot : EmployeeList;
 		slot = log.GetSlot(this);
-		log.NewFiredAction(slot, this);
+		log.NewFiredAction(slot, this, resign);
 	}
 	EmptyEmployee();
 	this.SetNome(stringNames.fired);
@@ -809,7 +827,7 @@ function RandomFuncionarioStarter () {
 	}
 	else
 		//FireFuncionario(func);
-		this.FireEmployee(false);
+		this.FireEmployee(false, false);
 }
 
 //Diferenciado para evitar que o jogador começe com funcionarios muito ruins

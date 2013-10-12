@@ -196,6 +196,7 @@ function AnalistaWork(){
 	var rate : int;
 	var work : boolean = false;
 	var delay : float = 0;
+	var isSec : boolean = false;
 	if(func.GetPapel() == stringNames.papelAnalista)
 	{
 		rate = func.GetPapelRate();
@@ -208,6 +209,7 @@ function AnalistaWork(){
 			rate = func.GetPapelSecRate();
 			work = true;
 			delay = delayTime;
+			isSec = true;
 		}
 		else
 		{
@@ -233,7 +235,7 @@ function AnalistaWork(){
 		analista = analista * (rate * 0.01) * mod * constant.ANALYST * (1 + modificador_positivo - penal); //* equipe.GetBonusAnalista()
 
 		action = AnalistaMacro.Work(func, project, report, floatingLines, equipe, constant, analista, behavior, timer, delay, rate);
-		behavior.AddAction(action);
+		behavior.AddAction(action, isSec, false);
 	}
 }
 
@@ -241,6 +243,7 @@ function ArquitetoWork(){
 	var rate : int;
 	var work : boolean = false;
 	var delay : float = 0.0;
+	var isSec : boolean = false;
 	if(func.GetPapel() == stringNames.papelArquiteto)
 	{
 		rate = func.GetPapelRate();
@@ -253,6 +256,7 @@ function ArquitetoWork(){
 			rate = func.GetPapelSecRate();
 			work = true;
 			delay = delayTime;
+			isSec = true;
 		}
 		else
 		{
@@ -274,7 +278,7 @@ function ArquitetoWork(){
 		arquiteto = func.GetArquiteto() * (rate * 0.01) * gameMod * constant.ARCHITECT * (1 + modificador_positivo - penal);// * equipe.GetBonusArquiteto();	
 
 		action = ArchitectMacro.Work(func, project, report, floatingLines, equipe, constant, arquiteto, behavior, timer, delay, rate);
-		behavior.AddAction(action);
+		behavior.AddAction(action, isSec, false);
 	}
 }
 
@@ -282,6 +286,7 @@ function GerenteWork(){
 	var rate : int;
 	var work : boolean = false;
 	var delay : float = 0.0;
+	var isSec : boolean = false;
 	
 	if(func.GetPapel() == stringNames.papelGerente)
 	{
@@ -295,6 +300,7 @@ function GerenteWork(){
 			rate = func.GetPapelSecRate();
 			work = true;
 			delay = delayTime;
+			isSec = true;
 		}
 		else
 		{
@@ -328,7 +334,7 @@ function GerenteWork(){
 
 		action = ManagerMacro.Work(func, project, report, floatingLines, equipe, constant, gerente, auxAnaArq, auxProg, 
 		behavior, timer, delay, rate);
-		behavior.AddAction(action);
+		behavior.AddAction(action, isSec, false);
 	}
 }
 
@@ -336,6 +342,7 @@ function MarketingWork(){
 	var rate : int;
 	var work : boolean = false;
 	var delay : float = 0.0;
+	var isSec : boolean = false;
 	
 	if(func.GetPapel() == stringNames.papelMarketing)
 	{
@@ -349,6 +356,7 @@ function MarketingWork(){
 			rate = func.GetPapelSecRate();
 			work = true;
 			delay = delayTime;
+			isSec = true;
 		}
 		else
 		{
@@ -369,7 +377,7 @@ function MarketingWork(){
 		marketing = func.GetMarketing() * (rate * 0.01) * (1 - penal) * mod * constant.MARKETING;	
 		
 		action = MarketingMacro.Work(func, project, report, floatingLines, equipe, constant, playerStats, marketing, timer, behavior, delay, rate);
-		behavior.AddAction(action);
+		behavior.AddAction(action, isSec, false);
 	}
 		
 }
@@ -378,6 +386,7 @@ function ProgramadorWork(){
 	var rate : int;
 	var work : boolean = false;
 	var delay : float = 0.0;
+	var isSec : boolean = false;
 
 	if(func.GetPapel() == stringNames.papelProg)
 	{
@@ -391,6 +400,7 @@ function ProgramadorWork(){
 			rate = func.GetPapelSecRate();
 			work = true;
 			delay = delayTime;
+			isSec = true;
 		}
 		else
 		{
@@ -406,8 +416,8 @@ function ProgramadorWork(){
 		var programador : float ;
 		
 		var isEspecialized : int = LinguagemProgEquipe();
-		var penal_prog : float = penal + (isEspecialized * constant.PENALIDADE);
-		
+		//var penal_prog : float = penal + (isEspecialized * constant.PENALIDADE * 0.5);
+		var penal_prog : float = PenalidadeProgramacao(penal, isEspecialized);
 		
 		var action : ActionNode = new ActionNode();
 		
@@ -417,7 +427,7 @@ function ProgramadorWork(){
 
 		action = ProgrammerMacro.Work(func, project, report, floatingLines, equipe, constant, programador, RequisitoLinguagem(), 
 		isEspecialized, behavior, timer, delay, rate);
-		behavior.AddAction(action);
+		behavior.AddAction(action, isSec, false);
 	}
 }
 
@@ -425,6 +435,7 @@ function TesterWork(){
 	var rate : int;
 	var work : boolean = false;
 	var delay : float = 0.0;
+	var isSec : boolean = false;
 	
 	if(func.GetPapel() == stringNames.papelTester)
 	{
@@ -438,6 +449,7 @@ function TesterWork(){
 			rate = func.GetPapelSecRate();
 			work = true;
 			delay = delayTime;
+			isSec = true;
 		}
 		else
 		{
@@ -467,7 +479,7 @@ function TesterWork(){
 		
 		action = TesterMacro.Work(func, project, report, floatingLines, equipe, constant, tester, timer, behavior, delay, rate);//wasInfluenced
 		//action.projectStat = behavior.Log.GetProjectStat();
-		behavior.AddAction(action);
+		behavior.AddAction(action, isSec, false);
 	}
 }
 
@@ -478,7 +490,7 @@ function IdleWork()
 		var action : ActionNode = new ActionNode();
 		action.NewActionArtifact("Idle", "Idle", "Idle", func, timer, "idle", "", "", 100);
 		//action.projectStat = behavior.Log.GetProjectStat();
-		behavior.AddAction(action);
+		behavior.AddAction(action, false, false);
 	}
 	
 }
@@ -503,13 +515,13 @@ function Treinando(){
 		}
 		var action : ActionNode = new ActionNode();
 		action.NewActionArtifact(treino.GetAprendendo(), "Training", "Training", func, timer, "Training", "", "", 100);
-		behavior.AddAction(action);
+		behavior.AddAction(action, false, false);
 	}
 }
 
 function PenalidadeProgramacao(penal : float, isEspecialized : int){
 	//return penal + LinguagemProgEquipe();
-	return (penal + (isEspecialized * constant.PENALIDADE));
+	return Mathf.Min((penal + (isEspecialized * constant.PENALIDADE)), 0.9);
 }
 //--------------------------------------------ReqLinguagem-----------------------------------------------------------
 

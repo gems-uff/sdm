@@ -28,8 +28,8 @@ class MarketingMacro extends System.ValueType{
 		
 		credits = parseInt(credits * randomizer_creds * 2);
 		
-		var d1 : String = "Marketing Generated Income and aided Analyst, if any";
-		var d2 : String = "Marketing Generated Income and aided Analyst, if any";
+		var d1 : String = "Marketing Generated Income and aided Analyst if any";
+		var d2 : String = "Marketing Generated Income and aided Analyst if any";
 		var sign : String = "+";
 		var color : String = "blue";
 		if(aid < 0)

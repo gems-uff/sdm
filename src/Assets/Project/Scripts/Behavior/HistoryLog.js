@@ -133,15 +133,25 @@ function NewEmployeeNode(emp : Funcionario, slot : EmployeeList)
 	
 	employeeNode.employee = emp.Copy();
 	employeeNode.actionList = new ActionList();
+	employeeNode.secActionList = new ActionList();
+	employeeNode.espActionList = new ActionList();
 	
 	slot.Add(employeeNode);
 }
 
-function NewFiredAction(slot : EmployeeList, func : Funcionario)
+function NewFiredAction(slot : EmployeeList, func : Funcionario, resign : boolean)
 {
 	var newAction : ActionNode = new ActionNode();
-	newAction.NewActionArtifact("Fired", "Fired", "Fired", func, time, "Fired", "", "", 100);
-	slot.last.actionList.Add(newAction);
+	if(resign)
+	{
+		newAction.NewActionFire("Resign", "Resign", "Employee resigned from Staff", func, time);
+	}
+	else
+	{
+		newAction.NewActionFire("Fired_" + func.GetProfile(), "Fired", "Employee was Fired from Staff", func, time);
+	}
+	newAction.projectStat = this.GetProjectStat();
+	slot.last.espActionList.Add(newAction);
 }
 function Awake () 
 {

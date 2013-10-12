@@ -16,6 +16,7 @@ class Employee extends System.ValueType
 	public var morale : int;
 	public var stamina : int;
 	public var level : int;
+	public var profile : String;
 
 	function GetID(){
 		return ID;

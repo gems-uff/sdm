@@ -52,9 +52,9 @@ function ResetItems(){
 function Action(text : String, work_1 : String, work_2 : String)
 {
 	var action : ActionNode = new ActionNode();
-	action.NewActionNegotiation("Negotiation", text, text, func, 0, timer, "Marketing:Negotiation", "Negotiating", work_1, work_2);
+	action.NewActionNegotiation("Negotiation", text, text, func, 0, timer, "Negotiating", work_1, work_2);
 	action.projectStat = func.behavior.Log.GetProjectStat();
-	func.behavior.AddAction(action);
+	func.behavior.AddAction(action, false, true);
 }
 function ApplyChanges(){
 	var marketing : float = func.GetMarketing() * func.GetJob();

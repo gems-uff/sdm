@@ -30,6 +30,7 @@ class ProjectStats
 	
 	public var date : String;
 	public var income : int;
+	public var expenses : int;
 	
 	//For the linked List
 	public var next : ProjectStats;
@@ -63,6 +64,7 @@ class ProjectStats
 		this.bugAcceptionRepaired = node.bugAcceptionRepaired;
 		this.totalBugs = node.totalBugs;
 		this.status = node.status;
+		this.expenses = node.expenses;
 	}
 	
 	function UpdateIncome()

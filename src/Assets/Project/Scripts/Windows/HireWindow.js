@@ -167,9 +167,9 @@ function HireAction(thisCandidate : Funcionario, role : String)
 	var cost : int = thisCandidate.GetSalario() + contratacao;
 
 	//var log : BehaviorPlanner = func = GetComponentInChildren(Funcionario);
-	action.NewActionHire("Hired_Employee: " + role, "Hired new employee: " + thisCandidate.GetNome(), "Hired new employee: " + thisCandidate.GetNome(), manager, cost, timer, "Hired: " + thisCandidate.GetNome());
+	action.NewActionHire("Hired_Employee:" + role, "Hired new employee:" + thisCandidate.GetNome(), "Hired new employee:" + thisCandidate.GetNome(), manager, cost, timer);
 	action.projectStat = manager.behavior.Log.GetProjectStat();
-	manager.behavior.AddAction(action);
+	manager.behavior.AddAction(action, false, true);
 }
 
 function ShowInsuficientMoneyWindow()

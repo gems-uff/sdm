@@ -10,6 +10,8 @@ public var linguagemProgramacao : String = "";	//Linguagem: Escolher apenas uma 
 public var pagamento : int = 0;
 public var bugValue : int = 1000;
 
+public var expenses : int = 0;
+
 private var startDay : int = 1;
 private var projectSize : String = "";
 private var projectQuality : String = "";
@@ -570,7 +572,7 @@ function GetStatus()
 	var expected : float = 0.0;
 	var relief : float;
 	
-	neededMonths = (this.GetDeadline() / 28);							//Qnts meses pro projeto
+	neededMonths = Mathf.Max(((this.GetDeadline() - this.GetStartDay()) / 28), 1);							//Qnts meses pro projeto
 	monthPercent = 100 / neededMonths; 									//Qnts % por meses
 	auxTime = timer.GetGameTime() - this.GetStartDay();			//Quanto tempo desde que o projeto iniciou
 	auxTime = parseInt(auxTime / 28);														//Quantos meses se passaram desde que iniciou
@@ -612,6 +614,7 @@ function GetStats()
 	stats.date = timer.GetGameTime() + ":" + timer.GetTimeDayString();
 	stats.totalBugs = this.GetTotalBugs() + ": " + this.GetTotalBugsString();
 	stats.status = this.GetStatus();
+	stats.expenses = this.expenses;
 	
 	return stats;
 }

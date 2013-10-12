@@ -35,6 +35,8 @@ class EmployeeNode
 	public var ID : String;
 	public var employee : Employee;
 	public var actionList : ActionList;
+	public var secActionList : ActionList;
+	public var espActionList : ActionList;
 	
 	//Employee List
 	public var next : EmployeeNode;

@@ -237,7 +237,7 @@ function QuitDialog(windowID : int){
 			*/
 			//Is fired
 			//fire.FireFuncionario(func);
-			func.FireEmployee(true);
+			func.FireEmployee(true, true);
 			dialogQuitEnable = false;
 			dialogLock.SetLock(false);
 			showQuitDialog = false;

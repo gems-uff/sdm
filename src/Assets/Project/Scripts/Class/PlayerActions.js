@@ -10,11 +10,12 @@ class PlayerAction
 	public var reqStatus : String;
 	public var valStatus : String;
 	public var delayed : String;
+	public var finances : String;
 	
-	function PlayerAction(i: String, e : String, d : String, o : String, c : String, r : String, v : String, de : String)
+	function PlayerAction(i: String, e : String, d : String, o : String, c : String, r : String, v : String, de : String, f : String)
 	{
 		var arrayOfStrings = d.Split(":"[0]);
-		var fullOrder = o.Split("_"[0]);
+		//var fullOrder = o.Split("_"[0]);
 		this.ID = i;
 		this.empID = e;
 		this.date = parseInt(arrayOfStrings[0]);
@@ -33,11 +34,12 @@ class PlayerAction
 		this.reqStatus = r;
 		this.valStatus = v;
 		this.delayed = de;
+		this.finances = f;
 	}
 	
 	function GetAction()
 	{
 		return this.ID + ", " + this.empID + ", " + this.date + ", " + this.order +	", " + this.codeStatus + ", " + 
-		this.reqStatus + ", " + this.valStatus + ", " + this.delayed;
+		this.reqStatus + ", " + this.valStatus + ", " + this.delayed + ", " + this.finances;
 	}
 }

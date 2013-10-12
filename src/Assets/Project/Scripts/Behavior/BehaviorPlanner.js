@@ -290,11 +290,20 @@ function UpdateSlot()
 	employeeList = Log.GetSlot(func);
 }
 
-function AddAction(newAction : ActionNode)
+function AddAction(newAction : ActionNode, isSec : boolean, isSpecial : boolean)
 {
 	newAction.projectStat = this.Log.GetProjectStat();
 	UpdateSlot();
-	employeeList.last.actionList.Add(newAction);
+	if(isSpecial)
+	{
+		employeeList.last.espActionList.Add(newAction);
+	}
+	else if(isSec)
+	{
+		employeeList.last.secActionList.Add(newAction);
+	}
+	else
+		employeeList.last.actionList.Add(newAction);
 }
 
 function UpdateCredits()
