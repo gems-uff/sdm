@@ -304,20 +304,20 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 	 }
 	function MakeTables(projectNode : ProjectNode, proj : TextWriter, edges : TextWriter, state : TextWriter, emp : TextWriter, act : TextWriter, art : TextWriter)
 	{
-		proj.WriteLine("ProjID,EmpID,PlayerID");
+		proj.WriteLine("PlayerID,ProjID,EmpID");
 		
-		edges.WriteLine("EdgeID,SourceClientID,SourceEmpID,SourceActID,SourceStateID,TargetEmpID,TargetActID,TargetStateID,TargetArtID,Value,PlayerID");
+		edges.WriteLine("PlayerID,EdgeID,SourceClientID,SourceEmpID,SourceActID,SourceStateID,TargetEmpID,TargetActID,TargetStateID,TargetArtID,Value");
 		
-		state.WriteLine("ProjID,StateID,name,date,deadline,ProgrammingLanguage,Payment,Especification,Elicitation,CodeQuality," +
+		state.WriteLine("PlayerID,ProjID,StateID,name,date,deadline,ProgrammingLanguage,Payment,Especification,Elicitation,CodeQuality," +
 		"CodeCompleted,UnitaryBugFound,IntegrationBugFound,SystemBugFound,AcceptionBugFound,UnitaryBugRepaired,IntegrationBugRepaired," +
-		"SystemBugRepaired,AcceptionBugRepaired,Credits,TotalBugs,PlayerID");
+		"SystemBugRepaired,AcceptionBugRepaired,Credits,TotalBugs");
 		
-		emp.WriteLine("EmpID,Name,Salary,Job,Level,Adaptability,Autodidact,Meticulous,Negotiation,Objectivity,Organization,"+
-		"Patience,LogicalReasoning,HumanRelations,Specializations,Profile,PlayerID");
+		emp.WriteLine("PlayerID,EmpID,Name,Salary,Job,Level,Adaptability,Autodidact,Meticulous,Negotiation,Objectivity,Organization,"+
+		"Patience,LogicalReasoning,HumanRelations,Specializations,Profile");
 		
-		act.WriteLine("EmpID,ActionID,Date,Task,Role,Morale,Stamina,Hours,Cost,Work,Rate,PlayerID,Description");
+		act.WriteLine("PlayerID,EmpID,ActionID,Date,Task,Role,Morale,Stamina,Hours,Cost,Work,Rate,PlayerID,Description");
 		
-		art.WriteLine("ArtifactID,Date,Type,PlayerID");
+		art.WriteLine("PlayerID,ArtifactID,Date,Type");
 		
 		MakeArtifactTable(art);
 		MakeStateTable(state, edges, projectNode.project.first);
@@ -337,7 +337,7 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 		pActions = new StreamWriter(pActions_path);
 		pDailyActions = new StreamWriter(pDailyActions_path);
 		pActions.WriteLine("PlayerID,PlayerActionID,EmpID,Date,Order,Code,Req,Sinc,DevStatus,FinancialStatus");
-		pDailyActions.WriteLine("Actions");
+		pDailyActions.WriteLine("PLayerID,Actions");
 		//Sort by date
 		playerActions.sort(function(a, b) 
 		{
@@ -380,7 +380,7 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 				line += " (" + playerActions[i-1].codeStatus + " " + playerActions[i-1].reqStatus + " " + playerActions[i-1].valStatus + 
 				" " + playerActions[i-1].delayed + " " + playerActions[i-1].finances + ")";
 				//Write in the file
-				pDailyActions.WriteLine(line);
+				pDailyActions.WriteLine(playerID + "," + line);
 				//Restart line
 				line = playerActions[i].order;
 			}
@@ -398,7 +398,7 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 		node = artifactList.first;
 		while(node != null)
 		{
-			art.WriteLine(node.ID + "," + node.date + "," + node.type + "," + playerID);
+			art.WriteLine(playerID + "," + node.ID + "," + node.date + "," + node.type);
 			node = node.next;
 		}
 	}
@@ -407,16 +407,16 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 	{
 		while(node != null)
 		{			
-			state.WriteLine("proj1" + "," + Project(node, ",") + "," + playerID);
+			state.WriteLine(playerID + "," + "proj1" + "," + Project(node, ","));
 			//If had any income, create a new edge with its value
 			if(node.next != null)
 			{
-				edges.WriteLine("edge" + edgeID + "," + "," + "," + "," + node.ID + "," + "," + "," + node.next.ID + "," + "," + "default" + "," + playerID);
+				edges.WriteLine(playerID + "," + "edge" + edgeID + "," + "," + "," + "," + node.ID + "," + "," + "," + node.next.ID + "," + "," + "default");
 				edgeID++;
 				if(node.next.income != 0)
 				{
 					income = node.next.income + " Credits";
-					edges.WriteLine("edge" + edgeID + "," + "Client_01" + "," + "," + "," + "," + "," + "," + node.ID + "," + "," + income + "," + playerID);
+					edges.WriteLine(playerID + "," + "edge" + edgeID + "," + "Client_01" + "," + "," + "," + "," + "," + "," + node.ID + "," + "," + income);
 					edgeID++;
 				}
 			}
@@ -431,8 +431,8 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 		{
 			if(node.employee.GetNome() != "Vacant")
 			{
-				emp.WriteLine(Agent(node.employee, ",") + "," + node.employee.profile + "," + playerID);
-				proj.WriteLine("proj1" + "," + node.employee.ID + "," + playerID);
+				emp.WriteLine(playerID + "," + Agent(node.employee, ",") + "," + node.employee.profile);
+				proj.WriteLine(playerID + "," + "proj1" + "," + node.employee.ID);
 			
 				action = node.actionList.first;
 				MakeActionTable(act, edges, action, node.employee);
@@ -453,7 +453,7 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 		var financial : String;
 		while(action != null)
 		{
-			act.WriteLine(employee.GetID() + "," + Action2(action, ","));
+			act.WriteLine(playerID + "," + employee.GetID() + "," + Action2(action, ","));
 			MakeEdgeTable(edges, action, employee);
 			//Get PlayerAction
 			
@@ -537,12 +537,12 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 
 	function MakeEdgeTable(edges : TextWriter, action : ActionNode, employee : Employee)
 	{
-		edges.WriteLine("edge" + edgeID + "," + "," + employee.GetID() + "," + "," + "," + "," + action.ID + "," + "," + "," + "default" + "," + playerID);
+		edges.WriteLine(playerID + "," + "edge" + edgeID + "," + "," + employee.GetID() + "," + "," + "," + "," + action.ID + "," + "," + "," + "default");
 		edgeID++;
 		if(action.artifact == "Prototype")
 		{
 			//Artifact to action
-			edges.WriteLine("edge" + edgeID + "," + "," + "," + action.ID + "," + "," + "," + "," + "," + action.artID + "," + "1 Prototype Created" + "," + playerID);
+			edges.WriteLine(playerID + "," + "edge" + edgeID + "," + "," + "," + action.ID + "," + "," + "," + "," + "," + action.artID + "," + "1 Prototype Created");
 			edgeID++;
 		}
 		if(action.influence.valid)
@@ -555,13 +555,13 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 				if(current.action.artifact == "Prototype")
 				{
 					//Action to artifact
-					edges.WriteLine("edge" + edgeID + "," + "," + "," + action.ID + "," + "," + "," + "," + "," + current.action.artID + "," + "-1 Prototype" + "," + playerID);
+					edges.WriteLine(playerID + "," + "edge" + edgeID + "," + "," + "," + action.ID + "," + "," + "," + "," + "," + current.action.artID + "," + "-1 Prototype");
 					edgeID++;
 				}
 				else
 				{
 					//Action to action
-					edges.WriteLine("edge" + edgeID + "," + "," + "," + current.action.ID + "," + "," + "," + action.ID + "," + "," + "," + current.action.work + "," + playerID);
+					edges.WriteLine(playerID + "," + "edge" + edgeID + "," + "," + "," + current.action.ID + "," + "," + "," + action.ID + "," + "," + "," + current.action.work);
 					edgeID++;
 				}
 				current = current.next;
@@ -572,11 +572,11 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 			//Cost
 			if(action.cost != 0)
 			{
-				line = "edge" + edgeID + "," + "," + "," + action.ID + "," + "," + "," + "," + action.projectStat.ID + "," + "," + (-action.cost) + " Credits" + "," + playerID;	
+				line = playerID + "," + "edge" + edgeID + "," + "," + "," + action.ID + "," + "," + "," + "," + action.projectStat.ID + "," + "," + (-action.cost) + " Credits";	
 			}
 			else
 			{
-				line = "edge" + edgeID + "," + "," + "," + action.ID + "," + "," + "," + "," + action.projectStat.ID + "," + "," + "0 Credits: Not enough Credits" + "," + playerID;	
+				line = playerID + "," + "edge" + edgeID + "," + "," + "," + action.ID + "," + "," + "," + "," + action.projectStat.ID + "," + "," + "0 Credits: Not enough Credits";	
 			}
 			edges.WriteLine(line);
 			edgeID++;
@@ -584,25 +584,25 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 			//Work_2
 			if(action.work_2 != "")
 			{
-				edges.WriteLine("edge" + edgeID + "," + "," + "," + action.ID + "," + "," + "," + "," + action.projectStat.ID + "," + "," + action.work_2 + "," + playerID);
+				edges.WriteLine(playerID + "," + "edge" + edgeID + "," + "," + "," + action.ID + "," + "," + "," + "," + action.projectStat.ID + "," + "," + action.work_2);
 				edgeID++;
 			}
 			//Work_3
 			if(action.work_3 != "")
 			{
-				edges.WriteLine("edge" + edgeID + "," + "," + "," + action.ID + "," + "," + "," + "," + action.projectStat.ID + "," + "," + action.work_3 + "," + playerID);
+				edges.WriteLine(playerID + "," + "edge" + edgeID + "," + "," + "," + action.ID + "," + "," + "," + "," + action.projectStat.ID + "," + "," + action.work_3);
 				edgeID++;
 			}
 			//Work_4
 			if(action.work_4 != "")
 			{
-				edges.WriteLine("edge" + edgeID + "," + "," + "," + action.ID + "," + "," + "," + "," + action.projectStat.ID + "," + "," + action.work_4 + "," + playerID);
+				edges.WriteLine(playerID + "," + "edge" + edgeID + "," + "," + "," + action.ID + "," + "," + "," + "," + action.projectStat.ID + "," + "," + action.work_4);
 				edgeID++;
 			}
 			//Work_5
 			if(action.work_5 != "")
 			{
-				edges.WriteLine("edge" + edgeID + "," + "," + "," + action.ID + "," + "," + "," + "," + action.projectStat.ID + "," + "," + action.work_5 + "," + playerID);
+				edges.WriteLine(playerID + "," + "edge" + edgeID + "," + "," + "," + action.ID + "," + "," + "," + "," + action.projectStat.ID + "," + "," + action.work_5);
 				edgeID++;
 			}
 		}
@@ -610,12 +610,12 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 		{
 			if((action.morale - action.previous.morale) != 0)
 			{				
-				edges.WriteLine("edge" + edgeID + "," + "," + "," + action.ID + "," + "," + employee.ID + "," + "," + "," + "," + (action.morale - action.previous.morale) + " Morale" + "," + playerID);
+				edges.WriteLine(playerID + "," + "edge" + edgeID + "," + "," + "," + action.ID + "," + "," + employee.ID + "," + "," + "," + "," + (action.morale - action.previous.morale) + " Morale");
 				edgeID++;
 			}
 			if((action.stamina - action.previous.stamina) != 0)
 			{
-				edges.WriteLine("edge" + edgeID + "," + "," + "," + action.ID + "," + "," + employee.ID + "," + "," + "," + "," + (action.stamina - action.previous.stamina) + " Stamina" + "," + playerID);
+				edges.WriteLine(playerID + "," + "edge" + edgeID + "," + "," + "," + action.ID + "," + "," + employee.ID + "," + "," + "," + "," + (action.stamina - action.previous.stamina) + " Stamina");
 				edgeID++;
 			}
 		}
