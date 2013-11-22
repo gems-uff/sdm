@@ -11,6 +11,7 @@ class PlayerAction
 	public var valStatus : String;
 	public var delayed : String;
 	public var finances : String;
+	public var playerID : String;
 	
 	function PlayerAction(i: String, e : String, d : String, o : String, c : String, r : String, v : String, de : String, f : String)
 	{
@@ -35,11 +36,12 @@ class PlayerAction
 		this.valStatus = v;
 		this.delayed = de;
 		this.finances = f;
+		this.playerID = "Player_01";
 	}
 	
 	function GetAction()
 	{
-		return this.ID + ", " + this.empID + ", " + this.date + ", " + this.order +	", " + this.codeStatus + ", " + 
+		return this.playerID + ", " + this.ID + ", " + this.empID + ", " + this.date + ", " + this.order +	", " + this.codeStatus + ", " + 
 		this.reqStatus + ", " + this.valStatus + ", " + this.delayed + ", " + this.finances;
 	}
 }

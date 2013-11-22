@@ -174,7 +174,7 @@ class ActionNode
 		this.stamina = func.GetStamina();
 		this.hours = func.GetWorkingHours();
 		this.cost = cost;
-		this.work = "";
+		this.work = "Hired Employee";
 		this.work_2 = "";
 		this.artifact = "";
 		this.taskType = GetTaskType(task);
@@ -192,7 +192,7 @@ class ActionNode
 		this.stamina = func.GetStamina();
 		this.hours = func.GetWorkingHours();
 		this.cost = 0;
-		this.work = "";
+		this.work = "Fired Employee";
 		this.work_2 = "";
 		this.artifact = "";
 		this.taskType = GetTaskType(task);
@@ -211,7 +211,7 @@ class ActionNode
 		this.stamina = func.GetStamina();
 		this.hours = func.GetWorkingHours();
 		this.cost = parseInt(rate * 0.01 * func.GetSalario() / 28);
-		this.work = "";
+		this.work = "Promoted";
 		this.work_2 = "";
 		this.artifact = "";
 		this.taskType = GetTaskType(task);
@@ -231,9 +231,9 @@ class ActionNode
 		this.stamina = func.GetStamina();
 		this.hours = func.GetWorkingHours();
 		this.cost = parseInt(rate * 0.01 * func.GetSalario() / 28);
-		//this.work = work;
+		this.work = work;
 		//this.work_2 = work;
-		this.work = "";
+		//this.work = "";
 		this.work_2 = "";
 		this.artifact = artifact;
 		this.taskType = GetTaskType(task);
