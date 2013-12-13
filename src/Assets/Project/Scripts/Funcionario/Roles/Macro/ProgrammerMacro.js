@@ -422,7 +422,7 @@ class ProgrammerMacro extends System.ValueType{
 			
 			ProgReport(codeLines, 0, report);
 			NewAction(actionNode, isEsp, isPressured, prog, codeLines.ToString() + " Progress", refact.ToString() + " Quality", 
-			bugCount.ToString() + " New Bug", task, progress, "Progress");
+			bugCount.ToString() + " New_Bug", task, progress, "Progress");
 			
 			floatingLines.showFloatText1("", "Evolution", "blue", "", delay);
 			floatingLines.showFloatText2("+", codeLines.ToString(), "blue", " Progress", delay);		
@@ -501,7 +501,7 @@ class ProgrammerMacro extends System.ValueType{
 		if(repaired > 0)
 			progress = true;
 		if(newBugs > 0)	
-			NewAction(actionNode, isEsp, isPressured, prog, repaired.ToString() + " Repaired", "", newBugs.ToString() + " New Bug",task, progress, "Repair");
+			NewAction(actionNode, isEsp, isPressured, prog, repaired.ToString() + " Repaired", "", newBugs.ToString() + " New_Bug",task, progress, "Repair");
 		else
 			NewAction(actionNode, isEsp, isPressured, prog, repaired.ToString() + " Repaired", "", "",task, progress, "Repair");
 		

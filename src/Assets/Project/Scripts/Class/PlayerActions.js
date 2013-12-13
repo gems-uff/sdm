@@ -36,12 +36,12 @@ class PlayerAction
 		this.valStatus = v;
 		this.delayed = de;
 		this.finances = f;
-		this.playerID = "Player_01";
+		this.playerID = "Player_02";
 	}
 	
 	function GetAction()
 	{
-		return this.playerID + ", " + this.ID + ", " + this.empID + ", " + this.date + ", " + this.order +	", " + this.codeStatus + ", " + 
-		this.reqStatus + ", " + this.valStatus + ", " + this.delayed + ", " + this.finances;
+		return this.playerID + "," + this.ID + "," + this.empID + "," + this.date + "," + this.order +	"," + this.codeStatus + "," + 
+		this.reqStatus + "," + this.valStatus + "," + this.delayed + "," + this.finances;
 	}
 }

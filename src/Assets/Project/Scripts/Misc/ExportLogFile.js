@@ -29,7 +29,7 @@ public var actID : int = 0;
 public var artID : int = 0;
 public var edgeID : int = 0;
 public var pActionID : int = 0;
-private var playerID : String = "Player_01";
+private var playerID : String = "Player_02";
 private var artifactList : ArtifactList = new ArtifactList();
 private var playerActions = new Array();
 
@@ -68,7 +68,7 @@ function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 			var inf : String = " ";
 			inf = "1 Prototype Created";
 			//line = Artifact(action, action.artifact) + "\t" + Action(action, "\t");
-			line = Action(action, "\t") + "\t" + Artifact(action, action.artifact);
+			line = Action(action, "\t") + "\t" + Artifact(action, action.artifact, "\t");
 			f.WriteLine("IAcAr" + "\t" + line + "\t" + inf);
 		}
 		
@@ -82,7 +82,7 @@ function RunList(f : TextWriter, action : ActionNode, employee : Employee)
 				if(current.action.artifact == "Prototype")
 				{
 					//Action to artifact
-					line = Action(action, "\t") + "\t" + Artifact(current.action, current.action.artifact);
+					line = Action(action, "\t") + "\t" + Artifact(current.action, current.action.artifact, "\t");
 					f.WriteLine("IAcAr" + "\t" + line + "\t" + "-1 Prototype");
 				}
 				else
@@ -163,9 +163,16 @@ function Action(action : ActionNode, SEP : String)
 		actID++;
 	}
 	id = action.ID;
-	line = id + SEP + action.date + SEP + action.who + SEP + action.task + SEP + action.role + SEP + action.morale + SEP +
-	action.stamina + SEP + action.hours + SEP + action.cost + SEP + action.work + SEP + action.rate + SEP + action.d2;
-    	
+	line = id + SEP + action.who + SEP + action.date + SEP
+	+ " <br>" + "Role: " + action.role
+    + " <br>" + "Task: " + action.task
+    + " <br>" + "Morale: " + action.morale
+    + " <br>" + "Stamina: " + action.stamina
+    + " <br>" + "Hours: " + action.hours
+    + " <br>" + "Cost: " + action.cost
+    + " <br>" + "Work: " + action.work
+    + " <br>" + "Rate: " + action.rate;
+        	
     return line;
 }
 
@@ -181,19 +188,36 @@ function Action2(action : ActionNode, SEP : String)
 	}
 	id = action.ID;
 	line = id + SEP + action.date + SEP + action.task + SEP + action.role + SEP + action.morale + SEP +
-	action.stamina + SEP + action.hours + SEP + action.cost + SEP + action.work + SEP + action.rate + SEP + playerID + SEP + action.d2;
+	action.stamina + SEP + action.hours + SEP + action.cost + SEP + action.work + SEP + action.rate;
     	
     return line;
 }
 
 //Can change to only action since type is action.artifact
-function Artifact(action : ActionNode, type : String)
+function Artifact(action : ActionNode, type : String, SEP : String)
 {
 	var id : String;
-	id = action.date.ToString() +" "+ type; 	
-    return id;
+	id = action.date.ToString() + " " + type;
+    return id + SEP + type + SEP + action.date.ToString() + SEP + " ";
 }
 function Agent(employee : Employee, SEP : String)
+{
+	var id : String;
+	id = employee.GetID();
+	line = id + SEP + employee.nome + SEP + " <br>" + " Job: " 
+	+ employee.job + " <br>" + " Level: " + employee.level + " <br>" + " Adaptability: " + employee.atributos.adaptabilidade 
+	+ " <br>" + " Autodidact: " + employee.atributos.autoDidata
+    + " <br>" + " Meticulous: " + employee.atributos.detalhista
+    + " <br>" + " Negotiation: " + employee.atributos.negociacao
+    + " <br>" + " Objectivity: " + employee.atributos.objetividade
+    + " <br>" + " Organization: " + employee.atributos.organizacao
+    + " <br>" + " Patience: " + employee.atributos.paciencia
+    + " <br>" + " Logical Reasoning: " + employee.atributos.raciocinioLogico
+    + " <br>" + " Human Relations: " + employee.atributos.relacionamentoHumano
+    + " <br>" + " Specializations: " + employee.especializacao;   	
+    return line;
+}
+function Agent2(employee : Employee, SEP : String)
 {
 	var id : String;
 	id = employee.GetID();
@@ -206,6 +230,31 @@ function Agent(employee : Employee, SEP : String)
     return line;
 }
 function Project(stat : ProjectStats, SEP : String)
+{
+	var id : String;
+	id = stat.ID;
+	var line : String;
+	line = id + SEP + stat.name + SEP + stat.date + SEP + 
+                " <br>" + "Credits: " + stat.credits + 
+                " <br>" + "Deadline: " + stat.deadline + 
+                " <br>" + "Code Completed: " + stat.percentageDone + "%" + 
+                " <br>" + "Especification: " + stat.requirements +  "%" +
+                " <br>" + "Elicitation: " + stat.sincronismo +  "%" +
+                " <br>" + "Code Quality: " + stat.codeQuality +  "%" +
+                " <br>" + "Player's Income: " + stat.pagamento + 
+                " <br><br>" + "Unitary Bugs Found: " + stat.bugUnitaryFound + 
+                " <br>" + "Integration Bugs Found: " + stat.bugIntegrationFound + 
+                " <br>" + "System Bugs Found: " + stat.bugSystemFound + 
+                " <br>" + "Acception Bugs Found: " + stat.bugAcceptionFound + 
+                " <br><br>" + "Unitary Bugs Repaired: " + stat.bugUnitaryRepaired + 
+                " <br>" + "Integration Bugs Repaired: " + stat.bugIntegrationRepaired + 
+                " <br>" + "System Bugs Repaired: " + stat.bugSystemRepaired + 
+                " <br>" + "Acception Bugs Repaired: " + stat.bugAcceptionRepaired + 
+                " <br>" + "Total Bugs: " + stat.totalBugs;
+    return line;
+}
+
+function Project2(stat : ProjectStats, SEP : String)
 {
 	var id : String;
 	id = stat.ID;
@@ -233,8 +282,8 @@ function RunProjectNodes(f : TextWriter, node : ProjectStats)
 		if(node.next.income != 0)
 		{
 			income = node.next.income + " Credits";
-			line = "Client" + "\t" + Project(node, "\t") + "\t" + income;
-			f.WriteLine("CP" + "\t" + line);
+			line = "Client" + "\t" + " " + "\t" + Project(node, "\t") + "\t" + income;
+			f.WriteLine("AgP" + "\t" + line);
 		}
 		node = node.next;
 	}
@@ -275,7 +324,7 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 	    player = new StreamWriter(player_path);
 	    
 	    player.WriteLine("PlayerID,Name,Region");
-	    player.WriteLine("Player_01,Troy,USA");
+	    player.WriteLine("Player_02,Kohwalter,EUR");
 	    player.Close();
 	    
 	    projectNode = hLog.GetProjectList().last;
@@ -387,7 +436,7 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 		}
 		line += " (" + playerActions[i-1].codeStatus + " " + playerActions[i-1].reqStatus + " " + playerActions[i-1].valStatus + 
 				" " + playerActions[i-1].delayed + " " + playerActions[i-1].finances + ")";
-		pDailyActions.WriteLine(line);
+		pDailyActions.WriteLine(playerID + "," + line);
 				
 		pActions.Close();
 		pDailyActions.Close();
@@ -407,7 +456,7 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 	{
 		while(node != null)
 		{			
-			state.WriteLine(playerID + "," + "proj1" + "," + Project(node, ","));
+			state.WriteLine(playerID + "," + "proj1" + "," + Project2(node, ","));
 			//If had any income, create a new edge with its value
 			if(node.next != null)
 			{
@@ -431,8 +480,8 @@ function RunEmployeeList(f : TextWriter, node : EmployeeNode)
 		{
 			if(node.employee.GetNome() != "Vacant")
 			{
-				emp.WriteLine(playerID + "," + Agent(node.employee, ",") + "," + node.employee.profile);
-				proj.WriteLine(playerID + "," + "proj1" + "," + node.employee.ID);
+				emp.WriteLine(playerID + "," + Agent2(node.employee, ",") + "," + node.employee.profile);
+				proj.WriteLine(playerID + "," + "proj1" + "," + node.employee.ID + "," + "0");
 			
 				action = node.actionList.first;
 				MakeActionTable(act, edges, action, node.employee);
