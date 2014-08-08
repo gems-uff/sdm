@@ -64,6 +64,9 @@ wilcox.test(q7a ,q7b ,conf.int =T)
 wilcox.test(q8a ,q8b ,conf.int =T)
 wilcox.test(q9a ,q9b ,conf.int =T)
 wilcox.test(durationA ,durationB ,conf.int =T)
+boxplot(q3a ,q3b, q4a, q4b, q5a, q5b, q6a, q6b, q7a, q7b, q8a, q8b, q9a, q9b, names=c("Prov", "Replay", "Prov", "Replay", "Prov", "Replay", "Prov", "Replay", "Prov", "Replay", "Prov", "Replay", "Prov", "Replay"), main = "Question 3", col = (c("cadetblue","darkolivegreen1")))
+boxplot(durationA ,durationB, names=c("Prov", "Replay"), main = "Duration", col = (c("cadetblue","darkolivegreen1")))
+
 
 boxplot(q3a ,q3b, names=c("Prov", "Replay"), main = "Question 3", col = (c("cadetblue","darkolivegreen1")))
 boxplot(q4a ,q4b, names=c("Prov", "Replay"), main = "Question 4", col = (c("cadetblue","darkolivegreen1")))
@@ -73,3 +76,4 @@ boxplot(q7a ,q7b, names=c("Prov", "Replay"), main = "Question 7", col = (c("cade
 boxplot(q8a ,q8b, names=c("Prov", "Replay"), main = "Question 8", col = (c("cadetblue","darkolivegreen1")))
 boxplot(q9a ,q9b, names=c("Prov", "Replay"), main = "Question 9", col = (c("cadetblue","darkolivegreen1")))
 boxplot(durationA ,durationB, names=c("Prov", "Replay"), main = "Duration", col = (c("cadetblue","darkolivegreen1")))
+
