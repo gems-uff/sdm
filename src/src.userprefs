@@ -1,12 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Misc\ExportLogFile.js">
-    <Files>
-      <File FileName="Assets\Project\Scripts\Class\LinkedList\InfluenceList.js" Line="1" Column="1" />
-      <File FileName="Assets\Project\Scripts\Misc\ExportLogFile.js" Line="166" Column="56" />
-      <File FileName="Assets\Project\Scripts\Class\PlayerActions.js" Line="39" Column="29" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

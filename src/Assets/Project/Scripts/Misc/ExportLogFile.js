@@ -204,7 +204,7 @@ function Agent(employee : Employee, SEP : String)
 {
 	var id : String;
 	id = employee.GetID();
-	line = id + SEP + employee.nome + SEP + " <br>" + " Job: " 
+	line = id + SEP + employee.nome + SEP + "0" + SEP +" <br>" + " Job: " 
 	+ employee.job + " <br>" + " Level: " + employee.level + " <br>" + " Adaptability: " + employee.atributos.adaptabilidade 
 	+ " <br>" + " Autodidact: " + employee.atributos.autoDidata
     + " <br>" + " Meticulous: " + employee.atributos.detalhista
