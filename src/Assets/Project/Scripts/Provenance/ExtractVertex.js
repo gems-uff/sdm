@@ -6,11 +6,14 @@
 //
 // Use these functions in order to record the provenance information using the PROV definitions:
 //
-//	NewActivityVertex(): Creates an Activity type vertex
-//	NewAgentVertex(): Creates an Agent type vertex
-//	NewEntityVertex(): Creates an Entity type vertex
-//	NewVertex(): Creates an user-defined <type> vertex
-//
+//	NewActivityVertex(): Creates an Activity type vertex.
+//	NewAgentVertex(): Creates an Agent type vertex.
+//	NewEntityVertex(): Creates an Entity type vertex.
+//	NewVertex(): Creates an user-defined <type> vertex.
+//  AddAttribute(): Adds a new attribute to the attribute list. 
+//                  The attribute's name and value are informed by the user and before invoking NewVertex or any of its variants.
+//  PopulateAttributes(): Add unity-related attributes to the attribute list. Invoked from NewVertex or any of its variants.
+//  ClearList(): Clean the attribute list for the next vertex. Invoked from NewVertex or any of its variants.
 //===================================================================================================================
 
 
@@ -25,6 +28,8 @@ public var provenance : ProvenanceGatherer;
 
 // Last created vertex of this GameObject. It is used by Provenance Controller to link vertices
 private var currentVertex : Vertex = null;	
+// A list containing all attributes for the current vertex
+private var attributeList : List.<AttributeType> = new List.<AttributeType>();
 
 //=================================================================================================================
 // New Activity Vertex
@@ -41,8 +46,9 @@ function NewActivityVertex(label_ : String, attribute_ : List.<AttributeType>, d
 // User defines the Vertex.date field
 function NewActivityVertex(date_ : String, label_ : String, attribute_ : List.<AttributeType>, details_ : String)
 {
-	PopulateAttributes(attribute_);
+	PopulateAttributes();
 	currentVertex = provenance.AddVertex(date_, "Activity", label_, attribute_, details_, currentVertex);
+	ClearList();
 }
 
 //=================================================================================================================
@@ -60,8 +66,9 @@ function NewAgentVertex(label_ : String, attribute_ : List.<AttributeType>, deta
 // User defines the Vertex.date field
 function NewAgentVertex(date_ : String, label_ : String, attribute_ : List.<AttributeType>, details_ : String)
 {
-	PopulateAttributes(attribute_);
+	PopulateAttributes();
 	currentVertex = provenance.AddVertex(date_, "Agent", label_, attribute_, details_, currentVertex);
+	ClearList();
 }
 
 //=================================================================================================================
@@ -79,8 +86,9 @@ function NewEntityVertex(label_ : String, attribute_ : List.<AttributeType>, det
 // User defines the Vertex.date field
 function NewEntityVertex(date_ : String, label_ : String, attribute_ : List.<AttributeType>, details_ : String)
 {
-	PopulateAttributes(attribute_);
+	PopulateAttributes();
 	currentVertex = provenance.AddVertex(date_, "Entity", label_, attribute_, details_, currentVertex);
+	ClearList();
 }
 
 //=================================================================================================================
@@ -98,32 +106,80 @@ function NewVertex(type_ : String, label_ : String, attribute_ : List.<Attribute
 // User defines the Vertex.date field
 function NewVertex(date_ : String, type_ : String, label_ : String, attribute_ : List.<AttributeType>, details_ : String)
 {
-	PopulateAttributes(attribute_);
+	PopulateAttributes();
 	currentVertex = provenance.AddVertex(date_, type_, label_, attribute_, details_, currentVertex);
+	ClearList();
+}
+
+//=================================================================================================================
+// Create a new attribute for the vertex
+// Attribute defined by the user
+//=================================================================================================================
+function AddAttribute(name : String, att_value : String)
+{
+	var attribute : AttributeType;
+	
+	attribute = new AttributeType(name, att_value);
+	
+	this.attributeList.Add(attribute);
 }
 
 //=================================================================================================================
 // Gather GameObject specific Attributes
 // Add these attributes to the attributeList for the vertex
 //=================================================================================================================
-function PopulateAttributes(attributeList : List.<AttributeType>)
+function PopulateAttributes()
 {
 	var attribute : AttributeType;
 	
-	if(attributeList == null)
-	{
-		attributeList = new List.<AttributeType>();
-	}
-	
 	attribute = new AttributeType("Name", this.name.ToString());
-	attributeList.Add(attribute);
+	this.attributeList.Add(attribute);
 	
 	attribute = new AttributeType("Tag", this.tag.ToString());
-	attributeList.Add(attribute);
+	this.attributeList.Add(attribute);
 	
 	attribute = new AttributeType("ID", this.GetInstanceID().ToString());
-	attributeList.Add(attribute);
+	this.attributeList.Add(attribute);
 	
-	attribute = new AttributeType("Transform", this.transform.ToString());
-	attributeList.Add(attribute);
+	attribute = new AttributeType("Position_X", this.transform.position.x.ToString());
+	this.attributeList.Add(attribute);
+	
+	attribute = new AttributeType("Position_Y", this.transform.position.y.ToString());
+	this.attributeList.Add(attribute);
+	
+	attribute = new AttributeType("Position_Z", this.transform.position.z.ToString());
+	this.attributeList.Add(attribute);
+}
+
+//=================================================================================================================
+// Clear the list of attributes for the next vertex
+// Function invoked after current vertex is added to the vertex list
+//=================================================================================================================
+function ClearList()
+{
+	this.attributeList = new List.<AttributeType>();
+}
+
+//===================================================================================================================
+// Influence
+//  TODO
+//===================================================================================================================
+
+
+//=================================================================================================================
+// Generate an influence for this vertex
+//=================================================================================================================
+function GenerateInfluence(type : String, duration : float, influenceName : String, influenceValue : String, consumable : boolean, uses : int)
+{
+
+}
+
+//=================================================================================================================
+// Checks if current vertex was influenced by any other vertex
+// If so, consume the influence and generate the appropriate edge connecting both vertices
+// Need to check all influences, since it can have more than one at the same time
+//=================================================================================================================
+function UseInfluence()
+{
+
 }
