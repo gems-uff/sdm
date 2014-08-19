@@ -169,17 +169,36 @@ function ClearList()
 //=================================================================================================================
 // Generate an influence for this vertex
 //=================================================================================================================
+/*
 function GenerateInfluence(type : String, duration : float, influenceName : String, influenceValue : String, consumable : boolean, uses : int)
 {
 
 }
+*/
+// Creates one influence of 'type' that can be used for X times and then expires
+function GenerateInfluence(type : String, ID : String, influenceName : String, influenceValue : String, consumable : boolean, quantity : int)
+{
+	influenceContainer.CreateInfluence(type, ID, currentVertex.ID, influenceName, influenceValue, consumable, quantity);
+}
 
+// Creates one influence of 'type' that never expires with usages
+function GenerateInfluence(type : String, ID : String, influenceName : String, influenceValue : String)
+{
+	influenceContainer.CreateInfluence(type, ID, currentVertex.ID, influenceName, influenceValue, false, 1);
+}
 //=================================================================================================================
 // Checks if current vertex was influenced by any other vertex
 // If so, consume the influence and generate the appropriate edge connecting both vertices
 // Need to check all influences, since it can have more than one at the same time
 //=================================================================================================================
-function UseInfluence()
+// By 'type'
+function HasInfluence(type : String)
 {
+	influenceContainer.WasInfluencedByType(type, currentVertex.ID);
+}
 
+// By 'ID'
+function HasInfluence_ID(ID : String)
+{
+	influenceContainer.WasInfluencedByID(ID, currentVertex.ID);
 }

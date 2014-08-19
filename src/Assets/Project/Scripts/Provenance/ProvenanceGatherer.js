@@ -22,7 +22,7 @@ public var edgeList = new ArrayList();
 // Add edge to edgeList
 // Return new vertex in order to update the caller
 //=================================================================================================================
-function AddVertex(date_ : String, type_ : String, label_ : String, attribute_ : List.<AttributeType>, details_ : String, target : Vertex) : Vertex
+public function AddVertex(date_ : String, type_ : String, label_ : String, attribute_ : List.<AttributeType>, details_ : String, target : Vertex) : Vertex
 {
 	var source : Vertex = new Vertex(NewVertexID(), date_, type_, label_, attribute_, details_);
 
@@ -40,7 +40,7 @@ function AddVertex(date_ : String, type_ : String, label_ : String, attribute_ :
 //=================================================================================================================
 // Add Edge to the edgeList
 //=================================================================================================================
-function AddEdge(t : Edge)
+public function AddEdge(t : Edge)
 {
 	edgeList.Add(t);
 }
@@ -48,7 +48,7 @@ function AddEdge(t : Edge)
 //=================================================================================================================
 // Generate a new ID for Edge
 //=================================================================================================================
-function NewEdgeID() : String
+public function NewEdgeID() : String
 {
 	return "edge_" + edgeList.Count;
 }
@@ -56,7 +56,7 @@ function NewEdgeID() : String
 //=================================================================================================================
 // Generate a new ID for vertex
 //=================================================================================================================
-function NewVertexID() : String
+public function NewVertexID() : String
 {
 	return "vertex_" + vertexList.Count;
 }
@@ -67,7 +67,7 @@ function NewVertexID() : String
 // Uses PROV edge definitions for label
 // Add the edge to the edgeList
 //=================================================================================================================
-function CreateProvenanceEdge(source: Vertex, target : Vertex)
+public function CreateProvenanceEdge(source: Vertex, target : Vertex)
 {
 	// Default edge label
 	var newEdge : Edge = new Edge(NewEdgeID(), "Neutral", "WasAssociatedTo", "", source.ID, target.ID);
@@ -123,6 +123,10 @@ function CreateProvenanceEdge(source: Vertex, target : Vertex)
 	AddEdge(newEdge);	
 }
 
+public function CreateInfluenceEdge()
+{
+
+}
 //=================================================================================================================
 //DRAFT
 //=================================================================================================================
