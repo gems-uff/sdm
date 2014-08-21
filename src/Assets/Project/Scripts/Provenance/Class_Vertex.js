@@ -2,11 +2,11 @@
 import System.Collections.Generic;
 
 //===================================================================================================================
-// Vertex Class Definition
+// 'Vertex' Class Definition
 // This script is to define the Edge class
 // Do not attach this script in any GameObject
 // It is only necessary to be on your resources folder
-// The Vertex class is used for the Provenance-Scripts
+// The 'Vertex' class is used for the Provenance-Scripts
 //===================================================================================================================
 class Vertex
 {

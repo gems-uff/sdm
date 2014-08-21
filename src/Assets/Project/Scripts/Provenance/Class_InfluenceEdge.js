@@ -2,15 +2,15 @@
 
 
 //===================================================================================================================
-// InfluenceEdge Class Definition
+// 'InfluenceEdge' Class Definition
 // This script is to define the influenceEdge class
 // Do not attach this script in any GameObject
 // It is only necessary to be on your resources folder
-// The InfluenceEdge class is used for the Provenance-Scripts
+// The 'InfluenceEdge' class is used for the Provenance-Scripts
 //===================================================================================================================
 class InfluenceEdge
 {
-	public var type : String;			// This is the influence type, which is used to designate actions that can be affected by it
+	public var tag : String;			// This is the influence tag, which is used to designate actions that can be affected by it
 										// or to group up various influences for the influence-check process
 	public var ID : String;				// This is the influence's ID and is used to single out an influence from a 'type' group
 	public var source : String;			// This contains the vertex ID that generated the influence
@@ -24,7 +24,7 @@ class InfluenceEdge
 	//================================================================================================================
 	function InfluenceEdge()
 	{
-		this.type = "";
+		this.tag = "";
 		this.ID = "";
 		this.source = "";
 		this.name = "";
@@ -36,9 +36,9 @@ class InfluenceEdge
 	//================================================================================================================
 	// Influence Constructor
 	//================================================================================================================
-	function InfluenceEdge(type_ : String, ID_ : String, source_ : String, name_ : String, infValue_ : String, consumable_ : boolean, quantity_ : int)
+	function InfluenceEdge(tag_ : String, ID_ : String, source_ : String, name_ : String, infValue_ : String, consumable_ : boolean, quantity_ : int)
 	{
-		this.type = type_;
+		this.tag = tag_;
 		this.ID = ID_;
 		this.source = source_;
 		this.name = name_;

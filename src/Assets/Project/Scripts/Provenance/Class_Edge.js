@@ -1,11 +1,11 @@
 #pragma strict
 
 //===================================================================================================================
-// Edge Class Definition
+// 'Edge' Class Definition
 // This script is to define the Edge class
 // Do not attach this script in any GameObject
 // It is only necessary to be on your resources folder
-// The Edge class is used for the Provenance-Scripts
+// The 'Edge' class is used for the Provenance-Scripts
 //===================================================================================================================
 class Edge
 {

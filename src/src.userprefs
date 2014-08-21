@@ -1,14 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Provenance\ExtractVertex.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Project\Scripts\Provenance\InfluenceController.js">
     <Files>
-      <File FileName="Assets\Project\Scripts\Provenance\ExtractVertex.js" Line="204" Column="2" />
-      <File FileName="Assets\Project\Scripts\Provenance\InfluenceController.js" Line="63" Column="3" />
-      <File FileName="Assets\Project\Scripts\Provenance\ProvenanceGatherer.js" Line="129" Column="2" />
-      <File FileName="Assets\Project\Scripts\Provenance\Class_Vertex.js" Line="32" Column="47" />
-      <File FileName="Assets\Project\Scripts\Provenance\Class_Edge.js" Line="19" Column="2" />
-      <File FileName="Assets\Project\Scripts\Equipe\Equipe.js" Line="15" Column="1" />
-      <File FileName="Assets\Project\Scripts\Provenance\Class_InfluenceEdge.js" Line="9" Column="9" />
+      <File FileName="Assets\Project\Scripts\Provenance\InfluenceController.js" Line="12" Column="99" />
+      <File FileName="Assets\Project\Scripts\Provenance\ProvenanceGatherer.js" Line="7" Column="3" />
+      <File FileName="Assets\Project\Scripts\Provenance\ExtractProvenance.js" Line="7" Column="34" />
+      <File FileName="Assets\Project\Scripts\Provenance\Class_Edge.js" Line="8" Column="14" />
+      <File FileName="Assets\Project\Scripts\Provenance\Class_Vertex.js" Line="9" Column="16" />
+      <File FileName="Assets\Project\Scripts\Provenance\Class_InfluenceEdge.js" Line="27" Column="11" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

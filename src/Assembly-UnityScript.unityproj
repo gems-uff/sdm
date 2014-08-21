@@ -120,7 +120,7 @@
      <Compile Include="Assets\Project\Scripts\Provenance\Class_Edge.js" />
      <Compile Include="Assets\Project\Scripts\Provenance\Class_InfluenceEdge.js" />
      <Compile Include="Assets\Project\Scripts\Provenance\Class_Vertex.js" />
-     <Compile Include="Assets\Project\Scripts\Provenance\ExtractVertex.js" />
+     <Compile Include="Assets\Project\Scripts\Provenance\ExtractProvenance.js" />
      <Compile Include="Assets\Project\Scripts\Provenance\InfluenceController.js" />
      <Compile Include="Assets\Project\Scripts\Provenance\ProvenanceGatherer.js" />
      <Compile Include="Assets\Project\Scripts\Testing\FloatingLines2.js" />

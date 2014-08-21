@@ -1,20 +1,24 @@
 #pragma strict
 
-//===================================================================================================================
+//=================================================================================================================
 // Script for storing vertices and edges
 // Attach this script in an Empty GameObject that is never destroyed during the game
 //(In the same GameObject for InfluenceController)
 //
 // Uses one ArrayList for vertices and another for edges
-// ...
-//===================================================================================================================
+// All functions are automatically invoked and controlled by 'ExtractProvenance' script or 'InfluenceController' script
+//=================================================================================================================
 
 
-//===================================================================================================================
-// Declarations
-//===================================================================================================================
-public var vertexList = new ArrayList();    			
-public var edgeList = new ArrayList();    				
+//=================================================================================================================
+// *Declarations Section*
+//=================================================================================================================
+private var vertexList = new ArrayList();    			
+private var edgeList = new ArrayList();    				
+
+//=================================================================================================================
+// *Functions Section*
+//=================================================================================================================
 
 //=================================================================================================================
 // Add Vertex to the vertexList
@@ -40,7 +44,7 @@ public function AddVertex(date_ : String, type_ : String, label_ : String, attri
 //=================================================================================================================
 // Add Edge to the edgeList
 //=================================================================================================================
-public function AddEdge(t : Edge)
+private function AddEdge(t : Edge)
 {
 	edgeList.Add(t);
 }
@@ -48,7 +52,7 @@ public function AddEdge(t : Edge)
 //=================================================================================================================
 // Generate a new ID for Edge
 //=================================================================================================================
-public function NewEdgeID() : String
+private function NewEdgeID() : String
 {
 	return "edge_" + edgeList.Count;
 }
@@ -56,7 +60,7 @@ public function NewEdgeID() : String
 //=================================================================================================================
 // Generate a new ID for vertex
 //=================================================================================================================
-public function NewVertexID() : String
+private function NewVertexID() : String
 {
 	return "vertex_" + vertexList.Count;
 }
@@ -67,7 +71,7 @@ public function NewVertexID() : String
 // Uses PROV edge definitions for label
 // Add the edge to the edgeList
 //=================================================================================================================
-public function CreateProvenanceEdge(source: Vertex, target : Vertex)
+private function CreateProvenanceEdge(source: Vertex, target : Vertex)
 {
 	// Default edge label
 	var newEdge : Edge = new Edge(NewEdgeID(), "Neutral", "WasAssociatedTo", "", source.ID, target.ID);
@@ -123,32 +127,14 @@ public function CreateProvenanceEdge(source: Vertex, target : Vertex)
 	AddEdge(newEdge);	
 }
 
-public function CreateInfluenceEdge()
-{
-
-}
 //=================================================================================================================
-//DRAFT
+// Create a new edge connecting Source to Target with a value
+// This edge is known as influence edge
+// Defines the edge provenance label as "WasInfluencedBy"
+// Add the edge to the edgeList
 //=================================================================================================================
-/*
-//ArrayList functions
-vertexList.Add(anItem);              			// add an item to the end of the array
-vertexList[i] = newValue;            			// change the value stored at position i
-var thisItem : TheType = vertexList[i];  		// retrieve an item from position i (note the required casting!)
-vertexList.RemoveAt(i);                  		// remove an item from position i
-var howBig = vertexList.Count;           		// get the length of the array
-*/
-
-/*
-function GetVertex(id_ : String)
+public function CreateInfluenceEdge(sourceID : String, targetID : String, infName : String, infValue : String)
 {
-	for (var i = 0; i < vertexList.Count; i++)
-	{
-		var currentVertex : Vertex = vertexList[i];
-		if(currentVertex.ID == id_)
-		{
-			return currentVertex;
-		}
-	}
+	var newEdge : Edge = new Edge(NewEdgeID(), infName, "WasInfluencedBy", infValue, sourceID, targetID);
+	AddEdge(newEdge);
 }
-*/

@@ -1,50 +1,49 @@
 #pragma strict
 
-//===================================================================================================================
+//=================================================================================================================
 // Script for storing influence edges for the entire game
 // Attach this script in an Empty GameObject that is never destroyed during the game 
-//(In the same GameObject for ProvenanceController)
+//(In the same GameObject for ProvenanceGatherer)
+// Link it to ProvenanceGatherer
 //
 // Uses ArrayList for influence edges
-// ...
-//===================================================================================================================
-/*
-//ArrayList functions
-vertexList.Add(anItem);              			// add an item to the end of the array
-vertexList[i] = newValue;            			// change the value stored at position i
-var thisItem : TheType = vertexList[i];  		// retrieve an item from position i (note the required casting!)
-vertexList.RemoveAt(i);                  		// remove an item from position i
-var howBig = vertexList.Count;           		// get the length of the array
-*/
+// All functions are automatically invoked and controlled by 'ExtractProvenance' script script
+//
+// If you desire to manually clean/erase the influence list, then invoke 'CleanInfluence' function
+//=================================================================================================================
 
-//===================================================================================================================
-// Declarations
-//===================================================================================================================
-var influenceList : List.<InfluenceEdge> = new List.<InfluenceEdge>();
+//=================================================================================================================
+// *Declarations Section*
+//=================================================================================================================
+public var provenance : ProvenanceGatherer;	
+private var influenceList : List.<InfluenceEdge> = new List.<InfluenceEdge>();
 
+//=================================================================================================================
+// *Functions Section*
+//=================================================================================================================
 
 //=================================================================================================================
 // Create a new influence and add it to the influence list
-// Function invoked at ExtractVertex to create a new influence
+// Function invoked at 'ExtractProvenance' to create a new influence
 //=================================================================================================================
-function CreateInfluence(type : String, ID : String, source : String, influenceName : String, influenceValue : String, consumable : boolean, quantity : int)
+public function CreateInfluence(tag : String, ID : String, source : String, influenceName : String, influenceValue : String, consumable : boolean, quantity : int)
 {
-	var newInfluence : InfluenceEdge = new InfluenceEdge(type, ID, source, influenceName, influenceValue, consumable, quantity);
+	var newInfluence : InfluenceEdge = new InfluenceEdge(tag, ID, source, influenceName, influenceValue, consumable, quantity);
 	influenceList.Add(newInfluence);
 }
 
 //=================================================================================================================
-// Remove all influences with 'type' from the influence list
-// Function invoked at ExtractVertex to remove an existing influence because it expired
+// Remove all influences with 'tag' from the influence list
+// Function invoked at 'ExtractProvenance' to remove an existing influence because it expired
 //=================================================================================================================
-function RemoveInfluenceByType(type : String)
+public function RemoveInfluenceByTag(tag : String)
 {
 	var i : int;
-	var currentInf : InfluenceEdge = new InfluenceEdge();
+	//var currentInf : InfluenceEdge = new InfluenceEdge();
 	for (i = 0; i < influenceList.Count; i++)
 	{
-		currentInf = influenceList[i];
-		if(currentInf.type == type)
+		//currentInf = influenceList[i];
+		if(influenceList[i].tag == tag)
 		{
 			influenceList.RemoveAt(i);
 		}
@@ -53,9 +52,9 @@ function RemoveInfluenceByType(type : String)
 
 //=================================================================================================================
 // Remove all influences with 'ID' from the influence list
-// Function invoked at ExtractVertex to remove an existing influence because it expired
+// Function invoked at 'ExtractProvenance' to remove an existing influence because it expired
 //=================================================================================================================
-function RemoveInfluenceByID(ID : String)
+public function RemoveInfluenceByID(ID : String)
 {
 	var i : int;
 	var currentInf : InfluenceEdge = new InfluenceEdge();
@@ -68,16 +67,70 @@ function RemoveInfluenceByID(ID : String)
 		}
 	}
 }
+
+//=================================================================================================================
+// Remove all influences from the influence list
+// Use this function to remove all influences in the influence list
+//=================================================================================================================
+public function CleanInfluence()
+{
+	influenceList = new List.<InfluenceEdge>();
+}
 //=================================================================================================================
 // Clear the list of attributes for the next vertex
-// Function invoked at ExtractVertex to check if the current action was influenced
+// Function invoked at 'ExtractProvenance' to check if the current action was influenced
 //=================================================================================================================
-function WasInfluencedByType(type : String, targetID : String)
+
+// Check influence list by 'tag'
+function WasInfluencedByTag(tag : String, targetID : String)
 {
-	
+	var i : int;
+
+	for (i = 0; i < influenceList.Count; i++)
+	{
+		if(influenceList[i].tag == tag)
+		{
+			if(influenceList[i].consumable)
+			{
+				influenceList[i].quantity--;
+				provenance.CreateInfluenceEdge(influenceList[i].source, targetID, influenceList[i].name, influenceList[i].infValue);
+				if(influenceList[i].quantity ==  0)
+				{
+					influenceList.RemoveAt(i);
+				}
+								
+			}
+			else
+			{
+				provenance.CreateInfluenceEdge(influenceList[i].source, targetID, influenceList[i].name, influenceList[i].infValue);
+			}
+		}
+	}
 }
 
+// Check influence list by influence's 'ID'
 function WasInfluencedByID(ID : String, targetID : String)
 {
-	
+	var i : int;
+
+	for (i = 0; i < influenceList.Count; i++)
+	{
+		if(influenceList[i].ID == ID)
+		{
+			if(influenceList[i].consumable)
+			{
+				influenceList[i].quantity--;
+				provenance.CreateInfluenceEdge(influenceList[i].source, targetID, influenceList[i].name, influenceList[i].infValue);
+				if(influenceList[i].quantity ==  0)
+				{
+					influenceList.RemoveAt(i);
+				}
+								
+			}
+			else
+			{
+				provenance.CreateInfluenceEdge(influenceList[i].source, targetID, influenceList[i].name, influenceList[i].infValue);
+			}
+		}
+	}
 }
