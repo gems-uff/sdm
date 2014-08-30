@@ -18,6 +18,7 @@ private var stamina : float = 1.0;		//Valor entre 0.0 e 1.0
 private var morale : float = 1.0;
 private var func : Funcionario;
 private var treino : Treinamento;
+private var prov : ExtractProvenance;
 
 private var report : WeeklyReport;
 private var delayTime : float = 0.2;
@@ -234,7 +235,7 @@ function AnalistaWork(){
 		analista = func.GetAnalista();
 		analista = analista * (rate * 0.01) * mod * constant.ANALYST * (1 + modificador_positivo - penal); //* equipe.GetBonusAnalista()
 
-		action = AnalistaMacro.Work(func, project, report, floatingLines, equipe, constant, analista, behavior, timer, delay, rate);
+		action = AnalistaMacro.Work(func, project, report, floatingLines, equipe, constant, analista, behavior, timer, delay, rate, prov);
 		behavior.AddAction(action, isSec, false);
 	}
 }
@@ -376,7 +377,7 @@ function MarketingWork(){
 		
 		marketing = func.GetMarketing() * (rate * 0.01) * (1 - penal) * mod * constant.MARKETING;	
 		
-		action = MarketingMacro.Work(func, project, report, floatingLines, equipe, constant, playerStats, marketing, timer, behavior, delay, rate);
+		action = MarketingMacro.Work(func, project, report, floatingLines, equipe, constant, playerStats, marketing, timer, behavior, delay, rate, prov);
 		behavior.AddAction(action, isSec, false);
 	}
 		
@@ -804,4 +805,6 @@ function Awake () {
 	report.programmerReport_prog = 0;
 	report.programmerReport_bug = 0;
 	report.testerReport = 0;
+	
+	prov = GetComponentInChildren(ExtractProvenance);
 }

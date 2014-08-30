@@ -9,7 +9,7 @@ class MarketingMacro extends System.ValueType{
 	var behavior : BehaviorPlanner;
 	
 	function Work(func : Funcionario, project : Project, report : WeeklyReport, floatingLines : FloatingLines, equipe : Equipe, 
-	constant : GameConstants, playerStats : PlayerStats, marketing : float, date : GameTime, behaviorP : BehaviorPlanner, delay : float, rate : int)
+	constant : GameConstants, playerStats : PlayerStats, marketing : float, date : GameTime, behaviorP : BehaviorPlanner, delay : float, rate : int, prov : ExtractProvenance)
 	{
 		var randomizer_aid : float = Random.Range (-1.5, 0.5);
 		var randomizer_aid_2 : float = Random.Range (1.0, 3.0);
@@ -50,6 +50,9 @@ class MarketingMacro extends System.ValueType{
 		floatingLines.showFloatText1(sign, aid.ToString(), color, "% Analyst", delay);
 		floatingLines.showFloatText2("+", credits.ToString(), "", " Credits", delay);
 		
+		
+		Provenance(prov, actionNode, aid);
+		
 		return actionNode;
 	}
 	
@@ -57,5 +60,22 @@ class MarketingMacro extends System.ValueType{
 	{
 		report.marketingReport_val = report.marketingReport_val + val;
 		report.marketingReport_money = report.marketingReport_money + money;
+	}
+	
+	function Provenance(prov : ExtractProvenance, actionNode : ActionNode, influence)
+	{
+		//prov.AddAttribute("date", actionNode.date);
+		prov.AddAttribute("who", actionNode.who);
+		prov.AddAttribute("task", actionNode.task);
+		prov.AddAttribute("tasktype", actionNode.taskType);
+		prov.AddAttribute("role", actionNode.role);
+		prov.AddAttribute("rate", actionNode.rate.ToString());
+		prov.AddAttribute("morale", actionNode.morale.ToString());
+		prov.AddAttribute("stamina", actionNode.stamina.ToString());
+		prov.AddAttribute("hours", actionNode.hours.ToString());
+		
+		prov.NewActivityVertex(actionNode.date, "Action", "");
+		prov.HasInfluence("Marketing");
+		prov.GenerateInfluence("Analyst", "M01", "Aid", "+" + influence + "%");
 	}
 }

@@ -16,6 +16,7 @@ private var timeSpeed : float = 1.0;
 public var project : Project;
 public var equipe : Equipe;
 public var menuPrototype : PrototypeWindow;
+public var provInfluence : InfluenceController;
 
 //--------------------------------------------Get/Set-----------------------------------------------------------
 //Retorna o dia atual
@@ -183,6 +184,7 @@ function GetTimeDayString() :String
 function PassTime () {
     gameTime += incrementBy;
     equipe.ResetBonus();
+    provInfluence.CleanInfluence();
     
     //BroadcastMessage("UpdateProjectStatNodeNoDelay");
     

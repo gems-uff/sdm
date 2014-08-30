@@ -16,12 +16,13 @@ class AnalystMacro extends System.ValueType{
 	private var val : float;
 	private var delay : float;
 	private var rate : int;
+	private var prov : ExtractProvenance;
 	
 	var behavior : BehaviorPlanner;
 	var date : GameTime;	
 				
 	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, 
-	constantP : GameConstants, analistaP : float, behaviorP : BehaviorPlanner, dateP : GameTime, delay : float, rate : int)
+	constantP : GameConstants, analistaP : float, behaviorP : BehaviorPlanner, dateP : GameTime, delay : float, rate : int, prov_ : ExtractProvenance)
 	{
 		var actionNode : ActionNode = new ActionNode();
 		
@@ -37,6 +38,7 @@ class AnalystMacro extends System.ValueType{
 		this.date = dateP;
 		this.delay = delay;
 		this.rate = rate;
+		this.prov = prov_;
 		
 		var randomizer : float = Random.Range (0.75, 1.25);
 		
@@ -127,9 +129,15 @@ class AnalystMacro extends System.ValueType{
 			d1 = "Employee was ordered to focus on \n" + descr + "\n and validated a Prototype";
 			d2 = "Employee was ordered to focus on " + descr + "<br> and validated a Prototype";
 			if(val == 0)
+			{
 				actionNode.NewActionArtifact(task + "_Prototype", d1, d2, func, date, "Analyst", val.ToString() + " Discovery Change", "", rate);
+				Provenance(prov, actionNode, "");
+			}
 			else
+			{
 				actionNode.NewActionArtifact(task + "_Prototype", d1, d2, func, date, "Analyst", val.ToString() + " Discovery", "", rate);
+				Provenance(prov, actionNode, "");
+			}
 				
 			floatingLines.showFloatText1("", "Elicitation", "blue","", delay);
 			floatingLines.showFloatText2("+", val.ToString(), "blue", " Discovery", delay);
@@ -155,10 +163,12 @@ class AnalystMacro extends System.ValueType{
 			if(newBug == 0)
 			{
 				actionNode.NewActionNoArtifact(task + "_Reviews", d1, d2, func, date, "Analyst", val.ToString() + " Discovery", rate);
+				Provenance(prov, actionNode, "");
 			}
 			else
 			{
 				actionNode.NewActionW3(task + "_Reviews", d1, d2, func, date, "Analyst", val.ToString() + " Discovery", val.ToString() + " Discovery", newBug + " New Bug", rate);
+				Provenance(prov, actionNode, "");
 			}
 			
 			floatingLines.showFloatText1("", "Elicitation", "blue","", delay);
@@ -196,6 +206,7 @@ class AnalystMacro extends System.ValueType{
 			d1 = "Employee was ordered to focus on " + descr + "\n and because he was above moderate he decided to do discovery";
 			d2 = "Employee was ordered to focus on " + descr + "<br> and because he was above moderate he decided to do discovery";
 			actionNode.NewActionArtifact(task, d1, d2, func, date, "Analyst", val.ToString() + " Validation", "", rate);
+			Provenance(prov, actionNode, "");
 			Specifying();
 		}
 		else
@@ -203,6 +214,7 @@ class AnalystMacro extends System.ValueType{
 			d1= "Employee was ordered to focus on " + descr + "\n and because he was moderate he did discovery"; 
 			d2 = "Employee was ordered to focus on " + descr + "<br> and because he was moderate he did discovery";
 			actionNode.NewActionArtifact(task, d1, d2, func, date, "Analyst", val.ToString() + " Validation", "", rate);
+			Provenance(prov, actionNode, "");
 			Specifying();
 		}
 	}
@@ -214,9 +226,15 @@ class AnalystMacro extends System.ValueType{
 		var d1 : String = "Employee was ordered to focus on " + descr + "\n and made Acception Test Cases";
 		var d2 : String = "Employee was ordered to focus on " + descr + "<br> and made Acception Test Cases";
 		if(qnt > 0)
+		{
 			actionNode.NewActionArtifact(task, d1, d2, func, date, "Analyst", qnt.ToString() + " ATC", "Acception Test Cases", rate);
+			Provenance(prov, actionNode, "");
+		}
 		else
+		{
 			actionNode.NewActionNoArtifact(task, d1, d2, func, date, "Analyst", qnt.ToString() + " ATC", rate);
+			Provenance(prov, actionNode, "");
+		}
 		MakeAcceptionCases(actionNode, qnt);
 	}
 	
@@ -280,5 +298,22 @@ class AnalystMacro extends System.ValueType{
 	function AnalistReport(t : int, report : WeeklyReport)
 	{
 		report.analistReport = report.analistReport + t;
+	}
+	
+	function Provenance(prov : ExtractProvenance, actionNode : ActionNode, influence)
+	{
+		//prov.AddAttribute("date", actionNode.date);
+		prov.AddAttribute("who", actionNode.who);
+		prov.AddAttribute("task", actionNode.task);
+		prov.AddAttribute("tasktype", actionNode.taskType);
+		prov.AddAttribute("role", actionNode.role);
+		prov.AddAttribute("rate", actionNode.rate.ToString());
+		prov.AddAttribute("morale", actionNode.morale.ToString());
+		prov.AddAttribute("stamina", actionNode.stamina.ToString());
+		prov.AddAttribute("hours", actionNode.hours.ToString());
+		
+		prov.NewActivityVertex(actionNode.date, "Action", "");
+		prov.HasInfluence("Analyst");
+		//prov.GenerateInfluence("Analyst", "M01", "Aid", "+" + influence + "%");
 	}
 }

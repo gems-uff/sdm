@@ -11,6 +11,7 @@ public var windowController : WindowController;
 //public var equipe : Equipe;
 public var logWindow : LogWindow;
 public var managerPlanner : ManagerPlanner;
+public var provenance : ProvenanceController;
 /*
 private var TIMESLOW : float = 2.0;
 private var TIMENORMAL : float = 1.0;
@@ -206,13 +207,14 @@ function MainMenu(){
 			logWindow.ShowLogWindow();
 			ingameMenuToggle = false ;
 		}
-		/*
-		if (GUI.Button( Rect (Screen.width - 100,310,100,20), "9: Planner") )
+		//if (GUI.Button( Rect (Screen.width - 100,310,100,20), "9: Planner") )
+		if (GUI.Button( Rect (Screen.width - 100,310,100,20), "9: XMLExport") )
 		{
 			//ingameMenuToggle = false ;
-			managerPlanner.ShowPlannerWindow();
+			//managerPlanner.ShowPlannerWindow();
+			provenance.Save("provenancedata");
 		}
-		*/
+		
 		if (GUI.Button( Rect (Screen.width - 100,330,100,20), "10: Export") )
 		{
 			//ingameMenuToggle = false ;

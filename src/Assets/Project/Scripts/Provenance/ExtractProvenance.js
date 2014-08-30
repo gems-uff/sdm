@@ -41,12 +41,12 @@
 public var influenceContainer : InfluenceController;	
 
 // Provenance Export Object pointer	
-public var provenance : ProvenanceGatherer;	
+public var provenance : ProvenanceController;	
 
 // Last created vertex of this GameObject. It is used by Provenance Controller to link vertices
 private var currentVertex : Vertex = null;	
 // A list containing all attributes for the current vertex
-private var attributeList : List.<AttributeType> = new List.<AttributeType>();
+private var attributeList : List.<Attribute> = new List.<Attribute>();
 
 //=================================================================================================================
 // *Functions Section*
@@ -61,7 +61,7 @@ private var attributeList : List.<AttributeType> = new List.<AttributeType>();
 // Uses Time.time for the Vertex.date field
 public function NewActivityVertex(label_ : String, details_ : String)
 {
-	NewActivityVertex((Time.time).ToString(), label_, attributeList, details_);
+	NewActivityVertex((Time.time).ToString(), label_, details_);
 }
 
 // User defines the Vertex.date field
@@ -81,7 +81,7 @@ public function NewActivityVertex(date_ : String, label_ : String, details_ : St
 // Uses Time.time for the Vertex.date field
 public function NewAgentVertex(label_ : String, details_ : String)
 {
-	NewAgentVertex((Time.time).ToString(), label_, attributeList, details_);
+	NewAgentVertex((Time.time).ToString(), label_, details_);
 }
 
 // User defines the Vertex.date field
@@ -101,7 +101,7 @@ public function NewAgentVertex(date_ : String, label_ : String, details_ : Strin
 // Uses Time.time for the Vertex.date field
 public function NewEntityVertex(label_ : String, details_ : String)
 {
-	NewEntityVertex((Time.time).ToString(), label_, attributeList, details_);
+	NewEntityVertex((Time.time).ToString(), label_, details_);
 }
 
 // User defines the Vertex.date field
@@ -121,7 +121,7 @@ public function NewEntityVertex(date_ : String, label_ : String, details_ : Stri
 // Uses Time.time for the Vertex.date field
 public function NewVertex(type_ : String, label_ : String, details_ : String)
 {
-	NewVertex((Time.time).ToString(), type_, label_, attributeList, details_);
+	NewVertex((Time.time).ToString(), type_, label_, details_);
 }
 
 // User defines the Vertex.date field
@@ -138,9 +138,9 @@ public function NewVertex(date_ : String, type_ : String, label_ : String, detai
 //=================================================================================================================
 public function AddAttribute(name : String, att_value : String)
 {
-	var attribute : AttributeType;
+	var attribute : Attribute;
 	
-	attribute = new AttributeType(name, att_value);
+	attribute = new Attribute(name, att_value);
 	
 	this.attributeList.Add(attribute);
 }
@@ -151,24 +151,24 @@ public function AddAttribute(name : String, att_value : String)
 //=================================================================================================================
 private function PopulateAttributes()
 {
-	var attribute : AttributeType;
+	var attribute : Attribute;
 	
-	attribute = new AttributeType("Name", this.name.ToString());
+	attribute = new Attribute("ObjectName", this.name.ToString());
 	this.attributeList.Add(attribute);
 	
-	attribute = new AttributeType("Tag", this.tag.ToString());
+	attribute = new Attribute("ObjectTag", this.tag.ToString());
 	this.attributeList.Add(attribute);
 	
-	attribute = new AttributeType("ID", this.GetInstanceID().ToString());
+	attribute = new Attribute("ObjectID", this.GetInstanceID().ToString());
 	this.attributeList.Add(attribute);
 	
-	attribute = new AttributeType("Position_X", this.transform.position.x.ToString());
+	attribute = new Attribute("ObjectPosition_X", this.transform.position.x.ToString());
 	this.attributeList.Add(attribute);
 	
-	attribute = new AttributeType("Position_Y", this.transform.position.y.ToString());
+	attribute = new Attribute("ObjectPosition_Y", this.transform.position.y.ToString());
 	this.attributeList.Add(attribute);
 	
-	attribute = new AttributeType("Position_Z", this.transform.position.z.ToString());
+	attribute = new Attribute("ObjectPosition_Z", this.transform.position.z.ToString());
 	this.attributeList.Add(attribute);
 }
 
@@ -178,7 +178,7 @@ private function PopulateAttributes()
 //=================================================================================================================
 private function ClearList()
 {
-	this.attributeList = new List.<AttributeType>();
+	this.attributeList = new List.<Attribute>();
 }
 
 //=================================================================================================================

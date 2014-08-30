@@ -13,8 +13,9 @@
 //=================================================================================================================
 // *Declarations Section*
 //=================================================================================================================
-private var vertexList = new ArrayList();    			
-private var edgeList = new ArrayList();    				
+private var vertexList : List.<Vertex> = new List.<Vertex>();    			
+private var edgeList : List.<Edge> = new List.<Edge>();		
+		
 
 //=================================================================================================================
 // *Functions Section*
@@ -26,7 +27,7 @@ private var edgeList = new ArrayList();
 // Add edge to edgeList
 // Return new vertex in order to update the caller
 //=================================================================================================================
-public function AddVertex(date_ : String, type_ : String, label_ : String, attribute_ : List.<AttributeType>, details_ : String, target : Vertex) : Vertex
+public function AddVertex(date_ : String, type_ : String, label_ : String, attribute_ : List.<Attribute>, details_ : String, target : Vertex) : Vertex
 {
 	var source : Vertex = new Vertex(NewVertexID(), date_, type_, label_, attribute_, details_);
 
@@ -137,4 +138,22 @@ public function CreateInfluenceEdge(sourceID : String, targetID : String, infNam
 {
 	var newEdge : Edge = new Edge(NewEdgeID(), infName, "WasInfluencedBy", infValue, sourceID, targetID);
 	AddEdge(newEdge);
+}
+
+//=================================================================================================================
+// Export all Provenance information gathered to a XML file
+//=================================================================================================================
+public function Save(filename : String)
+{
+	var provContainer : ProvenanceContainer = new ProvenanceContainer(vertexList, edgeList);
+	//provContainer.Save(Path.Combine(Application.persistentDataPath, "provenancedata.xml"));
+	provContainer.Save("./Files/" + filename + ".xml");
+}
+
+//=================================================================================================================
+// Load all previous Provenance information gathered from a XML file
+//=================================================================================================================
+public function Load(filename : String)
+{
+	var provContainer : ProvenanceContainer = ProvenanceContainer.Load("./Files/" + filename + ".xml");
 }

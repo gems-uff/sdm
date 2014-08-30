@@ -122,7 +122,8 @@
      <Compile Include="Assets\Project\Scripts\Provenance\Class_Vertex.js" />
      <Compile Include="Assets\Project\Scripts\Provenance\ExtractProvenance.js" />
      <Compile Include="Assets\Project\Scripts\Provenance\InfluenceController.js" />
-     <Compile Include="Assets\Project\Scripts\Provenance\ProvenanceGatherer.js" />
+     <Compile Include="Assets\Project\Scripts\Provenance\ProvenanceContainer.js" />
+     <Compile Include="Assets\Project\Scripts\Provenance\ProvenanceController.js" />
      <Compile Include="Assets\Project\Scripts\Testing\FloatingLines2.js" />
      <Compile Include="Assets\Project\Scripts\Testing\FloatingLinesBelow2.js" />
      <Compile Include="Assets\Project\Scripts\Testing\FlyingText2.js" />

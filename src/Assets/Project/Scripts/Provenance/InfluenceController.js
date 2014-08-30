@@ -15,7 +15,7 @@
 //=================================================================================================================
 // *Declarations Section*
 //=================================================================================================================
-public var provenance : ProvenanceGatherer;	
+public var provenance : ProvenanceController;	
 private var influenceList : List.<InfluenceEdge> = new List.<InfluenceEdge>();
 
 //=================================================================================================================
@@ -134,3 +134,9 @@ function WasInfluencedByID(ID : String, targetID : String)
 		}
 	}
 }
+
+/*
+function Awake () {
+	provenance = GetComponentInChildren(ProvenanceController);
+}
+*/

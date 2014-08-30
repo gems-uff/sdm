@@ -15,7 +15,9 @@ class Vertex
 	public var label : String;	// A human-readable name for this vertex
 	public var date : String;	// Game time when the vertex is created
 	
-	public var attribute : List.<AttributeType>;	// A List representing each vertex' attributes 
+	@XmlArray("attributes")
+ 	@XmlArrayItem("attribute")
+	public var attributes : List.<Attribute>;	// A List representing each vertex' attributes 
 													// Each attribute must have a String (Name) and a Number (att_value)
 										
 	public var details : String;	// Vertex description (Any additional info)
@@ -23,32 +25,32 @@ class Vertex
 	//================================================================================================================
 	// Empty Vertex Constructor
 	//================================================================================================================
-	function Vertex()
+	public function Vertex()
 	{
 		this.ID = "";
 		this.date = "";
 		this.type = "";
 		this.label = "";
-		this.attribute = new List.<AttributeType>();
+		this.attributes = new List.<Attribute>();
 		this.details = "";	
 	}
 	
 	//================================================================================================================
 	// Vertex Constructor
 	//================================================================================================================
-	function Vertex(id_ : String, date_ : String, type_ : String, label_ : String, attribute_ : List.<AttributeType>, details_ : String)
+	public function Vertex(id_ : String, date_ : String, type_ : String, label_ : String, attribute_ : List.<Attribute>, details_ : String)
 	{
 		this.ID = id_;
 		this.date = date_;
 		this.type = type_;
 		this.label = label_;
 		
-		this.attribute = new List.<AttributeType>();
+		this.attributes = new List.<Attribute>();
 		
 		//Copy the attribute list
 		for(var i = 0; i < attribute_.Count; i++)
 		{
-			this.attribute.Add(attribute_[i]);
+			this.attributes.Add(attribute_[i]);
 		}
 		
 		this.details = details_;
@@ -59,17 +61,26 @@ class Vertex
 // AttributeType Class Definition
 // This script is to define the AttributeType type used for Vertex' Attributes
 //===================================================================================================================
-class AttributeType
+class Attribute
 {
 	public var name : String;		// Name of the attribute (i.e. HitPoints)
-	public var att_value : String;	// Value of the attribute (i.e. 100)
+	public var value : String;	// Value of the attribute (i.e. 100)
 	
 	//================================================================================================================
 	// AttributeType Constructor
 	//================================================================================================================
-	function AttributeType(name_ : String, att_value_ : String)
+	public function Attribute()
+	{
+		this.name = "";
+		this.value = "";
+	}
+	
+	//================================================================================================================
+	// AttributeType Constructor
+	//================================================================================================================
+	public function Attribute(name_ : String, att_value_ : String)
 	{
 		this.name = name_;
-		this.att_value = att_value_;
+		this.value = att_value_;
 	}
 }
