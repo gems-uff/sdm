@@ -316,54 +316,17 @@ class ArchitectMacro extends System.ValueType{
 	
 	function Provenance(prov : ExtractProvenance, actionNode : ActionNode, influence : String, infType : String)
 	{
-		/*
-		//prov.AddAttribute("date", actionNode.date);
-		prov.AddAttribute("who", actionNode.who);
-		prov.AddAttribute("task", actionNode.task);
-		prov.AddAttribute("tasktype", actionNode.taskType);
-		prov.AddAttribute("role", actionNode.role);
-		prov.AddAttribute("rate", actionNode.rate.ToString());
-		prov.AddAttribute("morale", actionNode.morale.ToString());
-		prov.AddAttribute("stamina", actionNode.stamina.ToString());
-		prov.AddAttribute("hours", actionNode.hours.ToString());
-		
-		prov.NewActivityVertex(actionNode.date, "Action", "");
-		*/
 		prov.HasInfluence("Architect");
 		prov.GenerateInfluence("Project", "ARCHITECT", infType, influence);
 	}
 	
 	function ProvenanceAid(prov : ExtractProvenance, actionNode : ActionNode, influence : String, infType : String)
 	{
-		/*
-		prov.AddAttribute("who", actionNode.who);
-		prov.AddAttribute("task", actionNode.task);
-		prov.AddAttribute("tasktype", actionNode.taskType);
-		prov.AddAttribute("role", actionNode.role);
-		prov.AddAttribute("rate", actionNode.rate.ToString());
-		prov.AddAttribute("morale", actionNode.morale.ToString());
-		prov.AddAttribute("stamina", actionNode.stamina.ToString());
-		prov.AddAttribute("hours", actionNode.hours.ToString());
-		
-		prov.NewActivityVertex(actionNode.date, "Action", "");
-		*/
 		prov.HasInfluence("Architect");
 		prov.GenerateInfluence("Programmer", "ARCHITECT", "Aid", influence + "%");
 	}
 	function ProvenanceFail(prov : ExtractProvenance, actionNode : ActionNode)
 	{
-		/*
-		prov.AddAttribute("who", actionNode.who);
-		prov.AddAttribute("task", actionNode.task);
-		prov.AddAttribute("tasktype", actionNode.taskType);
-		prov.AddAttribute("role", actionNode.role);
-		prov.AddAttribute("rate", actionNode.rate.ToString());
-		prov.AddAttribute("morale", actionNode.morale.ToString());
-		prov.AddAttribute("stamina", actionNode.stamina.ToString());
-		prov.AddAttribute("hours", actionNode.hours.ToString());
-		
-		prov.NewActivityVertex(actionNode.date, "Action", "");
-		*/
 		prov.HasInfluence("Architect");
 		//prov.GenerateInfluence("Project", "ARCHITECT", infType, "+" + influence);
 	}
@@ -376,7 +339,16 @@ class ArchitectMacro extends System.ValueType{
 		tempVertex = prov.GetCurrentVertex();
 		prov.AddAttribute("name", artifactName);
 		prov.NewEntityVertex(actionNode.date, "Artifact", "");
-		prov.GenerateInfluence("Tester", "ARTIFACT", infType, influence, parseInt(influence));
+		if(artifactName == "Prototype")
+		{
+			prov.GenerateInfluence("Prototype", "ARTIFACT", infType, influence, parseInt(influence));
+		}
+		else
+		{
+			prov.GenerateInfluence("Tester", "ARTIFACT", infType, influence, parseInt(influence));
+		}
+		
+		
 		prov.SetCurrentVertex(tempVertex);
 	}
 

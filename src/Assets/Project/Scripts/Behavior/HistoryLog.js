@@ -101,6 +101,14 @@ function NewProjectNode()
 	project.ProjectProvenance();	
 }
 	
+function CheckForProjectInfluence()
+{
+	project.CheckProjectInfluence();
+}
+function CheckForProjectSpecialInfluence()
+{
+	project.CheckProjectSpecialInfluence();
+}
 function NewProjectStatNode()
 {
 	var stats : ProjectStats = new ProjectStats();

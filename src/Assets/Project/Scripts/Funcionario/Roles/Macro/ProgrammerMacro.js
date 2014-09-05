@@ -52,7 +52,7 @@ class ProgrammerMacro extends System.ValueType{
 		{
 			programador = programador * (1 + equipe.influences.GetBonusProg());
 			actionNode.influence = equipe.influences.GetInfluence("Programmer");
-			Debug.Log(programador);
+			//Debug.Log(programador);
 		}
 			
 		DecisionTree(actionNode);
@@ -558,45 +558,31 @@ class ProgrammerMacro extends System.ValueType{
 			actionNode.NewActionFourInfluences(task, d1, d2, func, date, "Programmer", 
 			work + " " + workT, work+ " " + workT, work_3+ " " + work_3T, actionNode.work_4, work_5 + " " + work_5T, actionNode.artifact, rate);
 			
-			//Provenance(prov, actionNode, work.ToString(), workT);
+			prov.GenerateInfluence("Project", "PROGRAMMER", workT, work.ToString());
+			Provenance(prov);
 			if(work_3.ToString() != "")
-				prov.GenerateInfluence("Project", "PROGRAMMER", work_3.ToString(), work_3T);
+				prov.GenerateInfluence("Project", "PROGRAMMER", work_3T, work_3.ToString());
 			if(work4_Influence != 0) // Generate Artifact
 			{
-				prov.GenerateInfluence("Project", "PROGRAMMER", work4_Influence.ToString(), work4_type);
+				prov.GenerateInfluence("Project", "PROGRAMMER", work4_type, work4_Influence.ToString());
 				ProvenanceWithArtifact(prov, actionNode, work4_Influence.ToString(), work4_type, "UTC");
 			}
 			if(work_5.ToString() != "")
-				prov.GenerateInfluence("Project", "PROGRAMMER", work_5.ToString(), work_5T);
+				prov.GenerateInfluence("Project", "PROGRAMMER", work_5T, work_5.ToString());
 		}
 		else
 		{
 			actionNode.NewActionOneInfluence(task, d1, d2, func, date, "Programmer", work, "0 " + type + " Change", actionNode.artifact, rate);
-			//Provenance(prov, actionNode, work.ToString(), workT);
+			Provenance(prov);
 			//prov.GenerateInfluence("Project", "PROGRAMMER", type + " Change", "+" + 0);
 		}
 		
 	}
 	
-	function Provenance(prov : ExtractProvenance, actionNode : ActionNode, influence : String, infType : String)
+	function Provenance(prov : ExtractProvenance)
 	{
-	/*
-		prov.AddAttribute("who", actionNode.who);
-		prov.AddAttribute("task", actionNode.task);
-		prov.AddAttribute("tasktype", actionNode.taskType);
-		prov.AddAttribute("role", actionNode.role);
-		prov.AddAttribute("rate", actionNode.rate.ToString());
-		prov.AddAttribute("morale", actionNode.morale.ToString());
-		prov.AddAttribute("stamina", actionNode.stamina.ToString());
-		prov.AddAttribute("hours", actionNode.hours.ToString());
-		
-		prov.NewActivityVertex(actionNode.date, "Action", "");
 		prov.HasInfluence("Programmer");
-		prov.GenerateInfluence("Project", "PROGRAMMER", infType, influence);
-		prov.GenerateInfluence("Project", "PROGRAMMER", "Credits", actionNode.cost.ToString());
-		*/
-		prov.HasInfluence("Programmer");
-		prov.GenerateInfluence("Project", "PROGRAMMER", infType, influence);
+		//prov.GenerateInfluence("Project", "PROGRAMMER", infType, influence);
 	}
 	
 	function ProvenanceWithArtifact(prov : ExtractProvenance, actionNode : ActionNode, influence : String, infType : String, artifactName : String)

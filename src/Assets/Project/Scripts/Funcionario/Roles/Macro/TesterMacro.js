@@ -68,6 +68,7 @@ class TesterMacro extends System.ValueType{
 			d1 = "Tester used Test Cases";
 			d2 = "Tester used Test Cases";
 			actionNode.NewActionArtifact("Test_Cases", d1, d2, func, date, "Tester", totalBugsFound.ToString() + " Bug Found", "", rate);
+			Provenance(prov, actionNode, totalBugsFound.ToString(), "Bugs found");
 		}
 		else
 		{
@@ -118,6 +119,7 @@ class TesterMacro extends System.ValueType{
 			d1 = "Tester searched in Adhoc-mode";
 			d2 = "Tester searched in Adhoc-mode";
 			actionNode.NewActionArtifact("Test_Adhoc", d1, d2, func, date, "Tester", totalBugsFound.ToString() + " Bug Found", "", rate);
+			ProvenanceAdhoc(prov, actionNode, totalBugsFound.ToString(), "Bugs found");
 			if(totalBugsFound > 0)
 				actionNode.projectStat = behavior.Log.GetProjectStat();
 		}
@@ -127,7 +129,7 @@ class TesterMacro extends System.ValueType{
 		TesterReport(totalBugsFound, report);
 		floatingLines.showFloatText1("+", totalBugsFound.ToString(), "blue", " Bugs found", delay);
 		
-		Provenance(prov, actionNode, totalBugsFound.ToString(), "Bugs found");
+		
 		
 		return actionNode;
 	}
@@ -139,22 +141,11 @@ class TesterMacro extends System.ValueType{
 	
 	function Provenance(prov : ExtractProvenance, actionNode : ActionNode, influence : String, infType : String)
 	{
-		/*
-		prov.AddAttribute("who", actionNode.who);
-		prov.AddAttribute("task", actionNode.task);
-		prov.AddAttribute("tasktype", actionNode.taskType);
-		prov.AddAttribute("role", actionNode.role);
-		prov.AddAttribute("rate", actionNode.rate.ToString());
-		prov.AddAttribute("morale", actionNode.morale.ToString());
-		prov.AddAttribute("stamina", actionNode.stamina.ToString());
-		prov.AddAttribute("hours", actionNode.hours.ToString());
-		
-		prov.NewActivityVertex(actionNode.date, "Action", "");
 		prov.HasInfluence("Tester");
 		prov.GenerateInfluence("Project", "TESTER", infType, influence);
-		prov.GenerateInfluence("Project", "TESTER", "Credits", actionNode.cost.ToString());
-		*/
-		prov.HasInfluence("Tester");
+	}
+	function ProvenanceAdhoc(prov : ExtractProvenance, actionNode : ActionNode, influence : String, infType : String)
+	{
 		prov.GenerateInfluence("Project", "TESTER", infType, influence);
 	}
 }

@@ -17,6 +17,7 @@ public var project : Project;
 public var equipe : Equipe;
 public var menuPrototype : PrototypeWindow;
 public var provInfluence : InfluenceController;
+public var starting : boolean = true;
 
 //--------------------------------------------Get/Set-----------------------------------------------------------
 //Retorna o dia atual
@@ -108,40 +109,6 @@ function GetTimeDaysString() :String{
 	var semana : int = gameTime / 7 ;
     var dia : int = (gameTime % 7) +1;
     return StringDate(semana, dia);
-    /*
-    var day : String;
-    switch(dia)
-	{
-	   case 1: 
-		  day = "Mon";
-	   break;
-
-	   case 2:
-		  day = "Tue";
-	   break;
-	   
-	   case 3:
-		  day = "Wed";
-	   break;
-	   
-	   case 4:
-		  day = "Thu";
-	   break;
-	   
-	   case 5:
-			day = "Fri";
-	   break;
-	   
-	   case 6:
-			day = "Sat";
-	   break;
-	   
-	   case 7:
-			day = "Sun";
-	   break;
-	}
-    return ("Wk: " + semana.ToString("000") + " Day: " + day);
-    */
 }
 function GetTimeDayString() :String
 {
@@ -183,14 +150,21 @@ function GetTimeDayString() :String
 
 function PassTime () {
     gameTime += incrementBy;
-    equipe.ResetBonus();
+    //if(starting)
+    //{
+	BroadcastMessage("CheckForProjectSpecialInfluence");
+	//yield WaitForSeconds(0.2);
+    	//starting = false;
+   // }
     provInfluence.CleanInfluenceNotConsumable();
-    
+    //provInfluence.CleanInfluence();
+    equipe.ResetBonus();
+    //provInfluence.CleanInfluenceNotConsumable();
+    //yield WaitForSeconds(0.2);
     //BroadcastMessage("UpdateProjectStatNodeNoDelay");
     
 	
 	//BroadcastMessage("PagarJogadorMensal");
-	
 	BroadcastMessage("IncrementDays");
 	BroadcastMessage("WorkHours");
 	/*
@@ -206,13 +180,21 @@ function PassTime () {
 	BroadcastMessage("NewProjectStatNode");
 	
 	BroadcastMessage("WorkDaily", "Manager");
+	yield WaitForSeconds(0.01);
 	BroadcastMessage("WorkDaily", "Marketing");
+	yield WaitForSeconds(0.01);
 	BroadcastMessage("WorkDaily", "Architect");
+	yield WaitForSeconds(0.01);
 	BroadcastMessage("WorkDaily", "Analyst");
+	yield WaitForSeconds(0.01);
 	BroadcastMessage("WorkDaily", "Programmer");
+	yield WaitForSeconds(0.01);
 	BroadcastMessage("WorkDaily", "Tester");
+	yield WaitForSeconds(0.01);
 	BroadcastMessage("WorkDaily", "Training");
+	yield WaitForSeconds(0.01);
 	BroadcastMessage("WorkDaily", "Idle");
+	yield WaitForSeconds(0.01);
 	
 	BroadcastMessage("UpdateProjectStatNode");
 	
@@ -242,7 +224,7 @@ function PassTime () {
 		BroadcastMessage("PagarJogadorMensal");
 		BroadcastMessage("UpdateProjectIncome");
 	}
-	
+	BroadcastMessage("CheckForProjectInfluence");
 	//Testing
 	/*
 	if((gameTime == 1))

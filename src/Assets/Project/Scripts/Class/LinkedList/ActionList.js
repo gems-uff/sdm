@@ -141,7 +141,7 @@ class ActionNode
 	}
 	//Func, cost for NEGOTIATION
 	function NewActionNegotiation(task : String, description : String, d2 : String, func : Funcionario, cost : int, date : GameTime, 
-	work : String, work_2 : String, work_3 : String)
+	work : String, work_2 : String, work_2Type : String, work_3 : String, work_3Type : String)
 	{
 		this.who = func.GetNome();
 		this.task = task;
@@ -154,20 +154,38 @@ class ActionNode
 		this.hours = func.GetWorkingHours();
 		this.cost = cost;
 		this.work = work;
-		this.work_2 = work_2;
-		this.work_3 = work_3;
+		this.work_2 = work_2 + " " + work_2Type;
+		this.work_3 = work_3 + " " + work_3Type;
 		this.artifact = "";
 		this.taskType = GetTaskType(task);
 		
-		GenerateVertexNoUpdate(func);
+		//GenerateVertexNoUpdateNoInfluence(func);
+		var tempVertex : Vertex;
+		var prov : ExtractProvenance;
+		prov = func.GetComponentInChildren(ExtractProvenance);
 		
+		tempVertex = prov.GetCurrentVertex();
+		prov = func.GetComponentInChildren(ExtractProvenance);
 		
+		//prov.AddAttribute("Who", this.who);
+		//prov.AddAttribute("Cost", (- this.cost).ToString());
+		prov.AddAttribute("Task", this.task);
+		//prov.AddAttribute("TaskType", this.taskType);
+		prov.AddAttribute("Role", this.role);
+		prov.AddAttribute("Rate", this.rate.ToString());
+		prov.AddAttribute("Morale", this.morale.ToString());
+		prov.AddAttribute("Stamina", this.stamina.ToString());
+		prov.AddAttribute("Hours", this.hours.ToString());
+		prov.NewActivityVertex(this.date, "Action", "");
+		prov.GenerateInfluence("Project", this.task, work_2Type, work_2.ToString());
+		prov.GenerateInfluence("Project", this.task, work_3Type, work_3.ToString());
+		prov.SetCurrentVertex(tempVertex);	
 	}
 	//Func, cost for HIRE
 	function NewActionHire(task : String, description : String, d2 : String, func : Funcionario, cost : int, date : GameTime)
 	{
 		this.who = func.GetNome();
-		this.task = task;
+		this.task = "Hired_Employee";
 		this.date = date.GetGameTime() + ":" + date.GetTimeDayString();
 		this.role = "Manager";
 		this.description = description;
@@ -222,7 +240,7 @@ class ActionNode
 		this.artifact = "";
 		this.taskType = GetTaskType(task);
 		
-		GenerateVertexNoUpdate(func);
+		GenerateVertexNoUpdateNoInfluence(func);
 	}
 	//func with Artifact
 	function NewActionArtifact(task : String, description : String, d2 : String, func : Funcionario, date : GameTime, role : String, work : String, 
@@ -356,6 +374,7 @@ class ActionNode
 		var prov : ExtractProvenance;
 		prov = func.GetComponentInChildren(ExtractProvenance);
 		//prov.AddAttribute("Who", this.who);
+		prov.AddAttribute("Cost", (- this.cost).ToString());
 		prov.AddAttribute("Task", this.task);
 		//prov.AddAttribute("TaskType", this.taskType);
 		prov.AddAttribute("Role", this.role);
@@ -364,7 +383,31 @@ class ActionNode
 		prov.AddAttribute("Stamina", this.stamina.ToString());
 		prov.AddAttribute("Hours", this.hours.ToString());
 		prov.NewActivityVertex(this.date, "Action", "");
-		prov.GenerateInfluence("Project", this.task, "Credits", this.cost.ToString());
+		prov.GenerateInfluence("Project", this.task, "Credits", (- this.cost).ToString());
+		//prov.HasInfluence(this.role);
+	}
+	
+	function GenerateVertexNoUpdateNoInfluence(func : Funcionario)
+	{
+		var tempVertex : Vertex;
+		var prov : ExtractProvenance;
+		prov = func.GetComponentInChildren(ExtractProvenance);
+		
+		tempVertex = prov.GetCurrentVertex();
+		prov = func.GetComponentInChildren(ExtractProvenance);
+		
+		//prov.AddAttribute("Who", this.who);
+		prov.AddAttribute("Cost", (- this.cost).ToString());
+		prov.AddAttribute("Task", this.task);
+		//prov.AddAttribute("TaskType", this.taskType);
+		prov.AddAttribute("Role", this.role);
+		prov.AddAttribute("Rate", this.rate.ToString());
+		prov.AddAttribute("Morale", this.morale.ToString());
+		prov.AddAttribute("Stamina", this.stamina.ToString());
+		prov.AddAttribute("Hours", this.hours.ToString());
+		prov.NewActivityVertex(this.date, "Action", "");
+		
+		prov.SetCurrentVertex(tempVertex);
 	}
 }
 

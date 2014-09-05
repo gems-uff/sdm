@@ -49,10 +49,10 @@ function ResetItems(){
 	tradeSet = false;
 	tradeOffSet = false;
 }
-function Action(text : String, work_1 : String, work_2 : String)
+function Action(text : String, work_1 : String, work_1Type : String, work_2 : String, work_2Type : String)
 {
 	var action : ActionNode = new ActionNode();
-	action.NewActionNegotiation("Negotiation", text, text, func, 0, timer, "Negotiating", work_1, work_2);
+	action.NewActionNegotiation("Negotiation", text, text, func, 0, timer, "Negotiating", work_1, work_1Type, work_2, work_2Type);
 	action.projectStat = func.behavior.Log.GetProjectStat();
 	func.behavior.AddAction(action, false, true);
 }
@@ -70,7 +70,9 @@ function ApplyChanges(){
 	
 	var description : String = "Asked for ";
 	var gain : String = "";
+	var gainType : String = "";
 	var inExchange : String = "";
+	var inExchangeType : String = "";
 	
 	if(scopeBool == true)
 	{
@@ -79,7 +81,8 @@ function ApplyChanges(){
 		trade = parseInt(trade);
 		project.SetProjectSize(trade);
 		description += "lower scope";
-		gain = ((marketing * 100) * -1) + " Scope Negotiation";
+		gain = ((marketing * 100) * -1).ToString();
+		gainType = "Scope Negotiation";
 	}
 	if(timeBool == true)
 	{
@@ -89,7 +92,8 @@ function ApplyChanges(){
 		trade = trade + project.GetStartDay();
 		project.SetDeadline(trade);
 		description += "more time";
-		gain = (marketing * 100) + " % Time Negotiation";
+		gain = (marketing * 100) + " %";
+		gainType = "Time Negotiation";
 	}
 	if(moneyBool == true)
 	{
@@ -98,7 +102,8 @@ function ApplyChanges(){
 		trade = parseInt(trade);
 		project.SetPagamento(trade);
 		description += "more credits";
-		gain = (marketing * 100) + " % Income Negotiation";
+		gain = (marketing * 100) + " %";
+		gainType = "Income Negotiation";
 	}
 	if(qualityBool == true)
 	{
@@ -107,7 +112,8 @@ function ApplyChanges(){
 		trade = parseInt(trade);
 		project.SetBugValue(trade);
 		description += "less quality";
-		gain = ((marketing * 100) * -1) + " % Quality Negotiation";
+		gain = ((marketing * 100) * -1) + " %";
+		gainType = "Quality Negotiation";
 	}
 	//Tradeoff
 	if(moreScope == true)
@@ -117,7 +123,8 @@ function ApplyChanges(){
 		tradeOff = parseInt(tradeOff);
 		project.SetProjectSize(tradeOff);
 		description += " in exchange of more scope";
-		inExchange = (marketing * 100) + " % Scope Negotiation";
+		inExchange = (marketing * 100) + " %";
+		inExchangeType = "Scope Negotiation";
 	}
 	if(lessTime == true)
 	{
@@ -127,7 +134,8 @@ function ApplyChanges(){
 		tradeOff = tradeOff + project.GetStartDay();
 		project.SetDeadline(tradeOff);
 		description += " in exchange of less time";
-		inExchange = ((marketing * 100) * -1) + " % Time Negotiation";
+		inExchange = ((marketing * 100) * -1) + " %";
+		inExchangeType = "Time Negotiation";
 	}
 	if(lessMoney == true)
 	{
@@ -136,7 +144,8 @@ function ApplyChanges(){
 		tradeOff = parseInt(tradeOff);
 		project.SetPagamento(tradeOff);
 		description += " in exchange of less credits";
-		inExchange =((marketing * 100) * -1) + " % Income Negotiation";
+		inExchange =((marketing * 100) * -1) + " % ";
+		inExchangeType = "Income Negotiation";
 	}
 	if(moreQuality == true)
 	{
@@ -145,9 +154,10 @@ function ApplyChanges(){
 		trade = parseInt(trade);
 		project.SetBugValue(trade);
 		description += " in exchange of more quality";
-		inExchange = (marketing * 100) + " % Quality Negotiation";
+		inExchange = (marketing * 100) + " %";
+		inExchangeType = "Quality Negotiation";
 	}
-	Action(description, gain, inExchange);
+	Action(description, gain, gainType, inExchange, inExchangeType);
 }
 
 function WindowFunction(windowID : int){

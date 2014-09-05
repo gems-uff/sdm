@@ -643,10 +643,23 @@ function ProjectProvenance()
 	prov.AddAttribute("Total Bugs", (this.GetTotalBugs() + ": " + this.GetTotalBugsString()).ToString());
 	
 	prov.NewEntityVertex(timer.GetGameTime() + ":" + timer.GetTimeDayString(), "Project", "");
-	prov.HasInfluence("Project");
+	//prov.HasInfluence("Project");
 	//prov.GenerateInfluence("Project", "ANALYST", infType, "+" + influence);
 }
 
+function CheckProjectInfluence()
+{
+	if(prov != null)
+		prov.HasInfluence("Project");
+}
+function CheckProjectSpecialInfluence()
+{
+	if(prov != null)
+	{
+		prov.HasInfluence_ID("Negotiation");
+		prov.HasInfluence_ID("Hired_Employee");
+	}
+}
 //--------------------------------------------Awake-----------------------------------------------------------
 function Awake(){
 	//SetProjectSizeString();

@@ -51,7 +51,8 @@ class MarketingMacro extends System.ValueType{
 		floatingLines.showFloatText2("+", credits.ToString(), "", " Credits", delay);
 		
 		
-		Provenance(prov, actionNode, aid.ToString() + " %", "Aid");
+		//Provenance(prov, actionNode);
+		prov.HasInfluence("Marketing");
 		prov.GenerateInfluence("Project", "MARKETING", "Credits", "+" + credits);
 		prov.GenerateInfluence("Analyst", "MARKETING", "Aid", aid.ToString() + " %");
 		
@@ -64,7 +65,7 @@ class MarketingMacro extends System.ValueType{
 		report.marketingReport_money = report.marketingReport_money + money;
 	}
 	
-	function Provenance(prov : ExtractProvenance, actionNode : ActionNode, influence : String, infType : String)
+	function Provenance(prov : ExtractProvenance)
 	{
 	/*
 		prov.AddAttribute("who", actionNode.who);

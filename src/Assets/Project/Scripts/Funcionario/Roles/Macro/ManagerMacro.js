@@ -109,7 +109,7 @@ class ManagerMacro extends System.ValueType{
 		ManagerReport(auxAnaArq, 0, report);
 		
 		actionNode.NewActionNoArtifact(task, d1, d2, func, date, "Manager", auxAnaArq.ToString() + " % Aid Analyst", rate);
-		Provenance(prov, actionNode, auxAnaArq.ToString(), "Aid");
+		Provenance(prov, actionNode, auxAnaArq.ToString(), "Analyst");
 	}
 	
 	function AidProgrammer(actionNode : ActionNode, task : String, descr : String)
@@ -158,25 +158,10 @@ class ManagerMacro extends System.ValueType{
 		report.managerReport_dev = report.managerReport_dev + dev;
 	}
 	
-	function Provenance(prov : ExtractProvenance, actionNode : ActionNode, influence : String, infType : String)
+	function Provenance(prov : ExtractProvenance, actionNode : ActionNode, influence : String, targetType : String)
 	{
-	/*
-		prov.AddAttribute("who", actionNode.who);
-		prov.AddAttribute("task", actionNode.task);
-		prov.AddAttribute("tasktype", actionNode.taskType);
-		prov.AddAttribute("role", actionNode.role);
-		prov.AddAttribute("rate", actionNode.rate.ToString());
-		prov.AddAttribute("morale", actionNode.morale.ToString());
-		prov.AddAttribute("stamina", actionNode.stamina.ToString());
-		prov.AddAttribute("hours", actionNode.hours.ToString());
-		
-		prov.NewActivityVertex(actionNode.date, "Action", "");
 		prov.HasInfluence("Manager");
-		prov.GenerateInfluence(infType, "MANEGER", "Aid", influence + " %");
-		prov.GenerateInfluence("Project", "MANEGER", "Credits", actionNode.cost.ToString());
-		*/
-		prov.HasInfluence("Manager");
-		prov.GenerateInfluence(infType, "MANEGER", "Aid", influence + " %");
+		prov.GenerateInfluence(targetType, "MANEGER", "Aid", (influence + " %"));
 	}
 
 }

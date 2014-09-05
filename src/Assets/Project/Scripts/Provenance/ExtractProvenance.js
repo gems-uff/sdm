@@ -48,6 +48,8 @@ private var currentVertex : Vertex = null;
 // A list containing all attributes for the current vertex
 private var attributeList : List.<Attribute> = new List.<Attribute>();
 
+private var agentVertex : Vertex = null;
+
 //=================================================================================================================
 // *Functions Section*
 //=================================================================================================================
@@ -69,6 +71,10 @@ public function NewActivityVertex(date_ : String, label_ : String, details_ : St
 {
 	PopulateAttributes();
 	currentVertex = provenance.AddVertex(date_, "Activity", label_, attributeList, details_, currentVertex);
+	if((agentVertex != null) && (currentVertex != "Agent"))
+	{
+		provenance.CreateProvenanceEdge(currentVertex, agentVertex);
+	}
 	ClearList();
 }
 
@@ -88,7 +94,8 @@ public function NewAgentVertex(label_ : String, details_ : String)
 public function NewAgentVertex(date_ : String, label_ : String, details_ : String)
 {
 	PopulateAttributes();
-	currentVertex = provenance.AddVertex(date_, "Agent", label_, attributeList, details_, currentVertex);
+	currentVertex = provenance.AddVertex(date_, "Agent", label_, attributeList, details_, null);
+	agentVertex = currentVertex;
 	ClearList();
 }
 
@@ -197,7 +204,7 @@ public function GenerateInfluence(tag : String, ID : String, influenceName : Str
 // Creates one influence of 'tag' that never expires with usages
 public function GenerateInfluence(tag : String, ID : String, influenceName : String, influenceValue : String)
 {
-	influenceContainer.CreateInfluence(tag, ID, currentVertex.ID, influenceName, influenceValue, false, 1);
+	influenceContainer.CreateInfluence(tag, ID, currentVertex.ID, influenceName, influenceValue, false, 10);
 }
 
 //=================================================================================================================
@@ -208,13 +215,15 @@ public function GenerateInfluence(tag : String, ID : String, influenceName : Str
 // By 'tag'
 public function HasInfluence(tag : String)
 {
-	influenceContainer.WasInfluencedByTag(tag, currentVertex.ID);
+	if(currentVertex != null)
+		influenceContainer.WasInfluencedByTag(tag, currentVertex.ID);
 }
 
 // By 'ID'
 public function HasInfluence_ID(ID : String)
 {
-	influenceContainer.WasInfluencedByID(ID, currentVertex.ID);
+	if(currentVertex != null)
+		influenceContainer.WasInfluencedByID(ID, currentVertex.ID);
 }
 
 //=================================================================================================================
@@ -241,4 +250,14 @@ public function GetCurrentVertex()
 public function SetCurrentVertex(vertex : Vertex)
 {
 	currentVertex = vertex;
+}
+
+public function GetAgentVertex()
+{
+	return agentVertex;
+}
+
+public function SetAgentVertex(vertex : Vertex)
+{
+	agentVertex = vertex;
 }

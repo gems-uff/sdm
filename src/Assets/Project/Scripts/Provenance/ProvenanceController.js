@@ -72,7 +72,7 @@ private function NewVertexID() : String
 // Uses PROV edge definitions for label
 // Add the edge to the edgeList
 //=================================================================================================================
-private function CreateProvenanceEdge(source: Vertex, target : Vertex)
+public function CreateProvenanceEdge(source: Vertex, target : Vertex)
 {
 	// Default edge label
 	var newEdge : Edge = new Edge(NewEdgeID(), "Neutral", "WasAssociatedTo", "", source.ID, target.ID);
@@ -134,7 +134,7 @@ private function CreateProvenanceEdge(source: Vertex, target : Vertex)
 // Defines the edge provenance label as "WasInfluencedBy"
 // Add the edge to the edgeList
 //=================================================================================================================
-public function CreateInfluenceEdge(sourceID : String, targetID : String, infName : String, infValue : String)
+public function CreateInfluenceEdge(targetID : String, sourceID : String, infName : String, infValue : String)
 {
 	var newEdge : Edge = new Edge(NewEdgeID(), infName, "WasInfluencedBy", infValue, sourceID, targetID);
 	AddEdge(newEdge);
