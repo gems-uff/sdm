@@ -11,8 +11,8 @@ import System.IO;
  	//public var Monsters : List.<Monster>;
  	public var vertexList : List.<Vertex>; 
  	
- 	@XmlArray("Edges")
- 	@XmlArrayItem("Edge")   			
+ 	@XmlArray("edges")
+ 	@XmlArrayItem("edge")   			
 	public var edgeList : List.<Edge>; 
 	
 	//================================================================================================================

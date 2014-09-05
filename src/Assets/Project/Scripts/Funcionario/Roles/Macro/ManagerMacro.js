@@ -24,10 +24,11 @@ class ManagerMacro extends System.ValueType{
 	
 	var auxAnaArq : float;
 	var auxProg : float;
+	private var prov : ExtractProvenance;
 					
 	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, 
 	constantP : GameConstants, gerenteP : float, auxAnaArqP : float, auxProgP : float, behaviorP : BehaviorPlanner, dateP : GameTime, delay : float,
-	rate : int)
+	rate : int, prov_ : ExtractProvenance)
 	{
 		
 		//var randP : float = Random.Range (0.5, 2.0);
@@ -43,6 +44,7 @@ class ManagerMacro extends System.ValueType{
 		this.gerente = gerenteP;
 		this.delay = delay;
 		this.rate = rate;
+		this.prov = prov_;
 		
 		behavior = behaviorP;
 		date = dateP;
@@ -65,154 +67,10 @@ class ManagerMacro extends System.ValueType{
 			auxProg = parseInt(auxProgP * randMod_2);
 		}
 		
-		
-		//planner = equipe.GetComponentInChildren(ManagerPlanner);
-		//if(behavior.managerAutonomous)
-		//	DecisionTree(actionNode);
-		//else
 		DecideAid(actionNode);
 		actionNode.projectStat = behavior.Log.GetProjectStat();
 		return actionNode;
 	}
-	/*
-	//--------------------------------------------
-	//Decision Tree
-	//--------------------------------------------
-	//Only enter when manager has any automony
-	function DecisionTree(actionNode : ActionNode)
-	{
-		if(behavior.managerDecideFocus)
-			DecideFocusMode(actionNode, "Auto ");
-		else
-		{
-			CheckFocusMode(actionNode, "Check ");
-		}
-	}
-	
-	//--------------------------------------------
-	//Decide Focus Mode
-	//--------------------------------------------
-	//Enter when manager has full autonomy
-	function DecideFocusMode(actionNode : ActionNode, task : String)
-	{
-		if(project.GetRequirements() < 25.0)
-		{
-			//AnalysisMode
-			AnalysisMode(actionNode, task + "Analysis");
-		}
-		else
-		{
-			if(project.GetFractionDone() < 60.0)
-			{
-				//CodificationMode
-				CodificationMode(actionNode, task + "Codification");
-			}
-			else
-			{
-				if(project.GetFractionDone() > 90.0)
-				{
-					//QualityMode
-					QualityMode(actionNode, task + "Quality");
-				}
-				else
-				{
-					//BalancedMode
-					BalancedMode(actionNode, task + "Balanced");
-				}
-			}
-		}
-	}
-	
-	//--------------------------------------------
-	//Check Focus Mode
-	//--------------------------------------------
-	//Enter when manager has autonomy but player want to set the Mode
-	function CheckFocusMode(actionNode : ActionNode, task : String)
-	{
-		if(behavior.GetManagerAnalysis())
-		{
-			//AnalysisMode
-			AnalysisMode(actionNode, task + "Analysis");
-		}
-		else
-		{
-			if(behavior.GetManagerCodification())
-			{
-				//CodificationMode
-				CodificationMode(actionNode, task + "Codification");
-			}
-			else
-			{
-				if(behavior.GetManagerQuality())
-				{
-					//QualityMode
-					QualityMode(actionNode, task + "Quality");
-				}
-				else
-				{
-					//BalancedMode
-					BalancedMode(actionNode, task + "Balanced");
-				}
-			}
-		}
-	}
-	
-	
-	//--------------------------------------------
-	//Iteration focus Mode functions
-	//--------------------------------------------
-	function AnalysisMode(actionNode : ActionNode, task : String)
-	{
-		var descr : String = "Is on Analysis Mode";
-		
-		behavior.ActivateAnalysis();
-		if(behavior.GetManagerChangedMode())
-		{
-			planner.AnalysisMode();
-			behavior.SetManagerChangedMode(false);
-			descr = "Entered Analysis Mode";
-		}
-		AidAnalyst(actionNode, task, descr);
-	}
-	function CodificationMode(actionNode : ActionNode, task : String)
-	{
-		var descr : String = "Is on Codification Mode";
-		
-		behavior.ActivateCodification();
-		if(behavior.GetManagerChangedMode())
-		{
-			planner.CodificationMode();
-			behavior.SetManagerChangedMode(false);
-			descr = "Entered Codification Mode";
-		}
-		AidProgrammer(actionNode, task, descr);
-	}
-	function QualityMode(actionNode : ActionNode, task : String)
-	{
-		var descr : String = "Is on Quality Mode";
-		behavior.ActivateQuality();
-		if(behavior.GetManagerChangedMode())
-		{
-			planner.QualityMode();
-			behavior.SetManagerChangedMode(false);
-			descr = "Entered Quality Mode";
-		}
-		AidArchitect(actionNode, task, descr);
-	}
-	
-	function BalancedMode(actionNode : ActionNode, task : String)
-	{
-		var descr : String = "Is on Balanced Mode";
-		behavior.ActivateBalanced();
-		if(behavior.GetManagerChangedMode())
-		{
-			planner.BalancedMode();
-			behavior.SetManagerChangedMode(false);
-			descr = "Entered Balanced Mode";
-		}
-		AidProgrammer(actionNode, task, descr);
-	}
-	*/
 	
 	//--------------------------------------------
 	//Decide Aid
@@ -251,6 +109,7 @@ class ManagerMacro extends System.ValueType{
 		ManagerReport(auxAnaArq, 0, report);
 		
 		actionNode.NewActionNoArtifact(task, d1, d2, func, date, "Manager", auxAnaArq.ToString() + " % Aid Analyst", rate);
+		Provenance(prov, actionNode, auxAnaArq.ToString(), "Aid");
 	}
 	
 	function AidProgrammer(actionNode : ActionNode, task : String, descr : String)
@@ -270,6 +129,7 @@ class ManagerMacro extends System.ValueType{
 		ManagerReport(0, auxProg, report);
 		
 		actionNode.NewActionNoArtifact(task, d1, d2, func, date, "Manager", auxProg.ToString() + " % Aid Programmer", rate);
+		Provenance(prov, actionNode, auxProg.ToString(), "Programmer");
 	}
 	
 	function AidArchitect(actionNode : ActionNode, task : String, descr : String)
@@ -289,27 +149,34 @@ class ManagerMacro extends System.ValueType{
 		ManagerReport(auxAnaArq, 0, report);
 		
 		actionNode.NewActionNoArtifact(task, d1, d2, func, date, "Manager", auxAnaArq.ToString() + " % Aid Architect", rate);
+		Provenance(prov, actionNode, auxAnaArq.ToString(), "Architect");
 	}
-	//--------------------------------------------
-	//Set the action
-	//--------------------------------------------
-	/*
-	function NewAction(actionNode : ActionNode, task : String, description : String)
-	{
-		actionNode.who = func.GetNome();
-		actionNode.task = task;
-		actionNode.date = date;
-		actionNode.role = "Manager";
-		actionNode.description = description;
-		actionNode.morale = func.GetMorale();
-		actionNode.stamina = func.GetStamina();
-	}
-	*/
 	
 	function ManagerReport(design : int, dev : int, report : WeeklyReport)
 	{
 		report.managerReport_design = report.managerReport_design + design;
 		report.managerReport_dev = report.managerReport_dev + dev;
+	}
+	
+	function Provenance(prov : ExtractProvenance, actionNode : ActionNode, influence : String, infType : String)
+	{
+	/*
+		prov.AddAttribute("who", actionNode.who);
+		prov.AddAttribute("task", actionNode.task);
+		prov.AddAttribute("tasktype", actionNode.taskType);
+		prov.AddAttribute("role", actionNode.role);
+		prov.AddAttribute("rate", actionNode.rate.ToString());
+		prov.AddAttribute("morale", actionNode.morale.ToString());
+		prov.AddAttribute("stamina", actionNode.stamina.ToString());
+		prov.AddAttribute("hours", actionNode.hours.ToString());
+		
+		prov.NewActivityVertex(actionNode.date, "Action", "");
+		prov.HasInfluence("Manager");
+		prov.GenerateInfluence(infType, "MANEGER", "Aid", influence + " %");
+		prov.GenerateInfluence("Project", "MANEGER", "Credits", actionNode.cost.ToString());
+		*/
+		prov.HasInfluence("Manager");
+		prov.GenerateInfluence(infType, "MANEGER", "Aid", influence + " %");
 	}
 
 }

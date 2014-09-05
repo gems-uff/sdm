@@ -278,7 +278,7 @@ function ArquitetoWork(){
 		
 		arquiteto = func.GetArquiteto() * (rate * 0.01) * gameMod * constant.ARCHITECT * (1 + modificador_positivo - penal);// * equipe.GetBonusArquiteto();	
 
-		action = ArchitectMacro.Work(func, project, report, floatingLines, equipe, constant, arquiteto, behavior, timer, delay, rate);
+		action = ArchitectMacro.Work(func, project, report, floatingLines, equipe, constant, arquiteto, behavior, timer, delay, rate, prov);
 		behavior.AddAction(action, isSec, false);
 	}
 }
@@ -334,7 +334,7 @@ function GerenteWork(){
 		auxProg = auxProg * (1 + modificador_positivo - penal_prog);
 
 		action = ManagerMacro.Work(func, project, report, floatingLines, equipe, constant, gerente, auxAnaArq, auxProg, 
-		behavior, timer, delay, rate);
+		behavior, timer, delay, rate, prov);
 		behavior.AddAction(action, isSec, false);
 	}
 }
@@ -427,7 +427,7 @@ function ProgramadorWork(){
 		programador = func.GetProgramador() * (rate * 0.01) * (1 + modificador_positivo - penal_prog) * gameMod * constant.PROGRAMMER;
 
 		action = ProgrammerMacro.Work(func, project, report, floatingLines, equipe, constant, programador, RequisitoLinguagem(), 
-		isEspecialized, behavior, timer, delay, rate);
+		isEspecialized, behavior, timer, delay, rate, prov);
 		behavior.AddAction(action, isSec, false);
 	}
 }
@@ -478,7 +478,7 @@ function TesterWork(){
 		//Debug.Log("Mod = " + mod);
 		//Debug.Log("Tester = " + tester);
 		
-		action = TesterMacro.Work(func, project, report, floatingLines, equipe, constant, tester, timer, behavior, delay, rate);//wasInfluenced
+		action = TesterMacro.Work(func, project, report, floatingLines, equipe, constant, tester, timer, behavior, delay, rate, prov);//wasInfluenced
 		//action.projectStat = behavior.Log.GetProjectStat();
 		behavior.AddAction(action, isSec, false);
 	}

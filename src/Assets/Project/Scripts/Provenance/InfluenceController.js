@@ -57,11 +57,9 @@ public function RemoveInfluenceByTag(tag : String)
 public function RemoveInfluenceByID(ID : String)
 {
 	var i : int;
-	var currentInf : InfluenceEdge = new InfluenceEdge();
 	for (i = 0; i < influenceList.Count; i++)
 	{
-		currentInf = influenceList[i];
-		if(currentInf.ID == ID)
+		if(influenceList[i].ID == ID)
 		{
 			influenceList.RemoveAt(i);
 		}
@@ -75,6 +73,18 @@ public function RemoveInfluenceByID(ID : String)
 public function CleanInfluence()
 {
 	influenceList = new List.<InfluenceEdge>();
+}
+
+public function CleanInfluenceNotConsumable()
+{
+	var i : int;
+	for (i = 0; i < influenceList.Count; i++)
+	{
+		if(influenceList[i].consumable == false)
+		{
+			influenceList.RemoveAt(i);
+		}
+	}
 }
 //=================================================================================================================
 // Clear the list of attributes for the next vertex

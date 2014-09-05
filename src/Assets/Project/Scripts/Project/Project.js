@@ -1,5 +1,6 @@
 public var testCases : TestCases;
 public var constant : GameConstants;
+public var player : PlayerStats;
 public var timer : GameTime;
 public var nome : String;
 public var description : String;
@@ -37,6 +38,7 @@ private var bugUnitaryRepaired : int = 0;
 private var bugIntegrationRepaired : int = 0;
 private var bugSystemRepaired : int = 0;
 private var bugAcceptionRepaired : int = 0;
+private var prov : ExtractProvenance;
 
 
 
@@ -618,10 +620,38 @@ function GetStats()
 	
 	return stats;
 }
+
+function ProjectProvenance()
+{
+	prov.AddAttribute("Name", this.name.ToString());
+	prov.AddAttribute("Credits", player.GetSaldo().ToString());
+	prov.AddAttribute("Deadline", this.deadline.ToString());
+	prov.AddAttribute("Programming Language", this.linguagemProgramacao.ToString());
+	prov.AddAttribute("Payment", this.pagamento.ToString());
+	prov.AddAttribute("Code Completed", this.GetFractionDone().ToString());
+	prov.AddAttribute("Code Quality", (parseInt(this.codeQuality * 100) * 0.01).ToString());
+	prov.AddAttribute("Especification", this.GetRequirements().ToString());
+	prov.AddAttribute("Elicitation", this.GetSincronismo().ToString());
+	prov.AddAttribute("Unitary Bugs Found", this.bugIntegrationFound.ToString());
+	prov.AddAttribute("Integration Bugs Found", this.bugIntegrationFound.ToString());
+	prov.AddAttribute("System Bugs Found", this.bugSystemFound.ToString());
+	prov.AddAttribute("Acception Bugs Found", this.bugAcceptionFound.ToString());
+	prov.AddAttribute("Unitary Bugs Repaired", this.bugUnitaryRepaired.ToString());
+	prov.AddAttribute("Integration Bugs Repaired", this.bugIntegrationRepaired.ToString());
+	prov.AddAttribute("System Bugs Repaired", this.bugSystemRepaired.ToString());
+	prov.AddAttribute("Acception Bugs Repaired", this.bugAcceptionRepaired.ToString());
+	prov.AddAttribute("Total Bugs", (this.GetTotalBugs() + ": " + this.GetTotalBugsString()).ToString());
+	
+	prov.NewEntityVertex(timer.GetGameTime() + ":" + timer.GetTimeDayString(), "Project", "");
+	prov.HasInfluence("Project");
+	//prov.GenerateInfluence("Project", "ANALYST", infType, "+" + influence);
+}
+
 //--------------------------------------------Awake-----------------------------------------------------------
 function Awake(){
 	//SetProjectSizeString();
 	SetProjectQuality();
+	prov = GetComponentInChildren(ExtractProvenance);
 }
 function Update(){
 }

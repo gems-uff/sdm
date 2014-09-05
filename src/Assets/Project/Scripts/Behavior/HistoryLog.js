@@ -96,22 +96,26 @@ function NewProjectNode()
 	NewEmployeeNode(employee07, projectNode.slot07);
 	NewEmployeeNode(employee08, projectNode.slot08);
 	
-	projectList.Add(projectNode);
-		
+	projectList.Add(projectNode);	
+	
+	project.ProjectProvenance();	
 }
-
+	
 function NewProjectStatNode()
 {
 	var stats : ProjectStats = new ProjectStats();
 	stats = project.GetStats();
 	stats.credits = player.GetSaldo();
 	projectList.last.project.Add(stats);
+	
+	project.ProjectProvenance();
 }
 function UpdateProjectStatNode()
 {
 	yield WaitForSeconds(0.5);
 	projectList.last.project.last.UpdateNode(project.GetStats());
 	projectList.last.project.last.credits = player.GetSaldo();
+	
 }
 function UpdateProjectStatNodeNoDelay()
 {
@@ -137,6 +141,26 @@ function NewEmployeeNode(emp : Funcionario, slot : EmployeeList)
 	employeeNode.espActionList = new ActionList();
 	
 	slot.Add(employeeNode);
+	
+	var prov : ExtractProvenance;
+	prov = emp.GetComponentInChildren(ExtractProvenance);
+	
+	prov.SetCurrentVertex(null);
+	prov.AddAttribute("Name", employeeNode.employee.nome.ToString());
+	prov.AddAttribute("Salary", employeeNode.employee.salary.ToString());
+	prov.AddAttribute("Job", employeeNode.employee.job.ToString());
+	prov.AddAttribute("Level", employeeNode.employee.level.ToString());
+	prov.AddAttribute("Adaptability", employeeNode.employee.atributos.adaptabilidade.ToString());
+	prov.AddAttribute("Auto Didact", employeeNode.employee.atributos.autoDidata.ToString());
+	prov.AddAttribute("Meticulous", employeeNode.employee.atributos.detalhista.ToString());
+	prov.AddAttribute("Negotiation", employeeNode.employee.atributos.negociacao.ToString());
+	prov.AddAttribute("Objectivity", employeeNode.employee.atributos.objetividade.ToString());
+	prov.AddAttribute("Organization", employeeNode.employee.atributos.organizacao.ToString());
+	prov.AddAttribute("Patience", employeeNode.employee.atributos.paciencia.ToString());
+	prov.AddAttribute("Logical Reasoning", employeeNode.employee.atributos.raciocinioLogico.ToString());
+	prov.AddAttribute("Human Relations", employeeNode.employee.atributos.relacionamentoHumano.ToString());
+	
+	prov.NewAgentVertex(time.GetGameTime() + ":" + time.GetTimeDayString(), "Agent", "");
 }
 
 function NewFiredAction(slot : EmployeeList, func : Funcionario, resign : boolean)

@@ -18,12 +18,13 @@ class ArchitectMacro extends System.ValueType{
 	private var qnt : int;
 	private var delay : float;
 	private var rate : int;
+	private var prov : ExtractProvenance;
 	
 	var behavior : BehaviorPlanner;
 	var date : GameTime;
 				
 	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, 
-	constantP : GameConstants, arquitetoP : float, behaviorP : BehaviorPlanner, dateP : GameTime, delay : float, rate : int)
+	constantP : GameConstants, arquitetoP : float, behaviorP : BehaviorPlanner, dateP : GameTime, delay : float, rate : int, prov_ : ExtractProvenance)
 	{
 		var actionNode : ActionNode = new ActionNode();
 		
@@ -38,6 +39,7 @@ class ArchitectMacro extends System.ValueType{
 		this.date = dateP;
 		this.delay = delay;
 		this.rate = rate;
+		this.prov = prov_;
 		
 		if(equipe.influences.GetBonusArch()!= 1.0)
 		{
@@ -239,6 +241,8 @@ class ArchitectMacro extends System.ValueType{
 		floatingLines.showFloatText1("", "Prototype", "blue","", delay);
 		project.AddPrototype();
 		ArchitectReport(0, 0, 0, report);
+		
+		ProvenanceWithArtifact(prov, actionNode, "1", " Prototype", "Prototype");
 	}
 	function FailPrototype(actionNode : ActionNode)
 	{
@@ -246,6 +250,8 @@ class ArchitectMacro extends System.ValueType{
 		//equipe.influences.SetBonusAnalystArchitect(1.0, actionNode);
 		floatingLines.showFloatText1("", "No Prototype", "blue","", delay);
 		ArchitectReport(0, 0, 0, report);
+		
+		ProvenanceFail(prov, actionNode);
 	}
 	//Make test cases for system bugs
 	function MakeSystemCases(actionNode : ActionNode)
@@ -259,6 +265,8 @@ class ArchitectMacro extends System.ValueType{
 		floatingLines.showFloatText1("", "System Cases", "blue","", delay);
 		floatingLines.showFloatText2("+", qnt.ToString(), "blue"," System Case", delay);
 		ArchitectReport(arquiteto, 0, 0, report);
+		
+		ProvenanceWithArtifact(prov, actionNode, qnt.ToString(), "STC", "System Test Cases");
 	}
 	
 	//Make test cases for integration bugs
@@ -273,6 +281,8 @@ class ArchitectMacro extends System.ValueType{
 		floatingLines.showFloatText1("", "Integr Cases", "blue","", delay);
 		floatingLines.showFloatText2("+", qnt.ToString(), "blue"," Integr Case", delay);
 		ArchitectReport(0, arquiteto, 0, report);
+		
+		ProvenanceWithArtifact(prov, actionNode, qnt.ToString(), "ITC", "Integration Test Cases");
 	}
 	
 	//Modularizate the code to aid the programmers
@@ -290,6 +300,8 @@ class ArchitectMacro extends System.ValueType{
 		floatingLines.showFloatText1("", "Modularization", "blue","", delay);
 		floatingLines.showFloatText2(sign, arquiteto.ToString(), color, " % Archit.", delay);
 		ArchitectReport(0, 0, arquiteto, report);
+		
+		ProvenanceAid(prov, actionNode, arquiteto.ToString() + " %", "Aid");
 	}
 	
 	//--------------------------------------------
@@ -300,6 +312,72 @@ class ArchitectMacro extends System.ValueType{
 		report.architectReport_bugSystem = report.architectReport_bugSystem + system;
 		report.architectReport_bugIntegration = report.architectReport_bugIntegration + integration;
 		report.architectReport_archt = report.architectReport_archt + archt;
+	}
+	
+	function Provenance(prov : ExtractProvenance, actionNode : ActionNode, influence : String, infType : String)
+	{
+		/*
+		//prov.AddAttribute("date", actionNode.date);
+		prov.AddAttribute("who", actionNode.who);
+		prov.AddAttribute("task", actionNode.task);
+		prov.AddAttribute("tasktype", actionNode.taskType);
+		prov.AddAttribute("role", actionNode.role);
+		prov.AddAttribute("rate", actionNode.rate.ToString());
+		prov.AddAttribute("morale", actionNode.morale.ToString());
+		prov.AddAttribute("stamina", actionNode.stamina.ToString());
+		prov.AddAttribute("hours", actionNode.hours.ToString());
+		
+		prov.NewActivityVertex(actionNode.date, "Action", "");
+		*/
+		prov.HasInfluence("Architect");
+		prov.GenerateInfluence("Project", "ARCHITECT", infType, influence);
+	}
+	
+	function ProvenanceAid(prov : ExtractProvenance, actionNode : ActionNode, influence : String, infType : String)
+	{
+		/*
+		prov.AddAttribute("who", actionNode.who);
+		prov.AddAttribute("task", actionNode.task);
+		prov.AddAttribute("tasktype", actionNode.taskType);
+		prov.AddAttribute("role", actionNode.role);
+		prov.AddAttribute("rate", actionNode.rate.ToString());
+		prov.AddAttribute("morale", actionNode.morale.ToString());
+		prov.AddAttribute("stamina", actionNode.stamina.ToString());
+		prov.AddAttribute("hours", actionNode.hours.ToString());
+		
+		prov.NewActivityVertex(actionNode.date, "Action", "");
+		*/
+		prov.HasInfluence("Architect");
+		prov.GenerateInfluence("Programmer", "ARCHITECT", "Aid", influence + "%");
+	}
+	function ProvenanceFail(prov : ExtractProvenance, actionNode : ActionNode)
+	{
+		/*
+		prov.AddAttribute("who", actionNode.who);
+		prov.AddAttribute("task", actionNode.task);
+		prov.AddAttribute("tasktype", actionNode.taskType);
+		prov.AddAttribute("role", actionNode.role);
+		prov.AddAttribute("rate", actionNode.rate.ToString());
+		prov.AddAttribute("morale", actionNode.morale.ToString());
+		prov.AddAttribute("stamina", actionNode.stamina.ToString());
+		prov.AddAttribute("hours", actionNode.hours.ToString());
+		
+		prov.NewActivityVertex(actionNode.date, "Action", "");
+		*/
+		prov.HasInfluence("Architect");
+		//prov.GenerateInfluence("Project", "ARCHITECT", infType, "+" + influence);
+	}
+	
+	function ProvenanceWithArtifact(prov : ExtractProvenance, actionNode : ActionNode, influence : String, infType : String, artifactName : String)
+	{
+		var tempVertex : Vertex;
+		Provenance(prov, actionNode, influence, "ATC");
+		// Generate artifact
+		tempVertex = prov.GetCurrentVertex();
+		prov.AddAttribute("name", artifactName);
+		prov.NewEntityVertex(actionNode.date, "Artifact", "");
+		prov.GenerateInfluence("Tester", "ARTIFACT", infType, influence, parseInt(influence));
+		prov.SetCurrentVertex(tempVertex);
 	}
 
 }

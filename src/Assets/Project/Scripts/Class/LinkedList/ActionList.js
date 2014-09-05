@@ -159,6 +159,8 @@ class ActionNode
 		this.artifact = "";
 		this.taskType = GetTaskType(task);
 		
+		GenerateVertexNoUpdate(func);
+		
 		
 	}
 	//Func, cost for HIRE
@@ -178,6 +180,8 @@ class ActionNode
 		this.work_2 = "";
 		this.artifact = "";
 		this.taskType = GetTaskType(task);
+		
+		GenerateVertexNoUpdate(func);
 	}
 	//Fire
 	function NewActionFire(task : String, description : String, d2 : String, func : Funcionario, date : GameTime)
@@ -196,6 +200,8 @@ class ActionNode
 		this.work_2 = "";
 		this.artifact = "";
 		this.taskType = GetTaskType(task);
+		
+		GenerateVertexNoUpdate(func);
 	}
 	//Promotion
 	function NewActionPromotion(func : Funcionario, date : GameTime, description : String)
@@ -215,6 +221,8 @@ class ActionNode
 		this.work_2 = "";
 		this.artifact = "";
 		this.taskType = GetTaskType(task);
+		
+		GenerateVertexNoUpdate(func);
 	}
 	//func with Artifact
 	function NewActionArtifact(task : String, description : String, d2 : String, func : Funcionario, date : GameTime, role : String, work : String, 
@@ -237,6 +245,8 @@ class ActionNode
 		this.work_2 = "";
 		this.artifact = artifact;
 		this.taskType = GetTaskType(task);
+		
+		GenerateVertex(func);
 	}
 	//func no artifact
 	function NewActionNoArtifact(task : String, description : String, d2 : String, func : Funcionario, date : GameTime, role : String, work : String, rate : int)
@@ -256,9 +266,11 @@ class ActionNode
 		this.work_2 = "";
 		this.artifact = "";
 		this.taskType = GetTaskType(task);
+		
+		GenerateVertex(func);
 	}
 	//func, set work_2
-	function NewActionW2(task : String, description : String, d2 : String, func : Funcionario, date : GameTime, role : String, work : String, 
+	function NewActionOneInfluence(task : String, description : String, d2 : String, func : Funcionario, date : GameTime, role : String, work : String, 
 	work_2 : String, artifact : String, rate : int)
 	{
 		this.who = func.GetNome();
@@ -276,10 +288,12 @@ class ActionNode
 		this.work_2 = work_2;
 		this.artifact = artifact;
 		this.taskType = GetTaskType(task);
+		
+		GenerateVertex(func);
 	}
 	
 	//func, set work_2 and 3
-	function NewActionW3(task : String, description : String, d2 : String, func : Funcionario, date : GameTime, role : String, work : String, 
+	function NewActionTwoInfluences(task : String, description : String, d2 : String, func : Funcionario, date : GameTime, role : String, work : String, 
 	work_2 : String, work_3 : String, rate : int)
 	{
 		this.who = func.GetNome();
@@ -298,9 +312,11 @@ class ActionNode
 		this.work_3 = work_3;
 		this.artifact = "";
 		this.taskType = GetTaskType(task);
+		
+		GenerateVertex(func);
 	}
 	//func, set work_2 and 3 and 4 and 5
-	function NewActionW4(task : String, description : String, d2 : String, func : Funcionario, date : GameTime, role : String, work : String, 
+	function NewActionFourInfluences(task : String, description : String, d2 : String, func : Funcionario, date : GameTime, role : String, work : String, 
 	work_2 : String, work_3 : String, work_4 : String, work_5 : String, artifact : String, rate : int)
 	{
 		this.who = func.GetNome();
@@ -320,6 +336,35 @@ class ActionNode
 		this.work_5 = work_5;
 		this.artifact = artifact;
 		this.taskType = GetTaskType(task);
+		
+		GenerateVertex(func);
+	}
+	
+	function GenerateVertexNoUpdate(func : Funcionario)
+	{
+		var tempVertex : Vertex;
+		var prov : ExtractProvenance;
+		prov = func.GetComponentInChildren(ExtractProvenance);
+		
+		tempVertex = prov.GetCurrentVertex();
+		GenerateVertex(func);
+		prov.SetCurrentVertex(tempVertex);
+	}
+	
+	function GenerateVertex(func : Funcionario)
+	{
+		var prov : ExtractProvenance;
+		prov = func.GetComponentInChildren(ExtractProvenance);
+		//prov.AddAttribute("Who", this.who);
+		prov.AddAttribute("Task", this.task);
+		//prov.AddAttribute("TaskType", this.taskType);
+		prov.AddAttribute("Role", this.role);
+		prov.AddAttribute("Rate", this.rate.ToString());
+		prov.AddAttribute("Morale", this.morale.ToString());
+		prov.AddAttribute("Stamina", this.stamina.ToString());
+		prov.AddAttribute("Hours", this.hours.ToString());
+		prov.NewActivityVertex(this.date, "Action", "");
+		prov.GenerateInfluence("Project", this.task, "Credits", this.cost.ToString());
 	}
 }
 

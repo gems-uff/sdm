@@ -20,12 +20,16 @@ class ProgrammerMacro extends System.ValueType{
 	var date : GameTime;
 	var delay : float;
 	var rate : int;
+	var work4_Influence : int;
+	var	work4_type : String;
+	private var prov : ExtractProvenance;
 						
 	function Work(funcP : Funcionario, projectP : Project, reportP : WeeklyReport, floatingLinesP : FloatingLines, equipeP : Equipe, 
 	constantP : GameConstants, programadorP : float, RequisitoLinguagemP : boolean, isEspecializedP : int, behaviorP : BehaviorPlanner, 
-	dateP : GameTime, delay : float, rate : int)
+	dateP : GameTime, delay : float, rate : int, prov_ : ExtractProvenance)
 	{
 		var actionNode : ActionNode = new ActionNode();
+		this.prov = prov_;
 		
 		func = funcP;
 		project = projectP;
@@ -41,6 +45,8 @@ class ProgrammerMacro extends System.ValueType{
 		date = dateP;
 		this.delay = delay;
 		this.rate = rate;
+		work4_Influence = 0;
+		work4_type = "";
 		
 		if(equipe.influences.GetBonusProg()!= 1.0)
 		{
@@ -316,6 +322,8 @@ class ProgrammerMacro extends System.ValueType{
 		project.testCases.AddUnitary(qnt);
 		actionNode.artifact = "Unitary Test Cases";
 		actionNode.work_4 = qnt + " UTC";
+		work4_Influence = qnt;
+		work4_type = "UTC";
 		equipe.influences.SetBonusTesterProg(actionNode, qnt);
 		
 		//Decide which task will be done
@@ -346,6 +354,8 @@ class ProgrammerMacro extends System.ValueType{
 		project.testCases.AddUnitary(qnt);
 		actionNode.artifact = "Unitary Test Cases";
 		actionNode.work_4 = qnt + " UTC";
+		work4_Influence = qnt;
+		work4_type = "UTC";
 		equipe.influences.SetBonusTesterProg(actionNode, qnt);
 		
 		var refact : float = 0.0;
@@ -355,7 +365,7 @@ class ProgrammerMacro extends System.ValueType{
 		if(refact != 0)
 			progress = true;
 			
-		NewAction(actionNode, isEsp, isPressured, prog, refact.ToString() + " Quality", "", "", "Refactoring", progress, "Refactoring");
+		NewAction(actionNode, isEsp, isPressured, prog, refact.ToString(), "Quality", "", "", "", "", "Refactoring", progress, "Refactoring");
 		floatingLines.showFloatText1("", "Refactoring", "blue", "", delay);
 		floatingLines.showFloatText2("+", refact.ToString(), "blue", "% Improved", delay);
 	}
@@ -421,8 +431,8 @@ class ProgrammerMacro extends System.ValueType{
 			}
 			
 			ProgReport(codeLines, 0, report);
-			NewAction(actionNode, isEsp, isPressured, prog, codeLines.ToString() + " Progress", refact.ToString() + " Quality", 
-			bugCount.ToString() + " New_Bug", task, progress, "Progress");
+			NewAction(actionNode, isEsp, isPressured, prog, codeLines.ToString(), "Progress", refact.ToString(), "Quality", 
+			bugCount.ToString(), "New_Bug", task, progress, "Progress");
 			
 			floatingLines.showFloatText1("", "Evolution", "blue", "", delay);
 			floatingLines.showFloatText2("+", codeLines.ToString(), "blue", " Progress", delay);		
@@ -431,7 +441,7 @@ class ProgrammerMacro extends System.ValueType{
 		}
 		else
 		{
-			NewAction(actionNode, isEsp, isPressured, prog, "Idle", "Idle", "", task, progress, "Progress");
+			NewAction(actionNode, isEsp, isPressured, prog, "Idle", "", "Idle", "", "", "", task, progress, "Progress");
 		}
 	}
 	
@@ -501,9 +511,9 @@ class ProgrammerMacro extends System.ValueType{
 		if(repaired > 0)
 			progress = true;
 		if(newBugs > 0)	
-			NewAction(actionNode, isEsp, isPressured, prog, repaired.ToString() + " Repaired", "", newBugs.ToString() + " New_Bug",task, progress, "Repair");
+			NewAction(actionNode, isEsp, isPressured, prog, repaired.ToString(),"Repair", "", "", newBugs.ToString(), "New_Bug", task, progress, "Repair");
 		else
-			NewAction(actionNode, isEsp, isPressured, prog, repaired.ToString() + " Repaired", "", "",task, progress, "Repair");
+			NewAction(actionNode, isEsp, isPressured, prog, repaired.ToString(),"Repair", "", "", "", "", task, progress, "Repair");
 		
 		floatingLines.showFloatText1("", "Repair", "blue", "", delay);
 		floatingLines.showFloatText2("+", repaired.ToString(), "blue", " Bug Repaired", delay);
@@ -519,7 +529,10 @@ class ProgrammerMacro extends System.ValueType{
 	//--------------------------------------------
 	//Set the action
 	//--------------------------------------------
-	function NewAction(actionNode : ActionNode, isEsp : boolean, isPressured : boolean, prog : String, work : String, work_2 : String, work_5 : String, 
+	function NewAction(actionNode : ActionNode, isEsp : boolean, isPressured : boolean, prog : String, 
+	work : String, workT : String,
+	work_3 : String, work_3T : String,
+	work_5 : String, work_5T : String,
 	task : String, progress : boolean, type : String)
 	{
 		var esp : String = "";
@@ -541,8 +554,59 @@ class ProgrammerMacro extends System.ValueType{
 		var d2 : String = "Employee is " + esp + " especialized is a " + prog + " programmer and <br> is " + pressure +" under pressure";
 		//actionNode.NewAction(task, d1, d2, func, date, "Programmer", work, work, work_2, "");
 		if(progress)
-			actionNode.NewActionW4(task, d1, d2, func, date, "Programmer", work, work, work_2, actionNode.work_4, work_5, actionNode.artifact, rate);
+		{
+			actionNode.NewActionFourInfluences(task, d1, d2, func, date, "Programmer", 
+			work + " " + workT, work+ " " + workT, work_3+ " " + work_3T, actionNode.work_4, work_5 + " " + work_5T, actionNode.artifact, rate);
+			
+			//Provenance(prov, actionNode, work.ToString(), workT);
+			if(work_3.ToString() != "")
+				prov.GenerateInfluence("Project", "PROGRAMMER", work_3.ToString(), work_3T);
+			if(work4_Influence != 0) // Generate Artifact
+			{
+				prov.GenerateInfluence("Project", "PROGRAMMER", work4_Influence.ToString(), work4_type);
+				ProvenanceWithArtifact(prov, actionNode, work4_Influence.ToString(), work4_type, "UTC");
+			}
+			if(work_5.ToString() != "")
+				prov.GenerateInfluence("Project", "PROGRAMMER", work_5.ToString(), work_5T);
+		}
 		else
-			actionNode.NewActionW2(task, d1, d2, func, date, "Programmer", work, "0 " + type + " Change", actionNode.artifact, rate);
+		{
+			actionNode.NewActionOneInfluence(task, d1, d2, func, date, "Programmer", work, "0 " + type + " Change", actionNode.artifact, rate);
+			//Provenance(prov, actionNode, work.ToString(), workT);
+			//prov.GenerateInfluence("Project", "PROGRAMMER", type + " Change", "+" + 0);
+		}
+		
+	}
+	
+	function Provenance(prov : ExtractProvenance, actionNode : ActionNode, influence : String, infType : String)
+	{
+	/*
+		prov.AddAttribute("who", actionNode.who);
+		prov.AddAttribute("task", actionNode.task);
+		prov.AddAttribute("tasktype", actionNode.taskType);
+		prov.AddAttribute("role", actionNode.role);
+		prov.AddAttribute("rate", actionNode.rate.ToString());
+		prov.AddAttribute("morale", actionNode.morale.ToString());
+		prov.AddAttribute("stamina", actionNode.stamina.ToString());
+		prov.AddAttribute("hours", actionNode.hours.ToString());
+		
+		prov.NewActivityVertex(actionNode.date, "Action", "");
+		prov.HasInfluence("Programmer");
+		prov.GenerateInfluence("Project", "PROGRAMMER", infType, influence);
+		prov.GenerateInfluence("Project", "PROGRAMMER", "Credits", actionNode.cost.ToString());
+		*/
+		prov.HasInfluence("Programmer");
+		prov.GenerateInfluence("Project", "PROGRAMMER", infType, influence);
+	}
+	
+	function ProvenanceWithArtifact(prov : ExtractProvenance, actionNode : ActionNode, influence : String, infType : String, artifactName : String)
+	{
+		var tempVertex : Vertex;
+		// Generate artifact
+		tempVertex = prov.GetCurrentVertex();
+		prov.AddAttribute("name", artifactName);
+		prov.NewEntityVertex(actionNode.date, "Artifact", "");
+		prov.GenerateInfluence("Tester", "ARTIFACT", infType, influence, parseInt(influence));
+		prov.SetCurrentVertex(tempVertex);
 	}
 }

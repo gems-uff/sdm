@@ -184,7 +184,7 @@ function GetTimeDayString() :String
 function PassTime () {
     gameTime += incrementBy;
     equipe.ResetBonus();
-    provInfluence.CleanInfluence();
+    provInfluence.CleanInfluenceNotConsumable();
     
     //BroadcastMessage("UpdateProjectStatNodeNoDelay");
     

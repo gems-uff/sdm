@@ -189,9 +189,9 @@ private function ClearList()
 // Generate an influence for this vertex
 //=================================================================================================================
 // Creates one influence of 'tag' that can be used for X times and then expires
-public function GenerateInfluence(tag : String, ID : String, influenceName : String, influenceValue : String, consumable : boolean, quantity : int)
+public function GenerateInfluence(tag : String, ID : String, influenceName : String, influenceValue : String, quantity : int)
 {
-	influenceContainer.CreateInfluence(tag, ID, currentVertex.ID, influenceName, influenceValue, consumable, quantity);
+	influenceContainer.CreateInfluence(tag, ID, currentVertex.ID, influenceName, influenceValue, true, quantity);
 }
 
 // Creates one influence of 'tag' that never expires with usages
@@ -231,4 +231,14 @@ public function RemoveInfluenceTag(tag : String)
 public function RemoveInfluenceID(ID : String)
 {
 	influenceContainer.RemoveInfluenceByID(ID);
+}
+
+public function GetCurrentVertex()
+{
+	return currentVertex;
+}
+
+public function SetCurrentVertex(vertex : Vertex)
+{
+	currentVertex = vertex;
 }

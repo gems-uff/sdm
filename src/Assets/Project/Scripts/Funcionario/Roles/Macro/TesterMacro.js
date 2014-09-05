@@ -12,13 +12,15 @@ class TesterMacro extends System.ValueType{
 	var chanceAcception : float;
 	var chanceIntegration : float;
 	var chanceSystem : float;
+	private var prov : ExtractProvenance;
 	
 	var behavior : BehaviorPlanner;
 			
 	function Work(func : Funcionario, project : Project, report : WeeklyReport, floatingLines : FloatingLines, equipe : Equipe, 
-	constant : GameConstants, tester : float, date : GameTime, behaviorP : BehaviorPlanner, delay : float, rate : int)
+	constant : GameConstants, tester : float, date : GameTime, behaviorP : BehaviorPlanner, delay : float, rate : int, prov_ : ExtractProvenance)
 	{
-		behavior = behaviorP;
+		this.behavior = behaviorP;
+		this.prov = prov_;
 		
 		var bugUnitary : int = 0;
 		var bugIntegration : int = 0;
@@ -125,11 +127,34 @@ class TesterMacro extends System.ValueType{
 		TesterReport(totalBugsFound, report);
 		floatingLines.showFloatText1("+", totalBugsFound.ToString(), "blue", " Bugs found", delay);
 		
+		Provenance(prov, actionNode, totalBugsFound.ToString(), "Bugs found");
+		
 		return actionNode;
 	}
 	
 	function TesterReport(bug : int, report : WeeklyReport)
 	{
 		report.testerReport = report.testerReport + bug;
+	}
+	
+	function Provenance(prov : ExtractProvenance, actionNode : ActionNode, influence : String, infType : String)
+	{
+		/*
+		prov.AddAttribute("who", actionNode.who);
+		prov.AddAttribute("task", actionNode.task);
+		prov.AddAttribute("tasktype", actionNode.taskType);
+		prov.AddAttribute("role", actionNode.role);
+		prov.AddAttribute("rate", actionNode.rate.ToString());
+		prov.AddAttribute("morale", actionNode.morale.ToString());
+		prov.AddAttribute("stamina", actionNode.stamina.ToString());
+		prov.AddAttribute("hours", actionNode.hours.ToString());
+		
+		prov.NewActivityVertex(actionNode.date, "Action", "");
+		prov.HasInfluence("Tester");
+		prov.GenerateInfluence("Project", "TESTER", infType, influence);
+		prov.GenerateInfluence("Project", "TESTER", "Credits", actionNode.cost.ToString());
+		*/
+		prov.HasInfluence("Tester");
+		prov.GenerateInfluence("Project", "TESTER", infType, influence);
 	}
 }

@@ -38,7 +38,7 @@ class MarketingMacro extends System.ValueType{
 			color = "red";
 		}
 		
-		actionNode.NewActionW2("Marketing", d1, d2, func, date, "Marketing", aid.ToString() + " % Aid Analyst", credits.ToString() + " Credits", "", rate);
+		actionNode.NewActionOneInfluence("Marketing", d1, d2, func, date, "Marketing", aid.ToString() + " % Aid Analyst", credits.ToString() + " Credits", "", rate);
 		
 		equipe.SetBonusAnalista(aid);
 		equipe.influences.SetBonusAnalystMarketing(aid, actionNode);
@@ -51,7 +51,9 @@ class MarketingMacro extends System.ValueType{
 		floatingLines.showFloatText2("+", credits.ToString(), "", " Credits", delay);
 		
 		
-		Provenance(prov, actionNode, aid);
+		Provenance(prov, actionNode, aid.ToString() + " %", "Aid");
+		prov.GenerateInfluence("Project", "MARKETING", "Credits", "+" + credits);
+		prov.GenerateInfluence("Analyst", "MARKETING", "Aid", aid.ToString() + " %");
 		
 		return actionNode;
 	}
@@ -62,9 +64,9 @@ class MarketingMacro extends System.ValueType{
 		report.marketingReport_money = report.marketingReport_money + money;
 	}
 	
-	function Provenance(prov : ExtractProvenance, actionNode : ActionNode, influence)
+	function Provenance(prov : ExtractProvenance, actionNode : ActionNode, influence : String, infType : String)
 	{
-		//prov.AddAttribute("date", actionNode.date);
+	/*
 		prov.AddAttribute("who", actionNode.who);
 		prov.AddAttribute("task", actionNode.task);
 		prov.AddAttribute("tasktype", actionNode.taskType);
@@ -76,6 +78,10 @@ class MarketingMacro extends System.ValueType{
 		
 		prov.NewActivityVertex(actionNode.date, "Action", "");
 		prov.HasInfluence("Marketing");
-		prov.GenerateInfluence("Analyst", "M01", "Aid", "+" + influence + "%");
+		prov.GenerateInfluence("Analyst", "MARKETING", "Aid", influence + " %");
+		prov.GenerateInfluence("Project", "MARKETING", "Credits", actionNode.cost.ToString());
+		*/
+		prov.HasInfluence("Marketing");
 	}
+	
 }
