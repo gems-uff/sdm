@@ -1,0 +1,9 @@
+PP	state0	Project	0:Mon	32	java	15000	0	0	80	0	0	0	0	0	0	0	0	0	40000	0: 0 0 0 0	state1	Project	1:Tue	32	java	15000	0	0	80	0	0	0	0	0	0	0	0	0	39051	0: 0 0 0 0	0
+AgAc	emp0	Sia	6560	Junior	1	65	56	46	75	49	94	65	58	83	Agile Methods  Proj Management  Planning  	act0	1:Tue	Sia	Aid_Analyst	Manager	100	100	8	248	-166 % Aid Analyst	100	Manager has no automomy and aided Analysts
+AcP	act0	1:Tue	Sia	Aid_Analyst	Manager	100	100	8	248	-166 % Aid Analyst	100	Manager has no automomy and aided Analysts	state1	Project	1:Tue	32	java	15000	0	0	80	0	0	0	0	0	0	0	0	0	39051	0: 0 0 0 0	-248 Credits
+AgAc	emp1	Leia	5740	Junior	1	65	44	40	56	59	42	58	59	72	Agile Methods  Metrics  Test  	act1	1:Tue	Leia	Idle	idle	100	100	8	185		100	Idle
+AcP	act1	1:Tue	Leia	Idle	idle	100	100	8	185		100	Idle	state1	Project	1:Tue	32	java	15000	0	0	80	0	0	0	0	0	0	0	0	0	39051	0: 0 0 0 0	-185 Credits
+AgAc	emp2	Jek	6870	Junior	1	89	47	48	96	74	57	78	43	87	Agile Methods  	act2	1:Tue	Jek	Idle	idle	100	100	8	265		100	Idle
+AcP	act2	1:Tue	Jek	Idle	idle	100	100	8	265		100	Idle	state1	Project	1:Tue	32	java	15000	0	0	80	0	0	0	0	0	0	0	0	0	39051	0: 0 0 0 0	-265 Credits
+AgAc	emp3	Quinlan	6320	Junior	1	78	95	67	25	70	78	47	79	63	Java  Agile Methods  Debugging  	act3	1:Tue	Quinlan	Idle	idle	100	100	8	251		100	Idle
+AcP	act3	1:Tue	Quinlan	Idle	idle	100	100	8	251		100	Idle	state1	Project	1:Tue	32	java	15000	0	0	80	0	0	0	0	0	0	0	0	0	39051	0: 0 0 0 0	-251 Credits
