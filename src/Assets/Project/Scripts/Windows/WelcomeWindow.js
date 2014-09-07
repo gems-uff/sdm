@@ -1,12 +1,12 @@
 
-
+public var winCon : WindowController;
 public var project : Project;
-//public var projectW : ProjectWindow;
+public var projectW : ProjectWindow;
 public var timer : GameTime;
 public var style : StyleChoiceWindow;
 
 //Variaveis de controle do dialogo
-private var welcome : boolean = true;
+//private var welcome : boolean = true;
 private var window01 : boolean = true;
 private var window02 : boolean = false;
 private var showRoleHelp : boolean = false;
@@ -15,7 +15,10 @@ private var msgWelcome : String;
 private var msg02 : String;
 //Variavel do Style da GUI
 public var customGuiStyle : GUIStyle;
-private var windowRect : Rect = Rect (700,125,300,395);
+
+public var log : HistoryLog;
+
+//private var windowRect : Rect = Rect (700,125,300,395);
 
 msgWelcome = "Welcome to S.D.M. \n(Software Development Manager) \n" + 
 "\n In this game you are able to have 8 employees, where each can perform different roles, like Analyst, Architect, Manager, Marketing, Programmer and Tester. "+
@@ -26,13 +29,20 @@ msgWelcome = "Welcome to S.D.M. \n(Software Development Manager) \n" +
 "To access the game menu press ESC key\n" + 
 "That said, good luck with your software.";
 
+//Analyst: Tasks: Elicitation, Specification, Quality, Balanced
+//Architect: Verification, Evolution, Analysis, Balanced
+//Manager: Aid
+//Marketing: Aid and income
+//Programmer: Repair, Evolution
+//Tester: Search
+
 msg02 = "Quick Guide\n\n" + 
-"Analyst: Validade the software's class diagram with the client \n\n" +
-"Architect: Makes a test plan and improve the software's model. Also can make prototypes \n\n"+
-"Manager: Aid the analyst, architect, tester and programmer in their jobs. Also responsible for hiring \n\n" +
+"Analyst: Validade the software's class diagram with the client \n Tasks: Elicitation, Specification, Quality\n" +
+"Architect: Makes a test plan and improve the software's model. Also can make prototypes \n Tasks: Verification, Evolution, Analysis\n"+
+"Manager: Aid the analyst, architect, and programmer in their jobs. Also responsible for hiring \n\n" +
 "Marketing: Aid the analyst during validation and generate some income each day. Also is responsibe for negotiations with the client \n\n" +
-"Programmer: Generate code lines for the software and inadvertly put bugs \n\n"+
-"Tester: Remove the bugs in the software with the aid of the architect's plans \n\n" +
+"Programmer: Generate code lines for the software and inadvertly put bugs \n Tasks: Evolution and Repair\n"+
+"Tester: Find bugs in the software with the aid of test cases developed by various roles \n\n" +
 "\n" +
 "";
 function WindowFunction(windowID : int){
@@ -52,11 +62,14 @@ function WindowFunction(windowID : int){
 		if (GUI.Button (Rect (02,368,296,25), "Close Window")) 
 		{
 			window02 = false;
-			welcome = false;
-			//projectW.SetShowWindow(project, true);
-			style.ShowStyleChoiceWindow();
+			//welcome = false;
+			winCon.DisableWelWindow();
+			log.NewProjectNode();
+			projectW.SetShowWindow(project, true);
+			//style.ShowStyleChoiceWindow();
 		}
 	}
+	GUI.DragWindow();
 }
 
 
@@ -66,10 +79,12 @@ function ShowRoleHelp()
 	if (GUI.Button (Rect (02,368,296,25), "Close Window")) 
 	{
 		showRoleHelp = false;
+		winCon.DisableRoleHelpWindow();
 	}
+	GUI.DragWindow();
 }
 
-function ShowRoleHelpWindow()
+function ShowRoleHelpWindow(a : int)
 {
 	showRoleHelp = true;
 }
@@ -81,8 +96,8 @@ function Awake () {
 //--------------------------------------------OnGUI-----------------------------------------------------------
 
 function OnGUI () {
-	if(welcome)
-		windowRect = GUI.Window (5, windowRect, WindowFunction, "Welcome");
-	if(showRoleHelp)
-		windowRect = GUI.Window (5, windowRect, ShowRoleHelp, "Help");
+	//if(welcome)
+	//	windowRect = GUI.Window (5, windowRect, WindowFunction, "Welcome");
+	//if(showRoleHelp)
+	//	windowRect = GUI.Window (5, windowRect, ShowRoleHelp, "Help");
 }

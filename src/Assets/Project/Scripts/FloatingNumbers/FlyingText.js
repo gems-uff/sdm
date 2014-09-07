@@ -5,10 +5,10 @@ function Update () {
 
 }
 function Execute(){
-	for( var i= 0; i < 50; i++)
+	for( var i= 0; i < 120; i++)
 	{
 		guiText.pixelOffset.y += 0.5;
-		yield WaitForSeconds(0.01);
+		yield WaitForSeconds(0.002);
 	}
 	Destroy(transform.gameObject);
 }

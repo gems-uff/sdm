@@ -2,6 +2,7 @@
 
 //public var myFont : Font;
 public var stringNames : StringNames;
+public var windowController : WindowController;
 private var showList1 = false;	//Showlist para cada mesa
 private var showList2 = false;
 private var showList3 = false;
@@ -46,17 +47,17 @@ function ExecutaBotaoPopup(t : String, listEntry : int){
 		switch(listEntry)
 		{
 			case 2: 	//"Change Task"
-				if (treino.GetLockEscolha() == false)// && playStyle.IsMacro() == false)
-					menuPapel.MudarPapel(func, treino);
+				//if (treino.GetLockEscolha() == false)// && playStyle.IsMacro() == false)
+					windowController.ShowRoleWindow(func, treino);
 		   break;
 		   
 		   case 3: 	//"Train"
-				if (treino.GetLockEscolha() == false && playStyle.IsMacro() == false)
-				{
-					treino.SetLockEscolha(true);
-					novopapel = TakePapel(listEntry);
+				//if (treino.GetLockEscolha() == false)// && playStyle.IsMacro() == false)
+				//{
+					//treino.SetLockEscolha(true);
+					//novopapel = TakePapel(listEntry);
 					menuEsp.Especializar(func, treino);
-				}
+				//}
 		   break;
 		   
 		   case 4: 	//"Profile"
@@ -64,7 +65,7 @@ function ExecutaBotaoPopup(t : String, listEntry : int){
 		   break;
 		   
 		   case 5: 	//"Work Hours"
-				if(playStyle.IsMacro() == false)
+				//if(playStyle.IsMacro() == false)
 					workHours.ChangeWorkHours(func);
 		   break;
 		   
@@ -134,15 +135,16 @@ function PopupList(){
 	var sFunc8 : String;
 	
 	//If Micro Style
-	if(playStyle.IsMacro() == false)
-	{
+	//if(playStyle.IsMacro() == false)
+	//{
 		list[0] = new GUIContent("");
 		list[1] = new GUIContent("");
 	    list[2] = new GUIContent("Change Task");
 	    list[3] = new GUIContent("Train");
 	    list[4] = new GUIContent("Profile");
-	    list[5] = new GUIContent("Work Hours");
-    }
+	    list[5] = new GUIContent("Task Config.");
+    //}
+    /*
     else
     {
     //If Macro Style
@@ -153,6 +155,7 @@ function PopupList(){
 		list[4] = new GUIContent("Profile");
 		list[5] = new GUIContent("");
 	}
+	*/
 	//
 	if (func1.GetNome() != stringNames.fired)
 	{
@@ -208,7 +211,8 @@ function PopupList(){
 	}
 	else
 	{
-		sFunc7 = "\n Marketing \n";
+		//sFunc7 = "\n Marketing \n";
+		sFunc7 = "";
 	}
 	if (func8.GetNome() != stringNames.fired)
 	{
@@ -216,7 +220,8 @@ function PopupList(){
 	}
 	else
 	{
-		sFunc8 = "\n Manager \n";
+		//sFunc8 = "\n Manager \n";
+		sFunc8 = "";
 	}
 	
 	if (Popup.List (Rect(000, 00, 90, 60), showList1, listEntry, GUIContent(sFunc1), list, listStyle)) {

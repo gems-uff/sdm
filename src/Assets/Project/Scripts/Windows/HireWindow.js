@@ -1,4 +1,4 @@
-
+public var windowController : WindowController;
 private var contratacao;
 public var stringNames : StringNames;
 public var timer : GameTime;
@@ -49,16 +49,18 @@ private var selectedSlot : boolean = false;
 private var showWindow : boolean = false;
 private var showWindowManagerHiring : boolean = false;
 private var showInsuficientMoneyWindow : boolean = false;
-private var windowRect : Rect = Rect (300,125,300,412);
+//private var windowRect : Rect = Rect (300,125,300,412);
 private var windowRect2 : Rect = Rect (400,125,300,200);
+
+private var manager : Funcionario;
 
 function GetShowWindow(){
 	return showWindow;
 }
 
-function SetShowWindow(){
-	showWindow = true;
-}
+//function SetShowWindow(){
+//	showWindow = true;
+//}
 function ResetItems(){
 	candidate01 = false;
 	candidate02 = false;
@@ -151,9 +153,23 @@ function HireEmployee(){
 		thisCandidate = newEmployee08;
 	}
 	if ( jogador.GetSaldo() >= (thisCandidate.GetSalario() + contratacao))
+	{
+		HireAction(thisCandidate, "PlayerChoice");
 		hireFuncionario.ContratarFuncionario(thisCandidate, inPlaceOf);
+	}
 	else
-		showInsuficientMoneyWindow = true;
+		//showInsuficientMoneyWindow = true;
+		windowController.ShowInsufficientHireWindow();
+}
+function HireAction(thisCandidate : Funcionario, role : String)
+{
+	var action : ActionNode = new ActionNode();
+	var cost : int = thisCandidate.GetSalario() + contratacao;
+
+	//var log : BehaviorPlanner = func = GetComponentInChildren(Funcionario);
+	action.NewActionHire("Hired_Employee:" + role, "Hired new employee:" + thisCandidate.GetNome(), "Hired new employee:" + thisCandidate.GetNome(), manager, cost, timer);
+	action.projectStat = manager.behavior.Log.GetProjectStat();
+	manager.behavior.AddAction(action, false, true);
 }
 
 function ShowInsuficientMoneyWindow()
@@ -162,7 +178,8 @@ function ShowInsuficientMoneyWindow()
 	GUI.Box (Rect (00,00,400,40), "Not enough money to hire.");
 	if (GUI.Button (Rect (00,40,400,30), "Close")) 
 	{
-		showInsuficientMoneyWindow = false;
+		//showInsuficientMoneyWindow = false;
+		windowController.DisableInsufficientHireWindow();
 	}
 	GUI.EndGroup ();
 }
@@ -393,20 +410,31 @@ slot01 = GUI.Toggle (Rect (198, 040, 80, 30), slot01, employee01.GetNome());
 	if ( selected == true && selectedSlot == true)
 	{
 		if (GUI.Button (Rect (02,360,144,25), "OK")) {
-			showWindow  = false;
+			//showWindow  = false;
+			windowController.DisableHireWindow();
 			funcWindow.DisableShowWindow();
 			HireEmployee();
 			ResetItems();
 		}	
 	}
 	if (GUI.Button (Rect (150,360,144,25), "Cancel")) {
-		showWindow  = false;
+		//showWindow  = false;
+		windowController.DisableHireWindow();
 		funcWindow.DisableShowWindow();
 		ResetItems();
 	}	
 	GUI.EndGroup ();
+	GUI.DragWindow();
 }
 
+//--------------------------------------------------------------
+//Manager Hiring Functions
+//--------------------------------------------------------------
+
+function setManager(manager : Funcionario)
+{
+	this.manager = manager;
+}
 function ManagerHiring(role : String)
 {
 	var first : int;
@@ -561,7 +589,7 @@ function ManagerHiring(role : String)
 		if(role == stringNames.papelMarketing)
 		{
 			//Hire marketing
-			slot = 6;
+			//slot = 6;
 			for(i = 1; i < 8; i++)
 			{
 				if( func[i].GetMarketing() > func[first].GetMarketing())
@@ -589,26 +617,37 @@ function ManagerHiring(role : String)
 		}
 		//roll to decide which from the 3 the manager will hire
 		var aux : int;
-		aux = staff[7].GetGerente();
+		aux = manager.GetGerente();
 		var rolled : int = Random.Range (01, 100);
+		var hired : Funcionario;
 		
 		if(rolled > aux)
 		{//third
-			hireFuncionario.ContratarFuncionario(func[third], staff[slot]);
+			hired = func[third];
+			//hireFuncionario.ContratarFuncionario(func[third], staff[slot]);
 		}
 		else
-		{//seocnd
+		{//second
 			if(rolled > aux * 0.4)
 			{
-				hireFuncionario.ContratarFuncionario(func[second], staff[slot]);
+				hired = func[second];
+				//hireFuncionario.ContratarFuncionario(func[second], staff[slot]);
 			}
 			else
 			{//first
-				hireFuncionario.ContratarFuncionario(func[first], staff[slot]);
+				hired = func[first];
+				//hireFuncionario.ContratarFuncionario(func[first], staff[slot]);
 			}
 		}
-		staff[slot].SetPapel(role);
+		
+		if(hireFuncionario.CanHire(hired))
+		{
+			HireAction(hired, role);
+			hireFuncionario.ContratarFuncionario(hired, staff[slot]);
+			staff[slot].SetPapel(role);
+		}
 	}//end-else
+	
 }
 
 function WindowManagerHiring(windowID : int){
@@ -618,23 +657,36 @@ function WindowManagerHiring(windowID : int){
 	{
 		if (GUI.Button (Rect (02,00,296,25), "Analyst")) {
 			ManagerHiring(stringNames.papelAnalista);
-			showWindowManagerHiring = false;
+			//showWindowManagerHiring = false;
+			windowController.DisableManagerHireWindow();
 		}
 		if (GUI.Button (Rect (02,25,296,25), "Architect")) {
 			ManagerHiring(stringNames.papelArquiteto);
-			showWindowManagerHiring = false;
+			//showWindowManagerHiring = false;
+			windowController.DisableManagerHireWindow();
 		}
-		if (GUI.Button (Rect (02,50,296,25), "Marketing")) {
-			ManagerHiring(stringNames.papelMarketing);
-			showWindowManagerHiring = false;
+		if((equipe.GetHasMarketing() == false))
+		{
+			if (GUI.Button (Rect (02,50,296,25), "Marketing")) {
+				ManagerHiring(stringNames.papelMarketing);
+				equipe.SetHasMarketing(true);
+				//showWindowManagerHiring = false;
+				windowController.DisableManagerHireWindow();
+			}
+		}
+		else
+		{
+			GUI.Box (Rect (02,50,296,25), "Marketing");
 		}
 		if (GUI.Button (Rect (02,75,296,25), "Programmer")) {
 			ManagerHiring(stringNames.papelProg);
-			showWindowManagerHiring = false;
+			//showWindowManagerHiring = false;
+			windowController.DisableManagerHireWindow();
 		}
 		if (GUI.Button (Rect (02,100,296,25), "Tester")) {
 			ManagerHiring(stringNames.papelTester);
-			showWindowManagerHiring = false;
+			//showWindowManagerHiring = false;
+			windowController.DisableManagerHireWindow();
 		}
 	}
 	else
@@ -642,26 +694,28 @@ function WindowManagerHiring(windowID : int){
 		GUI.Box (Rect (02,00,296,25), "Full Staff");
 		GUI.Box (Rect (02,25,296,25), "Need to fire someone before hiring");
 	}
-	if (GUI.Button (Rect (02,125,296,25), "Cancel")) {
-		showWindowManagerHiring = false;
+	if (GUI.Button (Rect (02,125,296,25), "Cancel")) 
+	{
+		//showWindowManagerHiring = false;
+		windowController.DisableManagerHireWindow();
 	}
 	GUI.EndGroup ();
+	GUI.DragWindow();
 }
 
-function SetShowWindowMHiring(){
-	showWindowManagerHiring = true;
-}
+//function SetShowWindowMHiring(){
+//	showWindowManagerHiring = true;
+//}
 
 function OnGUI () {
-	GUI.backgroundColor = Color.yellow;
-	GUI.backgroundColor = Color.yellow;
-	GUI.contentColor = Color.green;
-	if(showWindow)
-		windowRect = GUI.Window (20, windowRect, ShowEmployees, ("Possible candidates") );
-	if (showInsuficientMoneyWindow)
-		ShowInsuficientMoneyWindow();
-	if(showWindowManagerHiring)
-		windowRect2 = GUI.Window (20, windowRect2, WindowManagerHiring, ("Manager Hiring") );
+	//GUI.backgroundColor = Color.yellow;
+	//GUI.contentColor = Color.green;
+	//if(showWindow)
+	//	windowRect = GUI.Window (20, windowRect, ShowEmployees, ("Possible candidates") );
+	//if (showInsuficientMoneyWindow)
+	//	ShowInsuficientMoneyWindow();
+	//if(showWindowManagerHiring)
+	//	windowRect2 = GUI.Window (20, windowRect2, WindowManagerHiring, ("Manager Hiring") );
 }
 function Awake () {
 	contratacao = hireFuncionario.GetHire_Price();

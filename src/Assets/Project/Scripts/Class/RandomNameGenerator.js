@@ -128,10 +128,10 @@ class RandomNameGenerator extends System.ValueType{
 			  nome = "Jek";
 		   break;
 		   case 40:
-				nome = "Alfons ";
+				nome = "Alfons";
 		   break;
 		   case 41:
-				nome = "Baltazar ";
+				nome = "Baltazar";
 		   break;
 		   case 42:
 				nome = "Bernardo";

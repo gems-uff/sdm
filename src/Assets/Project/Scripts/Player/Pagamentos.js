@@ -1,5 +1,5 @@
 
-
+public var gameStyle : GameplayStyle;
 public var DIAS_PAGAMENTO : int = 28;
 public var PROJECT_MULT : int = 3;
 private var isPago : boolean = false;
@@ -48,8 +48,35 @@ function PagarFuncionarioTreinamento(preco : int){
 function VerificaSaldo(func : Funcionario, morale : MoraleControl){
 	var saldo : int;
 	var salario : int;
+	var paid : boolean = true;
 	saldo = jogador.GetSaldo();
 	salario = func.GetSalario() / DIAS_PAGAMENTO;
+	//Mon to Fri
+	if((timer.GetGameTime() % 7 != 5) && (timer.GetGameTime() % 7 != 6))
+	{
+		paid = PayEmployee(salario, saldo, morale);
+	}
+	else
+	{
+		//Satuday
+		if( (timer.GetGameTime() % 7 == 5) && func.behavior.GetSaturday())
+		{
+			paid = PayEmployee(salario * 1.25, saldo, morale);
+		}
+		else
+		{
+			//Sunday
+			if((timer.GetGameTime() % 7 == 6) && func.behavior.GetSunday())
+			{
+				paid = PayEmployee(salario * 1.25, saldo, morale);
+			}
+		}
+	}
+	if(!paid)
+	{
+		func.behavior.UpdateCredits();
+	}
+	/*
 	if (saldo < salario)
 	{
 		morale.DecreaseMoralePayment();
@@ -59,10 +86,38 @@ function VerificaSaldo(func : Funcionario, morale : MoraleControl){
 	{
 		jogador.ChangeSaldo(- salario);
 	}
+	*/
+}
+function PayEmployee(salario : int, saldo : int, morale : MoraleControl)
+{
+	if (saldo < salario)
+	{
+		morale.DecreaseMoralePayment();
+		pagouTodos = false;
+		return false;
+	}
+	else
+	{
+		jogador.ChangeSaldo(- salario);
+		return true;
+	}
 }
 //--------------------------------------------PagamentoDoProjeto-----------------------------------------------------------
 
 function ProjetoPagarMensal(){
+	if(project.GetStatus == "Normal")
+	{
+		jogador.ChangeSaldo(project.GetPagamento());
+	}
+	else if (project.GetStatus == "Ahead")
+	{
+		jogador.ChangeSaldo(project.GetPagamento());
+	}
+	else //if (project.GetStatus == "Overdue")
+	{
+		dialog.ActiveShowWindow();
+	}
+	/*
 	var neededMonths : int = 0;
 	var monthPercent : float = 0.0;
 	var auxTime : int = 0;
@@ -71,9 +126,10 @@ function ProjetoPagarMensal(){
 	neededMonths = (project.GetDeadline() / 28);							//Qnts meses pro projeto
 	monthPercent = 100 / neededMonths; 									//Qnts % por meses
 	auxTime = timer.GetGameTime() - project.GetStartDay();			//Quanto tempo desde que o projeto iniciou
-	auxTime = auxTime / 28;														//Quantos meses se passaram desde que iniciou
+	auxTime = parseInt(auxTime / 28);														//Quantos meses se passaram desde que iniciou
 	expected = monthPercent * auxTime;										//% concluido esperado
-	if (expected <= (10 + project.GetFractionDone()))
+	
+	if (expected <= (20 + project.GetFractionDone()))
 	{
 		jogador.ChangeSaldo(project.GetPagamento());
 	}
@@ -81,6 +137,7 @@ function ProjetoPagarMensal(){
 	{
 		dialog.ActiveShowWindow();
 	}
+	*/
 }
 
 function PagarJogadorConclusao(){
@@ -119,10 +176,19 @@ function PagarJogadorMensal(){
 
 function CalculaPagamentoFinal(){
 	var pagamentofinal : int;
+	var auxBugs : int;
+	if(gameStyle.IsMacro())
+	{
+		auxBugs = parseInt(project.GetTotalBugsNotFixed());
+	}
+	else
+	{
+		auxBugs = parseInt(project.GetNumBugs());
+	}
 	pagamentofinal = project.GetPagamento();
 	pagamentofinal = pagamentofinal * PROJECT_MULT;
 	pagamentofinal = pagamentofinal * (parseInt(project.GetSincronismo())) / 100;	//reduz de acordo com o sincronismo
-	pagamentofinal = pagamentofinal - ((parseInt(project.GetNumBugs())) * project.GetBugValue());		//reduz de acordo com o numero de bugs
+	pagamentofinal = pagamentofinal - (auxBugs * project.GetBugValue());		//reduz de acordo com o numero de bugs
 	
 	return pagamentofinal;
 }
@@ -135,9 +201,9 @@ function GetPagamentoFinal()
 	return pagamentofinal;
 }
 
-function GetBugPenalty()
+function GetBugPenalty(auxBugs : int)
 {
-	return (parseInt(project.GetNumBugs()) * project.GetBugValue());
+	return (parseInt(auxBugs) * project.GetBugValue());
 }
 
 function GetValidadionAdjustment()

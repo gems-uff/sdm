@@ -1,0 +1,12 @@
+PlayerID,ProjID,StateID,name,date,deadline,ProgrammingLanguage,Payment,Especification,Elicitation,CodeQuality,CodeCompleted,UnitaryBugFound,IntegrationBugFound,SystemBugFound,AcceptionBugFound,UnitaryBugRepaired,IntegrationBugRepaired,SystemBugRepaired,AcceptionBugRepaired,Credits,TotalBugs
+Player_02,proj1,state0,Project,0:Mon,32,java,15000,0,0,80,0,0,0,0,0,0,0,0,0,31710,0: 0 0 0 0
+Player_02,proj1,state1,Project,1:Tue,32,java,15000,11.647,45,80,0,0,0,0,0,0,0,0,0,30930,0: 0 0 0 0
+Player_02,proj1,state2,Project,2:Wed,32,java,15000,11.647,49.941,80,0,0,0,0,0,0,0,0,0,29977,0: 0 0 0 0
+Player_02,proj1,state3,Project,3:Thu,32,java,15000,15.459,60.906,80,0,0,0,0,0,0,0,0,0,28947,0: 0 0 0 0
+Player_02,proj1,state4,Project,4:Fri,32,java,15000,21.271,71.141,80,0,0,0,0,0,0,0,0,0,28024,0: 0 0 0 0
+Player_02,proj1,state5,Project,5:Sat,32,java,15000,21.271,71.141,80,0,0,0,0,0,0,0,0,0,20134,0: 0 0 0 0
+Player_02,proj1,state6,Project,6:Sun,32,java,15000,21.271,71.141,80,0,0,0,0,0,0,0,0,0,20134,0: 0 0 0 0
+Player_02,proj1,state7,Project,7:Mon,32,java,15000,29.6,82.27,80,0,0,0,0,0,0,0,0,0,18999,0: 0 0 0 0
+Player_02,proj1,state8,Project,8:Tue,32,java,15000,28.8,81.258,80,0,0,0,0,0,0,0,0,0,10191,2: 2 0 0 0
+Player_02,proj1,state9,Project,9:Wed,32,java,15000,28.8,88.364,80,1,0,0,0,0,0,0,0,0,8900,2: 2 0 0 0
+Player_02,proj1,state10,Project,10:Thu,32,java,15000,31.976,95.282,79.8,3,0,0,0,0,0,0,0,0,7849,2: 2 0 0 0

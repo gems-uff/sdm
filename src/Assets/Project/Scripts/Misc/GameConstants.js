@@ -10,27 +10,27 @@ public var MINPAYMENT : int = 2000;
 public var PENALIDADE : float = 0.3;
 public var BONUS : float = 0.25;
 //Roles Constant modifiers
-public var ANALISTA_INICIO : float = 0.8;
-public var ANALISTA : float = 1.0;
+public var ANALYST_BEGINNING : float = 5;
+public var ANALYST : float = 1.0;
+public var ANALYST_VAL : float = 5.0;
 public var ARCHITECT : float = 1.0;
-public var GERENTE : float = 1.0;	// +40%
+public var MANAGER : float = 1.0;	// +40%
 public var MARKETING : float = 1.0;
+public var TESTER : float = 0.7;
+public var PROGRAMMER : float = 1.0;
+public var PROGRAMMER_REPAIR : float = 1.0;
 public var PROG_LINES_DAY_MOD : float = 3.0;
-public var PROG_BUG_MOD : float = 0.1;
-public var TESTER_DURANTE : float = 0.1;
+public var PROG_BUG_MOD : float = 0.02;
 
 //Morale
-public var MODIFICATOR : float = 2.5; 
-public var RECOVERYBONUS : float = 1.2;
-public var TIREDMORALE : float = 25.0;
+public var RECOVERYPENALY : float = 1.0; 
+public var RECOVERYBONUS : float = 1.25;
+public var TIRED_STAMINA : float = 20.0;
 public var BADMORALE : float = 5.0;
 public var DEMITCHANCE : float = 1.0;
 public var MORALE_MOD : int = 6.0;
 
 //Project
-//public var SIMPLE : int = 525;		//Max 35 atributo "Programador" por programador por dia (3 programadores)
-//public var REGULAR : int = 900;	//Max 60
-//ublic var COMPLEX : int = 1200;	//Max 80
 public var SIMPLE : int = 1500;		//50 * 3
 public var REGULAR : int = 2100;	//70 * 3
 public var COMPLEX : int = 4000;	//100 * 4

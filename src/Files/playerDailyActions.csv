@@ -1,0 +1,6 @@
+PLayerID,Actions
+Player_02,Manager_Hired_Employee:Marketing (Beginning Beginning Ending Normal Crunch)
+Player_02,Analyst_Balanced Analyst_Elicitation Architect_Analysis Manager_Aid_Analyst Marketing_Marketing (Beginning Beginning Middle Normal Crunch)
+Player_02,Programmer_Evolution (Beginning Beginning Ending Normal Crunch)
+Player_02,Less_Rate_Architect Manager_Aid_Programmer Training_java (Beginning Beginning Ending Normal Crunch)
+Player_02,Programmer_Evolution (Beginning Beginning Ending Normal Crunch)

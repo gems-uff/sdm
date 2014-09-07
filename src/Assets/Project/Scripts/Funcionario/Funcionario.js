@@ -1,8 +1,13 @@
 
-private var atributos : Atributos = new Atributos();
-private var especializacao : Especializacoes = new Especializacoes();
+public var stringNames : StringNames;
+public var behavior : BehaviorPlanner;
+public var constants : GameConstants;
+
+public var atributos : Atributos = new Atributos();
+public var especializacao : Especializacoes = new Especializacoes();
 public var floatingLevel : FloatingLevel;
 public var startEmpty : boolean = false;
+public var isRandom : boolean = true;
 //Atributos de cada Papel
 private var analista : float = 0;
 private var arquiteto : float = 0;
@@ -18,7 +23,7 @@ private var secRole : String;
 private var mainRoleRate : int;
 private var secRoleRate : int;
 private var job : String;		//Junior, plain, senior
-private var workingHours : int = 40;
+private var workingHours : int = 8;
 private var morale : int = 100;
 private var stamina : int = 100;
 
@@ -349,8 +354,32 @@ function SetPapelSecRate(t: int) {
 	secRoleRate = t;
 }
 
+function SetRates(t : int)
+{
+	if(t < 50)
+		t = 50;
+	mainRoleRate = t;
+	secRoleRate = 100 - t;
+}
+
 function GetCargo() {
 	return job;
+}
+
+function GetJob()
+{
+	if(job == stringNames.jobJunior)
+	{
+		return constants.JUNIOR_MODIFICATOR;
+	}
+	else if (job == stringNames.jobPleno)
+	{
+		return constants.PLENO_MODIFICATOR;
+	}
+	else
+	{
+		return constants.SENIOR_MODIFICATOR;
+	}
 }
 function SetCargo(t: String) {
 	job = t;
@@ -512,7 +541,7 @@ function SetStamina(t: int) {
 //Get e Set Atributos de cada papel
 
 function GetAtributoPapel(p1: float, p2: float, p3: float, p4: float, p5: float, p6: float, p7: float, p8: float, p9: float){
-	var atributoPapel = (atributos.adaptabilidade*p1) + (atributos.autoDidata*p2) + (atributos.detalhista*p3) + (atributos.negociacao*p4) + 
+	var atributoPapel : int = (atributos.adaptabilidade*p1) + (atributos.autoDidata*p2) + (atributos.detalhista*p3) + (atributos.negociacao*p4) + 
 	(atributos.objetividade*p5) + (atributos.organizacao*p6) + (atributos.paciencia*p7) + (atributos.raciocinioLogico*p8) + (atributos.relacionamentoHumano*p9);
 	return atributoPapel;
 }
@@ -641,12 +670,373 @@ function SetF_teste (t: boolean) {
 	especializacao.teste = t;
 }
 
+function GetProfile()
+{
+	if((analista >= arquiteto) && (analista >= gerente) && (analista >= marketing) && (analista >= programador) && (analista >= tester))
+		return "Analyst";
+	else if((arquiteto >= analista) && (arquiteto >= gerente) && (arquiteto >= marketing) && (arquiteto >= programador) && (arquiteto >= tester))
+		return "Architect";
+	else if((gerente >= analista) && (gerente >= arquiteto) && (gerente >= marketing) && (gerente >= programador) && (gerente >= tester))
+		return "Manager";
+	else if((marketing >= analista) && (marketing >= gerente) && (marketing >= arquiteto) && (marketing >= programador) && (marketing >= tester))
+		return "Marketing";
+	else if((programador >= analista) && (programador >= gerente) && (programador >= marketing) && (programador >= arquiteto) && (programador >= tester))
+		return "Programmer";
+	else if((tester >= analista) && (tester >= gerente) && (tester >= marketing) && (tester >= programador) && (tester >= arquiteto))
+		return "Tester";
+	else
+		Debug.Log("NO IDEA");
+}
+//
+//Creates a copy of this employee
+//
+function Copy()
+{
+	var employee : Employee;
+	
+	employee.atributos = this.GetAtributos();
+	employee.especializacao = this.GetStringSpecializations();
+	
+	employee.nome = this.GetNome();
+	employee.salary = this.GetSalario();
+	employee.mainRole = this.GetPapel();
+	employee.secRole = this.GetPapelSec();
+	employee.mainRoleRate = this.GetPapelRate();
+	employee.secRoleRate = this.GetPapelSecRate();
+	employee.job = this.GetCargo();
+	employee.workingHours = this.GetWorkingHours();
+	employee.morale = this.GetMorale();
+	employee.stamina = this.GetStamina();
+	employee.level = this.GetLevel();
+	employee.profile = this.GetProfile();
+	
+	return employee;
+	
+}
+
+//--------------------------------------------------------------------------------------
+//Fire this employee
+//--------------------------------------------------------------------------------------
+
+public var log : HistoryLog;
+public var staminaBar : StaminaBar;
+public var moraleBar : MoraleBar;
+public var body : MeshRenderer;
+
+function FireEmployee (event : boolean, resign : boolean) {
+	var body : GameObject;
+	
+	if(event)
+	{
+		//fire action
+		var slot : EmployeeList;
+		slot = log.GetSlot(this);
+		log.NewFiredAction(slot, this, resign);
+	}
+	EmptyEmployee();
+	this.SetNome(stringNames.fired);
+	this.SetCargo(stringNames.jobJunior);
+	this.SetPapel(stringNames.papelNenhum);
+	this.SetPapelSec(stringNames.papelNenhum);
+	this.SetPapelRate(100);
+	this.SetPapelSecRate(0);
+	this.SetMorale(100);
+	this.SetStamina(100);
+	this.SetWorkingHours(0);
+	this.SetSalarioDefault(0);
+	this.SetSalario(0);
+	this.GetComponentInChildren(MeshRenderer).enabled = false;
+	//body.enable = false;
+	staminaBar = this.GetComponentInChildren(StaminaBar);
+	moraleBar = this.GetComponentInChildren(MoraleBar);
+	staminaBar.Stamina_Bar();
+	moraleBar.Morale_Bar();
+	
+}
+
+function EmptyEmployee(){
+	atributos.adaptabilidade = 0;
+	atributos.autoDidata = 0;
+	atributos.detalhista = 0;
+	atributos.negociacao = 0;
+	atributos.objetividade = 0;
+	atributos.organizacao = 0;
+	atributos.paciencia = 0;
+	atributos.raciocinioLogico = 0;
+	atributos.relacionamentoHumano = 0;
+	this.SetAtributos(atributos);
+	especializacao.assembly = false;
+	especializacao.csharp = false;
+	especializacao.java = false;
+	especializacao.perl = false;
+	especializacao.ruby = false;
+	especializacao.metodoAgil = false;
+	especializacao.metodoClassico = false;
+	especializacao.controleDeVersao = false;
+	especializacao.planejamento = false;
+	especializacao.metricas = false;
+	especializacao.gerenciaDeProjetos = false;
+	especializacao.depuracao = false;
+	especializacao.teste = false;
+	especializacao.analiseDeProgramas = false;
+	this.ResetLevel();
+	this.SetEspecializacoes(especializacao);
+}
+
+function ClearEmployee () {
+	EmptyEmployee();
+	this.SetNome(stringNames.vazio);
+	this.SetCargo(stringNames.jobJunior);
+	this.SetPapel(stringNames.vazio);
+	this.SetPapelSec(stringNames.vazio);
+	this.SetPapelRate(100);
+	this.SetPapelSecRate(0);
+	this.SetMorale(100);
+	this.SetStamina(100);
+	this.SetWorkingHours(0);
+	this.SetSalarioDefault(0);
+	this.SetSalario(0);
+}
+
+//--------------------------------------------------------------------------------------
+//Random Starter
+//--------------------------------------------------------------------------------------
+
+//Esta funcao server para gerar um funcionario inicial totalmente randomico
+function RandomFuncionarioStarter () {
+	if(this.startEmpty == false)
+	{
+		var newNome : RandomNameGenerator = new RandomNameGenerator();
+		
+		if(isRandom)
+		{
+			SetAtributosStarter();
+			SetEspecializacoes();
+		}
+		
+		this.SetNome(newNome.RandomName());
+		this.SetCargo(stringNames.jobJunior);
+		this.SetPapel(stringNames.papelNenhum);
+		this.SetPapelSec(stringNames.papelNenhum);
+		this.SetPapelRate(100);
+		this.SetPapelSecRate(0);
+		this.SetMorale(100);
+		this.SetWorkingHours(8);
+		this.SetSalarioDefault(this.NewSalary());
+		this.SetSalario(this.NewSalary());
+	}
+	else
+		//FireFuncionario(func);
+		this.FireEmployee(false, false);
+}
+
+//Diferenciado para evitar que o jogador começe com funcionarios muito ruins
+function ReturnRandomValueStarter(){
+	var value1 : int;
+	var value2 : int;
+	var aux : int = 0;
+	while (aux < 30)
+	{
+		value1 = Random.Range (30, 101);
+		value2 = Random.Range (25, 101);
+		aux = (value1 + value2) / 2;
+		if (value1 > value2)
+			aux = (aux + value1) / 2;
+		else
+			aux = (aux + value1) / 2;
+	}
+	return aux;
+}
+
+//--------------------------------------------SetAtributos-----------------------------------------------------------
+
+function SetAtributosStarter()
+{
+	atributos.adaptabilidade = ReturnRandomValueStarter();
+	atributos.autoDidata = ReturnRandomValueStarter();
+	atributos.detalhista = ReturnRandomValueStarter();
+	atributos.negociacao = ReturnRandomValueStarter();
+	atributos.objetividade = ReturnRandomValueStarter();
+	atributos.organizacao = ReturnRandomValueStarter();
+	atributos.paciencia = ReturnRandomValueStarter();
+	atributos.raciocinioLogico = ReturnRandomValueStarter();
+	atributos.relacionamentoHumano = ReturnRandomValueStarter();
+	
+	SetAtributos(atributos);
+}
+
+function NewSalary(){
+	var salario : int = 0;
+	var randomModifier : int = Random.Range(100, 121);
+	var aux : float;
+	
+	aux = randomModifier * 0.01;
+	salario = atributos.adaptabilidade + atributos.autoDidata +	atributos.detalhista + atributos.negociacao + atributos.objetividade + atributos.organizacao + atributos.paciencia + atributos.raciocinioLogico + atributos.relacionamentoHumano;
+	salario = salario * aux;
+	salario = salario * 10;
+	//salario = salario * 100;
+	
+	return salario;
+}
+
+function SetEspecializacao (t: int){
+	switch(t)
+	{
+		//Linguagens comeca apartir do 01
+	   case 1:
+		  especializacao.assembly = true;
+	   break;
+	   
+	   case 2:
+			especializacao.csharp = true;
+	   break;
+	   
+	   case 3:
+			especializacao.java = true;
+	   break;
+	   
+	   case 4:
+			especializacao.perl = true;
+	   break;
+	   
+	   case 5:
+			especializacao.ruby = true;
+	   break;
+	   
+	   //Metodos comeca apartir do 21
+	   
+	   case 21:
+			especializacao.metodoAgil = true;
+	   break;
+	   
+	   case 22:
+			especializacao.metodoClassico = true;
+	   break;
+	   
+	   //Ferramentas comeca apartir do 31
+	   case 31:
+			especializacao.controleDeVersao = true;
+	   break;
+	   
+	   case 32:
+		  especializacao.planejamento = true;
+	   break;
+	   case 33:
+			especializacao.metricas = true;
+	   break;
+	   
+	   case 34:
+			especializacao.gerenciaDeProjetos = true;
+	   break;
+	   
+	   case 35:
+			especializacao.depuracao = true;
+	   break;
+	   
+	   case 36:
+			especializacao.teste = true;
+	   break;
+	   
+	   case 37:
+			especializacao.analiseDeProgramas = true;
+	   break;
+
+	   default:
+		break;
+	}
+}
+
+function GetStringSpecializations()
+{
+	var esp : String = "";
+	if ( especializacao.assembly == true )
+	{
+		esp += stringNames.showEsp01 + "  ";
+	}
+	if ( especializacao.csharp == true )
+	{
+		esp += stringNames.showEsp02 + "  ";
+	}
+	if ( especializacao.java == true )
+	{
+		esp += stringNames.showEsp03 + "  ";
+	}
+	if ( especializacao.perl == true )
+	{
+		esp += stringNames.showEsp04 + "  ";
+	}
+	if ( especializacao.ruby == true )
+	{
+		esp += stringNames.showEsp05 + "  ";
+	}
+	if ( especializacao.metodoAgil == true )
+	{
+		esp += stringNames.showEsp06 + "  ";
+	}
+	if ( especializacao.metodoClassico == true )
+	{
+		esp += stringNames.showEsp07 + "  ";
+	}
+	if ( especializacao.analiseDeProgramas == true )
+	{
+		esp += stringNames.showEsp08 + "  ";
+	}
+	if ( especializacao.controleDeVersao == true )
+	{
+		esp += stringNames.showEsp09 + "  ";
+	}
+	if ( especializacao.depuracao == true )
+	{
+		esp += stringNames.showEsp10 + "  ";
+	}
+	if ( especializacao.gerenciaDeProjetos == true )
+	{
+		esp += stringNames.showEsp11 + "  ";
+	}
+	if ( especializacao.metricas == true )
+	{
+		esp += stringNames.showEsp12 + "  ";
+	}
+	if ( especializacao.planejamento == true )
+	{
+		esp += stringNames.showEsp13 + "  ";
+	}
+	if ( especializacao.teste == true )
+	{
+		esp += stringNames.showEsp14 + "  ";
+	}
+	return esp;
+}
+
+//--------------------------------------------SetEspecializacoes-----------------------------------------------------------
+
+function SetEspecializacoes()
+{
+	var espLing : int = Random.Range(1, 20);	//Linguagem
+	var espM : int = Random.Range(21, 30);		//Metodo
+	var espF : int = Random.Range(31, 61);		//Ferramentas
+	var esp1 : int = Random.Range(1, 251);		//Qualquer incommum
+	var esp2 : int = Random.Range(1, 451);		//Qualquer raro
+	var esp3 : int = Random.Range(1, 851);		//Qualquer muito raro
+	var esp4 : int = Random.Range(1, 1651);		//Qualquer muito^2 raro
+
+	SetEspecializacao(espLing);
+	SetEspecializacao(espM);
+	SetEspecializacao(espF);
+	SetEspecializacao(esp1);
+	SetEspecializacao(esp2);
+	SetEspecializacao(esp3);
+	SetEspecializacao(esp4);
+
+}
 
 
-
+//--------------------------------------------------------------------------------------
+//Update
+//--------------------------------------------------------------------------------------
 //--------------------------------------------Update-----------------------------------------------------------
 
-function Update () {
+function FixedUpdate () {
 	SetAnalista();
 	SetArquiteto();
 	SetGerente();
@@ -655,4 +1045,7 @@ function Update () {
 	SetTester();
 }
 
-	
+function Awake () 
+{
+	RandomFuncionarioStarter();
+}	

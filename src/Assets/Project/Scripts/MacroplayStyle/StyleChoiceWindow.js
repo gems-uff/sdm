@@ -36,6 +36,7 @@ function WindowFunction(windowID : int){
 			projectW.SetShowWindow(project, true);
 		}
 	}
+	GUI.DragWindow();
 }
 
 function ChangeStyle(){
@@ -49,7 +50,7 @@ function ChangeStyle(){
 	}
 }
 
-function ShowStyleChoiceWindow()
+function ShowStyleChoiceWindow(t:int)
 {
 	showWindow = true;
 }

@@ -5,9 +5,10 @@
 //menuNegotiation = menuObj.GetComponent(NegotiationWindow);
 //menuNegotiation.SetShowWindow(func);
 
-public var MARKETING_FACTOR : int = 4; //O max que o marketing pode alterar eh em 25% (100 / 4)
+private var MARKETING_FACTOR : float = 0.0025; //O max que o marketing pode alterar eh em 25% (100 / 4)
 public var project : Project;
 public var timer : GameTime;
+public var windowController : WindowController;
 private var windowRect : Rect = Rect (800,125,200,215);
 private var showWindow : boolean = false;
 
@@ -30,9 +31,9 @@ function GetLockNegotiation(){
 function UnLockNegotiation(){	//Usado quando terminar o projeto
 	lockNegotiation = false;
 }
-function SetShowWindow(funcionario){
+function SetShowWindow(funcionario : Funcionario){
 	func = funcionario;
-	showWindow = true;
+	//showWindow = true;
 }
 
 function ResetItems(){
@@ -48,16 +49,30 @@ function ResetItems(){
 	tradeSet = false;
 	tradeOffSet = false;
 }
+function Action(text : String, work_1 : String, work_1Type : String, work_2 : String, work_2Type : String)
+{
+	var action : ActionNode = new ActionNode();
+	action.NewActionNegotiation("Negotiation", text, text, func, 0, timer, "Negotiating", work_1, work_1Type, work_2, work_2Type);
+	action.projectStat = func.behavior.Log.GetProjectStat();
+	func.behavior.AddAction(action, false, true);
+}
 function ApplyChanges(){
-	var marketing : float = func.GetMarketing();
+	var marketing : float = func.GetMarketing() * func.GetJob();
 	var marketing_more : float;
 	var marketing_less : float;
 	var trade : float;
 	var tradeOff : float;
-	marketing = (marketing / MARKETING_FACTOR / 100);
+
+	marketing = (marketing * MARKETING_FACTOR);
 	marketing_more = 1 + marketing;
 	marketing_less = 1 - marketing;
 	func.EarnExperienceNegotiation(parseInt(marketing * 100));
+	
+	var description : String = "Asked for ";
+	var gain : String = "";
+	var gainType : String = "";
+	var inExchange : String = "";
+	var inExchangeType : String = "";
 	
 	if(scopeBool == true)
 	{
@@ -65,6 +80,9 @@ function ApplyChanges(){
 		trade = trade * marketing_less;
 		trade = parseInt(trade);
 		project.SetProjectSize(trade);
+		description += "lower scope";
+		gain = ((marketing * 100) * -1).ToString();
+		gainType = "Scope Negotiation";
 	}
 	if(timeBool == true)
 	{
@@ -73,6 +91,9 @@ function ApplyChanges(){
 		trade = parseInt(trade);
 		trade = trade + project.GetStartDay();
 		project.SetDeadline(trade);
+		description += "more time";
+		gain = (marketing * 100) + " %";
+		gainType = "Time Negotiation";
 	}
 	if(moneyBool == true)
 	{
@@ -80,6 +101,9 @@ function ApplyChanges(){
 		trade = trade * marketing_more;
 		trade = parseInt(trade);
 		project.SetPagamento(trade);
+		description += "more credits";
+		gain = (marketing * 100) + " %";
+		gainType = "Income Negotiation";
 	}
 	if(qualityBool == true)
 	{
@@ -87,6 +111,9 @@ function ApplyChanges(){
 		trade = trade * marketing_less;
 		trade = parseInt(trade);
 		project.SetBugValue(trade);
+		description += "less quality";
+		gain = ((marketing * 100) * -1) + " %";
+		gainType = "Quality Negotiation";
 	}
 	//Tradeoff
 	if(moreScope == true)
@@ -95,6 +122,9 @@ function ApplyChanges(){
 		tradeOff = tradeOff * marketing_more;
 		tradeOff = parseInt(tradeOff);
 		project.SetProjectSize(tradeOff);
+		description += " in exchange of more scope";
+		inExchange = (marketing * 100) + " %";
+		inExchangeType = "Scope Negotiation";
 	}
 	if(lessTime == true)
 	{
@@ -103,6 +133,9 @@ function ApplyChanges(){
 		tradeOff = parseInt(tradeOff);
 		tradeOff = tradeOff + project.GetStartDay();
 		project.SetDeadline(tradeOff);
+		description += " in exchange of less time";
+		inExchange = ((marketing * 100) * -1) + " %";
+		inExchangeType = "Time Negotiation";
 	}
 	if(lessMoney == true)
 	{
@@ -110,6 +143,9 @@ function ApplyChanges(){
 		tradeOff = tradeOff * marketing_less;
 		tradeOff = parseInt(tradeOff);
 		project.SetPagamento(tradeOff);
+		description += " in exchange of less credits";
+		inExchange =((marketing * 100) * -1) + " % ";
+		inExchangeType = "Income Negotiation";
 	}
 	if(moreQuality == true)
 	{
@@ -117,7 +153,11 @@ function ApplyChanges(){
 		trade = trade * marketing_more;
 		trade = parseInt(trade);
 		project.SetBugValue(trade);
+		description += " in exchange of more quality";
+		inExchange = (marketing * 100) + " %";
+		inExchangeType = "Quality Negotiation";
 	}
+	Action(description, gain, gainType, inExchange, inExchangeType);
 }
 
 function WindowFunction(windowID : int){
@@ -140,7 +180,7 @@ function WindowFunction(windowID : int){
 		qualityBool = false;
 		tradeSet = true;
 	}
-	moneyBool = GUI.Toggle (Rect (02, 073, 98, 30), moneyBool, "+ Money");
+	moneyBool = GUI.Toggle (Rect (02, 073, 98, 30), moneyBool, "+ Credits");
 	if(moneyBool == true)
 	{
 		timeBool = false;
@@ -175,7 +215,7 @@ function WindowFunction(windowID : int){
 		moreQuality = false;
 		tradeOffSet = true;
 	}
-	lessMoney = GUI.Toggle (Rect (02, 158, 98, 30), lessMoney, "- Money");
+	lessMoney = GUI.Toggle (Rect (02, 158, 98, 30), lessMoney, "- Credits");
 	if(lessMoney == true)
 	{
 		lessTime = false;
@@ -197,23 +237,26 @@ function WindowFunction(windowID : int){
 		tradeOffSet = false;
 	if (GUI.Button (Rect (02,188,98,25), "Cancel")) 
 	{
-		showWindow  = false;
+		//showWindow  = false;
+		windowController.DisableNegWindow();
 	}
 	if ( tradeOffSet && tradeSet)
 		if (GUI.Button (Rect (100,188,98,25), "Ok")) 
 		{
-			showWindow  = false;
+			//showWindow  = false;
+			windowController.DisableNegWindow();
 			ApplyChanges();
 			lockNegotiation = true;
 			ResetItems();
 		}
+	GUI.DragWindow();
 }
 
 //--------------------------------------------OnGUI-----------------------------------------------------------
 
 function OnGUI () {
-	GUI.backgroundColor = Color.yellow;
-	GUI.contentColor = Color.green;
-	if(showWindow && !lockNegotiation)
-		windowRect = GUI.Window (7, windowRect, WindowFunction, "Negotiation");
+	//GUI.backgroundColor = Color.yellow;
+	//GUI.contentColor = Color.green;
+	//if(showWindow && !lockNegotiation)
+	//	windowRect = GUI.Window (7, windowRect, WindowFunction, "Negotiation");
 }

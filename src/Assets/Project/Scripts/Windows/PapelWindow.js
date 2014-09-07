@@ -4,31 +4,37 @@
 //menuObj = GameObject.Find("GUI");
 //menuPapel = menuObj.GetComponent(PapelWindow);
 //menuPapel.MudarPapel(func);
+public var winCon : WindowController;
 public var stringNames : StringNames;
 public var timer : GameTime;
-public var managerSlot : Funcionario;
-public var marketingSlot : Funcionario;
+//public var managerSlot : Funcionario;
+//public var marketingSlot : Funcionario;
 public var equipe : Equipe;
 public var playStyle : GameplayStyle;
 private var newFunc : NewFuncionario;
 private var fire : NewFuncionario;
 private var func : Funcionario;
-private var windowRect : Rect = Rect (400,125,600,288);
-private var windowRect2 : Rect = Rect (400,125,300,100);
-private var windowRect3 : Rect = Rect (400,125,300,100);
-private var windowRect4 : Rect = Rect (400,125,300,100);
+//private var windowRect : Rect = Rect (400,125,600,288);
+//private var windowRect2 : Rect = Rect (400,125,300,100);
+//private var windowRect3 : Rect = Rect (400,125,300,100);
+//private var windowRect4 : Rect = Rect (400,125,300,100);
 private var janelaPapel : boolean = false;
 private var fireDialogEnable : boolean = false;
-private var promoteDialogEnable : boolean = false;
-private var promoteDialogEnable2 : boolean = false;
+//private var promoteDialogEnable : boolean = false;
+//private var promoteDialogEnable2 : boolean = false;
 private var morale : MoraleControl;
 private var hSliderValue : int = 0;
 private var staminaBar : StaminaBar;
 private var moraleBar : MoraleBar;
 
-function MudarPapel (funcionario : Funcionario, treino : Treinamento){
+//public var log : HistoryLog;
+
+
+//Initialization function. This is the function called from outside
+
+function MudarPapel (funcionario : Funcionario, treino : Treinamento, a : int){
 	func = funcionario;
-	fire = func.GetComponentInChildren(NewFuncionario);
+	//fire = func.GetComponentInChildren(NewFuncionario);
 	if(func.GetNome() != stringNames.fired)
 	{
 		if (treino.GetLockEscolha() == false)
@@ -36,7 +42,17 @@ function MudarPapel (funcionario : Funcionario, treino : Treinamento){
 	}
 }
 
+function ChangeRole(funcionario : Funcionario)
+{
+	func = funcionario;
+}
+
 function ExecutaJanelaPapel(t : String){
+	//If he was manager or marketing, then update the staff status (has manager and marketing)
+	if(func.GetPapel() == stringNames.papelGerente)
+		equipe.SetHasManager(false);
+	if(func.GetPapel() == stringNames.papelMarketing)
+		equipe.SetHasMarketing(false);
 	func.SetPapel(t);
 	//janelaPapel  = false;
 }
@@ -47,25 +63,43 @@ function ExecutaJanelaPapelSec(t : String){
 }
 function ExecutaJanelaCargo(t : String){
 	func.SetCargo(t);
+	var action : ActionNode = new ActionNode();
+	action.NewActionPromotion(func, timer, "Promoted to "+ t);
+	func.behavior.AddAction(action, false, true);
 	morale = func.GetComponentInChildren(MoraleControl);
 	morale.IncreaseMoralePromotion();
 	//janelaPapel  = false;
 }
+/*
 function ExecutaJanelaFire(){
 	fireDialogEnable = true;
-	janelaPapel  = false;
+	//janelaPapel  = false;
+	winCon.DisableRoleWindow();
+	
 }
+*/
 function WindowFire(windowID : int){
 	GUI.Box (Rect (02,20,296,25), "Name: " + func.GetNome());
 	GUI.BeginGroup (Rect (02,45,300,100));
 	if (GUI.Button (Rect (02,00,296,25), "Sure?")) {
-		fireDialogEnable = false;
-		if(func == managerSlot)
-			equipe.SetHasManager(false);
-		fire.FireFuncionario(func);
+		//fireDialogEnable = false;
+		winCon.DisableFireWindow();
+		//if(func == managerSlot)
+		//	equipe.SetHasManager(false);
+		//Create a fire action
+		/*
+		var slot : EmployeeList;
+		slot = log.GetSlot(func);
+		log.NewFiredAction(slot);
+		*/
+		//Fire employee
+		//fire.FireFuncionario(func);
+		func.FireEmployee(true, false);
 	}
-	if (GUI.Button (Rect (02,25,296,25), "Cancel")) {
-		fireDialogEnable = false;
+	if (GUI.Button (Rect (02,25,296,25), "Cancel")) 
+	{
+		//fireDialogEnable = false;
+		winCon.DisableFireWindow();
 	}
 	GUI.EndGroup ();
 }
@@ -74,13 +108,13 @@ function WindowFunction(windowID : int){
 	timer.PauseGame();
 	GUI.Box (Rect (02,18,196,25), "Main Role");
 	GUI.Box (Rect (200,18,196,25), "Sec Role");
-	GUI.BeginGroup (Rect (02,25,600,260));
+	GUI.BeginGroup (Rect (02,25,600,270));
 	//---------------------------------------------------------------------------------------------------------------------
 	//if gameplay style is micro, then player can change roles
 	//if(playStyle.IsMacro() == false)
 	//{		
 		//Main Role
-		if((func.GetPapel() != stringNames.papelAnalista) && (managerSlot != func) && (marketingSlot != func))
+		if((func.GetPapel() != stringNames.papelAnalista))// && (managerSlot != func) && (marketingSlot != func))
 		{    
 			if (GUI.Button (Rect (02,18,198,25), GUIContent (stringNames.papelAnalista, "+ Validadtion")))
 			{
@@ -91,7 +125,7 @@ function WindowFunction(windowID : int){
 			GUI.Box (Rect (02,18,198,25), stringNames.papelAnalista);
 		
 		//---------------------------------------------------------------------------------------------------------------------
-		if((func.GetPapel() != stringNames.papelArquiteto) && (managerSlot != func) && (marketingSlot != func))
+		if((func.GetPapel() != stringNames.papelArquiteto))// && (managerSlot != func) && (marketingSlot != func))
 			if (GUI.Button (Rect (02,43,198,25), GUIContent (stringNames.papelArquiteto, "+ finding bugs \n + Architecture"))) 
 			{
 				ExecutaJanelaPapel(stringNames.papelArquiteto);
@@ -100,7 +134,7 @@ function WindowFunction(windowID : int){
 			GUI.Box (Rect (02,43,198,25), stringNames.papelArquiteto);
 		
 		//---------------------------------------------------------------------------------------------------------------------
-		if((func.GetPapel() != stringNames.papelProg) && (managerSlot != func) && (marketingSlot != func))
+		if((func.GetPapel() != stringNames.papelProg))// && (managerSlot != func) && (marketingSlot != func))
 			if (GUI.Button (Rect (02,68,198,25), GUIContent (stringNames.papelProg, "+ Progress \n + Bugs"))) 
 			{
 				ExecutaJanelaPapel(stringNames.papelProg);
@@ -109,7 +143,7 @@ function WindowFunction(windowID : int){
 			GUI.Box (Rect (02,68,198,25), stringNames.papelProg);
 		
 		//---------------------------------------------------------------------------------------------------------------------
-		if((func.GetPapel() != stringNames.papelTester)	&& (managerSlot != func) && (marketingSlot != func))
+		if((func.GetPapel() != stringNames.papelTester))//	&& (managerSlot != func) && (marketingSlot != func))
 			if (GUI.Button (Rect (02,93,198,25), GUIContent (stringNames.papelTester, "- Bugs"))) 
 			{
 				ExecutaJanelaPapel(stringNames.papelTester);
@@ -158,27 +192,32 @@ function WindowFunction(windowID : int){
 	//}	
 	//---------------------------------------------------------------------------------------------------------------------	
 	//Both on micro and macro the player can assign the manager and marketing role
-	if((func.GetPapel() != stringNames.papelGerente) && (managerSlot != func))
+	//if((func.GetPapel() != stringNames.papelGerente) && (managerSlot != func))
+	if((func.GetPapel() != stringNames.papelGerente) && (equipe.GetHasManager() == false))
 		if (GUI.Button (Rect (02,118,198,25), GUIContent (stringNames.papelGerente, "+ Design \n + Development"))) 
 		{
-			promoteDialogEnable = true;
-			janelaPapel  = false;
+			//promoteDialogEnable = true;
+			//janelaPapel  = false;
+			equipe.SetHasManager(true);
+			ExecutaJanelaPapel(stringNames.papelGerente);
 		}
 	if(func.GetPapel() == stringNames.papelGerente)
 		GUI.Box (Rect (02,118,198,25), stringNames.papelGerente);
 	
 	//---------------------------------------------------------------------------------------------------------------------
-	if((func.GetPapel() != stringNames.papelMarketing) && (marketingSlot != func) && (managerSlot != func))
+	if((func.GetPapel() != stringNames.papelMarketing) && (equipe.GetHasMarketing() == false))// && (marketingSlot != func) && (managerSlot != func))
 		if (GUI.Button (Rect (02,143,198,25), GUIContent (stringNames.papelMarketing, "+ Validation Bonus \n + Money"))) 
 		{
-			promoteDialogEnable2 = true;
-			janelaPapel  = false;
+			//promoteDialogEnable2 = true;
+			//janelaPapel  = false;
+			equipe.SetHasMarketing(true);
+			ExecutaJanelaPapel(stringNames.papelMarketing);
 		}
 	if(func.GetPapel() == stringNames.papelMarketing)
 		GUI.Box (Rect (02,143,198,25), stringNames.papelMarketing);
 	//---------------------------------------------------------------------------------------------------------------------
 	//Main
-	if((func.GetPapel() != stringNames.papelNenhum) && (managerSlot != func) && (marketingSlot != func))	
+	if((func.GetPapel() != stringNames.papelNenhum))// && (managerSlot != func) && (marketingSlot != func))	
 			if (GUI.Button (Rect (02,168,198,25), stringNames.papelNenhum)) 
 			{
 				ExecutaJanelaPapelSec(stringNames.papelNenhum);
@@ -188,7 +227,7 @@ function WindowFunction(windowID : int){
 			GUI.Box (Rect (02,168,198,25), stringNames.papelNenhum);
 			
 	//Sec		
-	if((func.GetPapelSec() != stringNames.papelNenhum) && (managerSlot != func) && (marketingSlot != func))	
+	if((func.GetPapelSec() != stringNames.papelNenhum))// && (managerSlot != func) && (marketingSlot != func))	
 			if (GUI.Button (Rect (200,168,198,25), stringNames.papelNenhum)) 
 			{
 				func.SetPapelRate(100);
@@ -229,7 +268,8 @@ function WindowFunction(windowID : int){
 	//---------------------------------------------------------------------------------------------------------------------
 	if (GUI.Button (Rect (400,168,198,25), GUIContent ("Fire!", "Fire the employee"))) 
 	{
-		ExecutaJanelaFire();
+		//ExecutaJanelaFire();
+		winCon.ShowFireWindow();
 	}
 	
 	//---------------------------------------------------------------------------------------------------------------------
@@ -244,15 +284,17 @@ function WindowFunction(windowID : int){
 	//Botao de Cancel
 	//---------------------------------------------------------------------------------------------------------------------
 	//+40 02,193,396,25
-	if (GUI.Button (Rect (02,233,396,25), "Close")) {
-		janelaPapel  = false;
+	if (GUI.Button (Rect (02,240,396,25), "Close")) {
+		//janelaPapel  = false;
+		winCon.DisableRoleWindow();
 		//timer.SpeedNormal();
 	}
 	GUI.Box (Rect (400,18,198,50), GUI.tooltip);
 	GUI.EndGroup ();
+	GUI.DragWindow();
 }
 
-
+/*
 function PromoteToManager()
 {
 	fire.ClearFuncionario(managerSlot);
@@ -272,6 +314,18 @@ function PromoteToManager()
 	staminaBar.Stamina_Bar();
 	moraleBar.Morale_Bar();
 	
+	//
+	//Need to change in the project list the slot.
+	var empList : EmployeeList;
+	var pjList : ProjectList;
+	pjList = log.GetProjectList();
+	empList = log.GetSlot(func);
+	//Need to add an Fire Event in the slot 8 if it was not empty
+	
+	//Create a new node for the new manager in slot 8
+	log.NewEmployeeNode(managerSlot, pjList.last.slot08);
+	
+	//
 	fire.FireFuncionario(func);
 	janelaPapel  = false;
 	equipe.SetHasManager(true);
@@ -326,6 +380,7 @@ function WindowPromoteMarketing(windowID : int){
 	}
 	GUI.EndGroup ();
 }
+*/
 //--------------------------------------------Awake-----------------------------------------------------------
 
 function Awake () {
@@ -335,15 +390,16 @@ function Awake () {
 
 //Funcao da lista Popup para cada um das 8 janelas de funcionarios
 function OnGUI () {
-	GUI.backgroundColor = Color.yellow;
-	GUI.backgroundColor = Color.yellow;
-	GUI.contentColor = Color.green;
-	if(janelaPapel)
-		windowRect = GUI.Window (2, windowRect, WindowFunction, func.GetNome() + " Roles");
-	if(fireDialogEnable)
-		windowRect2 = GUI.Window (10, windowRect2, WindowFire, "Confirmation: Firing employee");
+	//GUI.backgroundColor = Color.yellow;
+	//GUI.contentColor = Color.green;
+	//if(janelaPapel)
+	//	windowRect = GUI.Window (2, windowRect, WindowFunction, func.GetNome() + " Roles");
+	//if(fireDialogEnable)
+	//	windowRect2 = GUI.Window (10, windowRect2, WindowFire, "Confirmation: Firing employee");
+	/*
 	if(promoteDialogEnable)
 		windowRect3 = GUI.Window (10, windowRect3, WindowPromoteManager, "Confirmation: Promote employee");
 	if(promoteDialogEnable2)
 		windowRect4 = GUI.Window (10, windowRect4, WindowPromoteMarketing, "Confirmation: Promote employee");
+		*/
 }

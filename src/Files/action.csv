@@ -1,0 +1,49 @@
+PlayerID,EmpID,ActionID,Date,Task,Role,Morale,Stamina,Hours,Cost,Work,Rate,PlayerID,Description
+Player_02,emp0,act0,1:Tue,Aid_Analyst,Manager,100,100,8,215,343 % Aid Analyst,100
+Player_02,emp0,act1,2:Wed,Aid_Analyst,Manager,100,100,8,215,-180 % Aid Analyst,100
+Player_02,emp0,act2,3:Thu,Aid_Analyst,Manager,100,100,8,215,44 % Aid Analyst,100
+Player_02,emp0,act3,4:Fri,Aid_Analyst,Manager,100,100,8,215,213 % Aid Analyst,100
+Player_02,emp0,act4,7:Mon,Aid_Analyst,Manager,100,100,8,215,390 % Aid Analyst,100
+Player_02,emp0,act5,8:Tue,Aid_Analyst,Manager,100,100,8,215,-273 % Aid Analyst,100
+Player_02,emp0,act6,9:Wed,Aid_Programmer,Manager,100,100,8,215,-146 % Aid Programmer,100
+Player_02,emp0,act7,10:Thu,Aid_Programmer,Manager,100,100,8,215,-74 % Aid Programmer,100
+Player_02,emp0,act8,0:Mon,Hired_Employee:Marketing,Manager,100,100,8,8290,Hired Employee,100
+Player_02,emp0,act9,5:Sat,Hired_Employee:Programmer,Manager,100,100,8,7890,Hired Employee,100
+Player_02,emp1,act10,1:Tue,Elicitation_Reviews,Analyst,100,100,12,293,45 Discovery,100
+Player_02,emp1,act12,2:Wed,Elicitation_Prototype,Analyst,100,95,12,293,4.941176 Discovery,100
+Player_02,emp1,act14,3:Thu,Elicitation_Prototype,Analyst,100,90,12,293,10.96471 Discovery,100
+Player_02,emp1,act16,4:Fri,Elicitation_Reviews,Analyst,100,85,12,293,10.23529 Discovery,100
+Player_02,emp1,act18,7:Mon,Elicitation_Reviews,Analyst,100,92,12,293,11.24706 Discovery,100
+Player_02,emp1,act20,8:Tue,Elicitation_Reviews,Analyst,100,87,12,293,-1.011765 Discovery,100
+Player_02,emp1,act22,9:Wed,Elicitation_Prototype,Analyst,100,82,12,293,7.105883 Discovery,100
+Player_02,emp1,act24,10:Thu,Elicitation_Prototype,Analyst,100,77,12,293,6.917647 Discovery,100
+Player_02,emp2,act26,1:Tue,Balanced_Specification,Analyst,100,100,8,251,495 Validation,100
+Player_02,emp2,act27,2:Wed,Balanced_Quality,Analyst,100,100,8,251,2 ATC,100
+Player_02,emp2,act28,3:Thu,Balanced_Specification,Analyst,100,100,8,251,162 Validation,100
+Player_02,emp2,act29,4:Fri,Balanced_Specification,Analyst,100,100,8,251,247 Validation,100
+Player_02,emp2,act30,7:Mon,Balanced_Specification,Analyst,100,100,8,251,354 Validation,100
+Player_02,emp2,act31,8:Tue,Balanced_Specification,Analyst,100,100,8,251,-34 Validation,100
+Player_02,emp2,act32,9:Wed,Balanced_Quality,Analyst,100,100,8,251,0 ATC,100
+Player_02,emp2,act33,10:Thu,Balanced_Specification,Analyst,100,100,8,251,135 Validation,100
+Player_02,emp3,act34,1:Tue,Analysis,Architect,100,100,8,257,0 Prototype,100
+Player_02,emp3,act35,2:Wed,Analysis,Architect,100,100,8,257,1 Prototype Created,100
+Player_02,emp3,act36,3:Thu,Analysis,Architect,100,100,8,257,1 Prototype Created,100
+Player_02,emp3,act37,4:Fri,Analysis,Architect,100,100,8,257,0 Prototype,100
+Player_02,emp3,act38,7:Mon,Analysis,Architect,100,100,8,257,0 Prototype,100
+Player_02,emp3,act39,8:Tue,Analysis,Architect,100,100,8,257,0 Prototype,100
+Player_02,emp3,act40,9:Wed,Analysis,Architect,100,100,8,154,1 Prototype Created,60
+Player_02,emp3,act41,10:Thu,Analysis,Architect,100,100,8,154,1 Prototype Created,60
+Player_02,emp3,act42,9:Wed,Evolution_Draw-code,Programmer,100,100,8,103,54 Progress,100
+Player_02,emp3,act43,10:Thu,Evolution_Adhoc,Programmer,100,100,8,103,176 Progress,100
+Player_02,emp4,act11,1:Tue,Marketing,Marketing,100,100,8,265,36 % Aid Analyst,100
+Player_02,emp4,act13,2:Wed,Marketing,Marketing,100,100,8,265,94 % Aid Analyst,100
+Player_02,emp4,act15,3:Thu,Marketing,Marketing,100,100,8,265,-40 % Aid Analyst,100
+Player_02,emp4,act17,4:Fri,Marketing,Marketing,100,100,8,265,0 % Aid Analyst,100
+Player_02,emp4,act19,7:Mon,Marketing,Marketing,100,100,8,265,-43 % Aid Analyst,100
+Player_02,emp4,act21,8:Tue,Marketing,Marketing,100,100,8,265,15 % Aid Analyst,100
+Player_02,emp4,act23,9:Wed,Marketing,Marketing,100,100,8,265,-30 % Aid Analyst,100
+Player_02,emp4,act25,10:Thu,Marketing,Marketing,100,100,8,265,5 % Aid Analyst,100
+Player_02,emp5,act44,7:Mon,Evolution_Test-Driven,Programmer,100,100,8,228,16 Progress,100
+Player_02,emp5,act45,8:Tue,Evolution_Draw-code,Programmer,100,100,8,228,26 Progress,100
+Player_02,emp5,act46,9:Wed,java,Training,100,100,8,228,,100
+Player_02,emp5,act47,10:Thu,java,Training,100,100,8,228,,100

@@ -1,0 +1,13 @@
+PlayerID,PlayerActionID,EmpID,Date,Order,Code,Req,Sinc,DevStatus,FinancialStatus
+Player_02,pAction2,emp0,0,Manager_Hired_Employee:Marketing,Beginning,Beginning,Beginning,Normal,Crunch
+Player_02,pAction3,emp0,0,Manager_Hired_Employee:Programmer,Beginning,Beginning,Ending,Normal,Crunch
+Player_02,pAction5,emp2,1,Analyst_Balanced,Beginning,Beginning,Middle,Normal,Crunch
+Player_02,pAction9,emp4,1,Marketing_Marketing,Beginning,Beginning,Middle,Normal,Crunch
+Player_02,pAction6,emp3,1,Architect_Analysis,Beginning,Beginning,Middle,Normal,Crunch
+Player_02,pAction0,emp0,1,Manager_Aid_Analyst,Beginning,Beginning,Middle,Normal,Crunch
+Player_02,pAction4,emp1,1,Analyst_Elicitation,Beginning,Beginning,Middle,Normal,Crunch
+Player_02,pAction10,emp5,7,Programmer_Evolution,Beginning,Beginning,Ending,Normal,Crunch
+Player_02,pAction11,emp5,8,Training_java,Beginning,Beginning,Ending,Normal,Crunch
+Player_02,pAction1,emp0,8,Manager_Aid_Programmer,Beginning,Beginning,Ending,Normal,Crunch
+Player_02,pAction7,emp3,8,Less_Rate_Architect,Beginning,Beginning,Ending,Normal,Crunch
+Player_02,pAction8,emp3,9,Programmer_Evolution,Beginning,Beginning,Ending,Normal,Crunch

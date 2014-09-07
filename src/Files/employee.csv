@@ -1,0 +1,7 @@
+PlayerID,EmpID,Name,Salary,Job,Level,Adaptability,Autodidact,Meticulous,Negotiation,Objectivity,Organization,Patience,LogicalReasoning,HumanRelations,Specializations,Profile
+Player_02,emp0,Daniel,6140,Junior,1,65,56,46,75,49,94,65,58,83,Agile Methods  Proj Management  Planning  ,Manager
+Player_02,emp1,Frija,5490,Junior,1,65,44,40,56,59,42,58,59,72,Agile Methods  Metrics  Test  ,Analyst
+Player_02,emp2,Kathryn,7050,Junior,1,89,47,48,96,74,57,78,43,87,Agile Methods  ,Marketing
+Player_02,emp3,Quinlan,7040,Junior,1,78,95,67,25,70,78,47,79,63,Java  Agile Methods  Debugging  ,Programmer
+Player_02,emp4,Kaleb,7420,Junior,1,75,70,81,70,82,70,67,47,67,C#  Perl  Analysis Program  Proj Management  ,Analyst
+Player_02,emp5,Jude,6410,Junior,1,33,82,95,73,71,49,62,96,44,,Analyst

@@ -14,6 +14,7 @@ private var showCloseButton : boolean = true;
 public var customGuiStyle : GUIStyle;
 private var windowRect : Rect = Rect (700,125,300,395);
 
+public var log : HistoryLog;
 //Funcao que permite a exibicao da janela com os dados do projeto
 function SetShowWindow(projectShow : Project, closeButton : boolean){
 	showCloseButton = closeButton;
@@ -39,6 +40,7 @@ function WindowFunction(windowID : int){
 		{
 			showWindow = false;
 		}
+	GUI.DragWindow();
 }
 //--------------------------------------------OnGUI-----------------------------------------------------------
 

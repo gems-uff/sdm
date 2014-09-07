@@ -1,0 +1,175 @@
+PlayerID,EdgeID,SourceClientID,SourceEmpID,SourceActID,SourceStateID,TargetEmpID,TargetActID,TargetStateID,TargetArtID,Value
+Player_02,edge0,,,,state0,,,state1,,default
+Player_02,edge1,,,,state1,,,state2,,default
+Player_02,edge2,,,,state2,,,state3,,default
+Player_02,edge3,,,,state3,,,state4,,default
+Player_02,edge4,,,,state4,,,state5,,default
+Player_02,edge5,,,,state5,,,state6,,default
+Player_02,edge6,,,,state6,,,state7,,default
+Player_02,edge7,,,,state7,,,state8,,default
+Player_02,edge8,,,,state8,,,state9,,default
+Player_02,edge9,,,,state9,,,state10,,default
+Player_02,edge10,,emp0,,,,act0,,,default
+Player_02,edge11,,,act0,,,,state1,,-215 Credits
+Player_02,edge12,,emp0,,,,act1,,,default
+Player_02,edge13,,,act1,,,,state2,,-215 Credits
+Player_02,edge14,,emp0,,,,act2,,,default
+Player_02,edge15,,,act2,,,,state3,,-215 Credits
+Player_02,edge16,,emp0,,,,act3,,,default
+Player_02,edge17,,,act3,,,,state4,,-215 Credits
+Player_02,edge18,,emp0,,,,act4,,,default
+Player_02,edge19,,,act4,,,,state7,,-215 Credits
+Player_02,edge20,,emp0,,,,act5,,,default
+Player_02,edge21,,,act5,,,,state8,,-215 Credits
+Player_02,edge22,,emp0,,,,act6,,,default
+Player_02,edge23,,,act6,,,,state9,,-215 Credits
+Player_02,edge24,,emp0,,,,act7,,,default
+Player_02,edge25,,,act7,,,,state10,,-215 Credits
+Player_02,edge26,,emp0,,,,act8,,,default
+Player_02,edge27,,,act8,,,,state0,,-8290 Credits
+Player_02,edge28,,emp0,,,,act9,,,default
+Player_02,edge29,,,act9,,,,state5,,-7890 Credits
+Player_02,edge30,,emp1,,,,act10,,,default
+Player_02,edge31,,,act0,,,act10,,,343 % Aid Analyst
+Player_02,edge32,,,act11,,,act10,,,36 % Aid Analyst
+Player_02,edge33,,,act10,,,,state1,,-293 Credits
+Player_02,edge34,,emp1,,,,act12,,,default
+Player_02,edge35,,,act1,,,act12,,,-180 % Aid Analyst
+Player_02,edge36,,,act13,,,act12,,,94 % Aid Analyst
+Player_02,edge37,,,act12,,,,,art1,-1 Prototype
+Player_02,edge38,,,act12,,,,state2,,-293 Credits
+Player_02,edge39,,,act12,,emp1,,,,-5 Stamina
+Player_02,edge40,,emp1,,,,act14,,,default
+Player_02,edge41,,,act2,,,act14,,,44 % Aid Analyst
+Player_02,edge42,,,act15,,,act14,,,-40 % Aid Analyst
+Player_02,edge43,,,act14,,,,,art2,-1 Prototype
+Player_02,edge44,,,act14,,,,state3,,-293 Credits
+Player_02,edge45,,,act14,,emp1,,,,-5 Stamina
+Player_02,edge46,,emp1,,,,act16,,,default
+Player_02,edge47,,,act3,,,act16,,,213 % Aid Analyst
+Player_02,edge48,,,act17,,,act16,,,0 % Aid Analyst
+Player_02,edge49,,,act16,,,,state4,,-293 Credits
+Player_02,edge50,,,act16,,emp1,,,,-5 Stamina
+Player_02,edge51,,emp1,,,,act18,,,default
+Player_02,edge52,,,act4,,,act18,,,390 % Aid Analyst
+Player_02,edge53,,,act19,,,act18,,,-43 % Aid Analyst
+Player_02,edge54,,,act18,,,,state7,,-293 Credits
+Player_02,edge55,,,act18,,emp1,,,,7 Stamina
+Player_02,edge56,,emp1,,,,act20,,,default
+Player_02,edge57,,,act5,,,act20,,,-273 % Aid Analyst
+Player_02,edge58,,,act21,,,act20,,,15 % Aid Analyst
+Player_02,edge59,,,act20,,,,state8,,-293 Credits
+Player_02,edge60,,,act20,,,,state8,,-1.011765 Discovery
+Player_02,edge61,,,act20,,,,state8,,1 New Bug
+Player_02,edge62,,,act20,,emp1,,,,-5 Stamina
+Player_02,edge63,,emp1,,,,act22,,,default
+Player_02,edge64,,,act23,,,act22,,,-30 % Aid Analyst
+Player_02,edge65,,,act22,,,,,art3,-1 Prototype
+Player_02,edge66,,,act22,,,,state9,,-293 Credits
+Player_02,edge67,,,act22,,emp1,,,,-5 Stamina
+Player_02,edge68,,emp1,,,,act24,,,default
+Player_02,edge69,,,act25,,,act24,,,5 % Aid Analyst
+Player_02,edge70,,,act24,,,,,art4,-1 Prototype
+Player_02,edge71,,,act24,,,,state10,,-293 Credits
+Player_02,edge72,,,act24,,emp1,,,,-5 Stamina
+Player_02,edge73,,emp2,,,,act26,,,default
+Player_02,edge74,,,act0,,,act26,,,343 % Aid Analyst
+Player_02,edge75,,,act11,,,act26,,,36 % Aid Analyst
+Player_02,edge76,,,act26,,,,state1,,-251 Credits
+Player_02,edge77,,emp2,,,,act27,,,default
+Player_02,edge78,,,act1,,,act27,,,-180 % Aid Analyst
+Player_02,edge79,,,act13,,,act27,,,94 % Aid Analyst
+Player_02,edge80,,,act27,,,,state2,,-251 Credits
+Player_02,edge81,,emp2,,,,act28,,,default
+Player_02,edge82,,,act2,,,act28,,,44 % Aid Analyst
+Player_02,edge83,,,act15,,,act28,,,-40 % Aid Analyst
+Player_02,edge84,,,act28,,,,state3,,-251 Credits
+Player_02,edge85,,emp2,,,,act29,,,default
+Player_02,edge86,,,act3,,,act29,,,213 % Aid Analyst
+Player_02,edge87,,,act17,,,act29,,,0 % Aid Analyst
+Player_02,edge88,,,act29,,,,state4,,-251 Credits
+Player_02,edge89,,emp2,,,,act30,,,default
+Player_02,edge90,,,act4,,,act30,,,390 % Aid Analyst
+Player_02,edge91,,,act19,,,act30,,,-43 % Aid Analyst
+Player_02,edge92,,,act30,,,,state7,,-251 Credits
+Player_02,edge93,,emp2,,,,act31,,,default
+Player_02,edge94,,,act5,,,act31,,,-273 % Aid Analyst
+Player_02,edge95,,,act21,,,act31,,,15 % Aid Analyst
+Player_02,edge96,,,act31,,,,state8,,-251 Credits
+Player_02,edge97,,emp2,,,,act32,,,default
+Player_02,edge98,,,act23,,,act32,,,-30 % Aid Analyst
+Player_02,edge99,,,act32,,,,state9,,-251 Credits
+Player_02,edge100,,emp2,,,,act33,,,default
+Player_02,edge101,,,act25,,,act33,,,5 % Aid Analyst
+Player_02,edge102,,,act33,,,,state10,,-251 Credits
+Player_02,edge103,,emp3,,,,act34,,,default
+Player_02,edge104,,,act34,,,,state1,,-257 Credits
+Player_02,edge105,,emp3,,,,act35,,,default
+Player_02,edge106,,,act35,,,,,art1,1 Prototype Created
+Player_02,edge107,,,act35,,,,state2,,-257 Credits
+Player_02,edge108,,emp3,,,,act36,,,default
+Player_02,edge109,,,act36,,,,,art2,1 Prototype Created
+Player_02,edge110,,,act36,,,,state3,,-257 Credits
+Player_02,edge111,,emp3,,,,act37,,,default
+Player_02,edge112,,,act37,,,,state4,,-257 Credits
+Player_02,edge113,,emp3,,,,act38,,,default
+Player_02,edge114,,,act38,,,,state7,,-257 Credits
+Player_02,edge115,,emp3,,,,act39,,,default
+Player_02,edge116,,,act39,,,,state8,,-257 Credits
+Player_02,edge117,,emp3,,,,act40,,,default
+Player_02,edge118,,,act40,,,,,art3,1 Prototype Created
+Player_02,edge119,,,act40,,,,state9,,-154 Credits
+Player_02,edge120,,emp3,,,,act41,,,default
+Player_02,edge121,,,act41,,,,,art4,1 Prototype Created
+Player_02,edge122,,,act41,,,,state10,,-154 Credits
+Player_02,edge123,,emp3,,,,act42,,,default
+Player_02,edge124,,,act6,,,act42,,,-146 % Aid Programmer
+Player_02,edge125,,,act42,,,,state9,,-103 Credits
+Player_02,edge126,,,act42,,,,state9,,54 Progress
+Player_02,edge127,,,act42,,,,state9,,0 Quality
+Player_02,edge128,,,act42,,,,state9,,0 New_Bug
+Player_02,edge129,,emp3,,,,act43,,,default
+Player_02,edge130,,,act7,,,act43,,,-74 % Aid Programmer
+Player_02,edge131,,,act43,,,,state10,,-103 Credits
+Player_02,edge132,,,act43,,,,state10,,176 Progress
+Player_02,edge133,,,act43,,,,state10,,-0.199 Quality
+Player_02,edge134,,,act43,,,,state10,,0 New_Bug
+Player_02,edge135,,emp4,,,,act11,,,default
+Player_02,edge136,,,act11,,,,state1,,-265 Credits
+Player_02,edge137,,,act11,,,,state1,,501 Credits
+Player_02,edge138,,emp4,,,,act13,,,default
+Player_02,edge139,,,act13,,,,state2,,-265 Credits
+Player_02,edge140,,,act13,,,,state2,,328 Credits
+Player_02,edge141,,emp4,,,,act15,,,default
+Player_02,edge142,,,act15,,,,state3,,-265 Credits
+Player_02,edge143,,,act15,,,,state3,,251 Credits
+Player_02,edge144,,emp4,,,,act17,,,default
+Player_02,edge145,,,act17,,,,state4,,-265 Credits
+Player_02,edge146,,,act17,,,,state4,,358 Credits
+Player_02,edge147,,emp4,,,,act19,,,default
+Player_02,edge148,,,act19,,,,state7,,-265 Credits
+Player_02,edge149,,,act19,,,,state7,,374 Credits
+Player_02,edge150,,emp4,,,,act21,,,default
+Player_02,edge151,,,act21,,,,state8,,-265 Credits
+Player_02,edge152,,,act21,,,,state8,,201 Credits
+Player_02,edge153,,emp4,,,,act23,,,default
+Player_02,edge154,,,act23,,,,state9,,-265 Credits
+Player_02,edge155,,,act23,,,,state9,,218 Credits
+Player_02,edge156,,emp4,,,,act25,,,default
+Player_02,edge157,,,act25,,,,state10,,-265 Credits
+Player_02,edge158,,,act25,,,,state10,,458 Credits
+Player_02,edge159,,emp5,,,,act44,,,default
+Player_02,edge160,,,act44,,,,state7,,-228 Credits
+Player_02,edge161,,,act44,,,,state7,,16 Progress
+Player_02,edge162,,,act44,,,,state7,,0.006 Quality
+Player_02,edge163,,,act44,,,,state7,,0 UTC
+Player_02,edge164,,,act44,,,,state7,,0 New_Bug
+Player_02,edge165,,emp5,,,,act45,,,default
+Player_02,edge166,,,act45,,,,state8,,-228 Credits
+Player_02,edge167,,,act45,,,,state8,,26 Progress
+Player_02,edge168,,,act45,,,,state8,,0 Quality
+Player_02,edge169,,,act45,,,,state8,,1 New_Bug
+Player_02,edge170,,emp5,,,,act46,,,default
+Player_02,edge171,,,act46,,,,state9,,-228 Credits
+Player_02,edge172,,emp5,,,,act47,,,default
+Player_02,edge173,,,act47,,,,state10,,-228 Credits

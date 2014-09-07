@@ -9,6 +9,7 @@ public var func6 : Funcionario;
 public var func7 : Funcionario;
 public var func8 : Funcionario;
 public var pagamento : Pagamentos;
+public var project : Project;
 
 function ShowWindow()
 {
@@ -78,6 +79,8 @@ function ShowWindow()
 	func7.GetStamina() + "%\n" +
 	func8.GetStamina() + "%\n"
 	));
+	
+	project.expenses = (func1.GetSalario() + func2.GetSalario() + func3.GetSalario() + func4.GetSalario() + func5.GetSalario() + func6.GetSalario() + func7.GetSalario() + func8.GetSalario());
 
 }
 

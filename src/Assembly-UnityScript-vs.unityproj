@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{921433A9-C757-C887-F273-3AD603673371}</ProjectGuid>
+	<ProjectGuid>{AE3E4C40-759D-294E-DEEC-9C870A888A8B}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -18,7 +18,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_3_5_0;UNITY_3_5;UNITY_EDITOR;ENABLE_PROFILER;UNITY_STANDALONE_WIN;ENABLE_GENERICS;ENABLE_DUCK_TYPING;ENABLE_TERRAIN;ENABLE_MOVIES;ENABLE_WEBCAM;ENABLE_MICROPHONE;ENABLE_NETWORK;ENABLE_CLOTH;ENABLE_WWW;ENABLE_SUBSTANCE</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_3_5_6;UNITY_3_5;UNITY_EDITOR;ENABLE_PROFILER;UNITY_STANDALONE_WIN;ENABLE_GENERICS;ENABLE_DUCK_TYPING;ENABLE_TERRAIN;ENABLE_MOVIES;ENABLE_WEBCAM;ENABLE_MICROPHONE;ENABLE_NETWORK;ENABLE_CLOTH;ENABLE_WWW;ENABLE_SUBSTANCE</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -37,18 +37,30 @@
     <Reference Include="System.XML" />
 	<Reference Include="System.Core" />
 	<Reference Include="UnityEngine">
-	  <HintPath>D:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>D:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>D:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>D:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Project\Player\SuperMarioAnimation.js" />
      <Compile Include="Assets\Project\Player\SuperMarioController.js" />
+     <Compile Include="Assets\Project\Scripts\Behavior\BehaviorPlanner.js" />
+     <Compile Include="Assets\Project\Scripts\Behavior\HistoryLog.js" />
      <Compile Include="Assets\Project\Scripts\Camera\MouseLook2.js" />
      <Compile Include="Assets\Project\Scripts\Class\Atributos.js" />
+     <Compile Include="Assets\Project\Scripts\Class\Employee.js" />
      <Compile Include="Assets\Project\Scripts\Class\Especializacoes.js" />
+     <Compile Include="Assets\Project\Scripts\Class\LinkedList\ActionList.js" />
+     <Compile Include="Assets\Project\Scripts\Class\LinkedList\ArtifactList.js" />
+     <Compile Include="Assets\Project\Scripts\Class\LinkedList\EmployeeList.js" />
+     <Compile Include="Assets\Project\Scripts\Class\LinkedList\InfluenceList.js" />
+     <Compile Include="Assets\Project\Scripts\Class\LinkedList\LinkedList.js" />
+     <Compile Include="Assets\Project\Scripts\Class\LinkedList\ProjectList.js" />
+     <Compile Include="Assets\Project\Scripts\Class\LinkedList\ProjectStats.js" />
+     <Compile Include="Assets\Project\Scripts\Class\LinkedList\testList.js" />
+     <Compile Include="Assets\Project\Scripts\Class\PlayerActions.js" />
      <Compile Include="Assets\Project\Scripts\Class\ProjectsDescriptions.js" />
      <Compile Include="Assets\Project\Scripts\Class\RandomNameGenerator.js" />
      <Compile Include="Assets\Project\Scripts\Class\SaveFuncionario.js" />
@@ -59,6 +71,9 @@
      <Compile Include="Assets\Project\Scripts\Dialog\Dialog.js" />
      <Compile Include="Assets\Project\Scripts\Dialog\NoPaymentDialog.js" />
      <Compile Include="Assets\Project\Scripts\Equipe\Equipe.js" />
+     <Compile Include="Assets\Project\Scripts\Equipe\Influence.js" />
+     <Compile Include="Assets\Project\Scripts\Equipe\InfluenceValues.js" />
+     <Compile Include="Assets\Project\Scripts\Equipe\ManagerPlanner.js" />
      <Compile Include="Assets\Project\Scripts\FloatingNumbers\FloatingLevel.js" />
      <Compile Include="Assets\Project\Scripts\FloatingNumbers\FloatingLines.js" />
      <Compile Include="Assets\Project\Scripts\FloatingNumbers\FlyingText.js" />
@@ -69,19 +84,14 @@
      <Compile Include="Assets\Project\Scripts\Funcionario\MoraleControl.js" />
      <Compile Include="Assets\Project\Scripts\Funcionario\NewFuncionario.js" />
      <Compile Include="Assets\Project\Scripts\Funcionario\PapelIcon.js" />
-     <Compile Include="Assets\Project\Scripts\Funcionario\Roles\AnalystMacro.js" />
-     <Compile Include="Assets\Project\Scripts\Funcionario\Roles\AnalystMicro.js" />
-     <Compile Include="Assets\Project\Scripts\Funcionario\Roles\ArchitectMacro.js" />
-     <Compile Include="Assets\Project\Scripts\Funcionario\Roles\ArchitectMicro.js" />
-     <Compile Include="Assets\Project\Scripts\Funcionario\Roles\ManagerMacro.js" />
-     <Compile Include="Assets\Project\Scripts\Funcionario\Roles\ManagerMicro.js" />
-     <Compile Include="Assets\Project\Scripts\Funcionario\Roles\MarketingMacro.js" />
-     <Compile Include="Assets\Project\Scripts\Funcionario\Roles\MarketingMicro.js" />
-     <Compile Include="Assets\Project\Scripts\Funcionario\Roles\ProgrammerMacro.js" />
-     <Compile Include="Assets\Project\Scripts\Funcionario\Roles\ProgrammerMicro.js" />
-     <Compile Include="Assets\Project\Scripts\Funcionario\Roles\TesterMacro.js" />
-     <Compile Include="Assets\Project\Scripts\Funcionario\Roles\TesterMicro.js" />
+     <Compile Include="Assets\Project\Scripts\Funcionario\Roles\Macro\AnalystMacro.js" />
+     <Compile Include="Assets\Project\Scripts\Funcionario\Roles\Macro\ArchitectMacro.js" />
+     <Compile Include="Assets\Project\Scripts\Funcionario\Roles\Macro\ManagerMacro.js" />
+     <Compile Include="Assets\Project\Scripts\Funcionario\Roles\Macro\MarketingMacro.js" />
+     <Compile Include="Assets\Project\Scripts\Funcionario\Roles\Macro\ProgrammerMacro.js" />
+     <Compile Include="Assets\Project\Scripts\Funcionario\Roles\Macro\TesterMacro.js" />
      <Compile Include="Assets\Project\Scripts\Funcionario\StaminaBar.js" />
+     <Compile Include="Assets\Project\Scripts\Funcionario\StarterSettings.js" />
      <Compile Include="Assets\Project\Scripts\Funcionario\TrainingBar.js" />
      <Compile Include="Assets\Project\Scripts\Funcionario\Treinamento.js" />
      <Compile Include="Assets\Project\Scripts\Funcionario\Working.js" />
@@ -95,6 +105,8 @@
      <Compile Include="Assets\Project\Scripts\Menu\Menu.js" />
      <Compile Include="Assets\Project\Scripts\Menu\PopUpListGUI.js" />
      <Compile Include="Assets\Project\Scripts\Menu\StartMenuGUI.js" />
+     <Compile Include="Assets\Project\Scripts\Misc\ExportLog.js" />
+     <Compile Include="Assets\Project\Scripts\Misc\ExportLogFile.js" />
      <Compile Include="Assets\Project\Scripts\Misc\FPS.js" />
      <Compile Include="Assets\Project\Scripts\Misc\GameConstants.js" />
      <Compile Include="Assets\Project\Scripts\Misc\SaveGame.js" />
@@ -104,6 +116,14 @@
      <Compile Include="Assets\Project\Scripts\Project\AcceptProject.js" />
      <Compile Include="Assets\Project\Scripts\Project\Project.js" />
      <Compile Include="Assets\Project\Scripts\Project\RandomProjectGenerator.js" />
+     <Compile Include="Assets\Project\Scripts\Project\TestCases.js" />
+     <Compile Include="Assets\Project\Scripts\Provenance\Class_Edge.js" />
+     <Compile Include="Assets\Project\Scripts\Provenance\Class_InfluenceEdge.js" />
+     <Compile Include="Assets\Project\Scripts\Provenance\Class_Vertex.js" />
+     <Compile Include="Assets\Project\Scripts\Provenance\ExtractProvenance.js" />
+     <Compile Include="Assets\Project\Scripts\Provenance\InfluenceController.js" />
+     <Compile Include="Assets\Project\Scripts\Provenance\ProvenanceContainer.js" />
+     <Compile Include="Assets\Project\Scripts\Provenance\ProvenanceController.js" />
      <Compile Include="Assets\Project\Scripts\Testing\FloatingLines2.js" />
      <Compile Include="Assets\Project\Scripts\Testing\FloatingLinesBelow2.js" />
      <Compile Include="Assets\Project\Scripts\Testing\FlyingText2.js" />
@@ -114,6 +134,7 @@
      <Compile Include="Assets\Project\Scripts\Windows\EspWindow.js" />
      <Compile Include="Assets\Project\Scripts\Windows\FuncWindow.js" />
      <Compile Include="Assets\Project\Scripts\Windows\HireWindow.js" />
+     <Compile Include="Assets\Project\Scripts\Windows\LogWindow.js" />
      <Compile Include="Assets\Project\Scripts\Windows\NegotiationWindow.js" />
      <Compile Include="Assets\Project\Scripts\Windows\PapelWindow.js" />
      <Compile Include="Assets\Project\Scripts\Windows\ProjectEnd.js" />
@@ -121,11 +142,13 @@
      <Compile Include="Assets\Project\Scripts\Windows\PrototypeWindow.js" />
      <Compile Include="Assets\Project\Scripts\Windows\WeeklyReportWindow.js" />
      <Compile Include="Assets\Project\Scripts\Windows\WelcomeWindow.js" />
+     <Compile Include="Assets\Project\Scripts\Windows\WindowController.js" />
      <Compile Include="Assets\Project\Scripts\Windows\WorkingHoursWindow.js" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Blob-Shadow\ShadowProjection.shader" />
      <None Include="Assets\Shaders\UnlitAlpha.shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+     <None Include="Assets\SaveData.xml" />
      <None Include="Assets\Standard Assets\Skyboxes\skybox info.txt" />
      <None Include="Assets\Shaders\AlphaSelfIllum.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
@@ -139,7 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
-      <Project>{C3BB08FD-D5EF-4ABC-470E-EF5531261A72}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
+      <Project>{E53CDB40-1DF9-8A61-5878-81243AFDF805}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
