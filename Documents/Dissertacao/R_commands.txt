@@ -1,79 +1,0 @@
-q3a <- c(0,1,1,1,1,0,0,1,1,1,0,1,0,0,0,0)
-q4a <- c(1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1)
-q5a <- c(0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1)
-q6a <- c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-q7a <- c(1,0,0,0,0,0,0,0,1,1,0,1,0,1,0,1)
-q8a <- c(0,0,0,0,0,0,0,0,0,1,0,0.5,0,0.5,0,0.5)
-q9a <- c(1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1)
-durationA <- c(25,18,19,21,18,19,21,21,28,21,28,29,26,27,20,30)
-
-q3b <- c(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-q4b <- c(1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0)
-q5b <- c(0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0)
-q6b <- c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-q7b <- c(1,0,1,0,0,0,0,1,0,1,0,0,0,0,0,0)
-q8b <- c(0,0,0,0,0,0,0,0,0,0,0.5,0,0,0.5,0,0.5)
-q9b <- c(1,1,0,0,1,1,0,1,0,1,1,0,0,0,0,1)
-durationB <- c(20,32,33,32,30,30,48,42,38,38,31,14,19,8,29,19)
-
-No outliers:
-
-q3a <- c(0,1,1,1,1,0,0,1,1,1,0,1,0,0,0,0)
-q4a <- c(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
-q5a <- c(0,0,0,0,0,0,0,0,0,0,0,0,0)
-q6a <- c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-q7a <- c(1,0,0,0,0,0,0,0,1,1,0,1,0,1,0,1)
-q8a <- c(0,0,0,0,0,0,0,0,0,0,0.5,0,0.5,0,0.5)
-q9a <- c(1,1,1,1,1,1,1,1,1,1,1,1,1)
-durationA <- c(25,18,19,21,18,19,21,21,28,21,28,29,26,27,20,30)
-
-q3b <- c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-q4b <- c(1,1,1,1,1,1,1,1,1,1,1,1,1,1)
-q5b <- c(0,0,0,0,0,0,0,0,0,0,0,0,0)
-q6b <- c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-q7b <- c(1,0,1,0,0,0,0,1,0,1,0,0,0,0,0,0)
-q8b <- c(0,0,0,0,0,0,0,0,0,0,0)
-q9b <- c(1,1,0,0,1,1,0,1,0,1,1,0,0,0,0,1)
-durationB <- c(20,32,33,32,30,30,48,42,38,38,31,14,19,8,29,19)
-
-
-
-shapiro.test(q3a)
-shapiro.test(q4a)
-shapiro.test(q5a)
-shapiro.test(q6a)
-shapiro.test(q7a)
-shapiro.test(q8a)
-shapiro.test(q9a)
-shapiro.test(durationA)
-
-shapiro.test(q3b)
-shapiro.test(q4b)
-shapiro.test(q5b)
-shapiro.test(q6b)
-shapiro.test(q7b)
-shapiro.test(q8b)
-shapiro.test(q9b)
-shapiro.test(durationB)
-
-wilcox.test(q3a ,q3b ,conf.int =T)
-wilcox.test(q4a ,q4b ,conf.int =T)
-wilcox.test(q5a ,q5b ,conf.int =T)
-wilcox.test(q6a ,q6b ,conf.int =T)
-wilcox.test(q7a ,q7b ,conf.int =T)
-wilcox.test(q8a ,q8b ,conf.int =T)
-wilcox.test(q9a ,q9b ,conf.int =T)
-wilcox.test(durationA ,durationB ,conf.int =T)
-boxplot(q3a ,q3b, q4a, q4b, q5a, q5b, q6a, q6b, q7a, q7b, q8a, q8b, q9a, q9b, names=c("Prov", "Replay", "Prov", "Replay", "Prov", "Replay", "Prov", "Replay", "Prov", "Replay", "Prov", "Replay", "Prov", "Replay"), main = "Question 3", col = (c("cadetblue","darkolivegreen1")))
-boxplot(durationA ,durationB, names=c("Prov", "Replay"), main = "Duration", col = (c("cadetblue","darkolivegreen1")))
-
-
-boxplot(q3a ,q3b, names=c("Prov", "Replay"), main = "Question 3", col = (c("cadetblue","darkolivegreen1")))
-boxplot(q4a ,q4b, names=c("Prov", "Replay"), main = "Question 4", col = (c("cadetblue","darkolivegreen1")))
-boxplot(q5a ,q5b, names=c("Prov", "Replay"), main = "Question 5", col = (c("cadetblue","darkolivegreen1")))
-boxplot(q6a ,q6b, names=c("Prov", "Replay"), main = "Question 6", col = (c("cadetblue","darkolivegreen1")))
-boxplot(q7a ,q7b, names=c("Prov", "Replay"), main = "Question 7", col = (c("cadetblue","darkolivegreen1")))
-boxplot(q8a ,q8b, names=c("Prov", "Replay"), main = "Question 8", col = (c("cadetblue","darkolivegreen1")))
-boxplot(q9a ,q9b, names=c("Prov", "Replay"), main = "Question 9", col = (c("cadetblue","darkolivegreen1")))
-boxplot(durationA ,durationB, names=c("Prov", "Replay"), main = "Duration", col = (c("cadetblue","darkolivegreen1")))
-
