@@ -147,7 +147,9 @@ public function Save(filename : String)
 {
 	var provContainer : ProvenanceContainer = new ProvenanceContainer(vertexList, edgeList);
 	//provContainer.Save(Path.Combine(Application.persistentDataPath, "provenancedata.xml"));
-	provContainer.Save("./Files/" + filename + ".xml");
+	provContainer.Save(Path.Combine(Application.dataPath, filename + ".xml"));
+	Debug.Log(Application.dataPath);
+	//provContainer.Save("./Files/" + filename + ".xml");
 }
 
 //=================================================================================================================
@@ -155,5 +157,7 @@ public function Save(filename : String)
 //=================================================================================================================
 public function Load(filename : String)
 {
-	var provContainer : ProvenanceContainer = ProvenanceContainer.Load("./Files/" + filename + ".xml");
+	//var provContainer : ProvenanceContainer = ProvenanceContainer.Load("./Files/" + filename + ".xml");
+	var provContainer : ProvenanceContainer = ProvenanceContainer.Load(Path.Combine(Application.dataPath, filename + ".xml"));
+	
 }

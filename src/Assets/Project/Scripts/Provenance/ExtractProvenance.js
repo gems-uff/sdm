@@ -33,7 +33,6 @@
 // 5) If any influence effect expired, then invoke 'RemoveInfluenceTag' or 'RemoveInfluenceID' to remove that influence
 //=================================================================================================================
 
-
 //=================================================================================================================
 // *Declarations*
 //=================================================================================================================
@@ -111,11 +110,30 @@ public function NewEntityVertex(label_ : String, details_ : String)
 	NewEntityVertex((Time.time).ToString(), label_, details_);
 }
 
+// Uses Time.time for the Vertex.date field. Links Entity to the Agent that created it
+public function NewEntityVertexFromAgent(label_ : String, details_ : String)
+{
+	NewEntityVertexFromAgent((Time.time).ToString(), label_, details_);
+}
+
 // User defines the Vertex.date field
 public function NewEntityVertex(date_ : String, label_ : String, details_ : String)
 {
 	PopulateAttributes();
 	currentVertex = provenance.AddVertex(date_, "Entity", label_, attributeList, details_, currentVertex);
+	ClearList();
+}
+
+// User defines the Vertex.date field. Links Entity to the Agent that created it
+public function NewEntityVertexFromAgent(date_ : String, label_ : String, details_ : String)
+{
+	PopulateAttributes();
+	currentVertex = provenance.AddVertex(date_, "Entity", label_, attributeList, details_, currentVertex);
+	
+	if((agentVertex != null) && (currentVertex != "Agent"))
+	{
+		provenance.CreateProvenanceEdge(currentVertex, agentVertex);
+	}
 	ClearList();
 }
 
@@ -138,7 +156,6 @@ public function NewVertex(date_ : String, type_ : String, label_ : String, detai
 	currentVertex = provenance.AddVertex(date_, type_, label_, attributeList, details_, currentVertex);
 	ClearList();
 }
-
 //=================================================================================================================
 // Create a new attribute for the vertex
 // Attribute defined by the user

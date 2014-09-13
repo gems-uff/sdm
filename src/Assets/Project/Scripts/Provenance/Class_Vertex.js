@@ -1,5 +1,6 @@
 #pragma strict
 import System.Collections.Generic;
+import System.Xml.Serialization;
 
 //===================================================================================================================
 // 'Vertex' Class Definition
