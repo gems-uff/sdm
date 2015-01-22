@@ -7,4 +7,4 @@ Software Development Manager is a novel simulation game developed in Unity3D gam
 
 Since SDM focus is people management, the main element of the game are employees, which represent the player’s labor force. Since employees take a very important role, several existing features where expanded or added. These features include changes in possible roles that an employee can perform and the attributes used to calculate the employee’s performance. Another element added is specialization, used to define the employee working competence.  With the specialization system, it is possible for employees to undergo training to learn new skills. Also the concepts of working hours, morale, and stamina are used to modify the employee’s productivity.
 
-More info can be found at gems.ic.uff.br/sdm/
+More info can be found at http://gems.ic.uff.br/sdm/
